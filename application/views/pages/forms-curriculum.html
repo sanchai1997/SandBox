@@ -1,0 +1,690 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>Dashboard - NiceAdmin Bootstrap Template</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <!-- Favicons -->
+  <link href="assets/img/favicon.png" rel="icon">
+  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.gstatic.com" rel="preconnect">
+  <link
+    href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
+    rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+  <link href="assets/vendor/quill/quill.snow.css" rel="stylesheet">
+  <link href="assets/vendor/quill/quill.bubble.css" rel="stylesheet">
+  <link href="assets/vendor/remixicon/remixicon.css" rel="stylesheet">
+  <link href="assets/vendor/simple-datatables/style.css" rel="stylesheet">
+
+  <!-- Template Main CSS File -->
+  <link href="assets/css/style.css" rel="stylesheet">
+
+  <!-- =======================================================
+  * Template Name: NiceAdmin - v2.4.1
+  * Template URL: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/
+  * Author: BootstrapMade.com
+  * License: https://bootstrapmade.com/license/
+  ======================================================== -->
+</head>
+
+<body>
+
+  <!-- ======= Header ======= -->
+  <header id="header" class="header fixed-top d-flex align-items-center">
+
+    <div class="d-flex align-items-center justify-content-between">
+      <a href="index.html" class="logo d-flex align-items-center">
+        <img src="assets/img/logo.png" alt="">
+        <span class="d-none d-lg-block">Satun Sandbox</span>
+      </a>
+      <i class="bi bi-list toggle-sidebar-btn"></i>
+    </div><!-- End Logo -->
+
+    <div class="search-bar">
+      <form class="search-form d-flex align-items-center" method="POST" action="#">
+        <input type="text" name="query" placeholder="Search" title="Enter search keyword">
+        <button type="submit" title="Search"><i class="bi bi-search"></i></button>
+      </form>
+    </div><!-- End Search Bar -->
+
+    <nav class="header-nav ms-auto">
+      <ul class="d-flex align-items-center">
+
+        <li class="nav-item d-block d-lg-none">
+          <a class="nav-link nav-icon search-bar-toggle " href="#">
+            <i class="bi bi-search"></i>
+          </a>
+        </li><!-- End Search Icon-->
+
+        <li class="nav-item dropdown">
+
+          <a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown">
+            <i class="bi bi-bell"></i>
+            <span class="badge bg-primary badge-number">4</span>
+          </a><!-- End Notification Icon -->
+
+          <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow notifications">
+            <li class="dropdown-header">
+              คุณมี 4 ประกาศใหม่
+              <a href="#"><span class="badge rounded-pill bg-primary p-2 ms-2">แสดงทั้งหมด</span></a>
+            </li>
+            <li>
+              <hr class="dropdown-divider">
+            </li>
+
+            <li class="notification-item">
+              <i class="bi bi-exclamation-circle text-warning"></i>
+              <div>
+                <h4>กิจกรรมเด็กดี</h4>
+                <p>กิจกรรมเด็กดี โรงเรียนอนุบาลสตูล</p>
+                <p>30 นาทีที่แล้ว</p>
+              </div>
+            </li>
+
+            <li>
+              <hr class="dropdown-divider">
+            </li>
+
+            <li class="notification-item">
+              <i class="bi bi-x-circle text-danger"></i>
+              <div>
+                <h4>พลเมืองนวัตกรในพื้นที่นวัตกรรม</h4>
+                <p>กิจกรรมน่าสนใจบ่ายนี้ที่ ม.ทักษิณ “พลเมืองนวัตกรในพื้นที่นวัตกรรม”
+                  เวลา 13:00 น. เป็นต้นไป หอประชุมปาริชาต มหาวิทยาลัยทักษิณ วิทยาเขตสงขลา</p>
+                <p>1 ชั่วโมงที่แล้ว</p>
+              </div>
+            </li>
+
+            <li>
+              <hr class="dropdown-divider">
+            </li>
+
+            <li class="notification-item">
+              <i class="bi bi-check-circle text-success"></i>
+              <div>
+                <h4>สมัชชาการศึกษาจังหวัดสตูล</h4>
+                <p>สมัชชาการศึกษาจังหวัดสตูล #3 ฐานสมรรถนะ = ฐานชีวิต ระหว่างวันที่ 22 – 23 กันยายน 2565 ณ
+                  มหาวิทยาลัยราชภัฏสงขลา วิทยาเขตสตูล</p>
+                <p>2 ชั่วโมงที่แล้ว</p>
+              </div>
+            </li>
+
+            <li>
+              <hr class="dropdown-divider">
+            </li>
+
+            <li class="notification-item">
+              <i class="bi bi-info-circle text-primary"></i>
+              <div>
+                <h4>สมัชชาการศึกษาจังหวัดสตูล ครั้งที่3</h4>
+                <p>สมัชชาการศึกษาจังหวัดสตูล ครั้งที่3 8760 โรงเรียนเป็นส่วนหนึ่งของระบบการศึกษา
+                  เราเชื่อว่าการศึกษาเป็นเรื่องของทุกคน</p>
+                <p>3 วันที่แล้ว</p>
+              </div>
+            </li>
+
+            <li>
+              <hr class="dropdown-divider">
+            </li>
+            <li class="dropdown-footer">
+              <a href="#">แสดงประกาศทั้งหมด</a>
+            </li>
+
+          </ul><!-- End Notification Dropdown Items -->
+
+        </li><!-- End Notification Nav -->
+
+        <li class="nav-item dropdown">
+
+          <a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown">
+            <i class="bi bi-chat-left-text"></i>
+            <span class="badge bg-success badge-number">3</span>
+          </a><!-- End Messages Icon -->
+
+          <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow messages">
+            <li class="dropdown-header">
+              คุณมี 3 ข้อความใหม่
+              <a href="#"><span class="badge rounded-pill bg-primary p-2 ms-2">แสดงทั้งหมด</span></a>
+            </li>
+            <li>
+              <hr class="dropdown-divider">
+            </li>
+
+            <li class="message-item">
+              <a href="#">
+                <img src="assets/img/messages-1.jpg" alt="" class="rounded-circle">
+                <div>
+                  <h4>ไพลิน สุวรรณมาลา</h4>
+                  <p>สอบถามเกี่ยวกับการร่วมกิจกรรม Workshop นวัตกรรมการศึกษาคนสตูล:...</p>
+                  <p>4 ชั่วโมงที่แล้ว</p>
+                </div>
+              </a>
+            </li>
+            <li>
+              <hr class="dropdown-divider">
+            </li>
+
+            <li class="message-item">
+              <a href="#">
+                <img src="assets/img/messages-2.jpg" alt="" class="rounded-circle">
+                <div>
+                  <h4>ศศลักษณ์ ทองขาว</h4>
+                  <p>
+                    สอบถามเกี่ยวกับการลงบทความความร่วมมือเชิงรุกในการสร้างนวัตกรรมการศึกษาและบริหารจัดการพื้นที่นวัตกรรมการศึกษาจังหวัดสตูล...
+                  </p>
+                  <p>6 ชั่วโมงที่แล้ว</p>
+                </div>
+              </a>
+            </li>
+            <li>
+              <hr class="dropdown-divider">
+            </li>
+
+            <li class="message-item">
+              <a href="#">
+                <img src="assets/img/messages-3.jpg" alt="" class="rounded-circle">
+                <div>
+                  <h4>สมคิด ทองสง</h4>
+                  <p>สอบถามเกี่ยวกับการนำวิดีโอที่จะประกอบการเรียนการสอนขึ้นระบบครับ...</p>
+                  <p>8 ชั่วโมงที่แล้ว</p>
+                </div>
+              </a>
+            </li>
+            <li>
+              <hr class="dropdown-divider">
+            </li>
+
+            <li class="dropdown-footer">
+              <a href="#">แสดงข้อความทั้งหมด</a>
+            </li>
+
+          </ul><!-- End Messages Dropdown Items -->
+
+        </li><!-- End Messages Nav -->
+
+        <li class="nav-item dropdown pe-3">
+
+          <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
+            <img src="assets/img/profile-img.jpg" alt="Profile" class="rounded-circle">
+            <span class="d-none d-md-block dropdown-toggle ps-2">K. Anderson</span>
+          </a><!-- End Profile Iamge Icon -->
+
+          <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
+            <li class="dropdown-header">
+              <h6>อำนาจ ทองขาว</h6>
+              <span>ครู</span>
+            </li>
+            <li>
+              <hr class="dropdown-divider">
+            </li>
+
+            <li>
+              <a class="dropdown-item d-flex align-items-center" href="users-profile.html">
+                <i class="bi bi-person"></i>
+                <span>ประวัติ</span>
+              </a>
+            </li>
+            <li>
+              <hr class="dropdown-divider">
+            </li>
+
+            <li>
+              <a class="dropdown-item d-flex align-items-center" href="users-profile.html">
+                <i class="bi bi-gear"></i>
+                <span>ตั้งค่าส่วนตัว</span>
+              </a>
+            </li>
+            <li>
+              <hr class="dropdown-divider">
+            </li>
+
+            <li>
+              <a class="dropdown-item d-flex align-items-center" href="pages-faq.html">
+                <i class="bi bi-question-circle"></i>
+                <span>ช่วยเหลือ</span>
+              </a>
+            </li>
+            <li>
+              <hr class="dropdown-divider">
+            </li>
+
+            <li>
+              <a class="dropdown-item d-flex align-items-center" href="#">
+                <i class="bi bi-box-arrow-right"></i>
+                <span>ออกจากระบบ</span>
+              </a>
+            </li>
+
+          </ul><!-- End Profile Dropdown Items -->
+        </li><!-- End Profile Nav -->
+
+      </ul>
+    </nav><!-- End Icons Navigation -->
+
+  </header><!-- End Header -->
+
+   <!-- ======= Sidebar ======= -->
+   <aside id="sidebar" class="sidebar">
+
+    <ul class="sidebar-nav" id="sidebar-nav">
+
+      <li class="nav-item">
+        <a class="nav-link " href="index.html">
+          <i class="bi bi-grid"></i>
+          <span>รายงาน</span>
+        </a>
+      </li><!-- End รายงาน Nav -->
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" data-bs-target="#forms-nav" data-bs-toggle="collapse" href="#">
+          <i class="bi bi-journal-text"></i><span>ข้อมูลพื้นฐาน</span><i class="bi bi-chevron-down ms-auto"></i>
+        </a>
+        <ul id="forms-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+          <li>
+            <a href="forms-student.html">
+              <i class="bi bi-circle"></i><span>ข้อมูลนักเรียน</span>
+            </a>
+          </li>
+          <li>
+            <a href="forms-teacher.html">
+              <i class="bi bi-circle"></i><span>ข้อมูลครูและบุคลากรทางการศึกษา</span>
+            </a>
+          </li>
+          <li>
+            <a href="forms-school.html">
+              <i class="bi bi-circle"></i><span>ข้อมูลสถานศึกษา</span>
+            </a>
+          </li>
+          <li>
+            <a href="forms-craduated.html">
+              <i class="bi bi-circle"></i><span>ข้อมูลผู้สำเร็จการศึกษา</span>
+            </a>
+          </li>
+          <li>
+            <a href="forms-transcript.html">
+              <i class="bi bi-circle"></i><span>ข้อมูลผลสัมฤทธิ์ทางการศึกษา</span>
+            </a>
+          </li>
+          <li>
+            <a href="forms-personnel.html">
+              <i class="bi bi-circle"></i><span>ข้อมูลบุคลากรอื่น</span>
+            </a>
+          </li>
+        </ul>
+      </li><!-- End ข้อมูลพื้นฐาน Nav -->
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="forms-curriculum.html">
+          <i class="bi bi-journal-text"></i>
+          <span>ข้อมูลหลักสูตร/หลักสูตรของพื้นที่นวัตกรรม</span>
+        </a>
+      </li><!-- End ข้อมูลหลักสูตร Page Nav -->
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="forms-teacher_developmant_avtivity.html">
+          <i class="bi bi-person "></i>
+          <span>ข้อมูลการพัฒนาบุคลากร</span>
+        </a>
+      </li><!-- End ข้อมูลการพัฒนาบุคลากร Page Nav -->
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="forms-budget.html">
+          <i class="bi bi-journal-text"></i>
+          <span>ข้อมูลงบประมาณ</span>
+        </a>
+      </li><!-- End ข้อมูลงบประมาณ Page Nav -->
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="forms-area_identitty.html">
+          <i class="bi bi-card-list"></i>
+          <span>ข้อมูลอัตลักษณ์ของแต่ละพื้นที่</span>
+        </a>
+      </li><!-- End ข้อมูลอัตลักษณ์ของแต่ละพื้นที่ Page Nav -->
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" data-bs-target="#components-nav" data-bs-toggle="collapse" href="#">
+          <i class="bi bi-menu-button-wide"></i><span>ข้อมูลนวัตกรรมการศึกษา</span><i class="bi bi-chevron-down ms-auto"></i>
+        </a>
+        <ul id="components-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+          <li>
+            <a href="forms-innovation.html">
+              <i class="bi bi-circle"></i><span>ข้อมูลนวัตกรรมการศึกษา</span>
+            </a>
+          </li>
+          <li>
+            <a href="forms-learning_technology_media.html">
+              <i class="bi bi-circle"></i><span>ข้อมูลเทคโนโลยีและสื่อการเรียนรู้</span>
+            </a>
+          </li>
+          <li>
+            <a href="forms-best_practice.html">
+              <i class="bi bi-circle"></i><span>ข้อมูลแนวปฏิบัติที่เป็นเลิศ</span>
+            </a>
+          </li>
+          <li>
+            <a href="forms-participant.html">
+              <i class="bi bi-circle"></i><span>ข้อมูลหน่วยงานที่มีส่วนร่วม</span>
+            </a>
+          </li>
+          <li>
+            <a href="forms-committee.html">
+              <i class="bi bi-circle"></i><span>ข้อมูลเกี่ยวกับอำนาจหน้าที่</span>
+            </a>
+          </li>
+          <li>
+            <a href="forms-evaluation.html">
+              <i class="bi bi-circle"></i><span>ข้อมูลประกันคุณภาพ</span>
+            </a>
+          </li>
+        </ul>
+      </li><!-- End Components Nav -->
+
+      <!-- <li class="nav-item">
+        <a class="nav-link collapsed" href="pages-login.html">
+          <i class="bi bi-box-arrow-in-right"></i>
+          <span>Login</span>
+        </a>
+      </li>End Login Page Nav -->
+
+    </ul>
+
+  </aside><!-- End Sidebar-->
+
+  <main id="main" class="main">
+
+    <div class="pagetitle">
+      <h1>ข้อมูลหลักสูตร / หลักสูตรของพื้นที่นวัตกรรม</h1>
+      <nav>
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+          <li class="breadcrumb-item">Form</li>
+          <li class="breadcrumb-item active">Student</li>
+        </ol>
+      </nav>
+    </div><!-- End Page Title -->
+
+    <section class="section">
+      <div class="row">
+        <div class="col-lg-9">
+
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">ข้อมูลหลักสูตร</h5>
+
+              <!-- start Form ข้อมูลหลักสูตร -->
+              <form>
+                <div class="row mb-3">
+                  <label for="inputText" class="col-sm-2 col-form-label">ปีการศึกษา</label>
+                  <div class="col-sm-10">
+                    <input type="text" class="form-control">
+                  </div>
+                </div>
+                <div class="row mb-3">
+                  <label for="inputText" class="col-sm-2 col-form-label">ภาคเรียน</label>
+                  <div class="col-sm-10">
+                    <input type="text" class="form-control">
+                  </div>
+                </div>
+                <div class="row mb-3">
+                  <label for="inputText" class="col-sm-2 col-form-label">สถานศึกษา</label>
+                  <div class="col-sm-10">
+                    <input type="text" class="form-control">
+                  </div>
+                </div>
+                <div class="row mb-3">
+                  <label for="inputText" class="col-sm-2 col-form-label">ชื่อหลักสูตร</label>
+                  <div class="col-sm-10">
+                    <input type="text" class="form-control">
+                  </div>
+                </div>
+
+                <div class="row mb-3">
+                  <label class="col-sm-2 col-form-label">รหัสหลักสูตร</label>
+                  <div class="col-sm-10">
+                    <select class="form-select" aria-label="Default select example">
+                      <option selected>เลือก</option>
+                      <option value="1001">หลักสูตรแกนกลางการศึกษาขั้นพื้นฐาน</option>
+                      <option value="1101">หลักสูตรโรงเรียนนานาชาติ</option>
+                      <option value="1201">หลักสูตรการศึกษานอกระบบ ระดับการศึกษาขั้นพื้นฐาน พ.ศ. 2551</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="row mb-3">
+                  <label class="col-sm-2 col-form-label">รหัสระดับการศึกษา</label>
+                  <div class="col-sm-10">
+                    <select class="form-select" aria-label="Default select example">
+                      <option selected>เลือก</option>
+                      <option value="01">เตรียมอนุบาล</option>
+                      <option value="02">ก่อนประถมศึกษา</option>
+                      <option value="03">ประถมศึกษา</option>
+                      <option value="04">มัธยมศึกษาตอนต้น</option>
+                      <option value="05">มัธยมศึกษาตอนปลาย</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="row mb-3">
+                  <label class="col-sm-2 col-form-label">รหัสชั้นเรียน</label>
+                  <div class="col-sm-10">
+                    <select class="form-select" aria-label="Default select example">
+                      <option selected>เลือก</option>
+                      <option value="100">เตรียมอนุบาล</option>
+                      <option value="111">อนุบาล 1(หลักสูตร 3 ปีของ สช.)/อนุบาล 3 ขวบ</option>
+                      <option value="112">อนุบาล 2(หลักสูตร 3 ปีของ สช.)/อนุบาล 1</option>
+                      <option value="113">อนุบาล 3(หลักสูตร 3 ปีของ สช.)/อนุบาล 2</option>
+                      <option value="114">เด็กเล็ก</option>
+                      <option value="211">ประถมศึกษาปีที่ 1/เกรด 1</option>
+                      <option value="212">ประถมศึกษาปีที่ 2/เกรด 2</option>
+                      <option value="213">ประถมศึกษาปีที่ 3/เกรด 3</option>
+                      <option value="214">ประถมศึกษาปีที่ 4/เกรด 4</option>
+                      <option value="215">ประถมศึกษาปีที่ 5/เกรด 5</option>
+                      <option value="216">ประถมศึกษาปีที่ 6/เกรด 6</option>
+                      <option value="217">กศน.ประถมศึกษา (ป.6)</option>
+                      <option value="311">มัธยมศึกษาปีที่ 1 /เกรด 7/ นาฎศิลป์ชั้นที่ 1</option>
+                      <option value="312">มัธยมศึกษาปีที่ 2 /เกรด 8/ นาฎศิลป์ชั้นที่ 2</option>
+                      <option value="313">มัธยมศึกษาปีที่ 3 /เกรด 9/ นาฎศิลป์ชั้นที่ 3</option>
+                      <option value="414">กศน.มัธยมศึกษาตอนต้น (ม.3)</option>
+                      <option value="411">มัธยมศึกษาปีที่ 4/เกรด10/เตรียมทหารชั้นปีที่ 1</option>
+                      <option value="412">มัธยมศึกษาปีที่ 5/เกรด11/เตรียมทหารชั้นปีที่ 2</option>
+                      <option value="413">มัธยมศึกษาปีที่ 6/เกรด12/เตรียมทหารชั้นปีที่ 3</option>
+                      <option value="314">กศน.มัธยมศึกษาตอนปลาย (ม.6)</option>
+                    </select>
+                  </div>
+                </div>
+
+
+                <div class="row mb-3">
+                  <label for="inputFile" class="col-sm-2 col-form-label">เอกสารหลักสูตร</label>
+                  <div class="col-sm-10">
+                    <input type="file" class="form-control">
+                  </div>
+                </div>
+
+                <div class="row mb-3">
+                  <label class="col-sm-2 col-form-label">อ้างอิงหลักสูตรท้องถิ่น</label>
+                  <div class="col-sm-10">
+                    <select class="form-select" aria-label="Default select example">
+                      <option selected>เลือก</option>
+                      <option value="0">อ้างอิง</option>
+                      <option value="1">ไม่อ้างอิง</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="row mb-3">
+                  <label for="inputText" class="col-sm-2 col-form-label">ชื่อหลักสูตรท้องถิ่นที่อ้างอิง</label>
+                  <div class="col-sm-10">
+                    <input type="text" class="form-control">
+                  </div>
+                </div>
+
+                <div class="row mb-3">
+                  <label for="inputFile" class="col-sm-2 col-form-label">เอกสารแนบหลักสูตรอ้างอิง</label>
+                  <div class="col-sm-10">
+                    <input type="file" class="form-control">
+                  </div>
+                </div>
+
+              </form><!-- End Form ข้อมูลหลักสูตร -->
+
+              <!-- start Form ข้อมูลหลักสูตรรายวิชา -->
+              <form>
+                <h5 class="card-title">ข้อมูลหลักสูตรรายวิชา</h5>
+
+                <div class="row mb-3">
+                  <label for="inputText" class="col-sm-2 col-form-label">คีย์อ้างอิงข%อมูลหลักสูตร</label>
+                  <div class="col-sm-10">
+                    <input type="text" class="form-control">
+                  </div>
+                </div>
+
+                <div class="row mb-3">
+                  <label for="inputText" class="col-sm-2 col-form-label">ชื่อรายวิชา</label>
+                  <div class="col-sm-10">
+                    <input type="text" class="form-control">
+                  </div>
+                </div>
+
+                <div class="row mb-3">
+                  <label for="inputText" class="col-sm-2 col-form-label">รหัสวิชา</label>
+                  <div class="col-sm-10">
+                    <input type="text" class="form-control">
+                  </div>
+                </div>
+
+                <div class="row mb-3">
+                  <label class="col-sm-2 col-form-label">กลุ่มสาระการเรียนรู้ / การศึกษาค้นคว้าด้วยตนเอง</label>
+                  <div class="col-sm-10">
+                    <select class="form-select" aria-label="Default select example">
+                      <option selected>ตำแหน่ง</option>
+                      <option value="01">ภาษาไทย</option>
+                      <option value="02">คณิตศาสตร์</option>
+                      <option value="03">วิทยาศาสตร์ และเทคโนโลยี</option>
+                      <option value="04">สังคมศึกษา ศาสนาและวัฒนธรรม</option>
+                      <option value="05">สุขศึกษา และ พละศึกษา</option>
+                      <option value="06">ศิลปะ</option>
+                      <option value="07">การงานอาชีพ</option>
+                      <option value="08">ภาษาต่างประเทศ</option>
+                      <option value="09">กิจกรรมพัฒนาผู้เรียน</option>
+                      <option value="10">IS</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="row mb-3">
+                  <label class="col-sm-2 col-form-label">ประเภทวิชา</label>
+                  <div class="col-sm-10">
+                    <select class="form-select" aria-label="Default select example">
+                      <option selected>เลือก</option>
+                      <option value="01">พื้นฐาน</option>
+                      <option value="02">เพิ่มเติม</option>
+                      <option value="03">กลุ่มทักษะวิชาชีพพื้นฐาน</option>
+                      <option value="04">กลุ่มทักษะวิชาชีพเฉพาะ</option>
+                      <option value="05">กลุ่มทักษะวิชาชีพเลือก</option>
+                      <option value="06">ฝึกประสบการณ์ทักษะวิชาชีพ</option>
+                      <option value="07">โครงการพัฒนาทักษะวิชาชีพ</option>
+                      <option value="08">กิจกรรมพัฒนาผู้เรียน</option> 
+                    </select>
+                  </div>
+                </div>
+
+                <div class="row mb-3">
+                  <label for="inputText" class="col-sm-2 col-form-label">หน่วยกิต/หน่วยน้ำหนัก</label>
+                  <div class="col-sm-10">
+                    <input type="text" class="form-control">
+                  </div>
+                </div>
+
+                <div class="row mb-3">
+                  <label for="inputText" class="col-sm-2 col-form-label">จำนวนชั่วโมงเรียน</label>
+                  <div class="col-sm-10">
+                    <input type="text" class="form-control">
+                  </div>
+                </div>
+
+              </form><!-- End Form ข้อมูลหลักสูตรรายวิชา -->
+
+              <!-- start Form ข้อมูลสมรรถนะของหลักสูตร -->
+              <form>
+                <h5 class="card-title">ข้อมูลสมรรถนะของหลักสูตร</h5>
+
+                <div class="row mb-3">
+                  <label for="inputText" class="col-sm-2 col-form-label">คีย์อ้างอิงข้อมูลหลักสูตร</label>
+                  <div class="col-sm-10">
+                    <input type="text" class="form-control">
+                  </div>
+                </div>
+
+                <div class="row mb-3">
+                  <label class="col-sm-2 col-form-label">สมรรถนะ</label>
+                  <div class="col-sm-10">
+                    <select class="form-select" aria-label="Default select example">
+                      <option selected>เลือก</option>
+                      <option value="101">ความสามารถในการสื่อสาร</option>
+                      <option value="102">ความสามารถในการคิด</option>
+                      <option value="103">ความสามารถในการแก้ปัญหา</option>
+                      <option value="104">ความสามารถในการใช้ทักษะชีวิต</option>
+                      <option value="105">ความสามารถในการใช้เทคโนโลยี</option>    
+                    </select>
+                  </div>
+                </div>
+
+              </form><!-- End Form ข้อมูลสมรรถนะของหลักสูตร -->
+
+            </div>
+          </div>
+
+        </div>
+
+    
+      </div>
+    </section>
+
+  </main><!-- End #main -->
+
+  <!-- ======= Footer ======= -->
+  <footer id="footer" class="footer">
+    <div class="copyright">
+      &copy; Copyright <strong><span>NiceAdmin</span></strong>. All Rights Reserved
+    </div>
+    <div class="credits">
+      <!-- All the links in the footer should remain intact. -->
+      <!-- You can delete the links only if you purchased the pro version. -->
+      <!-- Licensing information: https://bootstrapmade.com/license/ -->
+      <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/ -->
+      Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+    </div>
+  </footer><!-- End Footer -->
+
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
+      class="bi bi-arrow-up-short"></i></a>
+
+  <!-- Vendor JS Files -->
+  <script src="assets/vendor/apexcharts/apexcharts.min.js"></script>
+  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/vendor/chart.js/chart.min.js"></script>
+  <script src="assets/vendor/echarts/echarts.min.js"></script>
+  <script src="assets/vendor/quill/quill.min.js"></script>
+  <script src="assets/vendor/simple-datatables/simple-datatables.js"></script>
+  <script src="assets/vendor/tinymce/tinymce.min.js"></script>
+  <script src="assets/vendor/php-email-form/validate.js"></script>
+
+  <!-- Template Main JS File -->
+  <script src="assets/js/main.js"></script>
+
+</body>
+
+</html>
