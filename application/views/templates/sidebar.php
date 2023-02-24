@@ -4,7 +4,7 @@
 <ul class="sidebar-nav" id="sidebar-nav">
 
   <li class="nav-item">
-    <a class="nav-link " href="index.php">
+    <a class="nav-link " href="index">
       <i class="bi bi-grid"></i>
       <span>รายงาน</span>
     </a>
@@ -16,32 +16,32 @@
     </a>
     <ul id="forms-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
       <li>
-        <a href="forms-student.php">
+        <a href="forms-student">
           <i class="bi bi-circle"></i><span>ข้อมูลนักเรียน</span>
         </a>
       </li>
       <li>
-        <a href="forms-teacher.php">
+        <a href="forms-teacher">
           <i class="bi bi-circle"></i><span>ข้อมูลครูและบุคลากรทางการศึกษา</span>
         </a>
       </li>
       <li>
-        <a href="forms-school.php">
+        <a href="forms-school">
           <i class="bi bi-circle"></i><span>ข้อมูลสถานศึกษา</span>
         </a>
       </li>
       <li>
-        <a href="forms-craduated.php">
+        <a href="forms-craduated">
           <i class="bi bi-circle"></i><span>ข้อมูลผู้สำเร็จการศึกษา</span>
         </a>
       </li>
       <li>
-        <a href="forms-transcript.php">
+        <a href="forms-transcript">
           <i class="bi bi-circle"></i><span>ข้อมูลผลสัมฤทธิ์ทางการศึกษา</span>
         </a>
       </li>
       <li>
-        <a href="forms-personnel.php">
+        <a href="forms-personnel">
           <i class="bi bi-circle"></i><span>ข้อมูลบุคลากรอื่น</span>
         </a>
       </li>
@@ -49,28 +49,28 @@
   </li><!-- End ข้อมูลพื้นฐาน Nav -->
 
   <li class="nav-item">
-    <a class="nav-link collapsed" href="forms-curriculum.php">
+    <a class="nav-link collapsed" href="forms-curriculum">
       <i class="bi bi-journal-text"></i>
       <span>ข้อมูลหลักสูตร/หลักสูตรของพื้นที่นวัตกรรม</span>
     </a>
   </li><!-- End ข้อมูลหลักสูตร Page Nav -->
 
   <li class="nav-item">
-    <a class="nav-link collapsed" href="forms-teacher_developmant_avtivity.php">
+    <a class="nav-link collapsed" href="forms-teacher_developmant_avtivity">
       <i class="bi bi-person "></i>
       <span>ข้อมูลการพัฒนาบุคลากร</span>
     </a>
   </li><!-- End ข้อมูลการพัฒนาบุคลากร Page Nav -->
 
   <li class="nav-item">
-    <a class="nav-link collapsed" href="forms-budget.php">
+    <a class="nav-link collapsed" href="forms-budget">
       <i class="bi bi-journal-text"></i>
       <span>ข้อมูลงบประมาณ</span>
     </a>
   </li><!-- End ข้อมูลงบประมาณ Page Nav -->
 
   <li class="nav-item">
-    <a class="nav-link collapsed" href="forms-area_identitty.php">
+    <a class="nav-link collapsed" href="forms-area_identitty">
       <i class="bi bi-card-list"></i>
       <span>ข้อมูลอัตลักษณ์ของแต่ละพื้นที่</span>
     </a>
@@ -82,32 +82,32 @@
     </a>
     <ul id="components-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
       <li>
-        <a href="forms-innovation.php">
+        <a href="forms-innovation">
           <i class="bi bi-circle"></i><span>ข้อมูลนวัตกรรมการศึกษา</span>
         </a>
       </li>
       <li>
-        <a href="forms-learning_technology_media.php">
+        <a href="forms-learning_technology_media">
           <i class="bi bi-circle"></i><span>ข้อมูลเทคโนโลยีและสื่อการเรียนรู้</span>
         </a>
       </li>
       <li>
-        <a href="forms-best_practice.php">
+        <a href="forms-best_practice">
           <i class="bi bi-circle"></i><span>ข้อมูลแนวปฏิบัติที่เป็นเลิศ</span>
         </a>
       </li>
       <li>
-        <a href="forms-participant.php">
+        <a href="forms-participant">
           <i class="bi bi-circle"></i><span>ข้อมูลหน่วยงานที่มีส่วนร่วม</span>
         </a>
       </li>
       <li>
-        <a href="forms-committee.php">
+        <a href="forms-committee">
           <i class="bi bi-circle"></i><span>ข้อมูลเกี่ยวกับอำนาจหน้าที่</span>
         </a>
       </li>
       <li>
-        <a href="forms-evaluation.php">
+        <a href="forms-evaluation">
           <i class="bi bi-circle"></i><span>ข้อมูลประกันคุณภาพ</span>
         </a>
       </li>
