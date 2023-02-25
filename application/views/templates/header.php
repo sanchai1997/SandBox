@@ -13,24 +13,24 @@ defined('BASEPATH') OR exit('No direct script access allowed');
   <meta content="" name="keywords">
 
   <!-- Favicons -->
-  <link href="../assets/img/mini-icon.png" rel="icon">
-  <link href="../assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+  <link href="<?php if($title != 'SandBox Education'){ echo '../'; } ?>assets/img/mini.png" rel="icon">
+  <link href="<?php if($title != 'SandBox Education'){ echo '../'; } ?>assets/img/apple-touch-icon.png" rel="apple-touch-icon">
 
   <!-- Google Fonts -->
   <link href="https://fonts.gstatic.com" rel="preconnect">
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
 
   <!-- Vendor CSS Files -->
-  <link href="../assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-  <link href="../assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
-  <link href="../assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
-  <link href="../assets/vendor/quill/quill.snow.css" rel="stylesheet">
-  <link href="../assets/vendor/quill/quill.bubble.css" rel="stylesheet">
-  <link href="../assets/vendor/remixicon/remixicon.css" rel="stylesheet">
-  <link href="../assets/vendor/simple-datatables/style.css" rel="stylesheet">
+  <link href="<?php if($title != 'SandBox Education'){ echo '../'; } ?>assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="<?php if($title != 'SandBox Education'){ echo '../'; } ?>assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="<?php if($title != 'SandBox Education'){ echo '../'; } ?>assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+  <link href="<?php if($title != 'SandBox Education'){ echo '../'; } ?>assets/vendor/quill/quill.snow.css" rel="stylesheet">
+  <link href="<?php if($title != 'SandBox Education'){ echo '../'; } ?>assets/vendor/quill/quill.bubble.css" rel="stylesheet">
+  <link href="<?php if($title != 'SandBox Education'){ echo '../'; } ?>assets/vendor/remixicon/remixicon.css" rel="stylesheet">
+  <link href="<?php if($title != 'SandBox Education'){ echo '../'; } ?>assets/vendor/simple-datatables/style.css" rel="stylesheet">
 
   <!-- Template Main CSS File -->
-  <link href="../assets/css/style.css" rel="stylesheet">
+  <link href="<?php if($title != 'SandBox Education'){ echo '../'; } ?>assets/css/style.css" rel="stylesheet">
 
   <!-- =======================================================
   * Template Name: NiceAdmin - v2.4.1
@@ -46,7 +46,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
     <div class="d-flex align-items-center justify-content-between">
       <a href="index.html" class="logo d-flex align-items-center">
-        <img src="assets/img/logo.png" alt="">
+        <img src="<?php if($title != 'SandBox Education'){ echo '../'; } ?>assets/img/logo.png" alt="">
         <span class="d-none d-lg-block">Satun Sandbox</span>
       </a>
       <i class="bi bi-list toggle-sidebar-btn"></i>
@@ -162,7 +162,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
             <li class="message-item">
               <a href="#">
-                <img src="assets/img/messages-1.jpg" alt="" class="rounded-circle">
+                <img src="<?php if($title != 'SandBox Education'){ echo '../'; } ?>assets/img/messages-1.jpg" alt="" class="rounded-circle">
                 <div>
                   <h4>ไพลิน สุวรรณมาลา</h4>
                   <p>สอบถามเกี่ยวกับการร่วมกิจกรรม Workshop นวัตกรรมการศึกษาคนสตูล:...</p>
@@ -176,7 +176,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
             <li class="message-item">
               <a href="#">
-                <img src="assets/img/messages-2.jpg" alt="" class="rounded-circle">
+                <img src="<?php if($title != 'SandBox Education'){ echo '../'; } ?>assets/img/messages-2.jpg" alt="" class="rounded-circle">
                 <div>
                   <h4>ศศลักษณ์ ทองขาว</h4>
                   <p>สอบถามเกี่ยวกับการลงบทความความร่วมมือเชิงรุกในการสร้างนวัตกรรมการศึกษาและบริหารจัดการพื้นที่นวัตกรรมการศึกษาจังหวัดสตูล...</p>
@@ -190,7 +190,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
             <li class="message-item">
               <a href="#">
-                <img src="assets/img/messages-3.jpg" alt="" class="rounded-circle">
+                <img src="<?php if($title != 'SandBox Education'){ echo '../'; } ?>assets/img/messages-3.jpg" alt="" class="rounded-circle">
                 <div>
                   <h4>สมคิด ทองสง</h4>
                   <p>สอบถามเกี่ยวกับการนำวิดีโอที่จะประกอบการเรียนการสอนขึ้นระบบครับ...</p>
