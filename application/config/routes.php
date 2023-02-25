@@ -1,9 +1,11 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-$route['default_controller'] = 'welcome';
+$route['default_controller'] = 'login/index';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 
-$route['project'] = 'project/index';
-$route['project/forms-school'] = 'project/forms_school';
+$route['main'] = 'main';
+$route['forms-school'] = 'forms_school/index';
+
+
