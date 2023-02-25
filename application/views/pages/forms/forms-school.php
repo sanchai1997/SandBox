@@ -20,16 +20,16 @@
               <h5 class="card-title">ข้อมูลทั่วไปสถานศึกษา</h5>
 
               <!-- Floating Labels Form -->
-              <form class="row g-3">
+              <form class="row g-3" action="<?php echo base_url('project/add_school');?>" method="POST">
                 <div class="col-md-16">
                   <div class="form-floating">
-                    <input type="text" class="form-control" id="NAME_TH" placeholder="NAME_TH">
+                    <input type="text" class="form-control" name="NAME_TH" id="NAME_TH" placeholder="NAME_TH">
                     <label for="NAME_TH">ชื่อสถานศึกษา (ไทย)</label>
                   </div>
                 </div>
                 <div class="col-md-16">
                   <div class="form-floating">
-                    <input type="text" class="form-control" id="NAME_EN" placeholder="NAME_EN">
+                    <input type="text" class="form-control" name="NAME_EN" id="NAME_EN" placeholder="NAME_EN">
                     <label for="NAME_EN">ชื่อสถานศึกษา (อังกฤษ)</label>
                   </div>
                 </div>

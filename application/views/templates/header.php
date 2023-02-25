@@ -13,31 +13,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
   <meta content="" name="keywords">
 
   <!-- Favicons -->
-<<<<<<< Updated upstream
-  <link href="assets/img/mini-icon.png" rel="icon">
-  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
-=======
-  <link href="<?php if($title != 'SandBox Education'){ echo '../'; } ?>assets/img/mini-icon.png" rel="icon">
+  <link href="<?php if($title != 'SandBox Education'){ echo '../'; } ?>assets/img/mini.png" rel="icon">
   <link href="<?php if($title != 'SandBox Education'){ echo '../'; } ?>assets/img/apple-touch-icon.png" rel="apple-touch-icon">
->>>>>>> Stashed changes
 
   <!-- Google Fonts -->
-  <link href="https://fonts.gstatic.com" rel="preconnect">
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+  <link href='https://fonts.googleapis.com/css?family=Sarabun' rel='stylesheet'>
 
   <!-- Vendor CSS Files -->
-<<<<<<< Updated upstream
-  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
-  <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
-  <link href="assets/vendor/quill/quill.snow.css" rel="stylesheet">
-  <link href="assets/vendor/quill/quill.bubble.css" rel="stylesheet">
-  <link href="assets/vendor/remixicon/remixicon.css" rel="stylesheet">
-  <link href="assets/vendor/simple-datatables/style.css" rel="stylesheet">
-
-  <!-- Template Main CSS File -->
-  <link href="assets/css/style.css" rel="stylesheet">
-=======
   <link href="<?php if($title != 'SandBox Education'){ echo '../'; } ?>assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
   <link href="<?php if($title != 'SandBox Education'){ echo '../'; } ?>assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
   <link href="<?php if($title != 'SandBox Education'){ echo '../'; } ?>assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
@@ -48,7 +30,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
   <!-- Template Main CSS File -->
   <link href="<?php if($title != 'SandBox Education'){ echo '../'; } ?>assets/css/style.css" rel="stylesheet">
->>>>>>> Stashed changes
 
   <!-- =======================================================
   * Template Name: NiceAdmin - v2.4.1
@@ -231,7 +212,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         <li class="nav-item dropdown pe-3">
 
           <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
-            <img src="assets/img/profile-img.jpg" alt="Profile" class="rounded-circle">
+            <img src="<?php if($title != 'SandBox Education'){ echo '../'; } ?>assets/img/profile-img.jpg" alt="Profile" class="rounded-circle">
             <span class="d-none d-md-block dropdown-toggle ps-2">K. Anderson</span>
           </a><!-- End Profile Iamge Icon -->
 
