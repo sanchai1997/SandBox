@@ -8,6 +8,7 @@ class Project extends CI_Controller {
         // Your own constructor code
         $this->load->library('form_validation');
         $this->load->library('session');
+        $this->load->model('Project_model', 'project');
     }
 
     public function main(){
@@ -26,6 +27,7 @@ class Project extends CI_Controller {
         $this->load->view('templates/footer', $data);
     }
 
+    /////////////////////////////Forms School//////////////////////////////////
     public function forms_school(){
         
         if ( ! file_exists(APPPATH.'views/pages/forms/forms-school.php'))
@@ -41,4 +43,31 @@ class Project extends CI_Controller {
         $this->load->view('pages/forms/forms-school', $data);
         $this->load->view('templates/footer', $data);
     }
+
+
+    //Add Data Form School
+    public function add_school()
+    {
+        $this->form_validation->set_rules('NAME_TH', 'NAME_TH', 'required');
+        $this->form_validation->set_rules('NAME_EN', 'NAME_EN', 'required');
+    
+        if (!$this->form_validation->run())
+        {
+            $this->session->set_flashdata('errors', validation_errors());
+            redirect(base_url('project/forms_school'));
+        }
+        else
+        {
+        $this->project->add_school();
+        $this->session->set_flashdata('success', "Saved Successfully!");
+        redirect(base_url('project'));
+        }
+    
+    }
+
+    
+    ///////////////////////////// Forms School - END //////////////////////////////////
+    
+ 
+ 
 }
