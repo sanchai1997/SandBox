@@ -44,7 +44,7 @@ class Project extends CI_Controller {
         $this->load->view('templates/footer', $data);
     }
 
-    
+
     //Add Data Form School
     public function add_school()
     {
