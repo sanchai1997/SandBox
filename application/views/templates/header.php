@@ -13,22 +13,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
   <meta content="" name="keywords">
 
   <!-- Favicons -->
-<<<<<<< HEAD
   <link href="<?php if($title != 'SandBox Education'){ echo '../'; } ?>assets/img/mini.png" rel="icon">
   <link href="<?php if($title != 'SandBox Education'){ echo '../'; } ?>assets/img/apple-touch-icon.png" rel="apple-touch-icon">
-=======
-<<<<<<< Updated upstream
-
-=======
-
->>>>>>> Stashed changes
->>>>>>> main
 
   <!-- Google Fonts -->
   <link href='https://fonts.googleapis.com/css?family=Sarabun' rel='stylesheet'>
 
   <!-- Vendor CSS Files -->
-<<<<<<< HEAD
   <link href="<?php if($title != 'SandBox Education'){ echo '../'; } ?>assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
   <link href="<?php if($title != 'SandBox Education'){ echo '../'; } ?>assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
   <link href="<?php if($title != 'SandBox Education'){ echo '../'; } ?>assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
@@ -39,13 +30,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
   <!-- Template Main CSS File -->
   <link href="<?php if($title != 'SandBox Education'){ echo '../'; } ?>assets/css/style.css" rel="stylesheet">
-=======
-<<<<<<< Updated upstream
-
-=======
-
->>>>>>> Stashed changes
->>>>>>> main
 
   <!-- =======================================================
   * Template Name: NiceAdmin - v2.4.1
