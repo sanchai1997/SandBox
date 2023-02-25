@@ -8,7 +8,7 @@ class Login extends CI_Controller {
         // Your own constructor code
         $this->load->library('form_validation');
         $this->load->library('session');
-        $this->load->model('Project_model', 'project');
+        //$this->load->model('Project_model', 'project');
     }
 
     public function index() {
