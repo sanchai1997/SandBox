@@ -27,7 +27,7 @@ class Project extends CI_Controller {
         $this->load->view('templates/footer', $data);
     }
 
-    /////////////////////////////Forms School//////////////////////////////////
+    ///////////////////////////// School //////////////////////////////////
     public function forms_school(){
         
         if ( ! file_exists(APPPATH.'views/pages/forms/forms-school.php'))
@@ -44,7 +44,7 @@ class Project extends CI_Controller {
         $this->load->view('templates/footer', $data);
     }
 
-
+    
     //Add Data Form School
     public function add_school()
     {
@@ -64,9 +64,7 @@ class Project extends CI_Controller {
         }
     
     }
-
-    
-    ///////////////////////////// Forms School - END //////////////////////////////////
+    ///////////////////////////// School - END //////////////////////////////////
     
  
  

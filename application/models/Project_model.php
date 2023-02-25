@@ -7,9 +7,7 @@ class Project_model extends CI_Model{
         $this->load->helper('url');
     }
  
-    /*
-        Get all the records from the database
-    */
+     ///////////////////////////// School //////////////////////////////////
     public function get_all_school()
     {
         $projects = $this->db->get("SCHOOL")->result();
@@ -29,7 +27,8 @@ class Project_model extends CI_Model{
         $result = $this->db->insert('SCHOOL', $data);
         return $result;
     }
- 
+    ///////////////////////////// School - END //////////////////////////////////
+    
    
      
 }
