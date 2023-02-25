@@ -28,7 +28,7 @@ class Project extends CI_Controller {
     }
 
     ///////////////////////////// School //////////////////////////////////
-    public function forms_school(){
+    public function forms_school() {
         
         if ( ! file_exists(APPPATH.'views/pages/forms/forms-school.php'))
         {
@@ -46,8 +46,7 @@ class Project extends CI_Controller {
 
 
     //Add Data Form School
-    public function add_school()
-    {
+    public function add_school() {
         $this->form_validation->set_rules('NAME_TH', 'NAME_TH', 'required');
         $this->form_validation->set_rules('NAME_EN', 'NAME_EN', 'required');
     
