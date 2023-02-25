@@ -11,7 +11,7 @@ class Project extends CI_Controller {
         $this->load->model('Project_model', 'project');
     }
 
-    public function main(){
+    public function index(){
         
         if ( ! file_exists(APPPATH.'views/pages/dashboard/index.php'))
         {
