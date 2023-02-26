@@ -51,8 +51,8 @@
                 </div>
 
                 <div class="row mb-3">
-                    <label for="inputText" class="col-sm-2 col-form-label">ข้อมูลสภาพพื้นที่/สภาพแวดล้อม</label>
-                    <div class="col-sm-10">
+                    <label for="inputText" class="col-sm-3 col-form-label">ข้อมูลสภาพพื้นที่/สภาพแวดล้อม</label>
+                    <div class="col-sm-9">
                       <input type="text" class="form-control">
                     </div>
                 </div>
@@ -65,8 +65,8 @@
                 </div>
 
                 <div class="row mb-3">
-                    <label for="inputText" class="col-sm-2 col-form-label">ข้อมูลศิลปะ/วัฒนธรรม/ภูมิปัญญา</label>
-                    <div class="col-sm-10">
+                    <label for="inputText" class="col-sm-3 col-form-label">ข้อมูลศิลปะ/วัฒนธรรม/ภูมิปัญญา</label>
+                    <div class="col-sm-9">
                       <input type="text" class="form-control">
                     </div>
                 </div>
@@ -85,7 +85,7 @@
                 <h5 class="card-title">ข้อมูลการนับถือศาสนาในพื้นที่</h5>
 
                 <div class="row mb-3">
-                    <label for="inputText" class="col-sm-2 col-form-label">คีย์หลักข้อมูลอัตลักษณ</label>
+                    <label for="inputText" class="col-sm-2 col-form-label">คีย์หลักข้อมูลอัตลักษณ์</label>
                     <div class="col-sm-10">
                       <input type="text" class="form-control">
                     </div>
@@ -112,7 +112,7 @@
                 <h5 class="card-title">ข้อมูลการประกอบอาชีพในพื้นที่</h5>
 
                 <div class="row mb-3">
-                    <label for="inputText" class="col-sm-2 col-form-label">คีย์หลักข้อมูลอัตลักษณ</label>
+                    <label for="inputText" class="col-sm-2 col-form-label">คีย์หลักข้อมูลอัตลักษณ์</label>
                     <div class="col-sm-10">
                       <input type="text" class="form-control">
                     </div>

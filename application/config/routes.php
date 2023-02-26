@@ -14,8 +14,16 @@ $route['forms-school'] = 'forms_school';
 
 $route['forms-school-detail'] = 'forms_school/detail';
 $route['add-school']['post'] = 'forms_school/add_school';
-
-$route['forms-budget'] = 'forms_budget';
 /////////////////////////// END ////////////////////////////
 
+/**
+ * Budget
+*/
 
+$route['forms-budget'] = 'forms_budget';
+
+/**
+ * Area Identity
+*/
+
+$route['forms-area-identity'] = 'forms_area_identity';

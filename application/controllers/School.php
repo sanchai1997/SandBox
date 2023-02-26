@@ -19,7 +19,7 @@ class School extends CI_Controller {
                 show_404();
         }
 
-        $data['schools'] = $this->school->seleat_school();
+        $data['schools'] = $this->school->select_school();
         $data['title'] = 'School'; // Capitalize the first letter
 
         $this->load->view('templates/header', $data);

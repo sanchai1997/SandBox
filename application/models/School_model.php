@@ -8,7 +8,7 @@ class School_model extends CI_Model {
         $this->load->helper('url');
     }
 
-    public function seleat_school()
+    public function select_school()
     {
         $schools = $this->db->get("SCHOOL")->result();
         return $schools;
