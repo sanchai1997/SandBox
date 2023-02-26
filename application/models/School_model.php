@@ -23,7 +23,6 @@ class School_model extends CI_Model {
             'ESTABLISHED_DATE' => $this->input->post('ESTABLISHED_DATE'),
             'SCHOOL_TYPE_CODE' => $this->input->post('SCHOOL_TYPE_CODE'),
             'SCHOOL_STATUS_CODE' => $this->input->post('SCHOOL_STATUS_CODE'),
-            'ADDRESS_PROVINCE_CODE' => $this->input->post('ADDRESS_PROVINCE_CODE'),
             'ADDRESS_HOUSE_NO' => $this->input->post('ADDRESS_HOUSE_NO'),
             'ADDRESS_MOO' => $this->input->post('ADDRESS_MOO'),
             'ADDRESS_STREET' => $this->input->post('ADDRESS_STREET'),

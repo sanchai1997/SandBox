@@ -62,22 +62,6 @@
                     <label for="SCHOOL_STATUS_CODE">สถานะของสถานศึกษา</label>
                   </div>
                 </div>
-                <div class="col-md-6">
-                  <div class="form-floating">
-                    <select class="form-select" name="ADDRESS_PROVINCE_CODE" id="ADDRESS_PROVINCE_CODE" aria-label="SCHOOL_STATUS_CODE" required>
-                      <option selected>เลือก</option>
-                      <option value="10">กรุงเทพมหานคร</option>
-                      <option value="11">เมืองพัทยา</option>
-                      <option value="12">เทศบาลนคร</option>
-                      <option value="13">เทศบาลเมือง</option>
-                      <option value="14">เทศบาลตำบล</option>
-                      <option value="15">องค์การบริหารส่วนตำบล</option>
-                      <option value="16">องค์การบริหารส่วนจังหวัด</option>
-                      <option value="99">ไม่อยู่ในเขตเทศบาล</option>
-                    </select>
-                    <label for="SCHOOL_STATUS_CODE">ตำแหน่งของสถานศึกษา</label>
-                  </div>
-                </div>
                 <div class="col-8">
                   <div class="form-floating">
                     <textarea class="form-control" name="ADDRESS_HOUSE_NO" placeholder="ADDRESS_HOUSE_NO" id="ADDRESS_HOUSE_NO" style="height: 60px;" required></textarea>

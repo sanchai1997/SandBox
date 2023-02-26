@@ -55,7 +55,6 @@ class Forms_school extends CI_Controller {
         $this->form_validation->set_rules('ESTABLISHED_DATE', 'ESTABLISHED_DATE', 'required');
         $this->form_validation->set_rules('SCHOOL_TYPE_CODE', 'SCHOOL_TYPE_CODE', 'required');
         $this->form_validation->set_rules('SCHOOL_STATUS_CODE', 'SCHOOL_STATUS_CODE', 'required');
-        $this->form_validation->set_rules('ADDRESS_PROVINCE_CODE', 'ADDRESS_PROVINCE_CODE', 'required');
         $this->form_validation->set_rules('ADDRESS_HOUSE_NO', 'ADDRESS_HOUSE_NO', 'required');
         $this->form_validation->set_rules('ADDRESS_MOO', 'ADDRESS_MOO', 'required');
         $this->form_validation->set_rules('ADDRESS_STREET', 'ADDRESS_STREET', 'required');
