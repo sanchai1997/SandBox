@@ -23,27 +23,27 @@
               <form class="row g-3" action="<?php echo base_url('forms-school-detail');?>" method="POST">
                 <div class="col-md-16">
                   <div class="form-floating">
-                    <input type="text" class="form-control" name="NAME_TH" id="NAME_TH" placeholder="NAME_TH">
+                    <input type="text" class="form-control" name="NAME_TH" id="NAME_TH" placeholder="NAME_TH" required>
                     <label for="NAME_TH">ชื่อสถานศึกษา (ไทย)</label>
                   </div>
                 </div>
                 <div class="col-md-16">
                   <div class="form-floating">
-                    <input type="text" class="form-control" name="NAME_EN" id="NAME_EN" placeholder="NAME_EN">
+                    <input type="text" class="form-control" name="NAME_EN" id="NAME_EN" placeholder="NAME_EN" required>
                     <label for="NAME_EN">ชื่อสถานศึกษา (อังกฤษ)</label>
                   </div>
                 </div>
                 <div class="col-md-6">
                   <div class="col-md-12">
                     <div class="form-floating">
-                      <input type="date" class="form-control" name="ESTABLISHED_DATE" id="ESTABLISHED_DATE" placeholder="ESTABLISHED_DATE">
+                      <input type="date" class="form-control" name="ESTABLISHED_DATE" id="ESTABLISHED_DATE" placeholder="ESTABLISHED_DATE" required>
                       <label for="ESTABLISHED_DATE">วันที่ก่อตั้ง</label>
                     </div>
                   </div>
                 </div>
                 <div class="col-md-6">
                   <div class="form-floating">
-                    <select class="form-select" name="SCHOOL_TYPE_CODE" id="SCHOOL_TYPE_CODE" aria-label="SCHOOL_TYPE_CODE">
+                    <select class="form-select" name="SCHOOL_TYPE_CODE" id="SCHOOL_TYPE_CODE" aria-label="SCHOOL_TYPE_CODE" required>
                       <option selected>เลือก</option>
                       <option value="1">โรงเรียน ประเภทสามัญศึกษา</option>
                       <option value="2">โรงเรียนเอกชนสามัญ (สามัญปกติ)</option>
@@ -53,7 +53,7 @@
                 </div>
                 <div class="col-md-6">
                   <div class="form-floating">
-                    <select class="form-select" name="SCHOOL_STATUS_CODE" id="SCHOOL_STATUS_CODE" aria-label="SCHOOL_STATUS_CODE">
+                    <select class="form-select" name="SCHOOL_STATUS_CODE" id="SCHOOL_STATUS_CODE" aria-label="SCHOOL_STATUS_CODE" required>
                       <option selected>เลือก</option>
                       <option value="1">ปกติ</option>
                       <option value="2">ยุบ/เลิก</option>
@@ -64,7 +64,7 @@
                 </div>
                 <div class="col-md-6">
                   <div class="form-floating">
-                    <select class="form-select" name="ADDRESS_PROVINCE_CODE" id="ADDRESS_PROVINCE_CODE" aria-label="SCHOOL_STATUS_CODE">
+                    <select class="form-select" name="ADDRESS_PROVINCE_CODE" id="ADDRESS_PROVINCE_CODE" aria-label="SCHOOL_STATUS_CODE" required>
                       <option selected>เลือก</option>
                       <option value="10">กรุงเทพมหานคร</option>
                       <option value="11">เมืองพัทยา</option>
@@ -80,52 +80,51 @@
                 </div>
                 <div class="col-8">
                   <div class="form-floating">
-                    <textarea class="form-control" name="ADDRESS_HOUSE_NO" placeholder="ADDRESS_HOUSE_NO" id="ADDRESS_HOUSE_NO"
-                      style="height: 60px;"></textarea>
+                    <textarea class="form-control" name="ADDRESS_HOUSE_NO" placeholder="ADDRESS_HOUSE_NO" id="ADDRESS_HOUSE_NO" style="height: 60px;" required></textarea>
                     <label for="OFFICIAL_ADDRESS_HOUSE_NO">บ้านเลขที่</label>
                   </div>
                 </div>
                 <div class="col-md-4">
                   <div class="col-md-12">
                     <div class="form-floating">
-                      <input type="text" class="form-control" name="ADDRESS_MOO" id="ADDRESS_MOO" placeholder="ADDRESS_MOO">
+                      <input type="text" class="form-control" name="ADDRESS_MOO" id="ADDRESS_MOO" placeholder="ADDRESS_MOO" required>
                       <label for="OFFICIAL_ADDRESS_MOO">หมู่ที่</label>
                     </div>
                   </div>
                 </div>
                 <div class="col-md-4">
                   <div class="form-floating">
-                    <input type="text" class="form-control" name="ADDRESS_STREET" id="ADDRESS_STREET" placeholder="ADDRESS_STREET">
+                    <input type="text" class="form-control" name="ADDRESS_STREET" id="ADDRESS_STREET" placeholder="ADDRESS_STREET" required>
                     <label for="OFFICIAL_ADDRESS_STREET">ถนน</label>
                   </div>
                 </div>
                 <div class="col-md-4">
                   <div class="form-floating">
-                    <input type="text" class="form-control" name="ADDRESS_SOI" id="ADDRESS_SOI" placeholder="ADDRESS_SOI">
+                    <input type="text" class="form-control" name="ADDRESS_SOI" id="ADDRESS_SOI" placeholder="ADDRESS_SOI" required>
                     <label for="OFFICIAL_ADDRESS_SOI">ซอย</label>
                   </div>
                 </div>
                 <div class="col-md-4">
                   <div class="form-floating">
-                    <input type="text" class="form-control" name="ADDRESS_TROK" id="ADDRESS_TROK" placeholder="ADDRESS_TROK">
+                    <input type="text" class="form-control" name="ADDRESS_TROK" id="ADDRESS_TROK" placeholder="ADDRESS_TROK" required>
                     <label for="OFFICIAL_ADDRESS_TROK">ตรอก</label>
                   </div>
                 </div>
                 <div class="col-md-4">
                   <div class="form-floating">
-                    <input type="text" class="form-control" name="ADDRESS_SUBDISTRICT_CODE" id="ADDRESS_SUBDISTRICT_CODE" placeholder="ADDRESS_SUBDISTRICT_CODE">
+                    <input type="text" class="form-control" name="ADDRESS_SUBDISTRICT_CODE" id="ADDRESS_SUBDISTRICT_CODE" placeholder="ADDRESS_SUBDISTRICT_CODE" required>
                     <label for="OFFICIAL_ADDRESS_SUBDISTRICT_CODE">ตำบล</label>
                   </div>
                 </div>
                 <div class="col-md-4">
                   <div class="form-floating">
-                    <input type="text" class="form-control" name="ADDRESS_DISTRICT_CODE" id="ADDRESS_DISTRICT_CODE" placeholder="ADDRESS_DISTRICT_CODE">
+                    <input type="text" class="form-control" name="ADDRESS_DISTRICT_CODE" id="ADDRESS_DISTRICT_CODE" placeholder="ADDRESS_DISTRICT_CODE" required>
                     <label for="OFFICIAL_ADDRESS_DISTRICT_CODE">อำเภอ</label>
                   </div>
                 </div>
                 <div class="col-md-4">
                   <div class="form-floating">
-                    <select class="form-select" name="ADDRESS_PROVINCE_CODE" id="ADDRESS_PROVINCE_CODE" aria-label="ADDRESS_PROVINCE_CODE">
+                    <select class="form-select" name="ADDRESS_PROVINCE_CODE" id="ADDRESS_PROVINCE_CODE" aria-label="ADDRESS_PROVINCE_CODE" required>
                       <option selected>เลือก</option>
                       <option value="10">กรุงเทพมหานคร</option>
                       <option value="11">สมุทรปราการ</option>
@@ -210,61 +209,62 @@
                 </div>
                 <div class="col-md-8">
                   <div class="form-floating">
-                    <input type="text" class="form-control" name="ADDRESS_POSTCODE" id="ADDRESS_POSTCODE" placeholder="OFFICIAL_ADDRESS_POSTCODE">
+                    <input type="text" class="form-control" name="ADDRESS_POSTCODE" id="ADDRESS_POSTCODE" placeholder="OFFICIAL_ADDRESS_POSTCODE" required>
                     <label for="OFFICIAL_ADDRESS_POSTCODE">รหัสไปรษณีย์</label>
                   </div>
                 </div>
                 <div class="col-md-6">
                   <div class="form-floating">
-                    <input type="text" class="form-control" name="LATTITUDE" id="LATTITUDE" placeholder="LATTITUDE">
+                    <input type="text" class="form-control" name="LATTITUDE" id="LATTITUDE" placeholder="LATTITUDE" required>
                     <label for="LATTITUDE">ค่าตำแหน่งพิกัดทาง Latitude</label>
                   </div>
                 </div>
                 <div class="col-md-6">
                   <div class="form-floating">
-                    <input type="text" class="form-control" name="LONGITUDE" id="LONGITUDE" placeholder="LONGITUDE">
+                    <input type="text" class="form-control" name="LONGITUDE" id="LONGITUDE" placeholder="LONGITUDE" required>
                     <label for="LONGITUDE">ค่าตำแหน่งพิกัดทาง Longitude</label>
                   </div>
                 </div>
                 <div class="col-md-16">
                   <div class="form-floating">
-                    <input type="text" class="form-control" name="MAP_URL" id="MAP_URL" placeholder="MAP_URL">
+                    <input type="text" class="form-control" name="MAP_URL" id="MAP_URL" placeholder="MAP_URL" required>
                     <label for="MAP_URL">ลิงค์แผนที่</label>
                   </div>
                 </div>
                 <div class="col-md-6">
                   <div class="form-floating">
-                    <input type="text" class="form-control" name="PHONE_NUMBER" id="PHONE_NUMBER" placeholder="PHONE_NUMBER">
+                    <input type="tel" class="form-control" name="PHONE_NUMBER" id="PHONE_NUMBER" placeholder="PHONE_NUMBER" required>
                     <label for="PHONE_NUMBER">หมายเลขโทรศัพท์</label>
                   </div>
                 </div>
                 <div class="col-md-6">
                   <div class="form-floating">
-                    <input type="text" class="form-control" name="SECOND_PHONE_NUMBER" id="SECOND_PHONE_NUMBER" placeholder="SECOND_PHONE_NUMBER">
+                    <input type="tel" class="form-control" name="SECOND_PHONE_NUMBER" id="SECOND_PHONE_NUMBER" placeholder="SECOND_PHONE_NUMBER" required>
                     <label for="SECOND_PHONE_NUMBER">หมายเลขโทรศัพท์ (สำรอง)</label>
                   </div>
                 </div>
                 <div class="col-md-6">
                   <div class="form-floating">
-                    <input type="text" class="form-control" name="FAX_NUMBER" id="FAX_NUMBER" placeholder="FAX_NUMBER">
+                    <input type="tel" class="form-control" name="FAX_NUMBER" id="FAX_NUMBER" placeholder="FAX_NUMBER" required>
                     <label for="FAX_NUMBER">หมายเลขโทรสาร</label>
                   </div>
                 </div>
                 <div class="col-md-16">
                   <div class="form-floating">
-                    <input type="email" class="form-control" name="EMAIL" id="EMAIL" placeholder="EMAIL">
+                    <input type="email" class="form-control" name="EMAIL" id="EMAIL" placeholder="EMAIL" required>
                     <label for="EMAIL">อีเมล</label>
                   </div>
                 </div>
                 <div class="col-md-16">
                   <div class="form-floating">
-                    <input type="text" class="form-control" name="WEBSITE_URL" id="WEBSITE_URL" placeholder="WEBSITE_URL">
+                    <input type="text" class="form-control" name="WEBSITE_URL" id="WEBSITE_URL" placeholder="WEBSITE_URL" required>
                     <label for="WEBSITE_URL">เว็บไซต์</label>
                   </div>
                 </div>
                 <div class="text-center">
-                  <button type="submit" class="btn btn-primary">หน้าถัดไป</button>
-                  <button type="reset" class="btn btn-secondary">รีเซ็ต</button>
+                  <a href="school" style="float: left;" class="btn btn-light">ยกเลิก</a>
+                  <button style="float: center;" type="reset" class="btn btn-secondary">รีเซ็ต</button>
+                  <button style="float: right;"type="submit" class="btn btn-primary">หน้าถัดไป</button>
                 </div>
               </form><!-- End floating Labels Form -->
 

@@ -6,9 +6,16 @@ $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 
 $route['main'] = 'main';
+
+
+////////////////////// ROUTE SCHOOL ////////////////////////
+$route['school'] = 'school';
 $route['forms-school'] = 'forms_school';
+
+$route['forms-school-detail'] = 'forms_school/detail';
+$route['add-school']['post'] = 'forms_school/add_school';
+
 $route['forms-budget'] = 'forms_budget';
-$route['forms-school-detail'] = 'forms_school_detail';
-$route['add_school']['post'] = "add_school";
+/////////////////////////// END ////////////////////////////
 
 
