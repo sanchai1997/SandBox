@@ -5,9 +5,6 @@ class Forms_budget extends CI_Controller
     public function __construct()
     {
         parent::__construct();
-
-        $this->load->helper(array('form', 'url'));
-        $this->load->library('form-validation');
     }
 
     public function index()
@@ -17,7 +14,7 @@ class Forms_budget extends CI_Controller
             show_404();
         }
 
-        $data['title'] = 'Forms School'; // Capitalize the first letter
+        $data['title'] = 'Forms budget'; // Capitalize the first letter
 
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);

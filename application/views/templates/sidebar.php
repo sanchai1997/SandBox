@@ -26,7 +26,7 @@
         </a>
       </li>
       <li>
-        <a href="project/forms-school">
+        <a href="forms-school">
           <i class="bi bi-circle"></i><span>ข้อมูลสถานศึกษา</span>
         </a>
       </li>
