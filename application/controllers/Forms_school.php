@@ -86,7 +86,7 @@ class Forms_school extends CI_Controller {
         {
         $this->forms_school->add_school();
         $this->session->set_flashdata('success', "Saved Successfully!");
-        redirect(base_url('forms-school'));
+        redirect(base_url('school'));
         }
     
     }

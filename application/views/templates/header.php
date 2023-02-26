@@ -31,6 +31,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
   <!-- Template Main CSS File -->
   <link href="assets/css/style.css" rel="stylesheet">
 
+
   <!-- =======================================================
   * Template Name: NiceAdmin - v2.4.1
   * Template URL: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/

@@ -8,9 +8,15 @@ class School_model extends CI_Model {
         $this->load->helper('url');
     }
 
+    public function seleat_school()
+    {
+        $schools = $this->db->get("SCHOOL")->result();
+        return $schools;
+    }
+
     public function add_school() {    
         $data = [
-            
+
             //Page forms-school
             'NAME_TH' => $this->input->post('NAME_TH'),
             'NAME_EN' => $this->input->post('NAME_EN'),
