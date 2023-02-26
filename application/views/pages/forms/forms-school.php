@@ -18,7 +18,11 @@
           <div class="card">
             <div class="card-body">
               <h5 class="card-title">ข้อมูลทั่วไปสถานศึกษา</h5>
-
+              <?php if ($this->session->flashdata('errors')) {?>
+                  <div class="alert alert-danger">
+                      <?php echo 'กรุณากรอกข้อมูลให้ครบถ้วน'; ?>
+                  </div>
+              <?php } ?>
               <!-- Floating Labels Form -->
               <form class="row g-3" action="<?php echo base_url('forms-school-detail');?>" method="POST">
                 <div class="col-md-16">

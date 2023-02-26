@@ -1,6 +1,6 @@
 <?php
 
-class Addschool_Model extends CI_Model {
+class School_model extends CI_Model {
  
     public function __construct()
     {
@@ -10,6 +10,8 @@ class Addschool_Model extends CI_Model {
 
     public function add_school() {    
         $data = [
+            
+            //Page forms-school
             'NAME_TH' => $this->input->post('NAME_TH'),
             'NAME_EN' => $this->input->post('NAME_EN'),
             'ESTABLISHED_DATE' => $this->input->post('ESTABLISHED_DATE'),
@@ -33,6 +35,9 @@ class Addschool_Model extends CI_Model {
             'FAX_NUMBER' => $this->input->post('FAX_NUMBER'),
             'EMAIL' => $this->input->post('EMAIL'),
             'WEBSITE_URL' => $this->input->post('WEBSITE_URL')
+
+            //Page forms-school-detail
+
         ];
  
         $result = $this->db->insert('SCHOOL', $data);

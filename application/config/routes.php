@@ -7,7 +7,7 @@ $route['translate_uri_dashes'] = FALSE;
 
 $route['main'] = 'main';
 $route['forms-school'] = 'forms_school';
-$route['forms-school-detail'] = 'forms_school_detail';
-$route['add_school']['post'] = "add_school";
+$route['forms-school-detail'] = 'forms_school/detail';
+$route['add-school']['post'] = 'forms_school/add_school';
 
 

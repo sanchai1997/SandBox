@@ -20,7 +20,7 @@
               <h5 class="card-title">ข้อมูลละเอียดสถานศึกษา</h5>
 
               <!-- General Form Elements -->
-              <form action="<?php echo base_url('add_school');?>" method="POST">
+              <form action="<?php echo base_url('add-school');?>" method="POST">
                 <div class="row mb-3">
                   <label for="inputText" class="col-sm-2 col-form-label">ปีการศึกษา</label>
                   <div class="col-sm-10">
@@ -436,29 +436,29 @@
                 </div>
 
                 <!--------------------------- input forms-school ---------------------------->
-                    <input type="hidden" value="<?= $_POST['NAME_TH']; ?>" class="form-control" name="NAME_TH" id="NAME_TH" placeholder="NAME_TH">
-                    <input type="hidden" value="<?= $_POST['NAME_EN']; ?>" class="form-control" name="NAME_EN" id="NAME_EN" placeholder="NAME_EN">
-                    <input type="hidden" value="<?= $_POST['ESTABLISHED_DATE']; ?>" class="form-control" name="ESTABLISHED_DATE" id="ESTABLISHED_DATE" placeholder="ESTABLISHED_DATE">
-                    <input type="hidden" value="<?= $_POST['SCHOOL_TYPE_CODE']; ?>" class="form-control" name="SCHOOL_TYPE_CODE" id="SCHOOL_TYPE_CODE" placeholder="NAME_EN">
-                    <input type="hidden" value="<?= $_POST['SCHOOL_STATUS_CODE']; ?>" class="form-control" name="SCHOOL_STATUS_CODE" id="SCHOOL_STATUS_CODE" placeholder="NAME_EN">
-                    <input type="hidden" value="<?= $_POST['ADDRESS_PROVINCE_CODE']; ?>" class="form-control" name="ADDRESS_PROVINCE_CODE" id="ADDRESS_PROVINCE_CODE" placeholder="NAME_EN">
-                    <input type="hidden" value="<?= $_POST['ADDRESS_HOUSE_NO']; ?>" class="form-control" name="ADDRESS_HOUSE_NO" id="ADDRESS_HOUSE_NO" placeholder="NAME_EN">
-                    <input type="hidden" value="<?= $_POST['ADDRESS_MOO']; ?>" class="form-control" name="ADDRESS_MOO" id="ADDRESS_MOO" placeholder="ADDRESS_MOO">
-                    <input type="hidden" value="<?= $_POST['ADDRESS_STREET']; ?>" class="form-control" name="ADDRESS_STREET" id="ADDRESS_STREET" placeholder="ADDRESS_STREET">
-                    <input type="hidden" value="<?= $_POST['ADDRESS_SOI']; ?>" class="form-control" name="ADDRESS_SOI" id="ADDRESS_SOI" placeholder="ADDRESS_SOI">
-                    <input type="hidden" value="<?= $_POST['ADDRESS_TROK']; ?>" class="form-control" name="ADDRESS_TROK" id="ADDRESS_TROK" placeholder="ADDRESS_TROK">
-                    <input type="hidden" value="<?= $_POST['ADDRESS_SUBDISTRICT_CODE']; ?>" class="form-control" name="ADDRESS_SUBDISTRICT_CODE" id="ADDRESS_SUBDISTRICT_CODE" placeholder="ADDRESS_SUBDISTRICT_CODE">
-                    <input type="hidden" value="<?= $_POST['ADDRESS_DISTRICT_CODE']; ?>" class="form-control" name="ADDRESS_DISTRICT_CODE" id="ADDRESS_DISTRICT_CODE" placeholder="ADDRESS_DISTRICT_CODE">
-                    <input type="hidden" value="<?= $_POST['ADDRESS_PROVINCE_CODE']; ?>" class="form-control" name="ADDRESS_PROVINCE_CODE" id="ADDRESS_PROVINCE_CODE" placeholder="ADDRESS_DISTRICT_CODE">
-                    <input type="hidden" value="<?= $_POST['ADDRESS_POSTCODE']; ?>" class="form-control" name="ADDRESS_POSTCODE" id="ADDRESS_POSTCODE" placeholder="OFFICIAL_ADDRESS_POSTCODE">
-                    <input type="hidden" value="<?= $_POST['LATTITUDE']; ?>" class="form-control" name="LATTITUDE" id="LATTITUDE" placeholder="LATTITUDE">
-                    <input type="hidden" value="<?= $_POST['LONGITUDE']; ?>" class="form-control" name="LONGITUDE" id="LONGITUDE" placeholder="LONGITUDE">
-                    <input type="hidden" value="<?= $_POST['MAP_URL']; ?>" class="form-control" name="MAP_URL" id="MAP_URL" placeholder="MAP_URL">
-                    <input type="hidden" value="<?= $_POST['PHONE_NUMBER']; ?>" class="form-control" name="PHONE_NUMBER" id="PHONE_NUMBER" placeholder="PHONE_NUMBER">
-                    <input type="hidden" value="<?= $_POST['SECOND_PHONE_NUMBER']; ?>" class="form-control" name="SECOND_PHONE_NUMBER" id="SECOND_PHONE_NUMBER" placeholder="SECOND_PHONE_NUMBER">
-                    <input type="hidden" value="<?= $_POST['FAX_NUMBER']; ?>" class="form-control" name="FAX_NUMBER" id="FAX_NUMBER" placeholder="FAX_NUMBER">
-                    <input type="hidden" value="<?= $_POST['EMAIL']; ?>" class="form-control" name="EMAIL" id="EMAIL" placeholder="EMAIL">
-                    <input type="hidden" value="<?= $_POST['WEBSITE_URL']; ?>" class="form-control" name="WEBSITE_URL" id="WEBSITE_URL" placeholder="WEBSITE_URL">
+                    <input type="hidden" value="<?= $_POST['NAME_TH']; ?>" name="NAME_TH">
+                    <input type="hidden" value="<?= $_POST['NAME_EN']; ?>" name="NAME_EN">
+                    <input type="hidden" value="<?= $_POST['ESTABLISHED_DATE']; ?>" name="ESTABLISHED_DATE">
+                    <input type="hidden" value="<?= $_POST['SCHOOL_TYPE_CODE']; ?>" name="SCHOOL_TYPE_CODE">
+                    <input type="hidden" value="<?= $_POST['SCHOOL_STATUS_CODE']; ?>" name="SCHOOL_STATUS_CODE">
+                    <input type="hidden" value="<?= $_POST['ADDRESS_PROVINCE_CODE']; ?>" name="ADDRESS_PROVINCE_CODE">
+                    <input type="hidden" value="<?= $_POST['ADDRESS_HOUSE_NO']; ?>" name="ADDRESS_HOUSE_NO">
+                    <input type="hidden" value="<?= $_POST['ADDRESS_MOO']; ?>" name="ADDRESS_MOO">
+                    <input type="hidden" value="<?= $_POST['ADDRESS_STREET']; ?>" name="ADDRESS_STREET">
+                    <input type="hidden" value="<?= $_POST['ADDRESS_SOI']; ?>" name="ADDRESS_SOI">
+                    <input type="hidden" value="<?= $_POST['ADDRESS_TROK']; ?>" name="ADDRESS_TROK">
+                    <input type="hidden" value="<?= $_POST['ADDRESS_SUBDISTRICT_CODE']; ?>" name="ADDRESS_SUBDISTRICT_CODE">
+                    <input type="hidden" value="<?= $_POST['ADDRESS_DISTRICT_CODE']; ?>" name="ADDRESS_DISTRICT_CODE">
+                    <input type="hidden" value="<?= $_POST['ADDRESS_PROVINCE_CODE']; ?>" name="ADDRESS_PROVINCE_CODE">
+                    <input type="hidden" value="<?= $_POST['ADDRESS_POSTCODE']; ?>" name="ADDRESS_POSTCODE">
+                    <input type="hidden" value="<?= $_POST['LATTITUDE']; ?>" name="LATTITUDE">
+                    <input type="hidden" value="<?= $_POST['LONGITUDE']; ?>" name="LONGITUDE">
+                    <input type="hidden" value="<?= $_POST['MAP_URL']; ?>" name="MAP_URL">
+                    <input type="hidden" value="<?= $_POST['PHONE_NUMBER']; ?>" name="PHONE_NUMBER">
+                    <input type="hidden" value="<?= $_POST['SECOND_PHONE_NUMBER']; ?>" name="SECOND_PHONE_NUMBER">
+                    <input type="hidden" value="<?= $_POST['FAX_NUMBER']; ?>" name="FAX_NUMBER">
+                    <input type="hidden" value="<?= $_POST['EMAIL']; ?>" name="EMAIL">
+                    <input type="hidden" value="<?= $_POST['WEBSITE_URL']; ?>" name="WEBSITE_URL">
                 <!------------------------ input forms-school - END  ------------------------>
 
               
