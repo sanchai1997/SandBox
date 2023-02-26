@@ -39,10 +39,31 @@ class School_model extends CI_Model {
             'PHONE_NUMBER' => $this->input->post('PHONE_NUMBER'),
             'SECOND_PHONE_NUMBER' => $this->input->post('SECOND_PHONE_NUMBER'),
             'FAX_NUMBER' => $this->input->post('FAX_NUMBER'),
+            'SECOND_FAX_NUMBER' => $this->input->post('SECOND_FAX_NUMBER'),
             'EMAIL' => $this->input->post('EMAIL'),
-            'WEBSITE_URL' => $this->input->post('WEBSITE_URL')
+            'WEBSITE_URL' => $this->input->post('WEBSITE_URL'),
 
             //Page forms-school-detail
+            'EDUCATION_YEAR' => $this->input->post('EDUCATION_YEAR'),
+            'SEMESTER' => $this->input->post('SEMESTER'),
+            'AREA_NO' => $this->input->post('AREA_NO'),
+            'AREA_NAME' => $this->input->post('AREA_NAME'),
+            'JURISDICTION_CODE' => $this->input->post('JURISDICTION_CODE'),
+            'MUNICIPAL_CODE' => $this->input->post('MUNICIPAL_CODE'),
+            'INNOVATION_AREA_CODE' => $this->input->post('INNOVATION_AREA_CODE'),
+            'EDUCATION_LEVEL_CODES' => $this->input->post('EDUCATION_LEVEL_CODES'),
+            'ELECTRIC_TYPE_CODES' => $this->input->post('ELECTRIC_TYPE_CODES'),
+            'WATER_TYPE_CODES' => $this->input->post('WATER_TYPE_CODES'),
+            'INTERNET_TYPE_CODES' => $this->input->post('INTERNET_TYPE_CODES'),
+            'EDUCATION_CONTENTS' => $this->input->post('EDUCATION_CONTENTS'),
+            'COMPUTER_ONLINE_NUMBER' => $this->input->post('COMPUTER_ONLINE_NUMBER'),
+            'COMPUTER_STANDALONE_NUMBER' => $this->input->post('COMPUTER_STANDALONE_NUMBER'),
+            'COMPUTER_TEACH_NUMBER' => $this->input->post('COMPUTER_TEACH_NUMBER'),
+            'COMPUTER_MANAGE_NUMBER' => $this->input->post('COMPUTER_MANAGE_NUMBER'),
+            'TOILET_STUDENT_MALE_NUMBER' => $this->input->post('TOILET_STUDENT_MALE_NUMBER'),
+            'TOILET_STUDENT_FEMALE_NUMBER' => $this->input->post('TOILET_STUDENT_FEMALE_NUMBER'),
+            'TOILET_COMBINATION' => $this->input->post('TOILET_COMBINATION')
+
 
         ];
  

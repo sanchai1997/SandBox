@@ -25,6 +25,7 @@ class School extends CI_Controller {
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
         $this->load->view('pages/dashboard/school', $data);
+        $this->load->view('pages/dashboard/model_school', $data);
         $this->load->view('templates/footer', $data);
     }
  
