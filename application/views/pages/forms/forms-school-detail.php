@@ -1,12 +1,12 @@
 <main id="main" class="main">
 
     <div class="pagetitle">
-      <h1>ข้อมูลสถานศึกษา</h1>
+      <h1>เพิ่มข้อมูลสถานศึกษา</h1>
       <nav>
         <ol class="breadcrumb">
           <li class="breadcrumb-item"><a href="main">Home</a></li>
           <li class="breadcrumb-item">Form</li>
-          <li class="breadcrumb-item active">School</li>
+          <li class="breadcrumb-item active">Add</li>
         </ol>
       </nav>
     </div><!-- End Page Title -->
@@ -57,7 +57,17 @@
                 <div class="row mb-3">
                   <label for="inputText" class="col-sm-2 col-form-label">เขตการปกครอง</label>
                   <div class="col-sm-10">
-                    <input type="text" name="MUNICIPAL_CODE" class="form-control">
+                    <select class="form-select" aria-label="Default select example" name="MUNICIPAL_CODE" required>
+                      <option selected>เลือก</option>
+                      <option value="10">กรุงเทพมหานคร</option>
+                      <option value="11">เมืองพัทยา</option>
+                      <option value="12">เทศบาลนคร</option>
+                      <option value="13">เทศบาลเมือง</option>
+                      <option value="14">เทศบาลตำบล</option>
+                      <option value="16">องค์การบริหารส่วนตำบล</option>>
+                      <option value="17">องค์การบริหารส่วนจังหวัด</option>>
+                      <option value="99">ไม่อยู่ในเขตเทศบาล</option>>
+                    </select>
                   </div>
                 </div>
 
@@ -83,31 +93,31 @@
                   <div class="col-sm-10">
 
                     <div class="form-check" >
-                      <input class="form-check-input" type="radio" id="gridCheck1" name="EDUCATION_LEVEL_CODES">
+                      <input class="form-check-input" value="00" type="radio" id="gridCheck1" name="EDUCATION_LEVEL_CODES">
                       <label class="form-check-label" for="gridCheck1">
                         เตรียมอนุบาล
                       </label>
                     </div>
                     <div class="form-check">
-                      <input class="form-check-input" type="radio" id="gridCheck2" name="EDUCATION_LEVEL_CODES">
+                      <input class="form-check-input" value="10" type="radio" id="gridCheck2" name="EDUCATION_LEVEL_CODES">
                       <label class="form-check-label" for="gridCheck2">
                         ก่อนประถมศึกษา
                       </label>
                     </div>
                     <div class="form-check">
-                      <input class="form-check-input" type="radio" id="gridCheck3" name="EDUCATION_LEVEL_CODES">
+                      <input class="form-check-input" value="11" type="radio" id="gridCheck3" name="EDUCATION_LEVEL_CODES">
                       <label class="form-check-label" for="gridCheck3">
                         ประถมศึกษา
                       </label>
                     </div>
                     <div class="form-check">
-                      <input class="form-check-input" type="radio" id="gridCheck3" name="EDUCATION_LEVEL_CODES">
+                      <input class="form-check-input" value="12" type="radio" id="gridCheck3" name="EDUCATION_LEVEL_CODES">
                       <label class="form-check-label" for="gridCheck3">
                         มัธยมศึกษาตอนต้น
                       </label>
                     </div>
                     <div class="form-check">
-                      <input class="form-check-input" type="radio" id="gridCheck4" name="EDUCATION_LEVEL_CODES">
+                      <input class="form-check-input" value="13" type="radio" id="gridCheck4" name="EDUCATION_LEVEL_CODES">
                       <label class="form-check-label" for="gridCheck4">
                         มัธยมศึกษาตอนปลาย 
                       </label>
@@ -120,31 +130,31 @@
                   <div class="col-sm-10">
 
                     <div class="form-check">
-                      <input class="form-check-input" type="radio" id="gridCheck1" name="ELECTRIC_TYPE_CODES">
+                      <input class="form-check-input" value="99" type="radio" id="gridCheck1" name="ELECTRIC_TYPE_CODES">
                       <label class="form-check-label" for="gridCheck1">
                         ไม่มีไฟฟ้า
                       </label>
                     </div>
                     <div class="form-check">
-                      <input class="form-check-input" type="radio" id="gridCheck2" name="ELECTRIC_TYPE_CODES">
+                      <input class="form-check-input" value="10" type="radio" id="gridCheck2" name="ELECTRIC_TYPE_CODES">
                       <label class="form-check-label" for="gridCheck2">
                         มีไฟฟ้าจากหน่วยงานรัฐ-รัฐวิสาหกิจ
                       </label>
                     </div>
                     <div class="form-check">
-                      <input class="form-check-input" type="radio" id="gridCheck3" name="ELECTRIC_TYPE_CODES">
+                      <input class="form-check-input" value="11" type="radio" id="gridCheck3" name="ELECTRIC_TYPE_CODES">
                       <label class="form-check-label" for="gridCheck3">
                         มีไฟฟ้าจากหน่วยงานรัฐ และเครื่องกำเนิดไฟฟ้า
                       </label>
                     </div>
                     <div class="form-check">
-                      <input class="form-check-input" type="radio" id="gridCheck4" name="ELECTRIC_TYPE_CODES">
+                      <input class="form-check-input" value="12" type="radio" id="gridCheck4" name="ELECTRIC_TYPE_CODES">
                       <label class="form-check-label" for="gridCheck4">
                         มีไฟฟ้าจากเครื่องกำเนิดไฟฟ้าแสงอาทิตย์
                       </label>
                     </div>
                     <div class="form-check">
-                      <input class="form-check-input" type="radio" id="gridCheck4" name="ELECTRIC_TYPE_CODES">
+                      <input class="form-check-input" value="13" type="radio" id="gridCheck4" name="ELECTRIC_TYPE_CODES">
                       <label class="form-check-label" for="gridCheck4">
                         มีไฟฟ้าจากเครื่องกำเนิดไฟฟ้าประเภทอื่น 
                       </label>
@@ -157,49 +167,49 @@
                   <div class="col-sm-10">
 
                     <div class="form-check">
-                      <input class="form-check-input" type="radio" id="gridCheck1" name="WATER_TYPE_CODES">
+                      <input class="form-check-input" value="99" type="radio" id="gridCheck1" name="WATER_TYPE_CODES">
                       <label class="form-check-label" for="gridCheck1">
                         ไม่มีแหล่งน้ำ
                       </label>
                     </div>
                     <div class="form-check">
-                      <input class="form-check-input" type="radio" id="gridCheck2" name="WATER_TYPE_CODES">
+                      <input class="form-check-input" value="01" type="radio" id="gridCheck2" name="WATER_TYPE_CODES">
                       <label class="form-check-label" for="gridCheck2">
                         น้ำฝน
                       </label>
                     </div>
                     <div class="form-check">
-                      <input class="form-check-input" type="radio" id="gridCheck3" name="WATER_TYPE_CODES">
+                      <input class="form-check-input" value="02" type="radio" id="gridCheck3" name="WATER_TYPE_CODES">
                       <label class="form-check-label" for="gridCheck3">
                         น้ำประปา
                       </label>
                     </div>
                     <div class="form-check">
-                      <input class="form-check-input" type="radio" id="gridCheck4" name="WATER_TYPE_CODES">
+                      <input class="form-check-input" value="03" type="radio" id="gridCheck4" name="WATER_TYPE_CODES">
                       <label class="form-check-label" for="gridCheck4">
                         น้ำบาดาล
                       </label>
                     </div>
                     <div class="form-check">
-                      <input class="form-check-input" type="radio" id="gridCheck4" name="WATER_TYPE_CODES">
+                      <input class="form-check-input" value="04" type="radio" id="gridCheck4" name="WATER_TYPE_CODES">
                       <label class="form-check-label" for="gridCheck4">
                         บ่อน้ำตื้น
                       </label>
                     </div>
                     <div class="form-check">
-                      <input class="form-check-input" type="radio" id="gridCheck5" name="WATER_TYPE_CODES">
+                      <input class="form-check-input" value="05" type="radio" id="gridCheck5" name="WATER_TYPE_CODES">
                       <label class="form-check-label" for="gridCheck5">
                         สระน้ำแม่น้ำ
                       </label>
                     </div>
                     <div class="form-check">
-                      <input class="form-check-input" type="radio" id="gridCheck6" name="WATER_TYPE_CODES">
+                      <input class="form-check-input" value="06" type="radio" id="gridCheck6" name="WATER_TYPE_CODES">
                       <label class="form-check-label" for="gridCheck6">
                         น้ำบรรจุเสร็จ
                       </label>
                     </div>
                     <div class="form-check">
-                      <input class="form-check-input" type="radio" id="gridCheck7" name="WATER_TYPE_CODES">
+                      <input class="form-check-input" value="07" type="radio" id="gridCheck7" name="WATER_TYPE_CODES">
                       <label class="form-check-label" for="gridCheck7">
                         น้ำตู้หยอดเหรียญ
                       </label>
@@ -212,49 +222,49 @@
                   <div class="col-sm-10">
 
                     <div class="form-check">
-                      <input class="form-check-input" type="radio" id="gridCheck1" name="INTERNET_TYPE_CODES">
+                      <input class="form-check-input" value="99" type="radio" id="gridCheck1" name="INTERNET_TYPE_CODES">
                       <label class="form-check-label" for="gridCheck1">
                         ไม่มีการเชื่อมต่ออินเทอร์เน็ต
                       </label>
                     </div>
                     <div class="form-check">
-                      <input class="form-check-input" type="radio" id="gridCheck2" name="INTERNET_TYPE_CODES">
+                      <input class="form-check-input" value="10" type="radio" id="gridCheck2" name="INTERNET_TYPE_CODES">
                       <label class="form-check-label" for="gridCheck2">
                         มีการเชื่อมต่ออินเทอร์เน็ตด้วยวงจรเช่า Leased Line
                       </label>
                     </div>
                     <div class="form-check">
-                      <input class="form-check-input" type="radio" id="gridCheck3" name="INTERNET_TYPE_CODES">
+                      <input class="form-check-input" value="11" type="radio" id="gridCheck3" name="INTERNET_TYPE_CODES">
                       <label class="form-check-label" for="gridCheck3">
                         มีการเชื่อมต่ออินเทอร์เน็ตด้วย ADSL (Broadband)
                       </label>
                     </div>
                     <div class="form-check">
-                      <input class="form-check-input" type="radio" id="gridCheck4" name="INTERNET_TYPE_CODES">
+                      <input class="form-check-input" value="12" type="radio" id="gridCheck4" name="INTERNET_TYPE_CODES">
                       <label class="form-check-label" for="gridCheck4">
                         มีการเชื่อมต่ออินเทอร์เน็ตด้วยจานดาวเทียม
                       </label>
                     </div>
                     <div class="form-check">
-                      <input class="form-check-input" type="radio" id="gridCheck4" name="INTERNET_TYPE_CODES">
+                      <input class="form-check-input" value="13" type="radio" id="gridCheck4" name="INTERNET_TYPE_CODES">
                       <label class="form-check-label" for="gridCheck4">
                         มีการเชื่อมต่ออินเทอร์เน็ตด้วย 3G 4G 5G WiMAX
                       </label>
                     </div>
                     <div class="form-check">
-                      <input class="form-check-input" type="radio" id="gridCheck5" name="INTERNET_TYPE_CODES">
+                      <input class="form-check-input" value="14" type="radio" id="gridCheck5" name="INTERNET_TYPE_CODES">
                       <label class="form-check-label" for="gridCheck5">
                         มีการเชื่อมต่ออินเทอร์เน็ตด้วย Dial Line
                       </label>
                     </div>
                     <div class="form-check">
-                      <input class="form-check-input" type="radio" id="gridCheck6" name="INTERNET_TYPE_CODES">
+                      <input class="form-check-input" value="15" type="radio" id="gridCheck6" name="INTERNET_TYPE_CODES">
                       <label class="form-check-label" for="gridCheck6">
                         มีการเชื่อมต่ออินเทอร์เน็ตประเภทอื่นๆ
                       </label>
                     </div>
                     <div class="form-check">
-                      <input class="form-check-input" type="radio" id="gridCheck7" name="INTERNET_TYPE_CODES">
+                      <input class="form-check-input" value="16" type="radio" id="gridCheck7" name="INTERNET_TYPE_CODES">
                       <label class="form-check-label" for="gridCheck7">
                         มีการเชื่อมต่ออินเทอร์เน็ตด้วย Fiber Optic
                       </label>
@@ -267,31 +277,31 @@
                   <div class="col-sm-10">
 
                     <div class="form-check">
-                      <input class="form-check-input" type="radio" id="gridCheck1" name="EDUCATION_CONTENTS">
+                      <input class="form-check-input" value="10" type="radio" id="gridCheck1" name="EDUCATION_CONTENTS">
                       <label class="form-check-label" for="gridCheck1">
                         มีวิทยุเพื่อการศึกษา
                       </label>
                     </div>
                     <div class="form-check">
-                      <input class="form-check-input" type="radio" id="gridCheck2" name="EDUCATION_CONTENTS">
+                      <input class="form-check-input" value="11" type="radio" id="gridCheck2" name="EDUCATION_CONTENTS">
                       <label class="form-check-label" for="gridCheck2">
                         มีโทรทัศน์เพื่อการศึกษา
                       </label>
                     </div>
                     <div class="form-check">
-                      <input class="form-check-input" type="radio" id="gridCheck3" name="EDUCATION_CONTENTS">
+                      <input class="form-check-input" value="12" type="radio" id="gridCheck3" name="EDUCATION_CONTENTS">
                       <label class="form-check-label" for="gridCheck3">
                         มีคอมพิวเตอร์เพื่อการศึกษา
                       </label>
                     </div>
                     <div class="form-check">
-                      <input class="form-check-input" type="radio" id="gridCheck3" name="EDUCATION_CONTENTS">
+                      <input class="form-check-input" value="13" type="radio" id="gridCheck3" name="EDUCATION_CONTENTS">
                       <label class="form-check-label" for="gridCheck3">
                         มีระบบคอมพิวเตอร์ช่วยสอน (CAI)
                       </label>
                     </div>
                     <div class="form-check">
-                      <input class="form-check-input" type="radio" id="gridCheck4" name="EDUCATION_CONTENTS">
+                      <input class="form-check-input" value="99" type="radio" id="gridCheck4" name="EDUCATION_CONTENTS">
                       <label class="form-check-label" for="gridCheck4">
                         ไม่ใช้สื่อการเรียนการสอน 
                       </label>
@@ -349,8 +359,9 @@
                 </div>
 
                 <div class="text-center">
-                  <button type="submit" class="btn btn-primary">ยืนยัน</button>
-                  <button type="reset" class="btn btn-secondary">รีเซ็ต</button>
+                  <a href="school" style="float: left;" class="btn btn-light">ยกเลิก</a>
+                  <button style="float: center;"type="reset" class="btn btn-secondary">รีเซ็ต</button>
+                  <button style="float: right;" type="submit" class="btn btn-primary">ยืนยัน</button>
                 </div>
 
                 <!--------------------------- input forms-school ---------------------------->
@@ -375,6 +386,7 @@
                     <input type="hidden" value="<?= $_POST['PHONE_NUMBER']; ?>" name="PHONE_NUMBER">
                     <input type="hidden" value="<?= $_POST['SECOND_PHONE_NUMBER']; ?>" name="SECOND_PHONE_NUMBER">
                     <input type="hidden" value="<?= $_POST['FAX_NUMBER']; ?>" name="FAX_NUMBER">
+                    <input type="hidden" value="<?= $_POST['SECOND_FAX_NUMBER']; ?>" name="SECOND_FAX_NUMBER">
                     <input type="hidden" value="<?= $_POST['EMAIL']; ?>" name="EMAIL">
                     <input type="hidden" value="<?= $_POST['WEBSITE_URL']; ?>" name="WEBSITE_URL">
                 <!------------------------ input forms-school - END  ------------------------>

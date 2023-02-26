@@ -1,12 +1,12 @@
 <main id="main" class="main">
 
     <div class="pagetitle">
-      <h1>ข้อมูลสถานศึกษา</h1>
+      <h1>เพิ่มข้อมูลสถานศึกษา</h1>
       <nav>
         <ol class="breadcrumb">
           <li class="breadcrumb-item"><a href="main">Home</a></li>
           <li class="breadcrumb-item">Form</li>
-          <li class="breadcrumb-item active">School</li>
+          <li class="breadcrumb-item active">Add</li>
         </ol>
       </nav>
     </div><!-- End Page Title -->
@@ -233,20 +233,26 @@
                 </div>
                 <div class="col-md-6">
                   <div class="form-floating">
-                    <input type="tel" class="form-control" name="PHONE_NUMBER" id="PHONE_NUMBER" placeholder="PHONE_NUMBER" required>
+                    <input type="text" class="form-control" name="PHONE_NUMBER" id="PHONE_NUMBER" placeholder="PHONE_NUMBER" required>
                     <label for="PHONE_NUMBER">หมายเลขโทรศัพท์</label>
                   </div>
                 </div>
                 <div class="col-md-6">
                   <div class="form-floating">
-                    <input type="tel" class="form-control" name="SECOND_PHONE_NUMBER" id="SECOND_PHONE_NUMBER" placeholder="SECOND_PHONE_NUMBER" required>
+                    <input type="text" class="form-control" name="SECOND_PHONE_NUMBER" id="SECOND_PHONE_NUMBER" placeholder="SECOND_PHONE_NUMBER">
                     <label for="SECOND_PHONE_NUMBER">หมายเลขโทรศัพท์ (สำรอง)</label>
                   </div>
                 </div>
                 <div class="col-md-6">
                   <div class="form-floating">
-                    <input type="tel" class="form-control" name="FAX_NUMBER" id="FAX_NUMBER" placeholder="FAX_NUMBER" required>
+                    <input type="text" class="form-control" name="FAX_NUMBER" id="FAX_NUMBER" placeholder="FAX_NUMBER" required>
                     <label for="FAX_NUMBER">หมายเลขโทรสาร</label>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-floating">
+                    <input type="text" class="form-control" name="SECOND_FAX_NUMBER" id="SECOND_FAX_NUMBER" placeholder="SECOND_FAX_NUMBER">
+                    <label for="FAX_NUMBER">หมายเลขโทรสาร (สำรอง)</label>
                   </div>
                 </div>
                 <div class="col-md-16">

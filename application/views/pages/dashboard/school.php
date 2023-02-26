@@ -10,7 +10,19 @@
         </ol>
       </nav>
     </div><!-- End Page Title -->
+    <?php if (!empty($_SESSION['success'])) { ?>
+      <div style="position: relative;"> 
+      <div class="alert alert-success" id="myAlert" style="position: absolute; top: 0; left: 0; right: 0; z-index: 1;">
+          <strong>
+              <?php
+                 echo '<i class="bi bi-clipboard2-check"></i> '. $_SESSION['success'];
+                 unset($_SESSION['success']);
+              ?>
+          </strong>
 
+      </div>
+      </div>
+    <?php } ?>
    <!-- Recent Sales -->
             <div class="col-12">
               <div class="card recent-sales overflow-auto">
@@ -36,8 +48,29 @@
                     <?php foreach ($schools as $school) { ?>
                       <tr>
                         <th scope="row"><?php echo $school->NAME_TH; ?></th>
-                        <td><?php echo $school->INNOVATION_AREA_CODE; ?></td>
-                        <td style="text-align: center;"><a href="#" class="text-primary"><i class="bi bi-card-list"></i></a></td>
+                        <td style="text-align: center;">
+                        <?php 
+                          switch ($school->INNOVATION_AREA_CODE) {
+                            case 21:
+                              echo "ระยอง"; break;
+                            case 33:
+                              echo "ศรีสะเกษ"; break;
+                            case 50:
+                              echo "เชียงใหม่"; break;
+                            case 71:
+                              echo "กาญจนบุรี"; break;
+                            case 91:
+                              echo "สตูล"; break;
+                            case 94:
+                              echo "ปัตตานี"; break;
+                            case 95:
+                              echo "ยะลา"; break;
+                            case 96:
+                              echo "นราธิวาส"; break;
+                          }
+                        ?>
+                        </td>
+                        <td style="text-align: center;"><button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#Modal<?= $school->SCHOOL_ID; ?>"><i class="bi bi-card-list"></i></button></td>
                      
                       </tr>
                     <?php } ?>
