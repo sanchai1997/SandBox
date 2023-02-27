@@ -2,16 +2,18 @@
 
 class School_model extends CI_Model {
  
-    public function __construct()
-    {
+    public function __construct() {
+
         $this->load->database();
         $this->load->helper('url');
+
     }
 
-    public function seleat_school()
-    {
+    public function select_school() {
+
         $schools = $this->db->get("SCHOOL")->result();
         return $schools;
+        
     }
 
     public function add_school() {    
@@ -67,6 +69,36 @@ class School_model extends CI_Model {
         ];
  
         $result = $this->db->insert('SCHOOL', $data);
+        return $result;
+    }
+
+    public function add_classroom() {    
+        $data = [
+            
+            //Page forms-school-classrooom
+            'SCHOOL_ID' => $this->input->post('SCHOOL_ID'),
+            'CLASSROOM_GRADE_LEVEL_CODE' => $this->input->post('CLASSROOM_GRADE_LEVEL_CODE'),
+            'CLASSROOM_AMOUNT' => $this->input->post('CLASSROOM_AMOUNT')
+            
+        ];
+ 
+        $result = $this->db->insert('SCHOOL_CLASSROOM', $data);
+        return $result;
+    }
+
+    public function add_award() {    
+        $data = [
+            
+            //Page forms-school-award
+            'SCHOOL_ID' => $this->input->post('SCHOOL_ID'),
+            'AWARD_YEAR' => $this->input->post('AWARD_YEAR'),
+            'AWARD_NAME' => $this->input->post('AWARD_NAME'),
+            'AWARD_SOURCE' => $this->input->post('AWARD_SOURCE'),
+            'AWARD_LEVEL_CODE' => $this->input->post('AWARD_LEVEL_CODE')
+            
+        ];
+ 
+        $result = $this->db->insert('SCHOOL_AWARD', $data);
         return $result;
     }
 }

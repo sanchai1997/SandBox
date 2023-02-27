@@ -11,6 +11,7 @@ class School extends CI_Controller {
         $this->load->model('School_model', 'school');
     }
 
+    ///////////////////////////////////SCHOOL/////////////////////////////////////////
     public function index(){
         
         if ( ! file_exists(APPPATH.'views/pages/dashboard/school.php'))
@@ -19,7 +20,7 @@ class School extends CI_Controller {
                 show_404();
         }
 
-        $data['schools'] = $this->school->seleat_school();
+        $data['schools'] = $this->school->select_school();
         $data['title'] = 'School'; // Capitalize the first letter
 
         $this->load->view('templates/header', $data);
@@ -28,7 +29,9 @@ class School extends CI_Controller {
         $this->load->view('pages/dashboard/model_school', $data);
         $this->load->view('templates/footer', $data);
     }
+    ///////////////////////////////////SCHOOL- END /////////////////////////////////////////
 
+    ///////////////////////////////////CLASSROM/////////////////////////////////////////////
     public function classroom(){
         
         if ( ! file_exists(APPPATH.'views/pages/dashboard/school-classroom.php'))
@@ -37,13 +40,37 @@ class School extends CI_Controller {
                 show_404();
         }
 
-        $data['schools'] = $this->school->seleat_school();
+        $data['schools'] = $this->school->select_school();
+        
         $data['title'] = 'School-classrom'; // Capitalize the first letter
 
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
+        $this->load->view('pages/dashboard/model_school-classroom', $data);
         $this->load->view('pages/dashboard/school-classroom', $data);
         $this->load->view('templates/footer', $data);
     }
+    ///////////////////////////////////CLASSROM- END /////////////////////////////////////////
+
+    //////////////////////////////////////AWARD///////////////////////////////////////////////
+    public function award(){
+        
+        if ( ! file_exists(APPPATH.'views/pages/dashboard/school-award.php'))
+        {
+                // Whoops, we don't have a page for that!
+                show_404();
+        }
+
+        $data['schools'] = $this->school->select_school();
+        
+        $data['title'] = 'School-award'; // Capitalize the first letter
+
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/sidebar', $data);
+        $this->load->view('pages/dashboard/model_school-classroom', $data);
+        $this->load->view('pages/dashboard/school-award', $data);
+        $this->load->view('templates/footer', $data);
+    }
+    ///////////////////////////////////// AWARD- END /////////////////////////////////////////
  
 }

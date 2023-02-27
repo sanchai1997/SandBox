@@ -113,23 +113,90 @@ class Forms_school extends CI_Controller {
     ///////////////////////////////////SCHOOL- END /////////////////////////////////////////
 
     ///////////////////////////////////CLASSROM/////////////////////////////////////////////
-    //Page Form School
+    //Page Form Classroom
     public function classroom() {
             
-        if ( ! file_exists(APPPATH.'views/pages/forms/forms-school.php'))
+        if ( ! file_exists(APPPATH.'views/pages/forms/forms-school-classroom.php'))
         {
                 // Whoops, we don't have a page for that!
                 show_404();
         }
 
-        $data['title'] = 'Forms School'; // Capitalize the first letter
+        $data['title'] = 'Forms School ClassRoom'; // Capitalize the first letter
 
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
-        $this->load->view('pages/forms/forms-school', $data);
+        $this->load->view('pages/forms/forms-school-classroom', $data);
         $this->load->view('templates/footer', $data);
     }
+
+    //Add Data Classroom
+    public function add_classroom() {
+
+        $this->form_validation->set_rules('SCHOOL_ID', 'SCHOOL_ID', 'required');
+        $this->form_validation->set_rules('CLASSROOM_GRADE_LEVEL_CODE', 'CLASSROOM_GRADE_LEVEL_CODE', 'required');
+        $this->form_validation->set_rules('CLASSROOM_AMOUNT', 'CLASSROOM_AMOUNT', 'required');
+
+
+    
+        if (!$this->form_validation->run())
+        {
+            $this->session->set_flashdata('errors', validation_errors());
+            redirect(base_url('forms-school-classroom'));
+        }
+        else
+        {
+            $this->forms_school->add_classroom();
+            $_SESSION['success'] = "บันทึกข้อมูลเรียบร้อย";
+            redirect(base_url('school-classroom'));
+        }
+    }
     ///////////////////////////////////CLASSROM- END /////////////////////////////////////////
+
+    //////////////////////////////////////AWARD///////////////////////////////////////////////
+    //Page Form AWARD
+    public function award() {
+            
+        if ( ! file_exists(APPPATH.'views/pages/forms/forms-school-award.php'))
+        {
+                // Whoops, we don't have a page for that!
+                show_404();
+        }
+
+        $data['title'] = 'Forms School Award'; // Capitalize the first letter
+
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/sidebar', $data);
+        $this->load->view('pages/forms/forms-school-award', $data);
+        $this->load->view('templates/footer', $data);
+    }
+    
+    //Add Data AWARD
+    public function add_award() {
+
+        $this->form_validation->set_rules('SCHOOL_ID', 'SCHOOL_ID', 'required');
+        $this->form_validation->set_rules('AWARD_YEAR', 'AWARD_YEAR', 'required');
+        $this->form_validation->set_rules('AWARD_NAME', 'AWARD_NAME', 'required');
+        $this->form_validation->set_rules('AWARD_SOURCE', 'AWARD_SOURCE', 'required');
+        $this->form_validation->set_rules('AWARD_LEVEL_CODE', 'AWARD_LEVEL_CODE', 'required');
+
+
+    
+        if (!$this->form_validation->run())
+        {
+            $this->session->set_flashdata('errors', validation_errors());
+            redirect(base_url('forms-school-award'));
+        }
+        else
+        {
+            $this->forms_school->add_award();
+            $_SESSION['success'] = "บันทึกข้อมูลเรียบร้อย";
+            redirect(base_url('school-award'));
+        }
+    }
+    ///////////////////////////////////// AWARD- END /////////////////////////////////////////
+
+
 
 
 

@@ -3,26 +3,25 @@
     <div class="pagetitle">
         <div class="row">
             <div class="col-6">
-                <h1>ข้อมูลสถานศึกษา</h1>
+                <h1>ข้อมูลรางวัลสถานศึกษา</h1>
                 <nav>
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="main">Home</a></li>
                         <li class="breadcrumb-item">Form</li>
-                        <li class="breadcrumb-item active">School</li>
+                        <li class="breadcrumb-item active">Award</li>
                     </ol>
                 </nav>
             </div>
             <div class="col-6" style="padding-right: 25px;">
-                <a href="school-award" style="float: right;" class="btn btn-sm btn-light"
-                    data-mdb-ripple-color="dark">ข้อมูลรางวัลสถานศึกษา</a>
-                <h5 style="float: right;"> | </h5>
+
                 <a href="school-classroom" style="float: right;" class="btn btn-sm btn-light"
                     data-mdb-ripple-color="dark">ข้อมูลห้องเรียนสถานศึกษา</a>
+                <h5 style="float: right;"> | </h5>
+                <a href="school" style="float: right;" class="btn btn-sm btn-light"
+                    data-mdb-ripple-color="dark">ข้อมูลสถานศึกษา</a>
             </div>
         </div>
-    </div>
-
-    <!-- End Page Title -->
+    </div><!-- End Page Title -->
     <?php if (!empty($_SESSION['success'])) { ?>
     <div style="position: relative;">
         <div class="alert alert-success" id="myAlert"
@@ -44,53 +43,44 @@
             <div class="card-body">
                 <div class="row">
                     <div class="col">
-                        <h5 class="card-title">รายละเอียดข้อมูล <span>| Table School</span></h5>
+                        <h5 class="card-title">รายละเอียดข้อมูล <span>| Table School-Classroom</span></h5>
                     </div>
                     <div class="col">
-                        <h5 style="float: right; padding: 15px;" class="card-title"><a href="forms-school"
-                                class="btn btn-success">เพิ่มข้อมูลสถานศึกษา</a></h5>
+                        <h5 style="float: right; padding: 15px;" class="card-title"><a href="forms-school-award"
+                                class="btn btn-success">เพิ่มข้อมูลรางวัล</a></h5>
                     </div>
                 </div>
                 <table class="table table-borderless datatable">
                     <thead>
                         <tr>
                             <th style="text-align: center;" scope="col">ชื่อสถานศึกษา</th>
-                            <th style="text-align: center;" scope="col">พื้นที่นวัตกรรม</th>
+                            <th style="text-align: center;" scope="col">จำนวนรางวัลทั้งหมด</th>
                             <th style="text-align: center;" scope="col">ดูรายละเอียด</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <?php foreach ($schools as $school) { ?>
-                        <tr>
-                            <th scope="row"><?php echo $school->NAME_TH; ?></th>
-                            <td style="text-align: center;">
-                                <?php 
-                          switch ($school->INNOVATION_AREA_CODE) {
-                            case 21:
-                              echo "ระยอง"; break;
-                            case 33:
-                              echo "ศรีสะเกษ"; break;
-                            case 50:
-                              echo "เชียงใหม่"; break;
-                            case 71:
-                              echo "กาญจนบุรี"; break;
-                            case 91:
-                              echo "สตูล"; break;
-                            case 94:
-                              echo "ปัตตานี"; break;
-                            case 95:
-                              echo "ยะลา"; break;
-                            case 96:
-                              echo "นราธิวาส"; break;
-                          }
+                        <?php
+                        
+                            $result = $this->db->query('SELECT * ,COUNT(SCHOOL_AWARD_ID) AS Total_award 
+                                FROM SCHOOL_AWARD 
+                                INNER JOIN SCHOOL ON SCHOOL_AWARD.SCHOOL_ID = SCHOOL.SCHOOL_ID 
+                                GROUP BY SCHOOL_AWARD.SCHOOL_ID');
+
+                            foreach ($result ->result() as $row) {
                         ?>
+                        <tr>
+                            <?php 
+                            ?>
+                            <th scope="row"><?= $row->NAME_TH; ?></th>
+                            <td style="text-align: center;">
+                                <?= $row->Total_award; ?>
                             </td>
                             <td style="text-align: center;"><button type="button" class="btn btn-primary"
-                                    data-bs-toggle="modal" data-bs-target="#Modal<?= $school->SCHOOL_ID; ?>"><i
-                                        class="bi bi-card-list"></i></button></td>
-
+                                    data-bs-toggle="modal" data-bs-target="#Modal<?= $row->SCHOOL_ID; ?>"><i
+                                        class="bi bi-card-list"></i></button>
+                            </td>
+                            <?php } ?>
                         </tr>
-                        <?php } ?>
                     </tbody>
                 </table>
 

@@ -17,8 +17,12 @@ $route['add-school']['post'] = 'forms_school/add_school';
 
 //classrom
 $route['school-classroom'] = 'school/classroom';
-$route['forms-school-classrom'] = 'forms_school/class-room';
+$route['forms-school-classroom'] = 'forms_school/classroom';
+$route['add-classroom']['post'] = 'forms_school/add_classroom';
+
+
+//AWARD
+$route['school-award'] = 'school/award';
+$route['forms-school-award'] = 'forms_school/award';
+$route['add-award']['post'] = 'forms_school/add_award';
 /////////////////////////// END ////////////////////////////
-
-
-
