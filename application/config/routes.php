@@ -9,10 +9,15 @@ $route['main'] = 'main';
 
 
 ////////////////////// ROUTE SCHOOL ////////////////////////
-$route['school'] = 'school';
+//school
+$route['school'] = 'school/index';
 $route['forms-school'] = 'forms_school';
 $route['forms-school-detail'] = 'forms_school/detail';
 $route['add-school']['post'] = 'forms_school/add_school';
+
+//classrom
+$route['school-classroom'] = 'school/classroom';
+$route['forms-school-classrom'] = 'forms_school/class-room';
 /////////////////////////// END ////////////////////////////
 
 

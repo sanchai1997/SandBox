@@ -27,10 +27,8 @@
                     ประเภทสถานศึกษา :  
                     <?php 
                           switch ($model_school->SCHOOL_TYPE_CODE) {
-                            case 1:
-                                echo "โรงเรียน ประเภทสามัญศึกษา"; break;
-                            case 2:
-                                echo "โรงเรียนเอกชนสามัญ (สามัญปกติ)"; break;
+                            case 1: echo "โรงเรียน ประเภทสามัญศึกษา"; break;
+                            case 2: echo "โรงเรียนเอกชนสามัญ (สามัญปกติ)"; break;
                            
                           }
                     ?>
@@ -41,12 +39,9 @@
                     สถานะของสถานศึกษา :  
                     <?php 
                           switch ($model_school->SCHOOL_STATUS_CODE) {
-                            case 1:
-                                echo "ปกติ"; break;
-                            case 2:
-                                echo "ยุบ/เลิก"; break;
-                            case 3:
-                                echo "ถ่ายโอน"; break;
+                            case 1: echo "ปกติ"; break;
+                            case 2: echo "ยุบ/เลิก"; break;
+                            case 3: echo "ถ่ายโอน"; break;
                           }
                     ?>
                 </div>
@@ -219,7 +214,19 @@
                     หน่วยงานต้นสังกัด :  <?= $model_school->JURISDICTION_CODE; ?>
                 </div>
                 <div class="col-6" style="padding-bottom: 8px;">
-                    เขตการปกครอง :  <?= $model_school->MUNICIPAL_CODE; ?>
+                    เขตการปกครอง :  
+                    <?php 
+                          switch ($model_school->MUNICIPAL_CODE) {
+                            case 10: echo "กรุงเทพมหานคร"; break;
+                            case 11: echo "เมืองพัทยา"; break;
+                            case 12: echo "เทศบาลนคร"; break;
+                            case 13: echo "เทศบาลเมือง"; break;
+                            case 14: echo "เทศบาลตำบล"; break;
+                            case 16: echo "องค์การบริหารส่วนตำบล"; break;
+                            case 17: echo "องค์การบริหารส่วนจังหวัด"; break;
+                            case 99: echo "ไม่อยู่ในเขตเทศบาล"; break;
+                          }
+                    ?>
                 </div>
             </div>
             <div class="row">
@@ -227,45 +234,88 @@
                     พื้นที่นวัตกรรม :  
                     <?php 
                           switch ($model_school->INNOVATION_AREA_CODE) {
-                            case 21:
-                              echo "ระยอง"; break;
-                            case 33:
-                              echo "ศรีสะเกษ"; break;
-                            case 50:
-                              echo "เชียงใหม่"; break;
-                            case 71:
-                              echo "กาญจนบุรี"; break;
-                            case 91:
-                              echo "สตูล"; break;
-                            case 94:
-                              echo "ปัตตานี"; break;
-                            case 95:
-                              echo "ยะลา"; break;
-                            case 96:
-                              echo "นราธิวาส"; break;
+                            case 21: echo "ระยอง"; break;
+                            case 33: echo "ศรีสะเกษ"; break;
+                            case 50: echo "เชียงใหม่"; break;
+                            case 71: echo "กาญจนบุรี"; break;
+                            case 91: echo "สตูล"; break;
+                            case 94: echo "ปัตตานี"; break;
+                            case 95: echo "ยะลา"; break;
+                            case 96: echo "นราธิวาส"; break;
                           }
                     ?>
                 </div>
             </div>
             <div class="row">
                 <div class="col-4" style="padding-bottom: 8px;">
-                    ระดับการศึกษา :  <?= $model_school->EDUCATION_LEVEL_CODES; ?>
+                    ระดับการศึกษา :  
+                    <?php 
+                          switch ($model_school->EDUCATION_LEVEL_CODES) {
+                            case 00: echo "เตรียมอนุบาล"; break;
+                            case 10: echo "ก่อนประถมศึกษา"; break;
+                            case 11: echo "ประถมศึกษา"; break;
+                            case 12: echo "มัธยมศึกษาตอนต้น"; break;
+                            case 13: echo "มัธยมศึกษาตอนปลาย"; break;
+                          }
+                    ?>
                 </div>
             </div>
             <div class="row">
                 <div class="col-6" style="padding-bottom: 8px;">
-                    ประเภทแหล่งกำเนิดไฟฟ้า : <?= $model_school->ELECTRIC_TYPE_CODES; ?> 
+                    ประเภทแหล่งกำเนิดไฟฟ้า : 
+                    <?php 
+                          switch ($model_school->ELECTRIC_TYPE_CODES) {
+                            case 99: echo "ไม่มีไฟฟ้า"; break;
+                            case 10: echo "มีไฟฟ้าจากหน่วยงานรัฐ-รัฐวิสาหกิจ"; break;
+                            case 11: echo "มีไฟฟ้าจากหน่วยงานรัฐ และเครื่องกำเนิดไฟฟ้า"; break;
+                            case 12: echo "มีไฟฟ้าจากเครื่องกำเนิดไฟฟ้าแสงอาทิตย์"; break;
+                            case 13: echo "มีไฟฟ้าจากเครื่องกำเนิดไฟฟ้าประเภทอื่น"; break;
+                          }
+                    ?>
                 </div>
                 <div class="col-6" style="padding-bottom: 8px;">
-                    แหล่งน้ำที่โรงเรียนใช้ :  <?= $model_school->WATER_TYPE_CODES; ?>
+                    แหล่งน้ำที่โรงเรียนใช้ :  
+                    <?php 
+                          switch ($model_school->WATER_TYPE_CODES) {
+                            case 99: echo "ไม่มีแหล่งน้ำ"; break;
+                            case 01: echo "น้ำฝน"; break;
+                            case 02: echo "น้ำประปา"; break;
+                            case 03: echo "น้ำบาดาล"; break;
+                            case 04: echo "บ่อน้ำตื้น"; break;
+                            case 05: echo "สระน้ำแม่น้ำ"; break;
+                            case 06: echo "น้ำบรรจุเสร็จ"; break;
+                            case 07: echo "น้ำตู้หยอดเหรียญ"; break;
+                          }
+                    ?>
                 </div>
             </div>
             <div class="row">
                 <div class="col-6" style="padding-bottom: 8px;">
-                    การมีอินเทอร์เน็ต :  <?= $model_school->INTERNET_TYPE_CODES; ?>
+                    การมีอินเทอร์เน็ต :
+                    <?php 
+                          switch ($model_school->INTERNET_TYPE_CODES) {
+                            case 99: echo "ไม่มีการเชื่อมต่ออินเทอร์เน็ต"; break;
+                            case 10: echo "มีการเชื่อมต่ออินเทอร์เน็ตด้วยวงจรเช่า Leased Line"; break;
+                            case 11: echo "มีการเชื่อมต่ออินเทอร์เน็ตด้วย ADSL (Broadband)"; break;
+                            case 12: echo "มีการเชื่อมต่ออินเทอร์เน็ตด้วยจานดาวเทียม"; break;
+                            case 13: echo "มีการเชื่อมต่ออินเทอร์เน็ตด้วย 3G 4G 5G WiMAX"; break;
+                            case 14: echo "มีการเชื่อมต่ออินเทอร์เน็ตด้วย Dial Line"; break;
+                            case 15: echo "มีการเชื่อมต่ออินเทอร์เน็ตประเภทอื่นๆ"; break;
+                            case 16: echo "มีการเชื่อมต่ออินเทอร์เน็ตด้วย Fiber Optic"; break;
+                          }
+                    ?>
                 </div>
                 <div class="col-6" style="padding-bottom: 8px;">
-                    การใช้สื่อการเรียนการสอน :  <?= $model_school->EDUCATION_CONTENTS; ?>
+                    การใช้สื่อการเรียนการสอน :  
+                    <?php 
+                          switch ($model_school->EDUCATION_CONTENTS) {
+                            case 10: echo "มีวิทยุเพื่อการศึกษา"; break;
+                            case 11: echo "มีโทรทัศน์เพื่อการศึกษา"; break;
+                            case 12: echo "มีคอมพิวเตอร์เพื่อการศึกษา"; break;
+                            case 13: echo "มีระบบคอมพิวเตอร์ช่วยสอน (CAI)"; break;
+                            case 99: echo "ไม่ใช้สื่อการเรียนการสอน"; break;
+                          }
+                    ?>
                 </div>
             </div>
             <div class="row">
@@ -300,7 +350,8 @@
             
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ปิด</button>
+        <button type="button" class="btn btn-warning" data-bs-dismiss="modal"><i class="bi bi-pencil-square"></i></button>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><i class="bi bi-x-square"></i></button>
       </div>
     </div>
   </div>

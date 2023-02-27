@@ -11,6 +11,7 @@ class Forms_school extends CI_Controller {
         $this->load->model('School_model', 'forms_school');
     }
     
+    ///////////////////////////////////SCHOOL/////////////////////////////////////////
      //Page Form School
     public function index() {
         
@@ -108,6 +109,28 @@ class Forms_school extends CI_Controller {
             $_SESSION['success'] = "บันทึกข้อมูลเรียบร้อย";
             redirect(base_url('school'));
         }
-    
     }
+    ///////////////////////////////////SCHOOL- END /////////////////////////////////////////
+
+    ///////////////////////////////////CLASSROM/////////////////////////////////////////////
+    //Page Form School
+    public function classroom() {
+            
+        if ( ! file_exists(APPPATH.'views/pages/forms/forms-school.php'))
+        {
+                // Whoops, we don't have a page for that!
+                show_404();
+        }
+
+        $data['title'] = 'Forms School'; // Capitalize the first letter
+
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/sidebar', $data);
+        $this->load->view('pages/forms/forms-school', $data);
+        $this->load->view('templates/footer', $data);
+    }
+    ///////////////////////////////////CLASSROM- END /////////////////////////////////////////
+
+
+
 }

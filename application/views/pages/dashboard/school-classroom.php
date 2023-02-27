@@ -1,26 +1,24 @@
 <main id="main" class="main">
 
     <div class="pagetitle">
-      <div class="row">
+    <div class="row">
         <div class="col-6">
-          <h1>ข้อมูลสถานศึกษา</h1>
+          <h1>ข้อมูลห้องเรียนสถานศึกษา</h1>
           <nav>
             <ol class="breadcrumb">
               <li class="breadcrumb-item"><a href="main">Home</a></li>
               <li class="breadcrumb-item">Form</li>
-              <li class="breadcrumb-item active">School</li>
+              <li class="breadcrumb-item active">Classrom</li>
             </ol>
           </nav>
         </div>
         <div class="col-6" style="padding-right: 25px;">
-            <a  style="float: right;" class="btn btn-sm btn-light" data-mdb-ripple-color="dark">ข้อมูลรางวัลสถานศึกษา</a>
+            <a  style="float: right;" class="btn btn-sm btn-light" data-mdb-ripple-color="dark">ข้อมูลรางวัล</a>
             <h5 style="float: right;"> | </h5>
-            <a  href="school-classroom" style="float: right;" class="btn btn-sm btn-light" data-mdb-ripple-color="dark">ข้อมูลห้องเรียนสถานศึกษา</a>
+            <a  href="school" style="float: right;" class="btn btn-sm btn-light" data-mdb-ripple-color="dark">ข้อมูลสถานศึกษา</a>
         </div>
       </div>
-    </div>
-
-    <!-- End Page Title -->
+    </div><!-- End Page Title -->
     <?php if (!empty($_SESSION['success'])) { ?>
       <div style="position: relative;"> 
       <div class="alert alert-success" id="myAlert" style="position: absolute; top: 0; left: 0; right: 0; z-index: 1;">
@@ -41,10 +39,10 @@
                 <div class="card-body">
                 <div class="row">
                     <div class="col">
-                        <h5 class="card-title">รายละเอียดข้อมูล <span>| Table School</span></h5>
+                        <h5 class="card-title">รายละเอียดข้อมูล <span>| Table School-Classroom</span></h5>
                     </div>
                     <div class="col">
-                        <h5 style="float: right; padding: 15px;" class="card-title"><a  href="forms-school" class="btn btn-success">เพิ่มข้อมูลสถานศึกษา</a></h5>
+                        <h5 style="float: right; padding: 15px;" class="card-title"><a  href="forms-school" class="btn btn-success">เพิ่มข้อมูลห้องเรียน</a></h5>
                     </div>
                 </div>
                   <table class="table table-borderless datatable">
