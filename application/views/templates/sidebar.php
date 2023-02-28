@@ -16,7 +16,7 @@
     </a>
     <ul id="forms-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
       <li>
-        <a href="forms-student">
+        <a href="student">
           <i class="bi bi-circle"></i><span>ข้อมูลนักเรียน</span>
         </a>
       </li>

@@ -67,7 +67,7 @@ class School extends CI_Controller {
 
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
-        $this->load->view('pages/dashboard/model_school-classroom', $data);
+        $this->load->view('pages/dashboard/model_school-award', $data);
         $this->load->view('pages/dashboard/school-award', $data);
         $this->load->view('templates/footer', $data);
     }
