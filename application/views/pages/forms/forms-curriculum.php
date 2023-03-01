@@ -6,7 +6,7 @@
         <ol class="breadcrumb">
           <li class="breadcrumb-item"><a href="index.html">Home</a></li>
           <li class="breadcrumb-item">Form</li>
-          <li class="breadcrumb-item active">Student</li>
+          <li class="breadcrumb-item active">Curriculum</li>
         </ol>
       </nav>
     </div><!-- End Page Title -->
@@ -20,36 +20,38 @@
               <h5 class="card-title">ข้อมูลหลักสูตร</h5>
 
               <!-- start Form ข้อมูลหลักสูตร -->
-              <form>
+              <form action="<?php echo base_url('addCurriculum');?>" method="POST" name="addCurriculum" id="addCurriculum">
                 <div class="row mb-3">
                   <label for="inputText" class="col-sm-2 col-form-label">ปีการศึกษา</label>
                   <div class="col-sm-10">
-                    <input type="text" class="form-control">
+                    <input type="text" class="form-control" name="EDUCATION_YEAR" id="EDUCATION_YEAR" placeholder="ปีการศึกษา">
                   </div>
                 </div>
                 <div class="row mb-3">
                   <label for="inputText" class="col-sm-2 col-form-label">ภาคเรียน</label>
                   <div class="col-sm-10">
-                    <input type="text" class="form-control">
+                    <input type="text" class="form-control" name="SEMESTER" id="SEMESTER" placeholder="ภาคเรียน">
                   </div>
                 </div>
+                
                 <div class="row mb-3">
                   <label for="inputText" class="col-sm-2 col-form-label">สถานศึกษา</label>
                   <div class="col-sm-10">
-                    <input type="text" class="form-control">
+                    <input type="text" class="form-control" name="" id="" placeholder="">
                   </div>
                 </div>
+            <!-- 
                 <div class="row mb-3">
                   <label for="inputText" class="col-sm-2 col-form-label">ชื่อหลักสูตร</label>
                   <div class="col-sm-10">
-                    <input type="text" class="form-control">
+                    <input type="text" class="form-control" name="" id="" placeholder="">
                   </div>
                 </div>
-
+            -->   
                 <div class="row mb-3">
-                  <label class="col-sm-2 col-form-label">รหัสหลักสูตร</label>
+                  <label class="col-sm-2 col-form-label">หลักสูตร</label>
                   <div class="col-sm-10">
-                    <select class="form-select" aria-label="Default select example">
+                    <select class="form-select" aria-label="Default select example" name="CURRICULUM_CODE" id="CURRICULUM_CODE">
                       <option selected>เลือก</option>
                       <option value="1001">หลักสูตรแกนกลางการศึกษาขั้นพื้นฐาน</option>
                       <option value="1101">หลักสูตรโรงเรียนนานาชาติ</option>
@@ -61,7 +63,7 @@
                 <div class="row mb-3">
                   <label class="col-sm-2 col-form-label">รหัสระดับการศึกษา</label>
                   <div class="col-sm-10">
-                    <select class="form-select" aria-label="Default select example">
+                    <select class="form-select" aria-label="Default select example" name="EDUCATION_LEVEL_CODE" id="EDUCATION_LEVEL_CODE">>
                       <option selected>เลือก</option>
                       <option value="01">เตรียมอนุบาล</option>
                       <option value="02">ก่อนประถมศึกษา</option>
@@ -75,7 +77,7 @@
                 <div class="row mb-3">
                   <label class="col-sm-2 col-form-label">รหัสชั้นเรียน</label>
                   <div class="col-sm-10">
-                    <select class="form-select" aria-label="Default select example">
+                    <select class="form-select" aria-label="Default select example" name="GRADE_LEVEL_CODE" id="GRADE_LEVEL_CODE">>
                       <option selected>เลือก</option>
                       <option value="100">เตรียมอนุบาล</option>
                       <option value="111">อนุบาล 1(หลักสูตร 3 ปีของ สช.)/อนุบาล 3 ขวบ</option>
@@ -105,14 +107,14 @@
                 <div class="row mb-3">
                   <label for="inputFile" class="col-sm-2 col-form-label">เอกสารหลักสูตร</label>
                   <div class="col-sm-10">
-                    <input type="file" class="form-control">
+                    <input type="file" class="form-control"  name="CURRICULUM_DOCUMENT" id="CURRICULUM_DOCUMENT" placeholder="CURRICULUM_DOCUMENT">
                   </div>
                 </div>
 
                 <div class="row mb-3">
                   <label class="col-sm-2 col-form-label">อ้างอิงหลักสูตรท้องถิ่น</label>
                   <div class="col-sm-10">
-                    <select class="form-select" aria-label="Default select example">
+                    <select class="form-select" aria-label="Default select example" name="LOCAL_CURRICULUM_FLAG" id="LOCAL_CURRICULUM_FLAG">
                       <option selected>เลือก</option>
                       <option value="0">อ้างอิง</option>
                       <option value="1">ไม่อ้างอิง</option>
@@ -123,14 +125,14 @@
                 <div class="row mb-3">
                   <label for="inputText" class="col-sm-2 col-form-label">ชื่อหลักสูตรท้องถิ่นที่อ้างอิง</label>
                   <div class="col-sm-10">
-                    <input type="text" class="form-control">
+                    <input type="text" class="form-control" name="LOCAL_CURRICULUM_NAME" id="LOCAL_CURRICULUM_NAME" placeholder="ชื่อหลักสูตรท้องถิ่นที่อ้างอิง">
                   </div>
                 </div>
 
                 <div class="row mb-3">
                   <label for="inputFile" class="col-sm-2 col-form-label">เอกสารแนบหลักสูตรอ้างอิง</label>
                   <div class="col-sm-10">
-                    <input type="file" class="form-control">
+                    <input type="file" class="form-control" name="LOCAL_CURRICULUM_DOCUMENT" id="LOCAL_CURRICULUM_DOCUMENT" placeholder="เอกสารแนบหลักสูตรอ%างอิง">
                   </div>
                 </div>
 
@@ -141,7 +143,7 @@
                 <h5 class="card-title">ข้อมูลหลักสูตรรายวิชา</h5>
 
                 <div class="row mb-3">
-                  <label for="inputText" class="col-sm-2 col-form-label">คีย์อ้างอิงข%อมูลหลักสูตร</label>
+                  <label for="inputText" class="col-sm-2 col-form-label">คีย์อ้างอิงข้อมูลหลักสูตร</label>
                   <div class="col-sm-10">
                     <input type="text" class="form-control">
                   </div>
