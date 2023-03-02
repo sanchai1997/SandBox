@@ -1,11 +1,11 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-$route['default_controller'] = 'login/index';
+$route['default_controller'] = 'main';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 
-$route['main'] = 'main';
+$route['login'] = 'login';
 
 
 ////////////////////// ROUTE SCHOOL ////////////////////////
