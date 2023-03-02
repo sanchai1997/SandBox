@@ -1,14 +1,14 @@
 
 <main id="main" class="main">
 <script>
-function myfunction(addCurriculum){
-var EDUCATION = /^[0-9]{1,3}$/;
-  if(!addCurriculum.EDUCATION_YEAR.value.match(EDUCATION)){
-      alert("กรุณากรอกข้อมูลปีการศึกษา");
-      addCurriculum.EDUCATION_YEAR.value = "";
-      return false;
+  function myfunction(addCurriculum){
+  var EDUCATION = /^[0-9]{1,3}$/;
+    if(!addCurriculum.EDUCATION_YEAR.value.match(EDUCATION)){
+        alert("กรุณากรอกข้อมูลปีการศึกษา");
+        addCurriculum.EDUCATION_YEAR.value = "";
+        return false;
+    }
   }
-}
 </script>
     <div class="pagetitle">
       <h1>ข้อมูลหลักสูตร / หลักสูตรของพื้นที่นวัตกรรม</h1>
@@ -30,7 +30,7 @@ var EDUCATION = /^[0-9]{1,3}$/;
               <h5 class="card-title">ข้อมูลหลักสูตร</h5>
 
               <!-- start Form ข้อมูลหลักสูตร -->
-              <form action="<?php echo base_url('add_Curriculum');?>" method="POST" name="addCurriculum" id="addCurriculum">
+              <form action="<?php echo base_url('add_curriculum');?>" method="POST" name="addCurriculum" id="addCurriculum">
                 <div class="row mb-3">
                   <label for="inputText" class="col-sm-2 col-form-label">ปีการศึกษา</label>
                   <div class="col-sm-10">
@@ -54,7 +54,7 @@ var EDUCATION = /^[0-9]{1,3}$/;
                 <div class="row mb-3">
                   <label for="inputText" class="col-sm-2 col-form-label">ชื่อหลักสูตร</label>
                   <div class="col-sm-10">
-                    <input type="text" class="form-control" name="" id="" placeholder="">
+                    <input type="text" class="form-control" name="CURRICULUM_NAME" id="CURRICULUM_NAME" placeholder="">
                   </div>
                 </div>
             
@@ -158,6 +158,8 @@ var EDUCATION = /^[0-9]{1,3}$/;
                   </div>
                 </div>
 -->
+<button type="submit" onclick="myfunction(addCurriculum)">dwadaw</button>
+
               </form><!-- End Form ข้อมูลหลักสูตร -->
 
               <!-- start Form ข้อมูลหลักสูตรรายวิชา -->
@@ -261,7 +263,7 @@ var EDUCATION = /^[0-9]{1,3}$/;
                     </select>
                   </div>
                 </div>
-              <button type="submit" onclick="myfunction(addCurriculum)">dwadaw</button>
+
               </form><!-- End Form ข้อมูลสมรรถนะของหลักสูตร -->
 
             </div>

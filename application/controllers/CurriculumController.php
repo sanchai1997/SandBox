@@ -17,4 +17,5 @@ class CurriculumController extends CI_Controller{
         $this->load->view('pages/forms/forms-curriculum', $data);
         $this->load->view('templates/footer', $data);
     }
+    
 }

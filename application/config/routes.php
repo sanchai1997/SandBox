@@ -12,6 +12,6 @@ $route['add_school']['post'] = "add_school";
 
 //Curriculum
 $route['forms-curriculum'] = 'CurriculumController';
-$route['addCurriculum']['post'] = 'addCurriculum';
+$route['add_curriculum']['post'] = 'Add_CurriculumController';
 
 
