@@ -1,5 +1,15 @@
-<main id="main" class="main">
 
+<main id="main" class="main">
+<script>
+function myfunction(addCurriculum){
+var EDUCATION = /^[0-9]{1,3}$/;
+  if(!addCurriculum.EDUCATION_YEAR.value.match(EDUCATION)){
+      alert("กรุณากรอกข้อมูลปีการศึกษา");
+      addCurriculum.EDUCATION_YEAR.value = "";
+      return false;
+  }
+}
+</script>
     <div class="pagetitle">
       <h1>ข้อมูลหลักสูตร / หลักสูตรของพื้นที่นวัตกรรม</h1>
       <nav>
@@ -20,7 +30,7 @@
               <h5 class="card-title">ข้อมูลหลักสูตร</h5>
 
               <!-- start Form ข้อมูลหลักสูตร -->
-              <form action="<?php echo base_url('addCurriculum');?>" method="POST" name="addCurriculum" id="addCurriculum">
+              <form action="<?php echo base_url('add_Curriculum');?>" method="POST" name="addCurriculum" id="addCurriculum">
                 <div class="row mb-3">
                   <label for="inputText" class="col-sm-2 col-form-label">ปีการศึกษา</label>
                   <div class="col-sm-10">
@@ -37,19 +47,19 @@
                 <div class="row mb-3">
                   <label for="inputText" class="col-sm-2 col-form-label">สถานศึกษา</label>
                   <div class="col-sm-10">
-                    <input type="text" class="form-control" name="" id="" placeholder="">
+                    <input type="text" class="form-control" name="SCHOOL_ID" id="SCHOOL_ID" placeholder="">
                   </div>
                 </div>
-            <!-- 
+            
                 <div class="row mb-3">
                   <label for="inputText" class="col-sm-2 col-form-label">ชื่อหลักสูตร</label>
                   <div class="col-sm-10">
                     <input type="text" class="form-control" name="" id="" placeholder="">
                   </div>
                 </div>
-            -->   
+            
                 <div class="row mb-3">
-                  <label class="col-sm-2 col-form-label">หลักสูตร</label>
+                  <label class="col-sm-2 col-form-label">รหัสหลักสูตร</label>
                   <div class="col-sm-10">
                     <select class="form-select" aria-label="Default select example" name="CURRICULUM_CODE" id="CURRICULUM_CODE">
                       <option selected>เลือก</option>
@@ -103,14 +113,20 @@
                   </div>
                 </div>
 
-
                 <div class="row mb-3">
+                  <label for="inputFile" class="col-sm-2 col-form-label">เอกสารหลักสูตร</label>
+                  <div class="col-sm-10">
+                    <input type="text" class="form-control"  name="CURRICULUM_DOCUMENT" id="CURRICULUM_DOCUMENT">
+                  </div>
+                </div>
+
+ <!--               <div class="row mb-3">
                   <label for="inputFile" class="col-sm-2 col-form-label">เอกสารหลักสูตร</label>
                   <div class="col-sm-10">
                     <input type="file" class="form-control"  name="CURRICULUM_DOCUMENT" id="CURRICULUM_DOCUMENT" placeholder="CURRICULUM_DOCUMENT">
                   </div>
                 </div>
-
+-->
                 <div class="row mb-3">
                   <label class="col-sm-2 col-form-label">อ้างอิงหลักสูตรท้องถิ่น</label>
                   <div class="col-sm-10">
@@ -128,14 +144,20 @@
                     <input type="text" class="form-control" name="LOCAL_CURRICULUM_NAME" id="LOCAL_CURRICULUM_NAME" placeholder="ชื่อหลักสูตรท้องถิ่นที่อ้างอิง">
                   </div>
                 </div>
-
+                <div class="row mb-3">
+                  <label for="inputText" class="col-sm-2 col-form-label">เอกสารแนบหลักสูตรอ้างอิง</label>
+                  <div class="col-sm-10">
+                    <input type="text" class="form-control" name="LOCAL_CURRICULUM_DOCUMENT" id="LOCAL_CURRICULUM_DOCUMENT" placeholder="เอกสารแนบหลักสูตรอ%างอิง">
+                  </div>
+                </div>
+<!--
                 <div class="row mb-3">
                   <label for="inputFile" class="col-sm-2 col-form-label">เอกสารแนบหลักสูตรอ้างอิง</label>
                   <div class="col-sm-10">
                     <input type="file" class="form-control" name="LOCAL_CURRICULUM_DOCUMENT" id="LOCAL_CURRICULUM_DOCUMENT" placeholder="เอกสารแนบหลักสูตรอ%างอิง">
                   </div>
                 </div>
-
+-->
               </form><!-- End Form ข้อมูลหลักสูตร -->
 
               <!-- start Form ข้อมูลหลักสูตรรายวิชา -->
@@ -239,7 +261,7 @@
                     </select>
                   </div>
                 </div>
-
+              <button type="submit" onclick="myfunction(addCurriculum)">dwadaw</button>
               </form><!-- End Form ข้อมูลสมรรถนะของหลักสูตร -->
 
             </div>
