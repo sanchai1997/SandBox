@@ -1,73 +1,6 @@
 
 <main id="main" class="main">
-<script>
-  function myfunction(addCurriculum){
-  
-  //Check_EDUCATION_YEAR
-  var EDUCATION = /^[0-9]{1,4}$/;
-    if(addCurriculum.EDUCATION_YEAR.value ==""){
-        alert("กรุณากรอกข้อมูลปีการศึกษา");
-        addCurriculum.EDUCATION_YEAR.value = "";
-        return false;
-    }else if (!addCurriculum.EDUCATION_YEAR.value.match(EDUCATION)){
-        alert("กรุณากรอกข้อมูลปีการศึกษาตัวเลขเท่านั้น");
-        addCurriculum.EDUCATION_YEAR.value = "";
-        return false;
-    }
-  //Check_SEMESTER
-    if(addCurriculum.SEMESTER.value==0){
-      alert("กรุณาเลือกภาคเรียน");
-      return false;
-    }
-  //Check_CURRICULUM_NAME
-    var CHECK_CURRICULUM_NAME = /^[A-Z,a-z,ก-์,0-9]{1,255}$/;
-    if(addCurriculum.CURRICULUM_NAME.value==""){
-        alert("กรุณากรอกชื่อหลักสูตร");
-        addCurriculum.EDUCATION_YEAR.value = "";
-        return false;
-    }
-    else if(!addCurriculum.CURRICULUM_NAME.value.match(CHECK_CURRICULUM_NAME)){
-        alert("กรุณากรอกชื่อหลักสูตรให้ถูกต้อง");
-        addCurriculum.CURRICULUM_NAME.value = "";
-        return false;
-    }
-    //Check_CURRICULUM_CODE
-    if(addCurriculum.CURRICULUM_CODE.value==0){
-      alert("กรุณาเลือกรหัสหลักสูตร");
-      return false;
-    }
-    //Check_EDUCATION_LEVEL_CODE
-    if(addCurriculum.EDUCATION_LEVEL_CODE.value==0){
-      alert("กรุณาเลือกรหัสระดับการศึกษา");
-      return false;
-    }
-    //Check_LOCAL_CURRICULUM_FLAG
-    if(addCurriculum.LOCAL_CURRICULUM_FLAG.value==2){
-      alert("กรุณาเลือกอ้างอิงหลักสูตรท้องถิ่น");
-      return false;
-    }
-   //Check_LOCAL_CURRICULUM_NAME
-   var CHECK_LOCAL_CURRICULUM_NAME = /^[A-Z,a-z,ก-์,0-9]{1,255}$/;
-    if(addCurriculum.LOCAL_CURRICULUM_NAME.value==""){
-        alert("กรุณากรอกชื่อหลักสูตรท้องถิ่นที่อ้างอิง");
-        addCurriculum.EDUCATION_YEAR.value = "";
-        return false;
-    }
-    else if(!addCurriculum.LOCAL_CURRICULUM_NAME.value.match(CHECK_LOCAL_CURRICULUM_NAME)){
-        alert("กรุณากรอกชื่อหลักสูตรท้องถิ่นที่อ้างอิงให้ถูกต้อง");
-        addCurriculum.LOCAL_CURRICULUM_NAME.value = "";
-        return false;
-    }
 
-
-    
-
-    
-
-
-  
-  }
-</script>
     <div class="pagetitle">
       <h1>ข้อมูลหลักสูตร / หลักสูตรของพื้นที่นวัตกรรม</h1>
       <nav>
@@ -109,14 +42,7 @@
                 <div class="row mb-3">
                   <label for="inputText" class="col-sm-2 col-form-label">สถานศึกษา</label>
                   <div class="col-sm-10">
-                    <input type="text" class="form-control" name="SCHOOL_ID" id="SCHOOL_ID" placeholder="สถานศึกษา อาจจะไม่ต้องโชว์">
-                  </div>
-                </div>
-            
-                <div class="row mb-3">
-                  <label for="inputText" class="col-sm-2 col-form-label">ชื่อหลักสูตร</label>
-                  <div class="col-sm-10">
-                    <input type="text" class="form-control" name="CURRICULUM_NAME" id="CURRICULUM_NAME" placeholder="ชื่อหลักสูตร">
+                    <input type="text" class="form-control" name="SCHOOL_ID" id="SCHOOL_ID" placeholder="selection ดึงข้อมูลมาโชว์จากตาราง SCHOOL">
                   </div>
                 </div>
             
@@ -125,27 +51,26 @@
                   <div class="col-sm-10">
                     <select class="form-select" aria-label="Default select example" name="CURRICULUM_CODE" id="CURRICULUM_CODE">
                       <option selected value="0">เลือกรหัสหลักสูตร</option>
-                      <option value="1001">หลักสูตรแกนกลางการศึกษาขั้นพื้นฐาน</option>
-                      <option value="1101">หลักสูตรโรงเรียนนานาชาติ</option>
-                      <option value="1201">หลักสูตรการศึกษานอกระบบ ระดับการศึกษาขั้นพื้นฐาน พ.ศ. 2551</option>
-                      <option value="1301">หลักสูตร ปวช. ปี 2551 (ฐานวิทย์)</option>
-                      <option value="1302">หลักสูตร ปวช. ปี 2556</option>
-                      <option value="1303">หลักสูตร ปวส. ปี 2557</option>
-                      <option value="1304">หลักสูตร ปวส. ปี 2562</option>
-                      <option value="1305">หลักสูตร ปวส. ปี 2545</option>
-                      <option value="1306">หลักสูตร ปวส. ปี 2546</option>
-                      <option value="1307">หลักสูตร ปวส. ปี 2563</option>
-                      <option value="1307">หลักสูตร ปวส. ปี 2563</option>
-                      <option value="1308">หลักสูตร ปวส. ปี 2561 (KOSEN)</option>
-                      <option value="1401">หลักสูตรอนุปริญญา</option>
-                      <option value="1402">หลักสูตรปริญญาตรี</option>
-                      <option value="1403">หลักสูตรประกาศนียบัตรบัณฑิต</option>
-                      <option value="1404">หลักสูตรปริญญาโท</option>
-                      <option value="1405">หลักสูตรประกาศนียบัตรบัณฑิตชั้นสูง</option>
-                      <option value="1406">หลักสูตรปริญญาเอก</option>
-                      <option value="1407">หลักสูตรนานาชาติ ปริญญาตรี</option>
-                      <option value="1408">หลักสูตรนานาชาติ ปริญญาโท</option>
-                      <option value="1409">หลักสูตรเทคโนโลยีบัณฑิต (ทล.บ)</option>
+                      <option value="1001:หลักสูตรแกนกลางการศึกษาขั้นพื้นฐาน">หลักสูตรแกนกลางการศึกษาขั้นพื้นฐาน</option>
+                      <option value="1101:หลักสูตรโรงเรียนนานาชาติ">หลักสูตรโรงเรียนนานาชาติ</option>
+                      <option value="1201:หลักสูตรการศึกษานอกระบบ ระดับการศึกษาขั้นพื้นฐาน พ.ศ. 2551">หลักสูตรการศึกษานอกระบบ ระดับการศึกษาขั้นพื้นฐาน พ.ศ. 2551</option>
+                      <option value="1301:หลักสูตร ปวช. ปี 2551 (ฐานวิทย์)">หลักสูตร ปวช. ปี 2551 (ฐานวิทย์)</option>
+                      <option value="1302:หลักสูตร ปวช. ปี 2556">หลักสูตร ปวช. ปี 2556</option>
+                      <option value="1303:หลักสูตร ปวส. ปี 2557">หลักสูตร ปวส. ปี 2557</option>
+                      <option value="1304:หลักสูตร ปวส. ปี 2562">หลักสูตร ปวส. ปี 2562</option>
+                      <option value="1305:หลักสูตร ปวส. ปี 2545">หลักสูตร ปวส. ปี 2545</option>
+                      <option value="1306:หลักสูตร ปวส. ปี 2546">หลักสูตร ปวส. ปี 2546</option>
+                      <option value="1307:หลักสูตร ปวส. ปี 2563">หลักสูตร ปวส. ปี 2563</option>
+                      <option value="1308:หลักสูตร ปวส. ปี 2561 (KOSEN)">หลักสูตร ปวส. ปี 2561 (KOSEN)</option>
+                      <option value="1401:หลักสูตรอนุปริญญา">หลักสูตรอนุปริญญา</option>
+                      <option value="1402:หลักสูตรปริญญาตรี">หลักสูตรปริญญาตรี</option>
+                      <option value="1403:หลักสูตรประกาศนียบัตรบัณฑิต">หลักสูตรประกาศนียบัตรบัณฑิต</option>
+                      <option value="1404:หลักสูตรปริญญาโท">หลักสูตรปริญญาโท</option>
+                      <option value="1405:หลักสูตรประกาศนียบัตรบัณฑิตชั้นสูง">หลักสูตรประกาศนียบัตรบัณฑิตชั้นสูง</option>
+                      <option value="1406:หลักสูตรปริญญาเอก">หลักสูตรปริญญาเอก</option>
+                      <option value="1407:หลักสูตรนานาชาติ ปริญญาตรี">หลักสูตรนานาชาติ ปริญญาตรี</option>
+                      <option value="1408:หลักสูตรนานาชาติ ปริญญาโท">หลักสูตรนานาชาติ ปริญญาโท</option>
+                      <option value="1409:หลักสูตรเทคโนโลยีบัณฑิต (ทล.บ)">หลักสูตรเทคโนโลยีบัณฑิต (ทล.บ)</option>
                     </select>
                   </div>
                 </div>
@@ -351,12 +276,6 @@
               <!-- start Form ข้อมูลหลักสูตรรายวิชา -->
              
                 <h5 class="card-title">ข้อมูลหลักสูตรรายวิชา</h5>
-                <div class="row mb-3">
-                  <label for="inputText" class="col-sm-2 col-form-label">คีย์อ้างอิงข้อมูลหลักสูตร</label>
-                  <div class="col-sm-10">
-                    <input type="text" class="form-control"name="CURRICULUM_ID"id="CURRICULUM_ID" placeholder="คีย์อ้างอิงข้อมูลหลักสูตร">
-                  </div>
-                </div>
 
                 <div class="row mb-3">
                   <label for="inputText" class="col-sm-2 col-form-label">ชื่อรายวิชา</label>
@@ -411,48 +330,57 @@
                 <div class="row mb-3">
                   <label for="inputText" class="col-sm-2 col-form-label">หน่วยกิต/หน่วยน้ำหนัก</label>
                   <div class="col-sm-10">
-                    <input type="text" class="form-control" name="CREDIT"id="CREDIT"placeholder="หน่วยกิต/หน่วยน้ำหนัก">
+                    <input type="text" class="form-control" name="CREDIT"id="CREDIT" placeholder="หน่วยกิต/หน่วยน้ำหนัก">
                   </div>
                 </div>
 
                 <div class="row mb-3">
                   <label for="inputText" class="col-sm-2 col-form-label">จำนวนชั่วโมงเรียน</label>
                   <div class="col-sm-10">
-                    <input type="text" class="form-control"name="LEARNING_HOUR"id="LEARNING_HOUR">
+                    <input type="text" class="form-control" name="LEARNING_HOUR"id="LEARNING_HOUR">
                   </div>
                 </div>
 
-                <button type="submit" class="btn btn-primary" onclick="myfunction(addCurriculum)">ยืนยัน</button>
 
-</form>
               <!-- End Form ข้อมูลหลักสูตรรายวิชา -->
 
               <!-- start Form ข้อมูลสมรรถนะของหลักสูตร -->
-              <form>
                 <h5 class="card-title">ข้อมูลสมรรถนะของหลักสูตร</h5>
-
-                <div class="row mb-3">
-                  <label for="inputText" class="col-sm-2 col-form-label">คีย์อ้างอิงข้อมูลหลักสูตร</label>
-                  <div class="col-sm-10">
-                    <input type="text" class="form-control">
-                  </div>
-                </div>
 
                 <div class="row mb-3">
                   <label class="col-sm-2 col-form-label">สมรรถนะ</label>
                   <div class="col-sm-10">
-                    <select class="form-select" aria-label="Default select example" name="CURRICULUM_COMPETENCY_CODE"id="CURRICULUM_COMPETENCY_CODE">
-                      <option selected value="0">เลือก</option>
+                    <select class="form-select" aria-label="Default select example" name="CURRICULUM_COMPETENCY_CODE" id="CURRICULUM_COMPETENCY_CODE">
+                      <option selected value="0">เลือกสมรรถนะ</option>
                       <option value="101">ความสามารถในการสื่อสาร</option>
                       <option value="102">ความสามารถในการคิด</option>
                       <option value="103">ความสามารถในการแก้ปัญหา</option>
                       <option value="104">ความสามารถในการใช้ทักษะชีวิต</option>
-                      <option value="105">ความสามารถในการใช้เทคโนโลยี</option>    
-                    </select>
+                      <option value="105">ความสามารถในการใช้เทคโนโลยี</option>
+                      <option value="201">สมรรถนะการจัดการตนเอง</option>
+                      <option value="202">สมรรถนะการคิดขั้นสูง</option>  
+                      <option value="203">สมรรถนะการสื่อสาร</option>  
+                      <option value="204">สมรรถนะการรวมพลังทำงานเป็นทีม</option>  
+                      <option value="205">สมรรถนะการเป็นพลเมืองที่เข้มแข็ง</option>  
+                      <option value="206">สมรรถนะการอยู่ร่วมกับธรรมชาติและวิทยาการอย่างยั่งยืน</option>
+                      <option value="301">ภาษาไทย</option>  
+                      <option value="302">ภาษาอังกฤษ</option>  
+                      <option value="303">คณิตศาสตร์</option>  
+                      <option value="304">วิทยาศาสตร์</option>
+                      <option value="401">การสื่อสาร</option>  
+                      <!--
+                      <option value="">การคิด</option>  
+                      <option value="">การทำงานเป็นทีม</option>  
+                      <option value="">การเป็นพลเมือง</option>
+                      -->
+
+                    </select>                   
                   </div>
                 </div>
 
-              </form><!-- End Form ข้อมูลสมรรถนะของหลักสูตร -->
+                <button type="submit" class="btn btn-primary" onclick="return check(addCurriculum)">ยืนยัน</button>
+              <!-- End Form ข้อมูลสมรรถนะของหลักสูตร -->
+            </form>
 
             </div>
           </div>
@@ -462,5 +390,86 @@
     
       </div>
     </section>
+
+<script type="text/javascript">
+  function check(frm){
+  
+  //Check_EDUCATION_YEAR
+  var EDUCATION = /^[0-9]{4}$/;
+    /*
+    if(EDUCATION.test(frm.EDUCATION_YEAR.value) == false){
+      alert("กรุณากรอกข้อมูลปีการศึกษา");
+      return false;
+    }
+    */
+    if(frm.EDUCATION_YEAR.value ==""){
+        alert("กรุณากรอกข้อมูลปีการศึกษา");
+        frm.EDUCATION_YEAR.value = "";
+        return false;
+    }else if (!frm.EDUCATION_YEAR.value.match(EDUCATION)){
+        alert("กรุณากรอกข้อมูลปีการศึกษาตัวเลขเท่านั้น");
+        frm.EDUCATION_YEAR.value = "";
+        return false;
+    }
+  //Check_SEMESTER
+    if(frm.SEMESTER.value==0){
+      alert("กรุณาเลือกภาคเรียน");
+      return false;
+    }
+  //Check_CURRICULUM_NAME
+    var CHECK_CURRICULUM_NAME = /^[A-Z,a-z,ก-์,0-9]{1,255}$/;
+    if(frm.CURRICULUM_NAME.value==""){
+        alert("กรุณากรอกชื่อหลักสูตร");
+        frm.EDUCATION_YEAR.value = "";
+        return false;
+    }
+    else if(!frm.CURRICULUM_NAME.value.match(CHECK_CURRICULUM_NAME)){
+        alert("กรุณากรอกชื่อหลักสูตรให้ถูกต้อง");
+        frm.CURRICULUM_NAME.value = "";
+        return false;
+    }
+    //Check_CURRICULUM_CODE
+    if(frm.CURRICULUM_CODE.value==0){
+      alert("กรุณาเลือกรหัสหลักสูตร");
+      return false;
+    }
+    //Check_EDUCATION_LEVEL_CODE
+    if(frm.EDUCATION_LEVEL_CODE.value==0){
+      alert("กรุณาเลือกรหัสระดับการศึกษา");
+      return false;
+    }
+    //Check_LOCAL_CURRICULUM_FLAG
+    if(frm.LOCAL_CURRICULUM_FLAG.value==2){
+      alert("กรุณาเลือกอ้างอิงหลักสูตรท้องถิ่น");
+      return false;
+    }
+   //Check_LOCAL_CURRICULUM_NAME
+   var CHECK_LOCAL_CURRICULUM_NAME = /^[A-Z,a-z,ก-์,0-9]{1,255}$/;
+    if(frm.LOCAL_CURRICULUM_NAME.value==""){
+        alert("กรุณากรอกชื่อหลักสูตรท้องถิ่นที่อ้างอิง");
+        frm.EDUCATION_YEAR.value = "";
+        return false;
+    }
+    else if(!frm.LOCAL_CURRICULUM_NAME.value.match(CHECK_LOCAL_CURRICULUM_NAME)){
+        alert("กรุณากรอกชื่อหลักสูตรท้องถิ่นที่อ้างอิงให้ถูกต้อง");
+        frm.LOCAL_CURRICULUM_NAME.value = "";
+        return false;
+    }
+
+
+    //Check_CURRICULUM_COMPETENCY_CODE
+    if(frm.CURRICULUM_COMPETENCY_CODE.value==0){
+      alert("กรุณาเลือกสมรรถนะ");
+      return false;
+    }
+
+    
+
+    
+
+
+  
+  }
+</script>    
 
   </main><!-- End #main -->
