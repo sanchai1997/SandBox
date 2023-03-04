@@ -9,13 +9,14 @@ class Forms_school extends CI_Controller {
         $this->load->library('form_validation');
         $this->load->library('session');
         $this->load->model('School_model', 'forms_school');
+
     }
     
     ///////////////////////////////////SCHOOL/////////////////////////////////////////
      //Page Form School
     public function index() {
-        
-        if ( ! file_exists(APPPATH.'views/pages/forms/forms-school.php'))
+
+        if (!file_exists(APPPATH . 'views/pages/forms/school/forms-school.php'))
         {
                 // Whoops, we don't have a page for that!
                 show_404();
@@ -25,14 +26,14 @@ class Forms_school extends CI_Controller {
 
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
-        $this->load->view('pages/forms/forms-school', $data);
+        $this->load->view('pages/forms/school/forms-school', $data);
         $this->load->view('templates/footer', $data);
     }
 
     //Page Form School Detail
     public function detail() {
-        
-        if ( ! file_exists(APPPATH.'views/pages/forms/forms-school-detail.php'))
+
+        if (!file_exists(APPPATH . 'views/pages/forms/school/forms-school-detail.php'))
         {
                 // Whoops, we don't have a page for that!
                 show_404();
@@ -42,7 +43,7 @@ class Forms_school extends CI_Controller {
 
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
-        $this->load->view('pages/forms/forms-school-detail', $data);
+        $this->load->view('pages/forms/school/forms-school-detail', $data);
         $this->load->view('templates/footer', $data);
     }
 
@@ -115,8 +116,8 @@ class Forms_school extends CI_Controller {
     ///////////////////////////////////CLASSROM/////////////////////////////////////////////
     //Page Form Classroom
     public function classroom() {
-            
-        if ( ! file_exists(APPPATH.'views/pages/forms/forms-school-classroom.php'))
+
+        if (!file_exists(APPPATH . 'views/pages/forms/school/forms-school-classroom.php'))
         {
                 // Whoops, we don't have a page for that!
                 show_404();
@@ -126,7 +127,7 @@ class Forms_school extends CI_Controller {
 
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
-        $this->load->view('pages/forms/forms-school-classroom', $data);
+        $this->load->view('pages/forms/school/forms-school-classroom', $data);
         $this->load->view('templates/footer', $data);
     }
 
@@ -156,8 +157,8 @@ class Forms_school extends CI_Controller {
     //////////////////////////////////////AWARD///////////////////////////////////////////////
     //Page Form AWARD
     public function award() {
-            
-        if ( ! file_exists(APPPATH.'views/pages/forms/forms-school-award.php'))
+
+        if (!file_exists(APPPATH . 'views/pages/forms/school/forms-school-award.php'))
         {
                 // Whoops, we don't have a page for that!
                 show_404();
@@ -167,7 +168,7 @@ class Forms_school extends CI_Controller {
 
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
-        $this->load->view('pages/forms/forms-school-award', $data);
+        $this->load->view('pages/forms/school/forms-school-award', $data);
         $this->load->view('templates/footer', $data);
     }
     

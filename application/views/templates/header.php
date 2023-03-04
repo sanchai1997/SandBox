@@ -46,7 +46,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
     <div class="d-flex align-items-center justify-content-between" >
       <a href="main" class="logo d-flex align-items-center" >
-      <img src="assets/img/logo.png" alt="" style="width: 80%;">
+      <img src="assets/img/logo.png" alt="" style="padding-left: 10px; width: 72%;">
         <span class="d-none d-lg-block"></span>
       </a>
       <i class="bi bi-list toggle-sidebar-btn"></i>

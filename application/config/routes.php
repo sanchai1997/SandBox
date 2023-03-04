@@ -5,7 +5,10 @@ $route['default_controller'] = 'main';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 
+
+//////////////////////// ROUTE LOIN ////////////////////////
 $route['login'] = 'login';
+/////////////////////// LOIN - END /////////////////////////
 
 
 ////////////////////// ROUTE SCHOOL ////////////////////////
@@ -26,9 +29,12 @@ $route['forms-school-award'] = 'forms_school/award';
 $route['add-award']['post'] = 'forms_school/add_award';
 ////////////////////// SCHOOL - END /////////////////////////
 
-
 ////////////////////// ROUTE STUDENT ////////////////////////
 //student
 $route['student'] = 'student/index';
 $route['forms-student'] = 'forms_student';
+$route['forms-student-school'] = 'forms_student/school';
+$route['forms-student-parents'] = 'forms_student/parents';
+$route['forms-student-family'] = 'forms_student/family';
+
 ///////////////////// STUDENT - END /////////////////////////

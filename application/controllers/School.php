@@ -14,7 +14,7 @@ class School extends CI_Controller {
     ///////////////////////////////////SCHOOL/////////////////////////////////////////
     public function index(){
         
-        if ( ! file_exists(APPPATH.'views/pages/dashboard/school.php'))
+        if ( ! file_exists(APPPATH.'views/pages/dashboard/school/school.php'))
         {
                 // Whoops, we don't have a page for that!
                 show_404();
@@ -25,8 +25,8 @@ class School extends CI_Controller {
 
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
-        $this->load->view('pages/dashboard/school', $data);
-        $this->load->view('pages/dashboard/model_school', $data);
+        $this->load->view('pages/dashboard/school/school', $data);
+        $this->load->view('pages/dashboard/school/model_school', $data);
         $this->load->view('templates/footer', $data);
     }
     ///////////////////////////////////SCHOOL- END /////////////////////////////////////////
@@ -34,7 +34,7 @@ class School extends CI_Controller {
     ///////////////////////////////////CLASSROM/////////////////////////////////////////////
     public function classroom(){
         
-        if ( ! file_exists(APPPATH.'views/pages/dashboard/school-classroom.php'))
+        if ( ! file_exists(APPPATH.'views/pages/dashboard/school/school-classroom.php'))
         {
                 // Whoops, we don't have a page for that!
                 show_404();
@@ -46,8 +46,8 @@ class School extends CI_Controller {
 
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
-        $this->load->view('pages/dashboard/model_school-classroom', $data);
-        $this->load->view('pages/dashboard/school-classroom', $data);
+        $this->load->view('pages/dashboard/school/model_school-classroom', $data);
+        $this->load->view('pages/dashboard/school/school-classroom', $data);
         $this->load->view('templates/footer', $data);
     }
     ///////////////////////////////////CLASSROM- END /////////////////////////////////////////
@@ -55,7 +55,7 @@ class School extends CI_Controller {
     //////////////////////////////////////AWARD///////////////////////////////////////////////
     public function award(){
         
-        if ( ! file_exists(APPPATH.'views/pages/dashboard/school-award.php'))
+        if ( ! file_exists(APPPATH.'views/pages/dashboard/school/school-award.php'))
         {
                 // Whoops, we don't have a page for that!
                 show_404();
@@ -67,8 +67,8 @@ class School extends CI_Controller {
 
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
-        $this->load->view('pages/dashboard/model_school-award', $data);
-        $this->load->view('pages/dashboard/school-award', $data);
+        $this->load->view('pages/dashboard/school/model_school-award', $data);
+        $this->load->view('pages/dashboard/school/school-award', $data);
         $this->load->view('templates/footer', $data);
     }
     ///////////////////////////////////// AWARD- END /////////////////////////////////////////

@@ -15,7 +15,7 @@ class School_model extends CI_Model {
         return $schools;
         
     }
-
+    
     public function add_school() {    
         $data = [
 

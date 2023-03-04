@@ -14,7 +14,7 @@ class Student extends CI_Controller {
     ///////////////////////////////////SCHOOL/////////////////////////////////////////
     public function index(){
         
-        if ( ! file_exists(APPPATH.'views/pages/dashboard/student.php'))
+        if ( ! file_exists(APPPATH.'views/pages/dashboard/student/student.php'))
         {
                 // Whoops, we don't have a page for that!
                 show_404();
@@ -24,7 +24,7 @@ class Student extends CI_Controller {
 
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
-        $this->load->view('pages/dashboard/student', $data);
+        $this->load->view('pages/dashboard/student/student', $data);
         $this->load->view('templates/footer', $data);
     }
     ///////////////////////////////////SCHOOL- END /////////////////////////////////////////
