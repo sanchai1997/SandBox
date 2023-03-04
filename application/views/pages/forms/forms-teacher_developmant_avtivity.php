@@ -22,12 +22,10 @@
               <!-- start Form ข้อมูลการพัฒนาบุคลากรครู -->
               <form class="row g-3" name="teacher_developmant_avtivity"id="teacher_developmant_avtivity">
                   
-                <div class="row mb-3">
-
-                  <label for="inputText" class="col-sm-2 col-form-label">ปีการศึกษา</label>
-                  <div class="col-sm-10">
-                    <input type="text" class="form-control">
-
+                <div class="col-md-16">
+                  <div class="form-floating">
+                    <input type="text" class="form-control"name="DevelopmentActivityEducationYear"id="DevelopmentActivityEducationYear" placeholder="ปีการศึกษา">
+                    <label >ปีการศึกษา</label>
                   </div>
                 </div>
 
@@ -43,16 +41,12 @@
                   </div>
                 </div>
                 
-                
-                
-              
                 <div class="row mb-3">
                   <label for="inputText" class="col-sm-2 col-form-label">รหัสครูและบุคลากรทางการศึกษา</label>
                   <div class="col-sm-10">
                     <input type="text" class="form-control" name=""id="" placeholder="รหัสครูและบุคลากรทางการศึกษา รอ TeacherID" maxlength="4">
                   </div>
                 </div>
-
 
                 <div class="col-md-16">
                   <div class="form-floating">
@@ -68,7 +62,6 @@
                     <label for="SCHOOL_STATUS_CODE">รหัสประเภทกิจกรรม</label>
                   </div>
                 </div>
-
 
                 <div class="col-md-16">
                   <div class="form-floating">
@@ -125,7 +118,6 @@
     </section>
     <script type="text/javascript">
   function check(frm){
-  
   //Check_EDUCATION_YEAR
   var EducationYear = /^[0-9]{4}$/;
     if(frm.DevelopmentActivityEducationYear.value ==""){
