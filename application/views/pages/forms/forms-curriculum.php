@@ -238,13 +238,6 @@
                   </div>
                 </div>
 
- <!--               <div class="row mb-3">
-                  <label for="inputFile" class="col-sm-2 col-form-label">เอกสารหลักสูตร</label>
-                  <div class="col-sm-10">
-                    <input type="file" class="form-control"  name="CurriculumDocumentURL" id="CurriculumDocumentURL" placeholder="CURRICULUM_DOCUMENT">
-                  </div>
-                </div>
--->
                 <div class="row mb-3">
                   <label class="col-sm-2 col-form-label">อ้างอิงหลักสูตรท้องถิ่น</label>
                   <div class="col-sm-10">
@@ -265,17 +258,10 @@
                 <div class="row mb-3">
                   <label for="inputText" class="col-sm-2 col-form-label">เอกสารแนบหลักสูตรอ้างอิง</label>
                   <div class="col-sm-10">
-                    <input type="text" class="form-control" name="LocalCurriculumDocumentURL" id="LocalCurriculumDocumentURL" placeholder="เอกสารแนบหลักสูตรอ้างอิง">
+                    <input type="file" class="form-control" name="LocalCurriculumDocumentURL" id="LocalCurriculumDocumentURL" placeholder="เอกสารแนบหลักสูตรอ้างอิง">
                   </div>
                 </div>
-<!--
-                <div class="row mb-3">
-                  <label for="inputFile" class="col-sm-2 col-form-label">เอกสารแนบหลักสูตรอ้างอิง</label>
-                  <div class="col-sm-10">
-                    <input type="file" class="form-control" name="LocalCurriculumDocumentURL" id="LocalCurriculumDocumentURL" placeholder="เอกสารแนบหลักสูตรอ%างอิง">
-                  </div>
-                </div>
--->
+
 <!-- End Form ข้อมูลหลักสูตร -->
 
               <!-- start Form ข้อมูลหลักสูตรรายวิชา -->
