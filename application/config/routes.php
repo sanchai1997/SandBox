@@ -15,7 +15,8 @@ $route['forms-curriculum'] = 'CurriculumController/index';
 $route['add_curriculum']['post'] = 'CurriculumController/add_curriculum_form';
 
 //teacher_developmant_activity
-$route['forms-teacher_developmant_activity'] = 'Teacher_developmant_activity_controller';
+$route['forms-teacher_development_activity'] = 'Teacher_development_activity_controller';
+$route['add_teacher_development_activity']['post'] = 'Teacher_development_activity_controller';
 
 
 
