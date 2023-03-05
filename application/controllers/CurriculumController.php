@@ -35,10 +35,10 @@ class CurriculumController extends CI_Controller{
         $SchoolID = $this->input->post('SchoolID');
         $CurriculumID =  $EducationYear . $Semester . $SchoolID;
 
-        $CurriculumDocumentURL = $this->do_upload("CurriculumDocument".$CurriculumID ,"CurriculumDocumentURL");
-        $LocalCurriculumDocumentURL = $this->do_upload("LocalCurriculumDocumentURL".$CurriculumID ,"LocalCurriculumDocumentURL");
+        $CurriculumDocumentURL = $this->do_upload('CurriculumDocument'.$CurriculumID ,"CurriculumDocumentURL");
+        $LocalCurriculumDocumentURL = $this->do_upload('LocalCurriculumDocumentURL'.$CurriculumID ,"LocalCurriculumDocumentURL");
 
-        if($CurriculumDocumentURL != -1 && $LocalCurriculumDocumentURL){
+        if($CurriculumDocumentURL != -1 && $LocalCurriculumDocumentURL !=-1 ){
 
             $curriculum = [
                 'CurriculumID' => $CurriculumID,
@@ -51,9 +51,9 @@ class CurriculumController extends CI_Controller{
                 'GradeLevelCode' => $this->input->post('GradeLevelCode'),
                 'ClassroomNumber' => $this->input->post('ClassroomNumber'),
                 'CurriculumDocumentURL' => $CurriculumDocumentURL,
-                'LocalCurriculumFlag' => $LocalCurriculumDocumentURL,
+                'LocalCurriculumFlag' => $this->input->post('LocalCurriculumFlag'),
                 'LocalCurriculumName' => $this->input->post('LocalCurriculumName'),
-                'LocalCurriculumDocumentURL' => $this->input->post('LocalCurriculumDocumentURL')
+                'LocalCurriculumDocumentURL' => $LocalCurriculumDocumentURL
             ];
             $result_curriculum =  $this->Curriculum_model->insert_curriculum($curriculum);
             
@@ -99,13 +99,14 @@ class CurriculumController extends CI_Controller{
 
     }
 
-    public function do_upload($fileName, $field_name ) {
+    public function do_upload($fileName , $field_name ) {
         $config['upload_path'] = FCPATH."application/documents/";  // โฟลเดอร์ ตำแหน่งเดียวกับ root ของโปรเจ็ค
         $config['allowed_types'] = 'jpg|jpeg|png|iso|dmg|zip|rar|doc|docx|xls|xlsx|ppt|pptx|csv|ods|odt|odp|pdf|rtf|sxc|sxi|txt|exe|avi|mpeg|3gp'; // ปรเเภทไฟล์ 
         $config['max_size']     = '0';  // ขนาดไฟล์ (kb)  0 คือไม่จำกัด ขึ้นกับกำหนดใน php.ini ปกติไม่เกิน 2MB
         $config['file_name'] = $fileName;  // ชื่อไฟล์ ถ้าไม่กำหนดจะเป็นตามชื่อเดิม
 
-        $this->load->library('upload', $config);
+        $this->load->library('upload');
+        $this->upload->initialize($config);
 
         if ( ! $this->upload->do_upload($field_name)) {
             $error = array('error' => $this->upload->display_errors());
