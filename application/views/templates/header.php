@@ -1,5 +1,5 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') or exit('No direct script access allowed');
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -44,9 +44,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
   <!-- ======= Header ======= -->
   <header id="header" class="header fixed-top d-flex align-items-center">
 
-    <div class="d-flex align-items-center justify-content-between" >
-      <a href="main" class="logo d-flex align-items-center" >
-      <img src="assets/img/logo.png" alt="" style="padding-left: 10px; width: 72%;">
+    <div class="d-flex align-items-center justify-content-between">
+      <a href="main" class="logo d-flex align-items-center">
+        <img src="assets/img/logo.png" alt="" style="padding-left: 10px; width: 72%;">
         <span class="d-none d-lg-block"></span>
       </a>
       <i class="bi bi-list toggle-sidebar-btn"></i>
@@ -102,7 +102,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
               <div>
                 <h4>พลเมืองนวัตกรในพื้นที่นวัตกรรม</h4>
                 <p>กิจกรรมน่าสนใจบ่ายนี้ที่ ม.ทักษิณ “พลเมืองนวัตกรในพื้นที่นวัตกรรม”
-เวลา 13:00 น. เป็นต้นไป หอประชุมปาริชาต มหาวิทยาลัยทักษิณ วิทยาเขตสงขลา</p>
+                  เวลา 13:00 น. เป็นต้นไป หอประชุมปาริชาต มหาวิทยาลัยทักษิณ วิทยาเขตสงขลา</p>
                 <p>1 ชั่วโมงที่แล้ว</p>
               </div>
             </li>
@@ -268,23 +268,23 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
       </ul>
     </nav><!-- End Icons Navigation -->
-  <!------------------------ format Thai -----------------------!>
+    <!------------------------ format Thai -----------------------!>
   <?php
-    function DateThai($strDate)
-    {
-      $strYear = date("Y",strtotime($strDate))+543;
-      $strMonth= date("n",strtotime($strDate));
-      $strDay= date("j",strtotime($strDate));
-      $strHour= date("H",strtotime($strDate));
-      $strMinute= date("i",strtotime($strDate));
-      $strSeconds= date("s",strtotime($strDate));
-      $strMonthCut = Array("","ม.ค.","ก.พ.","มี.ค.","เม.ย.","พ.ค.","มิ.ย.","ก.ค.","ส.ค.","ก.ย.","ต.ค.","พ.ย.","ธ.ค.");
-      $strMonthThai=$strMonthCut[$strMonth];
-      return "$strDay $strMonthThai $strYear";
-    }
+  function DateThai($strDate)
+  {
+    $strYear = date("Y", strtotime($strDate)) + 543;
+    $strMonth = date("n", strtotime($strDate));
+    $strDay = date("j", strtotime($strDate));
+    $strHour = date("H", strtotime($strDate));
+    $strMinute = date("i", strtotime($strDate));
+    $strSeconds = date("s", strtotime($strDate));
+    $strMonthCut = array("", "ม.ค.", "ก.พ.", "มี.ค.", "เม.ย.", "พ.ค.", "มิ.ย.", "ก.ค.", "ส.ค.", "ก.ย.", "ต.ค.", "พ.ย.", "ธ.ค.");
+    $strMonthThai = $strMonthCut[$strMonth];
+    return "$strDay $strMonthThai $strYear";
+  }
 
-    $strDate = "2008-08-14 13:42:44";
-    echo "ThaiCreate.Com Time now : ".DateThai($strDate);
+  $strDate = "2008-08-14 13:42:44";
+  echo "ThaiCreate.Com Time now : " . DateThai($strDate);
   ?>
   <!-------------------- format Thai - END ---------------------!>
 

@@ -1,25 +1,26 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') or exit('No direct script access allowed');
 
-class Forms_school extends CI_Controller {
+class Forms_school extends CI_Controller
+{
 
-    public function __construct() {
+    public function __construct()
+    {
         parent::__construct();
         // Your own constructor code
         $this->load->library('form_validation');
         $this->load->library('session');
         $this->load->model('School_model', 'forms_school');
-
     }
-    
-    ///////////////////////////////////SCHOOL/////////////////////////////////////////
-     //Page Form School
-    public function index() {
 
-        if (!file_exists(APPPATH . 'views/pages/forms/school/forms-school.php'))
-        {
-                // Whoops, we don't have a page for that!
-                show_404();
+    ///////////////////////////////////SCHOOL/////////////////////////////////////////
+    //Page Form School
+    public function index()
+    {
+
+        if (!file_exists(APPPATH . 'views/pages/forms/school/forms-school.php')) {
+            // Whoops, we don't have a page for that!
+            show_404();
         }
 
         $data['title'] = 'Forms School'; // Capitalize the first letter
@@ -31,12 +32,12 @@ class Forms_school extends CI_Controller {
     }
 
     //Page Form School Detail
-    public function detail() {
+    public function detail()
+    {
 
-        if (!file_exists(APPPATH . 'views/pages/forms/school/forms-school-detail.php'))
-        {
-                // Whoops, we don't have a page for that!
-                show_404();
+        if (!file_exists(APPPATH . 'views/pages/forms/school/forms-school-detail.php')) {
+            // Whoops, we don't have a page for that!
+            show_404();
         }
 
         $data['title'] = 'Forms School Detail'; // Capitalize the first letter
@@ -48,8 +49,9 @@ class Forms_school extends CI_Controller {
     }
 
 
-     //Add Data Form School
-     public function add_school() {
+    //Add Data Form School
+    public function add_school()
+    {
 
         //Page forms-school
         $this->form_validation->set_rules('NAME_TH', 'NAME_TH', 'required');
@@ -98,14 +100,11 @@ class Forms_school extends CI_Controller {
         $this->form_validation->set_rules('TOILET_COMBINATION', 'TOILET_COMBINATION', 'required');
 
 
-    
-        if (!$this->form_validation->run())
-        {
+
+        if (!$this->form_validation->run()) {
             $this->session->set_flashdata('errors', validation_errors());
             redirect(base_url('forms-school'));
-        }
-        else
-        {
+        } else {
             $this->forms_school->add_school();
             $_SESSION['success'] = "บันทึกข้อมูลเรียบร้อย";
             redirect(base_url('school'));
@@ -115,12 +114,12 @@ class Forms_school extends CI_Controller {
 
     ///////////////////////////////////CLASSROM/////////////////////////////////////////////
     //Page Form Classroom
-    public function classroom() {
+    public function classroom()
+    {
 
-        if (!file_exists(APPPATH . 'views/pages/forms/school/forms-school-classroom.php'))
-        {
-                // Whoops, we don't have a page for that!
-                show_404();
+        if (!file_exists(APPPATH . 'views/pages/forms/school/forms-school-classroom.php')) {
+            // Whoops, we don't have a page for that!
+            show_404();
         }
 
         $data['title'] = 'Forms School ClassRoom'; // Capitalize the first letter
@@ -132,21 +131,19 @@ class Forms_school extends CI_Controller {
     }
 
     //Add Data Classroom
-    public function add_classroom() {
+    public function add_classroom()
+    {
 
         $this->form_validation->set_rules('SCHOOL_ID', 'SCHOOL_ID', 'required');
         $this->form_validation->set_rules('CLASSROOM_GRADE_LEVEL_CODE', 'CLASSROOM_GRADE_LEVEL_CODE', 'required');
         $this->form_validation->set_rules('CLASSROOM_AMOUNT', 'CLASSROOM_AMOUNT', 'required');
 
 
-    
-        if (!$this->form_validation->run())
-        {
+
+        if (!$this->form_validation->run()) {
             $this->session->set_flashdata('errors', validation_errors());
             redirect(base_url('forms-school-classroom'));
-        }
-        else
-        {
+        } else {
             $this->forms_school->add_classroom();
             $_SESSION['success'] = "บันทึกข้อมูลเรียบร้อย";
             redirect(base_url('school-classroom'));
@@ -156,12 +153,12 @@ class Forms_school extends CI_Controller {
 
     //////////////////////////////////////AWARD///////////////////////////////////////////////
     //Page Form AWARD
-    public function award() {
+    public function award()
+    {
 
-        if (!file_exists(APPPATH . 'views/pages/forms/school/forms-school-award.php'))
-        {
-                // Whoops, we don't have a page for that!
-                show_404();
+        if (!file_exists(APPPATH . 'views/pages/forms/school/forms-school-award.php')) {
+            // Whoops, we don't have a page for that!
+            show_404();
         }
 
         $data['title'] = 'Forms School Award'; // Capitalize the first letter
@@ -171,9 +168,10 @@ class Forms_school extends CI_Controller {
         $this->load->view('pages/forms/school/forms-school-award', $data);
         $this->load->view('templates/footer', $data);
     }
-    
+
     //Add Data AWARD
-    public function add_award() {
+    public function add_award()
+    {
 
         $this->form_validation->set_rules('SCHOOL_ID', 'SCHOOL_ID', 'required');
         $this->form_validation->set_rules('AWARD_YEAR', 'AWARD_YEAR', 'required');
@@ -182,14 +180,11 @@ class Forms_school extends CI_Controller {
         $this->form_validation->set_rules('AWARD_LEVEL_CODE', 'AWARD_LEVEL_CODE', 'required');
 
 
-    
-        if (!$this->form_validation->run())
-        {
+
+        if (!$this->form_validation->run()) {
             $this->session->set_flashdata('errors', validation_errors());
             redirect(base_url('forms-school-award'));
-        }
-        else
-        {
+        } else {
             $this->forms_school->add_award();
             $_SESSION['success'] = "บันทึกข้อมูลเรียบร้อย";
             redirect(base_url('school-award'));

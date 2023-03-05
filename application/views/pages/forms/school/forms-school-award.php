@@ -20,15 +20,15 @@
                         <h5 class="card-title">ข้อมูลผู้รางวัลที่โรงเรียนได้รับ</h5>
 
                         <!-- General Form Elements -->
-                        <form action="<?php echo base_url('add-award');?>" method="POST">
+                        <form action="<?php echo base_url('add-award'); ?>" method="POST">
 
                             <div class="row mb-3">
                                 <label for="inputText" class="col-sm-2 col-form-label">สถานศึกษา</label>
                                 <div class="col-sm-10">
-                                    <select class="form-select" name="SCHOOL_ID" aria-label="Default select example">
+                                    <select class="form-select" name="SCHOOL_ID" aria-label="Default select example" required>
                                         <option selected>เลือก</option>
                                         <?php foreach ($this->db->get("SCHOOL")->result() as $school) { ?>
-                                        <option value=" <?= $school->SCHOOL_ID; ?>"><?= $school->NAME_TH; ?></option>
+                                            <option value=" <?= $school->SCHOOL_ID; ?>"><?= $school->NAME_TH; ?></option>
                                         <?php } ?>
                                     </select>
                                 </div>
@@ -37,29 +37,28 @@
                             <div class="row mb-3">
                                 <label for="inputText" class="col-sm-2 col-form-label">ปีที่ได้รับรางวัล</label>
                                 <div class="col-sm-10">
-                                    <input type="text" class="form-control" name="AWARD_YEAR">
+                                    <input type="text" class="form-control" name="AWARD_YEAR" required>
                                 </div>
                             </div>
 
                             <div class="row mb-3">
                                 <label for="inputText" class="col-sm-2 col-form-label">ชื่อรางวัล</label>
                                 <div class="col-sm-10">
-                                    <input type="text" class="form-control" name="AWARD_NAME">
+                                    <input type="text" class="form-control" name="AWARD_NAME" required>
                                 </div>
                             </div>
 
                             <div class="row mb-3">
                                 <label for="inputText" class="col-sm-2 col-form-label">แหล่งที่มาของรางวัล</label>
                                 <div class="col-sm-10">
-                                    <input type="text" class="form-control" name="AWARD_SOURCE">
+                                    <input type="text" class="form-control" name="AWARD_SOURCE" required>
                                 </div>
                             </div>
 
                             <div class="row mb-3">
                                 <label class="col-sm-2 col-form-label">ระดับของรางวัลที่ได้รับ</label>
                                 <div class="col-sm-10">
-                                    <select class="form-select" aria-label="Default select example"
-                                        name="AWARD_LEVEL_CODE">
+                                    <select class="form-select" aria-label="Default select example" name="AWARD_LEVEL_CODE" required>
                                         <option selected>เลือก</option>
                                         <option value="01">ระดับประเทศ</option>
                                         <option value="02">ระดับภาค</option>

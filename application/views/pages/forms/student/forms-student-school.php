@@ -11,7 +11,7 @@
         </nav>
     </div><!-- End Page Title -->
 
-    <form class="row g-3" action="<?php echo base_url('forms-student-presents'); ?>" method="POST">
+    <form class="row g-3" action="<?php echo base_url('forms-student-parents'); ?>" method="POST">
         <section class="section">
             <div class="row">
                 <div class="col-lg-9">

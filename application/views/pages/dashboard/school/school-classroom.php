@@ -14,28 +14,30 @@
             </div>
             <div class="col-6" style="padding-right: 25px;">
 
-                <a href="school" style="float: right;" class="btn btn-sm btn-light"
-                    data-mdb-ripple-color="dark">ข้อมูลสถานศึกษา</a>
+                <a href="school" style="float: right;" class="btn btn-sm btn-light" data-mdb-ripple-color="dark">ข้อมูลสถานศึกษา</a>
                 <h5 style="float: right;"> | </h5>
-                <a href="school-award" style="float: right;" class="btn btn-sm btn-light"
-                    data-mdb-ripple-color="dark">ข้อมูลรางวัลสถานศึกษา</a>
+                <a href="school-award" style="float: right;" class="btn btn-sm btn-light" data-mdb-ripple-color="dark">ข้อมูลรางวัลสถานศึกษา</a>
 
             </div>
         </div>
     </div><!-- End Page Title -->
     <?php if (!empty($_SESSION['success'])) { ?>
-    <div style="position: relative;">
-        <div class="alert alert-success" id="myAlert"
-            style="position: absolute; top: 0; left: 0; right: 0; z-index: 1;">
-            <strong>
-                <?php
-                 echo '<i class="bi bi-clipboard2-check"></i> '. $_SESSION['success'];
-                 unset($_SESSION['success']);
-              ?>
-            </strong>
+        <script>
+            setTimeout(function() {
+                document.getElementById('myAlert').remove();
+            }, 2000); // นับถอยหลังให้แสดง 5 วินาที (5000 มิลลิวินาที)
+        </script>
+        <div style="position: relative;">
+            <div class="alert alert-success" id="myAlert" style="position: absolute; top: 0; left: 0; right: 0; z-index: 1;">
+                <strong>
+                    <?php
+                    echo '<i class="bi bi-clipboard2-check"></i> ' . $_SESSION['success'];
+                    unset($_SESSION['success']);
+                    ?>
+                </strong>
 
+            </div>
         </div>
-    </div>
     <?php } ?>
     <!-- Recent Sales -->
     <div class="col-12">
@@ -47,8 +49,7 @@
                         <h5 class="card-title">รายละเอียดข้อมูล <span>| Table School-Classroom</span></h5>
                     </div>
                     <div class="col">
-                        <h5 style="float: right; padding: 15px;" class="card-title"><a href="forms-school-classroom"
-                                class="btn btn-success">เพิ่มข้อมูลห้องเรียน</a></h5>
+                        <h5 style="float: right; padding: 15px;" class="card-title"><a href="forms-school-classroom" class="btn btn-success">เพิ่มข้อมูลห้องเรียน</a></h5>
                     </div>
                 </div>
                 <table class="table table-borderless datatable">
@@ -61,27 +62,25 @@
                     </thead>
                     <tbody>
                         <?php
-                        
-                            $result = $this->db->query('SELECT * ,SUM(CLASSROOM_AMOUNT) AS Total_classroom 
+
+                        $result = $this->db->query('SELECT * ,SUM(CLASSROOM_AMOUNT) AS Total_classroom 
                                 FROM SCHOOL_CLASSROOM 
                                 INNER JOIN SCHOOL ON SCHOOL_CLASSROOM.SCHOOL_ID = SCHOOL.SCHOOL_ID 
                                 GROUP BY SCHOOL_CLASSROOM.SCHOOL_ID');
 
-                            foreach ($result ->result() as $row) {
+                        foreach ($result->result() as $row) {
                         ?>
-                        <tr>
-                            <?php 
-                            ?>
-                            <th scope="row"><?= $row->NAME_TH; ?></th>
-                            <td style="text-align: center;">
-                                <?= $row->Total_classroom; ?>
-                            </td>
-                            <td style="text-align: center;"><button type="button" class="btn btn-primary"
-                                    data-bs-toggle="modal" data-bs-target="#Modal<?= $row->SCHOOL_ID; ?>"><i
-                                        class="bi bi-card-list"></i></button>
-                            </td>
+                            <tr>
+                                <?php
+                                ?>
+                                <th scope="row"><?= $row->NAME_TH; ?></th>
+                                <td style="text-align: center;">
+                                    <?= $row->Total_classroom; ?>
+                                </td>
+                                <td style="text-align: center;"><button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#Modal<?= $row->SCHOOL_ID; ?>"><i class="bi bi-card-list"></i></button>
+                                </td>
                             <?php } ?>
-                        </tr>
+                            </tr>
                     </tbody>
                 </table>
 
