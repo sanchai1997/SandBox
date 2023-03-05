@@ -21,18 +21,19 @@
               <h5 class="card-title">ข้อมูลหลักสูตร</h5>
 
               <!-- start Form ข้อมูลหลักสูตร -->
-              <form action="<?php echo base_url('add_curriculum');?>" method="POST" name="addCurriculum" id="addCurriculum">
+              <form action="<?php echo base_url('add_curriculum');?>" method="POST" name="addCurriculum" id="addCurriculum" enctype="multipart/form-data"> 
                 <div class="row mb-3">
                   <label for="inputText" class="col-sm-2 col-form-label">ปีการศึกษา</label>
                   <div class="col-sm-10">
-                    <input type="text" class="form-control" name="EDUCATION_YEAR" id="EDUCATION_YEAR" placeholder="ปีการศึกษา (พ.ศ.)" maxlength="4">
+                    <input type="text" class="form-control" name="EducationYear" id="EducationYear" placeholder="ปีการศึกษา (พ.ศ.)" maxlength="4">
                   </div>
                 </div>
                 <div class="row mb-3">
                   <label for="inputText" class="col-sm-2 col-form-label">ภาคเรียน</label>
                   <div class="col-sm-10">
-                    <select class="form-select" aria-label="Default select example" name="SEMESTER" id="SEMESTER">
-                      <option selected value="0">เลือกภาคเรียน</option>
+                    <select class="form-select" aria-label="Default select example" name="Semester" id="Semester">
+                      <option selected value="-1">เลือกภาคเรียน</option>
+                      <option value="0">ตลอดปีการศึกษา</option>
                       <option value="1">ภาคเรียนที่ 1</option>
                       <option value="2">ภาคเรียนที่ 2</option>
                     </select>
@@ -42,35 +43,32 @@
                 <div class="row mb-3">
                   <label for="inputText" class="col-sm-2 col-form-label">สถานศึกษา</label>
                   <div class="col-sm-10">
-                    <input type="text" class="form-control" name="SCHOOL_ID" id="SCHOOL_ID" placeholder="selection ดึงข้อมูลมาโชว์จากตาราง SCHOOL">
+                    <select class="form-select" aria-label="Default select example" name="SchoolID" id="SchoolID">
+                      <option selected value="-1">เลือกสถานศึกษา</option>
+                      <?php foreach($listSchool as $ls) { ?>
+                        <option value="<?php echo $ls->SCHOOL_ID; ?>"><?php echo $ls->NAME_TH; ?></option>
+                      <?php } ?>
+                      
+                    </select>
+                  </div>
+                </div>
+
+                <div class="row mb-3">
+                  <label for="inputText" class="col-sm-2 col-form-label">ชื่อหลักสูตร</label>
+                  <div class="col-sm-10">
+                    <input type="text" class="form-control" name="CurriculumName" id="CurriculumName" placeholder="ชื่อหลักสูตร">
                   </div>
                 </div>
             
                 <div class="row mb-3">
-                  <label class="col-sm-2 col-form-label">รหัสหลักสูตร</label>
+                  <label class="col-sm-2 col-form-label">ประเภทหลักสูตร</label>
                   <div class="col-sm-10">
-                    <select class="form-select" aria-label="Default select example" name="CURRICULUM_CODE" id="CURRICULUM_CODE">
-                      <option selected value="0">เลือกรหัสหลักสูตร</option>
-                      <option value="1001:หลักสูตรแกนกลางการศึกษาขั้นพื้นฐาน">หลักสูตรแกนกลางการศึกษาขั้นพื้นฐาน</option>
-                      <option value="1101:หลักสูตรโรงเรียนนานาชาติ">หลักสูตรโรงเรียนนานาชาติ</option>
-                      <option value="1201:หลักสูตรการศึกษานอกระบบ ระดับการศึกษาขั้นพื้นฐาน พ.ศ. 2551">หลักสูตรการศึกษานอกระบบ ระดับการศึกษาขั้นพื้นฐาน พ.ศ. 2551</option>
-                      <option value="1301:หลักสูตร ปวช. ปี 2551 (ฐานวิทย์)">หลักสูตร ปวช. ปี 2551 (ฐานวิทย์)</option>
-                      <option value="1302:หลักสูตร ปวช. ปี 2556">หลักสูตร ปวช. ปี 2556</option>
-                      <option value="1303:หลักสูตร ปวส. ปี 2557">หลักสูตร ปวส. ปี 2557</option>
-                      <option value="1304:หลักสูตร ปวส. ปี 2562">หลักสูตร ปวส. ปี 2562</option>
-                      <option value="1305:หลักสูตร ปวส. ปี 2545">หลักสูตร ปวส. ปี 2545</option>
-                      <option value="1306:หลักสูตร ปวส. ปี 2546">หลักสูตร ปวส. ปี 2546</option>
-                      <option value="1307:หลักสูตร ปวส. ปี 2563">หลักสูตร ปวส. ปี 2563</option>
-                      <option value="1308:หลักสูตร ปวส. ปี 2561 (KOSEN)">หลักสูตร ปวส. ปี 2561 (KOSEN)</option>
-                      <option value="1401:หลักสูตรอนุปริญญา">หลักสูตรอนุปริญญา</option>
-                      <option value="1402:หลักสูตรปริญญาตรี">หลักสูตรปริญญาตรี</option>
-                      <option value="1403:หลักสูตรประกาศนียบัตรบัณฑิต">หลักสูตรประกาศนียบัตรบัณฑิต</option>
-                      <option value="1404:หลักสูตรปริญญาโท">หลักสูตรปริญญาโท</option>
-                      <option value="1405:หลักสูตรประกาศนียบัตรบัณฑิตชั้นสูง">หลักสูตรประกาศนียบัตรบัณฑิตชั้นสูง</option>
-                      <option value="1406:หลักสูตรปริญญาเอก">หลักสูตรปริญญาเอก</option>
-                      <option value="1407:หลักสูตรนานาชาติ ปริญญาตรี">หลักสูตรนานาชาติ ปริญญาตรี</option>
-                      <option value="1408:หลักสูตรนานาชาติ ปริญญาโท">หลักสูตรนานาชาติ ปริญญาโท</option>
-                      <option value="1409:หลักสูตรเทคโนโลยีบัณฑิต (ทล.บ)">หลักสูตรเทคโนโลยีบัณฑิต (ทล.บ)</option>
+                    <select class="form-select" aria-label="Default select example" name="CurriculumCode" id="CurriculumCode">
+                      <option selected value="-1">เลือกรหัสหลักสูตร</option>
+                      <option value="01">ประเภทที่ 1 หลักสูตรที่ปรับมาจากหลักสูตรแกนกลางการศึกษาขั้นพื้นฐานให้เหมาะสมกับบริบทพื้นที่ ครอบคลุมสมรรถนะสำคัญ คุณลักษณะอันพึงประสงค์ และมาตรฐานการเรียนรู้</option>
+                      <option value="02">ประเภทที่ 2 หลักสูตรที่ปรับเพิ่มเติม จากประเภทที่ 1</option>
+                      <option value="03">ประเภทที่ 3 หลักสูตรที่ไม่ใช้หลักสูตรแกนกลางการศึกษาพื้นฐาน ตามกฎหมายว่าด้วยการศึกษาแห่งชาติ</option>
+                      <option value="04">ประเภทที่ 4 หลักสูตรต่างประเทศ</option>
                     </select>
                   </div>
                 </div>
@@ -78,8 +76,8 @@
                 <div class="row mb-3">
                   <label class="col-sm-2 col-form-label">รหัสระดับการศึกษา</label>
                   <div class="col-sm-10">
-                    <select class="form-select" aria-label="Default select example" name="EDUCATION_LEVEL_CODE" id="EDUCATION_LEVEL_CODE">
-                      <option selected value="0">เลือกรหัสระดับการศึกษา</option>
+                    <select class="form-select" aria-label="Default select example" name="EducationLevelCode" id="EducationLevelCode">
+                      <option selected value="-1">เลือกรหัสระดับการศึกษา</option>
                       <option value="00">เตรียมอนุบาล</option>
                       <option value="10">ก่อนประถมศึกษา</option>
                       <option value="11">ประถมศึกษา</option>
@@ -101,10 +99,10 @@
                 </div>
 
                 <div class="row mb-3">
-                  <label class="col-sm-2 col-form-label">รหัสชั้นเรียน</label>
+                  <label class="col-sm-2 col-form-label">รหัสชั้นปี</label>
                   <div class="col-sm-10">
-                    <select class="form-select" aria-label="Default select example" name="GRADE_LEVEL_CODE" id="GRADE_LEVEL_CODE">>
-                      <option selected>เลือกรหัสชั้นเรียน</option>
+                    <select class="form-select" aria-label="Default select example" name="GradeLevelCode" id="GradeLevelCode">>
+                      <option selected>เลือกรหัสชั้นปี</option>
                       <option value="100">เตรียมอนุบาล</option>
                       <option value="111">อนุบาล 1(หลักสูตร 3 ปีของ สช.)/อนุบาล 3 ขวบ</option>
                       <option value="112">อนุบาล 2(หลักสูตร 3 ปีของ สช.)/อนุบาล 1</option>
@@ -227,24 +225,31 @@
                 </div>
 
                 <div class="row mb-3">
+                  <label for="inputFile" class="col-sm-2 col-form-label">จำนวนห้องที่สอนด้วยหลักสูตร</label>
+                  <div class="col-sm-10">
+                    <input type="number" class="form-control"  name="ClassroomNumber" id="ClassroomNumber" min="1" max="999">
+                  </div>
+                </div>
+
+                <div class="row mb-3">
                   <label for="inputFile" class="col-sm-2 col-form-label">เอกสารหลักสูตร</label>
                   <div class="col-sm-10">
-                    <input type="text" class="form-control"  name="CURRICULUM_DOCUMENT" id="CURRICULUM_DOCUMENT">
+                    <input type="file" class="form-control"  name="CurriculumDocumentURL" id="CurriculumDocumentURL">
                   </div>
                 </div>
 
  <!--               <div class="row mb-3">
                   <label for="inputFile" class="col-sm-2 col-form-label">เอกสารหลักสูตร</label>
                   <div class="col-sm-10">
-                    <input type="file" class="form-control"  name="CURRICULUM_DOCUMENT" id="CURRICULUM_DOCUMENT" placeholder="CURRICULUM_DOCUMENT">
+                    <input type="file" class="form-control"  name="CurriculumDocumentURL" id="CurriculumDocumentURL" placeholder="CURRICULUM_DOCUMENT">
                   </div>
                 </div>
 -->
                 <div class="row mb-3">
                   <label class="col-sm-2 col-form-label">อ้างอิงหลักสูตรท้องถิ่น</label>
                   <div class="col-sm-10">
-                    <select class="form-select" aria-label="Default select example" name="LOCAL_CURRICULUM_FLAG" id="LOCAL_CURRICULUM_FLAG">
-                      <option selected value="2">เลือกอ้างอิงหลักสูตรท้องถิ่น</option>
+                    <select class="form-select" aria-label="Default select example" name="LocalCurriculumFlag" id="LocalCurriculumFlag">
+                      <option selected value="-1">เลือกอ้างอิงหลักสูตรท้องถิ่น</option>
                       <option value="0">อ้างอิง</option>
                       <option value="1">ไม่อ้างอิง</option>
                     </select>
@@ -254,20 +259,20 @@
                 <div class="row mb-3">
                   <label for="inputText" class="col-sm-2 col-form-label">ชื่อหลักสูตรท้องถิ่นที่อ้างอิง</label>
                   <div class="col-sm-10">
-                    <input type="text" class="form-control" name="LOCAL_CURRICULUM_NAME" id="LOCAL_CURRICULUM_NAME" placeholder="ชื่อหลักสูตรท้องถิ่นที่อ้างอิง">
+                    <input type="text" class="form-control" name="LocalCurriculumName" id="LocalCurriculumName" placeholder="ชื่อหลักสูตรท้องถิ่นที่อ้างอิง">
                   </div>
                 </div>
                 <div class="row mb-3">
                   <label for="inputText" class="col-sm-2 col-form-label">เอกสารแนบหลักสูตรอ้างอิง</label>
                   <div class="col-sm-10">
-                    <input type="text" class="form-control" name="LOCAL_CURRICULUM_DOCUMENT" id="LOCAL_CURRICULUM_DOCUMENT" placeholder="เอกสารแนบหลักสูตรอ้างอิง">
+                    <input type="text" class="form-control" name="LocalCurriculumDocumentURL" id="LocalCurriculumDocumentURL" placeholder="เอกสารแนบหลักสูตรอ้างอิง">
                   </div>
                 </div>
 <!--
                 <div class="row mb-3">
                   <label for="inputFile" class="col-sm-2 col-form-label">เอกสารแนบหลักสูตรอ้างอิง</label>
                   <div class="col-sm-10">
-                    <input type="file" class="form-control" name="LOCAL_CURRICULUM_DOCUMENT" id="LOCAL_CURRICULUM_DOCUMENT" placeholder="เอกสารแนบหลักสูตรอ%างอิง">
+                    <input type="file" class="form-control" name="LocalCurriculumDocumentURL" id="LocalCurriculumDocumentURL" placeholder="เอกสารแนบหลักสูตรอ%างอิง">
                   </div>
                 </div>
 -->
@@ -275,26 +280,26 @@
 
               <!-- start Form ข้อมูลหลักสูตรรายวิชา -->
              
-                <h5 class="card-title">ข้อมูลหลักสูตรรายวิชา</h5>
+                <h5 class="card-title">ข้อมูลหลักสูตรรายวิชา   ** สามารถมีได&หลายรายการ และไมfจำเปsนต&องกรอก **</h5>
 
                 <div class="row mb-3">
                   <label for="inputText" class="col-sm-2 col-form-label">ชื่อรายวิชา</label>
                   <div class="col-sm-10">
-                    <input type="text" class="form-control" name="SUBJECT_NAME"id="SUBJECT_NAME"placeholder="ชื่อรายวิชา">
+                    <input type="text" class="form-control" name="SubjectName" id="SubjectName" placeholder="ชื่อรายวิชา"  maxlength="100">
                   </div>
                 </div>
 
                 <div class="row mb-3">
                   <label for="inputText" class="col-sm-2 col-form-label" >รหัสวิชา</label>
                   <div class="col-sm-10">
-                    <input type="text" class="form-control"name="SUBJECT_CODE"id="SUBJECT_CODE"placeholder="รหัสวิชา">
+                    <input type="text" class="form-control"name="SubjectCode" id="SubjectCode" placeholder="รหัสวิชา" maxlength="10">
                   </div>
                 </div>
 
                 <div class="row mb-3">
                   <label class="col-sm-2 col-form-label">กลุ่มสาระการเรียนรู้ / การศึกษาค้นคว้าด้วยตนเอง</label>
                   <div class="col-sm-10">
-                    <select class="form-select" aria-label="Default select example" name="SUBJECT_GROUP_CODE" id="SUBJECT_GROUP_CODE">
+                    <select class="form-select" aria-label="Default select example" name="SubjectGroupCode" id="SubjectGroupCode">
                       <option selected value="0">เลือกกลุ่มสาระการเรียนรู้ / การศึกษาค้นคว้าด้วยตนเอง</option>
                       <option value="01">ภาษาไทย</option>
                       <option value="02">คณิตศาสตร์</option>
@@ -313,7 +318,7 @@
                 <div class="row mb-3">
                   <label class="col-sm-2 col-form-label">ประเภทวิชา</label>
                   <div class="col-sm-10">
-                    <select class="form-select" aria-label="Default select example" name="SUBJECT_TYPE_CODE" id="SUBJECT_TYPE_CODE">
+                    <select class="form-select" aria-label="Default select example" name="SubjectTypeCode" id="SubjectTypeCode">
                       <option selected value="0">เลือกประเภทวิชา</option>
                       <option value="01">พื้นฐาน</option>
                       <option value="02">เพิ่มเติม</option>
@@ -330,27 +335,26 @@
                 <div class="row mb-3">
                   <label for="inputText" class="col-sm-2 col-form-label">หน่วยกิต/หน่วยน้ำหนัก</label>
                   <div class="col-sm-10">
-                    <input type="text" class="form-control" name="CREDIT"id="CREDIT" placeholder="หน่วยกิต/หน่วยน้ำหนัก">
+                    <input type="text" class="form-control" name="Credit"id="Credit" placeholder="หน่วยกิต/หน่วยน้ำหนัก">
                   </div>
                 </div>
 
                 <div class="row mb-3">
                   <label for="inputText" class="col-sm-2 col-form-label">จำนวนชั่วโมงเรียน</label>
                   <div class="col-sm-10">
-                    <input type="text" class="form-control" name="LEARNING_HOUR"id="LEARNING_HOUR">
+                    <input type="text" class="form-control" name="LearningHour"id="LearningHour">
                   </div>
                 </div>
-
 
               <!-- End Form ข้อมูลหลักสูตรรายวิชา -->
 
               <!-- start Form ข้อมูลสมรรถนะของหลักสูตร -->
-                <h5 class="card-title">ข้อมูลสมรรถนะของหลักสูตร</h5>
+                <h5 class="card-title">ข้อมูลสมรรถนะของหลักสูตร   ** สามารถมีได้หลายรายการ และไม่จำเป็นต้องกรอก **</h5>
 
                 <div class="row mb-3">
                   <label class="col-sm-2 col-form-label">สมรรถนะ</label>
                   <div class="col-sm-10">
-                    <select class="form-select" aria-label="Default select example" name="CURRICULUM_COMPETENCY_CODE" id="CURRICULUM_COMPETENCY_CODE">
+                    <select class="form-select" aria-label="Default select example" name="CompetencyCode" id="CompetencyCode">
                       <option selected value="0">เลือกสมรรถนะ</option>
                       <option value="101">ความสามารถในการสื่อสาร</option>
                       <option value="102">ความสามารถในการคิด</option>
@@ -368,11 +372,6 @@
                       <option value="303">คณิตศาสตร์</option>  
                       <option value="304">วิทยาศาสตร์</option>
                       <option value="401">การสื่อสาร</option>  
-                      <!--
-                      <option value="">การคิด</option>  
-                      <option value="">การทำงานเป็นทีม</option>  
-                      <option value="">การเป็นพลเมือง</option>
-                      -->
 
                     </select>                   
                   </div>
@@ -394,33 +393,34 @@
 <script type="text/javascript">
   function check(frm){
   
-  //Check_EDUCATION_YEAR
+  //Check_EducationYear
   var EDUCATION = /^[0-9]{4}$/;
     /*
-    if(EDUCATION.test(frm.EDUCATION_YEAR.value) == false){
+    if(EDUCATION.test(frm.EducationYear.value) == false){
       alert("กรุณากรอกข้อมูลปีการศึกษา");
       return false;
     }
     */
-    if(frm.EDUCATION_YEAR.value ==""){
+    if(frm.EducationYear.value ==""){
         alert("กรุณากรอกข้อมูลปีการศึกษา");
-        frm.EDUCATION_YEAR.value = "";
+        frm.EducationYear.value = "";
         return false;
-    }else if (!frm.EDUCATION_YEAR.value.match(EDUCATION)){
+    }else if (!frm.EducationYear.value.match(EDUCATION)){
         alert("กรุณากรอกข้อมูลปีการศึกษาตัวเลขเท่านั้น");
-        frm.EDUCATION_YEAR.value = "";
+        frm.EducationYear.value = "";
         return false;
     }
-  //Check_SEMESTER
-    if(frm.SEMESTER.value==0){
+  //Check_Semester
+    if(frm.Semester.value==-1){
       alert("กรุณาเลือกภาคเรียน");
       return false;
     }
+  /*
   //Check_CURRICULUM_NAME
     var CHECK_CURRICULUM_NAME = /^[A-Z,a-z,ก-์,0-9]{1,255}$/;
     if(frm.CURRICULUM_NAME.value==""){
         alert("กรุณากรอกชื่อหลักสูตร");
-        frm.EDUCATION_YEAR.value = "";
+        frm.CURRICULUM_NAME.value = "";
         return false;
     }
     else if(!frm.CURRICULUM_NAME.value.match(CHECK_CURRICULUM_NAME)){
@@ -428,47 +428,38 @@
         frm.CURRICULUM_NAME.value = "";
         return false;
     }
-    //Check_CURRICULUM_CODE
-    if(frm.CURRICULUM_CODE.value==0){
+  */
+    //Check_CurriculumCode
+    if(frm.CurriculumCode.value==-1){
       alert("กรุณาเลือกรหัสหลักสูตร");
       return false;
     }
-    //Check_EDUCATION_LEVEL_CODE
-    if(frm.EDUCATION_LEVEL_CODE.value==0){
+    //Check_EducationLevelCode
+    if(frm.EducationLevelCode.value==-1){
       alert("กรุณาเลือกรหัสระดับการศึกษา");
       return false;
     }
-    //Check_LOCAL_CURRICULUM_FLAG
-    if(frm.LOCAL_CURRICULUM_FLAG.value==2){
+    //Check_LocalCurriculumFlag
+    if(frm.LocalCurriculumFlag.value==-1){
       alert("กรุณาเลือกอ้างอิงหลักสูตรท้องถิ่น");
       return false;
     }
-   //Check_LOCAL_CURRICULUM_NAME
+   //Check_LocalCurriculumName
    var CHECK_LOCAL_CURRICULUM_NAME = /^[A-Z,a-z,ก-์,0-9]{1,255}$/;
-    if(frm.LOCAL_CURRICULUM_NAME.value==""){
+    if(frm.LocalCurriculumName.value==""){
         alert("กรุณากรอกชื่อหลักสูตรท้องถิ่นที่อ้างอิง");
-        frm.EDUCATION_YEAR.value = "";
+        frm.LocalCurriculumName.value = "";
         return false;
     }
-    else if(!frm.LOCAL_CURRICULUM_NAME.value.match(CHECK_LOCAL_CURRICULUM_NAME)){
+    else if(!frm.LocalCurriculumName.value.match(CHECK_LOCAL_CURRICULUM_NAME)){
         alert("กรุณากรอกชื่อหลักสูตรท้องถิ่นที่อ้างอิงให้ถูกต้อง");
-        frm.LOCAL_CURRICULUM_NAME.value = "";
+        frm.LocalCurriculumName.value = "";
         return false;
     }
 
 
-    //Check_CURRICULUM_COMPETENCY_CODE
-    if(frm.CURRICULUM_COMPETENCY_CODE.value==0){
-      alert("กรุณาเลือกสมรรถนะ");
-      return false;
-    }
 
     
-
-    
-
-
-  
   }
 </script>    
 

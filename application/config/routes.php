@@ -11,11 +11,11 @@ $route['forms-school-detail'] = 'forms_school_detail';
 $route['add_school']['post'] = "add_school";
 
 //Curriculum
-$route['forms-curriculum'] = 'CurriculumController';
-$route['add_curriculum']['post'] = 'Add_CurriculumController';
+$route['forms-curriculum'] = 'CurriculumController/index';
+$route['add_curriculum']['post'] = 'CurriculumController/add_curriculum_form';
 
-//teacher_developmant_avtivity
-$route['forms-teacher_developmant_avtivity'] = 'Teacher_developmant_avtivity_Controller';
+//teacher_developmant_activity
+$route['forms-teacher_developmant_activity'] = 'Teacher_developmant_activity_controller';
 
 
 

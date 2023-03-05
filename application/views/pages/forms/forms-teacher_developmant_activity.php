@@ -20,7 +20,7 @@
               <h5 class="card-title">ข้อมูลการพัฒนาบุคลากร</h5>
 
               <!-- start Form ข้อมูลการพัฒนาบุคลากรครู -->
-              <form class="row g-3" name="teacher_developmant_avtivity"id="teacher_developmant_avtivity">
+              <form class="row g-3" name="teacher_developmant_activity"id="teacher_developmant_activity">
                   
                 <div class="col-md-16">
                   <div class="form-floating">
@@ -105,7 +105,7 @@
                   </div>
                 </div>
                 
-                <button type="submit" class="btn btn-primary" onclick="return check(teacher_developmant_avtivity)">ยืนยัน</button>
+                <button type="submit" class="btn btn-primary" onclick="return check(teacher_developmant_activity)">ยืนยัน</button>
               </form><!-- End Form ข้อมูลการพัฒนาบุคลากรครู -->
 
             </div>

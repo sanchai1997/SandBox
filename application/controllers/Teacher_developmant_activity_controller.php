@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Teacher_developmant_avtivity_Controller extends CI_Controller{
+class Teacher_developmant_activity_controller extends CI_Controller{
     public function index() {
         
         if ( ! file_exists(APPPATH.'views/pages/forms/forms-Curriculum.php'))
@@ -10,11 +10,11 @@ class Teacher_developmant_avtivity_Controller extends CI_Controller{
                 show_404();
         }
 
-        $data['title'] = 'Forms Curriculum'; // Capitalize the first letter
+        $data['title'] = 'Forms Teacher Developmant Activity'; // Capitalize the first letter
 
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
-        $this->load->view('pages/forms/forms-teacher_developmant_avtivity', $data);
+        $this->load->view('pages/forms/forms-teacher_developmant_activity', $data);
         $this->load->view('templates/footer', $data);
     }
     

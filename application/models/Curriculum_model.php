@@ -8,25 +8,21 @@ class Curriculum_model  extends CI_Model {
         $this->load->helper('url');
     }
 
-    public function add_curriculum($curriculum) {    
+    public function insert_curriculum($curriculum) {    
        
         $result_curriculum = $this->db->insert('CURRICULUM', $curriculum);
-        if( $result_curriculum == 1 ){
-            $CURRICULUM_ID = $this->db->insert_id(); 
-            return  $CURRICULUM_ID ;
-        }else{
-            return -1;
-        }
+        return $result_curriculum;
+
     }
 
-    public function add_curriculum_subject($CURRICULUM_SUBJECT) {
+    public function insert_curriculum_subject($CURRICULUM_SUBJECT) {
 
         $result_CURRICULUM_SUBJECT = $this->db->insert('curriculum_subject', $CURRICULUM_SUBJECT);
         return $result_CURRICULUM_SUBJECT;
     
     }
 
-    public function add_curriculum_school_competency($CURRICULUM_SCHOOl_COMPETENCY) {
+    public function insert_curriculum_school_competency($CURRICULUM_SCHOOl_COMPETENCY) {
         
         $result_CURRICULUM_SUBJECT = $this->db->insert('curriculum_school_competency', $CURRICULUM_SCHOOl_COMPETENCY);
         return $result_CURRICULUM_SUBJECT ;
