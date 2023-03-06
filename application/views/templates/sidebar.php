@@ -49,7 +49,7 @@
   </li><!-- End ข้อมูลพื้นฐาน Nav -->
 
   <li class="nav-item">
-    <a class="nav-link collapsed" href="forms-curriculum">
+    <a class="nav-link collapsed" href="list-curriculum">
       <i class="bi bi-journal-text"></i>
       <span>ข้อมูลหลักสูตร/หลักสูตรของพื้นที่นวัตกรรม</span>
     </a>

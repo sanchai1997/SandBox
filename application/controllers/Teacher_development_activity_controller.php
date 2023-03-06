@@ -4,7 +4,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Teacher_development_activity_controller extends CI_Controller{
     public function index() {
         
-        if ( ! file_exists(APPPATH.'views/pages/forms/forms-Curriculum.php'))
+        if ( ! file_exists(APPPATH.'views/pages/forms/forms-teacher_development_activity.php'))
         {
                 // Whoops, we don't have a page for that!
                 show_404();
