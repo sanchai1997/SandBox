@@ -12,7 +12,7 @@ $route['add_school']['post'] = "add_school";
 
 //Curriculum
 $route['forms-curriculum'] = 'CurriculumController/index';
-$route['add_curriculum']['post'] = 'CurriculumController/add_curriculum_form';
+$route['add_curriculum']['post'] = 'CurriculumController/add_curriculum';
 
 //teacher_developmant_activity
 $route['forms-teacher_development_activity'] = 'Teacher_development_activity_controller';

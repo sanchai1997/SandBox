@@ -134,6 +134,8 @@
                   </div>
                 </div>
 
+                <button type="submit" class="btn btn-primary" onclick="return check(addCurriculum)">ยืนยัน</button>
+             </form>
 <!-- End Form ข้อมูลหลักสูตร -->
 
               <!-- start Form ข้อมูลหลักสูตรรายวิชา -->
@@ -209,9 +211,7 @@
                   </div>
                 </div>
 
-                <button type="submit" class="btn btn-primary" onclick="return check(addCurriculum)">ยืนยัน</button>
               <!-- End Form ข้อมูลสมรรถนะของหลักสูตร -->
-            </form>
 
             </div>
           </div>

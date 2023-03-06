@@ -32,11 +32,10 @@ class CurriculumController extends CI_Controller{
         $this->load->view('templates/sidebar', $data);
         $this->load->view('pages/forms/forms-curriculum', $data);
         $this->load->view('templates/footer', $data);
-        
+
     }
 
-    public function add_curriculum_form() {
-        $isError = false ;
+    public function add_curriculum() {
         // add_curriculum
         $EducationYear = $this->input->post('EducationYear');
         $Semester = $this->input->post('Semester');
@@ -64,48 +63,61 @@ class CurriculumController extends CI_Controller{
                 'LocalCurriculumDocumentURL' => $LocalCurriculumDocumentURL
             ];
             $result_curriculum =  $this->Curriculum_model->insert_curriculum($curriculum);
-            
-            if($result_curriculum == 1){
-                // add_curriculum_subject
-                $CURRICULUM_SUBJECT = [
-                    'CurriculumID' => $CurriculumID,
-                    'SubjectName' => $this->input->post('SubjectName'),
-                    'SubjectCode' => $this->input->post('SubjectCode'),
-                    'SubjectGroupCode' => $this->input->post('SubjectGroupCode'),
-                    'SubjectTypeCode' => $this->input->post('SubjectTypeCode'),
-                    'Credit' => $this->input->post('Credit'),
-                    'LearningHour' => $this->input->post('LearningHour')
-                ];
-                $result_CURRICULUM_SUBJECT = $this->Curriculum_model->insert_curriculum_subject($CURRICULUM_SUBJECT);
-        
-                // add_curriculum_school_competency
-                $CURRICULUM_SCHOOl_COMPETENCY = [
-                    'CurriculumID' => $CurriculumID,
-                    'CompetencyCode' => $this->input->post('CompetencyCode'),
-                ];
-                $result_SCHOOl_COMPETENCY = $this->Curriculum_model->insert_curriculum_school_competency($CURRICULUM_SCHOOl_COMPETENCY);
 
-                if($result_CURRICULUM_SUBJECT == 1 && $result_SCHOOl_COMPETENCY == 1){
-                    $this->session->set_flashdata('success',"บันทึก curriculumn สำเร็จ");
-                }else{
-                    $isError = true ;
-                }
-                
+            if($result_curriculum == 1 ){
+                $this->session->set_flashdata('success',"บันทึก CURRICULUM สำเร็จ");
             }else{
-                $isError = true ;
+                $this->session->set_flashdata('errors',"เกิดข้อผิดพลาดในการบันทึกข้อมูล");
             }
         
         }else{
-            $isError = true ;
-        }
-
-        if($isError){
             $this->session->set_flashdata('errors',"เกิดข้อผิดพลาดในการบันทึกข้อมูล");
         }
 
         redirect(base_url('forms-curriculum'));
 
     }
+
+    public function add_curriculum_subject() {
+        // add_curriculum_subject
+        $CURRICULUM_SUBJECT = [
+            'CurriculumID' => $CurriculumID,
+            'SubjectName' => $this->input->post('SubjectName'),
+            'SubjectCode' => $this->input->post('SubjectCode'),
+            'SubjectGroupCode' => $this->input->post('SubjectGroupCode'),
+            'SubjectTypeCode' => $this->input->post('SubjectTypeCode'),
+            'Credit' => $this->input->post('Credit'),
+            'LearningHour' => $this->input->post('LearningHour')
+        ];
+        $result_CURRICULUM_SUBJECT = $this->Curriculum_model->insert_curriculum_subject($CURRICULUM_SUBJECT);
+
+      
+        if($result_CURRICULUM_SUBJECT == 1 ){
+            $this->session->set_flashdata('success',"บันทึก CURRICULUM_SUBJECT สำเร็จ");
+        }else{
+            $this->session->set_flashdata('errors',"เกิดข้อผิดพลาดในการบันทึกข้อมูล");
+        }
+
+    }
+
+    public function add_curriculum_school_competency() {
+        // add_curriculum_school_competency
+        $CURRICULUM_SCHOOl_COMPETENCY = [
+            'CurriculumID' => $CurriculumID,
+            'CompetencyCode' => $this->input->post('CompetencyCode'),
+        ];
+        $result_SCHOOl_COMPETENCY = $this->Curriculum_model->insert_curriculum_school_competency($CURRICULUM_SCHOOl_COMPETENCY);
+
+        if($result_SCHOOl_COMPETENCY == 1){
+            $this->session->set_flashdata('success',"บันทึก CURRICULUM_SCHOOl_COMPETENCY สำเร็จ");
+        }else{
+            $this->session->set_flashdata('errors',"เกิดข้อผิดพลาดในการบันทึกข้อมูล");
+        }
+
+    }
+
+
+
 
     public function do_upload($fileName , $field_name ) {
         $config['upload_path'] = FCPATH."application/documents/";  // โฟลเดอร์ ตำแหน่งเดียวกับ root ของโปรเจ็ค
