@@ -20,7 +20,7 @@
               <h5 class="card-title">ข้อมูลการพัฒนาบุคลากร</h5>
 
               <!-- start Form ข้อมูลการพัฒนาบุคลากรครู -->
-              <form class="row g-3"action="<?php echo base_url('add_teacher_development_activity');?>" method="POST"name="teacher_developmant_activity"id="teacher_developmant_activity">
+              <form class="row g-3" action="<?php echo base_url('add_teacher_development_activity');?>" method="POST" name="teacher_developmant_activity" id="teacher_developmant_activity" enctype="multipart/form-data">
                   
                 <div class="col-md-16">
                   <div class="form-floating">
@@ -47,7 +47,7 @@
                     <select class="form-select" aria-label="Default select example"  name="TeacherID"id="TeacherID">
                       <option selected value="-1">เลือกครูและบุคลากรทางการศึกษา</option>
                         <?php foreach($listTeacher as $lt) { ?>
-                          <option value="<?php echo $lt->TEACHER_ID; ?>"><?php echo " (" . $lt->TEACHER_ID . ")" . $lt->NAME_TH; ?></option>
+                          <option value="<?php echo $lt->TEACHER_ID; ?>"><?php echo " (" . $lt->TEACHER_ID . ") " . $lt->NAME_TH; ?></option>
                         <?php } ?>
                     </select>
                     <label for="SCHOOL_STATUS_CODE">ครูและบุคลากรทางการศึกษา</label>
@@ -59,7 +59,7 @@
                     <select class="form-select" aria-label="Default select example"  name="DevelopmentActivityTypeCode"id="DevelopmentActivityTypeCode">
                       <option selected value="-1">เลือกประเภทกิจกรรม</option>
                       <?php foreach($listDevelopmentActivityType as $lAT) { ?>
-                          <option value="<?php echo $lAT->ActivityTypeID; ?>"><?php echo $lAT->Name_TH; ?></option>
+                          <option value="<?php echo $lAT->ActivityTypeID; ?>"><?php echo $lAT->ActivityTypeName; ?></option>
                         <?php } ?>
                     </select>
                     <label for="SCHOOL_STATUS_CODE">ประเภทกิจกรรม</label>

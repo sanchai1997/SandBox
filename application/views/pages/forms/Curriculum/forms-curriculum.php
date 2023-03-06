@@ -47,6 +47,7 @@
                     <input type="text" class="form-control" name="EducationYear" id="EducationYear" placeholder="ปีการศึกษา (พ.ศ.)" maxlength="4">
                   </div>
                 </div>
+                
                 <div class="row mb-3">
                   <label for="inputText" class="col-sm-2 col-form-label">ภาคเรียน</label>
                   <div class="col-sm-10">
@@ -83,7 +84,7 @@
                   <label class="col-sm-2 col-form-label">ประเภทหลักสูตร</label>
                   <div class="col-sm-10">
                     <select class="form-select" aria-label="Default select example" name="CurriculumCode" id="CurriculumCode">
-                      <option selected value="-1">เลือกรหัสหลักสูตร</option>
+                      <option selected value="-1">เลือกหลักสูตร</option>
                       <?php foreach($listCurriculumType as $ls) { ?>
                         <option value="<?php echo $ls->CurriculumCode; ?>"><?php echo $ls->CurriculumTypeName; ?></option>
                       <?php } ?>
@@ -92,10 +93,10 @@
                 </div>
 
                 <div class="row mb-3">
-                  <label class="col-sm-2 col-form-label">รหัสระดับการศึกษา</label>
+                  <label class="col-sm-2 col-form-label">ระดับการศึกษา</label>
                   <div class="col-sm-10">
                     <select class="form-select" aria-label="Default select example" name="EducationLevelCode" id="EducationLevelCode">
-                      <option selected value="-1">เลือกรหัสระดับการศึกษา</option>
+                      <option selected value="-1">เลือกะดับการศึกษา</option>
                       <?php foreach($listEducationLevel as $ls) { ?>
                         <option value="<?php echo $ls->EducationLevelCode; ?>"><?php echo $ls->EducationLevelName; ?></option>
                       <?php } ?>
@@ -104,10 +105,10 @@
                 </div>
 
                 <div class="row mb-3">
-                  <label class="col-sm-2 col-form-label">รหัสชั้นปี</label>
+                  <label class="col-sm-2 col-form-label">ชั้นปี</label>
                   <div class="col-sm-10">
                     <select class="form-select" aria-label="Default select example" name="GradeLevelCode" id="GradeLevelCode">>
-                      <option selected>เลือกรหัสชั้นปี</option>
+                      <option selected>เลือกชั้นปี</option>
                       <?php foreach($listGradeLevel as $ls) { ?>
                         <option value="<?php echo $ls->GradeLevelCode; ?>"><?php echo $ls->GradeLevelName; ?></option>
                       <?php } ?>
@@ -118,7 +119,7 @@
                 <div class="row mb-3">
                   <label for="inputFile" class="col-sm-2 col-form-label">จำนวนห้องที่สอนด้วยหลักสูตร</label>
                   <div class="col-sm-10">
-                    <input type="number" class="form-control"  name="ClassroomNumber" id="ClassroomNumber" min="1" max="999">
+                    <input type="number" class="form-control"  name="ClassroomNumber" id="ClassroomNumber" min="1" max="999" placeholder="จำนวนห้องที่สอนด้วยหลักสูตร">
                   </div>
                 </div>
 

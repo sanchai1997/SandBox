@@ -38,6 +38,12 @@ class Code_model  extends CI_Model {
         return $query->result();
     }
 
+    /////Addschool_Model.php
+    public function get_DevelopmentActivityType_All() {
+        $query = $this->db->get('development_activity_type');
+        return $query->result();
+    }
+
 }
 
 ?>

@@ -15,27 +15,31 @@
 
         </div>
     </div>
-
     <!-- End Page Title --> 
+
+    <!-- Alert -->
+    <?php if (!empty($_SESSION['success'])) { ?>
+    <div class="col-12">
+        
+            <div class="alert alert-success" id="myAlert" style="top: 0; left: 0; right: 0; z-index: 1;">
+                <strong>
+                    <?php
+                    echo '<i class="bi bi-check-circle-fill"></i> '. $_SESSION['success'];
+                    unset($_SESSION['success']);
+                ?>
+                </strong>
+            </div> 
+        
+    </div>
+    <?php } ?>  
+
 
     <!-- Recent Sales -->
     <div class="col-12">
         <div class="card recent-sales overflow-auto">
 
             <div class="card-body">
-                 <!-- Alert -->
-                <?php if (!empty($_SESSION['success'])) { ?>
-                <div class="row">
-                    <div class="alert alert-success" id="myAlert" style="position: absolute; top: 0; left: 0; right: 0; z-index: 1;">
-                        <strong>
-                            <?php
-                            echo '<i class="bi bi-check-circle-fill"></i> '. $_SESSION['success'];
-                            unset($_SESSION['success']);
-                        ?>
-                        </strong>
-                    </div> 
-                </div>
-                <?php } ?>  
+
 
                 <div class="row">
                     <div class="col">

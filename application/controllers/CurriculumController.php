@@ -65,7 +65,7 @@ class CurriculumController extends CI_Controller{
             $result_curriculum =  $this->Curriculum_model->insert_curriculum($curriculum);
 
             if($result_curriculum == 1 ){
-                $this->session->set_flashdata('success',"บันทึกข้อมูลหลักสูตรสำเร็จ");
+                $this->session->set_flashdata('success',"บันทึกข้อมูลสำเร็จ");
                 redirect(base_url('list-curriculum'));
             }else{
                 $this->session->set_flashdata('errors',"เกิดข้อผิดพลาดในการบันทึกข้อมูล");
@@ -95,7 +95,7 @@ class CurriculumController extends CI_Controller{
 
       
         if($result_CURRICULUM_SUBJECT == 1 ){
-            $this->session->set_flashdata('success',"บันทึกข้อมูลหลักสูตรรายวิชาสำเร็จ");
+            $this->session->set_flashdata('success',"บันทึกข้อมูลสำเร็จ");
             redirect(base_url('list-curriculum'));
         }else{
             $this->session->set_flashdata('errors',"เกิดข้อผิดพลาดในการบันทึกข้อมูล");
@@ -113,9 +113,12 @@ class CurriculumController extends CI_Controller{
         $result_SCHOOl_COMPETENCY = $this->Curriculum_model->insert_curriculum_school_competency($CURRICULUM_SCHOOl_COMPETENCY);
 
         if($result_SCHOOl_COMPETENCY == 1){
-            $this->session->set_flashdata('success',"บันทึกข้อมูลสมรรถนะของหลักสูตรสำเร็จ");
+            show_error('successs');
+
+            $this->session->set_flashdata('success',"บันทึกข้อมูลสำเร็จ");
             redirect(base_url('list-curriculum'));
         }else{
+            show_error('errorrrr');
             $this->session->set_flashdata('errors',"เกิดข้อผิดพลาดในการบันทึกข้อมูล");
             redirect(base_url('forms-curriculum'));
         }
