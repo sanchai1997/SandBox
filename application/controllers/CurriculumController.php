@@ -8,6 +8,7 @@ class CurriculumController extends CI_Controller{
         $this->load->library('session');
         $this->load->model('Curriculum_model');
         $this->load->model('School_model');
+        $this->load->model('Code_model');
     }
 
     public function index() {
@@ -20,11 +21,18 @@ class CurriculumController extends CI_Controller{
 
         $data['title'] = 'Forms Curriculum'; // Capitalize the first letter
         $data['listSchool'] = $this->School_model->get_school_All();
+        $data['listCurriculumType'] = $this->Code_model->get_CurriculumType_All();
+        $data['listEducationLevel'] = $this->Code_model->get_EducationLevel_All();
+        $data['listGradeLevel'] = $this->Code_model->get_GradeLevel_All();
+        $data['listSubjectGroup'] = $this->Code_model->get_SubjectGroup_All();
+        $data['listSubjectType'] = $this->Code_model->get_Subject_Type_All();
+        $data['listCompetency'] = $this->Code_model->get_Competency_Type_All();
 
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
         $this->load->view('pages/forms/forms-curriculum', $data);
         $this->load->view('templates/footer', $data);
+        
     }
 
     public function add_curriculum_form() {
@@ -36,7 +44,7 @@ class CurriculumController extends CI_Controller{
         $CurriculumID =  $EducationYear . $Semester . $SchoolID;
 
         $CurriculumDocumentURL = $this->do_upload('CurriculumDocument'.$CurriculumID ,"CurriculumDocumentURL");
-        $LocalCurriculumDocumentURL = $this->do_upload('LocalCurriculumDocumentURL'.$CurriculumID ,"LocalCurriculumDocumentURL");
+        $LocalCurriculumDocumentURL = $this->do_upload('LocalCurriculumDocument'.$CurriculumID ,"LocalCurriculumDocumentURL");
 
         if($CurriculumDocumentURL != -1 && $LocalCurriculumDocumentURL !=-1 ){
 
