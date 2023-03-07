@@ -6,12 +6,28 @@
         <ol class="breadcrumb">
           <li class="breadcrumb-item"><a href="index.html">Home</a></li>
           <li class="breadcrumb-item">Form</li>
-          <li class="breadcrumb-item active">Student</li>
+          <li class="breadcrumb-item active">Teacher Development Activity</li>
         </ol>
       </nav>
     </div><!-- End Page Title -->
 
     <section class="section">
+            <!-- Alert -->
+      <?php if (!empty($_SESSION['errors'])) { ?>
+      <div class="row">
+        <div class="col-lg-9">
+          <div class="alert alert-danger" id="myAlert" style="top: 0; left: 0; right: 0; z-index: 1;">
+              <strong>
+                  <?php
+                  echo '<i class="bi bi-exclamation-circle-fill"></i> '. $_SESSION['errors'];
+                  unset($_SESSION['errors']);
+                  ?>
+              </strong>
+          </div> 
+        </div>
+      </div>
+      <?php } ?>  
+
       <div class="row">
         <div class="col-lg-9">
 
@@ -59,7 +75,7 @@
                     <select class="form-select" aria-label="Default select example"  name="DevelopmentActivityTypeCode"id="DevelopmentActivityTypeCode">
                       <option selected value="-1">เลือกประเภทกิจกรรม</option>
                       <?php foreach($listDevelopmentActivityType as $lAT) { ?>
-                          <option value="<?php echo $lAT->ActivityTypeID; ?>"><?php echo $lAT->ActivityTypeName; ?></option>
+                          <option value="<?php echo $lAT->DevelopmentActivityTypeCode; ?>"><?php echo $lAT->DevelopmentActivityTypeName; ?></option>
                         <?php } ?>
                     </select>
                     <label for="SCHOOL_STATUS_CODE">ประเภทกิจกรรม</label>
@@ -107,6 +123,15 @@
                     <label >วันที่สิ้นสุดกิจกรรม</label>
                   </div>
                 </div>
+                
+                <div class="col-md-3">
+                    <label >เอกสารแนบ/เกียรติบัตร</label>
+                </div>
+
+                <div class="col-md-9">
+                    <input type="file" class="form-control" name="DevelopmentDocument" id="DevelopmentDocument" placeholder="เอกสารแนบ/เกียรติบัตร">
+                </div>
+
                 
                 <button type="submit" class="btn btn-primary" onclick="return check(teacher_developmant_activity)">ยืนยัน</button>
               </form><!-- End Form ข้อมูลการพัฒนาบุคลากรครู -->

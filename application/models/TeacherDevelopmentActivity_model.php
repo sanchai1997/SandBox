@@ -15,5 +15,12 @@ class TeacherDevelopmentActivity_model extends CI_Model {
     }
 
     
+    public function get_TeacherDevelopmentActivityAll() {
+        $query = $this->db->get('teacher_development_activity');
+        return $query->result();
+    }
+    
+
+    
 }
 ?>

@@ -56,7 +56,7 @@
   </li><!-- End ข้อมูลหลักสูตร Page Nav -->
 
   <li class="nav-item">
-    <a class="nav-link collapsed" href="forms-teacher_development_activity">
+    <a class="nav-link collapsed" href="list-teacher_development_activity">
       <i class="bi bi-person "></i>
       <span>ข้อมูลการพัฒนาบุคลากร</span>
     </a>

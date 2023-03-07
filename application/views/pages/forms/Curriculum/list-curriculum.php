@@ -46,7 +46,7 @@
                         <h5 class="card-title">รายละเอียดข้อมูล <span>| Table Curriculum</span></h5>
                     </div>
                     <div class="col">
-                        <h5 style="float: right; padding: 15px;" class="card-title"><a href="forms-curriculum" class="btn btn-success">เพิ่มข้อมูลสถานศึกษา</a></h5>
+                        <h5 style="float: right; padding: 15px;" class="card-title"><a href="forms-curriculum" class="btn btn-success">เพิ่มข้อมูลหลักสูตร</a></h5>
                     </div>
                 </div>
                 <table class="table table-borderless datatable">

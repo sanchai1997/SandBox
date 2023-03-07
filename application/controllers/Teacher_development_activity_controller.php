@@ -14,7 +14,7 @@ class Teacher_development_activity_controller extends CI_Controller{
 
     public function forms() {
         
-        if ( ! file_exists(APPPATH.'views/pages/forms/forms-teacher_development_activity.php'))
+        if ( ! file_exists(APPPATH.'views/pages/forms/TeacherDevelopmentActivity/forms-teacher_development_activity.php'))
         {
                 // Whoops, we don't have a page for that!
                 show_404();
@@ -26,38 +26,83 @@ class Teacher_development_activity_controller extends CI_Controller{
 
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
-        $this->load->view('pages/forms/forms-teacher_development_activity', $data);
+        $this->load->view('pages/forms/TeacherDevelopmentActivity/forms-teacher_development_activity', $data);
         $this->load->view('templates/footer', $data);
     }
 
     public function add_teacher_development_activity() {
-    
+        $DevelopmentDocument = $this->do_upload('DevelopmentDocument',"DevelopmentDocument");
+
+        if($DevelopmentDocument != -1 ){
             $teacher_development_activity = [
-                'DEVELOPMENT_ACTIVITY_EDUCATION_YEAR	' => $this->input->post('DevelopmentActivityEducationYear'),
-                'DEVELOPMENT_ACTIVITY_SEMESTER' => $this->input->post('DevelopmentActivitySemester'),
-                'TEACHER_ID' => $this->input->post('TeacherID'),
-                'DEVELOPMENT_ACTIVITY_TYPE_CODE' => $this->input->post('DevelopmentActivityTypeCode'),
-                'DEVELOPMENT_ACTIVITY_NAME' => $this->input->post('DevelopmentActivityName'),
-                'DEVELOPMENT_ACTIVITY_PLACE' => $this->input->post('DevelopmentActivityPlace'),
-                'DEVELOPMENT_ACTIVITY_HOUR' => $this->input->post('DevelopmentActivityHour'),
-                'ORGANIZER' => $this->input->post('Organizer'),
-                'DEVELOPMENT_ACTIVITY_START_DATE' => $this->input->post('DevelopmentActivityStartDate'),
-                'DEVELOPMENT_ACTIVITY_END_DATE' => $this->input->post('DevelopmentActivityEndDate')
+                'DevelopmentActivityEducationYear' => $this->input->post('DevelopmentActivityEducationYear'),
+                'DevelopmentActivitySemester' => $this->input->post('DevelopmentActivitySemester'),
+                'TeacherID' => $this->input->post('TeacherID'),
+                'DevelopmentActivityTypeCode' => $this->input->post('DevelopmentActivityTypeCode'),
+                'DevelopmentActivityName' => $this->input->post('DevelopmentActivityName'),
+                'DevelopmentActivityPlace' => $this->input->post('DevelopmentActivityPlace'),
+                'DevelopmentActivityHour' => $this->input->post('DevelopmentActivityHour'),
+                'Organizer' => $this->input->post('Organizer'),
+                'DevelopmentActivityStartDate' => $this->input->post('DevelopmentActivityStartDate'),
+                'DevelopmentActivityEndDate' => $this->input->post('DevelopmentActivityEndDate'),
+                'DevelopmentDocument'=> $DevelopmentDocument
             ];
             $result =  $this->TeacherDevelopmentActivity_model->insert_TeacherDevelopmentActivity($teacher_development_activity);
             
             if($result == 1 ){
-                show_error('บันทึกข้อมูลสำเร็จ');
                 $this->session->set_flashdata('success',"บันทึกข้อมูลสำเร็จ");
-               // redirect(base_url('list-teacher_development_activity')); //รอเพิ่มหน้า 
-               redirect(base_url('forms-teacher_development_activity')); 
+                redirect(base_url('list-teacher_development_activity')); //รอเพิ่มหน้า 
             }else{
-                show_error('เกิดข้อผิดพลาดในการบันทึกข้อมูล');
                 $this->session->set_flashdata('errors',"เกิดข้อผิดพลาดในการบันทึกข้อมูล");
                 redirect(base_url('forms-teacher_development_activity')); 
             }
+
+        }else{
+            $this->session->set_flashdata('errors',"เกิดข้อผิดพลาดในการบันทึกข้อมูล");
+            redirect(base_url('forms-teacher_development_activity')); 
+         }
             
-     }
+    }
+
+     public function list_teacher_development_activity() {
+        
+        if ( ! file_exists(APPPATH.'views/pages/forms/TeacherDevelopmentActivity/list-teacher_development_activity.php'))
+        {
+            // Whoops, we don't have a page for that!
+            show_404();
+        }
+
+        $data['title'] = 'Teacher Development Activity'; // Capitalize the first letter
+        $data['listTeacherDevelopmentActivity'] = $this->TeacherDevelopmentActivity_model->get_TeacherDevelopmentActivityAll();
+
+
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/sidebar', $data);
+        $this->load->view('pages/forms/TeacherDevelopmentActivity/list-teacher_development_activity', $data);
+        $this->load->view('templates/footer', $data);
+
+    }
+
+
+    public function do_upload($fileName , $field_name ) {
+        $config['upload_path'] = FCPATH."application/documents/";  // โฟลเดอร์ ตำแหน่งเดียวกับ root ของโปรเจ็ค
+        $config['allowed_types'] = 'jpg|jpeg|png|iso|dmg|zip|rar|doc|docx|xls|xlsx|ppt|pptx|csv|ods|odt|odp|pdf|rtf|sxc|sxi|txt|exe|avi|mpeg|3gp'; // ปรเเภทไฟล์ 
+        $config['max_size']     = '0';  // ขนาดไฟล์ (kb)  0 คือไม่จำกัด ขึ้นกับกำหนดใน php.ini ปกติไม่เกิน 2MB
+        $config['file_name'] = $fileName;  // ชื่อไฟล์ ถ้าไม่กำหนดจะเป็นตามชื่อเดิม
+
+        $this->load->library('upload');
+        $this->upload->initialize($config);
+
+        if ( ! $this->upload->do_upload($field_name)) {
+            $error = array('error' => $this->upload->display_errors());
+            return -1 ;
+        }
+        else {
+            $data = array('upload_data' => $this->upload->data());
+            return $this->upload->data('full_path') ;
+        }
+
+    }
    
 }
     
