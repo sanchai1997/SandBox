@@ -34,6 +34,11 @@ class Curriculum_model  extends CI_Model {
         return $query->result();
     }
 
+    public function get_CurriculumSubject_All() {
+        $query = $this->db->get('curriculum_subject');
+        return $query->result();
+    }
+
 
     
 }

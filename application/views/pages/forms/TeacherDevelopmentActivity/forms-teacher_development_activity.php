@@ -123,15 +123,13 @@
                     <label >วันที่สิ้นสุดกิจกรรม</label>
                   </div>
                 </div>
-                
-                <div class="col-md-3">
-                    <label >เอกสารแนบ/เกียรติบัตร</label>
-                </div>
 
-                <div class="col-md-9">
-                    <input type="file" class="form-control" name="DevelopmentDocument" id="DevelopmentDocument" placeholder="เอกสารแนบ/เกียรติบัตร">
+                <div class="col-md-16">
+                    <div class="input-group mb-3">
+                        <label class="input-group-text" for="inputGroupFile01">เอกสารแนบ/เกียรติบัตร</label>
+                        <input type="file" class="form-control" name="DevelopmentDocument" id="DevelopmentDocument" placeholder="เอกสารแนบ/เกียรติบัตร">
+                    </div>
                 </div>
-
                 
                 <button type="submit" class="btn btn-primary" onclick="return check(teacher_developmant_activity)">ยืนยัน</button>
               </form><!-- End Form ข้อมูลการพัฒนาบุคลากรครู -->
@@ -143,7 +141,8 @@
 
       </div>
     </section>
-    <script type="text/javascript">
+
+<script type="text/javascript">
   function check(frm){
     /*
   //Check_EDUCATION_YEAR

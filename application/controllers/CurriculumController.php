@@ -13,7 +13,7 @@ class CurriculumController extends CI_Controller{
 
     public function forms_curriculum() {
         
-        if ( ! file_exists(APPPATH.'views/pages/forms/Curriculum/forms-Curriculum.php'))
+        if ( ! file_exists(APPPATH.'views/pages/forms/Curriculum/forms-curriculum.php'))
         {
             // Whoops, we don't have a page for that!
             show_404();
@@ -24,9 +24,11 @@ class CurriculumController extends CI_Controller{
         $data['listCurriculumType'] = $this->Code_model->get_CurriculumType_All();
         $data['listEducationLevel'] = $this->Code_model->get_EducationLevel_All();
         $data['listGradeLevel'] = $this->Code_model->get_GradeLevel_All();
+        #### เตรียมลบออก
         $data['listSubjectGroup'] = $this->Code_model->get_SubjectGroup_All();
         $data['listSubjectType'] = $this->Code_model->get_Subject_Type_All();
         $data['listCompetency'] = $this->Code_model->get_Competency_Type_All();
+        ####
 
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
@@ -80,51 +82,6 @@ class CurriculumController extends CI_Controller{
 
     }
 
-    public function add_curriculum_subject() {
-        // add_curriculum_subject
-        $CURRICULUM_SUBJECT = [
-            'CurriculumID' => $CurriculumID,
-            'SubjectName' => $this->input->post('SubjectName'),
-            'SubjectCode' => $this->input->post('SubjectCode'),
-            'SubjectGroupCode' => $this->input->post('SubjectGroupCode'),
-            'SubjectTypeCode' => $this->input->post('SubjectTypeCode'),
-            'Credit' => $this->input->post('Credit'),
-            'LearningHour' => $this->input->post('LearningHour')
-        ];
-        $result_CURRICULUM_SUBJECT = $this->Curriculum_model->insert_curriculum_subject($CURRICULUM_SUBJECT);
-
-      
-        if($result_CURRICULUM_SUBJECT == 1 ){
-            $this->session->set_flashdata('success',"บันทึกข้อมูลสำเร็จ");
-            redirect(base_url('list-curriculum'));
-        }else{
-            $this->session->set_flashdata('errors',"เกิดข้อผิดพลาดในการบันทึกข้อมูล");
-            redirect(base_url('forms-curriculum'));
-        }
-
-    }
-
-    public function add_curriculum_school_competency() {
-        // add_curriculum_school_competency
-        $CURRICULUM_SCHOOl_COMPETENCY = [
-            'CurriculumID' => $CurriculumID,
-            'CompetencyCode' => $this->input->post('CompetencyCode'),
-        ];
-        $result_SCHOOl_COMPETENCY = $this->Curriculum_model->insert_curriculum_school_competency($CURRICULUM_SCHOOl_COMPETENCY);
-
-        if($result_SCHOOl_COMPETENCY == 1){
-            show_error('successs');
-
-            $this->session->set_flashdata('success',"บันทึกข้อมูลสำเร็จ");
-            redirect(base_url('list-curriculum'));
-        }else{
-            show_error('errorrrr');
-            $this->session->set_flashdata('errors',"เกิดข้อผิดพลาดในการบันทึกข้อมูล");
-            redirect(base_url('forms-curriculum'));
-        }
-
-    }
-
     public function do_upload($fileName , $field_name ) {
         $config['upload_path'] = FCPATH."application/documents/";  // โฟลเดอร์ ตำแหน่งเดียวกับ root ของโปรเจ็ค
         $config['allowed_types'] = 'jpg|jpeg|png|iso|dmg|zip|rar|doc|docx|xls|xlsx|ppt|pptx|csv|ods|odt|odp|pdf|rtf|sxc|sxi|txt|exe|avi|mpeg|3gp'; // ปรเเภทไฟล์ 
@@ -147,7 +104,7 @@ class CurriculumController extends CI_Controller{
     
     public function list_curriculum() {
         
-        if ( ! file_exists(APPPATH.'views/pages/forms/Curriculum/list-Curriculum.php'))
+        if ( ! file_exists(APPPATH.'views/pages/forms/Curriculum/list-curriculum.php'))
         {
             // Whoops, we don't have a page for that!
             show_404();
@@ -161,6 +118,93 @@ class CurriculumController extends CI_Controller{
         $this->load->view('templates/sidebar', $data);
         $this->load->view('pages/forms/Curriculum/list-curriculum', $data);
         $this->load->view('templates/footer', $data);
+
+    }
+
+    public function list_curriculum_subject() {
+        
+        if ( ! file_exists(APPPATH.'views/pages/forms/Curriculum/list-curriculum_subject.php'))
+        {
+            // Whoops, we don't have a page for that!
+            show_404();
+        }
+
+        $data['title'] = 'Curriculum Subject'; // Capitalize the first letter
+        ###ส่ง pk มา แล้ว where id ด้วย
+        $data['listCurriculumSubject'] = $this->Curriculum_model->get_CurriculumSubject_All();
+        ### listCurriculumSubject ยังไม่เสร็จจจจจจ
+
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/sidebar', $data);
+        $this->load->view('pages/forms/Curriculum/list-curriculum_subject', $data);
+        $this->load->view('templates/footer', $data);
+
+    }
+
+    public function forms_curriculum_subject() {
+        
+        if ( ! file_exists(APPPATH.'views/pages/forms/Curriculum/forms-curriculum_subject.php'))
+        {
+            // Whoops, we don't have a page for that!
+            show_404();
+        }
+
+        $data['title'] = 'Curriculum Subject'; // Capitalize the first letter
+        $data['listSubjectGroup'] = $this->Code_model->get_SubjectGroup_All();
+        $data['listSubjectType'] = $this->Code_model->get_Subject_Type_All();
+        $data['listCompetency'] = $this->Code_model->get_Competency_Type_All();
+        ###ส่ง pk มา จะได้รู้ว่าเพิ่มวิชาของหลักสูตรไหน
+
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/sidebar', $data);
+        $this->load->view('pages/forms/Curriculum/forms-curriculum_subject', $data);
+        $this->load->view('templates/footer', $data);
+
+    }
+
+    public function add_curriculum_subject() {
+        // add_curriculum_subject
+        $CURRICULUM_SUBJECT = [
+            'CurriculumID' => $CurriculumID,
+            'SubjectName' => $this->input->post('SubjectName'),
+            'SubjectCode' => $this->input->post('SubjectCode'),
+            'SubjectGroupCode' => $this->input->post('SubjectGroupCode'),
+            'SubjectTypeCode' => $this->input->post('SubjectTypeCode'),
+            'Credit' => $this->input->post('Credit'),
+            'LearningHour' => $this->input->post('LearningHour')
+        ];
+        $result_CURRICULUM_SUBJECT = $this->Curriculum_model->insert_curriculum_subject($CURRICULUM_SUBJECT);
+
+      
+        if($result_CURRICULUM_SUBJECT == 1 ){
+            $this->session->set_flashdata('success',"บันทึกข้อมูลสำเร็จ");
+            redirect(base_url('list-curriculum_subject'));
+        }else{
+            $this->session->set_flashdata('errors',"เกิดข้อผิดพลาดในการบันทึกข้อมูล");
+            redirect(base_url('forms-curriculum_subject'));
+        }
+
+    }
+
+    ### ยุบรวม add_curriculum_subject() เลยดีมะ
+    public function add_curriculum_school_competency() {
+        // add_curriculum_school_competency
+        $CURRICULUM_SCHOOl_COMPETENCY = [
+            'CurriculumID' => $CurriculumID,
+            'CompetencyCode' => $this->input->post('CompetencyCode'),
+        ];
+        $result_SCHOOl_COMPETENCY = $this->Curriculum_model->insert_curriculum_school_competency($CURRICULUM_SCHOOl_COMPETENCY);
+
+        if($result_SCHOOl_COMPETENCY == 1){
+            show_error('successs');
+
+            $this->session->set_flashdata('success',"บันทึกข้อมูลสำเร็จ");
+            redirect(base_url('list-curriculum_subject'));
+        }else{
+            show_error('errorrrr');
+            $this->session->set_flashdata('errors',"เกิดข้อผิดพลาดในการบันทึกข้อมูล");
+            redirect(base_url('forms-curriculum_subject'));
+        }
 
     }
 
