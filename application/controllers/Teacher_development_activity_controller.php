@@ -103,6 +103,16 @@ class Teacher_development_activity_controller extends CI_Controller{
         }
 
     }
+    public function edit_teacher_development_activity(){
+        
+
+        $data['TeacherDevelopmentActivity'] = $this->TeacherDevelopmentActivity_model->get_TeacherDevelopmentActivity();
+
+        $this->load->view('templates/header');
+        $this->load->view('templates/sidebar');
+        $this->load->view('pages/forms/TeacherDevelopmentActivity/edit-forms-teacher_development_activity',$data);
+        $this->load->view('templates/footer');
+    }
    
 }
     

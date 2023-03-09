@@ -22,7 +22,10 @@ $route['add_curriculum_subject']['post'] = 'CurriculumController/add_curriculum_
 //teacher_developmant_activity
 $route['list-teacher_development_activity'] = 'Teacher_development_activity_controller/list_teacher_development_activity';
 $route['forms-teacher_development_activity'] = 'Teacher_development_activity_controller/forms';
+$route['edit-forms-teacher_development_activity'] = 'Teacher_development_activity_controller/edit_teacher_development_activity';
 $route['add_teacher_development_activity']['post'] = 'Teacher_development_activity_controller/add_teacher_development_activity';
+
+
 
 
 

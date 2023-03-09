@@ -62,6 +62,7 @@
                             <th style="text-align: center;" scope="col">วันที่เริ่มจัดกิจกรรม</th>
                             <th style="text-align: center;" scope="col">วันที่สิ้นสุดกิจกรรม</th>
                             <th style="text-align: center;" scope="col">เอกสารแนบ/เกียรติบัตร*</th>
+                            <th style="text-align: center;" scope="col">แก้ไขข้อมูล</th>
 
                         </tr>
                     </thead>
@@ -85,6 +86,11 @@
                                 <td style="text-align: center;"><?php echo $ls->DevelopmentActivityStartDate ; ?></td>
                                 <td style="text-align: center;"><?php echo $ls->DevelopmentActivityEndDate; ?></td>
                                 <td style="text-align: center;"></td>
+                                <td style="text-align: center;">
+                                    <?php 
+                                        echo '<a href="edit-forms-teacher_development_activity"><input type="submit"/> </a>';
+                                    ?>
+                                </td>
 
 
                             </tr>

@@ -208,6 +208,12 @@ class CurriculumController extends CI_Controller{
         }
 
     }
+    public function edit_teacher_development_activity(){
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/sidebar', $data);
+        $this->load->view('pages/forms/Curriculum/forms-curriculum', $data);
+        $this->load->view('templates/footer', $data);
+    }
 
 
 }
