@@ -144,7 +144,7 @@
 
 <script type="text/javascript">
   function check(frm){
-    /*
+    
   //Check_EDUCATION_YEAR
   var EducationYear = /^[0-9]{4}$/;
     if(frm.DevelopmentActivityEducationYear.value ==""){
@@ -156,7 +156,7 @@
         frm.DevelopmentActivityEducationYear.value = "";
         return false;
     }
-  //Check_SEMESTER
+    //Check_SEMESTER
     if(frm.DevelopmentActivitySemester.value==-1){
       alert("กรุณาเลือกภาคเรียน");
       return false;
@@ -167,7 +167,7 @@
       return false;
     }
     //Check_DevelopmentActivityTypeCode
-    if(frm.Check_DevelopmentActivityTypeCode.value==-1){
+    if(frm.DevelopmentActivityTypeCode.value==-1){
       alert("กรุณาเลือกประเภทกิจกรรม");
       return false;
     }
@@ -218,13 +218,12 @@
         return false;
     }
 
-     //Check_DevelopmentActivityStartDate and Check_DevelopmentActivityEndDate
-    if(frm.DevelopmentActivityStartDate.value ==""){
+     //Check_DevelopmentActivityStartDate  
+    if(frm.DevelopmentActivityStartDate.value == ""){
       alert("กรุณากรอกข้อมูลวันที่เริ่มต้น");
       return false;
-    }else if(frm.DevelopmentActivityEndDate.value ==""){
-      alert("กรุณากรอกข้อมูลวันที่สิ้นสุด");
-      return false;
+
+      
     }else if(frm.DevelopmentActivityStartDate.value =="" && frm.DevelopmentActivityEndDate.value !="" ){
       alert("กรุณากรอกข้อมูลวันที่เริ่มต้นก่อน");
       return false;
@@ -235,21 +234,17 @@
       alert("กรุณากรอกข้อมูลวันที่เริ่มต้นใหน้อยกว่าวันที่สิ้นสุด");
       return false;
     }
-*/
-    
-
-
-
-    
-
-
-    
-
-
-
-    
-
-    
+    //Check_DevelopmentActivityEndDate
+    if(frm.DevelopmentActivityEndDate.value ==""){
+      alert("กรุณากรอกข้อมูลวันที่สิ้นสุด");
+      return false;
+    }
+    //Check_DevelopmentDocument(เอกสารแนบ/เกียรติบัตร)
+    if(frm.DevelopmentDocument.value ==""){
+      alert("กรุณาแนบไฟล์เอกสารเกียรติบัตร");
+      frm.DevelopmentDocument.value = "";
+      return false;
+    } 
   }
 </script>  
   </main><!-- End #main -->
