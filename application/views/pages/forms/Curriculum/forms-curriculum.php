@@ -119,7 +119,7 @@
                 <div class="row mb-3">
                   <label for="inputFile" class="col-sm-2 col-form-label">จำนวนห้องที่สอนด้วยหลักสูตร</label>
                   <div class="col-sm-10">
-                    <input type="text" class="form-control"  name="ClassroomNumber" id="ClassroomNumber"  placeholder="จำนวนห้องที่สอนด้วยหลักสูตร" maxLength="3">
+                    <input type="number" class="form-control"  name="ClassroomNumber" id="ClassroomNumber" min="1" max="999" placeholder="จำนวนห้องที่สอนด้วยหลักสูตร">                  
                   </div>
                 </div>
 

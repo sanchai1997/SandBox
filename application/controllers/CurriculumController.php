@@ -122,6 +122,7 @@ class CurriculumController extends CI_Controller{
     }
 
     public function list_curriculum_subject() {
+
         
         if ( ! file_exists(APPPATH.'views/pages/forms/Curriculum/list-curriculum_subject.php'))
         {
@@ -130,8 +131,8 @@ class CurriculumController extends CI_Controller{
         }
 
         $data['title'] = 'Curriculum Subject'; // Capitalize the first letter
-        ###ส่ง pk มา แล้ว where id ด้วย
-        $data['listCurriculumSubject'] = $this->Curriculum_model->get_CurriculumSubject_All();
+        $data['CurriculumID']  = $this->uri->segment(2); 
+        $data['listCurriculumSubject'] = $this->Curriculum_model->get_CurriculumSubject_All($data['CurriculumID']);
         ### listCurriculumSubject ยังไม่เสร็จจจจจจ
 
         $this->load->view('templates/header', $data);
