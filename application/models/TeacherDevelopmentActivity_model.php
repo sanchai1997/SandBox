@@ -27,6 +27,14 @@ class TeacherDevelopmentActivity_model extends CI_Model {
         
         return $query->result();
     }
+
+    public function update_TeacherDevelopmentActivityt($CurriculumID, $SubjectCode, $CURRICULUM_SUBJECT) {
+        $this->db->where('CurriculumID', $CurriculumID)
+                ->where('SubjectCode ', $SubjectCode  ) ;
+        $result_CURRICULUM_SUBJECT = $this->db->update('curriculum_subject', $CURRICULUM_SUBJECT);
+        return $result_CURRICULUM_SUBJECT;
+    
+    }
     
 
     

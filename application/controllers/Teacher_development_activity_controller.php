@@ -114,6 +114,38 @@ class Teacher_development_activity_controller extends CI_Controller{
         $this->load->view('pages/forms/TeacherDevelopmentActivity/edit-forms-teacher_development_activity',$data);
         $this->load->view('templates/footer');
     }
+    public function editform_teacher_development_activity() {
+
+        $DevelopmentDocument = $this->do_upload('DevelopmentDocument',"DevelopmentDocument");
+
+        if($DevelopmentDocument != -1 ){
+            $teacher_development_activity = [
+                'DevelopmentActivityEducationYear' => $this->input->post('DevelopmentActivityEducationYear'),
+                'DevelopmentActivitySemester' => $this->input->post('DevelopmentActivitySemester'),
+                'TeacherID' => $this->input->post('TeacherID'),
+                'DevelopmentActivityTypeCode' => $this->input->post('DevelopmentActivityTypeCode'),
+                'DevelopmentActivityName' => $this->input->post('DevelopmentActivityName'),
+                'DevelopmentActivityPlace' => $this->input->post('DevelopmentActivityPlace'),
+                'DevelopmentActivityHour' => $this->input->post('DevelopmentActivityHour'),
+                'Organizer' => $this->input->post('Organizer'),
+                'DevelopmentActivityStartDate' => $this->input->post('DevelopmentActivityStartDate'),
+                'DevelopmentActivityEndDate' => $this->input->post('DevelopmentActivityEndDate'),
+                'DevelopmentDocument'=> $DevelopmentDocument
+            ];
+            $result =  $this->TeacherDevelopmentActivity_model->update_TeacherDevelopmentActivityt($teacher_development_activity);
+            
+            if($result == 1 ){
+                $this->session->set_flashdata('success',"บันทึกข้อมูลสำเร็จ");
+                redirect(base_url('list-teacher_development_activity')); //รอเพิ่มหน้า 
+            }else{
+                $this->session->set_flashdata('errors',"เกิดข้อผิดพลาดในการบันทึกข้อมูล");
+                redirect(base_url('forms-teacher_development_activity')); 
+            }
+
+        }else{
+            $this->session->set_flashdata('errors',"เกิดข้อผิดพลาดในการบันทึกข้อมูล");
+            redirect(base_url('forms-teacher_development_activity')); 
+         }
    
 }
     
