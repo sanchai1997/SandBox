@@ -1,10 +1,10 @@
+<body onload="onloadpage()">
 <main id="main" class="main">
-
+<?php foreach($TeacherDevelopmentActivity as $TD) { ?>
     <div class="pagetitle">
     <h1>
-    <?php
-       echo $TeacherDevelopmentActivity;
-      ?> </h1>
+    แก้ไขข้อมูลการพัฒนาบุคลากร
+      </h1>
       <nav>
         <ol class="breadcrumb">
           <li class="breadcrumb-item"><a href="index.html">Home</a></li>
@@ -43,15 +43,14 @@
                   
                 <div class="col-md-16">
                   <div class="form-floating">
-                    <input type="text" class="form-control"name="DevelopmentActivityEducationYear"id="DevelopmentActivityEducationYear" placeholder="ปีการศึกษา" maxlength="4">
+                    <input type="text" class="form-control"name="DevelopmentActivityEducationYear"id="DevelopmentActivityEducationYear" placeholder="ปีการศึกษา" maxlength="4" value="<?php echo $TD->DevelopmentActivityEducationYear; ?>">
                     <label >ปีการศึกษา</label>
                   </div>
                 </div>
 
                 <div class="col-md-16">
                   <div class="form-floating">
-                  <select class="form-select" aria-label="Default select example" name="DevelopmentActivitySemester" id="DevelopmentActivitySemester">
-                      <option selected value="-1">เลือกภาคเรียน</option>
+                  <select class="form-select" aria-label="Default select example" name="DevelopmentActivitySemester" id="DevelopmentActivitySemester">       
                       <option value="0">ตลอดปีการศึกษา</option>
                       <option value="1">ภาคเรียนที่ 1</option>
                       <option value="2">ภาคเรียนที่ 2</option>
@@ -60,11 +59,10 @@
                   </div>
                 </div>
                 
-              
+       
                 <div class="col-md-16">
                   <div class="form-floating">
                     <select class="form-select" aria-label="Default select example"  name="TeacherID"id="TeacherID">
-                      <option selected value="-1">เลือกครูและบุคลากรทางการศึกษา</option>
                         <?php foreach($listTeacher as $lt) { ?>
                           <option value="<?php echo $lt->TEACHER_ID; ?>"><?php echo " (" . $lt->TEACHER_ID . ") " . $lt->NAME_TH; ?></option>
                         <?php } ?>
@@ -76,7 +74,6 @@
                 <div class="col-md-16">
                   <div class="form-floating">
                     <select class="form-select" aria-label="Default select example"  name="DevelopmentActivityTypeCode"id="DevelopmentActivityTypeCode">
-                      <option selected value="-1">เลือกประเภทกิจกรรม</option>
                       <?php foreach($listDevelopmentActivityType as $lAT) { ?>
                           <option value="<?php echo $lAT->DevelopmentActivityTypeCode; ?>"><?php echo $lAT->DevelopmentActivityTypeName; ?></option>
                         <?php } ?>
@@ -87,42 +84,42 @@
 
                 <div class="col-md-16">
                   <div class="form-floating">
-                    <input type="text" class="form-control"name="DevelopmentActivityName"id="DevelopmentActivityName" placeholder="ชื่อกิจกรรม">
+                    <input type="text"  class="form-control"name="DevelopmentActivityName"id="DevelopmentActivityName" placeholder="ชื่อกิจกรรม" value="<?php echo $TD->DevelopmentActivityName; ?>">
                     <label >ชื่อกิจกรรม</label>
                   </div>
                 </div>
 
                 <div class="col-md-16">
                   <div class="form-floating">
-                    <input type="text" class="form-control"name="DevelopmentActivityHour"id="DevelopmentActivityHour" placeholder="จำนวนชั่วโมง" maxlength="3">
+                    <input type="text" class="form-control"name="DevelopmentActivityHour"id="DevelopmentActivityHour" placeholder="จำนวนชั่วโมง" maxlength="3" value="<?php echo $TD->DevelopmentActivityHour; ?>">
                     <label >จำนวนชั่วโมง</label>
                   </div>
                 </div>
                 
                 <div class="col-md-16">
                   <div class="form-floating">
-                    <input type="text" class="form-control"id="DevelopmentActivityPlace" name="DevelopmentActivityPlace" placeholder="สถานที่จัดกิจกรรม">
+                    <input type="text" class="form-control"id="DevelopmentActivityPlace" name="DevelopmentActivityPlace" placeholder="สถานที่จัดกิจกรรม" value="<?php echo $TD->DevelopmentActivityPlace; ?>">
                     <label >สถานที่จัดกิจกรรม</label>
                   </div>
                 </div>
 
                 <div class="col-md-16">
                   <div class="form-floating">
-                  <input type="text" class="form-control" name="Organizer"id="Organizer"placeholder="หน่วยงานที่จัดกิจกรรม">
+                  <input type="text" class="form-control" name="Organizer"id="Organizer"placeholder="หน่วยงานที่จัดกิจกรรม" value="<?php echo $TD->Organizer; ?>">
                     <label >หน่วยงานที่จัดกิจกรรม</label>
                   </div>
                 </div>
 
                 <div class="col-md-6">
                   <div class="form-floating">
-                    <input type="date" class="form-control" name="DevelopmentActivityStartDate"id="DevelopmentActivityStartDate">
+                    <input type="date" class="form-control" name="DevelopmentActivityStartDate"id="DevelopmentActivityStartDate" value="<?php echo $TD->DevelopmentActivityStartDate; ?>">
                     <label >วันที่เริ่มกิจกรรม</label>
                   </div>
                 </div>
 
                 <div class="col-md-6">
                   <div class="form-floating">
-                    <input type="date" class="form-control"name="DevelopmentActivityEndDate"id="DevelopmentActivityEndDate">
+                    <input type="date" class="form-control"name="DevelopmentActivityEndDate"id="DevelopmentActivityEndDate" value="<?php echo $TD->DevelopmentActivityEndDate; ?>">
                     <label >วันที่สิ้นสุดกิจกรรม</label>
                   </div>
                 </div>
@@ -130,11 +127,11 @@
                 <div class="col-md-16">
                     <div class="input-group mb-3">
                         <label class="input-group-text" for="inputGroupFile01">เอกสารแนบ/เกียรติบัตร</label>
-                        <input type="file" class="form-control" name="DevelopmentDocument" id="DevelopmentDocument" placeholder="เอกสารแนบ/เกียรติบัตร">
+                        <input type="file" class="form-control" name="DevelopmentDocument" id="DevelopmentDocument" placeholder="เอกสารแนบ/เกียรติบัตร"  value="<?php echo $TD->DevelopmentDocument; ?>">
                     </div>
                 </div>
                 
-                <button type="submit" class="btn btn-primary" onclick="return check(teacher_developmant_activity)">ยืนยัน</button>
+                <button type="submit" class="btn btn-warning" onclick="return check(teacher_developmant_activity)">แก้ไขข้อมูล</button>
               </form><!-- End Form ข้อมูลการพัฒนาบุคลากรครู -->
 
             </div>
@@ -146,6 +143,41 @@
     </section>
 
 <script type="text/javascript">
+
+  function onloadpage(){
+   
+    ///DevelopmentActivitySemester
+    var my_DevelopmentActivitySemester = "<?php echo $TD->DevelopmentActivitySemester; ?>";
+
+    var selectoption_DevelopmentActivitySemester = document.querySelector('#DevelopmentActivitySemester');
+    selectoption_DevelopmentActivitySemester[my_DevelopmentActivitySemester].selected = true;
+   
+
+    ///TeacherID
+    var my_TeacherID = "<?php echo $TD->TeacherID; ?>";
+    var selectoption_my_TeacherID = document.querySelector('#TeacherID');
+    var size_my_TeacherID =  document.getElementById("TeacherID").options.length;
+    for (let i = 0; i < size_my_TeacherID; i++) {
+      if(selectoption_my_TeacherID[i].value==my_TeacherID){
+        selectoption_my_TeacherID[i].selected = true;
+      }
+    }
+
+    ///DevelopmentActivityTypeCode
+    var my_DevelopmentActivityTypeCode = "<?php echo $TD->DevelopmentActivityTypeCode; ?>";
+    var selectoption_DevelopmentActivityTypeCode = document.querySelector('#DevelopmentActivityTypeCode');
+    var size_my_DevelopmentActivityTypeCode =  document.getElementById("DevelopmentActivityTypeCode").options.length;
+     
+    for (let i = 0; i < size_my_DevelopmentActivityTypeCode; i++) {
+      
+      if(selectoption_DevelopmentActivityTypeCode[i].value==my_DevelopmentActivityTypeCode){
+        selectoption_DevelopmentActivityTypeCode[i].selected = true;
+      }
+    }
+
+ 
+  }
+           
   function check(frm){
     
   //Check_EDUCATION_YEAR
@@ -250,4 +282,6 @@
     } 
   }
 </script>  
+<?php } ?>
   </main><!-- End #main -->
+  </body>

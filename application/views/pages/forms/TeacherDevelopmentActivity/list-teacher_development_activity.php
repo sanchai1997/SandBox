@@ -87,9 +87,11 @@
                                 <td style="text-align: center;"><?php echo $ls->DevelopmentActivityEndDate; ?></td>
                                 <td style="text-align: center;"></td>
                                 <td style="text-align: center;">
-                                    <?php 
-                                        echo '<a href="edit-forms-teacher_development_activity"><input type="submit"/> </a>';
-                                    ?>
+                            
+                                <a href='edit-forms-teacher_development_activity?name=<?php echo $ls->DevelopmentActivityName;?>'>
+                                <button type="submit" class="btn btn-warning">แก้ไขข้อมูล</button>    
+                                </a>
+                                    
                                 </td>
 
 

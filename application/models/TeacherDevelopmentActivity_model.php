@@ -20,8 +20,11 @@ class TeacherDevelopmentActivity_model extends CI_Model {
         return $query->result();
     }
 
-    public function get_TeacherDevelopmentActivity() {
-        $query = $this->db->get_where('teacher_development_activity', array('DevelopmentActivityName ' => 'ชื่อกิจ2'));
+    public function get_TeacherDevelopmentActivity($TeacherDevelopmentActivityName) {
+        $this->db->from('teacher_development_activity');
+        $this->db->where('DevelopmentActivityName', $TeacherDevelopmentActivityName);
+        $query = $this->db->get();
+        
         return $query->result();
     }
     
