@@ -66,7 +66,7 @@
                     <select class="form-select" aria-label="Default select example" name="SchoolID" id="SchoolID">
                       <option selected value="-1">เลือกสถานศึกษา</option>
                       <?php foreach($listSchool as $ls) { ?>
-                        <option value="<?php echo $ls->SCHOOL_ID; ?>"><?php echo $ls->NAME_TH; ?></option>
+                        <option value="<?php echo $ls->SchoolID; ?>"><?php echo $ls->SchoolNameThai; ?></option>
                       <?php } ?>
                       
                     </select>
@@ -126,7 +126,7 @@
                 <div class="row mb-3">
                   <label for="inputFile" class="col-sm-2 col-form-label">เอกสารหลักสูตร</label>
                   <div class="col-sm-10">
-                    <input type="file" class="form-control"  name="CurriculumDocumentURL1" id="CurriculumDocumentURL1">
+                    <input type="file" class="form-control"  name="CurriculumDocumentURL" id="CurriculumDocumentURL">
                   </div>
                 </div>
 
@@ -158,81 +158,6 @@
              </form>
 <!-- End Form ข้อมูลหลักสูตร -->
 
-              <!-- start Form ข้อมูลหลักสูตรรายวิชา -->
-             <form name="ttttt" id="tttt">
-                <h5 class="card-title">ข้อมูลหลักสูตรรายวิชา   ** สามารถมีได&หลายรายการ และไม่จำเป็นต&องกรอก **</h5>
-
-                <div class="row mb-3">
-                  <label for="inputText" class="col-sm-2 col-form-label">ชื่อรายวิชา</label>
-                  <div class="col-sm-10">
-                    <input type="text" class="form-control" name="SubjectName" id="SubjectName" placeholder="ชื่อรายวิชา"  maxlength="100">
-                  </div>
-                </div>
-
-                <div class="row mb-3">
-                  <label for="inputText" class="col-sm-2 col-form-label" >รหัสวิชา</label>
-                  <div class="col-sm-10">
-                    <input type="text" class="form-control"name="SubjectCode" id="SubjectCode" placeholder="รหัสวิชา" maxlength="10">
-                  </div>
-                </div>
-
-                <div class="row mb-3">
-                  <label class="col-sm-2 col-form-label">กลุ่มสาระการเรียนรู้ / การศึกษาค้นคว้าด้วยตนเอง</label>
-                  <div class="col-sm-10">
-                    <select class="form-select" aria-label="Default select example" name="SubjectGroupCode" id="SubjectGroupCode">
-                      <option selected value="-1">เลือกกลุ่มสาระการเรียนรู้ / การศึกษาค้นคว้าด้วยตนเอง</option>
-                      <?php foreach($listSubjectGroup as $ls) { ?>
-                        <option value="<?php echo $ls->SubjectGroupCode; ?>"><?php echo $ls->SubjectGroupName; ?></option>
-                      <?php } ?>
-                    </select>
-                  </div>
-                </div>
-
-                <div class="row mb-3">
-                  <label class="col-sm-2 col-form-label">ประเภทวิชา</label>
-                  <div class="col-sm-10">
-                    <select class="form-select" aria-label="Default select example" name="SubjectTypeCode" id="SubjectTypeCode">
-                      <option selected value="-1">เลือกประเภทวิชา</option>
-                      <?php foreach($listSubjectType as $ls) { ?>
-                        <option value="<?php echo $ls->SubjectTypeCode; ?>"><?php echo $ls->SubjectTypeName ; ?></option>
-                      <?php } ?>
-                    </select>
-                  </div>
-                </div>
-
-                <div class="row mb-3">
-                  <label for="inputText" class="col-sm-2 col-form-label">หน่วยกิต/หน่วยน้ำหนัก</label>
-                  <div class="col-sm-10">
-                    <input type="text" class="form-control" name="Credit"id="Credit" placeholder="หน่วยกิต/หน่วยน้ำหนัก">
-                  </div>
-                </div>
-
-                <div class="row mb-3">
-                  <label for="inputText" class="col-sm-2 col-form-label">จำนวนชั่วโมงเรียน</label>
-                  <div class="col-sm-10">
-                    <input type="text" class="form-control" name="LearningHour"id="LearningHour" placeholder="จำนวนชั่วโมงเรียน">
-                  </div>
-                </div>
-               
-                    
-              <!-- End Form ข้อมูลหลักสูตรรายวิชา -->
-
-              <!-- start Form ข้อมูลสมรรถนะของหลักสูตร -->
-                <h5 class="card-title">ข้อมูลสมรรถนะของหลักสูตร   ** สามารถมีได้หลายรายการ และไม่จำเป็นต้องกรอก **</h5>
-
-                <div class="row mb-3">
-                  <label class="col-sm-2 col-form-label">สมรรถนะ</label>
-                  <div class="col-sm-10">
-                    <select class="form-select" aria-label="Default select example" name="CompetencyCode" id="CompetencyCode">
-                      <option selected value="-1">เลือกสมรรถนะ</option>
-                      <?php foreach($listCompetency as $ls) { ?>
-                        <option value="<?php echo $ls->CompetencyCode; ?>"><?php echo $ls->CompetencyName; ?></option>
-                      <?php } ?> 
-                    </select>                   
-                  </div>
-                </div>
-                <button type="submit" class="btn btn-primary" onclick="return check_2(ttttt)">ยืนยัน2</button>
-                </form>
               <!-- End Form ข้อมูลสมรรถนะของหลักสูตร -->
 
             </div>
@@ -351,47 +276,6 @@
         return false;
     }
   }
-  function check_2(frm2){
-    
-    //Check_CHECK_SubjectName(ชื่อรายวิชา)
-    var CHECK_SubjectName = /^[A-Z,a-z,ก-์,0-9]{1,100}$/;
-    if(frm2.SubjectName.value==""){
-        alert("กรุณากรอกชื่อรายวิชา");
-        return false;
-    }else if(!frm2.SubjectName.value.match(CHECK_SubjectName)){
-      alert("กรุณากรอกชื่อรายวิชาให้ถูกต้อง");
-      return false;
-    }
-    //Check_CHECK_SubjectCode(รหัสวิชา)
-    var CHECK_SubjectCode = /^[A-Z,a-z,ก-์,0-9]{1,10}$/;
-    if(frm2.SubjectCode.value==""){
-        alert("กรุณากรอกรหัสวิชา");
-        return false;
-    }else if(!frm2.SubjectCode.value.match(CHECK_SubjectCode)){
-      alert("กรุณากรอกรหัสวิชาให้ถูกต้อง");
-      return false;
-    }
-    //Check_SubjectGroupCode(กลุ่มสาระการเรียนรู้ / การศึกษาค้นคว้าด้วยตนเอง)
-    if(frm2.SubjectGroupCode.value==-1){
-      alert("กรุณาเลือกกลุ่มสาระการเรียนรู้ / การศึกษาค้นคว้าด้วยตนเอง");
-      return false;
-    }
-     //Check_SubjectTypeCode(รหัสประเภทรายวิชา)
-     if(frm2.SubjectTypeCode.value==-1){
-      alert("กรุณาเลือกประเภทรายวิชา");
-      return false;
-    }
-     //Check_CompetencyCode(สมรรถนะ)
-     if(frm2.CompetencyCode.value==-1){
-      alert("กรุณาเลือกสมรรถนะ");
-      return false;
-    }
 
-    
-
-    
-
-    
-  }
 </script>    
 </main><!-- End #main -->
