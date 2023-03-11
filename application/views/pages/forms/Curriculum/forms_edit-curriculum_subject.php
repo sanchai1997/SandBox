@@ -32,74 +32,69 @@
 
       <div class="row">
         <div class="col-lg-9">
-
           <div class="card">
-
             <div class="card-body">
-
-
               <h5 class="card-title">ข้อมูลหลักสูตรรายวิชา</h5>
 
               <!-- start Form ข้อมูลหลักสูตรรายวิชา -->
-              <form action="<?php echo base_url('edit_curriculum_subject');?>" method="POST" name="CurriculumSubject" id="CurriculumSubject" enctype="multipart/form-data"> 
-              <input type="hidden" name="CurriculumID" id="CurriculumID" value="<?php echo $cs->CurriculumID; ?>">
-              <input type="hidden" name="Old_SubjectCode" id="Old_SubjectCode" value="<?php echo $cs->SubjectCode; ?>">
+              <form class="row g-3" action="<?php echo base_url('edit_curriculum_subject');?>" method="POST" name="CurriculumSubject" id="CurriculumSubject" enctype="multipart/form-data"> 
+                <input type="hidden" name="CurriculumID" id="CurriculumID" value="<?php echo $cs->CurriculumID; ?>">
+                <input type="hidden" name="Old_SubjectCode" id="Old_SubjectCode" value="<?php echo $cs->SubjectCode; ?>">
 
-              <div class="row mb-3">
-                  <label for="inputText" class="col-sm-2 col-form-label">ชื่อรายวิชา</label>
-                  <div class="col-sm-10">
-                    <input type="text" class="form-control" name="SubjectName" id="SubjectName" placeholder="ชื่อรายวิชา"  maxlength="100" value="<?php echo $cs->SubjectName; ?>">
-                  </div>
+                <div class="col-md-16">
+                    <div class="form-floating">
+                      <input type="text" class="form-control" name="SubjectName" id="SubjectName" placeholder="ชื่อรายวิชา"  maxlength="100" value="<?php echo $cs->SubjectName; ?>">
+                      <label >ชื่อรายวิชา</label>
+                    </div>
                 </div>
 
-                <div class="row mb-3">
-                  <label for="inputText" class="col-sm-2 col-form-label" >รหัสวิชา</label>
-                  <div class="col-sm-10">
-                    <input type="text" class="form-control"name="SubjectCode" id="SubjectCode" placeholder="รหัสวิชา" maxlength="10" value="<?php echo $cs->SubjectCode; ?>">
-                  </div>
+                <div class="col-md-16">
+                    <div class="form-floating">
+                      <input type="text" class="form-control"name="SubjectCode" id="SubjectCode" placeholder="รหัสวิชา" maxlength="10" value="<?php echo $cs->SubjectCode; ?>">
+                      <label >รหัสวิชา</label>
+                    </div>
                 </div>
 
-                <div class="row mb-3">
-                  <label class="col-sm-2 col-form-label">กลุ่มสาระการเรียนรู้ / การศึกษาค้นคว้าด้วยตนเอง</label>
-                  <div class="col-sm-10">
-                    <select class="form-select" aria-label="Default select example" name="SubjectGroupCode" id="SubjectGroupCode" >
-                      <option  value="-1">เลือกกลุ่มสาระการเรียนรู้ / การศึกษาค้นคว้าด้วยตนเอง</option>
+                <div class="col-md-16">
+                  <div class="form-floating">
+                    <select class="form-select" aria-label="Default select example" name="SubjectGroupCode" id="SubjectGroupCode">
+                      <option  value="0">เลือกกลุ่มสาระการเรียนรู้ / การศึกษาค้นคว้าด้วยตนเอง</option>
                       <?php foreach($listSubjectGroup as $ls) { ?>
                         <option value="<?php echo $ls->SubjectGroupCode; ?>"><?php echo $ls->SubjectGroupName; ?></option>
                       <?php } ?>
                     </select>
+                    <label>กลุ่มสาระการเรียนรู้ / การศึกษาค้นคว้าด้วยตนเอง</label>
                   </div>
                 </div>
 
-                <div class="row mb-3">
-                  <label class="col-sm-2 col-form-label">ประเภทวิชา</label>
-                  <div class="col-sm-10">
+                <div class="col-md-16">
+                  <div class="form-floating">
                     <select class="form-select" aria-label="Default select example" name="SubjectTypeCode" id="SubjectTypeCode">
-                      <option  value="-1">เลือกประเภทวิชา</option>
                       <?php foreach($listSubjectType as $ls) { ?>
                         <option value="<?php echo $ls->SubjectTypeCode; ?>"><?php echo $ls->SubjectTypeName ; ?></option>
                       <?php } ?>
                     </select>
+                    <label>ประเภทวิชา</label>
                   </div>
                 </div>
 
-                <div class="row mb-3">
-                  <label for="inputText" class="col-sm-2 col-form-label">หน่วยกิต/หน่วยน้ำหนัก</label>
-                  <div class="col-sm-10">
+                <div class="col-md-16">
+                  <div class="form-floating">
                     <input type="text" class="form-control" name="Credit"id="Credit" placeholder="หน่วยกิต/หน่วยน้ำหนัก" value="<?php echo $cs->Credit; ?>">
+                    <label>หน่วยกิต/หน่วยน้ำหนัก</label>
                   </div>
                 </div>
 
-                <div class="row mb-3">
-                  <label for="inputText" class="col-sm-2 col-form-label">จำนวนชั่วโมงเรียน</label>
-                  <div class="col-sm-10">
+                <div class="col-md-16">
+                  <div class="form-floating">
                     <input type="text" class="form-control" name="LearningHour"id="LearningHour" value="<?php echo $cs->LearningHour; ?>">
+                    <label>จำนวนชั่วโมงเรียน</label>
                   </div>
                 </div>
-
               <!-- End Form ข้อมูลหลักสูตรรายวิชา -->
-
-                <button type="submit" class="btn btn-primary" onclick="return check(CurriculumSubject)">ยืนยัน</button>
+                <div class="text-center">
+                  <button type="submit" class="btn btn-primary" onclick="return check(CurriculumSubject)">ยืนยัน</button>
+                </div> 
              </form>
 <!-- End Form ข้อมูลหลักสูตรรายวิชา -->
 

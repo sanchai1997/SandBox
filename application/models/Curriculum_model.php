@@ -30,6 +30,14 @@ class Curriculum_model  extends CI_Model {
         return $query->result();
     }
 
+    public function get_Curriculum( $CurriculumID) {
+        $this->db->from('curriculum')
+        ->where('CurriculumID', $CurriculumID );
+        $query = $this->db->get();
+    
+        return $query->result();
+    }
+
 ###################### curriculum_subject ################################
     public function insert_curriculum_subject($CURRICULUM_SUBJECT) {
 

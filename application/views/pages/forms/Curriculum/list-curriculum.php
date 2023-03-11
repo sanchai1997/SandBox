@@ -57,6 +57,7 @@
                             <th style="text-align: center;" scope="col">ภาคเรียน</th>
                             <th style="text-align: center;" scope="col">ชื่อหลักสูตร</th>
                             <th style="text-align: center;" scope="col">ดูรายละเอียด</th>
+                            <th style="text-align: center;" scope="col">แก้ไข</th>
                             <th style="text-align: center;" scope="col">รายวิชา</th>
                         </tr>
                     </thead>
@@ -77,6 +78,10 @@
                                 <td style="text-align: center;">
                                     <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#Modal<?= $ls->SchoolID; ?>"><i class="bi bi-card-list"></i></button>
                                 </td>
+                                <td style="text-align: center;">
+                                    <a href='forms_edit-curriculum?cid=<?php echo $ls->CurriculumID; ?>'>
+                                        <button type="button" class="btn btn-warning"><i class="bi bi-pencil-square"></i></button> 
+                                    </a>
                                 <td style="text-align: center;">
                                     <a href='list-curriculum_subject?cid=<?php echo $ls->CurriculumID; ?>'>
                                         <button type="button" class="btn btn-primary"><i class="bi bi-eye-fill"></i></button> 

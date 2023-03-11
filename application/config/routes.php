@@ -14,6 +14,8 @@ $route['add_school']['post'] = "add_school";
 $route['list-curriculum'] = 'CurriculumController/list_curriculum';
 $route['forms-curriculum'] = 'CurriculumController/forms_curriculum';
 $route['add_curriculum']['post'] = 'CurriculumController/add_curriculum';
+$route['forms_edit-curriculum'] = 'CurriculumController/forms_edit_curriculum';
+$route['edit_curriculum']['post'] = 'CurriculumController/edit_curriculum';
 //Curriculum_subject
 $route['list-curriculum_subject']= 'CurriculumController/list_curriculum_subject';
 $route['forms-curriculum_subject'] = 'CurriculumController/forms_curriculum_subject';

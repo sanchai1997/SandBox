@@ -40,25 +40,27 @@
               <h5 class="card-title">ข้อมูลสมรรถนะของหลักสูตร </h5>
 
               <!-- start Form ข้อมูลหลักสูตรรายวิชา -->
-              <form action="<?php echo base_url('add_curriculum_school_competency');?>" method="POST" name="addCurriculumCompetency" id="addCurriculumCompetency" enctype="multipart/form-data"> 
+              <form class="row g-3" action="<?php echo base_url('add_curriculum_school_competency');?>" method="POST" name="addCurriculumCompetency" id="addCurriculumCompetency" enctype="multipart/form-data"> 
                 <input type="hidden" name="CurriculumID" id="CurriculumID" value="<?php echo $CurriculumID; ?>">
                 <input type="hidden" name="SubjectCode" id="SubjectCode" value="<?php echo $SubjectCode; ?>">
-                <div class="row mb-3">
-                  <label class="col-sm-2 col-form-label">สมรรถนะ</label>
-                  <div class="col-sm-10">
+               
+                <div class="col-md-16">
+                  <div class="form-floating">
                     <select class="form-select" aria-label="Default select example" name="CompetencyCode" id="CompetencyCode">
                       <option selected value="-1">เลือกสมรรถนะ</option>
                       <?php foreach($listCompetency as $ls) { ?>
                         <option value="<?php echo $ls->CompetencyCode; ?>"><?php echo $ls->CompetencyName; ?></option>
                       <?php } ?> 
-                    </select>                   
+                    </select>    
+                    <label>สมรรถนะ</label>
                   </div>
                 </div>
 
               <!-- End Form ข้อมูลสมรรถนะของหลักสูตร -->
-
-                <button type="submit" class="btn btn-primary" onclick="return check(addCurriculumCompetency)">ยืนยัน</button>
-             </form>
+                <div class="text-center">
+                  <button type="submit" class="btn btn-primary" onclick="return check(addCurriculumCompetency)">ยืนยัน</button>
+                </div>          
+              </form>
                 
 
             </div>

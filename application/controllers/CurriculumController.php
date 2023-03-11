@@ -95,7 +95,6 @@ class CurriculumController extends CI_Controller{
             redirect(base_url('forms-curriculum'));
         }
 
-
     }
 
     
@@ -114,6 +113,30 @@ class CurriculumController extends CI_Controller{
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
         $this->load->view('pages/forms/Curriculum/list-curriculum', $data);
+        $this->load->view('templates/footer', $data);
+
+    }
+
+    public function forms_edit_curriculum() {
+        
+        if ( ! file_exists(APPPATH.'views/pages/forms/Curriculum/forms_edit-curriculum.php'))
+        {
+            // Whoops, we don't have a page for that!
+            show_404();
+        }
+
+        $data['title'] = 'Curriculum'; // Capitalize the first letter
+        $data['listSchool'] = $this->School_model->get_school_All();
+        $data['listCurriculumType'] = $this->Code_model->get_CurriculumType_All();
+        $data['listEducationLevel'] = $this->Code_model->get_EducationLevel_All();
+        $data['listGradeLevel'] = $this->Code_model->get_GradeLevel_All();
+
+        $data['CurriculumID'] = $_GET['cid']; 
+        $data['Curriculum'] = $this->Curriculum_model->get_Curriculum($data['CurriculumID'] );
+
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/sidebar', $data);
+        $this->load->view('pages/forms/Curriculum/forms_edit-curriculum', $data);
         $this->load->view('templates/footer', $data);
 
     }

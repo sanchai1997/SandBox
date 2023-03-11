@@ -1,8 +1,9 @@
-
+<body onload="onloadpage()">
 <main id="main" class="main">
+<?php foreach($Curriculum as $c) { ?>
 
     <div class="pagetitle">
-      <h1>ข้อมูลหลักสูตร / หลักสูตรของพื้นที่นวัตกรรม</h1>
+      <h1>แก้ไขข้อมูลหลักสูตร / หลักสูตรของพื้นที่นวัตกรรม</h1>
       <nav>
         <ol class="breadcrumb">
           <li class="breadcrumb-item"><a href="index.html">Home</a></li>
@@ -36,19 +37,20 @@
               <h5 class="card-title">ข้อมูลหลักสูตร</h5>
 
               <!-- start Form ข้อมูลหลักสูตร -->
-              <form class="row g-3" action="<?php echo base_url('add_curriculum');?>" method="POST" name="addCurriculum" id="addCurriculum" enctype="multipart/form-data"> 
+              <form class="row g-3" action="<?php echo base_url('edit_curriculum');?>" method="POST" name="Curriculum" id="Curriculum" enctype="multipart/form-data"> 
                 
-              <div class="col-md-6">
+                <input type="hidden" name="Old_CurriculumID" id="Old_CurriculumID" value="<?php echo $c->CurriculumID; ?>">
+
+                <div class="col-md-6">
                   <div class="form-floating">
-                    <input type="text" class="form-control" name="EducationYear" id="EducationYear" placeholder="ปีการศึกษา (พ.ศ.)" maxlength="4">
+                    <input type="text" class="form-control" name="EducationYear" id="EducationYear" placeholder="ปีการศึกษา (พ.ศ.)" maxlength="4" value="<?php echo $c->EducationYear; ?>">
                     <label >ปีการศึกษา</label>
                   </div>
                 </div>
                 
                 <div class="col-md-6">
                   <div class="form-floating">
-                      <select class="form-select" aria-label="Default select example" name="Semester" id="Semester">
-                        <option selected value="-1">เลือกภาคเรียน</option>
+                      <select class="form-select" aria-label="Default select example" name="Semester" id="Semester" >
                         <option value="0">ตลอดปีการศึกษา</option>
                         <option value="1">ภาคเรียนที่ 1</option>
                         <option value="2">ภาคเรียนที่ 2</option>
@@ -60,7 +62,6 @@
                 <div class="col-md-6">
                   <div class="form-floating">
                     <select class="form-select" aria-label="Default select example" name="SchoolID" id="SchoolID">
-                      <option selected value="-1">เลือกสถานศึกษา</option>
                       <?php foreach($listSchool as $ls) { ?>
                         <option value="<?php echo $ls->SchoolID; ?>"><?php echo $ls->SchoolNameThai; ?></option>
                       <?php } ?>
@@ -71,7 +72,7 @@
                 
                 <div class="col-md-6">
                   <div class="form-floating">
-                  <input type="text" class="form-control" name="CurriculumName" id="CurriculumName" placeholder="ชื่อหลักสูตร">
+                  <input type="text" class="form-control" name="CurriculumName" id="CurriculumName" placeholder="ชื่อหลักสูตร"  value="<?php echo $c->CurriculumName; ?>">
                     <label >ชื่อหลักสูตร</label>
                   </div>
                 </div>
@@ -79,7 +80,6 @@
                 <div class="col-md-16">
                   <div class="form-floating">
                     <select class="form-select" aria-label="Default select example" name="CurriculumCode" id="CurriculumCode">
-                      <option selected value="-1">เลือกประเภทหลักสูตร</option>
                       <?php foreach($listCurriculumType as $ls) { ?>
                         <option value="<?php echo $ls->CurriculumCode; ?>"><?php echo $ls->CurriculumTypeName; ?></option>
                       <?php } ?>
@@ -91,7 +91,6 @@
                 <div class="col-md-6">
                   <div class="form-floating">
                     <select class="form-select" aria-label="Default select example" name="EducationLevelCode" id="EducationLevelCode">
-                      <option selected value="-1">เลือกะดับการศึกษา</option>
                       <?php foreach($listEducationLevel as $ls) { ?>
                         <option value="<?php echo $ls->EducationLevelCode; ?>"><?php echo $ls->EducationLevelName; ?></option>
                       <?php } ?>
@@ -103,7 +102,6 @@
                 <div class="col-md-6">
                   <div class="form-floating">
                     <select class="form-select" aria-label="Default select example" name="GradeLevelCode" id="GradeLevelCode">
-                      <option selected value="-1">เลือกชั้นปี</option>
                       <?php foreach($listGradeLevel as $ls) { ?>
                         <option value="<?php echo $ls->GradeLevelCode; ?>"><?php echo $ls->GradeLevelName; ?></option>
                       <?php } ?>
@@ -114,7 +112,7 @@
 
                 <div class="col-md-16">
                   <div class="form-floating">
-                    <input type="number" class="form-control"  name="ClassroomNumber" id="ClassroomNumber" min="1" max="999" placeholder="จำนวนห้องที่สอนด้วยหลักสูตร">                  
+                    <input type="number" class="form-control"  name="ClassroomNumber" id="ClassroomNumber" min="1" max="999" placeholder="จำนวนห้องที่สอนด้วยหลักสูตร"  value="<?php echo $c->ClassroomNumber; ?>">                  
                     <label>จำนวนห้องที่สอนด้วยหลักสูตร</label>
                   </div>
                 </div>
@@ -129,7 +127,6 @@
                 <div class="col-md-6">
                   <div class="form-floating">
                     <select class="form-select" aria-label="Default select example" name="LocalCurriculumFlag" id="LocalCurriculumFlag">
-                      <option selected value="-1">เลือกอ้างอิงหลักสูตรท้องถิ่น</option>
                       <option value="0">อ้างอิง</option>
                       <option value="1">ไม่อ้างอิง</option>
                     </select>
@@ -139,7 +136,7 @@
 
                 <div class="col-md-6">
                   <div class="form-floating">
-                    <input type="text" class="form-control" name="LocalCurriculumName" id="LocalCurriculumName" placeholder="ชื่อหลักสูตรท้องถิ่นที่อ้างอิง">
+                    <input type="text" class="form-control" name="LocalCurriculumName" id="LocalCurriculumName" placeholder="ชื่อหลักสูตรท้องถิ่นที่อ้างอิง" value="<?php echo $c->LocalCurriculumName; ?>">
                     <label >ชื่อหลักสูตรท้องถิ่นที่อ้างอิง</label>
                   </div>
                 </div>
@@ -147,12 +144,12 @@
                 <div class="col-md-16">
                     <div class="input-group">
                         <label class="input-group-text" for="inputGroupFile01">เอกสารแนบหลักสูตรอ้างอิง</label>
-                        <input type="file" class="form-control" name="LocalCurriculumDocumentURL" id="LocalCurriculumDocumentURL" placeholder="เอกสารแนบหลักสูตรอ้างอิง">
+                        <input type="file" class="form-control" name="LocalCurriculumDocumentURL" id="LocalCurriculumDocumentURL" placeholder="เอกสารแนบหลักสูตรอ้างอิง" >
                     </div>
                 </div>
 
                 <div class="text-center">
-                  <button type="submit" class="btn btn-primary" onclick="return check(addCurriculum)">ยืนยัน</button>
+                  <button type="submit" class="btn btn-primary" onclick="return check(Curriculum)">ยืนยัน</button>
                 </div> 
 
              </form>
@@ -170,16 +167,74 @@
     </section>
 
 <script type="text/javascript">
+ function onloadpage(){
+   ///Semester
+   var my_Semester = "<?php echo $c->Semester; ?>";
+   var selectoption_Semester = document.querySelector('#Semester');
+   var size_my_Semester =  document.getElementById("Semester").options.length;
+   for (let i = 0; i < size_my_Semester; i++) {
+     if(selectoption_Semester[i].value==my_Semester){
+      selectoption_Semester[i].selected = true;
+        break;
+     }
+   }
+
+  
+   ///SchoolID
+   var my_SchoolID = "<?php echo $c->SchoolID; ?>";
+   var selectoption_my_SchoolID = document.querySelector('#SchoolID');
+   var size_my_SchoolID =  document.getElementById("SchoolID").options.length;
+   for (let i = 0; i < size_my_SchoolID; i++) {
+     if(selectoption_my_SchoolID[i].value==my_SchoolID){
+        selectoption_my_SchoolID[i].selected = true;
+        break;
+     }
+   }
+
+  ///CurriculumCode
+   var my_CurriculumCode = "<?php echo $c->CurriculumCode; ?>";
+   var selectoption_my_CurriculumCode = document.querySelector('#CurriculumCode');
+   var size_my_CurriculumCode =  document.getElementById("CurriculumCode").options.length;
+   for (let i = 0; i < size_my_CurriculumCode; i++) {
+     if(selectoption_my_CurriculumCode[i].value==my_CurriculumCode){
+        selectoption_my_CurriculumCode[i].selected = true;
+        break;
+     }
+   }
+
+   ///EducationLevelCode
+   var my_EducationLevelCode = "<?php echo $c->EducationLevelCode; ?>";
+   var selectoption_my_EducationLevelCode = document.querySelector('#EducationLevelCode');
+   var size_my_EducationLevelCode =  document.getElementById("EducationLevelCode").options.length;
+   for (let i = 0; i < size_my_EducationLevelCode; i++) {
+     if(selectoption_my_EducationLevelCode[i].value==my_EducationLevelCode){
+        selectoption_my_EducationLevelCode[i].selected = true;
+        break;
+     }
+   }
+
+   ///GradeLevelCode
+   var my_GradeLevelCode = "<?php echo $c->GradeLevelCode; ?>";
+   var selectoption_my_GradeLevelCode = document.querySelector('#GradeLevelCode');
+   var size_my_GradeLevelCode =  document.getElementById("GradeLevelCode").options.length;
+   for (let i = 0; i < size_my_GradeLevelCode; i++) {
+     if(selectoption_my_GradeLevelCode[i].value==my_GradeLevelCode){
+        selectoption_my_GradeLevelCode[i].selected = true;
+        break;
+     }
+   }   
+
+   ///LocalCurriculumFlag
+   var my_LocalCurriculumFlag = "<?php echo $c->LocalCurriculumFlag; ?>";
+   var selectoption_LocalCurriculumFlag = document.querySelector('#LocalCurriculumFlag');
+   selectoption_Semester[my_LocalCurriculumFlag].selected = true;
+
+ }
+
   function check(frm){
   
   //Check_EducationYear (ปีการศึกษา)
   var EDUCATION = /^[0-9]{4}$/;
-    /*
-    if(EDUCATION.test(frm.EducationYear.value) == false){
-      alert("กรุณากรอกข้อมูลปีการศึกษา");
-      return false;
-    }
-    */
     if(frm.EducationYear.value ==""){
         alert("กรุณากรอกข้อมูลปีการศึกษา");
         frm.EducationYear.value = "";
@@ -277,5 +332,6 @@
     }
   }
 
-</script>    
+</script>   
+<?php } ?> 
 </main><!-- End #main -->

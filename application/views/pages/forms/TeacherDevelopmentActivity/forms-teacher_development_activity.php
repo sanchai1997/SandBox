@@ -53,7 +53,7 @@
                       <option value="1">ภาคเรียนที่ 1</option>
                       <option value="2">ภาคเรียนที่ 2</option>
                     </select>
-                    <label for="SCHOOL_STATUS_CODE">ภาคเรียนที่ทำกิจกรรม</label>
+                    <label>ภาคเรียนที่ทำกิจกรรม</label>
                   </div>
                 </div>
                 
@@ -66,7 +66,7 @@
                           <option value="<?php echo $lt->TEACHER_ID; ?>"><?php echo " (" . $lt->TEACHER_ID . ") " . $lt->NAME_TH; ?></option>
                         <?php } ?>
                     </select>
-                    <label for="SCHOOL_STATUS_CODE">ครูและบุคลากรทางการศึกษา</label>
+                    <label>ครูและบุคลากรทางการศึกษา</label>
                   </div>
                 </div>
 
@@ -78,7 +78,7 @@
                           <option value="<?php echo $lAT->DevelopmentActivityTypeCode; ?>"><?php echo $lAT->DevelopmentActivityTypeName; ?></option>
                         <?php } ?>
                     </select>
-                    <label for="SCHOOL_STATUS_CODE">ประเภทกิจกรรม</label>
+                    <label>ประเภทกิจกรรม</label>
                   </div>
                 </div>
 
@@ -125,7 +125,7 @@
                 </div>
 
                 <div class="col-md-16">
-                    <div class="input-group mb-3">
+                    <div class="input-group">
                         <label class="input-group-text" for="inputGroupFile01">เอกสารแนบ/เกียรติบัตร</label>
                         <input type="file" class="form-control" name="DevelopmentDocument" id="DevelopmentDocument" placeholder="เอกสารแนบ/เกียรติบัตร">
                     </div>

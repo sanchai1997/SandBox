@@ -160,6 +160,7 @@
     for (let i = 0; i < size_my_TeacherID; i++) {
       if(selectoption_my_TeacherID[i].value==my_TeacherID){
         selectoption_my_TeacherID[i].selected = true;
+        break;
       }
     }
 
@@ -172,6 +173,7 @@
       
       if(selectoption_DevelopmentActivityTypeCode[i].value==my_DevelopmentActivityTypeCode){
         selectoption_DevelopmentActivityTypeCode[i].selected = true;
+        break;
       }
     }
 

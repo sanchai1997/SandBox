@@ -40,63 +40,65 @@
               <h5 class="card-title">ข้อมูลหลักสูตรรายวิชา</h5>
 
               <!-- start Form ข้อมูลหลักสูตรรายวิชา -->
-              <form action="<?php echo base_url('add_curriculum_subject');?>" method="POST" name="addCurriculumSubject" id="addCurriculumSubject" enctype="multipart/form-data"> 
-              <input type="hidden" name="CurriculumID" id="CurriculumID" value="<?php echo $CurriculumID; ?>">
-              <div class="row mb-3">
-                  <label for="inputText" class="col-sm-2 col-form-label">ชื่อรายวิชา</label>
-                  <div class="col-sm-10">
-                    <input type="text" class="form-control" name="SubjectName" id="SubjectName" placeholder="ชื่อรายวิชา"  maxlength="100">
-                  </div>
+              <form class="row g-3" action="<?php echo base_url('add_curriculum_subject');?>" method="POST" name="addCurriculumSubject" id="addCurriculumSubject" enctype="multipart/form-data"> 
+                <input type="hidden" name="CurriculumID" id="CurriculumID" value="<?php echo $CurriculumID; ?>">
+                
+                <div class="col-md-16">
+                    <div class="form-floating">
+                      <input type="text" class="form-control" name="SubjectName" id="SubjectName" placeholder="ชื่อรายวิชา"  maxlength="100">
+                      <label >ชื่อรายวิชา</label>
+                    </div>
                 </div>
 
-                <div class="row mb-3">
-                  <label for="inputText" class="col-sm-2 col-form-label" >รหัสวิชา</label>
-                  <div class="col-sm-10">
-                    <input type="text" class="form-control"name="SubjectCode" id="SubjectCode" placeholder="รหัสวิชา" maxlength="10">
-                  </div>
+                <div class="col-md-16">
+                    <div class="form-floating">
+                      <input type="text" class="form-control"name="SubjectCode" id="SubjectCode" placeholder="รหัสวิชา" maxlength="10">
+                      <label >รหัสวิชา</label>
+                    </div>
                 </div>
 
-                <div class="row mb-3">
-                  <label class="col-sm-2 col-form-label">กลุ่มสาระการเรียนรู้ / การศึกษาค้นคว้าด้วยตนเอง</label>
-                  <div class="col-sm-10">
+                <div class="col-md-16">
+                  <div class="form-floating">
                     <select class="form-select" aria-label="Default select example" name="SubjectGroupCode" id="SubjectGroupCode">
                       <option selected value="0">เลือกกลุ่มสาระการเรียนรู้ / การศึกษาค้นคว้าด้วยตนเอง</option>
                       <?php foreach($listSubjectGroup as $ls) { ?>
                         <option value="<?php echo $ls->SubjectGroupCode; ?>"><?php echo $ls->SubjectGroupName; ?></option>
                       <?php } ?>
                     </select>
+                    <label>กลุ่มสาระการเรียนรู้ / การศึกษาค้นคว้าด้วยตนเอง</label>
                   </div>
                 </div>
 
-                <div class="row mb-3">
-                  <label class="col-sm-2 col-form-label">ประเภทวิชา</label>
-                  <div class="col-sm-10">
+                <div class="col-md-16">
+                  <div class="form-floating">
                     <select class="form-select" aria-label="Default select example" name="SubjectTypeCode" id="SubjectTypeCode">
                       <option selected value="-1">เลือกประเภทวิชา</option>
                       <?php foreach($listSubjectType as $ls) { ?>
                         <option value="<?php echo $ls->SubjectTypeCode; ?>"><?php echo $ls->SubjectTypeName ; ?></option>
                       <?php } ?>
                     </select>
+                    <label>ประเภทวิชา</label>
                   </div>
                 </div>
 
-                <div class="row mb-3">
-                  <label for="inputText" class="col-sm-2 col-form-label">หน่วยกิต/หน่วยน้ำหนัก</label>
-                  <div class="col-sm-10">
+                <div class="col-md-16">
+                  <div class="form-floating">
                     <input type="text" class="form-control" name="Credit"id="Credit" placeholder="หน่วยกิต/หน่วยน้ำหนัก">
+                    <label>หน่วยกิต/หน่วยน้ำหนัก</label>
                   </div>
                 </div>
 
-                <div class="row mb-3">
-                  <label for="inputText" class="col-sm-2 col-form-label">จำนวนชั่วโมงเรียน</label>
-                  <div class="col-sm-10">
-                    <input type="text" class="form-control" name="LearningHour"id="LearningHour">
+                <div class="col-md-16">
+                  <div class="form-floating">
+                    <input type="text" class="form-control" name="LearningHour"id="LearningHour" placeholder="จำนวนชั่วโมงเรียน">
+                    <label>จำนวนชั่วโมงเรียน</label>
                   </div>
                 </div>
 
               <!-- End Form ข้อมูลหลักสูตรรายวิชา -->
-
-                <button type="submit" class="btn btn-primary" onclick="return check(addCurriculumSubject)">ยืนยัน</button>
+                <div class="text-center">
+                  <button type="submit" class="btn btn-primary" onclick="return check(addCurriculumSubject)">ยืนยัน</button>
+                </div> 
              </form>
 <!-- End Form ข้อมูลหลักสูตรรายวิชา -->
 
