@@ -13,11 +13,9 @@
                 </nav>
             </div>
             <div class="col-6" style="padding-right: 25px;">
-
-                <a href="school" style="float: right;" class="btn btn-sm btn-light" data-mdb-ripple-color="dark">ข้อมูลสถานศึกษา</a>
-                <h5 style="float: right;"> | </h5>
                 <a href="school-award" style="float: right;" class="btn btn-sm btn-light" data-mdb-ripple-color="dark">ข้อมูลรางวัลสถานศึกษา</a>
-
+                <a href="school-classroom" style="float: right;" class="btn btn-sm btn-outline-secondary" data-mdb-ripple-color="dark">ข้อมูลห้องเรียนสถานศึกษา</a>
+                <a href="school" style="float: right;" class="btn btn-sm btn-light" data-mdb-ripple-color="dark">ข้อมูลสถานศึกษา</a>
             </div>
         </div>
     </div><!-- End Page Title -->
@@ -55,36 +53,39 @@
                 <table class="table table-borderless datatable">
                     <thead>
                         <tr>
-                            <th style="text-align: center;" scope="col">ชื่อสถานศึกษา</th>
+                            <th scope="col">ชื่อสถานศึกษา</th>
                             <th style="text-align: center;" scope="col">จำนวนห้องเรียนทั้งหมด</th>
                             <th style="text-align: center;" scope="col">ดูรายละเอียด</th>
+
                         </tr>
                     </thead>
                     <tbody>
                         <?php
 
-                        $result = $this->db->query('SELECT * ,SUM(CLASSROOM_AMOUNT) AS Total_classroom 
+                        $result = $this->db->query('SELECT * ,SUM(ClassroomAmount) AS Total 
                                 FROM SCHOOL_CLASSROOM 
-                                INNER JOIN SCHOOL ON SCHOOL_CLASSROOM.SCHOOL_ID = SCHOOL.SCHOOL_ID 
-                                GROUP BY SCHOOL_CLASSROOM.SCHOOL_ID');
+                                INNER JOIN SCHOOL ON SCHOOL_CLASSROOM.SchoolID = SCHOOL.SchoolID
+                                WHERE SCHOOL_CLASSROOM.DeleteStatus = 0
+                                GROUP BY SCHOOL_CLASSROOM.SchoolID');
 
-                        foreach ($result->result() as $row) {
+                        foreach ($result->result() as $CLASSROOM) {
                         ?>
                             <tr>
                                 <?php
                                 ?>
-                                <th scope="row"><?= $row->NAME_TH; ?></th>
+                                <td><?= $CLASSROOM->SchoolNameThai; ?></td>
                                 <td style="text-align: center;">
-                                    <?= $row->Total_classroom; ?>
+                                    <?= $CLASSROOM->Total; ?>
                                 </td>
-                                <td style="text-align: center;"><button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#Modal<?= $row->SCHOOL_ID; ?>"><i class="bi bi-card-list"></i></button>
+                                <td style="text-align: center;"><a class="btn btn-primary" href="school-classroom-P2?SchoolID=<?= $CLASSROOM->SchoolID; ?>"><i class="bi bi-card-list"></i></a>
                                 </td>
-                            <?php } ?>
                             </tr>
+                        <?php } ?>
                     </tbody>
                 </table>
 
             </div>
+
 
         </div>
     </div><!-- End Recent Sales -->

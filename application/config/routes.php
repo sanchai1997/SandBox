@@ -13,28 +13,52 @@ $route['login'] = 'login';
 
 ////////////////////// ROUTE SCHOOL ////////////////////////
 //school
-$route['school'] = 'school/index';
+$route['school'] = 'school';
 $route['forms-school'] = 'forms_school';
-$route['forms-school-detail'] = 'forms_school/detail';
+$route['forms-school-P2'] = 'forms_school/P2';
 $route['add-school']['post'] = 'forms_school/add_school';
+$route['edit-forms-school'] = 'forms_school/edit_school';
+$route['update-school/(:num)'] = 'forms_school/update_school/$1';
+$route['delete-school/(:num)'] = 'forms_school/delete_school/$1';
+
 
 //classrom
 $route['school-classroom'] = 'school/classroom';
+$route['school-classroom-P2'] = 'school/classroom_P2';
 $route['forms-school-classroom'] = 'forms_school/classroom';
 $route['add-classroom']['post'] = 'forms_school/add_classroom';
+$route['edit-forms-classroom'] = 'forms_school/edit_classroom';
+$route['update-classroom/(:num)/(:num)'] = 'forms_school/update_classroom/$1/$2';
+$route['delete-classroom/(:num)/(:num)'] = 'forms_school/delete_classroom/$1/$2';
+
+
+
 
 //AWARD
 $route['school-award'] = 'school/award';
+$route['school-award-P2'] = 'school/award_P2';
 $route['forms-school-award'] = 'forms_school/award';
 $route['add-award']['post'] = 'forms_school/add_award';
+$route['edit-forms-award'] = 'forms_school/edit_award';
+$route['update-award/(:num)/(:num)/(:any)'] = 'forms_school/update_award/$1/$2/$3';
+$route['delete-award/(:num)/(:num)/(:any)'] = 'forms_school/delete_award/$1/$2/$3';
 ////////////////////// SCHOOL - END /////////////////////////
 
 ////////////////////// ROUTE STUDENT ////////////////////////
 //student
-$route['student'] = 'student/index';
+$route['student'] = 'student';
+$route['student-P2'] = 'student/student_P2';
 $route['forms-student'] = 'forms_student';
-$route['forms-student-school'] = 'forms_student/school';
-$route['forms-student-parents'] = 'forms_student/parents';
-$route['forms-student-family'] = 'forms_student/family';
-
+$route['forms-student-P2'] = 'forms_student/P2';
+$route['forms-student-P3'] = 'forms_student/P3';
+$route['forms-student-P4'] = 'forms_student/P4';
+$route['add-student']['post'] = 'forms_student/add_student';
+$route['edit-forms-student'] = 'forms_student/edit_student';
+$route['update-student/(:any)/(:any)/(:any)/(:any)/(:any)/(:any)'] = 'forms_student/update_student/$1/$2/$3/$4/$5/$6';
+$route['delete-student/(:any)/(:any)/(:any)/(:any)/(:any)/(:any)'] = 'forms_student/delete_student/$1/$2/$3/$4/$5/$6';
 ///////////////////// STUDENT - END /////////////////////////
+
+////////////////////// ROUTE TEACHER ////////////////////////
+//TEACHER
+$route['teacher'] = 'teacher';
+///////////////////// TEACHER - END /////////////////////////

@@ -12,30 +12,27 @@
                     </ol>
                 </nav>
             </div>
-            <div class="col-6" style="padding-right: 25px;">
-                <a href="school-award" style="float: right;" class="btn btn-sm btn-light"
-                    data-mdb-ripple-color="dark">///</a>
-                <h5 style="float: right;"> | </h5>
-                <a href="school-classroom" style="float: right;" class="btn btn-sm btn-light"
-                    data-mdb-ripple-color="dark">////</a>
-            </div>
         </div>
     </div>
 
     <!-- End Page Title -->
     <?php if (!empty($_SESSION['success'])) { ?>
-    <div style="position: relative;">
-        <div class="alert alert-success" id="myAlert"
-            style="position: absolute; top: 0; left: 0; right: 0; z-index: 1;">
-            <strong>
-                <?php
-                 echo '<i class="bi bi-clipboard2-check"></i> '. $_SESSION['success'];
-                 unset($_SESSION['success']);
-              ?>
-            </strong>
+        <script>
+            setTimeout(function() {
+                document.getElementById('myAlert').remove();
+            }, 2000); // นับถอยหลังให้แสดง 5 วินาที (5000 มิลลิวินาที)
+        </script>
+        <div style="position: relative;">
+            <div class="alert alert-success" id="myAlert" style="position: absolute; top: 0; left: 0; right: 0; z-index: 1;">
+                <strong>
+                    <?php
+                    echo '<i class="bi bi-clipboard2-check"></i> ' . $_SESSION['success'];
+                    unset($_SESSION['success']);
+                    ?>
+                </strong>
 
+            </div>
         </div>
-    </div>
     <?php } ?>
     <!-- Recent Sales -->
     <div class="col-12">
@@ -47,34 +44,41 @@
                         <h5 class="card-title">รายละเอียดข้อมูล <span>| Table Student</span></h5>
                     </div>
                     <div class="col">
-                        <h5 style="float: right; padding: 15px;" class="card-title"><a href="forms-student"
-                                class="btn btn-success">เพิ่มข้อมูลนักเรียน</a></h5>
+                        <h5 style="float: right; padding: 15px;" class="card-title"><a href="forms-student" class="btn btn-success">เพิ่มข้อมูลนักเรียน</a></h5>
                     </div>
                 </div>
                 <table class="table table-borderless datatable">
                     <thead>
                         <tr>
                             <th style="text-align: center;" scope="col">ชื่อสถานศึกษา</th>
-                            <th style="text-align: center;" scope="col">ภาคเรียน</th>
                             <th style="text-align: center;" scope="col">ปีการศึกษา</th>
+                            <th style="text-align: center;" scope="col">ภาคเรียน</th>
                             <th style="text-align: center;" scope="col">ระดับการศึกษา</th>
                             <th style="text-align: center;" scope="col">ชั้นเรียน</th>
-                            <th style="text-align: center;" scope="col">ดูรายละเอียด</th>
-
+                            <th style="text-align: center;" scope="col">ดูรายชื่อนักเรียน</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <th scope="row"></th>
-                            <th scope="row"></th>
-                            <th scope="row"></th>
-                            <th scope="row"></th>
-                            <td style="text-align: center;">
-                            </td>
-                            <td style="text-align: center;"><button type="button" class="btn btn-primary"
-                                    data-bs-toggle="modal" data-bs-target="#Modal"><i
-                                        class="bi bi-card-list"></i></button></td>
-                        </tr>
+                        <?php
+                        $result = $this->db->query('SELECT SCHOOL.SchoolNameThai, STUDENT.SchoolID, STUDENT.EducationYear, STUDENT.EducationLevelCode, STUDENT.GradeLevelCode, STUDENT.Semester, CLS_EDUCATION_LEVEL.CLS_EDUCATION_LEVEL_NAME, CLS_CLASS_GRADE_LEVEL.CLS_CLASS_GRADE_LEVEL_NAME FROM STUDENT
+                        INNER JOIN SCHOOL ON STUDENT.SchoolID = SCHOOL.SchoolID
+                        INNER JOIN CLS_EDUCATION_LEVEL ON STUDENT.EducationLevelCode = CLS_EDUCATION_LEVEL.CLS_EDUCATION_LEVEL_CODE
+                        INNER JOIN CLS_CLASS_GRADE_LEVEL ON STUDENT.GradeLevelCode = CLS_CLASS_GRADE_LEVEL.CLS_CLASS_GRADE_LEVEL_CODE
+                        WHERE STUDENT.DeleteStatus = 0');
+                        foreach ($result->result() as $STUDENT) {
+                        ?>
+                            <tr>
+                                <td><?= $STUDENT->SchoolNameThai; ?></td>
+                                <td><?= $STUDENT->EducationYear; ?></td>
+                                <td><?= $STUDENT->Semester; ?></td>
+                                <td><?= $STUDENT->CLS_EDUCATION_LEVEL_NAME; ?></td>
+                                <td><?= $STUDENT->CLS_CLASS_GRADE_LEVEL_NAME; ?></td>
+                                <td style="text-align: center;">
+                                    <a class="btn btn-primary" href="student-P2?SchoolID=<?= $STUDENT->SchoolID; ?>&&EducationYear=<?= $STUDENT->EducationYear; ?>&&Semester=<?= $STUDENT->Semester; ?>&&EducationLevelCode=<?= $STUDENT->EducationLevelCode; ?>&&GradeLevelCode=<?= $STUDENT->GradeLevelCode; ?>"><i class="bi bi-card-list"></i></a>
+                                </td>
+                            </tr>
+                        <?php } ?>
+
                     </tbody>
                 </table>
 

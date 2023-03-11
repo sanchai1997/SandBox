@@ -25,10 +25,10 @@
                             <div class="row mb-3">
                                 <label for="inputText" class="col-sm-2 col-form-label">สถานศึกษา</label>
                                 <div class="col-sm-10">
-                                    <select class="form-select" name="SCHOOL_ID" aria-label="Default select example" required>
+                                    <select class="form-select" name="SchoolID" aria-label="Default select example" required>
                                         <option selected>เลือก</option>
                                         <?php foreach ($this->db->get("SCHOOL")->result() as $school) { ?>
-                                            <option value=" <?= $school->SCHOOL_ID; ?>"><?= $school->NAME_TH; ?></option>
+                                            <option value="<?= $school->SchoolID; ?>"><?= $school->SchoolNameThai; ?></option>
                                         <?php } ?>
                                     </select>
                                 </div>
@@ -37,35 +37,32 @@
                             <div class="row mb-3">
                                 <label for="inputText" class="col-sm-2 col-form-label">ปีที่ได้รับรางวัล</label>
                                 <div class="col-sm-10">
-                                    <input type="text" class="form-control" name="AWARD_YEAR" required>
+                                    <input type="text" class="form-control" name="AwardYear" required>
                                 </div>
                             </div>
 
                             <div class="row mb-3">
                                 <label for="inputText" class="col-sm-2 col-form-label">ชื่อรางวัล</label>
                                 <div class="col-sm-10">
-                                    <input type="text" class="form-control" name="AWARD_NAME" required>
+                                    <input type="text" class="form-control" name="AwardName" required>
                                 </div>
                             </div>
 
                             <div class="row mb-3">
                                 <label for="inputText" class="col-sm-2 col-form-label">แหล่งที่มาของรางวัล</label>
                                 <div class="col-sm-10">
-                                    <input type="text" class="form-control" name="AWARD_SOURCE" required>
+                                    <input type="text" class="form-control" name="AwardSource" required>
                                 </div>
                             </div>
 
                             <div class="row mb-3">
                                 <label class="col-sm-2 col-form-label">ระดับของรางวัลที่ได้รับ</label>
                                 <div class="col-sm-10">
-                                    <select class="form-select" aria-label="Default select example" name="AWARD_LEVEL_CODE" required>
+                                    <select class="form-select" aria-label="Default select example" name="AwardLevelCode" required>
                                         <option selected>เลือก</option>
-                                        <option value="01">ระดับประเทศ</option>
-                                        <option value="02">ระดับภาค</option>
-                                        <option value="03">ระดับจังหวัด</option>
-                                        <option value="04">ระดับอำเภอ</option>
-                                        <option value="05">ระดับตำบล</option>
-                                        <option value="06">ระดับเขตพื้นที่การศึกษา</option>
+                                        <?php foreach ($this->db->get("CLS_AWARD_LEVEL")->result() as $AWARD_LEVEL) { ?>
+                                            <option value="<?= $AWARD_LEVEL->CLS_AWARD_LEVEL_CODE; ?>"><?= $AWARD_LEVEL->CLS_AWARD_LEVEL_NAME; ?></option>
+                                        <?php } ?>
                                     </select>
                                 </div>
                             </div>

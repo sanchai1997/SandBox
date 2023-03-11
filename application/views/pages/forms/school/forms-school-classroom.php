@@ -25,10 +25,10 @@
                             <div class="row mb-3">
                                 <label for="inputText" class="col-sm-2 col-form-label">สถานศึกษา</label>
                                 <div class="col-sm-10">
-                                    <select class="form-select" name="SCHOOL_ID" aria-label="Default select example" required>
+                                    <select class="form-select" name="SchoolID" aria-label="Default select example" required>
                                         <option selected>เลือก</option>
                                         <?php foreach ($this->db->get("SCHOOL")->result() as $school) { ?>
-                                            <option value=" <?= $school->SCHOOL_ID; ?>"><?= $school->NAME_TH; ?></option>
+                                            <option value="<?= $school->SchoolID; ?>"><?= $school->SchoolNameThai; ?></option>
                                         <?php } ?>
                                     </select>
                                 </div>
@@ -37,10 +37,10 @@
                             <div class="row mb-3">
                                 <label class="col-sm-2 col-form-label">ระดับชั้นปี</label>
                                 <div class="col-sm-10">
-                                    <select class="form-select" aria-label="Default select example" name="CLASSROOM_GRADE_LEVEL_CODE" required>
+                                    <select class="form-select" aria-label="Default select example" name="ClassroomGradeLevelCode" required>
                                         <option selected>เลือก</option>
                                         <?php foreach ($this->db->get("CLS_CLASS_GRADE_LEVEL")->result() as $GRADE_LEVEL) { ?>
-                                            <option value=" <?= $GRADE_LEVEL->CLS_CLASS_GRADE_LEVEL_CODE; ?>"><?= $GRADE_LEVEL->CLS_CLASS_GRADE_LEVEL_NAME; ?></option>
+                                            <option value="<?= $GRADE_LEVEL->CLS_CLASS_GRADE_LEVEL_CODE; ?>"><?= $GRADE_LEVEL->CLS_CLASS_GRADE_LEVEL_NAME; ?></option>
                                         <?php } ?>
                                     </select>
                                 </div>
@@ -49,7 +49,7 @@
                             <div class="row mb-3">
                                 <label for="inputText" class="col-sm-2 col-form-label">จำนวนห้องเรียน</label>
                                 <div class="col-sm-10">
-                                    <input type="number" class="form-control" name="CLASSROOM_AMOUNT" required>
+                                    <input type="number" class="form-control" name="ClassroomAmount" required>
                                 </div>
                             </div>
 

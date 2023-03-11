@@ -38,6 +38,8 @@
     $("#DISTRICT").children('option:gt(0)').hide();
     $("#SUBDISTRICT").children('option:gt(0)').hide();
 
+
+
     $("#PROVINCE").change(function() {
       $("#DISTRICT").children('option').hide();
       $("#DISTRICT").children("option[ id^=" + $(this).val() + "]").show()
@@ -46,6 +48,19 @@
     $("#DISTRICT").change(function() {
       $("#SUBDISTRICT").children('option').hide();
       $("#SUBDISTRICT").children("option[ id^=" + $(this).val() + "]").show()
+    })
+
+    $("#DISTRICT_SUB").children('option:gt(0)').hide();
+    $("#SUBDISTRICT_SUB").children('option:gt(0)').hide();
+
+    $("#PROVINCE_SUB").change(function() {
+      $("#DISTRICT_SUB").children('option').hide();
+      $("#DISTRICT_SUB").children("option[ id^=" + $(this).val() + "]").show()
+    })
+
+    $("#DISTRICT_SUB").change(function() {
+      $("#SUBDISTRICT_SUB").children('option').hide();
+      $("#SUBDISTRICT_SUB").children("option[ id^=" + $(this).val() + "]").show()
     })
   })
 </script>

@@ -13,10 +13,9 @@
                 </nav>
             </div>
             <div class="col-6" style="padding-right: 25px;">
-
+                <a href="school-award" style="float: right;" class="btn btn-sm btn-outline-secondary" active data-mdb-ripple-color="dark">ข้อมูลรางวัลสถานศึกษา</a>
                 <a href="school-classroom" style="float: right;" class="btn btn-sm btn-light" data-mdb-ripple-color="dark">ข้อมูลห้องเรียนสถานศึกษา</a>
-                <h5 style="float: right;"> | </h5>
-                <a href="school" style="float: right;" class="btn btn-sm btn-light" data-mdb-ripple-color="dark">ข้อมูลสถานศึกษา</a>
+                <a href="school" style="float: right; " class="btn btn-sm btn-light" data-mdb-ripple-color="dark">ข้อมูลสถานศึกษา</a>
             </div>
         </div>
     </div><!-- End Page Title -->
@@ -54,32 +53,30 @@
                 <table class="table table-borderless datatable">
                     <thead>
                         <tr>
-                            <th style="text-align: center;" scope="col">ชื่อสถานศึกษา</th>
+                            <th scope="col">ชื่อสถานศึกษา</th>
                             <th style="text-align: center;" scope="col">จำนวนรางวัลทั้งหมด</th>
                             <th style="text-align: center;" scope="col">ดูรายละเอียด</th>
                         </tr>
                     </thead>
                     <tbody>
                         <?php
+                        $result = $this->db->query('SELECT * ,COUNT(AwardName) AS Total 
+                                    FROM SCHOOL_AWARD 
+                                    INNER JOIN SCHOOL ON SCHOOL_AWARD.SchoolID = SCHOOL.SchoolID
+                                    WHERE SCHOOL_AWARD.DeleteStatus = 0
+                                    GROUP BY SCHOOL_AWARD.SchoolID');
 
-                        $result = $this->db->query('SELECT * ,COUNT(SCHOOL_AWARD_ID) AS Total_award 
-                                FROM SCHOOL_AWARD 
-                                INNER JOIN SCHOOL ON SCHOOL_AWARD.SCHOOL_ID = SCHOOL.SCHOOL_ID 
-                                GROUP BY SCHOOL_AWARD.SCHOOL_ID');
-
-                        foreach ($result->result() as $row) {
+                        foreach ($result->result() as $AWARD) {
                         ?>
                             <tr>
-                                <?php
-                                ?>
-                                <th scope="row"><?= $row->NAME_TH; ?></th>
+                                <td><?= $AWARD->SchoolNameThai; ?></td>
                                 <td style="text-align: center;">
-                                    <?= $row->Total_award; ?>
+                                    <?= $AWARD->Total; ?>
                                 </td>
-                                <td style="text-align: center;"><button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#Modal<?= $row->SCHOOL_ID; ?>"><i class="bi bi-card-list"></i></button>
+                                <td style="text-align: center;"><a class="btn btn-primary" href="school-award-P2?SchoolID=<?= $AWARD->SchoolID; ?>"><i class="bi bi-card-list"></i></a>
                                 </td>
-                            <?php } ?>
                             </tr>
+                        <?php } ?>
                     </tbody>
                 </table>
 

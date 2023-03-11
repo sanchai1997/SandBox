@@ -1,93 +1,137 @@
-<?php
-defined('BASEPATH') or exit('No direct script access allowed');
+    <?php
+    defined('BASEPATH') or exit('No direct script access allowed');
 
-class Forms_student extends CI_Controller
-{
-
-    public function __construct()
-    {
-        parent::__construct();
-        // Your own constructor code
-        $this->load->library('form_validation');
-        $this->load->library('session');
-        $this->load->model('School_model', 'forms_student');
-        $this->load->model('Student_model', 'forms_student');
-    }
-
-    ///////////////////////////////////STUDENT/////////////////////////////////////////
-    //Page Form School
-    public function index()
+    class Forms_student extends CI_Controller
     {
 
-        if (!file_exists(APPPATH . 'views/pages/forms/student/forms-student.php')) {
-            // Whoops, we don't have a page for that!
-            show_404();
+        public function __construct()
+        {
+            parent::__construct();
+            //Yourownconstructorcode
+            $this->load->library('form_validation');
+            $this->load->library('session');
+            $this->load->model('Student_model', 'forms_student');
         }
 
-        $data['title'] = 'Forms Student'; // Capitalize the first letter
+        ///////////////////////////////////forms-student-P1/////////////////////////////////
+        //PageFormSchool
+        public function index()
+        {
 
-        $this->load->view('templates/header', $data);
-        $this->load->view('templates/sidebar', $data);
-        $this->load->view('pages/forms/student/forms-student', $data);
-        $this->load->view('templates/footer', $data);
-    }
-    //////////////////////////////// STUDENT - END ////////////////////////////////////
+            if (!file_exists(APPPATH . 'views/pages/forms/student/forms-student-P1.php')) {
+                //Whoops,wedon'thaveapageforthat!
+                show_404();
+            }
 
-    ////////////////////////////////// School /////////////////////////////////////////
-    //Page Form Student School
-    public function school()
-    {
+            $data['title'] = 'FormsStudent'; //Capitalizethefirstletter
 
-        if (!file_exists(APPPATH . 'views/pages/forms/student/forms-student-school.php')) {
-            // Whoops, we don't have a page for that!
-            show_404();
+            $this->load->view('templates/header', $data);
+            $this->load->view('templates/sidebar', $data);
+            $this->load->view('pages/forms/student/forms-student-P1', $data);
+            $this->load->view('templates/footer', $data);
+        }
+        ////////////////////////////////forms-student-P1-END///////////////////////////
+
+        ////////////////////////////////forms-student-P2/////////////////////////////////
+        //PageFormStudentParents
+        public function P2()
+        {
+
+            if (!file_exists(APPPATH . 'views/pages/forms/student/forms-student-P2.php')) {
+                //Whoops,wedon'thaveapageforthat!
+                show_404();
+            }
+
+            $data['title'] = 'FormsStudentSchool'; //Capitalizethefirstletter
+
+            $this->load->view('templates/header', $data);
+            $this->load->view('templates/sidebar', $data);
+            $this->load->view('pages/forms/student/forms-student-P2', $data);
+            $this->load->view('templates/footer', $data);
+        }
+        /////////////////////////forms-student-P2-END///////////////////////////////////
+
+        //////////////////////////////////forms-student-P3/////////////////////////////////
+        public function P3()
+        {
+
+            if (!file_exists(APPPATH . 'views/pages/forms/student/forms-student-P3.php')) {
+                //Whoops,wedon'thaveapageforthat!
+                show_404();
+            }
+
+            $data['title'] = 'FormsStudentSchool'; //Capitalizethefirstletter
+
+            $this->load->view('templates/header', $data);
+            $this->load->view('templates/sidebar', $data);
+            $this->load->view('pages/forms/student/forms-student-P3', $data);
+            $this->load->view('templates/footer', $data);
+        }
+        /////////////////////////forms-student-P3-END////////////////////////////////////
+
+
+
+        ////////////////////////////////forms-student-P4///////////////////////////////////
+        //PageFormStudentParents
+        public function P4()
+        {
+
+            if (!file_exists(APPPATH . 'views/pages/forms/student/forms-student-P4.php')) {
+                //Whoops,wedon'thaveapageforthat!
+                show_404();
+            }
+
+            $data['title'] = 'FormsStudentSchool'; //Capitalizethefirstletter
+
+            $this->load->view('templates/header', $data);
+            $this->load->view('templates/sidebar', $data);
+            $this->load->view('pages/forms/student/forms-student-P4', $data);
+            $this->load->view('templates/footer', $data);
+        }
+        /////////////////////////forms-student-P4-END////////////////////////////////////
+
+        ////////////////////////////////edit-forms-student///////////////////////////////////
+        //edit-forms-student
+        public function edit_student()
+        {
+
+            if (!file_exists(APPPATH . 'views/pages/forms/student/edit-forms-student.php')) {
+                //Whoops,wedon'thaveapageforthat!
+                show_404();
+            }
+
+            $data['title'] = 'Forms edit-forms-student'; //Capitalizethefirstletter
+
+            $this->load->view('templates/header', $data);
+            $this->load->view('templates/sidebar', $data);
+            $this->load->view('pages/forms/student/edit-forms-student', $data);
+            $this->load->view('templates/footer', $data);
+        }
+        /////////////////////////edit-forms-student-END////////////////////////////////////
+
+        //Add Data Form student
+        public function add_student()
+        {
+            $this->forms_student->add_student();
+            $_SESSION['success'] = "บันทึกข้อมูลเรียบร้อย";
+            redirect(base_url('student'));
         }
 
-        $data['title'] = 'Forms Student School'; // Capitalize the first letter
+        //Update Data student
+        public function update_student($StudentReferenceID, $SchoolID, $EducationYear, $Semester, $EducationLevelCode, $GradeLevelCode)
+        {
 
-        $this->load->view('templates/header', $data);
-        $this->load->view('templates/sidebar', $data);
-        $this->load->view('pages/forms/student/forms-student-school', $data);
-        $this->load->view('templates/footer', $data);
-    }
-    ///////////////////////// STUDENT School - END ////////////////////////////////////
-
-    //////////////////////////////// Parents /////////////////////////////////////////
-    //Page Form Student Parents
-    public function parents()
-    {
-
-        if (!file_exists(APPPATH . 'views/pages/forms/student/forms-student-parents.php')) {
-            // Whoops, we don't have a page for that!
-            show_404();
+            $this->forms_student->update_student($StudentReferenceID, $SchoolID);
+            $_SESSION['success'] = "แก้ไขข้อมูลเรียบร้อย";
+            redirect(base_url('student-P2?SchoolID=' . $SchoolID . '&&EducationYear=' . $EducationYear . '&&Semester=' . $Semester . '&&EducationLevelCode=' . $EducationLevelCode . '&&GradeLevelCode=' . $GradeLevelCode));
         }
 
-        $data['title'] = 'Forms Student School'; // Capitalize the first letter
-
-        $this->load->view('templates/header', $data);
-        $this->load->view('templates/sidebar', $data);
-        $this->load->view('pages/forms/student/forms-student-parents', $data);
-        $this->load->view('templates/footer', $data);
-    }
-    ///////////////////////// STUDENT Parents - END ///////////////////////////////////
-
-    //////////////////////////////// Family //////////////////////////////////////////
-    //Page Form Student Parents
-    public function family()
-    {
-
-        if (!file_exists(APPPATH . 'views/pages/forms/student/forms-student-family.php')) {
-            // Whoops, we don't have a page for that!
-            show_404();
+        //Delete Data student
+        public function delete_student($StudentReferenceID, $SchoolID, $EducationYear, $Semester, $EducationLevelCode, $GradeLevelCode)
+        {
+            $this->forms_student->delete_student($StudentReferenceID, $SchoolID);
+            $_SESSION['success'] = "ลบข้อมูลเรียบร้อย";
+            redirect(base_url('student-P2?SchoolID=' . $SchoolID . '&&EducationYear=' . $EducationYear . '&&Semester=' . $Semester . '&&EducationLevelCode=' . $EducationLevelCode . '&&GradeLevelCode=' . $GradeLevelCode));
         }
-
-        $data['title'] = 'Forms Student School'; // Capitalize the first letter
-
-        $this->load->view('templates/header', $data);
-        $this->load->view('templates/sidebar', $data);
-        $this->load->view('pages/forms/student/forms-student-family', $data);
-        $this->load->view('templates/footer', $data);
+        ///////////////////////////////////SCHOOL-END/////////////////////////////////////////
     }
-    ///////////////////////// STUDENT Family - END ////////////////////////////////////
-
-}
