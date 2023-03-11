@@ -1,8 +1,9 @@
-
+<body onload="onloadpage()">
 <main id="main" class="main">
+<?php foreach($CurriculumSubject as $cs) { ?>
 
     <div class="pagetitle">
-      <h1>ข้อมูลหลักสูตรรายวิชา</h1>
+      <h1>แก้ไขข้อมูลหลักสูตรรายวิชา</h1>
       <nav>
         <ol class="breadcrumb">
           <li class="breadcrumb-item"><a href="index.html">Home</a></li>
@@ -40,27 +41,29 @@
               <h5 class="card-title">ข้อมูลหลักสูตรรายวิชา</h5>
 
               <!-- start Form ข้อมูลหลักสูตรรายวิชา -->
-              <form action="<?php echo base_url('add_curriculum_subject');?>" method="POST" name="addCurriculumSubject" id="addCurriculumSubject" enctype="multipart/form-data"> 
-              <input type="hidden" name="CurriculumID" id="CurriculumID" value="<?php echo $CurriculumID; ?>">
+              <form action="<?php echo base_url('edit_curriculum_subject');?>" method="POST" name="CurriculumSubject" id="CurriculumSubject" enctype="multipart/form-data"> 
+              <input type="hidden" name="CurriculumID" id="CurriculumID" value="<?php echo $cs->CurriculumID; ?>">
+              <input type="hidden" name="Old_SubjectCode" id="Old_SubjectCode" value="<?php echo $cs->SubjectCode; ?>">
+
               <div class="row mb-3">
                   <label for="inputText" class="col-sm-2 col-form-label">ชื่อรายวิชา</label>
                   <div class="col-sm-10">
-                    <input type="text" class="form-control" name="SubjectName" id="SubjectName" placeholder="ชื่อรายวิชา"  maxlength="100">
+                    <input type="text" class="form-control" name="SubjectName" id="SubjectName" placeholder="ชื่อรายวิชา"  maxlength="100" value="<?php echo $cs->SubjectName; ?>">
                   </div>
                 </div>
 
                 <div class="row mb-3">
                   <label for="inputText" class="col-sm-2 col-form-label" >รหัสวิชา</label>
                   <div class="col-sm-10">
-                    <input type="text" class="form-control"name="SubjectCode" id="SubjectCode" placeholder="รหัสวิชา" maxlength="10">
+                    <input type="text" class="form-control"name="SubjectCode" id="SubjectCode" placeholder="รหัสวิชา" maxlength="10" value="<?php echo $cs->SubjectCode; ?>">
                   </div>
                 </div>
 
                 <div class="row mb-3">
                   <label class="col-sm-2 col-form-label">กลุ่มสาระการเรียนรู้ / การศึกษาค้นคว้าด้วยตนเอง</label>
                   <div class="col-sm-10">
-                    <select class="form-select" aria-label="Default select example" name="SubjectGroupCode" id="SubjectGroupCode">
-                      <option selected value="0">เลือกกลุ่มสาระการเรียนรู้ / การศึกษาค้นคว้าด้วยตนเอง</option>
+                    <select class="form-select" aria-label="Default select example" name="SubjectGroupCode" id="SubjectGroupCode" >
+                      <option  value="-1">เลือกกลุ่มสาระการเรียนรู้ / การศึกษาค้นคว้าด้วยตนเอง</option>
                       <?php foreach($listSubjectGroup as $ls) { ?>
                         <option value="<?php echo $ls->SubjectGroupCode; ?>"><?php echo $ls->SubjectGroupName; ?></option>
                       <?php } ?>
@@ -72,7 +75,7 @@
                   <label class="col-sm-2 col-form-label">ประเภทวิชา</label>
                   <div class="col-sm-10">
                     <select class="form-select" aria-label="Default select example" name="SubjectTypeCode" id="SubjectTypeCode">
-                      <option selected value="-1">เลือกประเภทวิชา</option>
+                      <option  value="-1">เลือกประเภทวิชา</option>
                       <?php foreach($listSubjectType as $ls) { ?>
                         <option value="<?php echo $ls->SubjectTypeCode; ?>"><?php echo $ls->SubjectTypeName ; ?></option>
                       <?php } ?>
@@ -83,20 +86,20 @@
                 <div class="row mb-3">
                   <label for="inputText" class="col-sm-2 col-form-label">หน่วยกิต/หน่วยน้ำหนัก</label>
                   <div class="col-sm-10">
-                    <input type="text" class="form-control" name="Credit"id="Credit" placeholder="หน่วยกิต/หน่วยน้ำหนัก">
+                    <input type="text" class="form-control" name="Credit"id="Credit" placeholder="หน่วยกิต/หน่วยน้ำหนัก" value="<?php echo $cs->Credit; ?>">
                   </div>
                 </div>
 
                 <div class="row mb-3">
                   <label for="inputText" class="col-sm-2 col-form-label">จำนวนชั่วโมงเรียน</label>
                   <div class="col-sm-10">
-                    <input type="text" class="form-control" name="LearningHour"id="LearningHour">
+                    <input type="text" class="form-control" name="LearningHour"id="LearningHour" value="<?php echo $cs->LearningHour; ?>">
                   </div>
                 </div>
 
               <!-- End Form ข้อมูลหลักสูตรรายวิชา -->
 
-                <button type="submit" class="btn btn-primary" onclick="return check(addCurriculumSubject)">ยืนยัน</button>
+                <button type="submit" class="btn btn-primary" onclick="return check(CurriculumSubject)">ยืนยัน</button>
              </form>
 <!-- End Form ข้อมูลหลักสูตรรายวิชา -->
 
@@ -110,6 +113,32 @@
     </section>
 
 <script>
+  function onloadpage(){
+   
+   ///SubjectGroupCode
+   var my_SubjectGroupCode = "<?php echo $cs->SubjectGroupCode; ?>";
+   var selectoption_SubjectGroupCode = document.querySelector('#SubjectGroupCode');
+   var size_my_SubjectGroupCode =  document.getElementById("SubjectGroupCode").options.length;
+   for (let i = 0; i < size_my_SubjectGroupCode; i++) {
+     if(selectoption_SubjectGroupCode[i].value==my_SubjectGroupCode){
+      selectoption_SubjectGroupCode[i].selected = true;
+     }
+   }
+
+   ///SubjectTypeCode
+   var my_SubjectTypeCode = "<?php echo $cs->SubjectTypeCode; ?>";
+   var selectoption_SubjectTypeCode = document.querySelector('#SubjectTypeCode');
+   var size_my_SubjectTypeCode =  document.getElementById("SubjectTypeCode").options.length;
+   for (let i = 0; i < size_my_SubjectTypeCode; i++) {
+     if(selectoption_SubjectTypeCode[i].value==my_SubjectTypeCode){
+      selectoption_SubjectTypeCode[i].selected = true;
+     }
+   }
+
+
+  }
+
+
     function check(frm2){
     
     //Check_CHECK_SubjectName(ชื่อรายวิชา)
@@ -143,5 +172,5 @@
     
   }
 </script>
-
+<?php } ?>
   </main><!-- End #main -->

@@ -57,13 +57,13 @@
                             <th style="text-align: center;" scope="col">ภาคเรียน</th>
                             <th style="text-align: center;" scope="col">ชื่อหลักสูตร</th>
                             <th style="text-align: center;" scope="col">ดูรายละเอียด</th>
-                            <th style="text-align: center;" scope="col"></th>
+                            <th style="text-align: center;" scope="col">รายวิชา</th>
                         </tr>
                     </thead>
                     <tbody>
                         <?php foreach ($listCurriculum as $ls) { ?>
                             <tr>
-                                <th scope="row"><?php echo $ls->SchoolID ; ?></th>
+                                <th scope="row"><?php echo $ls->SchoolNameThai ; ?></th>
                                 <td style="text-align: center;"><?php echo $ls->EducationYear; ?></td>
                                 <td style="text-align: center;">
                                     <?php 
@@ -78,7 +78,9 @@
                                     <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#Modal<?= $ls->SchoolID; ?>"><i class="bi bi-card-list"></i></button>
                                 </td>
                                 <td style="text-align: center;">
-                                    <a href='list-curriculum_subject/<?php echo $ls->CurriculumID ; ?>'><button type="button" class="btn btn-primary">รายวิชา</button> </a>
+                                    <a href='list-curriculum_subject?cid=<?php echo $ls->CurriculumID; ?>'>
+                                        <button type="button" class="btn btn-primary"><i class="bi bi-eye-fill"></i></button> 
+                                    </a>
                                 </td>
 
                             </tr>

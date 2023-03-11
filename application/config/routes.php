@@ -15,9 +15,18 @@ $route['list-curriculum'] = 'CurriculumController/list_curriculum';
 $route['forms-curriculum'] = 'CurriculumController/forms_curriculum';
 $route['add_curriculum']['post'] = 'CurriculumController/add_curriculum';
 //Curriculum_subject
-$route['list-curriculum_subject/(:num)'] = 'CurriculumController/list_curriculum_subject/$1';
+$route['list-curriculum_subject']= 'CurriculumController/list_curriculum_subject';
 $route['forms-curriculum_subject'] = 'CurriculumController/forms_curriculum_subject';
 $route['add_curriculum_subject']['post'] = 'CurriculumController/add_curriculum_subject';
+$route['forms_edit-curriculum_subject'] = 'CurriculumController/forms_edit_curriculum_subject';
+$route['edit_curriculum_subject']['post'] = 'CurriculumController/edit_curriculum_subject';
+//Curriculum__school_competency
+$route['list-curriculum_school_competency']= 'CurriculumController/list_curriculum_school_competency';
+$route['forms-curriculum_school_competency'] = 'CurriculumController/forms_curriculum_school_competency';
+$route['add_curriculum_school_competency']['post'] = 'CurriculumController/add_curriculum_school_competency';
+$route['forms_edit-curriculum_school_competency'] = 'CurriculumController/forms_edit_curriculum_school_competency';
+$route['edit_curriculum_school_competency']['post'] = 'CurriculumController/edit_curriculum_school_competency';
+
 
 //teacher_developmant_activity
 $route['list-teacher_development_activity'] = 'Teacher_development_activity_controller/list_teacher_development_activity';
