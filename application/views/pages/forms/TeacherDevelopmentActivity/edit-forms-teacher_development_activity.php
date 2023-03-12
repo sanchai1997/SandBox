@@ -39,8 +39,11 @@
               <h5 class="card-title">ข้อมูลการพัฒนาบุคลากร</h5>
 
               <!-- start Form ข้อมูลการพัฒนาบุคลากรครู -->
-              <form class="row g-3" action="<?php echo base_url('editform_teacher_development_activity');?>" method="POST" name="teacher_developmant_activity" id="teacher_developmant_activity" enctype="multipart/form-data">
-                  
+              <form class="row g-3" action="<?php echo base_url('edit_teacher_development_activity');?>" method="POST" name="teacher_developmant_activity" id="teacher_developmant_activity" enctype="multipart/form-data">
+                <input type="hidden" name="Old_TeacherID" id="Old_TeacherID" value="<?php echo $TD->TeacherID; ?>">
+                <input type="hidden" name="Old_DevelopmentActivityName" id="Old_DevelopmentActivityName" value="<?php echo $TD->DevelopmentActivityName ; ?>">
+                <input type="hidden" name="Old_DevelopmentActivityStartDate" id="Old_DevelopmentActivityStartDate " value="<?php echo $TD->DevelopmentActivityStartDate; ?>">
+
                 <div class="col-md-16">
                   <div class="form-floating">
                     <input type="text" class="form-control"name="DevelopmentActivityEducationYear"id="DevelopmentActivityEducationYear" placeholder="ปีการศึกษา" maxlength="4" value="<?php echo $TD->DevelopmentActivityEducationYear; ?>">
@@ -64,7 +67,7 @@
                   <div class="form-floating">
                     <select class="form-select" aria-label="Default select example"  name="TeacherID"id="TeacherID">
                         <?php foreach($listTeacher as $lt) { ?>
-                          <option value="<?php echo $lt->TEACHER_ID; ?>"><?php echo " (" . $lt->TEACHER_ID . ") " . $lt->NAME_TH; ?></option>
+                          <option value="<?php echo $lt->TeacherID; ?>"><?php echo " (" . $lt->TeacherID . ") " . $lt->TeacherNameThai; ?></option>
                         <?php } ?>
                     </select>
                     <label for="SCHOOL_STATUS_CODE">ครูและบุคลากรทางการศึกษา</label>
@@ -75,7 +78,7 @@
                   <div class="form-floating">
                     <select class="form-select" aria-label="Default select example"  name="DevelopmentActivityTypeCode"id="DevelopmentActivityTypeCode">
                       <?php foreach($listDevelopmentActivityType as $lAT) { ?>
-                          <option value="<?php echo $lAT->DevelopmentActivityTypeCode; ?>"><?php echo $lAT->DevelopmentActivityTypeName; ?></option>
+                          <option value="<?php echo $lAT->TEACHER_DEVELOPMENT_ACTIVITY_TYPE_CODE; ?>"><?php echo $lAT->TEACHER_DEVELOPMENT_ACTIVITY_TYPE_NAME; ?></option>
                         <?php } ?>
                     </select>
                     <label for="SCHOOL_STATUS_CODE">ประเภทกิจกรรม</label>
@@ -126,12 +129,17 @@
 
                 <div class="col-md-16">
                     <div class="input-group mb-3">
-                        <label class="input-group-text" for="inputGroupFile01">เอกสารแนบ/เกียรติบัตร</label>
-                        <input type="file" class="form-control" name="DevelopmentDocument" id="DevelopmentDocument" placeholder="เอกสารแนบ/เกียรติบัตร"  value="<?php echo $TD->DevelopmentDocument; ?>">
+                    <a href="load_file?file=<?php echo $TD->DevelopmentDocument; ?>">
+                      <label class="input-group-text" for="inputGroupFile01"><i class="bi bi-file-earmark-arrow-down-fill"></i>  เอกสารแนบ/เกียรติบัตร</label>
+                    </a>  
+                        <input type="file" class="form-control" name="DevelopmentDocument" id="DevelopmentDocument" placeholder="เอกสารแนบ/เกียรติบัตร" >
                     </div>
                 </div>
+
+                <div class="text-center">
+                  <button type="submit" class="btn btn-warning" onclick="return check(teacher_developmant_activity)">แก้ไขข้อมูล</button>
+                </div> 
                 
-                <button type="submit" class="btn btn-warning" onclick="return check(teacher_developmant_activity)">แก้ไขข้อมูล</button>
               </form><!-- End Form ข้อมูลการพัฒนาบุคลากรครู -->
 
             </div>
@@ -220,7 +228,7 @@
         return false;
     }
     //Cehck_ActivityHour
-    var ActivityHour = /^[0-9]{3}$/;
+    var ActivityHour = /^[0-9]{1,3}$/;
     if(frm.DevelopmentActivityHour.value ==""){
         alert("กรุณากรอกข้อมูลจำนวนชั่วโมง");
         frm.DevelopmentActivityHour.value = "";
@@ -277,11 +285,13 @@
       return false;
     }
     //Check_DevelopmentDocument(เอกสารแนบ/เกียรติบัตร)
+    /*
     if(frm.DevelopmentDocument.value ==""){
       alert("กรุณาแนบไฟล์เอกสารเกียรติบัตร");
       frm.DevelopmentDocument.value = "";
       return false;
     } 
+    */
   }
 </script>  
 <?php } ?>

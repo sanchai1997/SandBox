@@ -17,12 +17,12 @@ class Curriculum_model  extends CI_Model {
     }
 
     public function get_Curriculum_All() {
-        $this->db->select('c.*, s.*, ct.*, e.*, g.*')
+        $this->db->select('c.*, s.SchoolNameThai, ct.CURRICULUM_NAME, e.EDUCATION_LEVEL_CODE, g.GRADE_LEVEL_NAME')
         ->from('curriculum c')
         ->join('school s', 's.SchoolID   = c.SchoolID  ', 'LEFT') 
-        ->join('curriculum_type ct', 'ct.CurriculumCode    = c.CurriculumCode   ', 'LEFT') 
-        ->join('education_level e', 'e.EducationLevelCode     = c.EducationLevelCode    ', 'LEFT') 
-        ->join('grade_level g', 'g.GradeLevelCode    = c.GradeLevelCode   ', 'LEFT') ;
+        ->join('cls_curriculum ct', 'ct.CURRICULUM_CODE    = c.CurriculumCode   ', 'LEFT') 
+        ->join('cls_education_level e', 'e.EDUCATION_LEVEL_CODE     = c.EducationLevelCode    ', 'LEFT') 
+        ->join('CLS_GRADE_LEVEL g', 'g.GRADE_LEVEL_CODE    = c.GradeLevelCode   ', 'LEFT') ;
        
         $query = $this->db->get();
 
@@ -38,6 +38,15 @@ class Curriculum_model  extends CI_Model {
         return $query->result();
     }
 
+    public function update_curriculum($Old_CurriculumID, $curriculum) {
+        $this->db->where('CurriculumID', $Old_CurriculumID);
+        $result = $this->db->update('curriculum', $curriculum);
+        return $result;
+    
+    }
+
+
+
 ###################### curriculum_subject ################################
     public function insert_curriculum_subject($CURRICULUM_SUBJECT) {
 
@@ -47,10 +56,10 @@ class Curriculum_model  extends CI_Model {
     }
 
     public function get_CurriculumSubject_All($CurriculumID) {
-        $this->db->select('cs.*, st.*, sg.*')
+        $this->db->select('cs.*,st.SUBJECT_TYPE_NAME, sg.SUBJECT_GROUP_NAME')
         ->from('curriculum_subject cs')
-        ->join('subject_type st', 'st.SubjectTypeCode   = cs.SubjectTypeCode  ', 'LEFT') 
-        ->join('subject_group sg', 'sg.SubjectGroupCode   = cs.SubjectGroupCode  ', 'LEFT') 
+        ->join('CLS_SUBJECT_TYPE st', 'st.SUBJECT_TYPE_CODE   = cs.SubjectTypeCode  ', 'LEFT') 
+        ->join('CLS_SUBJECT_GROUP sg', 'sg.SUBJECT_GROUP_CODE   = cs.SubjectGroupCode  ', 'LEFT') 
         ->where('CurriculumID ', $CurriculumID  ) ;
         
         //$this->db->from('curriculum_subject');
@@ -88,7 +97,7 @@ class Curriculum_model  extends CI_Model {
     public function get_CurriculumCompetency_All($CurriculumID, $SubjectCode ) {
         $this->db->select('cs.*, c.*')
         ->from('curriculum_school_competency cs')
-        ->join('competency c', 'c.CompetencyCode  = cs.CompetencyCode ', 'LEFT') 
+        ->join('cls_competency c', 'c.COMPETENCY_CODE  = cs.CompetencyCode ', 'LEFT') 
         ->where('CurriculumID ', $CurriculumID  ) 
         ->where('SubjectCode ', $SubjectCode  ) ;
 

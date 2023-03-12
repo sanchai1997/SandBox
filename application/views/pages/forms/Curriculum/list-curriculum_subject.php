@@ -68,8 +68,8 @@
                             <tr>
                                 <td style="text-align: center;"><?php echo $ls->SubjectCode ; ?></td>
                                 <td style="text-align: center;"><?php echo $ls->SubjectName ; ?></td>
-                                <td style="text-align: center;"><?php echo $ls->SubjectGroupName ; ?></td>
-                                <td style="text-align: center;"><?php echo $ls->SubjectTypeName ; ?></td>
+                                <td style="text-align: center;"><?php echo $ls->SUBJECT_GROUP_NAME ; ?></td>
+                                <td style="text-align: center;"><?php echo $ls->SUBJECT_TYPE_NAME ; ?></td>
                                 <td style="text-align: center;"><?php echo $ls->Credit ; ?></td>
                                 <td style="text-align: center;"><?php echo $ls-> LearningHour; ?></td>
                                 <td style="text-align: center;">
@@ -78,7 +78,7 @@
                                     </a>
                                 </td>
                                 <td style="text-align: center;">
-                                    <a href='forms_edit-curriculum_subject?sid=<?php echo $ls->SubjectCode; ?>&&cid=<?php echo $ls->CurriculumID; ?>'>
+                                    <a href='edit_forms-curriculum_subject?sid=<?php echo $ls->SubjectCode; ?>&&cid=<?php echo $ls->CurriculumID; ?>'>
                                         <button type="button" class="btn btn-warning"><i class="bi bi-pencil-square"></i></button> 
                                     </a>
                                 </td>

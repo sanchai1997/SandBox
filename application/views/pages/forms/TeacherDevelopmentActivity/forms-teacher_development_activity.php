@@ -63,7 +63,7 @@
                     <select class="form-select" aria-label="Default select example"  name="TeacherID"id="TeacherID">
                       <option selected value="-1">เลือกครูและบุคลากรทางการศึกษา</option>
                         <?php foreach($listTeacher as $lt) { ?>
-                          <option value="<?php echo $lt->TEACHER_ID; ?>"><?php echo " (" . $lt->TEACHER_ID . ") " . $lt->NAME_TH; ?></option>
+                          <option value="<?php echo $lt->TeacherID; ?>"><?php echo " (" . $lt->TeacherID . ") " . $lt->TeacherNameThai; ?></option>
                         <?php } ?>
                     </select>
                     <label>ครูและบุคลากรทางการศึกษา</label>
@@ -75,7 +75,7 @@
                     <select class="form-select" aria-label="Default select example"  name="DevelopmentActivityTypeCode"id="DevelopmentActivityTypeCode">
                       <option selected value="-1">เลือกประเภทกิจกรรม</option>
                       <?php foreach($listDevelopmentActivityType as $lAT) { ?>
-                          <option value="<?php echo $lAT->DevelopmentActivityTypeCode; ?>"><?php echo $lAT->DevelopmentActivityTypeName; ?></option>
+                        <option value="<?php echo $lAT->TEACHER_DEVELOPMENT_ACTIVITY_TYPE_CODE; ?>"><?php echo $lAT->TEACHER_DEVELOPMENT_ACTIVITY_TYPE_NAME; ?></option>
                         <?php } ?>
                     </select>
                     <label>ประเภทกิจกรรม</label>
@@ -183,7 +183,7 @@
         return false;
     }
     //Cehck_ActivityHour
-    var ActivityHour = /^[0-9]{3}$/;
+    var ActivityHour = /^[0-9]{1,3}$/;
     if(frm.DevelopmentActivityHour.value ==""){
         alert("กรุณากรอกข้อมูลจำนวนชั่วโมง");
         frm.DevelopmentActivityHour.value = "";

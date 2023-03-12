@@ -52,8 +52,8 @@
                 <table class="table table-borderless datatable">
                     <thead>
                         <tr>
-                            <th style="text-align: center;" scope="col">สมรรถนะ</th>
-                            <th style="text-align: center;" scope="col">โมเดล</th></th>
+                            <th style="text-align: center;" scope="col">รหัสสมรรถนะ</th>
+                            <th style="text-align: center;" scope="col">ชื่อสมรรถนะ</th></th>
                             <th style="text-align: center;" scope="col"></th>
                         </tr>
                     </thead>
@@ -61,11 +61,11 @@
                     <tbody>
                         <?php foreach ($listCurriculumCompetency as $ls) { ?>
                             <tr>
-                                <td style="text-align: center;"><?php echo $ls->CompetencyName ; ?></td>
-                                <td style="text-align: center;"><?php echo $ls->CompetencyModel ; ?></td>
+                                <td style="text-align: center;"><?php echo $ls-> COMPETENCY_CODE; ?></td>
+                                <td style="text-align: center;"><?php echo $ls->COMPETENCY_NAME ; ?></td>
 
                                 <td style="text-align: center;">
-                                    <a href='forms_edit-curriculum_school_competency?sid=<?php echo $ls->SubjectCode; ?>&&cid=<?php echo $ls->CurriculumID; ?>&&cpid=<?php echo $ls->CompetencyCode ; ?>'>
+                                    <a href='edit_forms-curriculum_school_competency?sid=<?php echo $ls->SubjectCode; ?>&&cid=<?php echo $ls->CurriculumID; ?>&&cpid=<?php echo $ls->CompetencyCode ; ?>'>
                                         <button type="button" class="btn btn-warning"><i class="bi bi-pencil-square"></i></button> 
                                     </a>
                                 </td>

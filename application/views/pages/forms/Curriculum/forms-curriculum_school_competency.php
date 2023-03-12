@@ -49,7 +49,7 @@
                     <select class="form-select" aria-label="Default select example" name="CompetencyCode" id="CompetencyCode">
                       <option selected value="-1">เลือกสมรรถนะ</option>
                       <?php foreach($listCompetency as $ls) { ?>
-                        <option value="<?php echo $ls->CompetencyCode; ?>"><?php echo $ls->CompetencyName; ?></option>
+                        <option value="<?php echo $ls->COMPETENCY_CODE; ?>"><?php echo $ls->COMPETENCY_NAME; ?></option>
                       <?php } ?> 
                     </select>    
                     <label>สมรรถนะ</label>

@@ -12,7 +12,7 @@ class CurriculumController extends CI_Controller{
         $this->load->model('Code_model');
     }
     public function do_upload($fileName , $field_name ) {
-        $config['upload_path'] = FCPATH."application/documents/";  // โฟลเดอร์ ตำแหน่งเดียวกับ root ของโปรเจ็ค
+        $config['upload_path'] = APPPATH."documents/";  // โฟลเดอร์ ตำแหน่งเดียวกับ root ของโปรเจ็ค
         
         $config['allowed_types'] = 'jpg|jpeg|png|iso|dmg|zip|rar|doc|docx|xls|xlsx|ppt|pptx|csv|ods|odt|odp|pdf|rtf|sxc|sxi|txt|exe|avi|mpeg|3gp'; // ปรเเภทไฟล์ 
         $config['max_size']     = '0';  // ขนาดไฟล์ (kb)  0 คือไม่จำกัด ขึ้นกับกำหนดใน php.ini ปกติไม่เกิน 2MB
@@ -119,7 +119,7 @@ class CurriculumController extends CI_Controller{
 
     public function forms_edit_curriculum() {
         
-        if ( ! file_exists(APPPATH.'views/pages/forms/Curriculum/forms_edit-curriculum.php'))
+        if ( ! file_exists(APPPATH.'views/pages/forms/Curriculum/edit_forms-curriculum.php'))
         {
             // Whoops, we don't have a page for that!
             show_404();
@@ -136,10 +136,99 @@ class CurriculumController extends CI_Controller{
 
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
-        $this->load->view('pages/forms/Curriculum/forms_edit-curriculum', $data);
+        $this->load->view('pages/forms/Curriculum/edit_forms-curriculum', $data);
         $this->load->view('templates/footer', $data);
 
     }
+
+    public function edit_curriculum() {
+        $Old_CurriculumID = $this->input->post('Old_CurriculumID');
+
+        $EducationYear = $this->input->post('EducationYear');
+        $Semester = $this->input->post('Semester');
+        $SchoolID = $this->input->post('SchoolID');
+        $CurriculumID =  $EducationYear . $Semester . $SchoolID;
+
+        $CurriculumDocumentURL = $this->do_upload('CurriculumDocument'.$CurriculumID ,"CurriculumDocumentURL");
+        $LocalCurriculumDocumentURL = $this->do_upload('LocalCurriculumDocument'.$CurriculumID ,"LocalCurriculumDocumentURL");
+
+        $curriculum = [];
+
+        if($CurriculumDocumentURL != -1 && $LocalCurriculumDocumentURL !=-1 ){
+            $curriculum = [
+                'CurriculumID' => $CurriculumID,
+                'EducationYear' => $EducationYear,
+                'Semester' =>  $Semester,
+                'SchoolID' => $SchoolID,
+                'CurriculumName' => $this->input->post('CurriculumName'),
+                'CurriculumCode' => $this->input->post('CurriculumCode'),
+                'EducationLevelCode' => $this->input->post('EducationLevelCode'),
+                'GradeLevelCode' => $this->input->post('GradeLevelCode'),
+                'ClassroomNumber' => $this->input->post('ClassroomNumber'),
+                'CurriculumDocumentURL' => $CurriculumDocumentURL,
+                'LocalCurriculumFlag' => $this->input->post('LocalCurriculumFlag'),
+                'LocalCurriculumName' => $this->input->post('LocalCurriculumName'),
+                'LocalCurriculumDocumentURL' => $LocalCurriculumDocumentURL
+            ];
+        }else if($CurriculumDocumentURL != -1  ){
+            $curriculum = [
+                'CurriculumID' => $CurriculumID,
+                'EducationYear' => $EducationYear,
+                'Semester' =>  $Semester,
+                'SchoolID' => $SchoolID,
+                'CurriculumName' => $this->input->post('CurriculumName'),
+                'CurriculumCode' => $this->input->post('CurriculumCode'),
+                'EducationLevelCode' => $this->input->post('EducationLevelCode'),
+                'GradeLevelCode' => $this->input->post('GradeLevelCode'),
+                'ClassroomNumber' => $this->input->post('ClassroomNumber'),
+                'CurriculumDocumentURL' => $CurriculumDocumentURL,
+                'LocalCurriculumFlag' => $this->input->post('LocalCurriculumFlag'),
+                'LocalCurriculumName' => $this->input->post('LocalCurriculumName')
+            ];
+        }else if($LocalCurriculumDocumentURL !=-1 ){
+            $curriculum = [
+                'CurriculumID' => $CurriculumID,
+                'EducationYear' => $EducationYear,
+                'Semester' =>  $Semester,
+                'SchoolID' => $SchoolID,
+                'CurriculumName' => $this->input->post('CurriculumName'),
+                'CurriculumCode' => $this->input->post('CurriculumCode'),
+                'EducationLevelCode' => $this->input->post('EducationLevelCode'),
+                'GradeLevelCode' => $this->input->post('GradeLevelCode'),
+                'ClassroomNumber' => $this->input->post('ClassroomNumber'),
+                'LocalCurriculumFlag' => $this->input->post('LocalCurriculumFlag'),
+                'LocalCurriculumName' => $this->input->post('LocalCurriculumName'),
+                'LocalCurriculumDocumentURL' => $LocalCurriculumDocumentURL
+            ];
+        }else{
+            $curriculum = [
+                'CurriculumID' => $CurriculumID,
+                'EducationYear' => $EducationYear,
+                'Semester' =>  $Semester,
+                'SchoolID' => $SchoolID,
+                'CurriculumName' => $this->input->post('CurriculumName'),
+                'CurriculumCode' => $this->input->post('CurriculumCode'),
+                'EducationLevelCode' => $this->input->post('EducationLevelCode'),
+                'GradeLevelCode' => $this->input->post('GradeLevelCode'),
+                'ClassroomNumber' => $this->input->post('ClassroomNumber'),
+                'LocalCurriculumFlag' => $this->input->post('LocalCurriculumFlag'),
+                'LocalCurriculumName' => $this->input->post('LocalCurriculumName')
+            ];
+        }
+        $result =  $this->Curriculum_model->update_curriculum($Old_CurriculumID, $curriculum);
+
+        if($result == 1 ){
+            $this->session->set_flashdata('success',"แก้ไขข้อมูลสำเร็จ");
+            redirect(base_url('list-curriculum'));
+        }else{
+            $this->session->set_flashdata('errors',"เกิดข้อผิดพลาดในการแก้ไขข้อมูล");
+            redirect(base_url('edit_forms-curriculum?cid='. $Old_CurriculumID));
+        }
+        
+      
+
+    }
+
     
 #### curriculum_subject
     public function list_curriculum_subject() {
@@ -209,7 +298,7 @@ class CurriculumController extends CI_Controller{
 
     public function forms_edit_curriculum_subject() {
         
-        if ( ! file_exists(APPPATH.'views/pages/forms/Curriculum/forms_edit-curriculum_subject.php'))
+        if ( ! file_exists(APPPATH.'views/pages/forms/Curriculum/edit_forms-curriculum_subject.php'))
         {
             // Whoops, we don't have a page for that!
             show_404();
@@ -225,7 +314,7 @@ class CurriculumController extends CI_Controller{
 
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
-        $this->load->view('pages/forms/Curriculum/forms_edit-curriculum_subject', $data);
+        $this->load->view('pages/forms/Curriculum/edit_forms-curriculum_subject', $data);
         $this->load->view('templates/footer', $data);
 
     }
@@ -250,7 +339,7 @@ class CurriculumController extends CI_Controller{
             redirect(base_url('list-curriculum_subject?cid='. $CurriculumID));
         }else{
             $this->session->set_flashdata('errors',"เกิดข้อผิดพลาดในการแก้ไขข้อมูล");
-            redirect(base_url('forms_edit-curriculum_subject?cid='. $CurriculumID.'&&sid='. $Old_SubjectCode ));
+            redirect(base_url('edit_forms-curriculum_subject?cid='. $CurriculumID.'&&sid='. $Old_SubjectCode ));
         }
     }
 
@@ -320,7 +409,7 @@ class CurriculumController extends CI_Controller{
     }
     public function forms_edit_curriculum_school_competency() {
         
-        if ( ! file_exists(APPPATH.'views/pages/forms/Curriculum/forms_edit-curriculum_school_competency.php'))
+        if ( ! file_exists(APPPATH.'views/pages/forms/Curriculum/edit_forms-curriculum_school_competency.php'))
         {
             // Whoops, we don't have a page for that!
             show_404();
@@ -336,7 +425,7 @@ class CurriculumController extends CI_Controller{
 
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
-        $this->load->view('pages/forms/Curriculum/forms_edit-curriculum_school_competency', $data);
+        $this->load->view('pages/forms/Curriculum/edit_forms-curriculum_school_competency', $data);
         $this->load->view('templates/footer', $data);
 
     }
@@ -360,7 +449,7 @@ class CurriculumController extends CI_Controller{
             redirect(base_url('list-curriculum_school_competency?cid='. $CurriculumID.'&&sid='.$SubjectCode));
         }else{
             $this->session->set_flashdata('errors',"เกิดข้อผิดพลาดในการแก้ไขข้อมูล");
-            redirect(base_url('forms_edit-curriculum_school_competency?cid='. $CurriculumID.'&&sid='.$SubjectCode.'&&cpid='.$Old_CompetencyCode));
+            redirect(base_url('edit_forms-curriculum_school_competency?cid='. $CurriculumID.'&&sid='.$SubjectCode.'&&cpid='.$Old_CompetencyCode));
         }
     }
 

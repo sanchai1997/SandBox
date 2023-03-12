@@ -60,7 +60,7 @@
                     <select class="form-select" aria-label="Default select example" name="SubjectGroupCode" id="SubjectGroupCode">
                       <option  value="0">เลือกกลุ่มสาระการเรียนรู้ / การศึกษาค้นคว้าด้วยตนเอง</option>
                       <?php foreach($listSubjectGroup as $ls) { ?>
-                        <option value="<?php echo $ls->SubjectGroupCode; ?>"><?php echo $ls->SubjectGroupName; ?></option>
+                        <option value="<?php echo $ls->SUBJECT_GROUP_CODE; ?>"><?php echo $ls->SUBJECT_GROUP_NAME; ?></option>
                       <?php } ?>
                     </select>
                     <label>กลุ่มสาระการเรียนรู้ / การศึกษาค้นคว้าด้วยตนเอง</label>
@@ -71,7 +71,7 @@
                   <div class="form-floating">
                     <select class="form-select" aria-label="Default select example" name="SubjectTypeCode" id="SubjectTypeCode">
                       <?php foreach($listSubjectType as $ls) { ?>
-                        <option value="<?php echo $ls->SubjectTypeCode; ?>"><?php echo $ls->SubjectTypeName ; ?></option>
+                        <option value="<?php echo $ls-> SUBJECT_TYPE_CODE; ?>"><?php echo $ls->SUBJECT_TYPE_NAME ; ?></option>
                       <?php } ?>
                     </select>
                     <label>ประเภทวิชา</label>
@@ -93,7 +93,7 @@
                 </div>
               <!-- End Form ข้อมูลหลักสูตรรายวิชา -->
                 <div class="text-center">
-                  <button type="submit" class="btn btn-primary" onclick="return check(CurriculumSubject)">ยืนยัน</button>
+                  <button type="submit" class="btn btn-warning" onclick="return check(CurriculumSubject)">แก้ไขข้อมูล</button>
                 </div> 
              </form>
 <!-- End Form ข้อมูลหลักสูตรรายวิชา -->

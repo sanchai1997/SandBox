@@ -51,7 +51,7 @@
                   <div class="form-floating">
                     <select class="form-select" aria-label="Default select example" name="CompetencyCode" id="CompetencyCode">
                       <?php foreach($listCompetency as $ls) { ?>
-                        <option value="<?php echo $ls->CompetencyCode; ?>"><?php echo $ls->CompetencyName; ?></option>
+                        <option value="<?php echo $ls->COMPETENCY_CODE; ?>"><?php echo $ls->COMPETENCY_NAME; ?></option>
                       <?php } ?> 
                     </select>    
                     <label>สมรรถนะ</label>
@@ -60,7 +60,7 @@
 
               <!-- End Form ข้อมูลสมรรถนะของหลักสูตร -->
                   <div class="text-center">
-                    <button type="submit" class="btn btn-primary" onclick="return check(CurriculumCompetency)">ยืนยัน</button>
+                    <button type="submit" class="btn btn-warning" onclick="return check(CurriculumCompetency)">แก้ไขข้อมูล</button>
                   </div>
                 </form>
                 

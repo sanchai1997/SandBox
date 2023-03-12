@@ -81,7 +81,7 @@
                     <select class="form-select" aria-label="Default select example" name="CurriculumCode" id="CurriculumCode">
                       <option selected value="-1">เลือกประเภทหลักสูตร</option>
                       <?php foreach($listCurriculumType as $ls) { ?>
-                        <option value="<?php echo $ls->CurriculumCode; ?>"><?php echo $ls->CurriculumTypeName; ?></option>
+                        <option value="<?php echo $ls->CURRICULUM_CODE; ?>"><?php echo $ls->CURRICULUM_NAME; ?></option>
                       <?php } ?>
                     </select>
                     <label >ประเภทหลักสูตร</label>
@@ -93,7 +93,7 @@
                     <select class="form-select" aria-label="Default select example" name="EducationLevelCode" id="EducationLevelCode">
                       <option selected value="-1">เลือกะดับการศึกษา</option>
                       <?php foreach($listEducationLevel as $ls) { ?>
-                        <option value="<?php echo $ls->EducationLevelCode; ?>"><?php echo $ls->EducationLevelName; ?></option>
+                        <option value="<?php echo $ls->EDUCATION_LEVEL_CODE; ?>"><?php echo $ls->EDUCATION_LEVEL_NAME; ?></option>
                       <?php } ?>
                     </select>
                     <label >ระดับการศึกษา</label>
@@ -105,7 +105,7 @@
                     <select class="form-select" aria-label="Default select example" name="GradeLevelCode" id="GradeLevelCode">
                       <option selected value="-1">เลือกชั้นปี</option>
                       <?php foreach($listGradeLevel as $ls) { ?>
-                        <option value="<?php echo $ls->GradeLevelCode; ?>"><?php echo $ls->GradeLevelName; ?></option>
+                        <option value="<?php echo $ls->GRADE_LEVEL_CODE; ?>"><?php echo $ls->GRADE_LEVEL_NAME; ?></option>
                       <?php } ?>
                     </select>
                     <label >ชั้นปี</label>

@@ -78,20 +78,22 @@
                                         else if($Semester_code==2) echo "ภาคเรียนที่ 2"; 
                                     ?>
                                 </td>
-                                <td style="text-align: center;"></td>
+                                <td style="text-align: center;"><?php echo $ls->TEACHER_DEVELOPMENT_ACTIVITY_TYPE_NAME; ?></td>
                                 <td style="text-align: center;"><?php echo $ls->DevelopmentActivityName; ?></td>
                                 <td style="text-align: center;"><?php echo $ls->DevelopmentActivityHour; ?></td>
                                 <td style="text-align: center;"><?php echo $ls->DevelopmentActivityPlace; ?></td>
                                 <td style="text-align: center;"><?php echo $ls->Organizer; ?></td>
                                 <td style="text-align: center;"><?php echo $ls->DevelopmentActivityStartDate ; ?></td>
                                 <td style="text-align: center;"><?php echo $ls->DevelopmentActivityEndDate; ?></td>
-                                <td style="text-align: center;"></td>
                                 <td style="text-align: center;">
-                            
-                                <a href='edit-forms-teacher_development_activity?name=<?php echo $ls->DevelopmentActivityName;?>'>
-                                <button type="submit" class="btn btn-warning">แก้ไขข้อมูล</button>    
-                                </a>
-                                    
+                                    <a href="load_file?file=<?php echo $ls->DevelopmentDocument; ?>">
+                                        <button type="submit" class="btn btn-info"><i class="bi bi-file-earmark-text-fill"></i></button>    
+                                    </a>   
+                                </td>
+                                <td style="text-align: center;">
+                                    <a href='edit_forms-teacher_development_activity?tid=<?php echo $ls->TeacherID;?>&&name=<?php echo $ls->DevelopmentActivityName;?>&&sdate=<?php echo $ls->DevelopmentActivityStartDate;?>'>
+                                        <button type="submit" class="btn btn-warning"><i class="bi bi-pencil-square"></i></button>    
+                                    </a>                              
                                 </td>
 
 

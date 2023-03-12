@@ -9,38 +9,38 @@ class Code_model  extends CI_Model {
     }
 
     public function get_CurriculumType_All() {
-        $query = $this->db->get('curriculum_type');
+        $query = $this->db->get('cls_curriculum');
         return $query->result();
     }
 
     public function get_EducationLevel_All() {
-        $query = $this->db->get('Education_Level');
+        $query = $this->db->get('cls_education_level');
         return $query->result();
     }
 
     public function get_GradeLevel_All() {
-        $query = $this->db->get('Grade_Level');
+        $query = $this->db->get('CLS_GRADE_LEVEL');
         return $query->result();
     }
 
     public function get_SubjectGroup_All() {
-        $query = $this->db->get('Subject_Group');
+        $query = $this->db->get('CLS_SUBJECT_GROUP');
         return $query->result();
     }
 
     public function get_Subject_Type_All() {
-        $query = $this->db->get('subject_type');
+        $query = $this->db->get('CLS_SUBJECT_TYPE');
         return $query->result();
     }
 
     public function get_Competency_Type_All() {
-        $query = $this->db->get('Competency');
+        $query = $this->db->get('cls_competency');
         return $query->result();
     }
 
     /////Addschool_Model.php
     public function get_DevelopmentActivityType_All() {
-        $query = $this->db->get('development_activity_type');
+        $query = $this->db->get('cls_teacher_development_activity_type');
         return $query->result();
     }
 

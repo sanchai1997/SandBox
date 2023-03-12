@@ -103,10 +103,13 @@ class Teacher_development_activity_controller extends CI_Controller{
         }
 
     }
-    public function edit_teacher_development_activity(){
-        
-        $TeacherDevelopmentActivityName = $_GET['name'];
-        $data['TeacherDevelopmentActivity'] = $this->TeacherDevelopmentActivity_model->get_TeacherDevelopmentActivity($TeacherDevelopmentActivityName);
+    public function forms_edit_teacher_development_activity(){
+
+        $TeacherID = $_GET['tid'];
+        $DevelopmentActivityName = $_GET['name'];
+        $DevelopmentActivityStartDate  = $_GET['sdate'];
+
+        $data['TeacherDevelopmentActivity'] = $this->TeacherDevelopmentActivity_model->get_TeacherDevelopmentActivity($TeacherID, $DevelopmentActivityName, $DevelopmentActivityStartDate );
         $data['listTeacher'] = $this->Teacher_model->get_teacher_All();
         $data['listDevelopmentActivityType'] = $this->Code_model->get_DevelopmentActivityType_All();
         $this->load->view('templates/header');
@@ -114,9 +117,15 @@ class Teacher_development_activity_controller extends CI_Controller{
         $this->load->view('pages/forms/TeacherDevelopmentActivity/edit-forms-teacher_development_activity',$data);
         $this->load->view('templates/footer');
     }
-    public function editform_teacher_development_activity() {
+
+    public function edit_teacher_development_activity() {
+        $Old_TeacherID = $this->input->post('Old_TeacherID');
+        $Old_DevelopmentActivityName  = $this->input->post('Old_DevelopmentActivityName');
+        $Old_DevelopmentActivityStartDate  = $this->input->post('Old_DevelopmentActivityStartDate');
 
         $DevelopmentDocument = $this->do_upload('DevelopmentDocument',"DevelopmentDocument");
+
+        $teacher_development_activity = [] ;
 
         if($DevelopmentDocument != -1 ){
             $teacher_development_activity = [
@@ -132,21 +141,33 @@ class Teacher_development_activity_controller extends CI_Controller{
                 'DevelopmentActivityEndDate' => $this->input->post('DevelopmentActivityEndDate'),
                 'DevelopmentDocument'=> $DevelopmentDocument
             ];
-            $result =  $this->TeacherDevelopmentActivity_model->update_TeacherDevelopmentActivityt($teacher_development_activity);
-            
-            if($result == 1 ){
-                $this->session->set_flashdata('success',"บันทึกข้อมูลสำเร็จ");
-                redirect(base_url('list-teacher_development_activity')); //รอเพิ่มหน้า 
-            }else{
-                $this->session->set_flashdata('errors',"เกิดข้อผิดพลาดในการบันทึกข้อมูล");
-                redirect(base_url('forms-teacher_development_activity')); 
-            }
-
+          
         }else{
-            $this->session->set_flashdata('errors',"เกิดข้อผิดพลาดในการบันทึกข้อมูล");
-            redirect(base_url('forms-teacher_development_activity')); 
+            $teacher_development_activity = [
+                'DevelopmentActivityEducationYear' => $this->input->post('DevelopmentActivityEducationYear'),
+                'DevelopmentActivitySemester' => $this->input->post('DevelopmentActivitySemester'),
+                'TeacherID' => $this->input->post('TeacherID'),
+                'DevelopmentActivityTypeCode' => $this->input->post('DevelopmentActivityTypeCode'),
+                'DevelopmentActivityName' => $this->input->post('DevelopmentActivityName'),
+                'DevelopmentActivityPlace' => $this->input->post('DevelopmentActivityPlace'),
+                'DevelopmentActivityHour' => $this->input->post('DevelopmentActivityHour'),
+                'Organizer' => $this->input->post('Organizer'),
+                'DevelopmentActivityStartDate' => $this->input->post('DevelopmentActivityStartDate'),
+                'DevelopmentActivityEndDate' => $this->input->post('DevelopmentActivityEndDate'),
+            ];
+         }
+
+         $result =  $this->TeacherDevelopmentActivity_model->update_TeacherDevelopmentActivity( $Old_TeacherID, $Old_DevelopmentActivityName, $Old_DevelopmentActivityStartDate, $teacher_development_activity);
+         if($result == 1 ){
+             $this->session->set_flashdata('success',"แก้ไขข้อมูลสำเร็จ");
+             redirect(base_url('list-teacher_development_activity'));
+         }else{
+             $this->session->set_flashdata('errors',"เกิดข้อผิดพลาดในการบันทึกข้อมูล");
+             redirect(base_url('edit_forms-teacher_development_activity?tid='. $Old_TeacherID.'&&name='.$Old_DevelopmentActivityName.'&&sdate='.$Old_DevelopmentActivityStartDate)); 
          }
    
+    }
+
 }
     
 ?>

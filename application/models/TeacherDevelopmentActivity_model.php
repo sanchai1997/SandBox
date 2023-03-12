@@ -16,23 +16,33 @@ class TeacherDevelopmentActivity_model extends CI_Model {
 
     
     public function get_TeacherDevelopmentActivityAll() {
-        $query = $this->db->get('teacher_development_activity');
+        $this->db->select('td.*, t.TeacherNameThai, at.TEACHER_DEVELOPMENT_ACTIVITY_TYPE_NAME')
+        ->from('teacher_development_activity td')
+        ->join('teacher t', 't.TeacherID   = td.TeacherID  ', 'LEFT') 
+        ->join('cls_teacher_development_activity_type at', 'at.TEACHER_DEVELOPMENT_ACTIVITY_TYPE_CODE   = td.DevelopmentActivityTypeCode  ', 'LEFT') ;
+
+        $query = $this->db->get();
         return $query->result();
+
     }
 
-    public function get_TeacherDevelopmentActivity($TeacherDevelopmentActivityName) {
+    public function get_TeacherDevelopmentActivity($TeacherID, $DevelopmentActivityName, $DevelopmentActivityStartDate) {
         $this->db->from('teacher_development_activity');
-        $this->db->where('DevelopmentActivityName', $TeacherDevelopmentActivityName);
+        $this->db->where('TeacherID', $TeacherID)
+                ->where('DevelopmentActivityName ', $DevelopmentActivityName  ) 
+                ->where('DevelopmentActivityStartDate  ', $DevelopmentActivityStartDate  ) ;
         $query = $this->db->get();
         
         return $query->result();
     }
 
-    public function update_TeacherDevelopmentActivityt($CurriculumID, $SubjectCode, $CURRICULUM_SUBJECT) {
-        $this->db->where('CurriculumID', $CurriculumID)
-                ->where('SubjectCode ', $SubjectCode  ) ;
-        $result_CURRICULUM_SUBJECT = $this->db->update('curriculum_subject', $CURRICULUM_SUBJECT);
-        return $result_CURRICULUM_SUBJECT;
+    public function update_TeacherDevelopmentActivity($Old_TeacherID, $Old_DevelopmentActivityName, $Old_DevelopmentActivityStartDate, $teacher_development_activity) {
+        $this->db->where('TeacherID', $Old_TeacherID)
+                ->where('DevelopmentActivityName ', $Old_DevelopmentActivityName  ) 
+                ->where('DevelopmentActivityStartDate  ', $Old_DevelopmentActivityStartDate  ) 
+                ;
+        $result = $this->db->update('teacher_development_activity', $teacher_development_activity);
+        return $result;
     
     }
     

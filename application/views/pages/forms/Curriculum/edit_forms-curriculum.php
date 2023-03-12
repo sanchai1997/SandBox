@@ -81,7 +81,7 @@
                   <div class="form-floating">
                     <select class="form-select" aria-label="Default select example" name="CurriculumCode" id="CurriculumCode">
                       <?php foreach($listCurriculumType as $ls) { ?>
-                        <option value="<?php echo $ls->CurriculumCode; ?>"><?php echo $ls->CurriculumTypeName; ?></option>
+                        <option value="<?php echo $ls->CURRICULUM_CODE; ?>"><?php echo $ls->CURRICULUM_NAME; ?></option>
                       <?php } ?>
                     </select>
                     <label >ประเภทหลักสูตร</label>
@@ -92,7 +92,7 @@
                   <div class="form-floating">
                     <select class="form-select" aria-label="Default select example" name="EducationLevelCode" id="EducationLevelCode">
                       <?php foreach($listEducationLevel as $ls) { ?>
-                        <option value="<?php echo $ls->EducationLevelCode; ?>"><?php echo $ls->EducationLevelName; ?></option>
+                        <option value="<?php echo $ls->EDUCATION_LEVEL_CODE; ?>"><?php echo $ls->EDUCATION_LEVEL_NAME; ?></option>
                       <?php } ?>
                     </select>
                     <label >ระดับการศึกษา</label>
@@ -103,7 +103,7 @@
                   <div class="form-floating">
                     <select class="form-select" aria-label="Default select example" name="GradeLevelCode" id="GradeLevelCode">
                       <?php foreach($listGradeLevel as $ls) { ?>
-                        <option value="<?php echo $ls->GradeLevelCode; ?>"><?php echo $ls->GradeLevelName; ?></option>
+                        <option value="<?php echo $ls->GRADE_LEVEL_CODE; ?>"><?php echo $ls->GRADE_LEVEL_NAME; ?></option>
                       <?php } ?>
                     </select>
                     <label >ชั้นปี</label>
@@ -118,9 +118,11 @@
                 </div>
 
                 <div class="col-md-16">
-                    <div class="input-group">
-                        <label class="input-group-text" for="inputGroupFile01">เอกสารหลักสูตร</label>
-                        <input type="file" class="form-control"  name="CurriculumDocumentURL" id="CurriculumDocumentURL">
+                    <div class="input-group mb-3">
+                    <a href="load_file?file=<?php echo $c->CurriculumDocumentURL; ?>">
+                      <label class="input-group-text" for="inputGroupFile01"><i class="bi bi-file-earmark-arrow-down-fill"></i>  เอกสารหลักสูตร</label>
+                    </a>  
+                    <input type="file" class="form-control"  name="CurriculumDocumentURL" id="CurriculumDocumentURL">
                     </div>
                 </div>
 
@@ -142,14 +144,16 @@
                 </div>
 
                 <div class="col-md-16">
-                    <div class="input-group">
-                        <label class="input-group-text" for="inputGroupFile01">เอกสารแนบหลักสูตรอ้างอิง</label>
-                        <input type="file" class="form-control" name="LocalCurriculumDocumentURL" id="LocalCurriculumDocumentURL" placeholder="เอกสารแนบหลักสูตรอ้างอิง" >
+                    <div class="input-group mb-3">
+                    <a href="load_file?file=<?php echo $c->LocalCurriculumDocumentURL; ?>">
+                      <label class="input-group-text" for="inputGroupFile01"><i class="bi bi-file-earmark-arrow-down-fill"></i>  เอกสารแนบหลักสูตรอ้างอิง</label>
+                    </a>  
+                    <input type="file" class="form-control" name="LocalCurriculumDocumentURL" id="LocalCurriculumDocumentURL" placeholder="เอกสารแนบหลักสูตรอ้างอิง" >
                     </div>
                 </div>
 
                 <div class="text-center">
-                  <button type="submit" class="btn btn-primary" onclick="return check(Curriculum)">ยืนยัน</button>
+                  <button type="submit" class="btn btn-warning" onclick="return check(Curriculum)">แก้ไขข้อมูล</button>
                 </div> 
 
              </form>
