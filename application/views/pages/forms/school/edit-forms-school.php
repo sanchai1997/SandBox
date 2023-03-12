@@ -1,20 +1,20 @@
 <?php
 $GetSchool = $this->db->query(
     'SELECT * FROM SCHOOL 
-    INNER JOIN CLS_INNOVATION_AREA ON SCHOOL.InnovationAreaCode = CLS_INNOVATION_AREA.CLS_INNOVATION_AREA_CODE
-    INNER JOIN CLS_JURISDICTION ON SCHOOL.JurisdictionCode = CLS_JURISDICTION.CLS_JURISDICTION_CODE
-    INNER JOIN CLS_SCHOOL_TYPE ON SCHOOL.SchoolTypeCode = CLS_SCHOOL_TYPE.CLS_SCHOOL_TYPE_CODE
-    INNER JOIN CLS_SCHOOL_STATUS ON SCHOOL.SchoolStatusCode = CLS_SCHOOL_STATUS.CLS_SCHOOL_STATUS_CODE
-    INNER JOIN CLS_MUNICIPAL ON SCHOOL.MunicipalCode = CLS_MUNICIPAL.CLS_MUNICIPAL_CODE
-    INNER JOIN CLS_SUBDISTRICT ON SCHOOL.SchoolAddressSubdistrictCode = CLS_SUBDISTRICT.CLS_SUBDISTRICT_CODE
-    INNER JOIN CLS_DISTRICT ON SCHOOL.SchoolAddressDistrictCode = CLS_DISTRICT.CLS_DISTRICT_CODE
-    INNER JOIN CLS_PROVINCE ON SCHOOL.SchoolAddressProvinceCode = CLS_PROVINCE.CLS_PROVINCE_CODE
-    INNER JOIN CLS_PREFIX ON SCHOOL.AdministratorPrefixCode = CLS_PREFIX.CLS_PREFIX_CODE
-    INNER JOIN CLS_EDUCATION_LEVEL ON SCHOOL.EducationLevelCode = CLS_EDUCATION_LEVEL.CLS_EDUCATION_LEVEL_CODE
-    INNER JOIN CLS_ELECTRIC_TYPE ON SCHOOL.ElectricTypeCode = CLS_ELECTRIC_TYPE.CLS_ELECTRIC_TYPE_CODE
-    INNER JOIN CLS_INTERNET_TYPE ON SCHOOL.InternetTypeCode = CLS_INTERNET_TYPE.CLS_INTERNET_TYPE_CODE
-    INNER JOIN CLS_WATER_TYPE ON SCHOOL.WaterTypeCode = CLS_WATER_TYPE.CLS_WATER_TYPE_CODE
-    INNER JOIN CLS_EDUCATION_CONTENT ON SCHOOL.EducationContentCode = CLS_EDUCATION_CONTENT.CLS_EDUCATION_CONTENT_CODE
+    INNER JOIN CLS_INNOVATION_AREA ON SCHOOL.InnovationAreaCode = CLS_INNOVATION_AREA.INNOVATION_AREA_CODE
+    INNER JOIN CLS_JURISDICTION ON SCHOOL.JurisdictionCode = CLS_JURISDICTION.JURISDICTION_CODE
+    INNER JOIN CLS_SCHOOL_TYPE ON SCHOOL.SchoolTypeCode = CLS_SCHOOL_TYPE.SCHOOL_TYPE_CODE
+    INNER JOIN CLS_SCHOOL_STATUS ON SCHOOL.SchoolStatusCode = CLS_SCHOOL_STATUS.SCHOOL_STATUS_CODE
+    INNER JOIN CLS_MUNICIPAL ON SCHOOL.MunicipalCode = CLS_MUNICIPAL.MUNICIPAL_CODE
+    INNER JOIN CLS_SUBDISTRICT ON SCHOOL.SchoolAddressSubdistrictCode = CLS_SUBDISTRICT.SUBDISTRICT_CODE
+    INNER JOIN CLS_DISTRICT ON SCHOOL.SchoolAddressDistrictCode = CLS_DISTRICT.DISTRICT_CODE
+    INNER JOIN CLS_PROVINCE ON SCHOOL.SchoolAddressProvinceCode = CLS_PROVINCE.PROVINCE_CODE
+    INNER JOIN CLS_PREFIX ON SCHOOL.AdministratorPrefixCode = CLS_PREFIX.PREFIX_CODE
+    INNER JOIN CLS_EDUCATION_LEVEL ON SCHOOL.EducationLevelCode = CLS_EDUCATION_LEVEL.EDUCATION_LEVEL_CODE
+    INNER JOIN CLS_ELECTRIC_TYPE ON SCHOOL.ElectricTypeCode = CLS_ELECTRIC_TYPE.ELECTRIC_TYPE_CODE
+    INNER JOIN CLS_INTERNET_TYPE ON SCHOOL.InternetTypeCode = CLS_INTERNET_TYPE.INTERNET_TYPE_CODE
+    INNER JOIN CLS_WATER_TYPE ON SCHOOL.WaterTypeCode = CLS_WATER_TYPE.WATER_TYPE_CODE
+    INNER JOIN CLS_EDUCATION_CONTENT ON SCHOOL.EducationContentCode = CLS_EDUCATION_CONTENT.EDUCATION_CONTENT_CODE
     WHERE SchoolID = ' . $_GET['SchoolID'] . ''
 )->result();
 
@@ -57,12 +57,12 @@ foreach ($GetSchool as $SCHOOL_DETAIL) {
                                 <div class="col-md-6">
                                     <div class="form-floating">
                                         <select class="form-select" name="JurisdictionCode" id="JurisdictionCode" aria-label="JurisdictionCode" required>
-                                            <option value="<?= $SCHOOL_DETAIL->JurisdictionCode; ?>" selected><?= $SCHOOL_DETAIL->CLS_JURISDICTION_NAME; ?></option>
+                                            <option value="<?= $SCHOOL_DETAIL->JurisdictionCode; ?>" selected><?= $SCHOOL_DETAIL->JURISDICTION_NAME; ?></option>
                                             <?php
                                             $result = $this->db->query('SELECT * FROM CLS_JURISDICTION ');
                                             foreach ($result->result() as $JURISDICTION) {
                                             ?>
-                                                <option value="<?= $JURISDICTION->CLS_JURISDICTION_CODE; ?>"><?= $JURISDICTION->CLS_JURISDICTION_NAME; ?></option>
+                                                <option value="<?= $JURISDICTION->JURISDICTION_CODE; ?>"><?= $JURISDICTION->JURISDICTION_NAME; ?></option>
                                             <?php
                                             }
                                             ?>
@@ -73,12 +73,12 @@ foreach ($GetSchool as $SCHOOL_DETAIL) {
                                 <div class="col-md-6">
                                     <div class="form-floating">
                                         <select class="form-select" name="InnovationAreaCode" id="InnovationAreaCode" aria-label="InnovationAreaCode" required>
-                                            <option value="<?= $SCHOOL_DETAIL->InnovationAreaCode; ?>" selected><?= $SCHOOL_DETAIL->CLS_INNOVATION_AREA_NAME; ?></option>
+                                            <option value="<?= $SCHOOL_DETAIL->InnovationAreaCode; ?>" selected><?= $SCHOOL_DETAIL->INNOVATION_AREA_NAME; ?></option>
                                             <?php
                                             $result = $this->db->query('SELECT * FROM CLS_INNOVATION_AREA ');
                                             foreach ($result->result() as $INNOVATION_AREA) {
                                             ?>
-                                                <option value="<?= $INNOVATION_AREA->CLS_INNOVATION_AREA_CODE; ?>"><?= $INNOVATION_AREA->CLS_INNOVATION_AREA_NAME; ?></option>
+                                                <option value="<?= $INNOVATION_AREA->INNOVATION_AREA_CODE; ?>"><?= $INNOVATION_AREA->INNOVATION_AREA_NAME; ?></option>
                                             <?php
                                             }
                                             ?>
@@ -108,12 +108,12 @@ foreach ($GetSchool as $SCHOOL_DETAIL) {
                                 <div class="col-md-6">
                                     <div class="form-floating">
                                         <select class="form-select" name="SchoolTypeCode" id="SchoolTypeCode" aria-label="SchoolTypeCode" required>
-                                            <option value="<?= $SCHOOL_DETAIL->SchoolTypeCode; ?>" selected><?= $SCHOOL_DETAIL->CLS_SCHOOL_TYPE_NAME; ?></option>
+                                            <option value="<?= $SCHOOL_DETAIL->SchoolTypeCode; ?>" selected><?= $SCHOOL_DETAIL->SCHOOL_TYPE_NAME; ?></option>
                                             <?php
                                             $result = $this->db->query('SELECT * FROM CLS_SCHOOL_TYPE');
                                             foreach ($result->result() as $SCHOOL_TYPE) {
                                             ?>
-                                                <option value="<?= $SCHOOL_TYPE->CLS_SCHOOL_TYPE_CODE; ?>"><?= $SCHOOL_TYPE->CLS_SCHOOL_TYPE_NAME; ?></option>
+                                                <option value="<?= $SCHOOL_TYPE->SCHOOL_TYPE_CODE; ?>"><?= $SCHOOL_TYPE->SCHOOL_TYPE_NAME; ?></option>
                                             <?php
                                             }
                                             ?>
@@ -124,12 +124,12 @@ foreach ($GetSchool as $SCHOOL_DETAIL) {
                                 <div class="col-md-6">
                                     <div class="form-floating">
                                         <select class="form-select" name="SchoolStatusCode" id="SchoolStatusCode" aria-label="SchoolStatusCode" required>
-                                            <option value="<?= $SCHOOL_DETAIL->SchoolStatusCode; ?>" selected><?= $SCHOOL_DETAIL->CLS_SCHOOL_STATUS_NAME; ?></option>
+                                            <option value="<?= $SCHOOL_DETAIL->SchoolStatusCode; ?>" selected><?= $SCHOOL_DETAIL->SCHOOL_STATUS_NAME; ?></option>
                                             <?php
                                             $result = $this->db->query('SELECT * FROM CLS_SCHOOL_STATUS');
                                             foreach ($result->result() as $SCHOOL_STATUS) {
                                             ?>
-                                                <option value="<?= $SCHOOL_STATUS->CLS_SCHOOL_STATUS_CODE; ?>"><?= $SCHOOL_STATUS->CLS_SCHOOL_STATUS_NAME; ?></option>
+                                                <option value="<?= $SCHOOL_STATUS->SCHOOL_STATUS_CODE; ?>"><?= $SCHOOL_STATUS->SCHOOL_STATUS_NAME; ?></option>
                                             <?php
                                             }
                                             ?>
@@ -140,12 +140,12 @@ foreach ($GetSchool as $SCHOOL_DETAIL) {
                                 <div class="col-md-6">
                                     <div class="form-floating">
                                         <select class="form-select" name="MunicipalCode" id="MunicipalCode" aria-label="MunicipalCode" required>
-                                            <option value="<?= $SCHOOL_DETAIL->MunicipalCode; ?>" selected><?= $SCHOOL_DETAIL->CLS_MUNICIPAL_NAME; ?></option>
+                                            <option value="<?= $SCHOOL_DETAIL->MunicipalCode; ?>" selected><?= $SCHOOL_DETAIL->MUNICIPAL_NAME; ?></option>
                                             <?php
                                             $result = $this->db->query('SELECT * FROM CLS_MUNICIPAL');
                                             foreach ($result->result() as $MUNICIPAL) {
                                             ?>
-                                                <option value="<?= $MUNICIPAL->CLS_MUNICIPAL_CODE; ?>"><?= $MUNICIPAL->CLS_MUNICIPAL_NAME; ?></option>
+                                                <option value="<?= $MUNICIPAL->MUNICIPAL_CODE; ?>"><?= $MUNICIPAL->MUNICIPAL_NAME; ?></option>
                                             <?php
                                             }
                                             ?>
@@ -195,11 +195,11 @@ foreach ($GetSchool as $SCHOOL_DETAIL) {
                                 <div class="col-md-4">
                                     <div class="form-floating">
                                         <select class="form-select" id="PROVINCE" aria-label="PROVINCE" name="SchoolAddressProvinceCode" required>
-                                            <option value="<?= $SCHOOL_DETAIL->SchoolAddressProvinceCode; ?>" selected><?= $SCHOOL_DETAIL->CLS_PROVINCE_NAME; ?></option>
+                                            <option value="<?= $SCHOOL_DETAIL->SchoolAddressProvinceCode; ?>" selected><?= $SCHOOL_DETAIL->PROVINCE_NAME; ?></option>
                                             <?php
                                             foreach ($ShowProvince as $PROVINCE) {
                                             ?>
-                                                <option value="<?= $PROVINCE->CLS_PROVINCE_CODE; ?>"><?= $PROVINCE->CLS_PROVINCE_NAME; ?></option>
+                                                <option value="<?= $PROVINCE->PROVINCE_CODE; ?>"><?= $PROVINCE->PROVINCE_NAME; ?></option>
                                             <?php
                                             }
                                             ?>
@@ -210,11 +210,11 @@ foreach ($GetSchool as $SCHOOL_DETAIL) {
                                 <div class="col-md-4">
                                     <div class="form-floating">
                                         <select class="form-select" id="DISTRICT" aria-label="DISTRICT" name="SchoolAddressDistrictCode">
-                                            <option value="<?= $SCHOOL_DETAIL->SchoolAddressDistrictCode; ?>" selected><?= $SCHOOL_DETAIL->CLS_DISTRICT_NAME; ?></option>
+                                            <option value="<?= $SCHOOL_DETAIL->SchoolAddressDistrictCode; ?>" selected><?= $SCHOOL_DETAIL->DISTRICT_NAME; ?></option>
                                             <?php
                                             foreach ($ShowDistrict as $DISTRICT) {
                                             ?>
-                                                <option id="<?= $DISTRICT->CLS_PROVINCE_CODE; ?>" value="<?= $DISTRICT->CLS_DISTRICT_CODE; ?>"><?= $DISTRICT->CLS_DISTRICT_NAME; ?></option>
+                                                <option id="<?= $DISTRICT->PROVINCE_CODE; ?>" value="<?= $DISTRICT->DISTRICT_CODE; ?>"><?= $DISTRICT->DISTRICT_NAME; ?></option>
                                             <?php } ?>
                                         </select>
                                         <label for="SchoolAddressDistrictCode">อำเภอ</label>
@@ -223,11 +223,11 @@ foreach ($GetSchool as $SCHOOL_DETAIL) {
                                 <div class="col-md-4">
                                     <div class="form-floating">
                                         <select class="form-select" id="SUBDISTRICT" aria-label="SUBDISTRICT" name="SchoolAddressSubdistrictCode">
-                                            <option value="<?= $SCHOOL_DETAIL->SchoolAddressSubdistrictCode; ?>" selected><?= $SCHOOL_DETAIL->CLS_SUBDISTRICT_NAME; ?></option>
+                                            <option value="<?= $SCHOOL_DETAIL->SchoolAddressSubdistrictCode; ?>" selected><?= $SCHOOL_DETAIL->SUBDISTRICT_NAME; ?></option>
                                             <?php
                                             foreach ($ShowSubdistrict as $SUBDISTRICT) {
                                             ?>
-                                                <option id="<?= $SUBDISTRICT->CLS_DISTRICT_CODE; ?>" value="<?= $SUBDISTRICT->CLS_SUBDISTRICT_CODE; ?>"><?= $SUBDISTRICT->CLS_SUBDISTRICT_NAME; ?></option>
+                                                <option id="<?= $SUBDISTRICT->DISTRICT_CODE; ?>" value="<?= $SUBDISTRICT->SUBDISTRICT_CODE; ?>"><?= $SUBDISTRICT->SUBDISTRICT_NAME; ?></option>
                                             <?php } ?>
                                         </select>
                                         <label for="SchoolAddressSubdistrictCode">ตำบล</label>
@@ -304,12 +304,12 @@ foreach ($GetSchool as $SCHOOL_DETAIL) {
                                     <label class="col-sm-2 col-form-label">คำนำหน้าชื่อ</label>
                                     <div class="col-sm-10">
                                         <select class="form-select" aria-label="Default select example" name="AdministratorPrefixCode" required>
-                                            <option value="<?= $SCHOOL_DETAIL->AdministratorPrefixCode; ?>" selected><?= $SCHOOL_DETAIL->CLS_PREFIX_NAME; ?></option>
+                                            <option value="<?= $SCHOOL_DETAIL->AdministratorPrefixCode; ?>" selected><?= $SCHOOL_DETAIL->PREFIX_NAME; ?></option>
                                             <?php
                                             $result = $this->db->query('SELECT * FROM CLS_PREFIX');
                                             foreach ($result->result() as $PREFIX) {
                                             ?>
-                                                <option value="<?= $PREFIX->CLS_PREFIX_CODE; ?>"><?= $PREFIX->CLS_PREFIX_NAME; ?></option>
+                                                <option value="<?= $PREFIX->PREFIX_CODE; ?>"><?= $PREFIX->PREFIX_NAME; ?></option>
                                             <?php
                                             }
                                             ?>
@@ -339,12 +339,12 @@ foreach ($GetSchool as $SCHOOL_DETAIL) {
                                     <label class="col-sm-2 col-form-label">ระดับการศึกษา</label>
                                     <div class="col-sm-10">
                                         <select class="form-select" aria-label="Default select example" name="EducationLevelCode" require>
-                                            <option value="<?= $SCHOOL_DETAIL->EducationLevelCode; ?>" selected><?= $SCHOOL_DETAIL->CLS_EDUCATION_LEVEL_NAME; ?></option>
+                                            <option value="<?= $SCHOOL_DETAIL->EducationLevelCode; ?>" selected><?= $SCHOOL_DETAIL->EDUCATION_LEVEL_NAME; ?></option>
                                             <?php
                                             $result = $this->db->query('SELECT * FROM CLS_EDUCATION_LEVEL');
                                             foreach ($result->result() as $EDUCATION_LEVEL) {
                                             ?>
-                                                <option value="<?= $EDUCATION_LEVEL->CLS_EDUCATION_LEVEL_CODE; ?>"><?= $EDUCATION_LEVEL->CLS_EDUCATION_LEVEL_NAME; ?></option>
+                                                <option value="<?= $EDUCATION_LEVEL->EDUCATION_LEVEL_CODE; ?>"><?= $EDUCATION_LEVEL->EDUCATION_LEVEL_NAME; ?></option>
                                             <?php
                                             }
                                             ?>
@@ -357,15 +357,15 @@ foreach ($GetSchool as $SCHOOL_DETAIL) {
                                     <legend class="col-form-label col-sm-3 pt-0">ประเภทแหล่งกำเนิดไฟฟ้า</legend>
                                     <div class="col-sm-9">
                                         <?php
-                                        $result = $this->db->query('SELECT * FROM CLS_ELECTRIC_TYPE WHERE CLS_ELECTRIC_TYPE_CODE');
+                                        $result = $this->db->query('SELECT * FROM CLS_ELECTRIC_TYPE WHERE ELECTRIC_TYPE_CODE');
                                         foreach ($result->result() as $ELECTRIC) {
                                         ?>
                                             <div class="form-check">
-                                                <input class="form-check-input" value="<?= $ELECTRIC->CLS_ELECTRIC_TYPE_CODE; ?>" type="radio" id="gridCheck1" name="ElectricTypeCode" <?php if ($SCHOOL_DETAIL->ElectricTypeCode = $ELECTRIC->CLS_ELECTRIC_TYPE_CODE) {
-                                                                                                                                                                                            echo 'checked';
-                                                                                                                                                                                        } ?>>
+                                                <input class="form-check-input" value="<?= $ELECTRIC->ELECTRIC_TYPE_CODE; ?>" type="radio" id="gridCheck1" name="ElectricTypeCode" <?php if ($SCHOOL_DETAIL->ElectricTypeCode = $ELECTRIC->ELECTRIC_TYPE_CODE) {
+                                                                                                                                                                                        echo 'checked';
+                                                                                                                                                                                    } ?>>
                                                 <label class="form-check-label" for="gridCheck1">
-                                                    <?= $ELECTRIC->CLS_ELECTRIC_TYPE_NAME; ?>
+                                                    <?= $ELECTRIC->ELECTRIC_TYPE_NAME; ?>
                                                 </label>
                                             </div>
                                         <?php } ?>
@@ -375,15 +375,15 @@ foreach ($GetSchool as $SCHOOL_DETAIL) {
                                     <legend class="col-form-label col-sm-3 pt-0">การใช้งานอินเทอร์เน็ต</legend>
                                     <div class="col-sm-9">
                                         <?php
-                                        $result = $this->db->query('SELECT * FROM CLS_INTERNET_TYPE WHERE CLS_INTERNET_TYPE_CODE');
+                                        $result = $this->db->query('SELECT * FROM CLS_INTERNET_TYPE WHERE INTERNET_TYPE_CODE');
                                         foreach ($result->result() as $INTERNET) {
                                         ?>
                                             <div class="form-check">
-                                                <input class="form-check-input" value="<?= $INTERNET->CLS_INTERNET_TYPE_CODE; ?>" type="radio" id="gridCheck1" name="InternetTypeCode" <?php if ($SCHOOL_DETAIL->InternetTypeCode = $INTERNET->CLS_INTERNET_TYPE_CODE) {
-                                                                                                                                                                                            echo 'checked';
-                                                                                                                                                                                        } ?>>
+                                                <input class="form-check-input" value="<?= $INTERNET->INTERNET_TYPE_CODE; ?>" type="radio" id="gridCheck1" name="InternetTypeCode" <?php if ($SCHOOL_DETAIL->InternetTypeCode = $INTERNET->INTERNET_TYPE_CODE) {
+                                                                                                                                                                                        echo 'checked';
+                                                                                                                                                                                    } ?>>
                                                 <label class="form-check-label" for="gridCheck1">
-                                                    <?= $INTERNET->CLS_INTERNET_TYPE_NAME; ?>
+                                                    <?= $INTERNET->INTERNET_TYPE_NAME; ?>
                                                 </label>
                                             </div>
                                         <?php } ?>
@@ -397,11 +397,11 @@ foreach ($GetSchool as $SCHOOL_DETAIL) {
                                         foreach ($result->result() as $WATER) {
                                         ?>
                                             <div class="form-check">
-                                                <input class="form-check-input" value="<?= $WATER->CLS_WATER_TYPE_CODE; ?>" type="radio" id="gridCheck1" name="WaterTypeCode" <?php if ($SCHOOL_DETAIL->WaterTypeCode = $WATER->CLS_WATER_TYPE_CODE) {
-                                                                                                                                                                                    echo 'checked';
-                                                                                                                                                                                } ?>>
+                                                <input class="form-check-input" value="<?= $WATER->WATER_TYPE_CODE; ?>" type="radio" id="gridCheck1" name="WaterTypeCode" <?php if ($SCHOOL_DETAIL->WaterTypeCode = $WATER->WATER_TYPE_CODE) {
+                                                                                                                                                                                echo 'checked';
+                                                                                                                                                                            } ?>>
                                                 <label class="form-check-label" for="gridCheck1">
-                                                    <?= $WATER->CLS_WATER_TYPE_NAME; ?>
+                                                    <?= $WATER->WATER_TYPE_NAME; ?>
                                                 </label>
                                             </div>
                                         <?php } ?>
@@ -415,11 +415,11 @@ foreach ($GetSchool as $SCHOOL_DETAIL) {
                                         foreach ($result->result() as $EDUCATION_CONTENT) {
                                         ?>
                                             <div class="form-check">
-                                                <input class="form-check-input" value="<?= $EDUCATION_CONTENT->CLS_EDUCATION_CONTENT_CODE; ?>" type="radio" id="gridCheck1" name="EducationContentCode" <?php if ($SCHOOL_DETAIL->EducationContentCode = $EDUCATION_CONTENT->CLS_EDUCATION_CONTENT_CODE) {
-                                                                                                                                                                                                            echo 'checked';
-                                                                                                                                                                                                        } ?>>
+                                                <input class="form-check-input" value="<?= $EDUCATION_CONTENT->EDUCATION_CONTENT_CODE; ?>" type="radio" id="gridCheck1" name="EducationContentCode" <?php if ($SCHOOL_DETAIL->EducationContentCode = $EDUCATION_CONTENT->EDUCATION_CONTENT_CODE) {
+                                                                                                                                                                                                        echo 'checked';
+                                                                                                                                                                                                    } ?>>
                                                 <label class="form-check-label" for="gridCheck1">
-                                                    <?= $EDUCATION_CONTENT->CLS_EDUCATION_CONTENT_NAME; ?>
+                                                    <?= $EDUCATION_CONTENT->EDUCATION_CONTENT_NAME; ?>
                                                 </label>
                                             </div>
                                         <?php } ?>

@@ -42,7 +42,7 @@
                                         $result = $this->db->query('SELECT * FROM CLS_PREFIX');
                                         foreach ($result->result() as $PREFIX) {
                                         ?>
-                                            <option value="<?= $PREFIX->CLS_PREFIX_CODE; ?>"><?= $PREFIX->CLS_PREFIX_NAME; ?></option>
+                                            <option value="<?= $PREFIX->PREFIX_CODE; ?>"><?= $PREFIX->PREFIX_NAME; ?></option>
                                         <?php
                                         }
                                         ?>
@@ -77,7 +77,7 @@
                                         $result = $this->db->query('SELECT * FROM CLS_EDUCATION_LEVEL');
                                         foreach ($result->result() as $EDUCATION_LEVEL) {
                                         ?>
-                                            <option value="<?= $EDUCATION_LEVEL->CLS_EDUCATION_LEVEL_CODE; ?>"><?= $EDUCATION_LEVEL->CLS_EDUCATION_LEVEL_NAME; ?></option>
+                                            <option value="<?= $EDUCATION_LEVEL->EDUCATION_LEVEL_CODE; ?>"><?= $EDUCATION_LEVEL->EDUCATION_LEVEL_NAME; ?></option>
                                         <?php
                                         }
                                         ?>
@@ -94,9 +94,9 @@
                                     foreach ($result->result() as $ELECTRIC) {
                                     ?>
                                         <div class="form-check">
-                                            <input class="form-check-input" value="<?= $ELECTRIC->CLS_ELECTRIC_TYPE_CODE; ?>" type="radio" id="gridCheck1" name="ElectricTypeCode">
+                                            <input class="form-check-input" value="<?= $ELECTRIC->ELECTRIC_TYPE_CODE; ?>" type="radio" id="gridCheck1" name="ElectricTypeCode">
                                             <label class="form-check-label" for="gridCheck1">
-                                                <?= $ELECTRIC->CLS_ELECTRIC_TYPE_NAME; ?>
+                                                <?= $ELECTRIC->ELECTRIC_TYPE_NAME; ?>
                                             </label>
                                         </div>
                                     <?php } ?>
@@ -110,9 +110,9 @@
                                     foreach ($result->result() as $INTERNET) {
                                     ?>
                                         <div class="form-check">
-                                            <input class="form-check-input" value="<?= $INTERNET->CLS_INTERNET_TYPE_CODE; ?>" type="radio" id="gridCheck1" name="InternetTypeCode">
+                                            <input class="form-check-input" value="<?= $INTERNET->INTERNET_TYPE_CODE; ?>" type="radio" id="gridCheck1" name="InternetTypeCode">
                                             <label class="form-check-label" for="gridCheck1">
-                                                <?= $INTERNET->CLS_INTERNET_TYPE_NAME; ?>
+                                                <?= $INTERNET->INTERNET_TYPE_NAME; ?>
                                             </label>
                                         </div>
                                     <?php } ?>
@@ -126,9 +126,9 @@
                                     foreach ($result->result() as $WATER) {
                                     ?>
                                         <div class="form-check">
-                                            <input class="form-check-input" value="<?= $WATER->CLS_WATER_TYPE_CODE; ?>" type="radio" id="gridCheck1" name="WaterTypeCode">
+                                            <input class="form-check-input" value="<?= $WATER->WATER_TYPE_CODE; ?>" type="radio" id="gridCheck1" name="WaterTypeCode">
                                             <label class="form-check-label" for="gridCheck1">
-                                                <?= $WATER->CLS_WATER_TYPE_NAME; ?>
+                                                <?= $WATER->WATER_TYPE_NAME; ?>
                                             </label>
                                         </div>
                                     <?php } ?>
@@ -142,9 +142,9 @@
                                     foreach ($result->result() as $EDUCATION_CONTENT) {
                                     ?>
                                         <div class="form-check">
-                                            <input class="form-check-input" value=" <?= $EDUCATION_CONTENT->CLS_EDUCATION_CONTENT_CODE; ?>" type="radio" id="gridCheck1" name="EducationContentCode">
+                                            <input class="form-check-input" value=" <?= $EDUCATION_CONTENT->EDUCATION_CONTENT_CODE; ?>" type="radio" id="gridCheck1" name="EducationContentCode">
                                             <label class="form-check-label" for="gridCheck1">
-                                                <?= $EDUCATION_CONTENT->CLS_EDUCATION_CONTENT_NAME; ?>
+                                                <?= $EDUCATION_CONTENT->EDUCATION_CONTENT_NAME; ?>
                                             </label>
                                         </div>
                                     <?php } ?>

@@ -32,7 +32,7 @@
                 <select class="form-select" aria-label="Default select example" name="FatherPersonalIDTypeCode">
                     <option selected>เลือก</option>
                     <?php
-                    $result = $this->db->query('SELECT * FROM CLS_PERSONAL_ID_TYPE');
+                    $result = $this->db->query('SELECT * FROM CLS_CITIZEN_ID_TYPE');
                     foreach ($result->result() as $PERSONAL) {
                     ?>
                         <option value="<?= $PERSONAL->CLS_PERSONAL_ID_TYPE_CODE; ?>"><?= $PERSONAL->CLS_PERSONAL_ID_TYPE_NAME; ?></option>
@@ -168,10 +168,10 @@
                 <select class="form-select" aria-label="Default select example" name="MotherPersonalIDTypeCode" required>
                     <option selected>เลือก</option>
                     <?php
-                    $result = $this->db->query('SELECT * FROM CLS_PERSONAL_ID_TYPE');
+                    $result = $this->db->query('SELECT * FROM CLS_CITIZEN_ID_TYPE');
                     foreach ($result->result() as $PERSONAL) {
                     ?>
-                        <option value="<?= $PERSONAL->CLS_PERSONAL_ID_TYPE_CODE; ?>"><?= $PERSONAL->CLS_PERSONAL_ID_TYPE_NAME; ?></option>
+                        <option value="<?= $PERSONAL->CITIZEN_ID_TYPE_CODE; ?>"><?= $PERSONAL->CITIZEN_ID_TYPE_NAME; ?></option>
                     <?php } ?>
                 </select>
             </div>
@@ -191,7 +191,7 @@
                     $result = $this->db->query('SELECT * FROM CLS_PREFIX');
                     foreach ($result->result() as $PREFIX) {
                     ?>
-                        <option value="<?= $PREFIX->CLS_PREFIX_CODE; ?>"><?= $PREFIX->CLS_PREFIX_NAME; ?></option>
+                        <option value="<?= $PREFIX->PREFIX_CODE; ?>"><?= $PREFIX->PREFIX_NAME; ?></option>
                     <?php
                     }
                     ?>
@@ -248,7 +248,7 @@
                     $result = $this->db->query('SELECT * FROM CLS_PERSON_STATUS');
                     foreach ($result->result() as $PERSON_STATUS) {
                     ?>
-                        <option value="<?= $PERSON_STATUS->CLS_PERSON_STATUS_CODE; ?>"><?= $PERSON_STATUS->CLS_PERSON_STATUS_NAME; ?></option>
+                        <option value="<?= $PERSON_STATUS->PERSON_STATUS_CODE; ?>"><?= $PERSON_STATUS->PERSON_STATUS_NAME; ?></option>
                     <?php
                     }
                     ?>
@@ -272,7 +272,7 @@
                     $result = $this->db->query('SELECT * FROM CLS_OCCUPATION');
                     foreach ($result->result() as $OCCUPATION) {
                     ?>
-                        <option value="<?= $OCCUPATION->CLS_OCCUPATION_CODE; ?>"><?= $OCCUPATION->CLS_OCCUPATION_NAME; ?></option>
+                        <option value="<?= $OCCUPATION->OCCUPATION_CODE; ?>"><?= $OCCUPATION->OCCUPATION_NAME; ?></option>
                     <?php
                     }
                     ?>
@@ -299,10 +299,10 @@
                 <select class="form-select" aria-label="Default select example" name="GuardianPersonalIDTypeCode" required>
                     <option selected>เลือก</option>
                     <?php
-                    $result = $this->db->query('SELECT * FROM CLS_PERSONAL_ID_TYPE');
+                    $result = $this->db->query('SELECT * FROM CLS_CITIZEN_ID_TYPE');
                     foreach ($result->result() as $PERSONAL) {
                     ?>
-                        <option value="<?= $PERSONAL->CLS_PERSONAL_ID_TYPE_CODE; ?>"><?= $PERSONAL->CLS_PERSONAL_ID_TYPE_NAME; ?></option>
+                        <option value="<?= $PERSONAL->CITIZEN_ID_TYPE_CODE; ?>"><?= $PERSONAL->CITIZEN_ID_TYPE_NAME; ?></option>
                     <?php } ?>
                 </select>
             </div>
@@ -323,7 +323,7 @@
                     $result = $this->db->query('SELECT * FROM CLS_PREFIX');
                     foreach ($result->result() as $PREFIX) {
                     ?>
-                        <option value="<?= $PREFIX->CLS_PREFIX_CODE; ?>"><?= $PREFIX->CLS_PREFIX_NAME; ?></option>
+                        <option value="<?= $PREFIX->PREFIX_CODE; ?>"><?= $PREFIX->PREFIX_NAME; ?></option>
                     <?php
                     }
                     ?>
@@ -382,7 +382,7 @@
                     $result = $this->db->query('SELECT * FROM CLS_FAMILY_RELATION');
                     foreach ($result->result() as $FAMILY_RELATION) {
                     ?>
-                        <option value="<?= $FAMILY_RELATION->CLS_FAMILY_RELATION_CODE; ?>"><?= $FAMILY_RELATION->CLS_FAMILY_RELATION_NAME; ?></option>
+                        <option value="<?= $FAMILY_RELATION->FAMILY_RELATION_CODE; ?>"><?= $FAMILY_RELATION->FAMILY_RELATION_NAME; ?></option>
                     <?php
                     }
                     ?>
@@ -407,7 +407,7 @@
                     $result = $this->db->query('SELECT * FROM CLS_OCCUPATION');
                     foreach ($result->result() as $OCCUPATION) {
                     ?>
-                        <option value="<?= $OCCUPATION->CLS_OCCUPATION_CODE; ?>"><?= $OCCUPATION->CLS_OCCUPATION_NAME; ?></option>
+                        <option value="<?= $OCCUPATION->OCCUPATION_CODE; ?>"><?= $OCCUPATION->OCCUPATION_NAME; ?></option>
                     <?php
                     }
                     ?>
@@ -432,7 +432,7 @@
                     $result = $this->db->query('SELECT * FROM CLS_MARRIAGE_STATUS');
                     foreach ($result->result() as $FAMILY_STATUS) {
                     ?>
-                        <option value="<?= $FAMILY_STATUS->CLS_MARRIAGE_STATUS_CODE; ?>"><?= $FAMILY_STATUS->CLS_MARRIAGE_STATUS_NAME; ?></option>
+                        <option value="<?= $FAMILY_STATUS->MARRIAGE_STATUS_CODE; ?>"><?= $FAMILY_STATUS->MARRIAGE_STATUS_NAME; ?></option>
                     <?php
                     }
                     ?>

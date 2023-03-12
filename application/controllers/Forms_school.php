@@ -24,9 +24,6 @@ class Forms_school extends CI_Controller
         }
 
         $data['title'] = 'Forms School'; // Capitalize the first letter
-        $data['ShowProvince'] = $this->forms_school->province();
-        $data['ShowDistrict'] = $this->forms_school->district();
-        $data['ShowSubdistrict'] = $this->forms_school->subdistrict();
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
         $this->load->view('pages/forms/school/forms-school-P1', $data);
