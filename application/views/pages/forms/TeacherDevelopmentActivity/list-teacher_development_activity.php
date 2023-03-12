@@ -62,7 +62,7 @@
                             <th style="text-align: center;" scope="col">วันที่เริ่มจัดกิจกรรม</th>
                             <th style="text-align: center;" scope="col">วันที่สิ้นสุดกิจกรรม</th>
                             <th style="text-align: center;" scope="col">เอกสารแนบ/เกียรติบัตร*</th>
-                            <th style="text-align: center;" scope="col">แก้ไขข้อมูล</th>
+                            <th style="text-align: center;" scope="col">ปฎิบัติ</th>
 
                         </tr>
                     </thead>
@@ -86,18 +86,39 @@
                                 <td style="text-align: center;"><?php echo $ls->DevelopmentActivityStartDate ; ?></td>
                                 <td style="text-align: center;"><?php echo $ls->DevelopmentActivityEndDate; ?></td>
                                 <td style="text-align: center;">
-                                    <a href="load_file?file=<?php echo $ls->DevelopmentDocument; ?>">
-                                        <button type="submit" class="btn btn-info"><i class="bi bi-file-earmark-text-fill"></i></button>    
+                                    <a href="load_file?file=<?php echo $ls->DevelopmentDocument; ?>" class="btn btn-info">
+                                        <i class="bi bi-file-earmark-text-fill"></i>
                                     </a>   
                                 </td>
                                 <td style="text-align: center;">
-                                    <a href='edit_forms-teacher_development_activity?tid=<?php echo $ls->TeacherID;?>&&name=<?php echo $ls->DevelopmentActivityName;?>&&sdate=<?php echo $ls->DevelopmentActivityStartDate;?>'>
-                                        <button type="submit" class="btn btn-warning"><i class="bi bi-pencil-square"></i></button>    
-                                    </a>                              
+                                    <a href='edit_forms-teacher_development_activity?tid=<?php echo $ls->TeacherID;?>&&name=<?php echo $ls->DevelopmentActivityName;?>&&sdate=<?php echo $ls->DevelopmentActivityStartDate;?>' class="btn btn-warning">
+                                        <i class="bi bi-pencil-square"></i> 
+                                    </a> 
+                                    <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#delete">
+                                        <i class=" bi bi-trash"></i>
+                                    </button>                           
                                 </td>
-
-
                             </tr>
+
+                            <div class="modal fade" id="delete" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+                                    <div class="modal-dialog modal-dialog-centered" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="exampleModalLongTitle">ยืนยันการลบข้อมูล</h5>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <h6>
+                                                    <center>คุณต้องการลบข้อมูลใช่หรือไหม ?</center>
+                                                </h6>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <a href="<?php echo base_url('delete-teacher_development_activity/' .$ls->TeacherID . '/' .$ls->DevelopmentActivityName . '/' .$ls->DevelopmentActivityStartDate ); ?>" class="btn btn-danger">ลบ</a>
+                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ยกเลิก</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                            </div>                            
                         <?php } ?>
                     </tbody>
                 </table>

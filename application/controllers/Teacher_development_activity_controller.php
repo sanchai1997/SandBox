@@ -45,7 +45,8 @@ class Teacher_development_activity_controller extends CI_Controller{
                 'Organizer' => $this->input->post('Organizer'),
                 'DevelopmentActivityStartDate' => $this->input->post('DevelopmentActivityStartDate'),
                 'DevelopmentActivityEndDate' => $this->input->post('DevelopmentActivityEndDate'),
-                'DevelopmentDocument'=> $DevelopmentDocument
+                'DevelopmentDocument'=> $DevelopmentDocument,
+                'DeleteStatus' => 0 
             ];
             $result =  $this->TeacherDevelopmentActivity_model->insert_TeacherDevelopmentActivity($teacher_development_activity);
             
@@ -139,7 +140,8 @@ class Teacher_development_activity_controller extends CI_Controller{
                 'Organizer' => $this->input->post('Organizer'),
                 'DevelopmentActivityStartDate' => $this->input->post('DevelopmentActivityStartDate'),
                 'DevelopmentActivityEndDate' => $this->input->post('DevelopmentActivityEndDate'),
-                'DevelopmentDocument'=> $DevelopmentDocument
+                'DevelopmentDocument'=> $DevelopmentDocument,
+                'DeleteStatus' => 0 
             ];
           
         }else{
@@ -154,6 +156,7 @@ class Teacher_development_activity_controller extends CI_Controller{
                 'Organizer' => $this->input->post('Organizer'),
                 'DevelopmentActivityStartDate' => $this->input->post('DevelopmentActivityStartDate'),
                 'DevelopmentActivityEndDate' => $this->input->post('DevelopmentActivityEndDate'),
+                'DeleteStatus' => 0 
             ];
          }
 
@@ -162,10 +165,23 @@ class Teacher_development_activity_controller extends CI_Controller{
              $this->session->set_flashdata('success',"แก้ไขข้อมูลสำเร็จ");
              redirect(base_url('list-teacher_development_activity'));
          }else{
-             $this->session->set_flashdata('errors',"เกิดข้อผิดพลาดในการบันทึกข้อมูล");
+             $this->session->set_flashdata('errors',"เกิดข้อผิดพลาดในการแก้ไขข้อมูล");
              redirect(base_url('edit_forms-teacher_development_activity?tid='. $Old_TeacherID.'&&name='.$Old_DevelopmentActivityName.'&&sdate='.$Old_DevelopmentActivityStartDate)); 
          }
    
+    }
+
+    public function delete_teacher_development_activity($TeacherID, $DevelopmentActivityName, $DevelopmentActivityStartDate ){
+        show_error($TeacherID.' f: '.$DevelopmentActivityName.' : '.$DevelopmentActivityStartDate);
+        $result =$this->TeacherDevelopmentActivity_model->delete_teacher_development_activity($TeacherID, $DevelopmentActivityName, $DevelopmentActivityStartDate);
+        if($result == 1 ){
+            $this->session->set_flashdata('success',"ลบข้อมูลเรียบร้อย");
+            redirect(base_url('list-teacher_development_activity'));
+        }else{
+            $this->session->set_flashdata('errors',"เกิดข้อผิดพลาดในการลบข้อมูล");
+            redirect(base_url('list-teacher_development_activity'));
+        }
+        
     }
 
 }

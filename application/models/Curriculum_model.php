@@ -17,12 +17,14 @@ class Curriculum_model  extends CI_Model {
     }
 
     public function get_Curriculum_All() {
-        $this->db->select('c.*, s.SchoolNameThai, ct.CURRICULUM_NAME, e.EDUCATION_LEVEL_CODE, g.GRADE_LEVEL_NAME')
+        $this->db->select('c.*, s.SchoolNameThai, ct.CURRICULUM_NAME, e.EDUCATION_LEVEL_NAME, g.GRADE_LEVEL_NAME')
         ->from('curriculum c')
         ->join('school s', 's.SchoolID   = c.SchoolID  ', 'LEFT') 
         ->join('cls_curriculum ct', 'ct.CURRICULUM_CODE    = c.CurriculumCode   ', 'LEFT') 
         ->join('cls_education_level e', 'e.EDUCATION_LEVEL_CODE     = c.EducationLevelCode    ', 'LEFT') 
-        ->join('CLS_GRADE_LEVEL g', 'g.GRADE_LEVEL_CODE    = c.GradeLevelCode   ', 'LEFT') ;
+        ->join('CLS_GRADE_LEVEL g', 'g.GRADE_LEVEL_CODE    = c.GradeLevelCode   ', 'LEFT') 
+        ->where('c.DeleteStatus', 0)
+        ;
        
         $query = $this->db->get();
 
@@ -32,7 +34,9 @@ class Curriculum_model  extends CI_Model {
 
     public function get_Curriculum( $CurriculumID) {
         $this->db->from('curriculum')
-        ->where('CurriculumID', $CurriculumID );
+        ->where('CurriculumID', $CurriculumID )
+        ->where('DeleteStatus', 0)
+        ;
         $query = $this->db->get();
     
         return $query->result();
@@ -60,7 +64,9 @@ class Curriculum_model  extends CI_Model {
         ->from('curriculum_subject cs')
         ->join('CLS_SUBJECT_TYPE st', 'st.SUBJECT_TYPE_CODE   = cs.SubjectTypeCode  ', 'LEFT') 
         ->join('CLS_SUBJECT_GROUP sg', 'sg.SUBJECT_GROUP_CODE   = cs.SubjectGroupCode  ', 'LEFT') 
-        ->where('CurriculumID ', $CurriculumID  ) ;
+        ->where('CurriculumID ', $CurriculumID  ) 
+        ->where('cs.DeleteStatus', 0)
+        ;
         
         //$this->db->from('curriculum_subject');
         //$this->db->where('CurriculumID', $CurriculumID );
@@ -72,7 +78,8 @@ class Curriculum_model  extends CI_Model {
     public function get_CurriculumSubject( $CurriculumID, $SubjectCode) {
         $this->db->from('curriculum_subject')
         ->where('CurriculumID', $CurriculumID )
-        ->where('SubjectCode ', $SubjectCode  ) ;
+        ->where('SubjectCode ', $SubjectCode  ) 
+        ->where('DeleteStatus', 0);
         $query = $this->db->get();
     
         return $query->result();
@@ -99,7 +106,8 @@ class Curriculum_model  extends CI_Model {
         ->from('curriculum_school_competency cs')
         ->join('cls_competency c', 'c.COMPETENCY_CODE  = cs.CompetencyCode ', 'LEFT') 
         ->where('CurriculumID ', $CurriculumID  ) 
-        ->where('SubjectCode ', $SubjectCode  ) ;
+        ->where('SubjectCode ', $SubjectCode  ) 
+        ->where('cs.DeleteStatus', 0);
 
        // $this->db->from('curriculum_school_competency');
       //  $this->db->where('SubjectCode ', $SubjectCode  );
@@ -112,7 +120,8 @@ class Curriculum_model  extends CI_Model {
         $this->db->from('curriculum_school_competency')
         ->where('CurriculumID', $CurriculumID )
         ->where('SubjectCode ', $SubjectCode  ) 
-        ->where('CompetencyCode', $CompetencyCode );
+        ->where('CompetencyCode', $CompetencyCode )
+        ->where('DeleteStatus', 0);
         $query = $this->db->get();
     
         return $query->result();

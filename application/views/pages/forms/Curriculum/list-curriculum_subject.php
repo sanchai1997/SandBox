@@ -59,7 +59,7 @@
                             <th style="text-align: center;" scope="col">หน่วยกิต/น้ำหนัก</th>
                             <th style="text-align: center;" scope="col">จำนวนชั่วโมงเรียน</th>
                             <th style="text-align: center;" scope="col">สมรรถนะ</th>
-                            <th style="text-align: center;" scope="col">แก้ไข</th>
+                            <th style="text-align: center;" scope="col">ปฎิบัติ</th>
                         </tr>
                     </thead>
                 
@@ -81,6 +81,9 @@
                                     <a href='edit_forms-curriculum_subject?sid=<?php echo $ls->SubjectCode; ?>&&cid=<?php echo $ls->CurriculumID; ?>'>
                                         <button type="button" class="btn btn-warning"><i class="bi bi-pencil-square"></i></button> 
                                     </a>
+                                    <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#delete">
+                                        <i class=" bi bi-trash"></i>
+                                    </button>  
                                 </td>
 
                             </tr>

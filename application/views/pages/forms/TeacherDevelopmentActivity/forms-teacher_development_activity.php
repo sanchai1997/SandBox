@@ -130,8 +130,33 @@
                         <input type="file" class="form-control" name="DevelopmentDocument" id="DevelopmentDocument" placeholder="เอกสารแนบ/เกียรติบัตร">
                     </div>
                 </div>
-                
-                <button type="submit" class="btn btn-primary" onclick="return check(teacher_developmant_activity)">ยืนยัน</button>
+
+                <div class="text-center">
+                  <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#Modal" onclick="return check(teacher_developmant_activity)">บันทึกข้อมูล</button>  
+                </div> 
+
+              <!-- Modal -->
+                <div class="modal fade" id="Modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+                  <div class="modal-dialog modal-dialog-centered" role="document">
+                      <div class="modal-content">
+                          <div class="modal-header">
+                              <h5 class="modal-title" id="exampleModalLongTitle">ยืนยันการเพิ่มข้อมูล</h5>
+                              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                          </div>
+                          <div class="modal-body">
+                              <h6>
+                                  <center>คุณต้องการเพิ่มข้อมูลใช่หรือไหม ?</center>
+                              </h6>
+                          </div>
+                          <div class="modal-footer">
+                              <button type="submit" class="btn btn-primary" >ยืนยัน</button> 
+                              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ยกเลิก</button>
+                          </div>
+                      </div>
+                  </div>
+               </div>  
+              
+              
               </form><!-- End Form ข้อมูลการพัฒนาบุคลากรครู -->
 
             </div>

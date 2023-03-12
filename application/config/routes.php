@@ -47,7 +47,7 @@ $route['forms-teacher_development_activity'] = 'Teacher_development_activity_con
 $route['add_teacher_development_activity']['post'] = 'Teacher_development_activity_controller/add_teacher_development_activity';
 $route['edit_forms-teacher_development_activity'] = 'Teacher_development_activity_controller/forms_edit_teacher_development_activity';
 $route['edit_teacher_development_activity']['post'] = 'Teacher_development_activity_controller/edit_teacher_development_activity';
-
+$route['delete-teacher_development_activity/(:any)/(:any)/(:any)'] = 'Teacher_development_activity_controller/delete_teacher_development_activity/$1/$2/$3';
 //Files
 $route['load_file'] = 'DocumentController/load_file';
 

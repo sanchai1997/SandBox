@@ -78,7 +78,8 @@ class CurriculumController extends CI_Controller{
                 'CurriculumDocumentURL' => $CurriculumDocumentURL,
                 'LocalCurriculumFlag' => $this->input->post('LocalCurriculumFlag'),
                 'LocalCurriculumName' => $this->input->post('LocalCurriculumName'),
-                'LocalCurriculumDocumentURL' => $LocalCurriculumDocumentURL
+                'LocalCurriculumDocumentURL' => $LocalCurriculumDocumentURL,
+                'DeleteStatus' => 0 
             ];
             $result_curriculum =  $this->Curriculum_model->insert_curriculum($curriculum);
 
@@ -168,7 +169,8 @@ class CurriculumController extends CI_Controller{
                 'CurriculumDocumentURL' => $CurriculumDocumentURL,
                 'LocalCurriculumFlag' => $this->input->post('LocalCurriculumFlag'),
                 'LocalCurriculumName' => $this->input->post('LocalCurriculumName'),
-                'LocalCurriculumDocumentURL' => $LocalCurriculumDocumentURL
+                'LocalCurriculumDocumentURL' => $LocalCurriculumDocumentURL,
+                'DeleteStatus' => 0 
             ];
         }else if($CurriculumDocumentURL != -1  ){
             $curriculum = [
@@ -183,7 +185,8 @@ class CurriculumController extends CI_Controller{
                 'ClassroomNumber' => $this->input->post('ClassroomNumber'),
                 'CurriculumDocumentURL' => $CurriculumDocumentURL,
                 'LocalCurriculumFlag' => $this->input->post('LocalCurriculumFlag'),
-                'LocalCurriculumName' => $this->input->post('LocalCurriculumName')
+                'LocalCurriculumName' => $this->input->post('LocalCurriculumName'),
+                'DeleteStatus' => 0 
             ];
         }else if($LocalCurriculumDocumentURL !=-1 ){
             $curriculum = [
@@ -198,7 +201,8 @@ class CurriculumController extends CI_Controller{
                 'ClassroomNumber' => $this->input->post('ClassroomNumber'),
                 'LocalCurriculumFlag' => $this->input->post('LocalCurriculumFlag'),
                 'LocalCurriculumName' => $this->input->post('LocalCurriculumName'),
-                'LocalCurriculumDocumentURL' => $LocalCurriculumDocumentURL
+                'LocalCurriculumDocumentURL' => $LocalCurriculumDocumentURL,
+                'DeleteStatus' => 0 
             ];
         }else{
             $curriculum = [
@@ -212,7 +216,8 @@ class CurriculumController extends CI_Controller{
                 'GradeLevelCode' => $this->input->post('GradeLevelCode'),
                 'ClassroomNumber' => $this->input->post('ClassroomNumber'),
                 'LocalCurriculumFlag' => $this->input->post('LocalCurriculumFlag'),
-                'LocalCurriculumName' => $this->input->post('LocalCurriculumName')
+                'LocalCurriculumName' => $this->input->post('LocalCurriculumName'),
+                'DeleteStatus' => 0 
             ];
         }
         $result =  $this->Curriculum_model->update_curriculum($Old_CurriculumID, $curriculum);
@@ -281,7 +286,8 @@ class CurriculumController extends CI_Controller{
             'SubjectGroupCode' => $this->input->post('SubjectGroupCode'),
             'SubjectTypeCode' => $this->input->post('SubjectTypeCode'),
             'Credit' => $this->input->post('Credit'),
-            'LearningHour' => $this->input->post('LearningHour')
+            'LearningHour' => $this->input->post('LearningHour'),
+            'DeleteStatus' => 0 
         ];
         $result_CURRICULUM_SUBJECT = $this->Curriculum_model->insert_curriculum_subject($CURRICULUM_SUBJECT);
 
@@ -329,7 +335,8 @@ class CurriculumController extends CI_Controller{
             'SubjectGroupCode' => $this->input->post('SubjectGroupCode'),
             'SubjectTypeCode' => $this->input->post('SubjectTypeCode'),
             'Credit' => $this->input->post('Credit'),
-            'LearningHour' => $this->input->post('LearningHour')
+            'LearningHour' => $this->input->post('LearningHour'),
+            'DeleteStatus' => 0 
         ];
         $result_CURRICULUM_SUBJECT = $this->Curriculum_model->update_curriculum_subject($CurriculumID, $Old_SubjectCode, $CURRICULUM_SUBJECT);
 
@@ -394,6 +401,7 @@ class CurriculumController extends CI_Controller{
             'CurriculumID' => $CurriculumID,
             'SubjectCode' => $SubjectCode,
             'CompetencyCode' => $this->input->post('CompetencyCode'),
+            'DeleteStatus' => 0 
         ];
         $result_SCHOOl_COMPETENCY = $this->Curriculum_model->insert_curriculum_school_competency($CURRICULUM_SCHOOl_COMPETENCY);
 
@@ -439,6 +447,7 @@ class CurriculumController extends CI_Controller{
             'CurriculumID' => $CurriculumID,
             'SubjectCode' => $SubjectCode,
             'CompetencyCode' => $this->input->post('CompetencyCode'),
+            'DeleteStatus' => 0 
         ];
 
         $result_SCHOOl_COMPETENCY = $this->Curriculum_model->update_curriculum_school_competency($CurriculumID, $SubjectCode, $Old_CompetencyCode, $CURRICULUM_SCHOOl_COMPETENCY);

@@ -54,7 +54,7 @@
                         <tr>
                             <th style="text-align: center;" scope="col">รหัสสมรรถนะ</th>
                             <th style="text-align: center;" scope="col">ชื่อสมรรถนะ</th></th>
-                            <th style="text-align: center;" scope="col"></th>
+                            <th style="text-align: center;" scope="col">ปฎิบัติ</th>
                         </tr>
                     </thead>
                 
@@ -68,6 +68,9 @@
                                     <a href='edit_forms-curriculum_school_competency?sid=<?php echo $ls->SubjectCode; ?>&&cid=<?php echo $ls->CurriculumID; ?>&&cpid=<?php echo $ls->CompetencyCode ; ?>'>
                                         <button type="button" class="btn btn-warning"><i class="bi bi-pencil-square"></i></button> 
                                     </a>
+                                    <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#delete">
+                                        <i class=" bi bi-trash"></i>
+                                    </button>  
                                 </td>
                             </tr>
                         <?php } ?>
