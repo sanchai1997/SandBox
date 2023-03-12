@@ -1,5 +1,5 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') or exit('No direct script access allowed');
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -8,7 +8,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>Dashboard - NiceAdmin Bootstrap Template</title>
+  <title>Satun Education Sandbox</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -31,6 +31,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
   <!-- Template Main CSS File -->
   <link href="assets/css/style.css" rel="stylesheet">
 
+
   <!-- =======================================================
   * Template Name: NiceAdmin - v2.4.1
   * Template URL: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/
@@ -44,9 +45,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
   <header id="header" class="header fixed-top d-flex align-items-center">
 
     <div class="d-flex align-items-center justify-content-between">
-      <a href="index.html" class="logo d-flex align-items-center">
-        <img src="assets/img/logo.png" alt="">
-        <span class="d-none d-lg-block">Satun Sandbox</span>
+      <a href="main" class="logo d-flex align-items-center">
+        <img src="assets/img/logo.png" alt="" style="padding-left: 10px; width: 72%;">
+        <span class="d-none d-lg-block"></span>
       </a>
       <i class="bi bi-list toggle-sidebar-btn"></i>
     </div><!-- End Logo -->
@@ -101,7 +102,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
               <div>
                 <h4>พลเมืองนวัตกรในพื้นที่นวัตกรรม</h4>
                 <p>กิจกรรมน่าสนใจบ่ายนี้ที่ ม.ทักษิณ “พลเมืองนวัตกรในพื้นที่นวัตกรรม”
-เวลา 13:00 น. เป็นต้นไป หอประชุมปาริชาต มหาวิทยาลัยทักษิณ วิทยาเขตสงขลา</p>
+                  เวลา 13:00 น. เป็นต้นไป หอประชุมปาริชาต มหาวิทยาลัยทักษิณ วิทยาเขตสงขลา</p>
                 <p>1 ชั่วโมงที่แล้ว</p>
               </div>
             </li>
@@ -267,5 +268,25 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
       </ul>
     </nav><!-- End Icons Navigation -->
+
+    <!------------------------ format Thai -----------------------!>
+  <?php
+  function DateThai($strDate)
+  {
+    $strYear = date("Y", strtotime($strDate)) + 543;
+    $strMonth = date("n", strtotime($strDate));
+    $strDay = date("j", strtotime($strDate));
+    $strHour = date("H", strtotime($strDate));
+    $strMinute = date("i", strtotime($strDate));
+    $strSeconds = date("s", strtotime($strDate));
+    $strMonthCut = array("", "มกราคม", "กุมภาพันธ์", "มีนาคม", "เมษายน", "พฤษภาคม", "มิถุนายน", "กรกฎาคม", "สิงหาคม", "กันยายน", "ตุลาคม", "พฤศจิกายน", "ธันวาคม");
+    $strMonthThai = $strMonthCut[$strMonth];
+    return "$strDay $strMonthThai $strYear";
+  }
+
+  $strDate = "2008-08-14 13:42:44";
+  echo "ThaiCreate.Com Time now : " . DateThai($strDate);
+  ?>
+  <!-------------------- format Thai - END ---------------------!>
 
   </header><!-- End Header -->
