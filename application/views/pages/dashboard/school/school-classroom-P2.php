@@ -67,14 +67,14 @@
 
                         $result = $this->db->query('SELECT *  FROM SCHOOL_CLASSROOM 
                                 INNER JOIN SCHOOL ON SCHOOL_CLASSROOM.SchoolID = SCHOOL.SchoolID 
-                                INNER JOIN CLS_CLASS_GRADE_LEVEL ON SCHOOL_CLASSROOM.ClassroomGradeLevelCode  = CLS_CLASS_GRADE_LEVEL.CLS_CLASS_GRADE_LEVEL_CODE 
+                                INNER JOIN CLS_GRADE_LEVEL ON SCHOOL_CLASSROOM.ClassroomGradeLevelCode  = CLS_GRADE_LEVEL.GRADE_LEVEL_CODE 
                                 WHERE SCHOOL_CLASSROOM.SchoolID = ' . $_GET['SchoolID'] . ' AND SCHOOL_CLASSROOM.DeleteStatus = 0');
                         foreach ($result->result() as $CLASSROOM) {
                         ?>
                             <tr>
                                 <?php
                                 ?>
-                                <td><?= $CLASSROOM->CLS_CLASS_GRADE_LEVEL_NAME; ?></td>
+                                <td><?= $CLASSROOM->GRADE_LEVEL_NAME; ?></td>
                                 <td style="text-align: center;">
                                     <?= $CLASSROOM->ClassroomAmount; ?>
                                 </td>
@@ -100,7 +100,7 @@
 
 $result = $this->db->query('SELECT *  FROM SCHOOL_CLASSROOM 
     INNER JOIN SCHOOL ON SCHOOL_CLASSROOM.SchoolID = SCHOOL.SchoolID 
-    INNER JOIN CLS_CLASS_GRADE_LEVEL ON SCHOOL_CLASSROOM.ClassroomGradeLevelCode  = CLS_CLASS_GRADE_LEVEL.CLS_CLASS_GRADE_LEVEL_CODE 
+    INNER JOIN CLS_GRADE_LEVEL ON SCHOOL_CLASSROOM.ClassroomGradeLevelCode  = CLS_GRADE_LEVEL.GRADE_LEVEL_CODE 
     WHERE SCHOOL_CLASSROOM.SchoolID = ' . $_GET['SchoolID'] . '');
 foreach ($result->result() as $CLASSROOM) {
 ?>

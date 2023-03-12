@@ -74,7 +74,7 @@
                         $result = $this->db->query('SELECT *
                                     FROM SCHOOL_AWARD 
                                     INNER JOIN SCHOOL ON SCHOOL_AWARD.SchoolID = SCHOOL.SchoolID
-                                    INNER JOIN CLS_AWARD_LEVEL ON SCHOOL_AWARD.AwardLevelCode = CLS_AWARD_LEVEL.CLS_AWARD_LEVEL_CODE
+                                    INNER JOIN CLS_AWARD_LEVEL ON SCHOOL_AWARD.AwardLevelCode = CLS_AWARD_LEVEL.AWARD_LEVEL_CODE
                                     WHERE SCHOOL_AWARD.DeleteStatus = 0 AND SCHOOL_AWARD.SchoolID = ' . $_GET['SchoolID'] . '
                                     ');
 
@@ -84,7 +84,7 @@
                                 <td><?= $AWARD->AwardYear; ?></td>
                                 <td><?= $AWARD->AwardName; ?></td>
                                 <td><?= $AWARD->AwardSource; ?></td>
-                                <td><?= $AWARD->CLS_AWARD_LEVEL_NAME; ?></td>
+                                <td><?= $AWARD->AWARD_LEVEL_NAME; ?></td>
                                 <td style="text-align: center;"><a href="edit-forms-award?SchoolID=<?= $AWARD->SchoolID; ?>&&AwardYear=<?= $AWARD->AwardYear; ?>&&AwardName=<?= $AWARD->AwardName; ?>" class="btn btn-warning"><i class="bi bi-pencil-square"></i></a>
                                 </td>
                                 <td style="text-align: center;"><button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#Delete<?= $AWARD->SchoolID; ?><?= $AWARD->AwardYear; ?><?= $AWARD->AwardName; ?>"><i class=" bi bi-trash"></i></button></td>
@@ -104,7 +104,7 @@
 $result = $this->db->query('SELECT *
  FROM SCHOOL_AWARD 
  INNER JOIN SCHOOL ON SCHOOL_AWARD.SchoolID = SCHOOL.SchoolID
- INNER JOIN CLS_AWARD_LEVEL ON SCHOOL_AWARD.AwardLevelCode = CLS_AWARD_LEVEL.CLS_AWARD_LEVEL_CODE
+ INNER JOIN CLS_AWARD_LEVEL ON SCHOOL_AWARD.AwardLevelCode = CLS_AWARD_LEVEL.AWARD_LEVEL_CODE
  WHERE SCHOOL_AWARD.DeleteStatus = 0 AND SCHOOL_AWARD.SchoolID = ' . $_GET['SchoolID'] . '
  ');
 

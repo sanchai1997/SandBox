@@ -60,10 +60,10 @@
                     </thead>
                     <tbody>
                         <?php
-                        $result = $this->db->query('SELECT SCHOOL.SchoolNameThai, STUDENT.SchoolID, STUDENT.EducationYear, STUDENT.EducationLevelCode, STUDENT.GradeLevelCode, STUDENT.Semester, CLS_EDUCATION_LEVEL.CLS_EDUCATION_LEVEL_NAME, CLS_CLASS_GRADE_LEVEL.CLS_CLASS_GRADE_LEVEL_NAME FROM STUDENT
+                        $result = $this->db->query('SELECT SCHOOL.SchoolNameThai, STUDENT.SchoolID, STUDENT.EducationYear, STUDENT.EducationLevelCode, STUDENT.GradeLevelCode, STUDENT.Semester, CLS_EDUCATION_LEVEL.EDUCATION_LEVEL_NAME, CLS_GRADE_LEVEL.GRADE_LEVEL_NAME FROM STUDENT
                         INNER JOIN SCHOOL ON STUDENT.SchoolID = SCHOOL.SchoolID
-                        INNER JOIN CLS_EDUCATION_LEVEL ON STUDENT.EducationLevelCode = CLS_EDUCATION_LEVEL.CLS_EDUCATION_LEVEL_CODE
-                        INNER JOIN CLS_CLASS_GRADE_LEVEL ON STUDENT.GradeLevelCode = CLS_CLASS_GRADE_LEVEL.CLS_CLASS_GRADE_LEVEL_CODE
+                        INNER JOIN CLS_EDUCATION_LEVEL ON STUDENT.EducationLevelCode = CLS_EDUCATION_LEVEL.EDUCATION_LEVEL_CODE
+                        INNER JOIN CLS_GRADE_LEVEL ON STUDENT.GradeLevelCode = CLS_GRADE_LEVEL.GRADE_LEVEL_CODE
                         WHERE STUDENT.DeleteStatus = 0');
                         foreach ($result->result() as $STUDENT) {
                         ?>
@@ -71,8 +71,8 @@
                                 <td><?= $STUDENT->SchoolNameThai; ?></td>
                                 <td><?= $STUDENT->EducationYear; ?></td>
                                 <td><?= $STUDENT->Semester; ?></td>
-                                <td><?= $STUDENT->CLS_EDUCATION_LEVEL_NAME; ?></td>
-                                <td><?= $STUDENT->CLS_CLASS_GRADE_LEVEL_NAME; ?></td>
+                                <td><?= $STUDENT->EDUCATION_LEVEL_NAME; ?></td>
+                                <td><?= $STUDENT->GRADE_LEVEL_NAME; ?></td>
                                 <td style="text-align: center;">
                                     <a class="btn btn-primary" href="student-P2?SchoolID=<?= $STUDENT->SchoolID; ?>&&EducationYear=<?= $STUDENT->EducationYear; ?>&&Semester=<?= $STUDENT->Semester; ?>&&EducationLevelCode=<?= $STUDENT->EducationLevelCode; ?>&&GradeLevelCode=<?= $STUDENT->GradeLevelCode; ?>"><i class="bi bi-card-list"></i></a>
                                 </td>

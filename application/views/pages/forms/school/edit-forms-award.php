@@ -2,7 +2,7 @@
 $result = $this->db->query('SELECT *
     FROM SCHOOL_AWARD 
     INNER JOIN SCHOOL ON SCHOOL_AWARD.SchoolID = SCHOOL.SchoolID
-    INNER JOIN CLS_AWARD_LEVEL ON SCHOOL_AWARD.AwardLevelCode = CLS_AWARD_LEVEL.CLS_AWARD_LEVEL_CODE
+    INNER JOIN CLS_AWARD_LEVEL ON SCHOOL_AWARD.AwardLevelCode = CLS_AWARD_LEVEL.AWARD_LEVEL_CODE
     WHERE SCHOOL_AWARD.DeleteStatus = 0 AND SCHOOL_AWARD.SchoolID = ' . $_GET['SchoolID'] . ' AND SCHOOL_AWARD.AwardYear = ' . $_GET['AwardYear'] . ' AND SCHOOL_AWARD.AwardName  = "' . $_GET['AwardName'] . '" 
     ');
 foreach ($result->result() as $AWARD) {
@@ -55,9 +55,10 @@ foreach ($result->result() as $AWARD) {
                                     <label class="col-sm-2 col-form-label">ระดับของรางวัลที่ได้รับ</label>
                                     <div class="col-sm-10">
                                         <select class="form-select" aria-label="Default select example" name="AwardLevelCode" required>
-                                            <option value="<?= $AWARD->AwardLevelCode; ?>" selected><?= $AWARD->CLS_AWARD_LEVEL_NAME; ?></option>
-                                            <?php foreach ($this->db->query('SELECT *FROM CLS_AWARD_LEVEL WHERE CLS_AWARD_LEVEL_CODE !=' . $AWARD->AwardLevelCode . '')->result() as $AWARD_LEVEL) { ?>
-                                                <option value="<?= $AWARD_LEVEL->CLS_AWARD_LEVEL_CODE; ?>"><?= $AWARD_LEVEL->CLS_AWARD_LEVEL_NAME; ?></option>
+                                            <?php foreach ($this->db->query('SELECT *FROM CLS_AWARD_LEVEL')->result() as $AWARD_LEVEL) { ?>
+                                                <option <?php if ($AWARD->AwardLevelCode == $AWARD_LEVEL->AWARD_LEVEL_CODE) {
+                                                            echo 'selected';
+                                                        } ?> value="<?= $AWARD_LEVEL->AWARD_LEVEL_CODE; ?>"><?= $AWARD_LEVEL->AWARD_LEVEL_NAME; ?></option>
                                             <?php } ?>
                                         </select>
                                     </div>

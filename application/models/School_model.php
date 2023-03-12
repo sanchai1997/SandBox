@@ -239,23 +239,4 @@ class School_model extends CI_Model
     }
     ///////////////////////////////////AWARD- END /////////////////////////////////////////
 
-
-    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    public function province()
-    {
-        $ShowProvince = $this->db->query('SELECT * FROM CLS_PROVINCE GROUP BY CLS_PROVINCE_NAME ASC')->result();
-        return $ShowProvince;
-    }
-    public function district()
-    {
-        $ShowDistrict = $this->db->query('SELECT * FROM CLS_DISTRICT GROUP BY CLS_DISTRICT_NAME ASC')->result();
-        return $ShowDistrict;
-    }
-
-    public function subdistrict()
-    {
-        $ShowSubdistrict = $this->db->query('SELECT * FROM CLS_SUBDISTRICT GROUP BY CLS_SUBDISTRICT_NAME ASC')->result();
-        return $ShowSubdistrict;
-    }
-    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 }

@@ -63,13 +63,13 @@
                     </thead>
                     <tbody>
                         <?php
-                        $result = $this->db->query('SELECT * FROM SCHOOL INNER JOIN CLS_INNOVATION_AREA ON SCHOOL.InnovationAreaCode = CLS_INNOVATION_AREA.CLS_INNOVATION_AREA_CODE WHERE DeleteStatus = 0');
+                        $result = $this->db->query('SELECT * FROM SCHOOL INNER JOIN CLS_INNOVATION_AREA ON SCHOOL.InnovationAreaCode = CLS_INNOVATION_AREA.INNOVATION_AREA_CODE WHERE DeleteStatus = 0');
                         foreach ($result->result() as $SCHOOL) {
                         ?>
                             <tr>
                                 <td><?= $SCHOOL->SchoolNameThai; ?></td>
                                 <td>
-                                    <?= $SCHOOL->CLS_INNOVATION_AREA_NAME; ?>
+                                    <?= $SCHOOL->INNOVATION_AREA_NAME; ?>
                                 </td>
                                 <td style="text-align: center;"><button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#Modal<?= $SCHOOL->SchoolID; ?>"><i class="bi bi-card-list"></i></button></td>
                                 <td style="text-align: center;"><button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#Delete<?= $SCHOOL->SchoolID; ?>"><i class=" bi bi-trash"></i></button></td>
@@ -89,20 +89,20 @@
 <?php
 $result = $this->db->query(
     'SELECT * FROM SCHOOL 
-INNER JOIN CLS_INNOVATION_AREA ON SCHOOL.InnovationAreaCode = CLS_INNOVATION_AREA.CLS_INNOVATION_AREA_CODE
-INNER JOIN CLS_JURISDICTION ON SCHOOL.JurisdictionCode = CLS_JURISDICTION.CLS_JURISDICTION_CODE
-INNER JOIN CLS_SCHOOL_TYPE ON SCHOOL.SchoolTypeCode = CLS_SCHOOL_TYPE.CLS_SCHOOL_TYPE_CODE
-INNER JOIN CLS_SCHOOL_STATUS ON SCHOOL.SchoolStatusCode = CLS_SCHOOL_STATUS.CLS_SCHOOL_STATUS_CODE
-INNER JOIN CLS_MUNICIPAL ON SCHOOL.MunicipalCode = CLS_MUNICIPAL.CLS_MUNICIPAL_CODE
-INNER JOIN CLS_SUBDISTRICT ON SCHOOL.SchoolAddressSubdistrictCode = CLS_SUBDISTRICT.CLS_SUBDISTRICT_CODE
-INNER JOIN CLS_DISTRICT ON SCHOOL.SchoolAddressDistrictCode = CLS_DISTRICT.CLS_DISTRICT_CODE
-INNER JOIN CLS_PROVINCE ON SCHOOL.SchoolAddressProvinceCode = CLS_PROVINCE.CLS_PROVINCE_CODE
-INNER JOIN CLS_PREFIX ON SCHOOL.AdministratorPrefixCode = CLS_PREFIX.CLS_PREFIX_CODE
-INNER JOIN CLS_EDUCATION_LEVEL ON SCHOOL.EducationLevelCode = CLS_EDUCATION_LEVEL.CLS_EDUCATION_LEVEL_CODE
-INNER JOIN CLS_ELECTRIC_TYPE ON SCHOOL.ElectricTypeCode = CLS_ELECTRIC_TYPE.CLS_ELECTRIC_TYPE_CODE
-INNER JOIN CLS_INTERNET_TYPE ON SCHOOL.InternetTypeCode = CLS_INTERNET_TYPE.CLS_INTERNET_TYPE_CODE
-INNER JOIN CLS_WATER_TYPE ON SCHOOL.WaterTypeCode = CLS_WATER_TYPE.CLS_WATER_TYPE_CODE
-INNER JOIN CLS_EDUCATION_CONTENT ON SCHOOL.EducationContentCode = CLS_EDUCATION_CONTENT.CLS_EDUCATION_CONTENT_CODE'
+INNER JOIN CLS_INNOVATION_AREA ON SCHOOL.InnovationAreaCode = CLS_INNOVATION_AREA.INNOVATION_AREA_CODE
+INNER JOIN CLS_JURISDICTION ON SCHOOL.JurisdictionCode = CLS_JURISDICTION.JURISDICTION_CODE
+INNER JOIN CLS_SCHOOL_TYPE ON SCHOOL.SchoolTypeCode = CLS_SCHOOL_TYPE.SCHOOL_TYPE_CODE
+INNER JOIN CLS_SCHOOL_STATUS ON SCHOOL.SchoolStatusCode = CLS_SCHOOL_STATUS.SCHOOL_STATUS_CODE
+INNER JOIN CLS_MUNICIPAL ON SCHOOL.MunicipalCode = CLS_MUNICIPAL.MUNICIPAL_CODE
+INNER JOIN CLS_SUBDISTRICT ON SCHOOL.SchoolAddressSubdistrictCode = CLS_SUBDISTRICT.SUBDISTRICT_CODE
+INNER JOIN CLS_DISTRICT ON SCHOOL.SchoolAddressDistrictCode = CLS_DISTRICT.DISTRICT_CODE
+INNER JOIN CLS_PROVINCE ON SCHOOL.SchoolAddressProvinceCode = CLS_PROVINCE.PROVINCE_CODE
+INNER JOIN CLS_PREFIX ON SCHOOL.AdministratorPrefixCode = CLS_PREFIX.PREFIX_CODE
+INNER JOIN CLS_EDUCATION_LEVEL ON SCHOOL.EducationLevelCode = CLS_EDUCATION_LEVEL.EDUCATION_LEVEL_CODE
+INNER JOIN CLS_ELECTRIC_TYPE ON SCHOOL.ElectricTypeCode = CLS_ELECTRIC_TYPE.ELECTRIC_TYPE_CODE
+INNER JOIN CLS_INTERNET_TYPE ON SCHOOL.InternetTypeCode = CLS_INTERNET_TYPE.INTERNET_TYPE_CODE
+INNER JOIN CLS_WATER_TYPE ON SCHOOL.WaterTypeCode = CLS_WATER_TYPE.WATER_TYPE_CODE
+INNER JOIN CLS_EDUCATION_CONTENT ON SCHOOL.EducationContentCode = CLS_EDUCATION_CONTENT.EDUCATION_CONTENT_CODE'
 );
 foreach ($result->result() as $SCHOOL_DETAIL) {
 ?>
@@ -130,10 +130,10 @@ foreach ($result->result() as $SCHOOL_DETAIL) {
                     </div>
                     <div class="row">
                         <div class="col-6" style="padding-bottom: 8px; padding-left: 40px;">
-                            หน่วยงานต้นสังกัด - <?= $SCHOOL_DETAIL->CLS_JURISDICTION_NAME; ?>
+                            หน่วยงานต้นสังกัด - <?= $SCHOOL_DETAIL->JURISDICTION_NAME; ?>
                         </div>
                         <div class="col-6" style="padding-bottom: 8px; padding-left: 40px;">
-                            พื้นที่นวัตกรรม - <?= $SCHOOL_DETAIL->CLS_INNOVATION_AREA_NAME; ?>
+                            พื้นที่นวัตกรรม - <?= $SCHOOL_DETAIL->INNOVATION_AREA_NAME; ?>
                         </div>
                     </div>
                     <hr>
@@ -149,15 +149,15 @@ foreach ($result->result() as $SCHOOL_DETAIL) {
                             วันก่อตั้ง - <?= DateThai($SCHOOL_DETAIL->SchoolEstablishedDate); ?>
                         </div>
                         <div class="col-8" style="padding-bottom: 8px; padding-left: 40px;">
-                            ประเภทสถานศึกษา - <?= $SCHOOL_DETAIL->CLS_SCHOOL_TYPE_NAME; ?>
+                            ประเภทสถานศึกษา - <?= $SCHOOL_DETAIL->SCHOOL_TYPE_NAME; ?>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-4" style="padding-bottom: 8px; padding-left: 40px;">
-                            สถานะของสถานศึกษา - <?= $SCHOOL_DETAIL->CLS_SCHOOL_STATUS_NAME; ?>
+                            สถานะของสถานศึกษา - <?= $SCHOOL_DETAIL->SCHOOL_STATUS_NAME; ?>
                         </div>
                         <div class="col-8" style="padding-bottom: 8px; padding-left: 40px;">
-                            เขตปกครอง - <?= $SCHOOL_DETAIL->CLS_MUNICIPAL_NAME; ?>
+                            เขตปกครอง - <?= $SCHOOL_DETAIL->MUNICIPAL_NAME; ?>
                         </div>
                     </div>
                     <div class="row">
@@ -169,9 +169,9 @@ foreach ($result->result() as $SCHOOL_DETAIL) {
                             <label style="padding-left: 10px;">ซอย - <?= $SCHOOL_DETAIL->SchoolAddressSoi; ?></label>
                             <label style="padding-left: 10px;">ตรอก - <?= $SCHOOL_DETAIL->SchoolAddressTrok; ?></label>
                             <br>
-                            <label>ตำบล<?= $SCHOOL_DETAIL->CLS_SUBDISTRICT_NAME; ?></label>
-                            <label style="padding-left: 10px;">อำเภอ<?= $SCHOOL_DETAIL->CLS_DISTRICT_NAME; ?></label>
-                            <label style="padding-left: 10px;">จังหวัด<?= $SCHOOL_DETAIL->CLS_PROVINCE_NAME; ?></label>
+                            <label>ตำบล<?= $SCHOOL_DETAIL->SUBDISTRICT_NAME; ?></label>
+                            <label style="padding-left: 10px;">อำเภอ<?= $SCHOOL_DETAIL->DISTRICT_NAME; ?></label>
+                            <label style="padding-left: 10px;">จังหวัด<?= $SCHOOL_DETAIL->PROVINCE_NAME; ?></label>
                             <label style="padding-left: 10px;">รหัสไปรษณีย์ <?= $SCHOOL_DETAIL->SchoolAddressPostcode; ?></label>
                             <br>
                             <label>ค่าตำแหน่งพิกัดทาง - <?= $SCHOOL_DETAIL->SchoolLatitude; ?>, <?= $SCHOOL_DETAIL->SchoolLongitude; ?></label>
@@ -195,23 +195,23 @@ foreach ($result->result() as $SCHOOL_DETAIL) {
                     <div class="row">
                         <div class="col-6" style="padding-bottom: 8px;">
                             <h6 style="padding-top: 10px;"><b>ข้อมูลผู้บริหาร</b></h6>
-                            <label style="padding-left: 30px;">ชื่อผู้บริหาร - <?= $SCHOOL_DETAIL->CLS_PREFIX_NAME; ?><?= $SCHOOL_DETAIL->AdministratorNameThai; ?> <?= $SCHOOL_DETAIL->AdministratorMiddleNameThai; ?> <?= $SCHOOL_DETAIL->AdministratorLastNameThai; ?></label>
+                            <label style="padding-left: 30px;">ชื่อผู้บริหาร - <?= $SCHOOL_DETAIL->PREFIX_NAME; ?><?= $SCHOOL_DETAIL->AdministratorNameThai; ?> <?= $SCHOOL_DETAIL->AdministratorMiddleNameThai; ?> <?= $SCHOOL_DETAIL->AdministratorLastNameThai; ?></label>
                         </div>
                         <div class="col-6" style="padding-bottom: 8px;">
                             <h6 style="padding-top: 10px;"><b>ข้อมูลระดับศึกษาที่เปิดสอน</b></h6>
-                            <label style="padding-left: 30px;">ระดับการศึกษา - <?= $SCHOOL_DETAIL->CLS_EDUCATION_LEVEL_NAME; ?></label>
+                            <label style="padding-left: 30px;">ระดับการศึกษา - <?= $SCHOOL_DETAIL->EDUCATION_LEVEL_NAME; ?></label>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-6" style="padding-bottom: 8px;">
                             <h6 style="padding-top: 10px;"><b>ข้อมูลสาธารณูปโภค</b></h6>
-                            <label style="padding-left: 30px;">ประเภทแหล่งกำเนิดไฟฟ้า - <?= $SCHOOL_DETAIL->CLS_ELECTRIC_TYPE_NAME; ?></label><br>
-                            <label style="padding-left: 30px;">การใช้งานอินเทอร์เน็ต - <?= $SCHOOL_DETAIL->CLS_EDUCATION_LEVEL_NAME; ?></label><br>
-                            <label style="padding-left: 30px;">แหล่งน้ำที่โรงเรียน - <?= $SCHOOL_DETAIL->CLS_EDUCATION_LEVEL_NAME; ?></label>
+                            <label style="padding-left: 30px;">ประเภทแหล่งกำเนิดไฟฟ้า - <?= $SCHOOL_DETAIL->ELECTRIC_TYPE_NAME; ?></label><br>
+                            <label style="padding-left: 30px;">การใช้งานอินเทอร์เน็ต - <?= $SCHOOL_DETAIL->EDUCATION_LEVEL_NAME; ?></label><br>
+                            <label style="padding-left: 30px;">แหล่งน้ำที่โรงเรียน - <?= $SCHOOL_DETAIL->EDUCATION_LEVEL_NAME; ?></label>
                         </div>
                         <div class=" col-6" style="padding-bottom: 8px; ">
                             <h6 style="padding-top: 10px;"><b>สื่อการเรียนการสอน</b></h6>
-                            <label style="padding-left: 30px;">การใช้สื่อการเรียนการสอน - <?= $SCHOOL_DETAIL->CLS_EDUCATION_CONTENT_NAME; ?></label><br>
+                            <label style="padding-left: 30px;">การใช้สื่อการเรียนการสอน - <?= $SCHOOL_DETAIL->EDUCATION_CONTENT_NAME; ?></label><br>
                             <label style="padding-left: 30px;">โครงการการศึกษาทางไกลผ่านดาวเทียม (DLTV) - <?php if ($SCHOOL_DETAIL->DLTVFlag = 0) {
                                                                                                                 echo 'ไม่อยู่ในโครงการ';
                                                                                                             } else echo 'อยู่ในโครงการ'; ?></label><br>
@@ -246,7 +246,7 @@ foreach ($result->result() as $SCHOOL_DETAIL) {
 <?php } ?>
 
 <?php
-$result = $this->db->query('SELECT * FROM SCHOOL INNER JOIN CLS_INNOVATION_AREA ON SCHOOL.InnovationAreaCode = CLS_INNOVATION_AREA.CLS_INNOVATION_AREA_CODE WHERE DeleteStatus = 0');
+$result = $this->db->query('SELECT * FROM SCHOOL INNER JOIN CLS_INNOVATION_AREA ON SCHOOL.InnovationAreaCode = CLS_INNOVATION_AREA.INNOVATION_AREA_CODE WHERE DeleteStatus = 0');
 foreach ($result->result() as $SCHOOL) {
 ?>
     <div class="modal fade" id="Delete<?= $SCHOOL->SchoolID; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">

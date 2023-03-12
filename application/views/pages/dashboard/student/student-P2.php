@@ -63,8 +63,8 @@
                         <?php
                         $result = $this->db->query('SELECT * FROM STUDENT
                         INNER JOIN SCHOOL ON STUDENT.SchoolID = SCHOOL.SchoolID
-                        INNER JOIN CLS_PREFIX ON STUDENT.StudentPrefixCode = CLS_PREFIX.CLS_PREFIX_CODE
-                        INNER JOIN CLS_STUDENT_STATUS ON STUDENT.StudentStatusCode = CLS_STUDENT_STATUS.CLS_STUDENT_STATUS_CODE
+                        INNER JOIN CLS_PREFIX ON STUDENT.StudentPrefixCode = CLS_PREFIX.PREFIX_CODE
+                        INNER JOIN CLS_STUDENT_STATUS ON STUDENT.StudentStatusCode = CLS_STUDENT_STATUS.STUDENT_STATUS_CODE
                         WHERE STUDENT.DeleteStatus = 0  AND STUDENT.SchoolID = ' . $_GET['SchoolID'] . ' AND STUDENT.EducationYear = ' . $_GET['EducationYear'] . ' AND STUDENT.Semester = ' . $_GET['Semester'] . ' AND STUDENT.EducationLevelCode = ' . $_GET['EducationLevelCode'] . ' AND STUDENT.GradeLevelCode = ' . $_GET['GradeLevelCode'] . '
                         ');
                         foreach ($result->result() as $STUDENT) {
@@ -73,11 +73,11 @@
                                 <?php
                                 ?>
                                 <td><?= $STUDENT->StudentID; ?></td>
-                                <td><?= $STUDENT->CLS_PREFIX_NAME; ?></td>
+                                <td><?= $STUDENT->PREFIX_NAME; ?></td>
                                 <td><?= $STUDENT->StudentNameThai; ?></td>
                                 <td><?= $STUDENT->StudentLastNameThai; ?></td>
                                 <td>
-                                    <center><?= $STUDENT->CLS_STUDENT_STATUS_NAME; ?></center>
+                                    <center><?= $STUDENT->STUDENT_STATUS_NAME; ?></center>
                                 </td>
                                 <td style="text-align: center;"><button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#Modal<?= $STUDENT->StudentReferenceID; ?>"><i class="bi bi-card-list"></i></button></td>
                                 <td style="text-align: center;"><button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#Delete<?= $STUDENT->StudentReferenceID; ?>"><i class=" bi bi-trash"></i></button></td>
@@ -96,15 +96,15 @@
 </main><!-- End #main -->
 <?php
 $result = $this->db->query('SELECT * FROM STUDENT
-                        INNER JOIN CLS_PREFIX ON STUDENT.StudentPrefixCode = CLS_PREFIX.CLS_PREFIX_CODE
-                        INNER JOIN CLS_STUDENT_STATUS ON STUDENT.StudentStatusCode = CLS_STUDENT_STATUS.CLS_STUDENT_STATUS_CODE
-                        INNER JOIN CLS_GENDER ON STUDENT.StudentGenderCode = CLS_GENDER.CLS_GENDER_CODE
-                        INNER JOIN CLS_PROVINCE ON STUDENT.StudentBirthProvinceCode = CLS_PROVINCE.CLS_PROVINCE_CODE
-                        INNER JOIN CLS_NATIONALITY ON STUDENT.StudentRaceCode = CLS_NATIONALITY.CLS_NATIONALITY_CODE
-                        INNER JOIN CLS_RACE ON STUDENT.StudentNationalityCode = CLS_RACE.CLS_RACE_CODE
-                        INNER JOIN CLS_RELIGION ON STUDENT.StudentReligionCode = CLS_RELIGION.CLS_RELIGION_CODE
-                        INNER JOIN CLS_LANGUAGE ON STUDENT.StudentLanguageCode = CLS_LANGUAGE.CLS_LANGUAGE_CODE
-                        INNER JOIN CLS_BLOOD ON STUDENT.StudentBloodCode = CLS_BLOOD.CLS_BLOOD_CODE
+                        INNER JOIN CLS_PREFIX ON STUDENT.StudentPrefixCode = CLS_PREFIX.PREFIX_CODE
+                        INNER JOIN CLS_STUDENT_STATUS ON STUDENT.StudentStatusCode = CLS_STUDENT_STATUS.STUDENT_STATUS_CODE
+                        INNER JOIN CLS_GENDER ON STUDENT.StudentGenderCode = CLS_GENDER.GENDER_CODE
+                        INNER JOIN CLS_PROVINCE ON STUDENT.StudentBirthProvinceCode = CLS_PROVINCE.PROVINCE_CODE
+                        INNER JOIN CLS_NATIONALITY ON STUDENT.StudentRaceCode = CLS_NATIONALITY.NATIONALITY_CODE
+                        INNER JOIN CLS_RACE ON STUDENT.StudentNationalityCode = CLS_RACE.RACE_CODE
+                        INNER JOIN CLS_RELIGION ON STUDENT.StudentReligionCode = CLS_RELIGION.RELIGION_CODE
+                        INNER JOIN CLS_LANGUAGE ON STUDENT.StudentLanguageCode = CLS_LANGUAGE.LANGUAGE_CODE
+                        INNER JOIN CLS_BLOOD ON STUDENT.StudentBloodCode = CLS_BLOOD.BLOOD_CODE
                         WHERE STUDENT.DeleteStatus = 0  AND STUDENT.SchoolID = ' . $_GET['SchoolID'] . ' AND STUDENT.EducationYear = ' . $_GET['EducationYear'] . ' AND STUDENT.Semester = ' . $_GET['Semester'] . ' AND STUDENT.EducationLevelCode = ' . $_GET['EducationLevelCode'] . ' AND STUDENT.GradeLevelCode = ' . $_GET['GradeLevelCode'] . '
                         ');
 foreach ($result->result() as $STUDENT) {
@@ -148,13 +148,13 @@ foreach ($result->result() as $STUDENT) {
                             รหัสประจำตัวนักเรียน <?= $STUDENT->StudentID; ?>
                         </div>
                         <div class="col-4" style="padding-bottom: 8px; padding-left: 40px; ">
-                            สถานะภาพนักเรียน <?= $STUDENT->CLS_STUDENT_STATUS_NAME; ?>
+                            สถานะภาพนักเรียน <?= $STUDENT->STUDENT_STATUS_NAME; ?>
                         </div>
                     </div>
                     <h6 style="padding-top: 10px;"><b>ข้อมูลบุคคล</b></h6>
                     <div class="row">
                         <div class="col-12" style="padding-bottom: 8px; padding-left: 40px; ">
-                            ชื่อ-นามสกุล - <?= $STUDENT->CLS_PREFIX_NAME; ?><?= $STUDENT->StudentNameThai; ?> <?= $STUDENT->StudentLastNameThai; ?> (<?= $STUDENT->StudentNameEnglish; ?> <?= $STUDENT->StudentLastNameEnglish; ?>)
+                            ชื่อ-นามสกุล - <?= $STUDENT->PREFIX_NAME; ?><?= $STUDENT->StudentNameThai; ?> <?= $STUDENT->StudentLastNameThai; ?> (<?= $STUDENT->StudentNameEnglish; ?> <?= $STUDENT->StudentLastNameEnglish; ?>)
                         </div>
                     </div>
                     <div class="row">
@@ -170,29 +170,29 @@ foreach ($result->result() as $STUDENT) {
                     </div>
                     <div class="row">
                         <div class="col-4" style="padding-bottom: 8px; padding-left: 40px;">
-                            เพศ - <?= $STUDENT->CLS_GENDER_NAME; ?>
+                            เพศ - <?= $STUDENT->GENDER_NAME; ?>
                         </div>
                         <div class="col-4" style="padding-bottom: 8px; padding-left: 40px;">
                             วันเกิด - <?= DateThai($STUDENT->StudentBirthDate); ?>
                         </div>
                         <div class="col-4" style="padding-bottom: 8px; padding-left: 40px;">
-                            จังหวัดที่เกิด - <?= $STUDENT->CLS_PROVINCE_NAME; ?>
+                            จังหวัดที่เกิด - <?= $STUDENT->PROVINCE_NAME; ?>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-4" style="padding-bottom: 8px; padding-left: 40px;">
-                            สัญชาติ - <?= $STUDENT->CLS_NATIONALITY_NAME; ?>
+                            สัญชาติ - <?= $STUDENT->NATIONALITY_NAME; ?>
                         </div>
                         <div class="col-4" style="padding-bottom: 8px; padding-left: 40px;">
-                            เชื้อชาติ - <?= $STUDENT->CLS_RACE_NAME; ?>
+                            เชื้อชาติ - <?= $STUDENT->RACE_NAME; ?>
                         </div>
                         <div class="col-4" style="padding-bottom: 8px; padding-left: 40px;">
-                            ศาสนา - <?= $STUDENT->CLS_RELIGION_NAME; ?>
+                            ศาสนา - <?= $STUDENT->RELIGION_NAME; ?>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-4" style="padding-bottom: 8px; padding-left: 40px;">
-                            กลุ่มเลือด - <?= $STUDENT->CLS_BLOOD_NAME; ?>
+                            กลุ่มเลือด - <?= $STUDENT->BLOOD_NAME; ?>
                         </div>
                         <div class="col-4" style="padding-bottom: 8px; padding-left: 40px;">
                             น้ำหนัก - <?= $STUDENT->StudentWeight; ?>
@@ -203,10 +203,10 @@ foreach ($result->result() as $STUDENT) {
                     </div>
                     <div class="row">
                         <div class="col-4" style="padding-bottom: 8px; padding-left: 40px;">
-                            ภาษาหลัก - <?= $STUDENT->CLS_LANGUAGE_NAME; ?>
+                            ภาษาหลัก - <?= $STUDENT->LANGUAGE_NAME; ?>
                         </div>
                         <div class="col-4" style="padding-bottom: 8px; padding-left: 40px;">
-                            ภาษาอื่น - <?= $STUDENT->CLS_LANGUAGE_NAME; ?>
+                            ภาษาอื่น - <?= $STUDENT->LANGUAGE_NAME; ?>
                         </div>
                     </div>
                     <div class="row">
@@ -219,22 +219,22 @@ foreach ($result->result() as $STUDENT) {
                             <label style="padding-left: 10px;">ตรอก - <?= $STUDENT->StudentOfficialAddressTrok; ?></label>
                             <br>
                             <?php
-                            $result = $this->db->query('SELECT * FROM CLS_SUBDISTRICT WHERE CLS_SUBDISTRICT_CODE = ' . $STUDENT->StudentOfficialAddressSubdistrictCode . '');
+                            $result = $this->db->query('SELECT * FROM CLS_SUBDISTRICT WHERE SUBDISTRICT_CODE = ' . $STUDENT->StudentOfficialAddressSubdistrictCode . '');
                             foreach ($result->result() as $SELECT) {
                             ?>
-                                <label>ตำบล<?= $SELECT->CLS_SUBDISTRICT_NAME; ?></label>
+                                <label>ตำบล<?= $SELECT->SUBDISTRICT_NAME; ?></label>
                             <?php } ?>
                             <?php
-                            $result = $this->db->query('SELECT * FROM CLS_DISTRICT WHERE CLS_DISTRICT_CODE = ' . $STUDENT->StudentOfficialAddressDistrictCode . '');
+                            $result = $this->db->query('SELECT * FROM CLS_DISTRICT WHERE DISTRICT_CODE = ' . $STUDENT->StudentOfficialAddressDistrictCode . '');
                             foreach ($result->result() as $SELECT) {
                             ?>
-                                <label style="padding-left: 10px;">อำเภอ<?= $SELECT->CLS_DISTRICT_NAME; ?></label>
+                                <label style="padding-left: 10px;">อำเภอ<?= $SELECT->DISTRICT_NAME; ?></label>
                             <?php } ?>
                             <?php
-                            $result = $this->db->query('SELECT * FROM CLS_PROVINCE WHERE CLS_PROVINCE_CODE = ' . $STUDENT->StudentOfficialAddressProvinceCode . '');
+                            $result = $this->db->query('SELECT * FROM CLS_PROVINCE WHERE PROVINCE_CODE = ' . $STUDENT->StudentOfficialAddressProvinceCode . '');
                             foreach ($result->result() as $SELECT) {
                             ?>
-                                <label style="padding-left: 10px;">จังหวัด<?= $SELECT->CLS_PROVINCE_NAME; ?></label>
+                                <label style="padding-left: 10px;">จังหวัด<?= $SELECT->PROVINCE_NAME; ?></label>
                             <?php } ?>
                             <label style="padding-left: 10px;">รหัสไปรษณีย์ <?= $STUDENT->StudentOfficialAddressPostcode; ?></label>
                             <label style="padding-left: 10px;">หมายเลขโทรศัพท์ <?= $STUDENT->StudentOfficialAddressPhoneNumber; ?></label>
@@ -250,22 +250,22 @@ foreach ($result->result() as $STUDENT) {
                             <label style="padding-left: 10px;">ตรอก - <?= $STUDENT->StudentCurrentAddressTrok; ?></label>
                             <br>
                             <?php
-                            $result = $this->db->query('SELECT * FROM CLS_SUBDISTRICT WHERE CLS_SUBDISTRICT_CODE = ' . $STUDENT->StudentCurrentAddressSubdistrictCode . '');
+                            $result = $this->db->query('SELECT * FROM CLS_SUBDISTRICT WHERE SUBDISTRICT_CODE = ' . $STUDENT->StudentCurrentAddressSubdistrictCode . '');
                             foreach ($result->result() as $SELECT) {
                             ?>
                                 <label>ตำบล<?= $SELECT->CLS_SUBDISTRICT_NAME; ?></label>
                             <?php } ?>
                             <?php
-                            $result = $this->db->query('SELECT * FROM CLS_DISTRICT WHERE CLS_DISTRICT_CODE = ' . $STUDENT->StudentCurrentAddressDistrictCode . '');
+                            $result = $this->db->query('SELECT * FROM CLS_DISTRICT WHERE DISTRICT_CODE = ' . $STUDENT->StudentCurrentAddressDistrictCode . '');
                             foreach ($result->result() as $SELECT) {
                             ?>
-                                <label style="padding-left: 10px;">อำเภอ<?= $SELECT->CLS_DISTRICT_NAME; ?></label>
+                                <label style="padding-left: 10px;">อำเภอ<?= $SELECT->DISTRICT_NAME; ?></label>
                             <?php } ?>
                             <?php
-                            $result = $this->db->query('SELECT * FROM CLS_PROVINCE WHERE CLS_PROVINCE_CODE = ' . $STUDENT->StudentCurrentAddressProvinceCode . '');
+                            $result = $this->db->query('SELECT * FROM CLS_PROVINCE WHERE PROVINCE_CODE = ' . $STUDENT->StudentCurrentAddressProvinceCode . '');
                             foreach ($result->result() as $SELECT) {
                             ?>
-                                <label style="padding-left: 10px;">จังหวัด<?= $SELECT->CLS_PROVINCE_NAME; ?></label>
+                                <label style="padding-left: 10px;">จังหวัด<?= $SELECT->PROVINCE_NAME; ?></label>
                             <?php } ?>
                             <label style="padding-left: 10px;">รหัสไปรษณีย์ <?= $STUDENT->StudentCurrentAddressPostcode; ?></label>
                             <label style="padding-left: 10px;">หมายเลขโทรศัพท์ <?= $STUDENT->StudentCurrentAddressPhoneNumber; ?></label>
@@ -275,10 +275,10 @@ foreach ($result->result() as $STUDENT) {
                     <div class="row">
                         <div class="col-12" style="padding-bottom: 8px; padding-left: 40px; ">
                             <?php
-                            $result = $this->db->query('SELECT * FROM CLS_PREFIX WHERE CLS_PREFIX_CODE = ' . $STUDENT->FatherPrefixCode . '');
+                            $result = $this->db->query('SELECT * FROM CLS_PREFIX WHERE PREFIX_CODE = ' . $STUDENT->FatherPrefixCode . '');
                             foreach ($result->result() as $SELECT) {
                             ?>
-                                ชื่อ-นามสกุล - <?= $SELECT->CLS_PREFIX_NAME; ?>
+                                ชื่อ-นามสกุล - <?= $SELECT->PREFIX_NAME; ?>
                             <?php } ?>
                             <?= $STUDENT->FatherNameThai; ?> <?= $STUDENT->FatherLastNameThai; ?> (<?= $STUDENT->FatherNameEnglish; ?> <?= $STUDENT->FatherLastNameEnglish; ?>)
                         </div>
@@ -295,10 +295,10 @@ foreach ($result->result() as $STUDENT) {
                         </div>
                         <div class="col-6" style="padding-bottom: 8px; padding-left: 40px;">
                             <?php
-                            $result = $this->db->query('SELECT * FROM CLS_PERSON_STATUS WHERE CLS_PERSON_STATUS_CODE = ' . $STUDENT->FatherPersonStatusCode . '');
+                            $result = $this->db->query('SELECT * FROM CLS_PERSON_STATUS WHERE PERSON_STATUS_CODE = ' . $STUDENT->FatherPersonStatusCode . '');
                             foreach ($result->result() as $SELECT) {
                             ?>
-                                สภานภาพ - <?= $SELECT->CLS_PERSON_STATUS_NAME; ?>
+                                สภานภาพ - <?= $SELECT->PERSON_STATUS_NAME; ?>
                             <?php } ?>
                         </div>
                     </div>
@@ -311,10 +311,10 @@ foreach ($result->result() as $STUDENT) {
                     <div class="row">
                         <div class="col-6" style="padding-bottom: 8px; padding-left: 40px;">
                             <?php
-                            $result = $this->db->query('SELECT * FROM CLS_OCCUPATION WHERE CLS_OCCUPATION_CODE = ' . $STUDENT->FatherOccupationCode . '');
+                            $result = $this->db->query('SELECT * FROM CLS_OCCUPATION WHERE OCCUPATION_CODE = ' . $STUDENT->FatherOccupationCode . '');
                             foreach ($result->result() as $SELECT) {
                             ?>
-                                อาชีพ - <?= $SELECT->CLS_OCCUPATION_NAME; ?>
+                                อาชีพ - <?= $SELECT->OCCUPATION_NAME; ?>
                             <?php } ?>
                         </div>
                         <div class="col-6" style="padding-bottom: 8px; padding-left: 40px;">
@@ -326,10 +326,10 @@ foreach ($result->result() as $STUDENT) {
                     <div class="row">
                         <div class="col-12" style="padding-bottom: 8px; padding-left: 40px; ">
                             <?php
-                            $result = $this->db->query('SELECT * FROM CLS_PREFIX WHERE CLS_PREFIX_CODE = ' . $STUDENT->MotherPrefixCode . '');
+                            $result = $this->db->query('SELECT * FROM CLS_PREFIX WHERE PREFIX_CODE = ' . $STUDENT->MotherPrefixCode . '');
                             foreach ($result->result() as $SELECT) {
                             ?>
-                                ชื่อ-นามสกุล - <?= $SELECT->CLS_PREFIX_NAME; ?>
+                                ชื่อ-นามสกุล - <?= $SELECT->PREFIX_NAME; ?>
                             <?php } ?>
                             <?= $STUDENT->MotherNameThai; ?> <?= $STUDENT->MotherLastNameThai; ?> (<?= $STUDENT->MotherNameEnglish; ?> <?= $STUDENT->MotherLastNameEnglish; ?>)
                         </div>
@@ -346,10 +346,10 @@ foreach ($result->result() as $STUDENT) {
                         </div>
                         <div class="col-6" style="padding-bottom: 8px; padding-left: 40px;">
                             <?php
-                            $result = $this->db->query('SELECT * FROM CLS_PERSON_STATUS WHERE CLS_PERSON_STATUS_CODE = ' . $STUDENT->MotherPersonStatusCode . '');
+                            $result = $this->db->query('SELECT * FROM CLS_PERSON_STATUS WHERE PERSON_STATUS_CODE = ' . $STUDENT->MotherPersonStatusCode . '');
                             foreach ($result->result() as $SELECT) {
                             ?>
-                                สภานภาพ - <?= $SELECT->CLS_PERSON_STATUS_NAME; ?>
+                                สภานภาพ - <?= $SELECT->PERSON_STATUS_NAME; ?>
                             <?php } ?>
                         </div>
                     </div>
@@ -362,10 +362,10 @@ foreach ($result->result() as $STUDENT) {
                     <div class="row">
                         <div class="col-6" style="padding-bottom: 8px; padding-left: 40px;">
                             <?php
-                            $result = $this->db->query('SELECT * FROM CLS_OCCUPATION WHERE CLS_OCCUPATION_CODE = ' . $STUDENT->MotherOccupationCode . '');
+                            $result = $this->db->query('SELECT * FROM CLS_OCCUPATION WHERE OCCUPATION_CODE = ' . $STUDENT->MotherOccupationCode . '');
                             foreach ($result->result() as $SELECT) {
                             ?>
-                                อาชีพ - <?= $SELECT->CLS_OCCUPATION_NAME; ?>
+                                อาชีพ - <?= $SELECT->OCCUPATION_NAME; ?>
                             <?php } ?>
                         </div>
                         <div class="col-6" style="padding-bottom: 8px; padding-left: 40px;">
@@ -377,10 +377,10 @@ foreach ($result->result() as $STUDENT) {
                     <div class="row">
                         <div class="col-12" style="padding-bottom: 8px; padding-left: 40px; ">
                             <?php
-                            $result = $this->db->query('SELECT * FROM CLS_PREFIX WHERE CLS_PREFIX_CODE = ' . $STUDENT->GuardianPrefixCode . '');
+                            $result = $this->db->query('SELECT * FROM CLS_PREFIX WHERE PREFIX_CODE = ' . $STUDENT->GuardianPrefixCode . '');
                             foreach ($result->result() as $SELECT) {
                             ?>
-                                ชื่อ-นามสกุล - <?= $SELECT->CLS_PREFIX_NAME; ?>
+                                ชื่อ-นามสกุล - <?= $SELECT->PREFIX_NAME; ?>
                             <?php } ?>
                             <?= $STUDENT->GuardianNameThai; ?> <?= $STUDENT->GuardianLastNameThai; ?> (<?= $STUDENT->GuardianNameEnglish; ?> <?= $STUDENT->GuardianLastNameEnglish; ?>)
                         </div>
@@ -397,10 +397,10 @@ foreach ($result->result() as $STUDENT) {
                         </div>
                         <div class="col-6" style="padding-bottom: 8px; padding-left: 40px;">
                             <?php
-                            $result = $this->db->query('SELECT * FROM CLS_FAMILY_RELATION WHERE CLS_FAMILY_RELATION_CODE = ' . $STUDENT->GuardianRelationCode . '');
+                            $result = $this->db->query('SELECT * FROM CLS_FAMILY_RELATION WHERE FAMILY_RELATION_CODE = ' . $STUDENT->GuardianRelationCode . '');
                             foreach ($result->result() as $SELECT) {
                             ?>
-                                ความสัมพันธ์ของผู้ปกครองกับนักเรียน - <?= $SELECT->CLS_FAMILY_RELATION_NAME; ?>
+                                ความสัมพันธ์ของผู้ปกครองกับนักเรียน - <?= $SELECT->FAMILY_RELATION_NAME; ?>
                             <?php } ?>
                         </div>
                     </div>
@@ -412,10 +412,10 @@ foreach ($result->result() as $STUDENT) {
                     <div class="row">
                         <div class="col-6" style="padding-bottom: 8px; padding-left: 40px;">
                             <?php
-                            $result = $this->db->query('SELECT * FROM CLS_OCCUPATION WHERE CLS_OCCUPATION_CODE = ' . $STUDENT->GuardianOccupationCode . '');
+                            $result = $this->db->query('SELECT * FROM CLS_OCCUPATION WHERE OCCUPATION_CODE = ' . $STUDENT->GuardianOccupationCode . '');
                             foreach ($result->result() as $SELECT) {
                             ?>
-                                อาชีพ - <?= $SELECT->CLS_OCCUPATION_NAME; ?>
+                                อาชีพ - <?= $SELECT->OCCUPATION_NAME; ?>
                             <?php } ?>
                         </div>
                         <div class="col-6" style="padding-bottom: 8px; padding-left: 40px;">
@@ -426,28 +426,28 @@ foreach ($result->result() as $STUDENT) {
                     <div class="row">
                         <div class="col-6" style="padding-bottom: 8px; padding-left: 40px;">
                             <?php
-                            $result = $this->db->query('SELECT * FROM CLS_FAMILY_STATUS WHERE CLS_FAMILY_STATUS_CODE = ' . $STUDENT->FamilyStatusCode . '');
+                            $result = $this->db->query('SELECT * FROM CLS_FAMILY_STATUS WHERE FAMILY_STATUS_CODE = ' . $STUDENT->FamilyStatusCode . '');
                             foreach ($result->result() as $SELECT) {
                             ?>
-                                สถานะภาพครอบครัว - <?= $SELECT->CLS_FAMILY_STATUS_NAME; ?>
+                                สถานะภาพครอบครัว - <?= $SELECT->FAMILY_STATUS_NAME; ?>
                             <?php } ?>
                         </div>
                         <div class="col-6" style="padding-bottom: 8px; padding-left: 40px;">
                             <?php
-                            $result = $this->db->query('SELECT * FROM CLS_STUDENT_LIVE_WITH WHERE CLS_STUDENT_LIVE_WITH_CODE = ' . $STUDENT->StudentLiveWithCode . '');
+                            $result = $this->db->query('SELECT * FROM CLS_STUDENT_LIVE_WITH WHERE STUDENT_LIVE_WITH_CODE = ' . $STUDENT->StudentLiveWithCode . '');
                             foreach ($result->result() as $SELECT) {
                             ?>
-                                นักเรียนอาศัยอยู่กับ - <?= $SELECT->CLS_STUDENT_LIVE_WITH_NAME; ?>
+                                นักเรียนอาศัยอยู่กับ - <?= $SELECT->STUDENT_LIVE_WITH_NAME; ?>
                             <?php } ?>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-6" style="padding-bottom: 8px; padding-left: 40px;">
                             <?php
-                            $result = $this->db->query('SELECT * FROM CLS_MARRIAGE_STATUS WHERE CLS_MARRIAGE_STATUS_CODE = ' . $STUDENT->ParentMarriageStatusCode . '');
+                            $result = $this->db->query('SELECT * FROM CLS_MARRIAGE_STATUS WHERE MARRIAGE_STATUS_CODE = ' . $STUDENT->ParentMarriageStatusCode . '');
                             foreach ($result->result() as $SELECT) {
                             ?>
-                                สภานะการสมรสระหว่างบิดามารดา - <?= $SELECT->CLS_MARRIAGE_STATUS_NAME; ?><br>
+                                สภานะการสมรสระหว่างบิดามารดา - <?= $SELECT->MARRIAGE_STATUS_NAME; ?><br>
                             <?php } ?>
                             เป้นบุตรลำดับที่ - <?= $STUDENT->StudentBirthOrder; ?>
                         </div>
@@ -474,18 +474,18 @@ foreach ($result->result() as $STUDENT) {
                     <div class="row">
                         <div class="col-6" style="padding-bottom: 8px; padding-left: 40px;">
                             <?php
-                            $result = $this->db->query('SELECT * FROM CLS_EDUCATION_LEVEL WHERE CLS_EDUCATION_LEVEL_CODE = ' . $STUDENT->EducationLevelCode . '');
+                            $result = $this->db->query('SELECT * FROM CLS_EDUCATION_LEVEL WHERE EDUCATION_LEVEL_CODE = ' . $STUDENT->EducationLevelCode . '');
                             foreach ($result->result() as $SELECT) {
                             ?>
-                                ระดับการศึกษา - <?= $SELECT->CLS_EDUCATION_LEVEL_NAME; ?>
+                                ระดับการศึกษา - <?= $SELECT->EDUCATION_LEVEL_NAME; ?>
                             <?php } ?>
                         </div>
                         <div class="col-6" style="padding-bottom: 8px; padding-left: 40px;">
                             <?php
-                            $result = $this->db->query('SELECT * FROM CLS_CLASS_GRADE_LEVEL WHERE CLS_CLASS_GRADE_LEVEL_CODE = ' . $STUDENT->GradeLevelCode . '');
+                            $result = $this->db->query('SELECT * FROM CLS_GRADE_LEVEL WHERE GRADE_LEVEL_CODE = ' . $STUDENT->GradeLevelCode . '');
                             foreach ($result->result() as $SELECT) {
                             ?>
-                                ชั้นเรียน - <?= $SELECT->CLS_CLASS_GRADE_LEVEL_NAME; ?>
+                                ชั้นเรียน - <?= $SELECT->GRADE_LEVEL_NAME; ?>
                             <?php } ?>
                         </div>
                     </div>
@@ -502,10 +502,10 @@ foreach ($result->result() as $STUDENT) {
                     <div class="row">
                         <div class="col-6" style="padding-bottom: 8px; padding-left: 40px;">
                             <?php
-                            $result = $this->db->query('SELECT * FROM CLS_CURRICULUM WHERE CLS_CURRICULUM_CODE = ' . $STUDENT->CurriculumID . '');
+                            $result = $this->db->query('SELECT * FROM CLS_CURRICULUM WHERE CURRICULUM_CODE = ' . $STUDENT->CurriculumID . '');
                             foreach ($result->result() as $SELECT) {
                             ?>
-                                หลักสูตร - <?= $SELECT->CLS_CURRICULUM_NAME; ?>
+                                หลักสูตร - <?= $SELECT->CURRICULUM_NAME; ?>
                             <?php } ?>
                         </div>
                     </div>
@@ -513,10 +513,10 @@ foreach ($result->result() as $STUDENT) {
                     <div class="row">
                         <div class="col-12" style="padding-bottom: 8px; padding-left: 40px;">
                             <?php
-                            $result = $this->db->query('SELECT * FROM CLS_JOURNEY_TYPE WHERE CLS_JOURNEY_TYPE_CODE = ' . $STUDENT->JourneyTypeCode . '');
+                            $result = $this->db->query('SELECT * FROM CLS_JOURNEY_TYPE WHERE JOURNEY_TYPE_CODE = ' . $STUDENT->JourneyTypeCode . '');
                             foreach ($result->result() as $SELECT) {
                             ?>
-                                ประเภทการเดินทางมาโรงเรียน - <?= $SELECT->CLS_JOURNEY_TYPE_NAME; ?>
+                                ประเภทการเดินทางมาโรงเรียน - <?= $SELECT->JOURNEY_TYPE_NAME; ?>
                             <?php } ?>
                         </div>
 
@@ -541,18 +541,18 @@ foreach ($result->result() as $STUDENT) {
                     <div class="row">
                         <div class="col-6" style="padding-bottom: 8px; padding-left: 40px;">
                             <?php
-                            $result = $this->db->query('SELECT * FROM CLS_DISABILITY WHERE CLS_DISABILITY_CODE = ' . $STUDENT->DisabilityCode . '');
+                            $result = $this->db->query('SELECT * FROM CLS_DISABILITY WHERE DISABILITY_CODE = ' . $STUDENT->DisabilityCode . '');
                             foreach ($result->result() as $SELECT) {
                             ?>
-                                ความพิการ - <?= $SELECT->CLS_DISABILITY_NAME; ?>
+                                ความพิการ - <?= $SELECT->DISABILITY_NAME; ?>
                             <?php } ?>
                         </div>
                         <div class="col-6" style="padding-bottom: 8px; padding-left: 40px;">
                             <?php
-                            $result = $this->db->query('SELECT * FROM CLS_DISABILITY_LEVEL WHERE CLS_DISABILITY_LEVEL_CODE = ' . $STUDENT->DisabilityLevelCode . '');
+                            $result = $this->db->query('SELECT * FROM CLS_DISABILITY_LEVEL WHERE DISABILITY_LEVEL_CODE = ' . $STUDENT->DisabilityLevelCode . '');
                             foreach ($result->result() as $SELECT) {
                             ?>
-                                ระดับความพิการ - <?= $SELECT->CLS_DISABILITY_LEVEL_NAME; ?>
+                                ระดับความพิการ - <?= $SELECT->DISABILITY_LEVEL_NAME; ?>
                             <?php } ?>
                         </div>
 
@@ -566,10 +566,10 @@ foreach ($result->result() as $STUDENT) {
                     <div class="row">
                         <div class="col-12" style="padding-bottom: 8px; padding-left: 40px;">
                             <?php
-                            $result = $this->db->query('SELECT * FROM CLS_DISAVANTAGED WHERE CLS_DISAVANTAGED_CODE = ' . $STUDENT->DisadvantagedCode . '');
+                            $result = $this->db->query('SELECT * FROM CLS_DISAVANTAGED WHERE DISAVANTAGED_CODE = ' . $STUDENT->DisadvantagedCode . '');
                             foreach ($result->result() as $SELECT) {
                             ?>
-                                ความด้อยโอกาส - <?= $SELECT->CLS_DISAVANTAGED_NAME; ?>
+                                ความด้อยโอกาส - <?= $SELECT->DISAVANTAGED_NAME; ?>
                             <?php } ?>
                         </div>
                     </div>
@@ -626,8 +626,8 @@ foreach ($result->result() as $STUDENT) {
 <?php
 $result = $this->db->query('SELECT * FROM STUDENT
                         INNER JOIN SCHOOL ON STUDENT.SchoolID = SCHOOL.SchoolID
-                        INNER JOIN CLS_PREFIX ON STUDENT.StudentPrefixCode = CLS_PREFIX.CLS_PREFIX_CODE
-                        INNER JOIN CLS_STUDENT_STATUS ON STUDENT.StudentStatusCode = CLS_STUDENT_STATUS.CLS_STUDENT_STATUS_CODE
+                        INNER JOIN CLS_PREFIX ON STUDENT.StudentPrefixCode = CLS_PREFIX.PREFIX_CODE
+                        INNER JOIN CLS_STUDENT_STATUS ON STUDENT.StudentStatusCode = CLS_STUDENT_STATUS.STUDENT_STATUS_CODE
                         WHERE STUDENT.DeleteStatus = 0  AND STUDENT.SchoolID = ' . $_GET['SchoolID'] . ' AND STUDENT.EducationYear = ' . $_GET['EducationYear'] . ' AND STUDENT.Semester = ' . $_GET['Semester'] . ' AND STUDENT.GradeLevelCode = ' . $_GET['GradeLevelCode'] . ' AND STUDENT.EducationLevelCode = ' . $_GET['EducationLevelCode'] . ' 
                         ');
 foreach ($result->result() as $STUDENT) {
