@@ -40,7 +40,7 @@
                                     <select class="form-select" aria-label="Default select example" name="ClassroomGradeLevelCode" required>
                                         <option selected>เลือก</option>
                                         <?php foreach ($this->db->get("CLS_CLASS_GRADE_LEVEL")->result() as $GRADE_LEVEL) { ?>
-                                            <option value="<?= $GRADE_LEVEL->CLS_CLASS_GRADE_LEVEL_CODE; ?>"><?= $GRADE_LEVEL->CLS_CLASS_GRADE_LEVEL_NAME; ?></option>
+                                            <option value="<?= $GRADE_LEVEL->GRADE_LEVEL_CODE; ?>"><?= $GRADE_LEVEL->GRADE_LEVEL_NAME; ?></option>
                                         <?php } ?>
                                     </select>
                                 </div>

@@ -25,7 +25,7 @@
                     $result = $this->db->query('SELECT * FROM CLS_DISABILITY');
                     foreach ($result->result() as $DISABILITY) {
                     ?>
-                        <option value="<?= $DISABILITY->CLS_DISABILITY_CODE; ?>"><?= $DISABILITY->CLS_DISABILITY_NAME; ?></option>
+                        <option value="<?= $DISABILITY->DISABILITY_CODE; ?>"><?= $DISABILITY->DISABILITY_NAME; ?></option>
                     <?php } ?>
                 </select>
             </div>
@@ -47,7 +47,7 @@
                     $result = $this->db->query('SELECT * FROM CLS_DISABILITY_LEVEL');
                     foreach ($result->result() as $DISABILITY_LEVEL) {
                     ?>
-                        <option value="<?= $DISABILITY_LEVEL->CLS_DISABILITY_LEVEL_CODE; ?>"><?= $DISABILITY_LEVEL->CLS_DISABILITY_LEVEL_NAME; ?></option>
+                        <option value="<?= $DISABILITY_LEVEL->DISABILITY_LEVEL_CODE; ?>"><?= $DISABILITY_LEVEL->DISABILITY_LEVEL_NAME; ?></option>
                     <?php } ?>
                 </select>
             </div>
@@ -62,7 +62,7 @@
                     $result = $this->db->query('SELECT * FROM CLS_DISAVANTAGED');
                     foreach ($result->result() as $DISAVANTAGED) {
                     ?>
-                        <option value="<?= $DISAVANTAGED->CLS_DISAVANTAGED_CODE; ?>"><?= $DISAVANTAGED->CLS_DISAVANTAGED_NAME; ?></option>
+                        <option value="<?= $DISAVANTAGED->DISAVANTAGED_CODE; ?>"><?= $DISAVANTAGED->DISAVANTAGED_NAME; ?></option>
                     <?php } ?>
                 </select>
             </div>
@@ -154,7 +154,7 @@
                     $result = $this->db->query('SELECT * FROM CLS_FAMILY_STATUS');
                     foreach ($result->result() as $FAMILY_STATUS) {
                     ?>
-                        <option value="<?= $FAMILY_STATUS->CLS_FAMILY_STATUS_CODE; ?>"><?= $FAMILY_STATUS->CLS_FAMILY_STATUS_NAME; ?></option>
+                        <option value="<?= $FAMILY_STATUS->FAMILY_STATUS_CODE; ?>"><?= $FAMILY_STATUS->FAMILY_STATUS_NAME; ?></option>
                     <?php } ?>
                 </select>
             </div>
@@ -168,7 +168,7 @@
                     $result = $this->db->query('SELECT * FROM CLS_STUDENT_LIVE_WITH');
                     foreach ($result->result() as $STUDENT_LIVE_WITH) {
                     ?>
-                        <option value="<?= $STUDENT_LIVE_WITH->CLS_STUDENT_LIVE_WITH_CODE; ?>"><?= $STUDENT_LIVE_WITH->CLS_STUDENT_LIVE_WITH_NAME; ?></option>
+                        <option value="<?= $STUDENT_LIVE_WITH->STUDENT_LIVE_WITH_CODE; ?>"><?= $STUDENT_LIVE_WITH->STUDENT_LIVE_WITH_NAME; ?></option>
                     <?php } ?>
                 </select>
             </div>
@@ -197,10 +197,10 @@
                 <select class="form-select" id="TALENT_CODES" aria-label="TALENT_CODES" name="TalentCode" required>
                     <option selected>เลือก</option>
                     <?php
-                    $result = $this->db->query('SELECT * FROM CLS_TALENT GROUP BY CLS_TALENT_NAME ASC');
+                    $result = $this->db->query('SELECT * FROM CLS_TALENT GROUP BY TALENT_NAME ASC');
                     foreach ($result->result() as $TALENT) {
                     ?>
-                        <option value="<?= $TALENT->CLS_TALENT_CODE; ?>"><?= $TALENT->CLS_TALENT_NAME; ?></option>
+                        <option value="<?= $TALENT->TALENT_CODE; ?>"><?= $TALENT->TALENT_NAME; ?></option>
                     <?php
                     }
                     ?>

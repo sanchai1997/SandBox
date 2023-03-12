@@ -44,7 +44,7 @@
                                         $result = $this->db->query('SELECT * FROM CLS_EDUCATION_LEVEL');
                                         foreach ($result->result() as $EDUCATION) {
                                         ?>
-                                            <option value="<?= $EDUCATION->CLS_EDUCATION_LEVEL_CODE; ?>"><?= $EDUCATION->CLS_EDUCATION_LEVEL_NAME; ?></option>
+                                            <option value="<?= $EDUCATION->EDUCATION_LEVEL_CODE; ?>"><?= $EDUCATION->EDUCATION_LEVEL_NAME; ?></option>
                                         <?php } ?>
                                     </select>
                                 </div>
@@ -55,10 +55,10 @@
                                     <select class="form-select" aria-label="Default select example" name="GradeLevelCode">
                                         <option selected>เลือก</option>
                                         <?php
-                                        $result = $this->db->query('SELECT * FROM CLS_CLASS_GRADE_LEVEL');
+                                        $result = $this->db->query('SELECT * FROM CLS_GRADE_LEVEL');
                                         foreach ($result->result() as $GRADE_LEVEL) {
                                         ?>
-                                            <option value="<?= $GRADE_LEVEL->CLS_CLASS_GRADE_LEVEL_CODE; ?>"><?= $GRADE_LEVEL->CLS_CLASS_GRADE_LEVEL_NAME; ?></option>
+                                            <option value="<?= $GRADE_LEVEL->GRADE_LEVEL_CODE; ?>"><?= $GRADE_LEVEL->GRADE_LEVEL_NAME; ?></option>
                                         <?php } ?>
                                     </select>
                                 </div>
@@ -96,7 +96,7 @@
                                         $result = $this->db->query('SELECT * FROM CLS_CURRICULUM');
                                         foreach ($result->result() as $CURRICULUM) {
                                         ?>
-                                            <option value="<?= $CURRICULUM->CLS_CURRICULUM_CODE; ?>"><?= $CURRICULUM->CLS_CURRICULUM_NAME; ?></option>
+                                            <option value="<?= $CURRICULUM->CURRICULUM_CODE; ?>"><?= $CURRICULUM->CURRICULUM_NAME; ?></option>
                                         <?php } ?>
                                     </select>
                                 </div>
@@ -111,7 +111,7 @@
                                         $result = $this->db->query('SELECT * FROM CLS_JOURNEY_TYPE');
                                         foreach ($result->result() as $JOURNEY) {
                                         ?>
-                                            <option value="<?= $JOURNEY->CLS_JOURNEY_TYPE_CODE; ?>"><?= $JOURNEY->CLS_JOURNEY_TYPE_NAME; ?></option>
+                                            <option value="<?= $JOURNEY->JOURNEY_TYPE_CODE; ?>"><?= $JOURNEY->JOURNEY_TYPE_NAME; ?></option>
                                         <?php } ?>
                                     </select>
                                 </div>

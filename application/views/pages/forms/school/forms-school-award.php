@@ -61,7 +61,7 @@
                                     <select class="form-select" aria-label="Default select example" name="AwardLevelCode" required>
                                         <option selected>เลือก</option>
                                         <?php foreach ($this->db->get("CLS_AWARD_LEVEL")->result() as $AWARD_LEVEL) { ?>
-                                            <option value="<?= $AWARD_LEVEL->CLS_AWARD_LEVEL_CODE; ?>"><?= $AWARD_LEVEL->CLS_AWARD_LEVEL_NAME; ?></option>
+                                            <option value="<?= $AWARD_LEVEL->AWARD_LEVEL_CODE; ?>"><?= $AWARD_LEVEL->AWARD_LEVEL_NAME; ?></option>
                                         <?php } ?>
                                     </select>
                                 </div>

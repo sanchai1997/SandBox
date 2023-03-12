@@ -40,7 +40,7 @@
                     $result = $this->db->query('SELECT * FROM CLS_JURISDICTION ');
                     foreach ($result->result() as $JURISDICTION) {
                     ?>
-                      <option value="<?= $JURISDICTION->CLS_JURISDICTION_CODE; ?>"><?= $JURISDICTION->CLS_JURISDICTION_NAME; ?></option>
+                      <option value="<?= $JURISDICTION->JURISDICTION_CODE; ?>"><?= $JURISDICTION->JURISDICTION_NAME; ?></option>
                     <?php
                     }
                     ?>
@@ -56,7 +56,7 @@
                     $result = $this->db->query('SELECT * FROM CLS_INNOVATION_AREA ');
                     foreach ($result->result() as $INNOVATION_AREA) {
                     ?>
-                      <option value="<?= $INNOVATION_AREA->CLS_INNOVATION_AREA_CODE; ?>"><?= $INNOVATION_AREA->CLS_INNOVATION_AREA_NAME; ?></option>
+                      <option value="<?= $INNOVATION_AREA->INNOVATION_AREA_CODE; ?>"><?= $INNOVATION_AREA->INNOVATION_AREA_NAME; ?></option>
                     <?php
                     }
                     ?>
@@ -91,7 +91,7 @@
                     $result = $this->db->query('SELECT * FROM CLS_SCHOOL_TYPE');
                     foreach ($result->result() as $SCHOOL_TYPE) {
                     ?>
-                      <option value="<?= $SCHOOL_TYPE->CLS_SCHOOL_TYPE_CODE; ?>"><?= $SCHOOL_TYPE->CLS_SCHOOL_TYPE_NAME; ?></option>
+                      <option value="<?= $SCHOOL_TYPE->SCHOOL_TYPE_CODE; ?>"><?= $SCHOOL_TYPE->SCHOOL_TYPE_NAME; ?></option>
                     <?php
                     }
                     ?>
@@ -107,7 +107,7 @@
                     $result = $this->db->query('SELECT * FROM CLS_SCHOOL_STATUS');
                     foreach ($result->result() as $SCHOOL_STATUS) {
                     ?>
-                      <option value="<?= $SCHOOL_STATUS->CLS_SCHOOL_STATUS_CODE; ?>"><?= $SCHOOL_STATUS->CLS_SCHOOL_STATUS_NAME; ?></option>
+                      <option value="<?= $SCHOOL_STATUS->SCHOOL_STATUS_CODE; ?>"><?= $SCHOOL_STATUS->SCHOOL_STATUS_NAME; ?></option>
                     <?php
                     }
                     ?>
@@ -123,7 +123,7 @@
                     $result = $this->db->query('SELECT * FROM CLS_MUNICIPAL');
                     foreach ($result->result() as $MUNICIPAL) {
                     ?>
-                      <option value="<?= $MUNICIPAL->CLS_MUNICIPAL_CODE; ?>"><?= $MUNICIPAL->CLS_MUNICIPAL_NAME; ?></option>
+                      <option value="<?= $MUNICIPAL->MUNICIPAL_CODE; ?>"><?= $MUNICIPAL->MUNICIPAL_NAME; ?></option>
                     <?php
                     }
                     ?>
@@ -172,12 +172,12 @@
               </div>
               <div class="col-md-4">
                 <div class="form-floating">
-                  <select class="form-select" id="PROVINCE" aria-label="PROVINCE" name="SchoolAddressProvinceCode" required>
-                    <option selected>เลือก</option>
+                  <select class="form-select" aria-label="PROVINCE" name="SchoolAddressProvinceCode" required>
                     <?php
-                    foreach ($ShowProvince as $PROVINCE) {
+                    $result = $this->db->query('SELECT * FROM CLS_PROVINCE WHERE PROVINCE_CODE = 91');
+                    foreach ($result->result() as $PROVINCE) {
                     ?>
-                      <option value="<?= $PROVINCE->CLS_PROVINCE_CODE; ?>"><?= $PROVINCE->CLS_PROVINCE_NAME; ?></option>
+                      <option selected value="<?= $PROVINCE->PROVINCE_CODE; ?>"><?= $PROVINCE->PROVINCE_NAME; ?></option>
                     <?php
                     }
                     ?>
@@ -187,12 +187,13 @@
               </div>
               <div class="col-md-4">
                 <div class="form-floating">
-                  <select class="form-select" id="DISTRICT" aria-label="DISTRICT" name="SchoolAddressDistrictCode">
+                  <select class="form-select" name="SchoolAddressDistrictCode">
                     <option selected>เลือก</option>
                     <?php
-                    foreach ($ShowDistrict as $DISTRICT) {
+                    $result = $this->db->query('SELECT * FROM CLS_DISTRICT WHERE PROVINCE_CODE = 91');
+                    foreach ($result->result() as $DISTRICT) {
                     ?>
-                      <option id="<?= $DISTRICT->CLS_PROVINCE_CODE; ?>" value="<?= $DISTRICT->CLS_DISTRICT_CODE; ?>"><?= $DISTRICT->CLS_DISTRICT_NAME; ?></option>
+                      <option value="<?= $DISTRICT->DISTRICT_CODE; ?>"><?= $DISTRICT->DISTRICT_NAME; ?></option>
                     <?php } ?>
                   </select>
                   <label for="SchoolAddressDistrictCode">อำเภอ</label>
@@ -200,12 +201,13 @@
               </div>
               <div class="col-md-4">
                 <div class="form-floating">
-                  <select class="form-select" id="SUBDISTRICT" aria-label="SUBDISTRICT" name="SchoolAddressSubdistrictCode">
+                  <select class="form-select" aria-label="SUBDISTRICT" name="SchoolAddressSubdistrictCode">
                     <option selected>เลือก</option>
                     <?php
-                    foreach ($ShowSubdistrict as $SUBDISTRICT) {
+                    $result = $this->db->query('SELECT * FROM CLS_SUBDISTRICT WHERE PROVINCE_CODE = 91');
+                    foreach ($result->result() as $SUBDISTRICT) {
                     ?>
-                      <option id="<?= $SUBDISTRICT->CLS_DISTRICT_CODE; ?>" value="<?= $SUBDISTRICT->CLS_SUBDISTRICT_CODE; ?>"><?= $SUBDISTRICT->CLS_SUBDISTRICT_NAME; ?></option>
+                      <option id="<?= $SUBDISTRICT->DISTRICT_CODE; ?>" value="<?= $SUBDISTRICT->SUBDISTRICT_CODE; ?>"><?= $SUBDISTRICT->SUBDISTRICT_NAME; ?></option>
                     <?php } ?>
                   </select>
                   <label for="SchoolAddressSubdistrictCode">ตำบล</label>

@@ -32,7 +32,7 @@ foreach ($result->result() as $CLASSROOM) {
                                 <div class="row mb-3">
                                     <label class="col-sm-2 col-form-label">ระดับชั้นปี</label>
                                     <div class="col-sm-10">
-                                        <label for="inputText" class="col-sm-8 col-form-label"><?= $CLASSROOM->CLS_CLASS_GRADE_LEVEL_NAME; ?></label>
+                                        <label for="inputText" class="col-sm-8 col-form-label"><?= $CLASSROOM->GRADE_LEVEL_NAME; ?></label>
                                     </div>
                                 </div>
 

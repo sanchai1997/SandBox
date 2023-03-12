@@ -253,7 +253,7 @@ foreach ($result->result() as $STUDENT) {
                             $result = $this->db->query('SELECT * FROM CLS_SUBDISTRICT WHERE SUBDISTRICT_CODE = ' . $STUDENT->StudentCurrentAddressSubdistrictCode . '');
                             foreach ($result->result() as $SELECT) {
                             ?>
-                                <label>ตำบล<?= $SELECT->CLS_SUBDISTRICT_NAME; ?></label>
+                                <label>ตำบล<?= $SELECT->SUBDISTRICT_NAME; ?></label>
                             <?php } ?>
                             <?php
                             $result = $this->db->query('SELECT * FROM CLS_DISTRICT WHERE DISTRICT_CODE = ' . $STUDENT->StudentCurrentAddressDistrictCode . '');
