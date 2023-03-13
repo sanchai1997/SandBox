@@ -14,7 +14,7 @@
                 <nav>
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="main">Home</a></li>
-                        <li class="breadcrumb-item">Form</li>
+                        <li class="breadcrumb-item">Dashboard</li>
                         <li class="breadcrumb-item active">Classrom-Detail</li>
                     </ol>
                 </nav>
@@ -46,10 +46,10 @@
             <div class="card-body">
                 <div class="row">
                     <div class="col">
-                        <h5 class="card-title">รายละเอียดข้อมูล<span>| Table School-Classroom</span></h5>
+                        <h5 class="card-title">รายละเอียดข้อมูล<span>| Table School-Classroom</span> <a href="school-classroom" class="btn btn-secondary" data-mdb-ripple-color="dark">ย้อนกลับ</a></h5>
                     </div>
                     <div class="col">
-                        <h5 style="float: right; padding: 15px;" class="card-title"><a href="school-classroom" class="btn btn-secondary" data-mdb-ripple-color="dark">ย้อนกลับ</a></h5>
+                        <h5 style="float: right; padding: 15px;" class="card-title"></h5>
                     </div>
                 </div>
                 <table class="table table-borderless datatable">
@@ -57,8 +57,7 @@
                         <tr>
                             <th scope="col">ชื่อระดับชั้น</th>
                             <th style="text-align: center;" scope="col">จำนวนห้องเรียน</th>
-                            <th style="text-align: center;" scope="col">แก้ไขข้อมูล</th>
-                            <th style="text-align: center;" scope="col">ลบข้อมูล</th>
+                            <th style="text-align: center;" scope="col">ปฎิบัติ</th>
 
                         </tr>
                     </thead>
@@ -79,8 +78,7 @@
                                     <?= $CLASSROOM->ClassroomAmount; ?>
                                 </td>
                                 <td style="text-align: center;"><a href="edit-forms-classroom?SchoolID=<?= $CLASSROOM->SchoolID; ?>&&ClassroomGradeLevelCode=<?= $CLASSROOM->ClassroomGradeLevelCode; ?>" class="btn btn-warning"><i class="bi bi-pencil-square"></i></a>
-                                </td>
-                                <td style="text-align: center;"><button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#Delete<?= $CLASSROOM->SchoolID; ?><?= $CLASSROOM->ClassroomGradeLevelCode; ?>"><i class=" bi bi-trash"></i></button></td>
+                                    &nbsp;<button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#Delete<?= $CLASSROOM->SchoolID; ?><?= $CLASSROOM->ClassroomGradeLevelCode; ?>"><i class=" bi bi-trash"></i></button></td>
 
                             </tr>
                         <?php } ?>
@@ -109,7 +107,7 @@ foreach ($result->result() as $CLASSROOM) {
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLongTitle">ยืนยันการลบข้อมูล</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <!--<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>-->
                 </div>
                 <div class="modal-body">
                     <h6>

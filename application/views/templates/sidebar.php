@@ -31,7 +31,7 @@
            </a>
          </li>
          <li>
-           <a href="forms-craduated">
+           <a href="craduated">
              <i class="bi bi-circle"></i><span>ข้อมูลผู้สำเร็จการศึกษา</span>
            </a>
          </li>
@@ -41,7 +41,7 @@
            </a>
          </li>
          <li>
-           <a href="forms-personnel">
+           <a href="personnel">
              <i class="bi bi-circle"></i><span>ข้อมูลบุคลากรอื่น</span>
            </a>
          </li>

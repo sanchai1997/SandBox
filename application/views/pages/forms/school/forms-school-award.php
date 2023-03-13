@@ -69,7 +69,26 @@
                             <div class="text-center">
                                 <a href="school-award" style="float: left;" class="btn btn-light">ยกเลิก</a>
                                 <button style="float: center;" type="reset" class="btn btn-secondary">รีเซ็ต</button>
-                                <button style="float: right;" type="submit" class="btn btn-primary">ยืนยัน</button>
+                                <button style="float: right;" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#ADD">บันทึกข้อมูล</button>
+                            </div>
+                            <div class="modal fade" id="ADD" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLongTitle">ยืนยันเพิ่มข้อมูล</h5>
+                                            <!--<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>-->
+                                        </div>
+                                        <div class="modal-body">
+                                            <h6>
+                                                <center>คุณต้องการเพิ่มข้อมูลใช่หรือไหม ?</center>
+                                            </h6>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button style="float: right;" type="submit" class="btn btn-primary">ยืนยัน</button>
+                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ยกเลิก</button>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </form><!-- End floating Labels Form -->
 

@@ -7,7 +7,7 @@
                 <nav>
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="main">Home</a></li>
-                        <li class="breadcrumb-item">Form</li>
+                        <li class="breadcrumb-item">Dashboard</li>
                         <li class="breadcrumb-item active">Classrom</li>
                     </ol>
                 </nav>
@@ -62,7 +62,7 @@
                     <tbody>
                         <?php
 
-                        $result = $this->db->query('SELECT * ,SUM(ClassroomAmount) AS Total 
+                        $result = $this->db->query('SELECT SCHOOL_CLASSROOM.SchoolID, SCHOOL.SchoolNameThai ,SUM(SCHOOL_CLASSROOM.ClassroomAmount) AS Total 
                                 FROM SCHOOL_CLASSROOM 
                                 INNER JOIN SCHOOL ON SCHOOL_CLASSROOM.SchoolID = SCHOOL.SchoolID
                                 WHERE SCHOOL_CLASSROOM.DeleteStatus = 0

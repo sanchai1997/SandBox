@@ -65,7 +65,7 @@ foreach ($result->result() as $AWARD) {
                                 </div>
                                 <div class="text-center">
                                     <a href="school-award-P2?SchoolID=<?= $AWARD->SchoolID; ?>" style="float: left;" class="btn btn-light">ยกเลิก</a>
-                                    <button style="float: right;" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#EDIT<?= $AWARD->SchoolID; ?><?= $AWARD->AwardYear; ?>">ยืนยัน</button>
+                                    <button style="float: right;" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#EDIT<?= $AWARD->SchoolID; ?><?= $AWARD->AwardYear; ?>">บันทึกข้อมูล</button>
                                 </div>
                                 <div class="modal fade" id="EDIT<?= $AWARD->SchoolID; ?><?= $AWARD->AwardYear; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
                                     <div class="modal-dialog modal-dialog-centered" role="document">

@@ -88,7 +88,7 @@ foreach ($result->result() as $STUDENT) {
                                     <div class="col-sm-10">
                                         <select class="form-select" aria-label="Default select example" name="StudentPersonalIDTypeCode" required>
                                             <?php
-                                            $result = $this->db->query('SELECT * FROM CLS_CITIZEN_ID_TYPE ');
+                                            $result = $this->db->query('SELECT * FROM CLS_CITIZEN_ID_TYPE');
                                             foreach ($result->result() as $PERSONAL) {
                                             ?>
                                                 <option <?php if ($STUDENT->StudentPersonalIDTypeCode == $PERSONAL->CITIZEN_ID_TYPE_CODE) {
@@ -190,7 +190,7 @@ foreach ($result->result() as $STUDENT) {
                                         <div class="form-floating">
                                             <select class="form-select" id="BIRTH_PROVINCE_CODE" aria-label="BIRTH_PROVINCE_CODE" name="StudentBirthProvinceCode" required>
                                                 <?php
-                                                $result = $this->db->query('SELECT * FROM CLS_PROVINCE GROUP BY PROVINCE_NAME');
+                                                $result = $this->db->query('SELECT * FROM CLS_PROVINCE');
                                                 foreach ($result->result() as $PROVINCE) {
                                                 ?>
                                                     <option <?php if ($STUDENT->StudentBirthProvinceCode == $PROVINCE->PROVINCE_CODE) {
@@ -208,7 +208,7 @@ foreach ($result->result() as $STUDENT) {
                                             <div class="form-floating">
                                                 <select class="form-select" id="NATIONALITY_CODE" aria-label="NATIONALITY_CODE" name="StudentNationalityCode" required>
                                                     <?php
-                                                    $result = $this->db->query('SELECT * FROM CLS_NATIONALITY GROUP BY NATIONALITY_NAME ASC');
+                                                    $result = $this->db->query('SELECT * FROM CLS_NATIONALITY');
                                                     foreach ($result->result() as $NATIONALITY) {
                                                     ?>
                                                         <option <?php if ($STUDENT->StudentNationalityCode == $NATIONALITY->NATIONALITY_CODE) {
@@ -227,7 +227,7 @@ foreach ($result->result() as $STUDENT) {
                                             <div class="form-floating">
                                                 <select class="form-select" id="RACE_CODE" aria-label="RACE_CODE" name="StudentRaceCode" required>
                                                     <?php
-                                                    $result = $this->db->query('SELECT * FROM CLS_RACE GROUP BY RACE_NAME ASC');
+                                                    $result = $this->db->query('SELECT * FROM CLS_RACE');
                                                     foreach ($result->result() as $RACE) {
                                                     ?>
                                                         <option <?php if ($STUDENT->StudentRaceCode == $RACE->RACE_CODE) {
@@ -247,7 +247,7 @@ foreach ($result->result() as $STUDENT) {
                                         <div class="form-floating mb-3">
                                             <select class="form-select" id="RELIGION_CODE" aria-label="RELIGION_CODE" name="StudentReligionCode" required>
                                                 <?php
-                                                $result = $this->db->query('SELECT * FROM CLS_RELIGION ');
+                                                $result = $this->db->query('SELECT * FROM CLS_RELIGION');
                                                 foreach ($result->result() as $RELIGION) {
                                                 ?>
                                                     <option <?php if ($STUDENT->StudentReligionCode == $RELIGION->RELIGION_CODE) {
@@ -265,7 +265,7 @@ foreach ($result->result() as $STUDENT) {
                                             <div class="form-floating">
                                                 <select class="form-select" id="LANGUAGE_CODE" aria-label="LANGUAGE_CODE" name="StudentLanguageCode" required>
                                                     <?php
-                                                    $result = $this->db->query('SELECT * FROM CLS_LANGUAGE GROUP BY LANGUAGE_NAME ASC');
+                                                    $result = $this->db->query('SELECT * FROM CLS_LANGUAGE');
                                                     foreach ($result->result() as $LANGUAGE) {
                                                     ?>
                                                         <option <?php if ($STUDENT->StudentLanguageCode == $LANGUAGE->LANGUAGE_CODE) {
@@ -284,7 +284,7 @@ foreach ($result->result() as $STUDENT) {
                                             <div class="form-floating">
                                                 <select class="form-select" id="OTHER_LANGUAGE_CODE" aria-label="OTHER_LANGUAGE_CODE" name="StudentOtherLanguageCode">
                                                     <?php
-                                                    $result = $this->db->query('SELECT * FROM CLS_LANGUAGE GROUP BY LANGUAGE_NAME ASC');
+                                                    $result = $this->db->query('SELECT * FROM CLS_LANGUAGE');
                                                     foreach ($result->result() as $LANGUAGE) {
                                                     ?>
                                                         <option <?php if ($STUDENT->StudentLanguageCode == $LANGUAGE->LANGUAGE_CODE) {
@@ -383,7 +383,7 @@ foreach ($result->result() as $STUDENT) {
                                         <div class="form-floating">
                                             <select class="form-select" id="PROVINCE" aria-label="PROVINCE" name="StudentOfficialAddressProvinceCode" required>
                                                 <?php
-                                                $result = $this->db->query('SELECT * FROM CLS_PROVINCE GROUP BY PROVINCE_NAME ASC');
+                                                $result = $this->db->query('SELECT * FROM CLS_PROVINCE');
                                                 foreach ($result->result() as $PROVINCE) {
                                                 ?>
                                                     <option <?php if ($STUDENT->StudentOfficialAddressProvinceCode == $PROVINCE->PROVINCE_CODE) {
@@ -400,7 +400,7 @@ foreach ($result->result() as $STUDENT) {
                                         <div class="form-floating">
                                             <select class="form-select" id="DISTRICT" aria-label="DISTRICT" name="StudentOfficialAddressDistrictCode" required>
                                                 <?php
-                                                $result = $this->db->query('SELECT * FROM CLS_DISTRICT GROUP BY DISTRICT_NAME ASC');
+                                                $result = $this->db->query('SELECT * FROM CLS_DISTRICT');
                                                 foreach ($result->result() as $DISTRICT) {
                                                 ?>
                                                     <option <?php if ($STUDENT->StudentOfficialAddressDistrictCode == $DISTRICT->DISTRICT_CODE) {
@@ -416,7 +416,7 @@ foreach ($result->result() as $STUDENT) {
                                             <select class="form-select" id="SUBDISTRICT" aria-label="SUBDISTRICT" name="StudentOfficialAddressSubdistrictCode" required>
                                                 <option selected>เลือก</option>
                                                 <?php
-                                                $result = $this->db->query('SELECT * FROM CLS_SUBDISTRICT GROUP BY SUBDISTRICT_NAME ASC');
+                                                $result = $this->db->query('SELECT * FROM CLS_SUBDISTRICT');
                                                 foreach ($result->result() as $SUBDISTRICT) {
                                                 ?>
                                                     <option <?php if ($STUDENT->StudentOfficialAddressSubdistrictCode == $SUBDISTRICT->SUBDISTRICT_CODE) {
@@ -507,7 +507,7 @@ foreach ($result->result() as $STUDENT) {
                                         <div class="form-floating">
                                             <select class="form-select" aria-label="DISTRICT_SUB" name="StudentCurrentAddressDistrictCode" required>
                                                 <?php
-                                                $result = $this->db->query('SELECT * FROM CLS_DISTRICT WHERE PROVINCE_CODE = 91 GROUP BY DISTRICT_NAME ASC');
+                                                $result = $this->db->query('SELECT * FROM CLS_DISTRICT WHERE PROVINCE_CODE = 91');
                                                 foreach ($result->result() as $DISTRICT) {
                                                 ?>
                                                     <option <?php if ($STUDENT->StudentCurrentAddressDistrictCode == $DISTRICT->DISTRICT_CODE) {
@@ -522,7 +522,7 @@ foreach ($result->result() as $STUDENT) {
                                         <div class="form-floating">
                                             <select class="form-select" aria-label="SUBDISTRICT_SUB" name="StudentCurrentAddressSubdistrictCode" required>
                                                 <?php
-                                                $result = $this->db->query('SELECT * FROM CLS_SUBDISTRICT WHERE PROVINCE_CODE = 91 GROUP BY SUBDISTRICT_NAME ASC');
+                                                $result = $this->db->query('SELECT * FROM CLS_SUBDISTRICT WHERE PROVINCE_CODE = 91');
                                                 foreach ($result->result() as $SUBDISTRICT) {
                                                 ?>
                                                     <option <?php if ($STUDENT->StudentCurrentAddressSubdistrictCode == $SUBDISTRICT->SUBDISTRICT_CODE) {
@@ -563,9 +563,9 @@ foreach ($result->result() as $STUDENT) {
                                             $result = $this->db->query('SELECT * FROM CLS_CITIZEN_ID_TYPE');
                                             foreach ($result->result() as $PERSONAL) {
                                             ?>
-                                                <option <?php if ($STUDENT->FatherPersonalIDTypeCode == $PERSONAL->CLS_CITIZEN_ID_TYPE_CODE) {
+                                                <option <?php if ($STUDENT->FatherPersonalIDTypeCode == $PERSONAL->CITIZEN_ID_TYPE_CODE) {
                                                             echo 'selected';
-                                                        } ?> value="<?= $PERSONAL->CLS_CITIZEN_ID_TYPE_CODE; ?>"><?= $PERSONAL->CLS_CITIZEN_ID_TYPE_NAME; ?></option>
+                                                        } ?> value="<?= $PERSONAL->CITIZEN_ID_TYPE_CODE; ?>"><?= $PERSONAL->CITIZEN_ID_TYPE_NAME; ?></option>
                                             <?php } ?>
                                         </select>
                                     </div>
@@ -701,9 +701,9 @@ foreach ($result->result() as $STUDENT) {
                                             $result = $this->db->query('SELECT * FROM CLS_CITIZEN_ID_TYPE');
                                             foreach ($result->result() as $PERSONAL) {
                                             ?>
-                                                <option <?php if ($STUDENT->MotherPersonalIDTypeCode == $PERSONAL->CLS_CITIZEN_ID_TYPE_CODE) {
+                                                <option <?php if ($STUDENT->MotherPersonalIDTypeCode == $PERSONAL->CITIZEN_ID_TYPE_CODE) {
                                                             echo 'selected';
-                                                        } ?> value="<?= $PERSONAL->CLS_CITIZEN_ID_TYPE_CODE; ?>"><?= $PERSONAL->CLS_CITIZEN_ID_TYPE_NAME; ?></option>
+                                                        } ?> value="<?= $PERSONAL->CITIZEN_ID_TYPE_CODE; ?>"><?= $PERSONAL->CITIZEN_ID_TYPE_NAME; ?></option>
                                             <?php } ?>
                                         </select>
                                     </div>
@@ -1351,7 +1351,7 @@ foreach ($result->result() as $STUDENT) {
                                     <div class="col-sm-10">
                                         <select class="form-select" id="TALENT_CODES" aria-label="TALENT_CODES" name="TalentCode" required>
                                             <?php
-                                            $result = $this->db->query('SELECT * FROM CLS_TALENT GROUP BY TALENT_NAME ASC');
+                                            $result = $this->db->query('SELECT * FROM CLS_TALENT');
                                             foreach ($result->result() as $TALENT) {
                                             ?>
                                                 <option <?php if ($STUDENT->TalentCode == $TALENT->TALENT_CODE) {
@@ -1365,7 +1365,7 @@ foreach ($result->result() as $STUDENT) {
                                 </div>
                                 <div class="text-center">
                                     <a href="student-P2?SchoolID=<?= $STUDENT->SchoolID; ?>&&EducationYear=<?= $STUDENT->EducationYear; ?>&&Semester=<?= $STUDENT->Semester; ?>&&EducationLevelCode=<?= $STUDENT->EducationLevelCode; ?>&&GradeLevelCode=<?= $STUDENT->GradeLevelCode; ?>" style="float: left;" class="btn btn-light">ยกเลิก</a>
-                                    <button style="float: right;" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#EDIT<?= $STUDENT->StudentReferenceID; ?>">ยืนยัน</button>
+                                    <button style="float: right;" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#EDIT<?= $STUDENT->StudentReferenceID; ?>">บันทึกข้อมูล</button>
                                 </div>
                                 <div class="modal fade" id="EDIT<?= $STUDENT->StudentReferenceID; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
                                     <div class="modal-dialog modal-dialog-centered" role="document">

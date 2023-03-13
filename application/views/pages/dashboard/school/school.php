@@ -58,7 +58,7 @@
                             <th style="text-align: center;" scope="col">ชื่อสถานศึกษา</th>
                             <th style="text-align: center;" scope="col">พื้นที่นวัตกรรม</th>
                             <th style="text-align: center;" scope="col">ดูรายละเอียด</th>
-                            <th style="text-align: center;" scope="col">ลบข้อมูล</th>
+                            <th style="text-align: center;" scope="col">ปฎิบัติ</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -72,7 +72,10 @@
                                     <?= $SCHOOL->INNOVATION_AREA_NAME; ?>
                                 </td>
                                 <td style="text-align: center;"><button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#Modal<?= $SCHOOL->SchoolID; ?>"><i class="bi bi-card-list"></i></button></td>
-                                <td style="text-align: center;"><button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#Delete<?= $SCHOOL->SchoolID; ?>"><i class=" bi bi-trash"></i></button></td>
+                                <td style="text-align: center;">
+                                    <a href="edit-forms-school?SchoolID=<?= $SCHOOL->SchoolID; ?>" class="btn btn-warning"><i class="bi bi-pencil-square"></i></a>
+                                    &nbsp;<button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#Delete<?= $SCHOOL->SchoolID; ?>"><i class=" bi bi-trash"></i></button>
+                                </td>
                             </tr>
                         <?php } ?>
 
@@ -115,7 +118,7 @@ foreach ($result->result() as $SCHOOL_DETAIL) {
                 <!---------------------  ข้อมูลทั่วไปสถานศึกษา --------------------->
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel" style="padding-left: 30px; padding-top: 15px;"> <i class="bi bi-card-heading"></i> ข้อมูลรายละเอียดสถานศึกษา</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <!--<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>-->
                     <hr>
                 </div>
                 <div class="modal-body" style="padding-left: 70px; padding-top: 20px;">
@@ -236,8 +239,7 @@ foreach ($result->result() as $SCHOOL_DETAIL) {
 
 
                 <div class="modal-footer">
-                    <a href="edit-forms-school?SchoolID=<?= $SCHOOL_DETAIL->SchoolID; ?>" class="btn btn-warning"><i class="bi bi-pencil-square"></i></a>
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><i class="bi bi-x-square"></i></button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ปิด</button>
                 </div>
             </div>
         </div>
@@ -254,7 +256,7 @@ foreach ($result->result() as $SCHOOL) {
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLongTitle">ยืนยันการลบข้อมูล</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <!--<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>-->
                 </div>
                 <div class="modal-body">
                     <h6>

@@ -7,7 +7,7 @@
                 <nav>
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="main">Home</a></li>
-                        <li class="breadcrumb-item">Form</li>
+                        <li class="breadcrumb-item">Dashboard</li>
                         <li class="breadcrumb-item active">Student</li>
                     </ol>
                 </nav>
