@@ -372,21 +372,23 @@
                 
 
                 <div class="row mb-3">
-                  <div class="col-md-12">
-                    <div class="form-floating">
-                      <input type="date" class="form-control" id="Share" placeholder="Share" name="CommitteeMemberTermStartDate">
-                      <label for="Share">เริ่มวาระการดำรงตำแหน่ง</label>
+                  <div class="col">
+                    <div class="col-md-12">
+                      <div class="form-floating">
+                        <input type="date" class="form-control" id="Share" placeholder="Share" name="CommitteeMemberTermStartDate">
+                        <label for="Share">เริ่มวาระการดำรงตำแหน่ง</label>
+                      </div>
                     </div>
                   </div>
-                </div>
-
-                <div class="row mb-3">
-                  <div class="col-md-12">
-                    <div class="form-floating">
-                      <input type="date" class="form-control" id="Share" placeholder="Share" name="CommitteeMemberTermEndDate">
-                      <label for="Share">สิ้นสุดวาระการดำรงตำแหน่ง</label>
+                
+                 <div class="col">
+                    <div class="col-md-12">
+                      <div class="form-floating">
+                        <input type="date" class="form-control" id="Share" placeholder="Share" name="CommitteeMemberTermEndDate">
+                        <label for="Share">สิ้นสุดวาระการดำรงตำแหน่ง</label>
+                      </div>
                     </div>
-                  </div>
+                 </div>
                 </div>
                 <div class="d-flex justify-content-center">
                                                         <button name="Submit" type="submit"

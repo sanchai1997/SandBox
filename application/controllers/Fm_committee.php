@@ -90,9 +90,33 @@ $this->load->view('myjs');
 
 		
 	}
+	public function edit_committee()
+	{
+		$this->committee_model->edit_committee();
+
+		
+	}
+	public function del_committee()
+	{
+		$this->committee_model->del_committee();
+
+		
+	}
 	public function adding_member()
 	{
 		$this->committee_model->add_comm_member();
+
+		
+	}
+	public function edit_member()
+	{
+		$this->committee_model->edit_comm_member();
+
+		
+	}
+	public function del_member()
+	{
+		$this->committee_model->del_comm_member();
 
 		
 	}

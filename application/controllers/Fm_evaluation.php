@@ -1,4 +1,4 @@
-.....................................................................................................<?php
+<?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
 class Fm_evaluation extends CI_Controller
@@ -166,33 +166,97 @@ class Fm_evaluation extends CI_Controller
     {
         $this->evaluation_model->insert_ass_ria();
     }
+    public function edit_ass_ria()
+    {
+        $this->evaluation_model->edit_ass_ria();
+    }
+    public function del_ass_ria()
+    {
+        $this->evaluation_model->del_ass_ria();
+    }
     public function insert_ass_ria_lvl()//sh2
     {
         $this->evaluation_model->insert_ass_ria_lvl();
+    }
+    public function edit_ass_ria_lvl()//sh2
+    {
+        $this->evaluation_model->edit_ass_ria_lvl();
+    }
+    public function del_ass_ria_lvl()//sh2
+    {
+        $this->evaluation_model->del_ass_ria_lvl();
     }
     public function insert_ass_ria_com()//sh3
     {
         $this->evaluation_model->insert_ass_ria_com();
     }
+    public function edit_ass_ria_com()//sh3
+    {
+        $this->evaluation_model->edit_ass_ria_com();
+    }
+    public function del_ass_ria_com()//sh3
+    {
+        $this->evaluation_model->del_ass_ria_com();
+    }
     public function insert_ass_ria_com_lvl()//sh4
     {
         $this->evaluation_model->insert_ass_ria_com_lvl();
+    }
+    public function edit_ass_ria_com_lvl()//sh4
+    {
+        $this->evaluation_model->edit_ass_ria_com_lvl();
+    }
+    public function del_ass_ria_com_lvl()//sh4
+    {
+        $this->evaluation_model->del_ass_ria_com_lvl();
     }
     public function insert_sc_ass()//sh5
     {
         $this->evaluation_model->insert_sc_ass();
     }
+    public function edit_sc_ass()//sh5
+    {
+        $this->evaluation_model->edit_sc_ass();
+    }
+    public function del_sc_ass()//sh5
+    {
+        $this->evaluation_model->del_sc_ass();
+    }
     public function insert_sc_ass_ria()//sh6
     {
         $this->evaluation_model->insert_sc_ass_ria();
+    }
+    public function edit_sc_ass_ria()//sh6
+    {
+        $this->evaluation_model->edit_sc_ass_ria();
+    }
+    public function del_sc_ass_ria()//sh6
+    {
+        $this->evaluation_model->del_sc_ass_ria();
     }
     public function insert_sc_ass_res()//sh7
     {
         $this->evaluation_model->insert_sc_ass_res();
     }
+    public function edit_sc_ass_res()//sh7
+    {
+        $this->evaluation_model->edit_sc_ass_res();
+    }
+    public function del_sc_ass_res()//sh7
+    {
+        $this->evaluation_model->del_sc_ass_res();
+    }
     public function insert_achie_ass()//sh8
     {
         $this->evaluation_model->insert_achie_ass();
+    }
+    public function edit_achie_ass()//sh8
+    {
+        $this->evaluation_model->edit_achie_ass();
+    }
+    public function del_achie_ass()//sh8
+    {
+        $this->evaluation_model->del_achie_ass();
     }
     
 
