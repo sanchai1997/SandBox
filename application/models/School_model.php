@@ -11,7 +11,7 @@ class School_model extends CI_Model
     }
 
     public function get_school_All() {
-        $query = $this->db->get('School');
+        $query = $this->db->get('SCHOOL');
         return $query->result();
     }
     

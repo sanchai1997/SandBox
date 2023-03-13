@@ -31,7 +31,7 @@
            </a>
          </li>
          <li>
-           <a href="forms-craduated">
+           <a href="craduated">
              <i class="bi bi-circle"></i><span>ข้อมูลผู้สำเร็จการศึกษา</span>
            </a>
          </li>
@@ -41,26 +41,26 @@
            </a>
          </li>
          <li>
-           <a href="forms-personnel">
+           <a href="personnel">
              <i class="bi bi-circle"></i><span>ข้อมูลบุคลากรอื่น</span>
            </a>
          </li>
        </ul>
      </li><!-- End ข้อมูลพื้นฐาน Nav -->
 
-  <li class="nav-item">
-    <a class="nav-link collapsed" href="list-curriculum">
-      <i class="bi bi-journal-text"></i>
-      <span>ข้อมูลหลักสูตร/หลักสูตรของพื้นที่นวัตกรรม</span>
-    </a>
-  </li><!-- End ข้อมูลหลักสูตร Page Nav -->
+     <li class="nav-item">
+       <a class="nav-link collapsed" href="list-curriculum">
+         <i class="bi bi-journal-text"></i>
+         <span>ข้อมูลหลักสูตร/หลักสูตรของพื้นที่นวัตกรรม</span>
+       </a>
+     </li><!-- End ข้อมูลหลักสูตร Page Nav -->
 
-  <li class="nav-item">
-    <a class="nav-link collapsed" href="list-teacher_development_activity">
-      <i class="bi bi-person "></i>
-      <span>ข้อมูลการพัฒนาบุคลากร</span>
-    </a>
-  </li><!-- End ข้อมูลการพัฒนาบุคลากร Page Nav -->
+     <li class="nav-item">
+       <a class="nav-link collapsed" href="list-teacher_development_activity">
+         <i class="bi bi-person "></i>
+         <span>ข้อมูลการพัฒนาบุคลากร</span>
+       </a>
+     </li><!-- End ข้อมูลการพัฒนาบุคลากร Page Nav -->
 
      <li class="nav-item">
        <a class="nav-link collapsed" href="forms-budget">

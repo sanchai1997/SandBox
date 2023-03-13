@@ -9,12 +9,12 @@ class Code_model  extends CI_Model {
     }
 
     public function get_CurriculumType_All() {
-        $query = $this->db->get('cls_curriculum');
+        $query = $this->db->get('CLS_CURRICULUM');
         return $query->result();
     }
 
     public function get_EducationLevel_All() {
-        $query = $this->db->get('cls_education_level');
+        $query = $this->db->get('CLS_EDUCATION_LEVEL');
         return $query->result();
     }
 
@@ -34,13 +34,13 @@ class Code_model  extends CI_Model {
     }
 
     public function get_Competency_Type_All() {
-        $query = $this->db->get('cls_competency');
+        $query = $this->db->get('CLS_COMPETENCY');
         return $query->result();
     }
 
     /////Addschool_Model.php
     public function get_DevelopmentActivityType_All() {
-        $query = $this->db->get('cls_teacher_development_activity_type');
+        $query = $this->db->get('CLS_TEACHER_DEVELOPMENT_ACTIVITY_TYPE');
         return $query->result();
     }
 

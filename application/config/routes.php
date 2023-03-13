@@ -40,7 +40,6 @@ $route['add_curriculum_school_competency']['post'] = 'CurriculumController/add_c
 $route['edit_forms-curriculum_school_competency'] = 'CurriculumController/forms_edit_curriculum_school_competency';
 $route['edit_curriculum_school_competency']['post'] = 'CurriculumController/edit_curriculum_school_competency';
 
-
 //teacher_developmant_activity
 $route['list-teacher_development_activity'] = 'Teacher_development_activity_controller/list_teacher_development_activity';
 $route['forms-teacher_development_activity'] = 'Teacher_development_activity_controller/forms';

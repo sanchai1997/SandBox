@@ -9,7 +9,7 @@ class TeacherDevelopmentActivity_model extends CI_Model {
     }
 
     public function insert_TeacherDevelopmentActivity($teacher_development_activity) {          
-        $result = $this->db->insert('teacher_development_activity', $teacher_development_activity);
+        $result = $this->db->insert('TEACHER_DEVELOPMENT_ACTIVITY', $teacher_development_activity);
         return $result;
 
     }
@@ -17,9 +17,9 @@ class TeacherDevelopmentActivity_model extends CI_Model {
     
     public function get_TeacherDevelopmentActivityAll() {
         $this->db->select('td.*, t.TeacherNameThai, at.TEACHER_DEVELOPMENT_ACTIVITY_TYPE_NAME')
-        ->from('teacher_development_activity td')
-        ->join('teacher t', 't.TeacherID   = td.TeacherID  ', 'LEFT') 
-        ->join('cls_teacher_development_activity_type at', 'at.TEACHER_DEVELOPMENT_ACTIVITY_TYPE_CODE   = td.DevelopmentActivityTypeCode  ', 'LEFT') 
+        ->from('TEACHER_DEVELOPMENT_ACTIVITY td')
+        ->join('TEACHER t', 't.TeacherID   = td.TeacherID  ', 'LEFT') 
+        ->join('CLS_TEACHER_DEVELOPMENT_ACTIVITY_TYPE at', 'at.TEACHER_DEVELOPMENT_ACTIVITY_TYPE_CODE   = td.DevelopmentActivityTypeCode  ', 'LEFT') 
         ->where('td.DeleteStatus', 0)
         ;
 
@@ -29,7 +29,7 @@ class TeacherDevelopmentActivity_model extends CI_Model {
     }
 
     public function get_TeacherDevelopmentActivity($TeacherID, $DevelopmentActivityName, $DevelopmentActivityStartDate) {
-        $this->db->from('teacher_development_activity');
+        $this->db->from('TEACHER_DEVELOPMENT_ACTIVITY');
         $this->db->where('TeacherID', $TeacherID)
                 ->where('DevelopmentActivityName ', $DevelopmentActivityName  ) 
                 ->where('DevelopmentActivityStartDate  ', $DevelopmentActivityStartDate  ) 
@@ -45,7 +45,7 @@ class TeacherDevelopmentActivity_model extends CI_Model {
                 ->where('DevelopmentActivityName ', $Old_DevelopmentActivityName  ) 
                 ->where('DevelopmentActivityStartDate  ', $Old_DevelopmentActivityStartDate  ) 
                 ;
-        $result = $this->db->update('teacher_development_activity', $teacher_development_activity);
+        $result = $this->db->update('TEACHER_DEVELOPMENT_ACTIVITY', $teacher_development_activity);
         return $result;
     
     }
@@ -60,7 +60,7 @@ class TeacherDevelopmentActivity_model extends CI_Model {
                  ->where('DevelopmentActivityName', $DevelopmentActivityName)
                  ->where('DevelopmentActivityStartDate', $DevelopmentActivityStartDate);
 
-        $result = $this->db->update('teacher_development_activity', $data);
+        $result = $this->db->update('TEACHER_DEVELOPMENT_ACTIVITY', $data);
         return $result;
     }
     
