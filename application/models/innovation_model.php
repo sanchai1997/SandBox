@@ -125,7 +125,7 @@ class Innovation_model extends CI_Model {
 
 
 	 }
-	 $this->db->where('id', $this->input->post('id'));
+	 $this->db->where('Id', $this->input->post('Id'));
 	 $query=$this->db->update('INNOVATION',$data);
 					if($query){
 						session_start(); // เริ่มต้น session
@@ -144,7 +144,7 @@ class Innovation_model extends CI_Model {
 			'DeleteStatus' => $velue
 			
 		);
-		$this->db->where('id', $this->input->post('id'));
+		$this->db->where('Id', $this->input->post('Id'));
 		$query=$this->db->update('INNOVATION',$data);
 					   if($query){
 						   session_start(); // เริ่มต้น session
@@ -209,7 +209,7 @@ class Innovation_model extends CI_Model {
             'ParticipantRatio' => $this->input->post('ParticipantRatio')
             
         );
-		$this->db->where('id', $this->input->post('id'));
+		$this->db->where('Id', $this->input->post('Id'));
 		$query=$this->db->update('innovation_creator',$data);
 		if($query){
 			session_start(); // เริ่มต้น session
@@ -234,7 +234,7 @@ class Innovation_model extends CI_Model {
             'DeleteStatus' => $value
             
         );
-		$this->db->where('id', $this->input->post('id'));
+		$this->db->where('Id', $this->input->post('Id'));
 		$query=$this->db->update('innovation_creator',$data);
 		if($query){
 			session_start(); // เริ่มต้น session

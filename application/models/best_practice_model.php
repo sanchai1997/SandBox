@@ -81,7 +81,7 @@ public function edit_BP()
 				'Source' => $this->input->post('Source'),
 				'PublishDate' => $this->input->post('PublishDate')
 			);
-			$this->db->where('id', $this->input->post('id'));
+			$this->db->where('Id', $this->input->post('Id'));
 			$query=$this->db->update('best_practice',$data);
 			if($query){
 				session_start(); // เริ่มต้น session
@@ -108,7 +108,7 @@ public function edit_BP()
 				'Source' => $this->input->post('Source'),
 				'PublishDate' => $this->input->post('PublishDate')
 			);
-			$this->db->where('id', $this->input->post('id'));
+			$this->db->where('Id', $this->input->post('Id'));
 			$query=$this->db->update('best_practice',$data);
 			if($query){
 				session_start(); // เริ่มต้น session
@@ -130,7 +130,7 @@ public function del_BP(){
 				
 		'DeleteStatus' => $status 
 	);
-	$this->db->where('id', $this->input->post('id'));
+	$this->db->where('Id', $this->input->post('Id'));
 			$query=$this->db->update('best_practice',$data);
 			if($query){
 				session_start(); // เริ่มต้น session
@@ -191,7 +191,7 @@ public function del_BP(){
             'CreatorLastNameEnglish' => $this->input->post('CreatorLastNameEnglish'),
             'ParticipantRatio' => $this->input->post('ParticipantRatio')
         );
-		$this->db->where('id', $this->input->post('id'));
+		$this->db->where('Id', $this->input->post('Id'));
 		$query=$this->db->update('BEST_PRACTICE_CREATOR',$data);
 		if($query){
 			session_start(); // เริ่มต้น session
@@ -208,7 +208,7 @@ public function del_BP(){
 					
 			'DeleteStatus' => $status 
 		);
-		$this->db->where('id', $this->input->post('id'));
+		$this->db->where('Id', $this->input->post('Id'));
 				$query=$this->db->update('BEST_PRACTICE_CREATOR',$data);
 				if($query){
 					session_start(); // เริ่มต้น session

@@ -95,7 +95,7 @@ public function edit_LTM()
 			);
 		}
 	}
-	$this->db->where('id',$this->input->post('id'));
+	$this->db->where('Id',$this->input->post('Id'));
 	$query=$this->db->update('LEARNING_TECHNOLOGY_MEDIA',$data);
 	if($query){
 		session_start(); // เริ่มต้น session
@@ -119,7 +119,7 @@ public function del_LTM()
 				'DeleteStatus' => $value
 			);
 		
-	$this->db->where('id',$this->input->post('id'));
+	$this->db->where('Id',$this->input->post('Id'));
 	$query=$this->db->update('LEARNING_TECHNOLOGY_MEDIA',$data);
 	if($query){
 		session_start(); // เริ่มต้น session
@@ -180,7 +180,7 @@ public function del_LTM()
             'CreatorLastNameEnglish' => $this->input->post('CreatorLastNameEnglish'),
             'ParticipantRatio' => $this->input->post('ParticipantRatio')
         );
-		$this->db->where('id',$this->input->post('id'));
+		$this->db->where('Id',$this->input->post('Id'));
 
 		$query=$this->db->update('LEARNING_TECHNOLOGY_MEDIA_CREATOR',$data);
 		if($query){
@@ -204,7 +204,7 @@ public function del_LTM()
 			
             'DeleteStatus' => 	$value
         );
-		$this->db->where('id',$this->input->post('id'));
+		$this->db->where('Id',$this->input->post('Id'));
 
 		$query=$this->db->update('LEARNING_TECHNOLOGY_MEDIA_CREATOR',$data);
 		if($query){

@@ -35,7 +35,7 @@ class Participant_model extends CI_Model {
             'ParticipantName' => $this->input->post('ParticipantName'),
             'ParticipantTypeCode' => $this->input->post('ParticipantTypeCode')
         );
-		$this->db->where('id',$this->input->post('id'));
+		$this->db->where('Id',$this->input->post('Id'));
 		$query=$this->db->update('PARTICIPANT',$data);
 		if($query){
 			session_start(); // เริ่มต้น session
@@ -58,7 +58,7 @@ class Participant_model extends CI_Model {
             
             'DeleteStatus' => $value 
         );
-		$this->db->where('id',$this->input->post('id'));
+		$this->db->where('Id',$this->input->post('Id'));
 		$query=$this->db->update('PARTICIPANT',$data);
 		if($query){
 			session_start(); // เริ่มต้น session
@@ -109,7 +109,7 @@ class Participant_model extends CI_Model {
             'ContactEmail' => $this->input->post('ContactEmail'),
             'ContactOrganizationPosition' => $this->input->post('ContactOrganizationPosition')
         );
-		$this->db->where('id',$this->input->post('id'));
+		$this->db->where('Id',$this->input->post('Id'));
 		$query=$this->db->update('PARTICIPANT_CONTACT',$data);
 		if($query){
 			session_start(); // เริ่มต้น session
@@ -132,7 +132,7 @@ class Participant_model extends CI_Model {
             
             'DeleteStatus' => $value 
         );
-		$this->db->where('id',$this->input->post('id'));
+		$this->db->where('Id',$this->input->post('Id'));
 		$query=$this->db->update('PARTICIPANT_CONTACT',$data);
 		if($query){
 			session_start(); // เริ่มต้น session
@@ -232,7 +232,7 @@ class Participant_model extends CI_Model {
 	}
 
 }
-$this->db->where('id',$this->input->post('id'));
+$this->db->where('Id',$this->input->post('Id'));
 		$query=$this->db->update('PARTICIPANT_COOPERATION',$data);
 		if($query){
 			session_start(); // เริ่มต้น session
@@ -258,7 +258,7 @@ $this->db->where('id',$this->input->post('id'));
 				'DeleteStatus' => $value
 			);
 		
-			$this->db->where('id',$this->input->post('id'));
+			$this->db->where('Id',$this->input->post('Id'));
 			$query=$this->db->update('PARTICIPANT_COOPERATION',$data);
 			if($query){
 				session_start(); // เริ่มต้น session
@@ -309,7 +309,7 @@ $this->db->where('id',$this->input->post('id'));
             'NoteReporterMobilePhone' => $this->input->post('NoteReporterMobilePhone'),
             'NoteReporterEmail' => $this->input->post('NoteReporterEmail')
         );
-		$this->db->where('id',$this->input->post('id'));
+		$this->db->where('Id',$this->input->post('Id'));
 
 		$query=$this->db->update('PARTICIPANT_NOTE',$data);
 		if($query){
@@ -333,7 +333,7 @@ $this->db->where('id',$this->input->post('id'));
 			
 			'DeleteStatus' => $value
 		);
-		$this->db->where('id',$this->input->post('id'));
+		$this->db->where('Id',$this->input->post('Id'));
 
 		$query=$this->db->update('PARTICIPANT_NOTE',$data);
 		if($query){

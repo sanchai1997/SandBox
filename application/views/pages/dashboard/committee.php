@@ -147,14 +147,14 @@
                             </th>
                             <td style="text-align: center;">
                                 <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                                    data-bs-target="#edit_committee<?php echo $show->id; ?>"><i
+                                    data-bs-target="#edit_committee<?php echo $show->Id; ?>"><i
                                         class="bi bi-card-list"></i></button>
                                 <button type="button" class="btn btn-danger" data-bs-toggle="modal"
-                                    data-bs-target="#del_committee<?php echo $show->id; ?>">
+                                    data-bs-target="#del_committee<?php echo $show->Id; ?>">
                                     <i class="bi bi-trash"></i>
                                 </button>
                                 <!-- Modal -->
-                                <div class="modal fade" id="del_committee<?php echo $show->id; ?>" tabindex="-1"
+                                <div class="modal fade" id="del_committee<?php echo $show->Id; ?>" tabindex="-1"
                                     aria-labelledby="exampleModalLabel" aria-hidden="true">
                                     <div class="modal-dialog">
                                         <div class="modal-content">
@@ -175,7 +175,7 @@
                                                     data-bs-dismiss="modal">ยกเลิก</button>
                                                 <form method="post"
                                                     action="<?php echo site_url('c_del_p1'); ?>">
-                                                    <input type="hidden" name="id" value="<?php echo $show->id; ?>">
+                                                    <input type="hidden" name="id" value="<?php echo $show->Id; ?>">
                                                     <div class="d-flex justify-content-center">
                                                         <button name="Submit" type="submit"
                                                             class="btn btn-primary">ยืนยันก่อนลบ</button>
@@ -246,14 +246,14 @@
                             <th scope="row"><?php echo $show_member->CommitteeMemberPositionCode; ?></th>
                             <td style="text-align: center;">
                                 <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                                    data-bs-target="#edit_comm_member<?php echo $show_member->id; ?>"><i
+                                    data-bs-target="#edit_comm_member<?php echo $show_member->Id; ?>"><i
                                         class="bi bi-card-list"></i></button>
                                 <button type="button" class="btn btn-danger" data-bs-toggle="modal"
-                                    data-bs-target="#del_comm_member<?php echo $show_member->id; ?>">
+                                    data-bs-target="#del_comm_member<?php echo $show_member->Id; ?>">
                                     <i class="bi bi-trash"></i>
                                 </button>
                                 <!-- Modal -->
-                                <div class="modal fade" id="del_comm_member<?php echo $show_member->id; ?>"
+                                <div class="modal fade" id="del_comm_member<?php echo $show_member->Id; ?>"
                                     tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                     <div class="modal-dialog">
                                         <div class="modal-content">
@@ -274,7 +274,7 @@
                                                     data-bs-dismiss="modal">ยกเลิก</button>
                                                 <form method="post"
                                                     action="<?php echo site_url('cm_del_p2'); ?>">
-                                                    <input type="hidden" name="id" value="<?php echo $show_member->id; ?>">
+                                                    <input type="hidden" name="id" value="<?php echo $show_member->Id; ?>">
                                                     <div class="d-flex justify-content-center">
                                                         <button name="Submit" type="submit"
                                                             class="btn btn-primary">ยืนยันก่อนลบ</button>
@@ -309,7 +309,7 @@ foreach ($query as $show) {
     ?>
 <tr>
     <!-- edit_BP -->
-    <div class="modal fade" id="edit_committee<?php echo $show->id; ?>" tabindex="-1"
+    <div class="modal fade" id="edit_committee<?php echo $show->Id; ?>" tabindex="-1"
         aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
@@ -320,7 +320,7 @@ foreach ($query as $show) {
                 <div class="modal-body">
                     <form action="<?php echo site_url('c_edit_p1'); ?>" method="post"
                         enctype="multipart/form-data">
-                        <input type="hidden" name="id" value="<?php echo $show->id ?>">
+                        <input type="hidden" name="id" value="<?php echo $show->Id ?>">
                         <div class="row mb-3">
                             <div class="form-floating">
                                 <select class="form-select" id="floatingSelect"
@@ -477,7 +477,7 @@ foreach ($query as $show) {
     ?>
 <tr>
     <!-- edit_BP -->
-    <div class="modal fade" id="edit_comm_member<?php echo $show->id; ?>" tabindex="-1"
+    <div class="modal fade" id="edit_comm_member<?php echo $show->Id; ?>" tabindex="-1"
         aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
@@ -488,7 +488,7 @@ foreach ($query as $show) {
                 <div class="modal-body">
                     <form action="<?php echo site_url('cm_edit_p2'); ?>" method="post"
                         enctype="multipart/form-data">
-                        <input type="hidden" name="id" value="<?php echo $show->id ?>">
+                        <input type="hidden" name="id" value="<?php echo $show->Id ?>">
                         <h5 class="card-title ">ข้อมูลรายชื่อคณะกรรมการ</h5>
                         <div class="row mb-3">
                             <div class="form-floating">

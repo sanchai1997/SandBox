@@ -198,14 +198,14 @@
                             <td style="text-align: center;" >
                             <button type="button" class="btn btn-primary"
                                     data-bs-toggle="modal"
-                                    data-bs-target="#edit_BP<?php echo $show->id; ?>"><i
+                                    data-bs-target="#edit_BP<?php echo $show->Id; ?>"><i
                                         class="bi bi-card-list"></i></button>
                                 <button type="button" class="btn btn-danger" data-bs-toggle="modal"
-                                    data-bs-target="#del_BP<?php echo $show->id; ?>">
+                                    data-bs-target="#del_BP<?php echo $show->Id; ?>">
                                     <i class="bi bi-trash"></i>
                                 </button>
                                 <!-- Modal -->
-                                <div class="modal fade" id="del_BP<?php echo $show->id; ?>" tabindex="-1"
+                                <div class="modal fade" id="del_BP<?php echo $show->Id; ?>" tabindex="-1"
                                     aria-labelledby="exampleModalLabel" aria-hidden="true">
                                     <div class="modal-dialog">
                                         <div class="modal-content">
@@ -227,7 +227,7 @@
                                                 <form method="post"
                                                     action="<?php echo site_url('BP_del_p1'); ?>">
                                                     <input type="hidden" name="id"
-                                                        value="<?php echo $show->id; ?>">
+                                                        value="<?php echo $show->Id; ?>">
                                                     <div class="d-flex justify-content-center">
                                                         <button name="Submit" type="submit"
                                                             class="btn btn-primary">ยืนยันก่อนลบ</button>
@@ -316,14 +316,14 @@
                             <td style="text-align: center;">
                             <button type="button" class="btn btn-primary"
                                     data-bs-toggle="modal"
-                                    data-bs-target="#edit_BPC<?php echo $show->id; ?>"><i
+                                    data-bs-target="#edit_BPC<?php echo $show->Id; ?>"><i
                                         class="bi bi-card-list"></i></button>
                                 <button type="button" class="btn btn-danger" data-bs-toggle="modal"
-                                    data-bs-target="#del_BPC<?php echo $show->id; ?>">
+                                    data-bs-target="#del_BPC<?php echo $show->Id; ?>">
                                     <i class="bi bi-trash"></i>
                                 </button>
                                 <!-- Modal -->
-                                <div class="modal fade" id="del_BPC<?php echo $show->id; ?>" tabindex="-1"
+                                <div class="modal fade" id="del_BPC<?php echo $show->Id; ?>" tabindex="-1"
                                     aria-labelledby="exampleModalLabel" aria-hidden="true">
                                     <div class="modal-dialog">
                                         <div class="modal-content">
@@ -345,7 +345,7 @@
                                                 <form method="post"
                                                     action="<?php echo site_url('BPC_del_p2'); ?>">
                                                     <input type="hidden" name="id"
-                                                        value="<?php echo $show->id; ?>">
+                                                        value="<?php echo $show->Id; ?>">
                                                     <div class="d-flex justify-content-center">
                                                         <button name="Submit" type="submit"
                                                             class="btn btn-primary">ยืนยันก่อนลบ</button>
@@ -384,7 +384,7 @@ foreach ($query as $show) {
     ?>
 <tr>
     <!-- edit_BP -->
-    <div class="modal fade" id="edit_BP<?php echo $show->id; ?>" tabindex="-1"
+    <div class="modal fade" id="edit_BP<?php echo $show->Id; ?>" tabindex="-1"
         aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
@@ -396,7 +396,7 @@ foreach ($query as $show) {
                     <form action="<?php echo site_url(
                             'BP_edit_p1'
                         ); ?>" method="post" enctype="multipart/form-data">
-<input type="hidden" name="id" value="<?php echo $show->id ?>">
+<input type="hidden" name="id" value="<?php echo $show->Id ?>">
                         <div class="row mb-3">
                             <div class="form-floating">
                                 <input type="text" class="form-control" id="floatingName"
@@ -535,7 +535,7 @@ foreach ($query as $show) {
                         </div>
                         <div class="d-flex justify-content-center">
                             <button type="submit" class="btn btn-primary" data-bs-toggle="modal"
-                                data-bs-target="#ES<?php echo $show->id; ?>">บันทึกข้อมูล</button>
+                                data-bs-target="#ES<?php echo $show->Id; ?>">บันทึกข้อมูล</button>
                         </div>
 
                     </form>
@@ -559,7 +559,7 @@ foreach ($query as $show) {
     ?>
 <tr>
     <!-- edit_BP -->
-    <div class="modal fade" id="edit_BPC<?php echo $show->id; ?>" tabindex="-1"
+    <div class="modal fade" id="edit_BPC<?php echo $show->Id; ?>" tabindex="-1"
         aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
@@ -571,7 +571,7 @@ foreach ($query as $show) {
                     <form action="<?php echo site_url(
                             'BPC_edit_p2'
                         ); ?>" method="post" enctype="multipart/form-data">
-<input type="hidden" name="id" value="<?php echo $show->id ?>">
+<input type="hidden" name="id" value="<?php echo $show->Id ?>">
                         <div class="row mb-3">
                             <div class="col">
                                 <div class="form-floating">
