@@ -113,7 +113,7 @@
                                                 </h6>
                                             </div>
                                             <div class="modal-footer">
-                                                <a href="<?php echo base_url('delete-teacher_development_activity/' .$ls->TeacherID . '/' .$ls->DevelopmentActivityName . '/' .$ls->DevelopmentActivityStartDate ); ?>" class="btn btn-danger">ลบ</a>
+                                                <a href="#" class="btn btn-danger">ลบ</a>
                                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ยกเลิก</button>
                                             </div>
                                         </div>

@@ -58,8 +58,28 @@
 
               <!-- End Form ข้อมูลสมรรถนะของหลักสูตร -->
                 <div class="text-center">
-                  <button type="submit" class="btn btn-primary" onclick="return check(addCurriculumCompetency)">ยืนยัน</button>
-                </div>          
+                  <button type="button" class="btn btn-primary" onclick="return check(addCurriculumCompetency)">ยืนยัน</button>
+                </div> 
+               <!-- Modal -->
+               <div class="modal fade" id="Modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+                  <div class="modal-dialog modal-dialog-centered" role="document">
+                      <div class="modal-content">
+                          <div class="modal-header">
+                              <h5 class="modal-title" id="exampleModalLongTitle">ยืนยันการเพิ่มข้อมูล</h5>
+                              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                          </div>
+                          <div class="modal-body">
+                              <h6>
+                                  <center>คุณต้องการเพิ่มข้อมูลใช่หรือไหม ?</center>
+                              </h6>
+                          </div>
+                          <div class="modal-footer">
+                              <button type="submit" class="btn btn-primary click" >ยืนยัน</button> 
+                              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ยกเลิก</button>
+                          </div>
+                      </div>
+                  </div>
+               </div>            
               </form>
                 
 
@@ -74,11 +94,13 @@
 
 <script>
   function check(frm2){
+
      //Check_CompetencyCode(สมรรถนะ)
      if(frm2.CompetencyCode.value==-1){
       alert("กรุณาเลือกสมรรถนะ");
       return false;
     }   
+    $('#Modal').modal('show');
   }
 </script>
 

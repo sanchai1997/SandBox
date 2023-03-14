@@ -132,7 +132,7 @@
                 </div>
 
                 <div class="text-center">
-                  <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#Modal" onclick="return check(teacher_developmant_activity)">บันทึกข้อมูล</button>  
+                  <button type="button" class="btn btn-primary"  onclick="return check(teacher_developmant_activity)">บันทึกข้อมูล</button>  
                 </div> 
 
               <!-- Modal -->
@@ -140,12 +140,12 @@
                   <div class="modal-dialog modal-dialog-centered" role="document">
                       <div class="modal-content">
                           <div class="modal-header">
-                              <h5 class="modal-title" id="exampleModalLongTitle">ยืนยันการเพิ่มข้อมูล</h5>
+                              <h5 class="modal-title" id="exampleModalLongTitle">ยืนยันการแก้ไขข้อมูล</h5>
                               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                           </div>
                           <div class="modal-body">
                               <h6>
-                                  <center>คุณต้องการเพิ่มข้อมูลใช่หรือไหม ?</center>
+                                  <center>คุณต้องการแก้ไขข้อมูลใช่หรือไหม ?</center>
                               </h6>
                           </div>
                           <div class="modal-footer">
@@ -169,7 +169,6 @@
 
 <script type="text/javascript">
   function check(frm){
-    
   //Check_EDUCATION_YEAR
   var EducationYear = /^[0-9]{4}$/;
     if(frm.DevelopmentActivityEducationYear.value ==""){
@@ -269,7 +268,11 @@
       alert("กรุณาแนบไฟล์เอกสารเกียรติบัตร");
       frm.DevelopmentDocument.value = "";
       return false;
-    } 
+    }
+    $('#Modal').modal('show');
+
+ 
+    
   }
 </script>  
   </main><!-- End #main -->
