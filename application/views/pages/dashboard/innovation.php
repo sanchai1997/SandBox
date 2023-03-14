@@ -40,7 +40,7 @@
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="main">Home</a></li>
                         <li class="breadcrumb-item">Form</li>
-                        <li class="breadcrumb-item active">Student</li>
+                        <li class="breadcrumb-item active">ข้อมูลนวัตกรรมการศึกษา</li>
                     </ol>
                 </nav>
             </div>
@@ -70,7 +70,7 @@
             <div class="card-body">
                 <div class="row">
                     <div class="col">
-                        <h5 class="card-title">รายละเอียดข้อมูล <span>| Table Student</span></h5>
+                        <h5 class="card-title">รายละเอียดข้อมูล <span>| ข้อมูลนวัตกรรมการศึกษา</span></h5>
                     </div>
                     <div class="col">
 
@@ -112,7 +112,7 @@
                         <div class="card-body">
                             <div class="row">
                                 <div class="col">
-                                    <h5 class="card-title">รายละเอียดข้อมูล <span>| Table Student</span></h5>
+                                    <h5 class="card-title">รายละเอียดข้อมูล <span>| นวัตกรรมการศึกษา</span></h5>
                                 </div>
                                 <div class="col">
                                     <h5 style="float: right; padding: 15px;" class="card-title"><a
@@ -169,14 +169,14 @@
                                         <td style="text-align: center;"><?php echo $show->SearchKeyword; ?></td>
                                         <td style="text-align: center;">
                                             <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                                                data-bs-target="#edit_in<?php echo $show->id; ?>"><i
+                                                data-bs-target="#edit_in<?php echo $show->Id; ?>"><i
                                                     class="bi bi-card-list"></i></button>
                                             <button type="button" class="btn btn-danger" data-bs-toggle="modal"
-                                                data-bs-target="#del_in<?php echo $show->id; ?>">
+                                                data-bs-target="#del_in<?php echo $show->Id; ?>">
                                                 <i class="bi bi-trash"></i>
                                             </button>
                                             <!-- Modal -->
-                                            <div class="modal fade" id="del_in<?php echo $show->id; ?>"
+                                            <div class="modal fade" id="del_in<?php echo $show->Id; ?>"
                                                 tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                                 <div class="modal-dialog">
                                                     <div class="modal-content">
@@ -197,8 +197,8 @@
                                                                 data-bs-dismiss="modal">ยกเลิก</button>
                                                             <form method="post"
                                                                 action="<?php echo site_url('del_p1'); ?>">
-                                                                <input type="hidden" name="id"
-                                                                    value="<?php echo $show->id; ?>">
+                                                                <input type="hidden" name="Id"
+                                                                    value="<?php echo $show->Id; ?>">
                                                                 <div class="d-flex justify-content-center">
                                                                     <button name="Submit" type="submit"
                                                                         class="btn btn-primary">ยืนยันก่อนลบ</button>
@@ -222,7 +222,7 @@
                                     <div class="card-body">
                                         <div class="row">
                                             <div class="col">
-                                                <h5 class="card-title">รายละเอียดข้อมูล <span>| Table Student</span>
+                                                <h5 class="card-title">รายละเอียดข้อมูล <span>| ผู้จัดทำนวัตกรรมการศึกษา</span>
                                                 </h5>
                                             </div>
                                             <div class="col">
@@ -281,16 +281,16 @@
                                                     <td style="text-align: center;">
                                                         <button type="button" class="btn btn-primary"
                                                             data-bs-toggle="modal"
-                                                            data-bs-target="#edit_in_tor<?php echo $show->id; ?>"><i
+                                                            data-bs-target="#edit_in_tor<?php echo $show->Id; ?>"><i
                                                                 class="bi bi-card-list"></i></button>
                                                         <button type="button" class="btn btn-danger"
                                                             data-bs-toggle="modal"
-                                                            data-bs-target="#del_in_tor<?php echo $show->id; ?>">
+                                                            data-bs-target="#del_in_tor<?php echo $show->Id; ?>">
                                                             <i class="bi bi-trash"></i>
                                                         </button>
                                                         <!-- Modal -->
                                                         <div class="modal fade"
-                                                            id="del_in_tor<?php echo $show->id; ?>"
+                                                            id="del_in_tor<?php echo $show->Id; ?>"
                                                             tabindex="-1" aria-labelledby="exampleModalLabel"
                                                             aria-hidden="true">
                                                             <div class="modal-dialog">
@@ -312,8 +312,8 @@
                                                                             data-bs-dismiss="modal">ยกเลิก</button>
                                                                         <form method="post"
                                                                             action="<?php echo site_url('del_p2'); ?>">
-                                                                            <input type="hidden" name="id"
-                                                                                value="<?php echo $show->id; ?>">
+                                                                            <input type="hidden" name="Id"
+                                                                                value="<?php echo $show->Id; ?>">
                                                                             <div class="d-flex justify-content-center">
                                                                                 <button name="Submit" type="submit"
                                                                                     class="btn btn-primary">ยืนยันก่อนลบ</button>
@@ -352,7 +352,7 @@ foreach ($query as $show) {
     ?>
 <tr>
     <!-- edit_in -->
-    <div class="modal fade" id="edit_in<?php echo $show->id; ?>" tabindex="-1"
+    <div class="modal fade" id="edit_in<?php echo $show->Id; ?>" tabindex="-1"
         aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
@@ -363,7 +363,7 @@ foreach ($query as $show) {
                 <div class="modal-body">
                     <form action="<?php echo site_url('Fm_innovation/edit_sh1'); ?>" method="post"
                         enctype="multipart/form-data">
-<input type="hidden" name="id" value="<?php echo $show->id ?>">
+<input type="hidden" name="Id" value="<?php echo $show->Id ?>">
                         <div class="row mb-3">
                             <div class="form-floating">
                                 <input type="text" class="form-control" id="floatingName"
@@ -498,7 +498,7 @@ foreach ($query as $show) {
     ?>
 <tr>
     <!-- edit_in -->
-    <div class="modal fade" id="edit_in_tor<?php echo $show->id; ?>" tabindex="-1"
+    <div class="modal fade" id="edit_in_tor<?php echo $show->Id; ?>" tabindex="-1"
         aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
@@ -508,7 +508,7 @@ foreach ($query as $show) {
                 </div>
                 <div class="modal-body">
                     <form action="<?php echo site_url('Fm_innovation/edit_sh2'); ?>" method="post">
-<input type="hidden" name="id" value="<?php echo $show->id ?>">
+<input type="hidden" name="Id" value="<?php echo $show->Id ?>">
                         <div class="row mb-3">
                             <div class="form-floating">
                                 <input type="text" class="form-control" id="floatingName"

@@ -1,5 +1,5 @@
 <?php
-class evaluation_model extends CI_Model
+class Evaluation_model extends CI_Model
 {
 
 	public function insert_ass_ria() //sh1
@@ -45,7 +45,7 @@ class evaluation_model extends CI_Model
 			'CriteriaPassingScorePercentage' => $this->input->post('CriteriaPassingScorePercentage')
 
 		);
-		$this->db->where('id', $this->input->post('id'));
+		$this->db->where('Id', $this->input->post('Id'));
 		$query = $this->db->update('ASSESSMENT_CRITERIA', $data);
 		if ($query) {
 			session_start(); // เริ่มต้น session
@@ -69,7 +69,7 @@ class evaluation_model extends CI_Model
 				
 		'DeleteStatus' => $status 
 	);
-		$this->db->where('id', $this->input->post('id'));
+		$this->db->where('Id', $this->input->post('Id'));
 		$query = $this->db->update('ASSESSMENT_CRITERIA', $data);
 		if ($query) {
 			session_start(); // เริ่มต้น session
@@ -120,7 +120,7 @@ class evaluation_model extends CI_Model
 			'LevelScore' => $this->input->post('LevelScore')
 
 		);
-		$this->db->where('id', $this->input->post('id'));
+		$this->db->where('Id', $this->input->post('Id'));
 		$query = $this->db->update('ASSESSMENT_CRITERIA_LEVEL', $data);
 		if ($query) {
 			session_start(); // เริ่มต้น session
@@ -144,7 +144,7 @@ class evaluation_model extends CI_Model
 				
 		'DeleteStatus' => $status 
 	);
-		$this->db->where('id', $this->input->post('id'));
+		$this->db->where('Id', $this->input->post('Id'));
 		$query = $this->db->update('ASSESSMENT_CRITERIA_LEVEL', $data);
 		if ($query) {
 			session_start(); // เริ่มต้น session
@@ -199,7 +199,7 @@ class evaluation_model extends CI_Model
 
 
 		);
-		$this->db->where('id', $this->input->post('id'));
+		$this->db->where('Id', $this->input->post('Id'));
 		$query = $this->db->update('ASSESSMENT_CRITERIA_COMPOSITION', $data);
 		if ($query) {
 			session_start(); // เริ่มต้น session
@@ -223,7 +223,7 @@ class evaluation_model extends CI_Model
 				
 		'DeleteStatus' => $status 
 	);
-		$this->db->where('id', $this->input->post('id'));
+		$this->db->where('Id', $this->input->post('Id'));
 		$query = $this->db->update('ASSESSMENT_CRITERIA_COMPOSITION', $data);
 		if ($query) {
 			session_start(); // เริ่มต้น session
@@ -276,7 +276,7 @@ class evaluation_model extends CI_Model
 
 
 		);
-		$this->db->where('id', $this->input->post('id'));
+		$this->db->where('Id', $this->input->post('Id'));
 		$query = $this->db->update('ASSESSMENT_CRITERIA_COMPOSITION_LEVEL', $data);
 		if ($query) {
 			session_start(); // เริ่มต้น session
@@ -300,7 +300,7 @@ class evaluation_model extends CI_Model
 				
 		'DeleteStatus' => $status 
 	);
-		$this->db->where('id', $this->input->post('id'));
+		$this->db->where('Id', $this->input->post('Id'));
 		$query = $this->db->update('ASSESSMENT_CRITERIA_COMPOSITION_LEVEL', $data);
 		if ($query) {
 			session_start(); // เริ่มต้น session
@@ -355,7 +355,7 @@ class evaluation_model extends CI_Model
 
 
 		);
-		$this->db->where('id', $this->input->post('id'));
+		$this->db->where('Id', $this->input->post('Id'));
 		$query = $this->db->update('SCHOOL_ASSESSMENT', $data);
 		if ($query) {
 			session_start(); // เริ่มต้น session
@@ -379,7 +379,7 @@ class evaluation_model extends CI_Model
 				
 		'DeleteStatus' => $status 
 	);
-		$this->db->where('id', $this->input->post('id'));
+		$this->db->where('Id', $this->input->post('Id'));
 		$query = $this->db->update('SCHOOL_ASSESSMENT', $data);
 		if ($query) {
 			session_start(); // เริ่มต้น session
@@ -500,7 +500,7 @@ public function edit_sc_ass_ria() //sh6
 			}
 		}
 
-		$this->db->where('id', $this->input->post('id'));
+		$this->db->where('Id', $this->input->post('Id'));
 		$query = $this->db->update('SCHOOL_ASSESSMENT_CRITERIA', $data);
 		if ($query) {
 			session_start(); // เริ่มต้น session
@@ -519,7 +519,7 @@ public function del_sc_ass_ria(){
 				
 		'DeleteStatus' => $status 
 	);
-	$this->db->where('id', $this->input->post('id'));
+	$this->db->where('Id', $this->input->post('Id'));
 	$query = $this->db->update('SCHOOL_ASSESSMENT_CRITERIA', $data);
 		if ($query) {
 			session_start(); // เริ่มต้น session
@@ -576,7 +576,7 @@ public function del_sc_ass_ria(){
 
 
 		);
-		$this->db->where('id', $this->input->post('id'));
+		$this->db->where('Id', $this->input->post('Id'));
 		$query = $this->db->update('SCHOOL_ASSESSMENT_RESULT', $data);
 		if ($query) {
 			session_start(); // เริ่มต้น session
@@ -600,7 +600,7 @@ public function del_sc_ass_ria(){
 				
 		'DeleteStatus' => $status 
 	);
-		$this->db->where('id', $this->input->post('id'));
+		$this->db->where('Id', $this->input->post('Id'));
 		$query = $this->db->update('SCHOOL_ASSESSMENT_RESULT', $data);
 		if ($query) {
 			session_start(); // เริ่มต้น session
@@ -691,7 +691,7 @@ public function edit_achie_ass() //sh8
 				);
 			}
 		}
-		$this->db->where('id', $this->input->post('id'));
+		$this->db->where('Id', $this->input->post('Id'));
 		$query = $this->db->update('ACHIEVEMENT_ASSESSMENT', $data);
 		if ($query) {
 			session_start(); // เริ่มต้น session
@@ -710,7 +710,7 @@ public function edit_achie_ass() //sh8
 				
 		'DeleteStatus' => $status 
 	);
-		$this->db->where('id', $this->input->post('id'));
+		$this->db->where('Id', $this->input->post('Id'));
 		$query = $this->db->update('ACHIEVEMENT_ASSESSMENT', $data);
 		if ($query) {
 			session_start(); // เริ่มต้น session

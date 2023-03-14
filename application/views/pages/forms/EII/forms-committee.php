@@ -22,18 +22,11 @@
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="main">Home</a></li>
                         <li class="breadcrumb-item">Form</li>
-                        <li class="breadcrumb-item active">Student</li>
+                        <li class="breadcrumb-item active">อำนาจและหน้าที่ของคณะกรรมการขับเคลื่อน</li>
                     </ol>
                 </nav>
             </div>
-            <div class="col-lg-9" style="padding-right: 25px;">
-                <a href="<?php echo site_url('Fm_committee/committee?page=sh1') ?>" style="float: right;"
-                    class="btn btn-sm btn-light"
-                    data-mdb-ripple-color="dark">ข้อมูลอำนาจและหน้าที่ของคณะกรรมการขับเคลื่อน</a>
-                <h5 style="float: right;"> | </h5>
-                <a href="<?php echo site_url('Fm_committee/member?page=sh2') ?>" style="float: right;"
-                    class="btn btn-sm btn-light" data-mdb-ripple-color="dark">ข้อมูลรายชื่อคณะกรรมการ</a>
-            </div>
+          
         </div>
     </div>
    

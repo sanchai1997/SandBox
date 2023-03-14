@@ -1,5 +1,5 @@
 <?php
-class best_practice_model extends CI_Model {
+class Best_practice_model extends CI_Model {
 
     public function add_BP()
     {
@@ -81,7 +81,7 @@ public function edit_BP()
 				'Source' => $this->input->post('Source'),
 				'PublishDate' => $this->input->post('PublishDate')
 			);
-			$this->db->where('id', $this->input->post('id'));
+			$this->db->where('Id', $this->input->post('Id'));
 			$query=$this->db->update('best_practice',$data);
 			if($query){
 				session_start(); // เริ่มต้น session
@@ -108,7 +108,7 @@ public function edit_BP()
 				'Source' => $this->input->post('Source'),
 				'PublishDate' => $this->input->post('PublishDate')
 			);
-			$this->db->where('id', $this->input->post('id'));
+			$this->db->where('Id', $this->input->post('Id'));
 			$query=$this->db->update('best_practice',$data);
 			if($query){
 				session_start(); // เริ่มต้น session
@@ -130,7 +130,7 @@ public function del_BP(){
 				
 		'DeleteStatus' => $status 
 	);
-	$this->db->where('id', $this->input->post('id'));
+	$this->db->where('Id', $this->input->post('Id'));
 			$query=$this->db->update('best_practice',$data);
 			if($query){
 				session_start(); // เริ่มต้น session
@@ -191,7 +191,7 @@ public function del_BP(){
             'CreatorLastNameEnglish' => $this->input->post('CreatorLastNameEnglish'),
             'ParticipantRatio' => $this->input->post('ParticipantRatio')
         );
-		$this->db->where('id', $this->input->post('id'));
+		$this->db->where('Id', $this->input->post('Id'));
 		$query=$this->db->update('BEST_PRACTICE_CREATOR',$data);
 		if($query){
 			session_start(); // เริ่มต้น session
@@ -208,7 +208,7 @@ public function del_BP(){
 					
 			'DeleteStatus' => $status 
 		);
-		$this->db->where('id', $this->input->post('id'));
+		$this->db->where('Id', $this->input->post('Id'));
 				$query=$this->db->update('BEST_PRACTICE_CREATOR',$data);
 				if($query){
 					session_start(); // เริ่มต้น session
@@ -222,16 +222,16 @@ public function del_BP(){
     public function show_index() 
 	{
 		$this->db->select('BP.*,BPC.*');
-		$this->db->from('best_practice as BP ');
+		$this->db->from('BEST_PRACTICE as BP ');
         $this->db->join('BEST_PRACTICE_CREATOR as BPC','BP.BestPracticeID=BPC.BestPracticeID');
-		$this->db->where('BP.DeleteStatus=0');
+
 		$query = $this->db->get();
 		return $query->result();
 	}
     public function show_BP() 
 	{
 		$this->db->select('*');
-		$this->db->from('best_practice as bp');
+		$this->db->from('BEST_PRACTICE as bp');
 		$this->db->where('BP.DeleteStatus=0');
 		$query = $this->db->get();
 		return $query->result();

@@ -41,7 +41,7 @@
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="main">Home</a></li>
                         <li class="breadcrumb-item">Form</li>
-                        <li class="breadcrumb-item active">Student</li>
+                        <li class="breadcrumb-item active">ข้อมูลเทคโนโลยีและสื่อการเรียนรู้</li>
                     </ol>
                 </nav>
             </div>
@@ -74,7 +74,7 @@
             <div class="card-body">
                 <div class="row">
                     <div class="col">
-                        <h5 class="card-title">รายละเอียดข้อมูล <span>| Table Student</span></h5>
+                        <h5 class="card-title">รายละเอียดข้อมูล <span>| ข้อมูลเทคโนโลยีและสื่อการเรียนรู้</span></h5>
                     </div>
                     <div class="col">
 
@@ -129,7 +129,7 @@
             <div class="card-body">
                 <div class="row">
                     <div class="col">
-                        <h5 class="card-title">รายละเอียดข้อมูล <span>| Table Student</span></h5>
+                        <h5 class="card-title">รายละเอียดข้อมูล <span>| เทคโนโลยีและสื่อการเรียนรู้</span></h5>
                     </div>
                     <div class="col">
                         <h5 style="float: right; padding: 15px;" class="card-title"><a
@@ -183,14 +183,14 @@
                             <th scope="row"><?php echo $show->PublishDate; ?></th>
                             <td style="text-align: center;">
                                 <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                                    data-bs-target="#edit_LTM<?php echo $show->id; ?>"><i
+                                    data-bs-target="#edit_LTM<?php echo $show->Id; ?>"><i
                                         class="bi bi-card-list"></i></button>
                                 <button type="button" class="btn btn-danger" data-bs-toggle="modal"
-                                    data-bs-target="#del_LTM<?php echo $show->id; ?>">
+                                    data-bs-target="#del_LTM<?php echo $show->Id; ?>">
                                     <i class="bi bi-trash"></i>
                                 </button>
                                 <!-- Modal -->
-                                <div class="modal fade" id="del_LTM<?php echo $show->id; ?>" tabindex="-1"
+                                <div class="modal fade" id="del_LTM<?php echo $show->Id; ?>" tabindex="-1"
                                     aria-labelledby="exampleModalLabel" aria-hidden="true">
                                     <div class="modal-dialog">
                                         <div class="modal-content">
@@ -211,7 +211,7 @@
                                                     data-bs-dismiss="modal">ยกเลิก</button>
                                                 <form method="post"
                                                     action="<?php echo site_url('LTM_del_p1'); ?>">
-                                                    <input type="hidden" name="id" value="<?php echo $show->id; ?>">
+                                                    <input type="hidden" name="Id" value="<?php echo $show->Id; ?>">
                                                     <div class="d-flex justify-content-center">
                                                         <button name="Submit" type="submit"
                                                             class="btn btn-primary">ยืนยันก่อนลบ</button>
@@ -244,7 +244,7 @@
             <div class="card-body">
                 <div class="row">
                     <div class="col">
-                        <h5 class="card-title">รายละเอียดข้อมูล <span>| Table Student</span></h5>
+                        <h5 class="card-title">รายละเอียดข้อมูล <span>| ผู้จัดทำเทคโนโลยีและสื่อการเรียนรู้</span></h5>
                     </div>
                     <div class="col">
                         <h5 style="float: right; padding: 15px;" class="card-title"><a
@@ -261,9 +261,9 @@
                             <th style="text-align: center;" scope="col">หมายเลขบัตรประจำตัวผู้จัดทำ</th>
                             <th style="text-align: center;" scope="col">รหัสประเภทบัตรประจำตัวผู้จัดทำ</th>
                             <th style="text-align: center;" scope="col">รหัสคำนำหน้าชื่อผู้จัดทำ</th>
-                            <th style="text-align: center;" scope="col">ชื่อผู้จัดทำ (ภาษาไทย)</th>
-                            <th style="text-align: center;" scope="col">ชื่อกลางผู้จัดทำ (ภาษาไทย)</th>
-                            <th style="text-align: center;" scope="col">นามสกุลผู้จัดทำ (ภาษาไทย)</th>
+                            <th style="text-align: center;" scope="col">ชื่อผู้จัดทำ </th>
+                            <th style="text-align: center;" scope="col">ชื่อกลางผู้จัดทำ </th>
+                            <th style="text-align: center;" scope="col">นามสกุลผู้จัดทำ </th>
                             <th style="text-align: center;" scope="col">สัดส่วนการมีส่วนร่วม</th>
                             <th style="text-align: center;" scope="col">ปฎิบัติ</th>
 
@@ -285,20 +285,20 @@
                             <th scope="row " style="text-align: center;"><?php echo $show->ParticipantRatio; ?></th>
                             <td style="text-align: center;">
                                 <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                                    data-bs-target="#edit_LTMC<?php echo $show->id; ?>"><i
+                                    data-bs-target="#edit_LTMC<?php echo $show->Id; ?>"><i
                                         class="bi bi-card-list"></i></button>
                                 <button type="button" class="btn btn-danger" data-bs-toggle="modal"
-                                    data-bs-target="#del_LTMC<?php echo $show->id; ?>">
+                                    data-bs-target="#del_LTMC<?php echo $show->Id; ?>">
                                     <i class="bi bi-trash"></i>
                                 </button>
                                 <!-- Modal -->
-                                <div class="modal fade" id="del_LTMC<?php echo $show->id; ?>" tabindex="-1"
+                                <div class="modal fade" id="del_LTMC<?php echo $show->Id; ?>" tabindex="-1"
                                     aria-labelledby="exampleModalLabel" aria-hidden="true">
                                     <div class="modal-dialog">
                                         <div class="modal-content">
                                             <div class="modal-header">
                                                 <h5 class="modal-title" id="exampleModalLabel">
-                                                    ยืนยันการลบข้อมูลรหัส<?php echo nbs(2); ?><?php echo $show->id; ?>
+                                                    ยืนยันการลบข้อมูลรหัส<?php echo nbs(2); ?><?php echo $show->Id; ?>
                                                 </h5>
 
                                             </div>
@@ -313,7 +313,7 @@
                                                     data-bs-dismiss="modal">ยกเลิก</button>
                                                 <form method="post"
                                                     action="<?php echo site_url('LTMC_del_p2'); ?>">
-                                                    <input type="hidden" name="id" value="<?php echo $show->id; ?>">
+                                                    <input type="hidden" name="Id" value="<?php echo $show->Id; ?>">
                                                     <div class="d-flex justify-content-center">
                                                         <button name="Submit" type="submit"
                                                             class="btn btn-primary">ยืนยันก่อนลบ</button>
@@ -357,7 +357,7 @@ foreach ($query as $show) {
     ?>
 <tr>
     <!-- edit_LTM -->
-    <div class="modal fade" id="edit_LTM<?php echo $show->id; ?>" tabindex="-1" aria-labelledby="exampleModalLabel"
+    <div class="modal fade" id="edit_LTM<?php echo $show->Id; ?>" tabindex="-1" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
@@ -376,7 +376,7 @@ foreach ($query as $show) {
                                     รหัสข้อมูลเทคโนโลยีและสื่อการเรียนรู้ </label>
                             </div>
                         </div>
-                        <input type="hidden" name="id" value="<?php echo $show->id ?>">
+                        <input type="hidden" name="Id" value="<?php echo $show->Id ?>">
                         <div class="row mb-3">
                             <div class="col">
                                 <div class="form-floating">
@@ -502,7 +502,7 @@ foreach ($query as $show) {
     ?>
 <tr>
     <!-- edit_BP -->
-    <div class="modal fade" id="edit_LTMC<?php echo $show->id; ?>" tabindex="-1" aria-labelledby="exampleModalLabel"
+    <div class="modal fade" id="edit_LTMC<?php echo $show->Id; ?>" tabindex="-1" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
@@ -521,7 +521,7 @@ foreach ($query as $show) {
                                     รหัสข้อมูลเทคโนโลยีและสื่อการเรียนรู้ </label>
                             </div>
                         </div>
-                        <input type="hidden" name="id" value="<?php echo $show->id ?>">
+                        <input type="hidden" name="Id" value="<?php echo $show->Id ?>">
                         <div class="row mb-3">
                             <div class="form-floating">
                                 <input type="text" class="form-control" id="floatingName"

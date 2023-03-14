@@ -49,7 +49,7 @@
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="main">Home</a></li>
                         <li class="breadcrumb-item">Form</li>
-                        <li class="breadcrumb-item active">Student</li>
+                        <li class="breadcrumb-item active">ผู้เข้ามามีส่วนร่วม</li>
                     </ol>
                 </nav>
             </div>
@@ -90,7 +90,7 @@
         <div class="card-body">
             <div class="row">
                 <div class="col">
-                    <h5 class="card-title">รายละเอียดข้อมูล <span>| Table Student</span></h5>
+                    <h5 class="card-title">รายละเอียดข้อมูล <span>| ผู้เข้ามามีส่วนร่วม</span></h5>
                 </div>
                 <div class="col">
                   
@@ -141,7 +141,7 @@
             <div class="card-body">
                 <div class="row">
                     <div class="col">
-                        <h5 class="card-title">รายละเอียดข้อมูล <span>| Table Student</span></h5>
+                        <h5 class="card-title">รายละเอียดข้อมูล <span>| ผู้เข้ามามีส่วนร่วม</span></h5>
                     </div>
                     <div class="col">
                         <h5 style="float: right; padding: 15px;" class="card-title"><a
@@ -173,14 +173,14 @@
                             <td style="text-align: center;"><?php echo $show->ParticipantTypeCode; ?>
                             <td style="text-align: center;">
                                 <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                                    data-bs-target="#edit_par<?php echo $show->id; ?>"><i
+                                    data-bs-target="#edit_par<?php echo $show->Id; ?>"><i
                                         class="bi bi-card-list"></i></button>
                                 <button type="button" class="btn btn-danger" data-bs-toggle="modal"
-                                    data-bs-target="#del_par<?php echo $show->id; ?>">
+                                    data-bs-target="#del_par<?php echo $show->Id; ?>">
                                     <i class="bi bi-trash"></i>
                                 </button>
                                 <!-- Modal -->
-                                <div class="modal fade" id="del_par<?php echo $show->id; ?>" tabindex="-1"
+                                <div class="modal fade" id="del_par<?php echo $show->Id; ?>" tabindex="-1"
                                     aria-labelledby="exampleModalLabel" aria-hidden="true">
                                     <div class="modal-dialog">
                                         <div class="modal-content">
@@ -201,7 +201,7 @@
                                                     data-bs-dismiss="modal">ยกเลิก</button>
                                                 <form method="post"
                                                     action="<?php echo site_url('par_del_p1'); ?>">
-                                                    <input type="hidden" name="id" value="<?php echo $show->id; ?>">
+                                                    <input type="hidden" name="Id" value="<?php echo $show->Id; ?>">
                                                     <div class="d-flex justify-content-center">
                                                         <button name="Submit" type="submit"
                                                             class="btn btn-primary">ยืนยันก่อนลบ</button>
@@ -232,7 +232,7 @@
             <div class="card-body">
                 <div class="row">
                     <div class="col">
-                        <h5 class="card-title">รายละเอียดข้อมูล <span>| Table Student</span></h5>
+                        <h5 class="card-title">รายละเอียดข้อมูล <span>| การติดต่อของผู้มีส่วนร่วม</span></h5>
                     </div>
                     <div class="col">
                         <h5 style="float: right; padding: 15px;" class="card-title"><a
@@ -256,9 +256,7 @@
                     </thead>
                     <tbody>
 
-                        <tr>
-
-                        </tr> <?php foreach ($query as $show ) {
+                        <?php foreach ($query as $show ) {
                             # code...
                         ?>
                         <tr>
@@ -270,14 +268,14 @@
                             <td style="text-align: center;"><?php echo $show->ContactOrganizationPosition; ?>
                             <td style="text-align: center;">
                                 <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                                    data-bs-target="#edit_par_com<?php echo $show->id; ?>"><i
+                                    data-bs-target="#edit_par_com<?php echo $show->Id; ?>"><i
                                         class="bi bi-card-list"></i></button>
                                 <button type="button" class="btn btn-danger" data-bs-toggle="modal"
-                                    data-bs-target="#del_par_com<?php echo $show->id; ?>">
+                                    data-bs-target="#del_par_com<?php echo $show->Id; ?>">
                                     <i class="bi bi-trash"></i>
                                 </button>
                                 <!-- Modal -->
-                                <div class="modal fade" id="del_par_com<?php echo $show->id; ?>" tabindex="-1"
+                                <div class="modal fade" id="del_par_com<?php echo $show->Id; ?>" tabindex="-1"
                                     aria-labelledby="exampleModalLabel" aria-hidden="true">
                                     <div class="modal-dialog">
                                         <div class="modal-content">
@@ -298,7 +296,7 @@
                                                     data-bs-dismiss="modal">ยกเลิก</button>
                                                 <form method="post"
                                                     action="<?php echo site_url('pc_del_p2'); ?>">
-                                                    <input type="hidden" name="id" value="<?php echo $show->id; ?>">
+                                                    <input type="hidden" name="Id" value="<?php echo $show->Id; ?>">
                                                     <div class="d-flex justify-content-center">
                                                         <button name="Submit" type="submit"
                                                             class="btn btn-primary">ยืนยันก่อนลบ</button>
@@ -329,7 +327,7 @@
             <div class="card-body">
                 <div class="row">
                     <div class="col">
-                        <h5 class="card-title">รายละเอียดข้อมูล <span>| Table Student</span></h5>
+                        <h5 class="card-title">รายละเอียดข้อมูล <span>| การมีส่วนร่วม</span></h5>
                     </div>
                     <div class="col">
                         <h5 style="float: right; padding: 15px;" class="card-title"><a
@@ -371,14 +369,14 @@
                             </th>
                             <td style="text-align: center;">
                                 <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                                    data-bs-target="#edit_par_coop<?php echo $show->id; ?>"><i
+                                    data-bs-target="#edit_par_coop<?php echo $show->Id; ?>"><i
                                         class="bi bi-card-list"></i></button>
                                 <button type="button" class="btn btn-danger" data-bs-toggle="modal"
-                                    data-bs-target="#del_par_coop<?php echo $show->id; ?>">
+                                    data-bs-target="#del_par_coop<?php echo $show->Id; ?>">
                                     <i class="bi bi-trash"></i>
                                 </button>
                                 <!-- Modal -->
-                                <div class="modal fade" id="del_par_coop<?php echo $show->id; ?>" tabindex="-1"
+                                <div class="modal fade" id="del_par_coop<?php echo $show->Id; ?>" tabindex="-1"
                                     aria-labelledby="exampleModalLabel" aria-hidden="true">
                                     <div class="modal-dialog">
                                         <div class="modal-content">
@@ -399,7 +397,7 @@
                                                     data-bs-dismiss="modal">ยกเลิก</button>
                                                 <form method="post"
                                                     action="<?php echo site_url('pcp_del_p3'); ?>">
-                                                    <input type="hidden" name="id" value="<?php echo $show->id; ?>">
+                                                    <input type="hidden" name="Id" value="<?php echo $show->Id; ?>">
                                                     <div class="d-flex justify-content-center">
                                                         <button name="Submit" type="submit"
                                                             class="btn btn-primary">ยืนยันก่อนลบ</button>
@@ -432,7 +430,7 @@
             <div class="card-body">
                 <div class="row">
                     <div class="col">
-                        <h5 class="card-title">รายละเอียดข้อมูล <span>| Table Student</span></h5>
+                        <h5 class="card-title">รายละเอียดข้อมูล <span>| ข้อมูลบันทึกเพิ่มเติม</span></h5>
                     </div>
                     <div class="col">
                         <h5 style="float: right; padding: 15px;" class="card-title"><a
@@ -455,7 +453,7 @@
                     </thead>
                     <tbody>
                         <?php foreach ($query as $show ) {
-                            # code...
+                           
                         ?>
                         <tr>
                             <th scope="row " style="text-align: center;"><?php echo $show->Note; ?></th>
@@ -465,14 +463,14 @@
                             <td style="text-align: center;"><?php echo $show->NoteReporterEmail; ?>
                             <td style="text-align: center;">
                                 <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                                    data-bs-target="#edit_par_note<?php echo $show->id; ?>"><i
+                                    data-bs-target="#edit_par_note<?php echo $show->Id; ?>"><i
                                         class="bi bi-card-list"></i></button>
                                 <button type="button" class="btn btn-danger" data-bs-toggle="modal"
-                                    data-bs-target="#del_par_note<?php echo $show->id; ?>">
+                                    data-bs-target="#del_par_note<?php echo $show->Id; ?>">
                                     <i class="bi bi-trash"></i>
                                 </button>
                                 <!-- Modal -->
-                                <div class="modal fade" id="del_par_note<?php echo $show->id; ?>" tabindex="-1"
+                                <div class="modal fade" id="del_par_note<?php echo $show->Id; ?>" tabindex="-1"
                                     aria-labelledby="exampleModalLabel" aria-hidden="true">
                                     <div class="modal-dialog">
                                         <div class="modal-content">
@@ -493,7 +491,7 @@
                                                     data-bs-dismiss="modal">ยกเลิก</button>
                                                 <form method="post"
                                                     action="<?php echo site_url('pn_del_p4'); ?>">
-                                                    <input type="hidden" name="id" value="<?php echo $show->id; ?>">
+                                                    <input type="hidden" name="Id" value="<?php echo $show->Id; ?>">
                                                     <div class="d-flex justify-content-center">
                                                         <button name="Submit" type="submit"
                                                             class="btn btn-primary">ยืนยันก่อนลบ</button>
@@ -509,9 +507,7 @@
                         </tr>
                         <?php  } ?>
 
-                        <tr>
-
-                        </tr>
+                       
 
                     </tbody>
                 </table>
@@ -537,7 +533,7 @@ foreach ($query as $show) {
     ?>
 <tr>
     <!-- edit_BP -->
-    <div class="modal fade" id="edit_par<?php echo $show->id; ?>" tabindex="-1"
+    <div class="modal fade" id="edit_par<?php echo $show->Id; ?>" tabindex="-1"
         aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
@@ -551,7 +547,7 @@ foreach ($query as $show) {
                         ); ?>" method="post"
                             enctype="multipart/form-data">
                            
-<input type="hidden" name="id" value="<?php echo $show->id ?>">
+<input type="hidden" name="Id" value="<?php echo $show->Id ?>">
                             <div class="row mb-3">
                                <div class="col">
                                     <div class="form-floating">
@@ -618,7 +614,7 @@ foreach ($query as $show) {
     ?>
 <tr>
     <!-- edit_par_com -->
-    <div class="modal fade" id="edit_par_com<?php echo $show->id; ?>" tabindex="-1"
+    <div class="modal fade" id="edit_par_com<?php echo $show->Id; ?>" tabindex="-1"
         aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
@@ -632,7 +628,7 @@ foreach ($query as $show) {
                         ); ?>" method="post"
                             enctype="multipart/form-data">
                             
-<input type="hidden" name="id" value="<?php echo $show->id ?>">
+<input type="hidden" name="Id" value="<?php echo $show->Id ?>">
                             <div class="row mb-3">
                                 <div class="form-floating">
                                     <input type="text" class="form-control" id="floatingName"
@@ -722,7 +718,7 @@ foreach ($query as $show) {
     ?>
 <tr>
     <!-- edit_par_coop -->
-    <div class="modal fade" id="edit_par_coop<?php echo $show->id; ?>" tabindex="-1"
+    <div class="modal fade" id="edit_par_coop<?php echo $show->Id; ?>" tabindex="-1"
         aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
@@ -735,7 +731,7 @@ foreach ($query as $show) {
                             'pcp_edit_p3'
                         ); ?>" method="post"
                             enctype="multipart/form-data">
-<input type="hidden" name="id" value="<?php echo $show->id ?>">
+<input type="hidden" name="Id" value="<?php echo $show->Id ?>">
                             <div class="row mb-3">
                                 <div class="form-floating">
                                     <input type="text" class="form-control" id="floatingName"
@@ -851,7 +847,7 @@ foreach ($query as $show) {
     ?>
 <tr>
     <!-- edit_par_note -->
-    <div class="modal fade" id="edit_par_note<?php echo $show->id; ?>" tabindex="-1"
+    <div class="modal fade" id="edit_par_note<?php echo $show->Id; ?>" tabindex="-1"
         aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
@@ -864,7 +860,7 @@ foreach ($query as $show) {
                             'pn_edit_p4'
                         ); ?>" method="post"
                             enctype="multipart/form-data">
-                           <input type="hidden" name="id" value="<?php echo $show->id ?>">
+                           <input type="hidden" name="Id" value="<?php echo $show->Id ?>">
                             <div class="row mb-3">
                                 <div class="form-floating">
                                     <input type="text" class="form-control" id="floatingName"

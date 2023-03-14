@@ -1,5 +1,5 @@
 <?php
-class committee_model extends CI_Model {
+class Committee_model extends CI_Model {
 
     public function add_committee()
     {
@@ -66,7 +66,7 @@ public function edit_committee()
             'CommitteeAppointmentTypeCode' => $this->input->post('CommitteeAppointmentTypeCode'),
             'CommitteeAppointmentAttachmentURL' => $filename
 			);
-			$this->db->where('id', $this->input->post('id'));
+			$this->db->where('Id', $this->input->post('Id'));
             $query=$this->db->update('COMMITTEE',$data);
 			if($query){
 				session_start(); // เริ่มต้น session
@@ -85,7 +85,7 @@ public function edit_committee()
                 'CommitteeAppointmentTypeCode' => $this->input->post('CommitteeAppointmentTypeCode')
               
 			);
-			$this->db->where('id', $this->input->post('id'));
+			$this->db->where('Id', $this->input->post('Id'));
             $query=$this->db->update('COMMITTEE',$data);
 			if($query){
 				session_start(); // เริ่มต้น session
@@ -111,7 +111,7 @@ public function del_committee(){
 				
 		'DeleteStatus' => $status 
 	);
-	$this->db->where('id', $this->input->post('id'));
+	$this->db->where('Id', $this->input->post('Id'));
 			$query=$this->db->update('COMMITTEE',$data);
 			if($query){
 				session_start(); // เริ่มต้น session
@@ -180,7 +180,7 @@ public function del_committee(){
             'CommitteeMemberTermEndDate' => $this->input->post('CommitteeMemberTermEndDate')
           
         );
-        $this->db->where('id', $this->input->post('id'));
+        $this->db->where('Id', $this->input->post('Id'));
 
 		$query=$this->db->update('COMMITTEE_MEMBER',$data);
 		if($query){
@@ -204,7 +204,7 @@ public function del_committee(){
             'DeleteStatus' => $status 
           
         );
-        $this->db->where('id', $this->input->post('id'));
+        $this->db->where('Id', $this->input->post('Id'));
 
 		$query=$this->db->update('COMMITTEE_MEMBER',$data);
 		if($query){
