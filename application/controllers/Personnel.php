@@ -32,7 +32,7 @@ class Personnel extends CI_Controller
     public function additional_position()
     {
 
-        if (!file_exists(APPPATH . 'views/pages/dashboard/personnel/personnel-additional-position.php')) {
+        if (!file_exists(APPPATH . 'views/pages/dashboard/personnel/personnel-additionalposition.php')) {
             // Whoops, we don't have a page for that!
             show_404();
         }
@@ -40,7 +40,7 @@ class Personnel extends CI_Controller
         $data['title'] = 'personnel-additional-position'; // Capitalize the first letter
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
-        $this->load->view('pages/dashboard/personnel/personnel-additional-position', $data);
+        $this->load->view('pages/dashboard/personnel/personnel-additionalposition', $data);
         $this->load->view('templates/footer', $data);
     }
 }
