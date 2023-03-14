@@ -46,10 +46,10 @@
                 </nav>
             </div>
             <div class="col-lg-9" style="padding-right: 25px;">
-                <a href="<?php echo site_url('Fm_lear_tech_media/sh1?page=sh1') ?>" style="float: right;"
+                <a href="<?php echo site_url('Fm_lear_tech_media_das_p1?page=sh1') ?>" style="float: right;"
                     class="btn btn-sm btn-light" data-mdb-ripple-color="dark">เทคโนโลยีและสื่อการเรียนรู้</a>
                 <h5 style="float: right;"> | </h5>
-                <a href="<?php echo site_url('Fm_lear_tech_media/sh2?page=sh2') ?>" style="float: right;"
+                <a href="<?php echo site_url('Fm_lear_tech_media_das_p2?page=sh2') ?>" style="float: right;"
                     class="btn btn-sm btn-light" data-mdb-ripple-color="dark">ผู้จัดทำเทคโนโลยีและสื่อการเรียนรู้
                 </a>
                 <h5 style="float: right;"> | </h5>
@@ -133,7 +133,7 @@
                     </div>
                     <div class="col">
                         <h5 style="float: right; padding: 15px;" class="card-title"><a
-                                href="<?php echo site_url('Fm_lear_tech_media/forms?page=sh1') ?>"
+                                href="<?php echo site_url('LTM_forms_p1?page=sh1') ?>"
                                 class="btn btn-success">เพิ่มข้อมูลเทคโนโลยี และสื่อการเรียนรู้
                             </a></h5>
                     </div>
@@ -173,7 +173,12 @@
                             <td style="text-align: center;"><?php echo $show->MediaBenefit; ?>
                             <th scope="row"><?php echo $show->Abstract; ?></th>
                             <td style="text-align: center;"><?php echo $show->SearchKeyword; ?>
-                            <td style="text-align: center;"><?php echo $show->AttachmentURL; ?>
+ 
+                            <th scope="row " style="text-align: center;">
+                                <a href="<?php echo base_url('document') ?>/<?php echo $show->AttachmentURL; ?>"
+                                    target="_blank"><i class="bi bi-file-text"></i></a>
+
+                            </th>
                             <th scope="row " style="text-align: center;"><?php echo $show->Source; ?></th>
                             <th scope="row"><?php echo $show->PublishDate; ?></th>
                             <td style="text-align: center;">
@@ -205,7 +210,7 @@
                                                 <button type="button" class="btn btn-secondary"
                                                     data-bs-dismiss="modal">ยกเลิก</button>
                                                 <form method="post"
-                                                    action="<?php echo site_url('Fm_lear_tech_media/del_sh1'); ?>">
+                                                    action="<?php echo site_url('LTM_del_p1'); ?>">
                                                     <input type="hidden" name="id" value="<?php echo $show->id; ?>">
                                                     <div class="d-flex justify-content-center">
                                                         <button name="Submit" type="submit"
@@ -243,7 +248,7 @@
                     </div>
                     <div class="col">
                         <h5 style="float: right; padding: 15px;" class="card-title"><a
-                                href="<?php echo site_url('Fm_lear_tech_media/forms?page=sh2') ?>"
+                                href="<?php echo site_url('LTMC_forms_p2?page=sh2') ?>"
                                 class="btn btn-success">เพิ่มข้อมูลเทคโนโลยี และสื่อการเรียนรู้
                             </a></h5>
                     </div>
@@ -307,7 +312,7 @@
                                                 <button type="button" class="btn btn-secondary"
                                                     data-bs-dismiss="modal">ยกเลิก</button>
                                                 <form method="post"
-                                                    action="<?php echo site_url('Fm_lear_tech_media/del_sh2'); ?>">
+                                                    action="<?php echo site_url('LTMC_del_p2'); ?>">
                                                     <input type="hidden" name="id" value="<?php echo $show->id; ?>">
                                                     <div class="d-flex justify-content-center">
                                                         <button name="Submit" type="submit"
@@ -361,7 +366,7 @@ foreach ($query as $show) {
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form action="<?php echo site_url('Fm_lear_tech_media/edit_sh1'); ?>" method="post"
+                    <form action="<?php echo site_url('LTM_edit_p1'); ?>" method="post"
                         enctype="multipart/form-data">
                         <div class="row mb-3">
                             <div class="form-floating">
@@ -506,7 +511,7 @@ foreach ($query as $show) {
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form action="<?php echo site_url('Fm_lear_tech_media/edit_sh2'); ?>" method="post"
+                    <form action="<?php echo site_url('LTMC_edit_p2'); ?>" method="post"
                         enctype="multipart/form-data">
                         <div class="row mb-3">
                             <div class="form-floating">

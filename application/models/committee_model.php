@@ -31,8 +31,8 @@ class committee_model extends CI_Model {
 		$query=$this->db->insert('COMMITTEE',$data);
 		if($query){
 			session_start(); // เริ่มต้น session
-			$_SESSION['success'] = "เพิ่มข้อมูลเทคโนโลยี และสื่อการเรียนรู้สำเร็จ !"; // กำหนดค่า success ใน session เป็น true
-			header("Location:".site_url('Fm_committee/committee')); // ไปยังหน้าก่อนหน้านี้
+			$_SESSION['success'] = "เพิ่มข้อมูลเรียบร้อย !"; // กำหนดค่า success ใน session เป็น true
+			header("Location:".site_url('Fm_committee_das_p1')); // ไปยังหน้าก่อนหน้านี้
 			
 		} else {
 			echo 'false';
@@ -71,7 +71,7 @@ public function edit_committee()
 			if($query){
 				session_start(); // เริ่มต้น session
 				$_SESSION['success'] = "แก้ไขสำเร็จ !"; // กำหนดค่า success ใน session เป็น true
-                header("Location:".site_url('Fm_committee/committee?page=sh1')); // ไปยังหน้าก่อนหน้านี้
+                header("Location:".site_url('Fm_committee_das_p1?page=sh1')); // ไปยังหน้าก่อนหน้านี้
 				
 			} else {
 				echo 'false';
@@ -90,7 +90,7 @@ public function edit_committee()
 			if($query){
 				session_start(); // เริ่มต้น session
 				$_SESSION['success'] = "แก้ไขสำเร็จ !"; // กำหนดค่า success ใน session เป็น true
-                header("Location:".site_url('Fm_committee/committee?page=sh1')); // ไปยังหน้าก่อนหน้านี้
+                header("Location:".site_url('Fm_committee_das_p1?page=sh1')); // ไปยังหน้าก่อนหน้านี้
 				
 			} else {
 				echo 'false';
@@ -106,17 +106,17 @@ public function del_committee(){
 	// print_r($_POST);
 	// echo'</pre>';
 	// exit;
-	$status = '0';
+	$status = '1';
 	$data = array(
 				
-		'del_status' => $status 
+		'DeleteStatus' => $status 
 	);
 	$this->db->where('id', $this->input->post('id'));
 			$query=$this->db->update('COMMITTEE',$data);
 			if($query){
 				session_start(); // เริ่มต้น session
 				$_SESSION['success'] = "ลบสำเร็จ !"; // กำหนดค่า success ใน session เป็น true
-                header("Location:".site_url('Fm_committee/committee?page=sh1')); // ไปยังหน้าก่อนหน้านี้
+                header("Location:".site_url('Fm_committee_das_p1?page=sh1')); // ไปยังหน้าก่อนหน้านี้
 				
 			} else {
 				echo 'false';
@@ -149,8 +149,8 @@ public function del_committee(){
 		$query=$this->db->insert('COMMITTEE_MEMBER',$data);
 		if($query){
 			session_start(); // เริ่มต้น session
-			$_SESSION['success'] = "เพิ่มข้อมูลเทคโนโลยี และสื่อการเรียนรู้สำเร็จ !"; // กำหนดค่า success ใน session เป็น true
-			header("Location:".site_url('Fm_committee/member?page=sh2')); // ไปยังหน้าก่อนหน้านี้
+			$_SESSION['success'] = "เพิ่มข้อมูลเรียบร้อย !"; // กำหนดค่า success ใน session เป็น true
+			header("Location:".site_url('Fm_committee_das_p2?page=sh2')); // ไปยังหน้าก่อนหน้านี้
 			
 		} else {
 			echo 'false';
@@ -185,8 +185,8 @@ public function del_committee(){
 		$query=$this->db->update('COMMITTEE_MEMBER',$data);
 		if($query){
 			session_start(); // เริ่มต้น session
-			$_SESSION['success'] = "เพิ่มข้อมูลเทคโนโลยี และสื่อการเรียนรู้สำเร็จ !"; // กำหนดค่า success ใน session เป็น true
-			header("Location:".site_url('Fm_committee/member?page=sh2')); // ไปยังหน้าก่อนหน้านี้
+			$_SESSION['success'] = "แก้ไขข้อมูลสำเร็จ !"; // กำหนดค่า success ใน session เป็น true
+			header("Location:".site_url('Fm_committee_das_p2?page=sh2')); // ไปยังหน้าก่อนหน้านี้
 			
 		} else {
 			echo 'false';
@@ -199,9 +199,9 @@ public function del_committee(){
 		// print_r($_POST);
 		// echo'</pre>';
 		// exit;
-        $status = '0';
+        $status = '1';
         $data = array(
-            'del_status' => $status 
+            'DeleteStatus' => $status 
           
         );
         $this->db->where('id', $this->input->post('id'));
@@ -209,8 +209,8 @@ public function del_committee(){
 		$query=$this->db->update('COMMITTEE_MEMBER',$data);
 		if($query){
 			session_start(); // เริ่มต้น session
-			$_SESSION['success'] = "เพิ่มข้อมูลเทคโนโลยี และสื่อการเรียนรู้สำเร็จ !"; // กำหนดค่า success ใน session เป็น true
-			header("Location:".site_url('Fm_committee/member?page=sh2')); // ไปยังหน้าก่อนหน้านี้
+			$_SESSION['success'] = "ลบข้อมูลสำเร็จ !"; // กำหนดค่า success ใน session เป็น true
+			header("Location:".site_url('Fm_committee_das_p2?page=sh2')); // ไปยังหน้าก่อนหน้านี้
 			
 		} else {
 			echo 'false';
@@ -221,7 +221,7 @@ public function del_committee(){
 	{
 		$this->db->select('*');
 		$this->db->from('COMMITTEE as com');
-        $this->db->where('del_status = 1');
+        $this->db->where('DeleteStatus = 0');
 		$query = $this->db->get();
 		return $query->result();
         }
@@ -229,7 +229,7 @@ public function del_committee(){
 	{
 		$this->db->select('*');
 		$this->db->from('COMMITTEE_MEMBER as com_m');
-        $this->db->where('del_status = 1');
+        $this->db->where('DeleteStatus = 0');
 		$query = $this->db->get();
 		return $query->result();
         }

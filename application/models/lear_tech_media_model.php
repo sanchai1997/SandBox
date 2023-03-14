@@ -35,8 +35,8 @@ class lear_tech_media_model extends CI_Model {
 		$query=$this->db->insert('LEARNING_TECHNOLOGY_MEDIA',$data);
 		if($query){
 			session_start(); // เริ่มต้น session
-			$_SESSION['success'] = "เพิ่มข้อมูลเทคโนโลยี และสื่อการเรียนรู้สำเร็จ !"; // กำหนดค่า success ใน session เป็น true
-			header("Location: ". site_url('Fm_lear_tech_media/sh1?page=sh1')); // ไปยังหน้าก่อนหน้านี้
+			$_SESSION['success'] = "เพิ่มข้อมูลเรียบร้อย !"; // กำหนดค่า success ใน session เป็น true
+			header("Location: ". site_url('Fm_lear_tech_media_das_p1?page=sh1')); // ไปยังหน้าก่อนหน้านี้
 			
 		} else {
 			echo 'false';
@@ -99,8 +99,8 @@ public function edit_LTM()
 	$query=$this->db->update('LEARNING_TECHNOLOGY_MEDIA',$data);
 	if($query){
 		session_start(); // เริ่มต้น session
-		$_SESSION['success'] = "เพิ่มข้อมูลเทคโนโลยี และสื่อการเรียนรู้สำเร็จ !"; // กำหนดค่า success ใน session เป็น true
-		header("Location: ". site_url('Fm_lear_tech_media/sh1?page=sh1')); // ไปยังหน้าก่อนหน้านี้
+		$_SESSION['success'] = "แก้ไขข้อมูลสำเร็จ !"; // กำหนดค่า success ใน session เป็น true
+		header("Location: ". site_url('Fm_lear_tech_media_das_p1?page=sh1')); // ไปยังหน้าก่อนหน้านี้
 		
 	} else {
 		echo 'false';
@@ -113,18 +113,18 @@ public function del_LTM()
 	// print_r($_POST);
 	// echo'</pre>';
 	// exit;
-	$value ="0";
+	$value ="1";
 			$data = array(
 				
-				'del_status' => $value
+				'DeleteStatus' => $value
 			);
 		
 	$this->db->where('id',$this->input->post('id'));
 	$query=$this->db->update('LEARNING_TECHNOLOGY_MEDIA',$data);
 	if($query){
 		session_start(); // เริ่มต้น session
-		$_SESSION['success'] = "เพิ่มข้อมูลเทคโนโลยี และสื่อการเรียนรู้สำเร็จ !"; // กำหนดค่า success ใน session เป็น true
-		header("Location: ". site_url('Fm_lear_tech_media/sh1?page=sh1')); // ไปยังหน้าก่อนหน้านี้
+		$_SESSION['success'] = "ลบข้อมูลสำเร็จ !"; // กำหนดค่า success ใน session เป็น true
+		header("Location: ". site_url('Fm_lear_tech_media_das_p1?page=sh1')); // ไปยังหน้าก่อนหน้านี้
 		
 	} else {
 		echo 'false';
@@ -153,8 +153,8 @@ public function del_LTM()
 		$query=$this->db->insert('LEARNING_TECHNOLOGY_MEDIA_CREATOR',$data);
 		if($query){
 			session_start(); // เริ่มต้น session
-			$_SESSION['success'] = "เพิ่มข้อมูลเทคโนโลยี และสื่อการเรียนรู้สำเร็จ !"; // กำหนดค่า success ใน session เป็น true
-			header("Location: ". site_url('Fm_lear_tech_media/sh2?page=sh2')); // ไปยังหน้าก่อนหน้านี้
+			$_SESSION['success'] = "เพิ่มข้อมูลเรียบร้อย !"; // กำหนดค่า success ใน session เป็น true
+			header("Location: ". site_url('Fm_lear_tech_media_das_p2?page=sh2')); // ไปยังหน้าก่อนหน้านี้
 			
 		} else {
 			echo 'false';
@@ -185,8 +185,8 @@ public function del_LTM()
 		$query=$this->db->update('LEARNING_TECHNOLOGY_MEDIA_CREATOR',$data);
 		if($query){
 			session_start(); // เริ่มต้น session
-			$_SESSION['success'] = "เพิ่มข้อมูลเทคโนโลยี และสื่อการเรียนรู้สำเร็จ !"; // กำหนดค่า success ใน session เป็น true
-			header("Location: ". site_url('Fm_lear_tech_media/sh2?page=sh2')); // ไปยังหน้าก่อนหน้านี้
+			$_SESSION['success'] = "แก้ไขข้อมูลสำเร็จ !"; // กำหนดค่า success ใน session เป็น true
+			header("Location: ". site_url('Fm_lear_tech_media_das_p2?page=sh2')); // ไปยังหน้าก่อนหน้านี้
 			
 		} else {
 			echo 'false';
@@ -199,18 +199,18 @@ public function del_LTM()
 		// print_r($_POST);
 		// echo'</pre>';
 		// exit;
-		$value ="0";
+		$value ="1";
         $data = array(
 			
-            'del_status' => 	$value
+            'DeleteStatus' => 	$value
         );
 		$this->db->where('id',$this->input->post('id'));
 
 		$query=$this->db->update('LEARNING_TECHNOLOGY_MEDIA_CREATOR',$data);
 		if($query){
 			session_start(); // เริ่มต้น session
-			$_SESSION['success'] = "เพิ่มข้อมูลเทคโนโลยี และสื่อการเรียนรู้สำเร็จ !"; // กำหนดค่า success ใน session เป็น true
-			header("Location: ". site_url('Fm_lear_tech_media/sh2?page=sh2')); // ไปยังหน้าก่อนหน้านี้
+			$_SESSION['success'] = "ลบข้อมูลสำเร็จ !"; // กำหนดค่า success ใน session เป็น true
+			header("Location: ". site_url('Fm_lear_tech_media_das_p2?page=sh2')); // ไปยังหน้าก่อนหน้านี้
 			
 		} else {
 			echo 'false';
@@ -228,7 +228,7 @@ public function del_LTM()
 	{
 		$this->db->select('*');
 		$this->db->from('LEARNING_TECHNOLOGY_MEDIA');
-		$this->db->where('del_status=1');
+		$this->db->where('DeleteStatus=0');
 		$query = $this->db->get();
 		return $query->result();
 	}
@@ -236,7 +236,7 @@ public function del_LTM()
 	{
 		$this->db->select('*');
 		$this->db->from('LEARNING_TECHNOLOGY_MEDIA_CREATOR');
-		$this->db->where('del_status=1');
+		$this->db->where('DeleteStatus=0');
 		$query = $this->db->get();
 		return $query->result();
 	}

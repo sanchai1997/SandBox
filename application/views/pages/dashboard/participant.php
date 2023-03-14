@@ -54,18 +54,18 @@
                 </nav>
             </div>
             <div class="col-lg-9" style="padding-right: 25px;">
-                <a href="<?php echo site_url('Fm_participant/sh1?page=sh1') ?>" style="float: right;"
+                <a href="<?php echo site_url('Fm_participant_das_p1?page=sh1') ?>" style="float: right;"
                     class="btn btn-sm btn-light" data-mdb-ripple-color="dark">ผู้เข้ามามีส่วนร่วม</a>
                 <h5 style="float: right;"> | </h5>
-                <a href="<?php echo site_url('Fm_participant/sh2?page=sh2') ?>" style="float: right;"
+                <a href="<?php echo site_url('Fm_participant_das_p2?page=sh2') ?>" style="float: right;"
                     class="btn btn-sm btn-light" data-mdb-ripple-color="dark">การติดต่อของผู้มีส่วนร่วม
                 </a>
                 <h5 style="float: right;"> | </h5>
-                <a href="<?php echo site_url('Fm_participant/sh3?page=sh3') ?>" style="float: right;"
+                <a href="<?php echo site_url('Fm_participant_das_p3?page=sh3') ?>" style="float: right;"
                     class="btn btn-sm btn-light" data-mdb-ripple-color="dark">การมีส่วนร่วม
                 </a>
                 <h5 style="float: right;"> | </h5>
-                <a href="<?php echo site_url('Fm_participant/sh4?page=sh4') ?>" style="float: right;"
+                <a href="<?php echo site_url('Fm_participant_das_p4?page=sh4') ?>" style="float: right;"
                     class="btn btn-sm btn-light" data-mdb-ripple-color="dark">ข้อมูลบันทึกเพิ่มเติม
                 </a>
                 <h5 style="float: right;"> | </h5>
@@ -145,7 +145,7 @@
                     </div>
                     <div class="col">
                         <h5 style="float: right; padding: 15px;" class="card-title"><a
-                                href="<?php echo site_url('Fm_participant/forms?page=sh1') ?>"
+                                href="<?php echo site_url('par_forms_p1?page=sh1') ?>"
                                 class="btn btn-success">เพิ่มข้อมูลผู้เข้ามามีส่วนร่วม</a></h5>
                     </div>
                 </div>
@@ -200,7 +200,7 @@
                                                 <button type="button" class="btn btn-secondary"
                                                     data-bs-dismiss="modal">ยกเลิก</button>
                                                 <form method="post"
-                                                    action="<?php echo site_url('Fm_participant/del_sh1'); ?>">
+                                                    action="<?php echo site_url('par_del_p1'); ?>">
                                                     <input type="hidden" name="id" value="<?php echo $show->id; ?>">
                                                     <div class="d-flex justify-content-center">
                                                         <button name="Submit" type="submit"
@@ -236,7 +236,7 @@
                     </div>
                     <div class="col">
                         <h5 style="float: right; padding: 15px;" class="card-title"><a
-                                href="<?php echo site_url('Fm_participant/forms?page=sh2') ?>"
+                                href="<?php echo site_url('pc_forms_p2?page=sh2') ?>"
                                 class="btn btn-success">เพิ่มข้อมูลการติดต่อของผู้มีส่วนร่วม</a></h5>
                     </div>
                 </div>
@@ -297,7 +297,7 @@
                                                 <button type="button" class="btn btn-secondary"
                                                     data-bs-dismiss="modal">ยกเลิก</button>
                                                 <form method="post"
-                                                    action="<?php echo site_url('Fm_participant/del_sh2'); ?>">
+                                                    action="<?php echo site_url('pc_del_p2'); ?>">
                                                     <input type="hidden" name="id" value="<?php echo $show->id; ?>">
                                                     <div class="d-flex justify-content-center">
                                                         <button name="Submit" type="submit"
@@ -333,7 +333,7 @@
                     </div>
                     <div class="col">
                         <h5 style="float: right; padding: 15px;" class="card-title"><a
-                                href="<?php echo site_url('Fm_participant/forms?page=sh3') ?>"
+                                href="<?php echo site_url('pcp_forms_p3?page=sh3') ?>"
                                 class="btn btn-success">เพิ่มข้อมูลการมีส่วนร่วม</a></h5>
                     </div>
                 </div>
@@ -398,7 +398,7 @@
                                                 <button type="button" class="btn btn-secondary"
                                                     data-bs-dismiss="modal">ยกเลิก</button>
                                                 <form method="post"
-                                                    action="<?php echo site_url('Fm_participant/del_sh3'); ?>">
+                                                    action="<?php echo site_url('pcp_del_p3'); ?>">
                                                     <input type="hidden" name="id" value="<?php echo $show->id; ?>">
                                                     <div class="d-flex justify-content-center">
                                                         <button name="Submit" type="submit"
@@ -436,7 +436,7 @@
                     </div>
                     <div class="col">
                         <h5 style="float: right; padding: 15px;" class="card-title"><a
-                                href="<?php echo site_url('Fm_participant/forms?page=sh4') ?>"
+                                href="<?php echo site_url('pn_forms_p4?page=sh4') ?>"
                                 class="btn btn-success">เพิ่มข้อมูลบันทึกเพิ่มเติม</a></h5>
                     </div>
                 </div>
@@ -492,7 +492,7 @@
                                                 <button type="button" class="btn btn-secondary"
                                                     data-bs-dismiss="modal">ยกเลิก</button>
                                                 <form method="post"
-                                                    action="<?php echo site_url('Fm_participant/del_sh4'); ?>">
+                                                    action="<?php echo site_url('pn_del_p4'); ?>">
                                                     <input type="hidden" name="id" value="<?php echo $show->id; ?>">
                                                     <div class="d-flex justify-content-center">
                                                         <button name="Submit" type="submit"
@@ -547,7 +547,7 @@ foreach ($query as $show) {
                 </div>
                 <div class="modal-body">
                 <form action="<?php echo site_url(
-                            'Fm_participant/edit_sh1'
+                            'par_edit_p1'
                         ); ?>" method="post"
                             enctype="multipart/form-data">
                            
@@ -628,7 +628,7 @@ foreach ($query as $show) {
                 </div>
                 <div class="modal-body">
                 <form action="<?php echo site_url(
-                            'Fm_participant/edit_sh2'
+                            'pc_edit_p2'
                         ); ?>" method="post"
                             enctype="multipart/form-data">
                             
@@ -732,7 +732,7 @@ foreach ($query as $show) {
                 </div>
                 <div class="modal-body">
                 <form action="<?php echo site_url(
-                            'Fm_participant/edit_sh3'
+                            'pcp_edit_p3'
                         ); ?>" method="post"
                             enctype="multipart/form-data">
 <input type="hidden" name="id" value="<?php echo $show->id ?>">
@@ -861,7 +861,7 @@ foreach ($query as $show) {
                 </div>
                 <div class="modal-body">
                 <form action="<?php echo site_url(
-                            'Fm_participant/edit_sh4'
+                            'pn_edit_p4'
                         ); ?>" method="post"
                             enctype="multipart/form-data">
                            <input type="hidden" name="id" value="<?php echo $show->id ?>">

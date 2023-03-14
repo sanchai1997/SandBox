@@ -36,7 +36,7 @@
 
                                 <!-- start Form การประกันคุณภาพด้วยตัวชี้วัดของพื้นที่ -->
                                 <form action="<?php echo site_url(
-                                    'Fm_evaluation/insert_ass_ria'
+                                    'ass_ria_forms_up_p1'
                                 ); ?>" method="post">
                                     <h5 class="card-title">ฟอร์มการประกันคุณภาพด้วยตัวชี้วัดของพื้นที่</h5>
                                     <div class="row mb-3">
@@ -103,7 +103,7 @@
                                 <?php if ($page == 'sh2') { ?>
                                 <!-- start Form ข้อมูลระดับตัวชี้วัด -->
                                 <form action="<?php echo site_url(
-                                    'Fm_evaluation/insert_ass_ria_lvl'
+                                    'ass_ria_lvl_forms_up_p2'
                                 ); ?>" method="post">
                                     <h5 class="card-title">ฟอร์มข้อมูลระดับตัวชี้วัด</h5>
 
@@ -155,7 +155,7 @@
                                 <?php if ($page == 'sh3') { ?>
                                 <!-- start Form ข้อมูลองค์ประกอบตัวชี้วัด -->
                                 <form action="<?php echo site_url(
-                                        'Fm_evaluation/insert_ass_ria_com'
+                                        'ass_ria_com_forms_up_p3'
                                     ); ?>" method="post">
                                     <h5 class="card-title">ฟอร์มข้อมูลองค์ประกอบตัวชี้วัด</h5>
 
@@ -222,7 +222,7 @@
                                 <?php if ($page == 'sh4') { ?>
                                 <!-- start Form ข้อมูลองค์ประกอบตัวชี้วัดพื้นที่ -->
                                 <form action="<?php echo site_url(
-                                        'Fm_evaluation/insert_ass_ria_com_lvl'
+                                        'ass_ria_com_lvl_forms_up_p4'
                                     ); ?>" method="post">
                                     <h5 class="card-title">ฟอร์มข้อมูลคำอธิบายระดับของแต่ละองค์ประกอบ</h5>
 
@@ -273,7 +273,7 @@
                                 <?php if ($page == 'sh5') { ?>
                                 <!-- start Form ข้อมูลผลการประเมินโรงเรียน -->
                                 <form action="<?php echo site_url(
-                                    'Fm_evaluation/insert_sc_ass'
+                                    'sc_ass_forms_up_p5'
                                 ); ?>" method="post">
                                     <h5 class="card-title">ฟอร์มข้อมูลการประเมินผลสถานศึกษา</h5>
 
@@ -337,7 +337,7 @@
                                 <?php if ($page == 'sh6') { ?>
                                 <!-- start Form ข้อมูลผลการประเมินตามตัวชี้วัด -->
                                 <form action="<?php echo site_url(
-                                    'Fm_evaluation/insert_sc_ass_ria'
+                                    'sc_ass_ria_forms_up_p6'
                                 ); ?>" method="post" enctype="multipart/form-data">
                                     <h5 class="card-title">ฟอร์มข้อมูลการประเมินตามตัวชี้วัด</h5>
 
@@ -430,7 +430,7 @@
                                 <?php } ?>
                                 <?php if ($page == 'sh7') { ?>
                                 <!-- start Form ข้อมูลผลการประเมินตามตัวชี้วัด -->
-                                <form action="<?php echo site_url('Fm_evaluation/insert_sc_ass_res'); ?>" method="post" enctype="multipart/form-data">
+                                <form action="<?php echo site_url('sc_ass_res_forms_up_p7'); ?>" method="post" enctype="multipart/form-data">
                                     <h5 class="card-title">ฟอร์มระดับตัวชี้วัดที่ได้ในแต่ละองค์ประกอบ</h5>
                                     <div class="row mb-3">
                                         <div class="form-floating">
@@ -492,7 +492,7 @@
                                 <?php } ?>
                                 <?php if ($page == 'sh8') { ?>
                                 <!-- start Form ข้อมูลผลการประเมินตามตัวชี้วัด -->
-                                <form action="<?php echo site_url('Fm_evaluation/insert_achie_ass'); ?>" method="post" enctype="multipart/form-data">
+                                <form action="<?php echo site_url('achie_ass_forms_up_p8'); ?>" method="post" enctype="multipart/form-data">
                                     <h5 class="card-title">ฟอร์มข้อมูลการประเมินสถานศึกษา</h5>
                                     <div class="row mb-3">
                                         <div class="form-floating">

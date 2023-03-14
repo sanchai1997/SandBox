@@ -46,48 +46,48 @@
             </div>
             <div class="col-lg-9" style="padding-right: 25px;">
                 <a href="<?php echo site_url(
-                    'Fm_evaluation/sh1?page=sh1'
+                    'Fm_evaluation_das_p1?page=sh1'
                 ); ?>" style="float: right;" class="btn btn-sm btn-light"
                     data-mdb-ripple-color="dark">การประกันคุณภาพด้วยตัวชี้วัดของพื้นที่</a>
                 <h5 style="float: right;"> | </h5>
                 <a href="<?php echo site_url(
-                    'Fm_evaluation/sh2?page=sh2'
+                    'Fm_evaluation_das_p2?page=sh2'
                 ); ?>" style="float: right;" class="btn btn-sm btn-light"
                     data-mdb-ripple-color="dark">ข้อมูลระดับตัวชี้วัด
                 </a>
                 <h5 style="float: right;"> | </h5>
                 <a href="<?php echo site_url(
-                    'Fm_evaluation/sh3?page=sh3'
+                    'Fm_evaluation_das_p3?page=sh3'
                 ); ?>" style="float: right;" class="btn btn-sm btn-light"
                     data-mdb-ripple-color="dark">ข้อมูลองค์ประกอบตัวชี้วัด
                 </a>
                 <h5 style="float: right;"> | </h5>
                 <a href="<?php echo site_url(
-                    'Fm_evaluation/sh4?page=sh4'
+                    'Fm_evaluation_das_p4?page=sh4'
                 ); ?>" style="float: right;" class="btn btn-sm btn-light"
                     data-mdb-ripple-color="dark">ข้อมูลคำอธิบายระดับของแต่ละองค์ประกอบ
                 </a>
                 <h5 style="float: right;"> | </h5>
                 <a href="<?php echo site_url(
-                    'Fm_evaluation/sh5?page=sh5'
+                    'Fm_evaluation_das_p5?page=sh5'
                 ); ?>" style="float: right;" class="btn btn-sm btn-light"
                     data-mdb-ripple-color="dark">ข้อมูลการประเมินผลสถานศึกษา
                 </a>
                 <h5 style="float: right;"> | </h5>
                 <a href="<?php echo site_url(
-                    'Fm_evaluation/sh6?page=sh6'
+                    'Fm_evaluation_das_p6?page=sh6'
                 ); ?>" style="float: right;" class="btn btn-sm btn-light"
                     data-mdb-ripple-color="dark">ข้อมูลการประเมินตามตัวชี้วัด
                 </a>
                 <h5 style="float: right;"> | </h5>
                 <a href="<?php echo site_url(
-                    'Fm_evaluation/sh7?page=sh7'
+                    'Fm_evaluation_das_p7?page=sh7'
                 ); ?>" style="float: right;" class="btn btn-sm btn-light"
                     data-mdb-ripple-color="dark">ระดับตัวชี้วัดที่ได้ในแต่ละองค์ประกอบ
                 </a>
                 <h5 style="float: right;"> | </h5>
                 <a href="<?php echo site_url(
-                    'Fm_evaluation/sh8?page=sh8'
+                    'Fm_evaluation_das_p8?page=sh8'
                 ); ?>" style="float: right;" class="btn btn-sm btn-light"
                     data-mdb-ripple-color="dark">ข้อมูลการประเมินสถานศึกษา
                 </a>
@@ -165,7 +165,7 @@
                     </div>
                     <div class="col">
                         <h5 style="float: right; padding: 15px;" class="card-title"><a href="<?php echo site_url(
-                                'Fm_evaluation/forms?page=sh1'
+                                'ass_ria_forms_p1?page=sh1'
                             ); ?>" class="btn btn-success">เพิ่มข้อมูลการประกันคุณภาพด้วยตัวชี้วัดของพื้นที่</a></h5>
                     </div>
                 </div>
@@ -224,7 +224,7 @@
                                                 <button type="button" class="btn btn-secondary"
                                                     data-bs-dismiss="modal">ยกเลิก</button>
                                                 <form method="post"
-                                                    action="<?php echo site_url('Fm_evaluation/del_ass_ria'); ?>">
+                                                    action="<?php echo site_url('ass_ria_del_p1'); ?>">
                                                     <input type="hidden" name="id" value="<?php echo $show->id; ?>">
                                                     <div class="d-flex justify-content-center">
                                                         <button name="Submit" type="submit"
@@ -265,7 +265,7 @@
                     </div>
                     <div class="col">
                         <h5 style="float: right; padding: 15px;" class="card-title"><a href="<?php echo site_url(
-                                'Fm_evaluation/forms?page=sh2'
+                                'ass_ria_lvl_forms_p2?page=sh2'
                             ); ?>" class="btn btn-success">เพิ่มข้อมูลระดับตัวชี้วัด</a></h5>
                     </div>
                 </div>
@@ -323,7 +323,7 @@
                                                 <button type="button" class="btn btn-secondary"
                                                     data-bs-dismiss="modal">ยกเลิก</button>
                                                 <form method="post"
-                                                    action="<?php echo site_url('Fm_evaluation/del_ass_ria_lvl'); ?>">
+                                                    action="<?php echo site_url('ass_ria_lvl_del_p2'); ?>">
                                                     <input type="hidden" name="id" value="<?php echo $show->id; ?>">
                                                     <div class="d-flex justify-content-center">
                                                         <button name="Submit" type="submit"
@@ -366,7 +366,7 @@
                     </div>
                     <div class="col">
                         <h5 style="float: right; padding: 15px;" class="card-title"><a href="<?php echo site_url(
-                                'Fm_evaluation/forms?page=sh3'
+                                'ass_ria_com_forms_p3?page=sh3'
                             ); ?>" class="btn btn-success">เพิ่มข้อมูลข้อมูลองค์ประกอบตัวชี้วัด</a></h5>
                     </div>
                 </div>
@@ -427,7 +427,7 @@
                                                 <button type="button" class="btn btn-secondary"
                                                     data-bs-dismiss="modal">ยกเลิก</button>
                                                 <form method="post"
-                                                    action="<?php echo site_url('Fm_evaluation/del_ass_ria_com'); ?>">
+                                                    action="<?php echo site_url('ass_ria_com_del_p3'); ?>">
                                                     <input type="hidden" name="id" value="<?php echo $show->id; ?>">
                                                     <div class="d-flex justify-content-center">
                                                         <button name="Submit" type="submit"
@@ -467,7 +467,7 @@
                     </div>
                     <div class="col">
                         <h5 style="float: right; padding: 15px;" class="card-title"><a href="<?php echo site_url(
-                                'Fm_evaluation/forms?page=sh4'
+                                'ass_ria_com_lvl_forms_p4?page=sh4'
                             ); ?>" class="btn btn-success">เพิ่มข้อมูลองค์ประกอบตัวชี้วัดพื้นที่</a></h5>
                     </div>
                 </div>
@@ -526,7 +526,7 @@
                                                 <button type="button" class="btn btn-secondary"
                                                     data-bs-dismiss="modal">ยกเลิก</button>
                                                 <form method="post"
-                                                    action="<?php echo site_url('Fm_evaluation/del_ass_ria_com_lvl'); ?>">
+                                                    action="<?php echo site_url('ass_ria_com_lvl_del_p4'); ?>">
                                                     <input type="hidden" name="id" value="<?php echo $show->id; ?>">
                                                     <div class="d-flex justify-content-center">
                                                         <button name="Submit" type="submit"
@@ -564,7 +564,7 @@
                     </div>
                     <div class="col">
                         <h5 style="float: right; padding: 15px;" class="card-title"><a href="<?php echo site_url(
-                                'Fm_evaluation/forms?page=sh5'
+                                'sc_ass_forms_p5?page=sh5'
                             ); ?>" class="btn btn-success">เพิ่มข้อมูลการประเมินสถานศึกษา</a></h5>
                     </div>
                 </div>
@@ -625,7 +625,7 @@
                                                 <button type="button" class="btn btn-secondary"
                                                     data-bs-dismiss="modal">ยกเลิก</button>
                                                 <form method="post"
-                                                    action="<?php echo site_url('Fm_evaluation/del_sc_ass'); ?>">
+                                                    action="<?php echo site_url('sc_ass_del_p5'); ?>">
                                                     <input type="hidden" name="id" value="<?php echo $show->id; ?>">
                                                     <div class="d-flex justify-content-center">
                                                         <button name="Submit" type="submit"
@@ -665,7 +665,7 @@
                     </div>
                     <div class="col">
                         <h5 style="float: right; padding: 15px;" class="card-title"><a href="<?php echo site_url(
-                                'Fm_evaluation/forms?page=sh6'
+                                'sc_ass_ria_forms_p6?page=sh6'
                             ); ?>" class="btn btn-success">เพิ่มข้อมูลผลการประเมินตามตัวชี้วัด</a></h5>
                     </div>
                 </div>
@@ -742,7 +742,7 @@
                                                 <button type="button" class="btn btn-secondary"
                                                     data-bs-dismiss="modal">ยกเลิก</button>
                                                 <form method="post"
-                                                    action="<?php echo site_url('Fm_evaluation/del_sc_ass_ria'); ?>">
+                                                    action="<?php echo site_url('sc_ass_ria_del_p6'); ?>">
                                                     <input type="hidden" name="id" value="<?php echo $s->id; ?>">
                                                     <div class="d-flex justify-content-center">
                                                         <button name="Submit" type="submit"
@@ -780,7 +780,7 @@
                     </div>
                     <div class="col">
                         <h5 style="float: right; padding: 15px;" class="card-title"><a href="<?php echo site_url(
-                                'Fm_evaluation/forms?page=sh7'
+                                'sc_ass_res_forms_p7?page=sh7'
                             ); ?>" class="btn btn-success">เพิ่มข้อมูลระดับตัวชี้วัดที่ได้ในแต่ละองค์ประกอบ</a></h5>
                     </div>
                 </div>
@@ -846,7 +846,7 @@
                                                 <button type="button" class="btn btn-secondary"
                                                     data-bs-dismiss="modal">ยกเลิก</button>
                                                 <form method="post"
-                                                    action="<?php echo site_url('Fm_evaluation/del_sc_ass_res'); ?>">
+                                                    action="<?php echo site_url('sc_ass_res_del_p7'); ?>">
                                                     <input type="hidden" name="id" value="<?php echo $show->id; ?>">
                                                     <div class="d-flex justify-content-center">
                                                         <button name="Submit" type="submit"
@@ -884,7 +884,7 @@
                     </div>
                     <div class="col">
                         <h5 style="float: right; padding: 15px;" class="card-title"><a href="<?php echo site_url(
-                                'Fm_evaluation/forms?page=sh8'
+                                'achie_ass_forms_p8?page=sh8'
                             ); ?>" class="btn btn-success">เพิ่มข้อมูลการประเมินสถานศึกษา</a></h5>
                     </div>
                 </div>
@@ -954,7 +954,7 @@
                                                 <button type="button" class="btn btn-secondary"
                                                     data-bs-dismiss="modal">ยกเลิก</button>
                                                 <form method="post"
-                                                    action="<?php echo site_url('Fm_evaluation/del_achie_ass'); ?>">
+                                                    action="<?php echo site_url('achie_ass_del_p8'); ?>">
                                                     <input type="hidden" name="id" value="<?php echo $show->id; ?>">
                                                     <div class="d-flex justify-content-center">
                                                         <button name="Submit" type="submit"
@@ -1005,7 +1005,7 @@ foreach ($query as $show) {
                 </div>
                 <div class="modal-body">
                 <form action="<?php echo site_url(
-                                    'Fm_evaluation/edit_ass_ria'
+                                    'ass_ria_edit_p1'
                                 ); ?>" method="post">
                                     <h5 class="card-title">ฟอร์มการประกันคุณภาพด้วยตัวชี้วัดของพื้นที่</h5>
                                     <div class="row mb-3">
@@ -1098,7 +1098,7 @@ foreach ($query as $show) {
                 </div>
                 <div class="modal-body">
                 <form action="<?php echo site_url(
-                                    'Fm_evaluation/edit_ass_ria_lvl'
+                                    'ass_ria_lvl_edit_p2'
                                 ); ?>" method="post">
                                     <h5 class="card-title">ฟอร์มข้อมูลระดับตัวชี้วัด</h5>
 <input type="hidden" name="id" value="<?php echo $show->id ?>">
@@ -1177,7 +1177,7 @@ foreach ($query as $show) {
                 </div>
                 <div class="modal-body">
                 <form action="<?php echo site_url(
-                                        'Fm_evaluation/edit_ass_ria_com'
+                                        'ass_ria_com_edit_p3'
                                     ); ?>" method="post">
                                     <h5 class="card-title">ฟอร์มข้อมูลองค์ประกอบตัวชี้วัด</h5>
 
@@ -1271,7 +1271,7 @@ foreach ($query as $show) {
                 </div>
                 <div class="modal-body">
                 <form action="<?php echo site_url(
-                                        'Fm_evaluation/edit_ass_ria_com_lvl'
+                                        'ass_ria_com_lvl_edit_p4'
                                     ); ?>" method="post">
                                     <h5 class="card-title">ฟอร์มข้อมูลคำอธิบายระดับของแต่ละองค์ประกอบ</h5>
 <input type="hidden" name="id" value="<?php echo $show->id ?>">
@@ -1349,7 +1349,7 @@ foreach ($query as $show) {
                 </div>
                 <div class="modal-body">
                 <form action="<?php echo site_url(
-                                    'Fm_evaluation/edit_sc_ass'
+                                    'sc_ass_edit_p5'
                                 ); ?>" method="post">
                                     <h5 class="card-title">ฟอร์มข้อมูลการประเมินผลสถานศึกษา</h5>
 <input type="hidden" name="id" value="<?php echo $show->id ?>">
@@ -1440,7 +1440,7 @@ foreach ($query as $show) {
                 </div>
                 <div class="modal-body">
                 <form action="<?php echo site_url(
-                                    'Fm_evaluation/edit_sc_ass_ria'
+                                    'sc_ass_ria_edit_p6'
                                 ); ?>" method="post" enctype="multipart/form-data">
                                     <h5 class="card-title">ฟอร์มข้อมูลการประเมินตามตัวชี้วัด</h5>
 <input type="hidden" name="id" value="<?php echo $show->id ?>">
@@ -1559,7 +1559,7 @@ foreach ($query as $show) {
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                <form action="<?php echo site_url('Fm_evaluation/edit_sc_ass_res'); ?>" method="post" enctype="multipart/form-data">
+                <form action="<?php echo site_url('sc_ass_res_edit_p7'); ?>" method="post" enctype="multipart/form-data">
                                     <h5 class="card-title">ฟอร์มระดับตัวชี้วัดที่ได้ในแต่ละองค์ประกอบ</h5>
                                     <input type="hidden" name="id" value="<?php echo $show->id ?>">
                                     <div class="row mb-3">
@@ -1647,7 +1647,7 @@ foreach ($query as $show) {
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                <form action="<?php echo site_url('Fm_evaluation/edit_achie_ass'); ?>" method="post" enctype="multipart/form-data">
+                <form action="<?php echo site_url('achie_ass_edit_p8'); ?>" method="post" enctype="multipart/form-data">
                                     <h5 class="card-title">ฟอร์มข้อมูลการประเมินสถานศึกษา</h5>
                                     <div class="row mb-3">
                                         <div class="form-floating">

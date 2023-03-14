@@ -16,8 +16,8 @@ class participant_model extends CI_Model {
 		$query=$this->db->insert('PARTICIPANT',$data);
 		if($query){
 			session_start(); // เริ่มต้น session
-			$_SESSION['success'] = "เพิ่มข้อมูลเทคโนโลยี และสื่อการเรียนรู้สำเร็จ !"; // กำหนดค่า success ใน session เป็น true
-			header("Location: ".site_url('Fm_participant/sh1?page=sh1')); // ไปยังหน้าก่อนหน้านี้
+			$_SESSION['success'] = "เพิ่มข้อมูลเรียบร้อย !"; // กำหนดค่า success ใน session เป็น true
+			header("Location: ".site_url('Fm_participant_das_p1?page=sh1')); // ไปยังหน้าก่อนหน้านี้
 			
 		} else {
 			echo 'false';
@@ -39,8 +39,8 @@ class participant_model extends CI_Model {
 		$query=$this->db->update('PARTICIPANT',$data);
 		if($query){
 			session_start(); // เริ่มต้น session
-			$_SESSION['success'] = "เพิ่มข้อมูลเทคโนโลยี และสื่อการเรียนรู้สำเร็จ !"; // กำหนดค่า success ใน session เป็น true
-			header("Location: ".site_url('Fm_participant/sh1?page=sh1')); // ไปยังหน้าก่อนหน้านี้
+			$_SESSION['success'] = "แก้ไขข้อมูลสำเร็จ !"; // กำหนดค่า success ใน session เป็น true
+			header("Location: ".site_url('Fm_participant_das_p1?page=sh1')); // ไปยังหน้าก่อนหน้านี้
 			
 		} else {
 			echo 'false';
@@ -53,17 +53,17 @@ class participant_model extends CI_Model {
 		// print_r($_POST);
 		// echo'</pre>';
 		// exit;
-		$value="0";
+		$value="1";
         $data = array(
             
-            'del_status' => $value 
+            'DeleteStatus' => $value 
         );
 		$this->db->where('id',$this->input->post('id'));
 		$query=$this->db->update('PARTICIPANT',$data);
 		if($query){
 			session_start(); // เริ่มต้น session
-			$_SESSION['success'] = "เพิ่มข้อมูลเทคโนโลยี และสื่อการเรียนรู้สำเร็จ !"; // กำหนดค่า success ใน session เป็น true
-			header("Location: ".site_url('Fm_participant/sh1?page=sh1')); // ไปยังหน้าก่อนหน้านี้
+			$_SESSION['success'] = "ลบข้อมูลสำเร็จ !"; // กำหนดค่า success ใน session เป็น true
+			header("Location: ".site_url('Fm_participant_das_p1?page=sh1')); // ไปยังหน้าก่อนหน้านี้
 			
 		} else {
 			echo 'false';
@@ -87,8 +87,8 @@ class participant_model extends CI_Model {
 		$query=$this->db->insert('PARTICIPANT_CONTACT',$data);
 		if($query){
 			session_start(); // เริ่มต้น session
-			$_SESSION['success'] = "เพิ่มข้อมูลเทคโนโลยี และสื่อการเรียนรู้สำเร็จ !"; // กำหนดค่า success ใน session เป็น true
-			header("Location: ".site_url('Fm_participant/sh2?page=sh2')); // ไปยังหน้าก่อนหน้านี้
+			$_SESSION['success'] = "เพิ่มข้อมูลสำเร็จ !"; // กำหนดค่า success ใน session เป็น true
+			header("Location: ".site_url('Fm_participant_das_p2?page=sh2')); // ไปยังหน้าก่อนหน้านี้
 			
 		} else {
 			echo 'false';
@@ -113,8 +113,8 @@ class participant_model extends CI_Model {
 		$query=$this->db->update('PARTICIPANT_CONTACT',$data);
 		if($query){
 			session_start(); // เริ่มต้น session
-			$_SESSION['success'] = "เพิ่มข้อมูลเทคโนโลยี และสื่อการเรียนรู้สำเร็จ !"; // กำหนดค่า success ใน session เป็น true
-			header("Location: ".site_url('Fm_participant/sh2?page=sh2')); // ไปยังหน้าก่อนหน้านี้
+			$_SESSION['success'] = "แก้ไขข้อมูลสำเร็จ !"; // กำหนดค่า success ใน session เป็น true
+			header("Location: ".site_url('Fm_participant_das_p2?page=sh2')); // ไปยังหน้าก่อนหน้านี้
 			
 		} else {
 			echo 'false';
@@ -127,17 +127,17 @@ class participant_model extends CI_Model {
 		// print_r($_POST);
 		// echo'</pre>';
 		// exit;
-		$value="0";
+		$value="1";
         $data = array(
             
-            'del_status' => $value 
+            'DeleteStatus' => $value 
         );
 		$this->db->where('id',$this->input->post('id'));
 		$query=$this->db->update('PARTICIPANT_CONTACT',$data);
 		if($query){
 			session_start(); // เริ่มต้น session
-			$_SESSION['success'] = "เพิ่มข้อมูลเทคโนโลยี และสื่อการเรียนรู้สำเร็จ !"; // กำหนดค่า success ใน session เป็น true
-			header("Location: ".site_url('Fm_participant/sh2?page=sh2')); // ไปยังหน้าก่อนหน้านี้
+			$_SESSION['success'] = "ลบข้อมูลสำเร็จ !"; // กำหนดค่า success ใน session เป็น true
+			header("Location: ".site_url('Fm_participant_das_p2?page=sh2')); // ไปยังหน้าก่อนหน้านี้
 			
 		} else {
 			echo 'false';
@@ -176,8 +176,8 @@ class participant_model extends CI_Model {
 		$query=$this->db->insert('PARTICIPANT_COOPERATION',$data);
 		if($query){
 			session_start(); // เริ่มต้น session
-			$_SESSION['success'] = "เพิ่มข้อมูลเทคโนโลยี และสื่อการเรียนรู้สำเร็จ !"; // กำหนดค่า success ใน session เป็น true
-			header("Location: ".site_url('Fm_participant/sh3?page=sh3')); // ไปยังหน้าก่อนหน้านี้
+			$_SESSION['success'] = "เพิ่มข้อมูลเรียบร้อย !"; // กำหนดค่า success ใน session เป็น true
+			header("Location: ".site_url('Fm_participant_das_p3?page=sh3')); // ไปยังหน้าก่อนหน้านี้
 			
 		} else {
 			echo 'false';
@@ -236,8 +236,8 @@ $this->db->where('id',$this->input->post('id'));
 		$query=$this->db->update('PARTICIPANT_COOPERATION',$data);
 		if($query){
 			session_start(); // เริ่มต้น session
-			$_SESSION['success'] = "เพิ่มข้อมูลเทคโนโลยี และสื่อการเรียนรู้สำเร็จ !"; // กำหนดค่า success ใน session เป็น true
-			header("Location: ".site_url('Fm_participant/sh3?page=sh3')); // ไปยังหน้าก่อนหน้านี้
+			$_SESSION['success'] = "แก้ไขข้อมูลสำเร็จ !"; // กำหนดค่า success ใน session เป็น true
+			header("Location: ".site_url('Fm_participant_das_p3?page=sh3')); // ไปยังหน้าก่อนหน้านี้
 			
 		} else {
 			echo 'false';
@@ -255,15 +255,15 @@ $this->db->where('id',$this->input->post('id'));
 	$value ="0";
 			$data = array(
 				
-				'del_status' => $value
+				'DeleteStatus' => $value
 			);
 		
 			$this->db->where('id',$this->input->post('id'));
 			$query=$this->db->update('PARTICIPANT_COOPERATION',$data);
 			if($query){
 				session_start(); // เริ่มต้น session
-				$_SESSION['success'] = "เพิ่มข้อมูลเทคโนโลยี และสื่อการเรียนรู้สำเร็จ !"; // กำหนดค่า success ใน session เป็น true
-				header("Location: ".site_url('Fm_participant/sh3?page=sh3')); // ไปยังหน้าก่อนหน้านี้
+				$_SESSION['success'] = "ลบข้อมูลสำเร็จ !"; // กำหนดค่า success ใน session เป็น true
+				header("Location: ".site_url('Fm_participant_das_p3?page=sh3')); // ไปยังหน้าก่อนหน้านี้
 				
 			} else {
 				echo 'false';
@@ -287,8 +287,8 @@ $this->db->where('id',$this->input->post('id'));
 		$query=$this->db->insert('PARTICIPANT_NOTE',$data);
 		if($query){
 			session_start(); // เริ่มต้น session
-			$_SESSION['success'] = "เพิ่มข้อมูลเทคโนโลยี และสื่อการเรียนรู้สำเร็จ !"; // กำหนดค่า success ใน session เป็น true
-			header("Location: ".site_url('Fm_participant/sh4?page=sh4')); // ไปยังหน้าก่อนหน้านี้
+			$_SESSION['success'] = "เพิ่มข้อมูลเรียบร้อย !"; // กำหนดค่า success ใน session เป็น true
+			header("Location: ".site_url('Fm_participant_das_p4?page=sh4')); // ไปยังหน้าก่อนหน้านี้
 			
 		} else {
 			echo 'false';
@@ -314,8 +314,8 @@ $this->db->where('id',$this->input->post('id'));
 		$query=$this->db->update('PARTICIPANT_NOTE',$data);
 		if($query){
 			session_start(); // เริ่มต้น session
-			$_SESSION['success'] = "เพิ่มข้อมูลเทคโนโลยี และสื่อการเรียนรู้สำเร็จ !"; // กำหนดค่า success ใน session เป็น true
-			header("Location: ".site_url('Fm_participant/sh4?page=sh4')); // ไปยังหน้าก่อนหน้านี้
+			$_SESSION['success'] = "แก้ไขข้อมูลสำเร็จ !"; // กำหนดค่า success ใน session เป็น true
+			header("Location: ".site_url('Fm_participant_das_p4?page=sh4')); // ไปยังหน้าก่อนหน้านี้
 			
 		} else {
 			echo 'false';
@@ -328,18 +328,18 @@ $this->db->where('id',$this->input->post('id'));
 		// print_r($_POST);
 		// echo'</pre>';
 		// exit;
-		$value ="0";
+		$value ="1";
 		$data = array(
 			
-			'del_status' => $value
+			'DeleteStatus' => $value
 		);
 		$this->db->where('id',$this->input->post('id'));
 
 		$query=$this->db->update('PARTICIPANT_NOTE',$data);
 		if($query){
 			session_start(); // เริ่มต้น session
-			$_SESSION['success'] = "เพิ่มข้อมูลเทคโนโลยี และสื่อการเรียนรู้สำเร็จ !"; // กำหนดค่า success ใน session เป็น true
-			header("Location: ".site_url('Fm_participant/sh4?page=sh4')); // ไปยังหน้าก่อนหน้านี้
+			$_SESSION['success'] = "ลบข้อมูลสำเร็จ !"; // กำหนดค่า success ใน session เป็น true
+			header("Location: ".site_url('Fm_participant_das_p4?page=sh4')); // ไปยังหน้าก่อนหน้านี้
 			
 		} else {
 			echo 'false';
@@ -360,7 +360,7 @@ $this->db->where('id',$this->input->post('id'));
 	{
 		$this->db->select('*');
 		$this->db->from('PARTICIPANT');
-		$this->db->where('del_status=1');
+		$this->db->where('DeleteStatus=0');
 		$query = $this->db->get();
 		return $query->result();
 	}
@@ -368,7 +368,7 @@ $this->db->where('id',$this->input->post('id'));
 	{
 		$this->db->select('*');
 		$this->db->from('PARTICIPANT_CONTACT');
-		$this->db->where('del_status=1');
+		$this->db->where('DeleteStatus=0');
 		$query = $this->db->get();
 		return $query->result();
 	}
@@ -376,7 +376,7 @@ $this->db->where('id',$this->input->post('id'));
 	{
 		$this->db->select('*');
 		$this->db->from('PARTICIPANT_COOPERATION');
-		$this->db->where('del_status=1');
+		$this->db->where('DeleteStatus=0');
 		$query = $this->db->get();
 		return $query->result();
 	}
@@ -384,7 +384,7 @@ $this->db->where('id',$this->input->post('id'));
 	{
 		$this->db->select('*');
 		$this->db->from('PARTICIPANT_NOTE');
-		$this->db->where('del_status=1');
+		$this->db->where('DeleteStatus=0');
 		$query = $this->db->get();
 		return $query->result();
 	}

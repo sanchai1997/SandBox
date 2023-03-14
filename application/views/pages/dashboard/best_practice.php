@@ -48,10 +48,10 @@
                 </nav>
             </div>
             <div class="col-lg-9" style="padding-right: 25px;">
-                <a href="<?php echo site_url('Fm_best_practice/sh1?page=sh1') ?>" style="float: right;"
+                <a href="<?php echo site_url('Fm_best_practice_das_p1?page=sh1') ?>" style="float: right;"
                     class="btn btn-sm btn-light" data-mdb-ripple-color="dark">แนวปฏิบัติที่เป็นเลิศในการจัดการศึกษา</a>
                 <h5 style="float: right;"> | </h5>
-                <a href="<?php echo site_url('Fm_best_practice/sh2?page=sh2') ?>" style="float: right;"
+                <a href="<?php echo site_url('Fm_best_practice_das_p2?page=sh2') ?>" style="float: right;"
                     class="btn btn-sm btn-light"
                     data-mdb-ripple-color="dark">ผู้จัดทำวิธีปฏิบัติที่เป็นเลิศในการจัดการศึกษา</a>
                 <h5 style="float: right;"> | </h5>
@@ -136,7 +136,7 @@
                     </div>
                     <div class="col">
                         <h5 style="float: right; padding: 15px;" class="card-title"><a
-                                href="<?php echo site_url('Fm_best_practice/forms?page=sh1') ?>"
+                                href="<?php echo site_url('BP_forms_p1?page=sh1') ?>"
                                 class="btn btn-success">เพิ่มข้อมูลแนวปฏิบัติที่เป็นเลิศในการจัดการศึกษา</a></h5>
                     </div>
                 </div>
@@ -225,7 +225,7 @@
                                                 <button type="button" class="btn btn-secondary"
                                                     data-bs-dismiss="modal">ยกเลิก</button>
                                                 <form method="post"
-                                                    action="<?php echo site_url('Fm_best_practice/del_sh1'); ?>">
+                                                    action="<?php echo site_url('BP_del_p1'); ?>">
                                                     <input type="hidden" name="id"
                                                         value="<?php echo $show->id; ?>">
                                                     <div class="d-flex justify-content-center">
@@ -264,7 +264,7 @@
                     </div>
                     <div class="col">
                         <h5 style="float: right; padding: 15px;" class="card-title"><a
-                                href="<?php echo site_url('Fm_best_practice/forms?page=sh2') ?>"
+                                href="<?php echo site_url('BPC_forms_p2?page=sh2') ?>"
                                 class="btn btn-success">เพิ่มข้อมูลผู้จัดทำวิธีปฏิบัติที่เป็นเลิศในการจัดการศึกษา</a>
                         </h5>
                     </div>
@@ -343,7 +343,7 @@
                                                 <button type="button" class="btn btn-secondary"
                                                     data-bs-dismiss="modal">ยกเลิก</button>
                                                 <form method="post"
-                                                    action="<?php echo site_url('Fm_best_practice/del_sh2'); ?>">
+                                                    action="<?php echo site_url('BPC_del_p2'); ?>">
                                                     <input type="hidden" name="id"
                                                         value="<?php echo $show->id; ?>">
                                                     <div class="d-flex justify-content-center">
@@ -394,7 +394,7 @@ foreach ($query as $show) {
                 </div>
                 <div class="modal-body">
                     <form action="<?php echo site_url(
-                            'Fm_best_practice/edit_sh1'
+                            'BP_edit_p1'
                         ); ?>" method="post" enctype="multipart/form-data">
 <input type="hidden" name="id" value="<?php echo $show->id ?>">
                         <div class="row mb-3">
@@ -569,7 +569,7 @@ foreach ($query as $show) {
                 </div>
                 <div class="modal-body">
                     <form action="<?php echo site_url(
-                            'Fm_best_practice/edit_sh2'
+                            'BPC_edit_p2'
                         ); ?>" method="post" enctype="multipart/form-data">
 <input type="hidden" name="id" value="<?php echo $show->id ?>">
                         <div class="row mb-3">

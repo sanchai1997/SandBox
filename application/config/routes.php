@@ -114,7 +114,7 @@ $route['personnel-additionalposition'] = 'personnel/additional_position';
 $route['forms-additionalposition'] = 'forms_personne/add_additionalposition';
 ///////////////////// PERSONNEL - END /////////////////////////
 ////////////////////// ROUTE innovation ////////////////////////
-//PERSONNEL
+//innovation
 $route['Fm_innovation'] = 'Fm_innovation';
 $route['Fm_innovation_das_p1'] = 'Fm_innovation/sh1/$1';
 $route['Fm_innovation_das_p2'] = 'Fm_innovation/sh2/$1';
@@ -124,6 +124,125 @@ $route['forms_up_p1'] = 'Fm_innovation/adding_sh1';
 $route['forms_up_p2'] = 'Fm_innovation/adding_sh2';
 $route['edit_p1'] = 'Fm_innovation/edit_sh1';
 $route['edit_p2'] = 'Fm_innovation/edit_sh2';
+$route['del_p1'] = 'Fm_innovation/del_sh1';
+$route['del_p2'] = 'Fm_innovation/del_sh2';
 
 ///////////////////// innovation - END /////////////////////////
+////////////////////// ROUTE lear_tech_media ////////////////////////
+//lear_tech_media
+$route['Fm_lear_tech_media'] = 'Fm_lear_tech_media';
+$route['Fm_lear_tech_media_das_p1'] = 'Fm_lear_tech_media/sh1/$1';
+$route['Fm_lear_tech_media_das_p2'] = 'Fm_lear_tech_media/sh2/$1';
+$route['LTM_forms_p1'] = 'Fm_lear_tech_media/forms/$1';
+$route['LTMC_forms_p2'] = 'Fm_lear_tech_media/forms/$1';
+$route['LTM_forms_up_p1'] = 'Fm_lear_tech_media/adding_sh1';
+$route['LTMC_forms_up_p2'] = 'Fm_lear_tech_media/adding_sh2';
+$route['LTM_edit_p1'] = 'Fm_lear_tech_media/edit_sh1';
+$route['LTMC_edit_p2'] = 'Fm_lear_tech_media/edit_sh2';
+$route['LTM_del_p1'] = 'Fm_lear_tech_media/del_sh1';
+$route['LTMC_del_p2'] = 'Fm_lear_tech_media/del_sh2';
+
+///////////////////// lear_tech_media - END /////////////////////////
+////////////////////// ROUTE best_practice ////////////////////////
+//best_practice
+$route['Fm_best_practice'] = 'Fm_best_practice';
+$route['Fm_best_practice_das_p1'] = 'Fm_best_practice/sh1/$1';
+$route['Fm_best_practice_das_p2'] = 'Fm_best_practice/sh2/$1';
+$route['BP_forms_p1'] = 'Fm_best_practice/forms/$1';
+$route['BPC_forms_p2'] = 'Fm_best_practice/forms/$1';
+$route['BP_forms_up_p1'] = 'Fm_best_practice/add_sh1';
+$route['BPC_forms_up_p2'] = 'Fm_best_practice/add_sh2';
+$route['BP_edit_p1'] = 'Fm_best_practice/edit_sh1';
+$route['BPC_edit_p2'] = 'Fm_best_practice/edit_sh2';
+$route['BP_del_p1'] = 'Fm_best_practice/del_sh1';
+$route['BPC_del_p2'] = 'Fm_best_practice/del_sh2';
+
+///////////////////// best_practice - END /////////////////////////
+////////////////////// ROUTE participant ////////////////////////
+//participant
+$route['Fm_participant'] = 'Fm_participant';
+$route['Fm_participant_das_p1'] = 'Fm_participant/sh1/$1';
+$route['Fm_participant_das_p2'] = 'Fm_participant/sh2/$1';
+$route['Fm_participant_das_p3'] = 'Fm_participant/sh3/$1';
+$route['Fm_participant_das_p4'] = 'Fm_participant/sh4/$1';
+$route['par_forms_p1'] = 'Fm_participant/forms/$1';
+$route['pc_forms_p2'] = 'Fm_participant/forms/$1';
+$route['pcp_forms_p3'] = 'Fm_participant/forms/$1';
+$route['pn_forms_p4'] = 'Fm_participant/forms/$1';
+$route['par_forms_up_p1'] = 'Fm_participant/adding_sh1';
+$route['pc_forms_up_p2'] = 'Fm_participant/adding_sh2';
+$route['pcp_forms_up_p3'] = 'Fm_participant/adding_sh3';
+$route['pn_forms_up_p4'] = 'Fm_participant/adding_sh4';
+$route['par_edit_p1'] = 'Fm_participant/edit_sh1';
+$route['pc_edit_p2'] = 'Fm_participant/edit_sh2';
+$route['pcp_edit_p3'] = 'Fm_participant/edit_sh3';
+$route['pn_edit_p4'] = 'Fm_participant/edit_sh4';
+$route['par_del_p1'] = 'Fm_participant/del_sh1';
+$route['pc_del_p2'] = 'Fm_participant/del_sh2';
+$route['pcp_del_p3'] = 'Fm_participant/del_sh3';
+$route['pn_del_p4'] = 'Fm_participant/del_sh4';
+
+///////////////////// participant - END /////////////////////////
+////////////////////// ROUTE committee ////////////////////////
+//committee
+$route['Fm_committee'] = 'Fm_committee';
+$route['Fm_committee_das_p1'] = 'Fm_committee/committee/$1';
+$route['Fm_committee_das_p2'] = 'Fm_committee/member/$1';
+$route['c_forms_p1'] = 'Fm_committee/form_page/$1';
+$route['cm_forms_p2'] = 'Fm_committee/form_page/$1';
+$route['c_forms_up_p1'] = 'Fm_committee/adding';
+$route['cm_forms_up_p2'] = 'Fm_committee/adding_member';
+$route['c_edit_p1'] = 'Fm_committee/edit_committee';
+$route['cm_edit_p2'] = 'Fm_committee/edit_member';
+$route['c_del_p1'] = 'Fm_committee/del_committee';
+$route['cm_del_p2'] = 'Fm_committee/del_member';
+
+///////////////////// committee - END /////////////////////////
+///////////////////// ROUTE evaluation ////////////////////////
+//evaluation
+$route['Fm_evaluation'] = 'Fm_evaluation';
+$route['Fm_evaluation_das_p1'] = 'Fm_evaluation/sh1/$1';
+$route['Fm_evaluation_das_p2'] = 'Fm_evaluation/sh2/$1';
+$route['Fm_evaluation_das_p3'] = 'Fm_evaluation/sh3/$1';
+$route['Fm_evaluation_das_p4'] = 'Fm_evaluation/sh4/$1';
+$route['Fm_evaluation_das_p5'] = 'Fm_evaluation/sh5/$1';
+$route['Fm_evaluation_das_p6'] = 'Fm_evaluation/sh6/$1';
+$route['Fm_evaluation_das_p7'] = 'Fm_evaluation/sh7/$1';
+$route['Fm_evaluation_das_p8'] = 'Fm_evaluation/sh8/$1';
+$route['ass_ria_forms_p1'] = 'Fm_evaluation/forms/$1';
+$route['ass_ria_lvl_forms_p2'] = 'Fm_evaluation/forms/$1';
+$route['ass_ria_com_forms_p3'] = 'Fm_evaluation/forms/$1';
+$route['ass_ria_com_lvl_forms_p4'] = 'Fm_evaluation/forms/$1';
+$route['sc_ass_forms_p5'] = 'Fm_evaluation/forms/$1';
+$route['sc_ass_ria_forms_p6'] = 'Fm_evaluation/forms/$1';
+$route['sc_ass_res_forms_p7'] = 'Fm_evaluation/forms/$1';
+$route['achie_ass_forms_p8'] = 'Fm_evaluation/forms/$1';
+$route['ass_ria_forms_up_p1'] = 'Fm_evaluation/insert_ass_ria';
+$route['ass_ria_lvl_forms_up_p2'] = 'Fm_evaluation/insert_ass_ria_lvl';
+$route['ass_ria_com_forms_up_p3'] = 'Fm_evaluation/insert_ass_ria_com';
+$route['ass_ria_com_lvl_forms_up_p4'] = 'Fm_evaluation/insert_ass_ria_com_lvl';
+$route['sc_ass_forms_up_p5'] = 'Fm_evaluation/insert_sc_ass';
+$route['sc_ass_ria_forms_up_p6'] = 'Fm_evaluation/insert_sc_ass_ria';
+$route['sc_ass_res_forms_up_p7'] = 'Fm_evaluation/insert_sc_ass_res';
+$route['achie_ass_forms_up_p8'] = 'Fm_evaluation/insert_achie_ass';
+$route['ass_ria_edit_p1'] = 'Fm_evaluation/edit_ass_ria';
+$route['ass_ria_lvl_edit_p2'] = 'Fm_evaluation/edit_ass_ria_lvl';
+$route['ass_ria_com_edit_p3'] = 'Fm_evaluation/edit_ass_ria_com';
+$route['ass_ria_com_lvl_edit_p4'] = 'Fm_evaluation/edit_ass_ria_com_lvl';
+$route['sc_ass_edit_p5'] = 'Fm_evaluation/edit_sc_ass';
+$route['sc_ass_ria_edit_p6'] = 'Fm_evaluation/edit_sc_ass_ria';
+$route['sc_ass_res_edit_p7'] = 'Fm_evaluation/edit_sc_ass_res';
+$route['achie_ass_edit_p8'] = 'Fm_evaluation/edit_achie_ass';
+$route['ass_ria_del_p1'] = 'Fm_evaluation/del_ass_ria';
+$route['ass_ria_lvl_del_p2'] = 'Fm_evaluation/del_ass_ria_lvl';
+$route['ass_ria_com_del_p3'] = 'Fm_evaluation/del_ass_ria_com';
+$route['ass_ria_com_lvl_del_p4'] = 'Fm_evaluation/del_ass_ria_com_lvl';
+$route['sc_ass_del_p5'] = 'Fm_evaluation/del_sc_ass';
+$route['sc_ass_ria_del_p6'] = 'Fm_evaluation/del_sc_ass_ria';
+$route['sc_ass_res_del_p7'] = 'Fm_evaluation/del_sc_ass_res';
+$route['achie_ass_del_p8'] = 'Fm_evaluation/del_achie_ass';
+
+
+///////////////////// evaluation - END /////////////////////////
+
 

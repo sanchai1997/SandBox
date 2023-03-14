@@ -38,12 +38,12 @@
             </div>
             <div class="col-lg-9" style="padding-right: 25px;">
                 <a href="<?php echo site_url(
-                    'Fm_committee/committee?page=sh1'
+                    'Fm_committee_das_p1?page=sh1'
                 ); ?>" style="float: right;" class="btn btn-sm btn-light"
                     data-mdb-ripple-color="dark">ข้อมูลอำนาจและหน้าที่ของคณะกรรมการขับเคลื่อน</a>
                 <h5 style="float: right;"> | </h5>
                 <a href="<?php echo site_url(
-                    'Fm_committee/member?page=sh2'
+                    'Fm_committee_das_p2?page=sh2'
                 ); ?>" style="float: right;" class="btn btn-sm btn-light"
                     data-mdb-ripple-color="dark">ข้อมูลรายชื่อคณะกรรมการ</a>
                 <h5 style="float: right;"> | </h5>
@@ -113,7 +113,7 @@
                     </div>
                     <div class="col">
                         <h5 style="float: right; padding: 15px;" class="card-title"><a href="<?php echo site_url(
-                                    'Fm_committee/form_page?page=sh1'
+                                    'c_forms_p1?page=sh1'
                                 ); ?>" class="btn btn-success">เพิ่มข้อมูลคำสั่งแต่งตั้งคณะกรรมการ</a>
                         </h5>
                     </div>
@@ -174,7 +174,7 @@
                                                 <button type="button" class="btn btn-secondary"
                                                     data-bs-dismiss="modal">ยกเลิก</button>
                                                 <form method="post"
-                                                    action="<?php echo site_url('Fm_committee/del_committee'); ?>">
+                                                    action="<?php echo site_url('c_del_p1'); ?>">
                                                     <input type="hidden" name="id" value="<?php echo $show->id; ?>">
                                                     <div class="d-flex justify-content-center">
                                                         <button name="Submit" type="submit"
@@ -212,7 +212,7 @@
                     </div>
                     <div class="col">
                         <h5 style="float: right; padding: 15px;" class="card-title"><a href="<?php echo site_url(
-                                    'Fm_committee/form_page?page=sh2'
+                                    'cm_forms_p2?page=sh2'
                                 ); ?>" class="btn btn-success">เพิ่มข้อมูลรายชื่อคณะกรรมการ</a></h5>
                     </div>
                 </div>
@@ -273,7 +273,7 @@
                                                 <button type="button" class="btn btn-secondary"
                                                     data-bs-dismiss="modal">ยกเลิก</button>
                                                 <form method="post"
-                                                    action="<?php echo site_url('Fm_committee/del_member'); ?>">
+                                                    action="<?php echo site_url('cm_del_p2'); ?>">
                                                     <input type="hidden" name="id" value="<?php echo $show_member->id; ?>">
                                                     <div class="d-flex justify-content-center">
                                                         <button name="Submit" type="submit"
@@ -318,7 +318,7 @@ foreach ($query as $show) {
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form action="<?php echo site_url('Fm_committee/edit_committee'); ?>" method="post"
+                    <form action="<?php echo site_url('c_edit_p1'); ?>" method="post"
                         enctype="multipart/form-data">
                         <input type="hidden" name="id" value="<?php echo $show->id ?>">
                         <div class="row mb-3">
@@ -486,7 +486,7 @@ foreach ($query as $show) {
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form action="<?php echo site_url('Fm_committee/edit_member'); ?>" method="post"
+                    <form action="<?php echo site_url('cm_edit_p2'); ?>" method="post"
                         enctype="multipart/form-data">
                         <input type="hidden" name="id" value="<?php echo $show->id ?>">
                         <h5 class="card-title ">ข้อมูลรายชื่อคณะกรรมการ</h5>
