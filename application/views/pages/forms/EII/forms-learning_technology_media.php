@@ -46,7 +46,7 @@
             }  ?>
             <?php if($page=='sh1'){  ?>
                         <!-- start Form ข้อมูลเทคโนโลยี และสื่อการเรียนรู้ -->
-                        <form action="<?php echo site_url('Fm_lear_tech_media/adding_sh1'); ?>" method="post"enctype="multipart/form-data">
+                        <form action="<?php echo site_url('LTM_forms_up_p1'); ?>" method="post"enctype="multipart/form-data">
                             <div class="row mb-3">
                                 <div class="form-floating">
                                     <input type="text" class="form-control" id="floatingName"
@@ -161,7 +161,7 @@
                         </form><!-- End Form ข้อมูลเทคโนโลยี และสื่อการเรียนรู้ -->
                         <?php  } ?>
                         <?php if($page=='sh2'){ ?>
-                          <form action="<?php echo site_url('Fm_lear_tech_media/adding_sh2'); ?>" method="post" enctype="multipart/form-data">
+                          <form action="<?php echo site_url('LTMC_forms_up_p2'); ?>" method="post" enctype="multipart/form-data">
                             <div class="row mb-3">
                                 <div class="form-floating">
                                     <input type="text" class="form-control" id="floatingName"

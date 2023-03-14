@@ -102,7 +102,7 @@
         </a>
       </li>
       <li>
-        <a href="<?php echo site_url('Fm_committee/committee') ?>">
+        <a href="<?php echo site_url('Fm_committee') ?>">
           <i class="bi bi-circle"></i><span>ข้อมูลเกี่ยวกับอำนาจหน้าที่</span>
         </a>
       </li>

@@ -39,7 +39,7 @@
                         <!-- start Form ข้อมูลบุคคลหรือหน่วยงานที่เข้ามามีส่วนร่วมในพื้นที่นวัตกรรมการศึกษา -->
                         <?php if ($page == 'sh1') { ?>
                         <form action="<?php echo site_url(
-                            'Fm_participant/adding_sh1'
+                            'par_forms_up_p1'
                         ); ?>" method="post"
                             enctype="multipart/form-data">
                            
@@ -95,7 +95,7 @@
                         <?php if ($page == 'sh2') { ?>
                         <!-- start Form ข้อมูลการติดต่อของผู้มีส่วนร่วมในพื้นที่ -->
                         <form action="<?php echo site_url(
-                            'Fm_participant/adding_sh2'
+                            'pc_forms_up_p2'
                         ); ?>" method="post"
                             enctype="multipart/form-data">
                             
@@ -174,7 +174,7 @@
                         <?php if ($page == 'sh3') { ?>
                         <!-- start Form ข้อมูลการมีส่วนร่วมของผู้เข้ามามีส่วนร่วมในพื้นที่ -->
                         <form action="<?php echo site_url(
-                            'Fm_participant/adding_sh3'
+                            'pcp_forms_up_p3'
                         ); ?>" method="post"
                             enctype="multipart/form-data">
 
@@ -278,7 +278,7 @@
                         <?php if ($page == 'sh4') { ?>
                         <!-- start Form ข้อมูลความคิดเห็นต่อผู้เข้ามามีส่วนร่วมในพื้นที่ -->
                         <form action="<?php echo site_url(
-                            'Fm_participant/adding_sh4'
+                            'pn_forms_up_p4'
                         ); ?>" method="post"
                             enctype="multipart/form-data">
                            

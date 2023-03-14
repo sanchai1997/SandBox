@@ -37,8 +37,8 @@ class best_practice_model extends CI_Model {
 		$query=$this->db->insert('BEST_PRACTICE',$data);
 		if($query){
 			session_start(); // เริ่มต้น session
-			$_SESSION['success'] = "เพิ่มข้อมูลเทคโนโลยี และสื่อการเรียนรู้สำเร็จ !"; // กำหนดค่า success ใน session เป็น true
-			header("Location: " . site_url('Fm_best_practice/sh1?page=sh1')); // ไปยังหน้าก่อนหน้านี้
+			$_SESSION['success'] = "เพิ่มข้อมูลเรียบร้อย !"; // กำหนดค่า success ใน session เป็น true
+			header("Location: " . site_url('Fm_best_practice_das_p1?page=sh1')); // ไปยังหน้าก่อนหน้านี้
 			
 		} else {
 			echo 'false';
@@ -86,7 +86,7 @@ public function edit_BP()
 			if($query){
 				session_start(); // เริ่มต้น session
 				$_SESSION['success'] = "แก้ไขสำเร็จ !"; // กำหนดค่า success ใน session เป็น true
-				header("Location: " . site_url('Fm_best_practice/sh1?page=sh1')); // ไปยังหน้าก่อนหน้านี้
+				header("Location: " . site_url('Fm_best_practice_das_p1?page=sh1')); // ไปยังหน้าก่อนหน้านี้
 				
 			} else {
 				echo 'false';
@@ -113,7 +113,7 @@ public function edit_BP()
 			if($query){
 				session_start(); // เริ่มต้น session
 				$_SESSION['success'] = "แก้ไขสำเร็จ !"; // กำหนดค่า success ใน session เป็น true
-				header("Location: " . site_url('Fm_best_practice/sh1?page=sh1')); // ไปยังหน้าก่อนหน้านี้
+				header("Location: " . site_url('Fm_best_practice_das_p1?page=sh1')); // ไปยังหน้าก่อนหน้านี้
 				
 			} else {
 				echo 'false';
@@ -125,17 +125,17 @@ public function edit_BP()
 	
 }
 public function del_BP(){
-	$status = '0';
+	$status = '1';
 	$data = array(
 				
-		'del_status' => $status 
+		'DeleteStatus' => $status 
 	);
 	$this->db->where('id', $this->input->post('id'));
 			$query=$this->db->update('best_practice',$data);
 			if($query){
 				session_start(); // เริ่มต้น session
 				$_SESSION['success'] = "ลบสำเร็จ !"; // กำหนดค่า success ใน session เป็น true
-				header("Location: " . site_url('Fm_best_practice/sh1?page=sh1')); // ไปยังหน้าก่อนหน้านี้
+				header("Location: " . site_url('Fm_best_practice_das_p1?page=sh1')); // ไปยังหน้าก่อนหน้านี้
 				
 			} else {
 				echo 'false';
@@ -164,8 +164,8 @@ public function del_BP(){
 		$query=$this->db->insert('BEST_PRACTICE_CREATOR',$data);
 		if($query){
 			session_start(); // เริ่มต้น session
-			$_SESSION['success'] = "เพิ่มข้อมูลเทคโนโลยี และสื่อการเรียนรู้สำเร็จ !"; // กำหนดค่า success ใน session เป็น true
-			header("Location: " . site_url('Fm_best_practice/sh2?page=sh2')); // ไปยังหน้าก่อนหน้านี้
+			$_SESSION['success'] = "เพิ่มข้อมูลเรียบร้อย !"; // กำหนดค่า success ใน session เป็น true
+			header("Location: " . site_url('Fm_best_practice_das_p2?page=sh2')); // ไปยังหน้าก่อนหน้านี้
 			
 		} else {
 			echo 'false';
@@ -196,24 +196,24 @@ public function del_BP(){
 		if($query){
 			session_start(); // เริ่มต้น session
 			$_SESSION['success'] = "แก้ไขสำเร็จ !"; // กำหนดค่า success ใน session เป็น true
-			header("Location: " . site_url('Fm_best_practice/sh2?page=sh2')); // ไปยังหน้าก่อนหน้านี้
+			header("Location: " . site_url('Fm_best_practice_das_p2?page=sh2')); // ไปยังหน้าก่อนหน้านี้
 			
 		} else {
 			echo 'false';
 		}
     }
 	public function del_BPC(){
-		$status = '0';
+		$status = '1';
 		$data = array(
 					
-			'del_status' => $status 
+			'DeleteStatus' => $status 
 		);
 		$this->db->where('id', $this->input->post('id'));
 				$query=$this->db->update('BEST_PRACTICE_CREATOR',$data);
 				if($query){
 					session_start(); // เริ่มต้น session
 					$_SESSION['success'] = "ลบสำเร็จ !"; // กำหนดค่า success ใน session เป็น true
-					header("Location: " . site_url('Fm_best_practice/sh2?page=sh2')); // ไปยังหน้าก่อนหน้านี้
+					header("Location: " . site_url('Fm_best_practice_das_p2?page=sh2')); // ไปยังหน้าก่อนหน้านี้
 					
 				} else {
 					echo 'false';
@@ -224,7 +224,7 @@ public function del_BP(){
 		$this->db->select('BP.*,BPC.*');
 		$this->db->from('best_practice as BP ');
         $this->db->join('BEST_PRACTICE_CREATOR as BPC','BP.BestPracticeID=BPC.BestPracticeID');
-		$this->db->where('BP.del_status=1');
+		$this->db->where('BP.DeleteStatus=0');
 		$query = $this->db->get();
 		return $query->result();
 	}
@@ -232,7 +232,7 @@ public function del_BP(){
 	{
 		$this->db->select('*');
 		$this->db->from('best_practice as bp');
-		$this->db->where('BP.del_status=1');
+		$this->db->where('BP.DeleteStatus=0');
 		$query = $this->db->get();
 		return $query->result();
 	}
@@ -240,7 +240,7 @@ public function del_BP(){
 	{
 		$this->db->select('*');
 		$this->db->from('BEST_PRACTICE_CREATOR as BPC');
-		$this->db->where('BPC.del_status=1');
+		$this->db->where('BPC.DeleteStatus=0');
 		$query = $this->db->get();
 		return $query->result();
 	}

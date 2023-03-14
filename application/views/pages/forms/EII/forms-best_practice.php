@@ -29,7 +29,7 @@
 
                         <!-- start Form ข้อมูลแนวปฏิบัติที่เป็นเลิศในการจัดการศึกษา -->
                         <form action="<?php echo site_url(
-                            'Fm_best_practice/add_sh1'
+                            'BP_forms_up_p1'
                         ); ?>" method="post" enctype="multipart/form-data">
 
                             <div class="row mb-3">
@@ -176,7 +176,7 @@
 
                         <!-- start Form ข้อมูลแนวปฏิบัติที่เป็นเลิศในการจัดการศึกษา -->
                         <form action="<?php echo site_url(
-                            'Fm_best_practice/add_sh2'
+                            'BPC_forms_up_p2'
                         ); ?>" method="post" enctype="multipart/form-data">
 
                             <div class="row mb-3">
@@ -307,7 +307,10 @@
                                     </label>
                                 </div>
                             </div>
-                            <button class="btn">save</button>
+                             <div class="d-flex justify-content-center">
+                                                        <button name="Submit" type="submit"
+                                                            class="btn btn-primary">บันทึกข้อมูล</button>
+                                                    </div>
                         </form><!-- ข้อมูลแนวปฏิบัติที่เป็นเลิศในการจัดการศึกษา -->
                         <?php } ?>
                     </div>

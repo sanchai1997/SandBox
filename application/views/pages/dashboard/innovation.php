@@ -196,7 +196,7 @@
                                                             <button type="button" class="btn btn-secondary"
                                                                 data-bs-dismiss="modal">ยกเลิก</button>
                                                             <form method="post"
-                                                                action="<?php echo site_url('Fm_innovation/del_sh1'); ?>">
+                                                                action="<?php echo site_url('del_p1'); ?>">
                                                                 <input type="hidden" name="id"
                                                                     value="<?php echo $show->id; ?>">
                                                                 <div class="d-flex justify-content-center">
@@ -311,7 +311,7 @@
                                                                         <button type="button" class="btn btn-secondary"
                                                                             data-bs-dismiss="modal">ยกเลิก</button>
                                                                         <form method="post"
-                                                                            action="<?php echo site_url('Fm_innovation/del_sh2'); ?>">
+                                                                            action="<?php echo site_url('del_p2'); ?>">
                                                                             <input type="hidden" name="id"
                                                                                 value="<?php echo $show->id; ?>">
                                                                             <div class="d-flex justify-content-center">

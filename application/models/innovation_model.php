@@ -62,7 +62,7 @@ class innovation_model extends CI_Model {
 					if($query){
 						session_start(); // เริ่มต้น session
 						$_SESSION['success'] = "เพิ่มข้อมูลนวัตกรรมการศึกษาสำเร็จ !"; // กำหนดค่า success ใน session เป็น true
-						header("Location:". site_url('Fm_innovation/sh1?page=sh1')); // ไปยังหน้าก่อนหน้านี้. 
+						header("Location:". site_url('Fm_innovation_das_p1?page=sh1')); // ไปยังหน้าก่อนหน้านี้. 
 						
 					} else {
 						echo 'false';
@@ -130,26 +130,26 @@ class innovation_model extends CI_Model {
 					if($query){
 						session_start(); // เริ่มต้น session
 						$_SESSION['success'] = "แก้ไขสำเร็จ !"; // กำหนดค่า success ใน session เป็น true
-						header("Location:". site_url('Fm_innovation/sh1?page=sh1')); // ไปยังหน้าก่อนหน้านี้. 
+						header("Location:". site_url('Fm_innovation_das_p1?page=sh1')); // ไปยังหน้าก่อนหน้านี้. 
 						
 					} else {
 						echo 'false';
 					}
     }
 	public function del_in_model(){
-		$velue = "0";
+		$velue = "1";
 		$data = array(
 					
 			
-			'del_status' => $velue
+			'DeleteStatus' => $velue
 			
 		);
 		$this->db->where('id', $this->input->post('id'));
 		$query=$this->db->update('INNOVATION',$data);
 					   if($query){
 						   session_start(); // เริ่มต้น session
-						   $_SESSION['success'] = "แก้ไขสำเร็จ !"; // กำหนดค่า success ใน session เป็น true
-						   header("Location:". site_url('Fm_innovation/sh1?page=sh1')); // ไปยังหน้าก่อนหน้านี้. 
+						   $_SESSION['success'] = "ลบข้อมูลเรียบร้อย !"; // กำหนดค่า success ใน session เป็น true
+						   header("Location:". site_url('Fm_innovation_das_p1?page=sh1')); // ไปยังหน้าก่อนหน้านี้. 
 						   
 					   } else {
 						   echo 'false';
@@ -181,7 +181,7 @@ class innovation_model extends CI_Model {
 		if($query){
 			session_start(); // เริ่มต้น session
 			$_SESSION['success'] = "เพิ่มข้อมูลนวัตกรรมการศึกษาสำเร็จ !"; // กำหนดค่า success ใน session เป็น true
-			header("Location:". site_url('Fm_innovation/sh2?page=sh2')); // ไปยังหน้าก่อนหน้านี้. 
+			header("Location:". site_url('Fm_innovation_das_p2?page=sh2')); // ไปยังหน้าก่อนหน้านี้. 
 			
 		} else {
 			echo 'false';
@@ -214,7 +214,7 @@ class innovation_model extends CI_Model {
 		if($query){
 			session_start(); // เริ่มต้น session
 			$_SESSION['success'] = "แก้ไขสำเร็จ !"; // กำหนดค่า success ใน session เป็น true
-			header("Location:". site_url('Fm_innovation/sh2?page=sh2')); // ไปยังหน้าก่อนหน้านี้. 
+			header("Location:". site_url('Fm_innovation_das_p2?page=sh2')); // ไปยังหน้าก่อนหน้านี้. 
 			
 		} else {
 			echo 'false';
@@ -227,19 +227,19 @@ class innovation_model extends CI_Model {
 		// print_r($_POST);
 		// echo'</pre>';
 		// exit;
-		$value = "0";
+		$value = "1";
 		$data = array(
          
             
-            'del_status' => $value
+            'DeleteStatus' => $value
             
         );
 		$this->db->where('id', $this->input->post('id'));
 		$query=$this->db->update('innovation_creator',$data);
 		if($query){
 			session_start(); // เริ่มต้น session
-			$_SESSION['success'] = "แก้ไขสำเร็จ !"; // กำหนดค่า success ใน session เป็น true
-			header("Location:". site_url('Fm_innovation/sh2?page=sh2')); // ไปยังหน้าก่อนหน้านี้. 
+			$_SESSION['success'] = "ลบข้อมูลสำเร็จ !"; // กำหนดค่า success ใน session เป็น true
+			header("Location:". site_url('Fm_innovation_das_p2?page=sh2')); // ไปยังหน้าก่อนหน้านี้. 
 			
 		} else {
 			echo 'false';
@@ -250,7 +250,7 @@ class innovation_model extends CI_Model {
 		$this->db->select('in.*,in_tor.*');
 		$this->db->from('INNOVATION as in');
 		$this->db->join('INNOVATION_CREATOR as in_tor' , 'in.InnovationID=in_tor.InnovationID');
-		$this->db->where('in.del_status=1');
+		$this->db->where('in.DeleteStatus=0');
 		$query = $this->db->get();
 		return $query->result();
 	}
@@ -258,7 +258,7 @@ class innovation_model extends CI_Model {
 	{
 		$this->db->select('*');
 		$this->db->from('INNOVATION');
-		$this->db->where('del_status=1');
+		$this->db->where('DeleteStatus=0');
 		$query = $this->db->get();
 		return $query->result();
 	}
@@ -266,7 +266,7 @@ class innovation_model extends CI_Model {
 	{
 		$this->db->select('*');
 		$this->db->from('INNOVATION_CREATOR');
-		$this->db->where('del_status=1');
+		$this->db->where('DeleteStatus=0');
 		$query = $this->db->get();
 		return $query->result();
 	}
