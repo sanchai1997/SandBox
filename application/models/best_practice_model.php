@@ -222,7 +222,7 @@ public function del_BP(){
     public function show_index() 
 	{
 		$this->db->select('BP.*,BPC.*');
-		$this->db->from('best_practice as BP ');
+		$this->db->from('BEST_PRACTICE as BP ');
         $this->db->join('BEST_PRACTICE_CREATOR as BPC','BP.BestPracticeID=BPC.BestPracticeID');
 
 		$query = $this->db->get();
@@ -231,7 +231,7 @@ public function del_BP(){
     public function show_BP() 
 	{
 		$this->db->select('*');
-		$this->db->from('best_practice as bp');
+		$this->db->from('BEST_PRACTICE as bp');
 		$this->db->where('BP.DeleteStatus=0');
 		$query = $this->db->get();
 		return $query->result();
