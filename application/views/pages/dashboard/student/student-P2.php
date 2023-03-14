@@ -8,7 +8,7 @@
                 <nav>
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="main">Home</a></li>
-                        <li class="breadcrumb-item">Form</li>
+                        <li class="breadcrumb-item">Dashboard</li>
                         <li class="breadcrumb-item active">Student</li>
                     </ol>
                 </nav>
@@ -55,7 +55,7 @@
                             <th scope="col">นามสกุล</th>
                             <th style="text-align: center;" scope="col">สถานะภาพนักเรียน</th>
                             <th style="text-align: center;" scope="col">ดูรายละเอียด</th>
-                            <th style="text-align: center;" scope="col">ลบข้อมูล</th>
+                            <th style="text-align: center;" scope="col">ปฎิบัติ</th>
 
                         </tr>
                     </thead>
@@ -80,7 +80,10 @@
                                     <center><?= $STUDENT->STUDENT_STATUS_NAME; ?></center>
                                 </td>
                                 <td style="text-align: center;"><button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#Modal<?= $STUDENT->StudentReferenceID; ?>"><i class="bi bi-card-list"></i></button></td>
-                                <td style="text-align: center;"><button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#Delete<?= $STUDENT->StudentReferenceID; ?>"><i class=" bi bi-trash"></i></button></td>
+                                <td style="text-align: center;">
+                                    <a href="edit-forms-student?StudentReferenceID=<?= $STUDENT->StudentReferenceID; ?>" class="btn btn-warning"><i class="bi bi-pencil-square"></i></a>
+                                    &nbsp;<button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#Delete<?= $STUDENT->StudentReferenceID; ?>"><i class=" bi bi-trash"></i></button>
+                                </td>
 
                             </tr>
                         <?php } ?>
@@ -118,7 +121,7 @@ foreach ($result->result() as $STUDENT) {
                 <!---------------------   --------------------->
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel" style="padding-left: 30px; padding-top: 15px;"> <i class="bi bi-card-heading"></i> ข้อมูลรายละเอียดนักเรียน</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <!--<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>-->
                     <hr>
                 </div>
                 <div class="modal-body" style="padding-left: 70px; padding-top: 20px;">
@@ -613,8 +616,7 @@ foreach ($result->result() as $STUDENT) {
 
 
                 <div class="modal-footer">
-                    <a href="edit-forms-student?StudentReferenceID=<?= $STUDENT->StudentReferenceID; ?>" class="btn btn-warning"><i class="bi bi-pencil-square"></i></a>
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><i class="bi bi-x-square"></i></button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ปิด</button>
                 </div>
             </div>
         </div>
@@ -637,7 +639,7 @@ foreach ($result->result() as $STUDENT) {
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLongTitle">ยืนยันการลบข้อมูล</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <!--<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>-->
                 </div>
                 <div class="modal-body">
                     <h6>

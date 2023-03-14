@@ -99,7 +99,7 @@
                 <label class="col-sm-2 col-form-label">คำนำหน้าชื่อ</label>
                 <div class="col-sm-10">
                   <select class="form-select" aria-label="Default select example" name="StudentPrefixCode" required>
-                    <option selected>คำนำหน้าชื่อ</option>
+                    <option selected>เลือก</option>
                     <?php
                     $result = $this->db->query('SELECT * FROM CLS_PREFIX LIMIT 5');
                     foreach ($result->result() as $PREFIX) {
@@ -179,7 +179,7 @@
                     <select class="form-select" id="BIRTH_PROVINCE_CODE" aria-label="BIRTH_PROVINCE_CODE" name="StudentBirthProvinceCode" required>
                       <option selected>เลือก</option>
                       <?php
-                      $result = $this->db->query('SELECT * FROM CLS_PROVINCE GROUP BY PROVINCE_NAME');
+                      $result = $this->db->query('SELECT * FROM CLS_PROVINCE');
                       foreach ($result->result() as $PROVINCE) {
                       ?>
                         <option value="<?= $PROVINCE->PROVINCE_CODE; ?>"><?= $PROVINCE->PROVINCE_NAME; ?></option>
@@ -196,7 +196,7 @@
                       <select class="form-select" id="NATIONALITY_CODE" aria-label="NATIONALITY_CODE" name="StudentNationalityCode" required>
                         <option selected>เลือก</option>
                         <?php
-                        $result = $this->db->query('SELECT * FROM CLS_NATIONALITY GROUP BY NATIONALITY_NAME ASC');
+                        $result = $this->db->query('SELECT * FROM CLS_NATIONALITY ');
                         foreach ($result->result() as $NATIONALITY) {
                         ?>
                           <option value="<?= $NATIONALITY->NATIONALITY_CODE; ?>"><?= $NATIONALITY->NATIONALITY_NAME; ?></option>
@@ -214,7 +214,7 @@
                       <select class="form-select" id="RACE_CODE" aria-label="RACE_CODE" name="StudentRaceCode" required>
                         <option selected>เลือก</option>
                         <?php
-                        $result = $this->db->query('SELECT * FROM CLS_RACE GROUP BY RACE_NAME ASC');
+                        $result = $this->db->query('SELECT * FROM CLS_RACE');
                         foreach ($result->result() as $RACE) {
                         ?>
                           <option value="<?= $RACE->RACE_CODE; ?>"><?= $RACE->RACE_NAME; ?></option>
@@ -250,7 +250,7 @@
                       <select class="form-select" id="LANGUAGE_CODE" aria-label="LANGUAGE_CODE" name="StudentLanguageCode" required>
                         <option selected>เลือก</option>
                         <?php
-                        $result = $this->db->query('SELECT * FROM CLS_LANGUAGE GROUP BY LANGUAGE_NAME ASC');
+                        $result = $this->db->query('SELECT * FROM CLS_LANGUAGE');
                         foreach ($result->result() as $LANGUAGE) {
                         ?>
                           <option value="<?= $LANGUAGE->LANGUAGE_CODE; ?>"><?= $LANGUAGE->LANGUAGE_NAME; ?></option>
@@ -268,7 +268,7 @@
                       <select class="form-select" id="OTHER_LANGUAGE_CODE" aria-label="OTHER_LANGUAGE_CODE" name="StudentOtherLanguageCode">
                         <option selected>เลือก</option>
                         <?php
-                        $result = $this->db->query('SELECT * FROM CLS_LANGUAGE GROUP BY LANGUAGE_NAME ASC');
+                        $result = $this->db->query('SELECT * FROM CLS_LANGUAGE');
                         foreach ($result->result() as $LANGUAGE) {
                         ?>
                           <option value="<?= $LANGUAGE->LANGUAGE_CODE; ?>"><?= $LANGUAGE->LANGUAGE_NAME; ?></option>
@@ -364,7 +364,7 @@
                     <select class="form-select" id="PROVINCE" aria-label="PROVINCE" name="StudentOfficialAddressProvinceCode" required>
                       <option selected>เลือก</option>
                       <?php
-                      $result = $this->db->query('SELECT * FROM CLS_PROVINCE GROUP BY PROVINCE_NAME ASC');
+                      $result = $this->db->query('SELECT * FROM CLS_PROVINCE');
                       foreach ($result->result() as $PROVINCE) {
                       ?>
                         <option value="<?= $PROVINCE->PROVINCE_CODE; ?>"><?= $PROVINCE->PROVINCE_NAME; ?></option>
@@ -380,7 +380,7 @@
                     <select class="form-select" id="DISTRICT" aria-label="DISTRICT" name="StudentOfficialAddressDistrictCode" required>
                       <option selected>เลือก</option>
                       <?php
-                      $result = $this->db->query('SELECT * FROM CLS_DISTRICT GROUP BY DISTRICT_NAME ASC');
+                      $result = $this->db->query('SELECT * FROM CLS_DISTRICT');
                       foreach ($result->result() as $DISTRICT) {
                       ?>
                         <option id="<?= $DISTRICT->PROVINCE_CODE; ?>" value="<?= $DISTRICT->DISTRICT_CODE; ?>"><?= $DISTRICT->DISTRICT_NAME; ?></option>
@@ -394,7 +394,7 @@
                     <select class="form-select" id="SUBDISTRICT" aria-label="SUBDISTRICT" name="StudentOfficialAddressSubdistrictCode" required>
                       <option selected>เลือก</option>
                       <?php
-                      $result = $this->db->query('SELECT * FROM CLS_SUBDISTRICT GROUP BY SUBDISTRICT_NAME ASC');
+                      $result = $this->db->query('SELECT * FROM CLS_SUBDISTRICT');
                       foreach ($result->result() as $SUBDISTRICT) {
                       ?>
                         <option id="<?= $SUBDISTRICT->DISTRICT_CODE; ?>" value="<?= $SUBDISTRICT->SUBDISTRICT_CODE; ?>"><?= $SUBDISTRICT->SUBDISTRICT_NAME; ?></option>
@@ -467,7 +467,7 @@
                     <select class="form-select" id="PROVINCE_SUB" aria-label="PROVINCE_SUB" name="StudentCurrentAddressProvinceCode" required>
                       <option selected>เลือก</option>
                       <?php
-                      $result = $this->db->query('SELECT * FROM CLS_PROVINCE WHERE PROVINCE_CODE = 91 GROUP BY PROVINCE_NAME ASC');
+                      $result = $this->db->query('SELECT * FROM CLS_PROVINCE WHERE PROVINCE_CODE = 91');
                       foreach ($result->result() as $PROVINCE) {
                       ?>
                         <option value="<?= $PROVINCE->PROVINCE_CODE; ?>"><?= $PROVINCE->PROVINCE_NAME; ?></option>
@@ -483,7 +483,7 @@
                     <select class="form-select" id="DISTRICT_SUB" aria-label="DISTRICT_SUB" name="StudentCurrentAddressDistrictCode" required>
                       <option selected>เลือก</option>
                       <?php
-                      $result = $this->db->query('SELECT * FROM CLS_DISTRICT WHERE PROVINCE_CODE = 91 GROUP BY DISTRICT_NAME ASC');
+                      $result = $this->db->query('SELECT * FROM CLS_DISTRICT WHERE PROVINCE_CODE = 91');
                       foreach ($result->result() as $DISTRICT) {
                       ?>
                         <option id="<?= $DISTRICT->PROVINCE_CODE; ?>" value="<?= $DISTRICT->DISTRICT_CODE; ?>"><?= $DISTRICT->DISTRICT_NAME; ?></option>
@@ -497,7 +497,7 @@
                     <select class="form-select" id="SUBDISTRICT_SUB" aria-label="SUBDISTRICT_SUB" name="StudentCurrentAddressSubdistrictCode" required>
                       <option selected>เลือก</option>
                       <?php
-                      $result = $this->db->query('SELECT * FROM CLS_SUBDISTRICT WHERE PROVINCE_CODE = 91 GROUP BY SUBDISTRICT_NAME ASC');
+                      $result = $this->db->query('SELECT * FROM CLS_SUBDISTRICT WHERE PROVINCE_CODE = 91');
                       foreach ($result->result() as $SUBDISTRICT) {
                       ?>
                         <option id="<?= $SUBDISTRICT->DISTRICT_CODE; ?>" value="<?= $SUBDISTRICT->SUBDISTRICT_CODE; ?>"><?= $SUBDISTRICT->SUBDISTRICT_NAME; ?></option>

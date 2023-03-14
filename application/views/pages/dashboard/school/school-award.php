@@ -7,7 +7,7 @@
                 <nav>
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="main">Home</a></li>
-                        <li class="breadcrumb-item">Form</li>
+                        <li class="breadcrumb-item">Dashboard</li>
                         <li class="breadcrumb-item active">Award</li>
                     </ol>
                 </nav>
@@ -60,7 +60,7 @@
                     </thead>
                     <tbody>
                         <?php
-                        $result = $this->db->query('SELECT * ,COUNT(AwardName) AS Total 
+                        $result = $this->db->query('SELECT SCHOOL_AWARD.SchoolID, SCHOOL.SchoolNameThai, COUNT(SCHOOL_AWARD.AwardName) AS Total 
                                     FROM SCHOOL_AWARD 
                                     INNER JOIN SCHOOL ON SCHOOL_AWARD.SchoolID = SCHOOL.SchoolID
                                     WHERE SCHOOL_AWARD.DeleteStatus = 0

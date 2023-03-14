@@ -492,7 +492,7 @@ foreach ($GetSchool as $SCHOOL_DETAIL) {
                                 </div>
                                 <div class="text-center">
                                     <a href="school" style="float: left;" class="btn btn-light">ยกเลิก</a>
-                                    <button style="float: right;" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#EDIT<?= $SCHOOL_DETAIL->SchoolID; ?>">ยืนยัน</button>
+                                    <button style="float: right;" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#EDIT<?= $SCHOOL_DETAIL->SchoolID; ?>">บันทึกข้อมูล</button>
                                 </div>
 
                                 <div class="modal fade" id="EDIT<?= $SCHOOL_DETAIL->SchoolID; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">

@@ -24,15 +24,16 @@
 <script src="assets/vendor/tinymce/tinymce.min.js"></script>
 <script src="assets/vendor/php-email-form/validate.js"></script>
 
+
 <!-- Template Main JS File -->
 <script src="assets/js/main.js"></script>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 
-
 <!-- Multiple Dropdown PROVINCE DISTRICT SUBDISTRICT -->
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+
 <script>
   $(document).ready(function() {
     $("#DISTRICT").children('option:gt(0)').hide();

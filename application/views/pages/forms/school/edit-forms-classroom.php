@@ -47,7 +47,7 @@ foreach ($result->result() as $CLASSROOM) {
 
                                 <div class="text-center">
                                     <a href="school-classroom-P2?SchoolID=<?= $CLASSROOM->SchoolID; ?>" style="float: left;" class="btn btn-light">ยกเลิก</a>
-                                    <button style="float: right;" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#EDIT<?= $CLASSROOM->SchoolID; ?><?= $CLASSROOM->ClassroomGradeLevelCode; ?>">ยืนยัน</button>
+                                    <button style="float: right;" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#EDIT<?= $CLASSROOM->SchoolID; ?><?= $CLASSROOM->ClassroomGradeLevelCode; ?>">บันทึกข้อมูล</button>
                                 </div>
 
                                 <div class="modal fade" id="EDIT<?= $CLASSROOM->SchoolID; ?><?= $CLASSROOM->ClassroomGradeLevelCode; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">

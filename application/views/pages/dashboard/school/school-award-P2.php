@@ -15,7 +15,7 @@
                 <nav>
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="main">Home</a></li>
-                        <li class="breadcrumb-item">Form</li>
+                        <li class="breadcrumb-item">Dashboard</li>
                         <li class="breadcrumb-item active">Award</li>
                     </ol>
                 </nav>
@@ -52,10 +52,10 @@
             <div class="card-body">
                 <div class="row">
                     <div class="col">
-                        <h5 class="card-title">รายละเอียดข้อมูล <span>| Table School-Award</span></h5>
+                        <h5 class="card-title">รายละเอียดข้อมูล <span>| Table School-Award</span> <a href="school-award" class="btn btn-secondary btn-sm" data-mdb-ripple-color="dark">ย้อนกลับ</a></h5>
                     </div>
                     <div class="col">
-                        <h5 style="float: right; padding: 15px;" class="card-title"><a href="school-award" class="btn btn-secondary" data-mdb-ripple-color="dark">ย้อนกลับ</a></h5>
+                        <h5 style="float: right; padding: 15px;" class="card-title"></h5>
                     </div>
                 </div>
                 <table class="table table-borderless datatable">
@@ -65,8 +65,7 @@
                             <th scope="col">ชื่อรางวัล</th>
                             <th style="text-align: center;" scope="col">แหล่งที่มา</th>
                             <th style="text-align: center;" scope="col">ระดับ</th>
-                            <th style="text-align: center;" scope="col">แก้ไขข้อมูล</th>
-                            <th style="text-align: center;" scope="col">ลบ</th>
+                            <th style="text-align: center;" scope="col">ปฎิบัติ</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -86,8 +85,8 @@
                                 <td><?= $AWARD->AwardSource; ?></td>
                                 <td><?= $AWARD->AWARD_LEVEL_NAME; ?></td>
                                 <td style="text-align: center;"><a href="edit-forms-award?SchoolID=<?= $AWARD->SchoolID; ?>&&AwardYear=<?= $AWARD->AwardYear; ?>&&AwardName=<?= $AWARD->AwardName; ?>" class="btn btn-warning"><i class="bi bi-pencil-square"></i></a>
+                                    &nbsp; <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#Delete<?= $AWARD->SchoolID; ?><?= $AWARD->AwardYear; ?><?= $AWARD->AwardName; ?>"><i class=" bi bi-trash"></i></button>
                                 </td>
-                                <td style="text-align: center;"><button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#Delete<?= $AWARD->SchoolID; ?><?= $AWARD->AwardYear; ?><?= $AWARD->AwardName; ?>"><i class=" bi bi-trash"></i></button></td>
                             </tr>
                         <?php } ?>
                     </tbody>
@@ -115,7 +114,7 @@ foreach ($result->result() as $AWARD) {
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLongTitle">ยืนยันการลบข้อมูล</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <!--<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>-->
                 </div>
                 <div class="modal-body">
                     <h6>
