@@ -1,5 +1,5 @@
 <?php
-class lear_tech_media_model extends CI_Model {
+class Lear_tech_media_model extends CI_Model {
 
     public function add_LTM()
     {

@@ -1,5 +1,5 @@
 <?php
-class participant_model extends CI_Model {
+class Participant_model extends CI_Model {
 
     public function add_par()
     {

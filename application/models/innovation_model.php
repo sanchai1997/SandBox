@@ -1,5 +1,5 @@
 <?php
-class innovation_model extends CI_Model {
+class Innovation_model extends CI_Model {
 
     public function add_in_model()
     {

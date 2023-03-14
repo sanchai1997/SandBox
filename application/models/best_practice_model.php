@@ -1,5 +1,5 @@
 <?php
-class best_practice_model extends CI_Model {
+class Best_practice_model extends CI_Model {
 
     public function add_BP()
     {

@@ -6,11 +6,11 @@ class Fm_best_practice extends CI_Controller {
 	public function __construct()
 	{
 			parent::__construct();
-			$this->load->model('best_practice_model');
+			$this->load->model('Best_practice_model');
 	}
 	public function index()
 	{
-		$data['query']=$this->best_practice_model->show_index();
+		$data['query']=$this->Best_practice_model->show_index();
 		$this->load->view('mycss');
         $this->load->view('templates/header');
         $this->load->view('templates/sidebar');
@@ -20,7 +20,7 @@ class Fm_best_practice extends CI_Controller {
 	}
 	public function sh1()
 	{
-		$data['query']=$this->best_practice_model->show_BP();
+		$data['query']=$this->Best_practice_model->show_BP();
 		$this->load->view('mycss');
         $this->load->view('templates/header');
         $this->load->view('templates/sidebar');
@@ -31,7 +31,7 @@ class Fm_best_practice extends CI_Controller {
 	public function sh2()
 	{
 		
-		$data['query']=$this->best_practice_model->show_BPC();
+		$data['query']=$this->Best_practice_model->show_BPC();
 		$this->load->view('mycss');
         $this->load->view('templates/header');
         $this->load->view('templates/sidebar');
@@ -56,41 +56,41 @@ class Fm_best_practice extends CI_Controller {
     }
 	public function add_sh1()
 	{
-		$this->best_practice_model->add_BP();
+		$this->Best_practice_model->add_BP();
 
 		
 	}
 	public function edit_sh1()
 	{
 		
-		$this->best_practice_model->edit_BP();
+		$this->Best_practice_model->edit_BP();
 
 		
 	}
 	public function del_sh1()
 	{
 		
-		$this->best_practice_model->del_BP();
+		$this->Best_practice_model->del_BP();
 
 		
 	}
 	public function add_sh2()
 	{
-		$this->best_practice_model->add_BPC();
+		$this->Best_practice_model->add_BPC();
 
 		
 	}
 	public function edit_sh2()
 	{
 		
-		$this->best_practice_model->edit_BPC();
+		$this->Best_practice_model->edit_BPC();
 
 		
 	}
 	public function del_sh2()
 	{
 		
-		$this->best_practice_model->del_BPC();
+		$this->Best_practice_model->del_BPC();
 
 		
 	}

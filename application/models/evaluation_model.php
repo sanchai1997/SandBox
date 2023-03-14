@@ -1,5 +1,5 @@
 <?php
-class evaluation_model extends CI_Model
+class Evaluation_model extends CI_Model
 {
 
 	public function insert_ass_ria() //sh1

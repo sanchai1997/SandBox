@@ -7,12 +7,12 @@ class Fm_lear_tech_media extends CI_Controller {
 	public function __construct()
 	{
 			parent::__construct();
-			$this->load->model('lear_tech_media_model');
+			$this->load->model('Lear_tech_media_model');
 	}
 
 	public function index()
 	{
-		$data['query']=$this->lear_tech_media_model->show_index();
+		$data['query']=$this->Lear_tech_media_model->show_index();
 		$this->load->view('mycss');
         $this->load->view('templates/header');
         $this->load->view('templates/sidebar');
@@ -22,7 +22,7 @@ class Fm_lear_tech_media extends CI_Controller {
 	}
 	public function sh1()
 	{
-		$data['query']=$this->lear_tech_media_model->show_LTM();
+		$data['query']=$this->Lear_tech_media_model->show_LTM();
 		$this->load->view('mycss');
         $this->load->view('templates/header');
         $this->load->view('templates/sidebar');
@@ -32,7 +32,7 @@ class Fm_lear_tech_media extends CI_Controller {
 	}
 	public function sh2()
 	{
-		$data['query']=$this->lear_tech_media_model->show_LTMC();
+		$data['query']=$this->Lear_tech_media_model->show_LTMC();
 		$this->load->view('mycss');
         $this->load->view('templates/header');
         $this->load->view('templates/sidebar');
@@ -57,37 +57,37 @@ class Fm_lear_tech_media extends CI_Controller {
     }
 	public function adding_sh1()
 	{
-		$this->lear_tech_media_model->add_LTM();
+		$this->Lear_tech_media_model->add_LTM();
 
 		
 	}
 	public function edit_sh1()
 	{
-		$this->lear_tech_media_model->edit_LTM();
+		$this->Lear_tech_media_model->edit_LTM();
 
 		
 	}
 	public function del_sh1()
 	{
-		$this->lear_tech_media_model->del_LTM();
+		$this->Lear_tech_media_model->del_LTM();
 
 		
 	}
 	public function adding_sh2()
 	{
-		$this->lear_tech_media_model->add_LTMC();
+		$this->Lear_tech_media_model->add_LTMC();
 
 		
 	}
 	public function edit_sh2()
 	{
-		$this->lear_tech_media_model->edit_LTMC();
+		$this->Lear_tech_media_model->edit_LTMC();
 
 		
 	}
 	public function del_sh2()
 	{
-		$this->lear_tech_media_model->del_LTMC();
+		$this->Lear_tech_media_model->del_LTMC();
 
 		
 	}

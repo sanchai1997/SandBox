@@ -1,5 +1,5 @@
 <?php
-class committee_model extends CI_Model {
+class Committee_model extends CI_Model {
 
     public function add_committee()
     {
