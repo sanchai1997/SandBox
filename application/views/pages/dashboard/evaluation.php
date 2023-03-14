@@ -598,14 +598,14 @@
 
                             <td style="text-align: center;">
                                 <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                                    data-bs-target="#edit_sc_ass<?php echo $show->id; ?>"><i
+                                    data-bs-target="#edit_sc_ass<?php echo $show->ID; ?>"><i
                                         class="bi bi-card-list"></i></button>
                                 <button type="button" class="btn btn-danger" data-bs-toggle="modal"
-                                    data-bs-target="#del_sc_ass<?php echo $show->id; ?>">
+                                    data-bs-target="#del_sc_ass<?php echo $show->ID; ?>">
                                     <i class="bi bi-trash"></i>
                                 </button>
                                 <!-- Modal -->
-                                <div class="modal fade" id="del_sc_ass<?php echo $show->id; ?>" tabindex="-1"
+                                <div class="modal fade" id="del_sc_ass<?php echo $show->ID; ?>" tabindex="-1"
                                     aria-labelledby="exampleModalLabel" aria-hidden="true">
                                     <div class="modal-dialog">
                                         <div class="modal-content">
