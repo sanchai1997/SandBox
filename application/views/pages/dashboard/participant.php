@@ -201,7 +201,7 @@
                                                     data-bs-dismiss="modal">ยกเลิก</button>
                                                 <form method="post"
                                                     action="<?php echo site_url('par_del_p1'); ?>">
-                                                    <input type="hidden" name="id" value="<?php echo $show->Id; ?>">
+                                                    <input type="hidden" name="Id" value="<?php echo $show->Id; ?>">
                                                     <div class="d-flex justify-content-center">
                                                         <button name="Submit" type="submit"
                                                             class="btn btn-primary">ยืนยันก่อนลบ</button>
@@ -296,7 +296,7 @@
                                                     data-bs-dismiss="modal">ยกเลิก</button>
                                                 <form method="post"
                                                     action="<?php echo site_url('pc_del_p2'); ?>">
-                                                    <input type="hidden" name="id" value="<?php echo $show->Id; ?>">
+                                                    <input type="hidden" name="Id" value="<?php echo $show->Id; ?>">
                                                     <div class="d-flex justify-content-center">
                                                         <button name="Submit" type="submit"
                                                             class="btn btn-primary">ยืนยันก่อนลบ</button>
@@ -397,7 +397,7 @@
                                                     data-bs-dismiss="modal">ยกเลิก</button>
                                                 <form method="post"
                                                     action="<?php echo site_url('pcp_del_p3'); ?>">
-                                                    <input type="hidden" name="id" value="<?php echo $show->Id; ?>">
+                                                    <input type="hidden" name="Id" value="<?php echo $show->Id; ?>">
                                                     <div class="d-flex justify-content-center">
                                                         <button name="Submit" type="submit"
                                                             class="btn btn-primary">ยืนยันก่อนลบ</button>
@@ -491,7 +491,7 @@
                                                     data-bs-dismiss="modal">ยกเลิก</button>
                                                 <form method="post"
                                                     action="<?php echo site_url('pn_del_p4'); ?>">
-                                                    <input type="hidden" name="id" value="<?php echo $show->Id; ?>">
+                                                    <input type="hidden" name="Id" value="<?php echo $show->Id; ?>">
                                                     <div class="d-flex justify-content-center">
                                                         <button name="Submit" type="submit"
                                                             class="btn btn-primary">ยืนยันก่อนลบ</button>
@@ -547,7 +547,7 @@ foreach ($query as $show) {
                         ); ?>" method="post"
                             enctype="multipart/form-data">
                            
-<input type="hidden" name="id" value="<?php echo $show->Id ?>">
+<input type="hidden" name="Id" value="<?php echo $show->Id ?>">
                             <div class="row mb-3">
                                <div class="col">
                                     <div class="form-floating">
@@ -628,7 +628,7 @@ foreach ($query as $show) {
                         ); ?>" method="post"
                             enctype="multipart/form-data">
                             
-<input type="hidden" name="id" value="<?php echo $show->Id ?>">
+<input type="hidden" name="Id" value="<?php echo $show->Id ?>">
                             <div class="row mb-3">
                                 <div class="form-floating">
                                     <input type="text" class="form-control" id="floatingName"
@@ -731,7 +731,7 @@ foreach ($query as $show) {
                             'pcp_edit_p3'
                         ); ?>" method="post"
                             enctype="multipart/form-data">
-<input type="hidden" name="id" value="<?php echo $show->Id ?>">
+<input type="hidden" name="Id" value="<?php echo $show->Id ?>">
                             <div class="row mb-3">
                                 <div class="form-floating">
                                     <input type="text" class="form-control" id="floatingName"
@@ -860,7 +860,7 @@ foreach ($query as $show) {
                             'pn_edit_p4'
                         ); ?>" method="post"
                             enctype="multipart/form-data">
-                           <input type="hidden" name="id" value="<?php echo $show->Id ?>">
+                           <input type="hidden" name="Id" value="<?php echo $show->Id ?>">
                             <div class="row mb-3">
                                 <div class="form-floating">
                                     <input type="text" class="form-control" id="floatingName"

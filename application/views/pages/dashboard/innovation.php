@@ -197,7 +197,7 @@
                                                                 data-bs-dismiss="modal">ยกเลิก</button>
                                                             <form method="post"
                                                                 action="<?php echo site_url('del_p1'); ?>">
-                                                                <input type="hidden" name="id"
+                                                                <input type="hidden" name="Id"
                                                                     value="<?php echo $show->Id; ?>">
                                                                 <div class="d-flex justify-content-center">
                                                                     <button name="Submit" type="submit"
@@ -312,7 +312,7 @@
                                                                             data-bs-dismiss="modal">ยกเลิก</button>
                                                                         <form method="post"
                                                                             action="<?php echo site_url('del_p2'); ?>">
-                                                                            <input type="hidden" name="id"
+                                                                            <input type="hidden" name="Id"
                                                                                 value="<?php echo $show->Id; ?>">
                                                                             <div class="d-flex justify-content-center">
                                                                                 <button name="Submit" type="submit"
@@ -363,7 +363,7 @@ foreach ($query as $show) {
                 <div class="modal-body">
                     <form action="<?php echo site_url('Fm_innovation/edit_sh1'); ?>" method="post"
                         enctype="multipart/form-data">
-<input type="hidden" name="id" value="<?php echo $show->Id ?>">
+<input type="hidden" name="Id" value="<?php echo $show->Id ?>">
                         <div class="row mb-3">
                             <div class="form-floating">
                                 <input type="text" class="form-control" id="floatingName"
@@ -508,7 +508,7 @@ foreach ($query as $show) {
                 </div>
                 <div class="modal-body">
                     <form action="<?php echo site_url('Fm_innovation/edit_sh2'); ?>" method="post">
-<input type="hidden" name="id" value="<?php echo $show->Id ?>">
+<input type="hidden" name="Id" value="<?php echo $show->Id ?>">
                         <div class="row mb-3">
                             <div class="form-floating">
                                 <input type="text" class="form-control" id="floatingName"

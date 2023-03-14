@@ -175,7 +175,7 @@
                                                     data-bs-dismiss="modal">ยกเลิก</button>
                                                 <form method="post"
                                                     action="<?php echo site_url('c_del_p1'); ?>">
-                                                    <input type="hidden" name="id" value="<?php echo $show->Id; ?>">
+                                                    <input type="hidden" name="Id" value="<?php echo $show->Id; ?>">
                                                     <div class="d-flex justify-content-center">
                                                         <button name="Submit" type="submit"
                                                             class="btn btn-primary">ยืนยันก่อนลบ</button>
@@ -274,7 +274,7 @@
                                                     data-bs-dismiss="modal">ยกเลิก</button>
                                                 <form method="post"
                                                     action="<?php echo site_url('cm_del_p2'); ?>">
-                                                    <input type="hidden" name="id" value="<?php echo $show_member->Id; ?>">
+                                                    <input type="hidden" name="Id" value="<?php echo $show_member->Id; ?>">
                                                     <div class="d-flex justify-content-center">
                                                         <button name="Submit" type="submit"
                                                             class="btn btn-primary">ยืนยันก่อนลบ</button>
@@ -320,7 +320,7 @@ foreach ($query as $show) {
                 <div class="modal-body">
                     <form action="<?php echo site_url('c_edit_p1'); ?>" method="post"
                         enctype="multipart/form-data">
-                        <input type="hidden" name="id" value="<?php echo $show->Id ?>">
+                        <input type="hidden" name="Id" value="<?php echo $show->Id ?>">
                         <div class="row mb-3">
                             <div class="form-floating">
                                 <select class="form-select" id="floatingSelect"
@@ -488,7 +488,7 @@ foreach ($query as $show) {
                 <div class="modal-body">
                     <form action="<?php echo site_url('cm_edit_p2'); ?>" method="post"
                         enctype="multipart/form-data">
-                        <input type="hidden" name="id" value="<?php echo $show->Id ?>">
+                        <input type="hidden" name="Id" value="<?php echo $show->Id ?>">
                         <h5 class="card-title ">ข้อมูลรายชื่อคณะกรรมการ</h5>
                         <div class="row mb-3">
                             <div class="form-floating">

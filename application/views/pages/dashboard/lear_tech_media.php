@@ -211,7 +211,7 @@
                                                     data-bs-dismiss="modal">ยกเลิก</button>
                                                 <form method="post"
                                                     action="<?php echo site_url('LTM_del_p1'); ?>">
-                                                    <input type="hidden" name="id" value="<?php echo $show->Id; ?>">
+                                                    <input type="hidden" name="Id" value="<?php echo $show->Id; ?>">
                                                     <div class="d-flex justify-content-center">
                                                         <button name="Submit" type="submit"
                                                             class="btn btn-primary">ยืนยันก่อนลบ</button>
@@ -313,7 +313,7 @@
                                                     data-bs-dismiss="modal">ยกเลิก</button>
                                                 <form method="post"
                                                     action="<?php echo site_url('LTMC_del_p2'); ?>">
-                                                    <input type="hidden" name="id" value="<?php echo $show->Id; ?>">
+                                                    <input type="hidden" name="Id" value="<?php echo $show->Id; ?>">
                                                     <div class="d-flex justify-content-center">
                                                         <button name="Submit" type="submit"
                                                             class="btn btn-primary">ยืนยันก่อนลบ</button>
@@ -376,7 +376,7 @@ foreach ($query as $show) {
                                     รหัสข้อมูลเทคโนโลยีและสื่อการเรียนรู้ </label>
                             </div>
                         </div>
-                        <input type="hidden" name="id" value="<?php echo $show->Id ?>">
+                        <input type="hidden" name="Id" value="<?php echo $show->Id ?>">
                         <div class="row mb-3">
                             <div class="col">
                                 <div class="form-floating">
@@ -521,7 +521,7 @@ foreach ($query as $show) {
                                     รหัสข้อมูลเทคโนโลยีและสื่อการเรียนรู้ </label>
                             </div>
                         </div>
-                        <input type="hidden" name="id" value="<?php echo $show->Id ?>">
+                        <input type="hidden" name="Id" value="<?php echo $show->Id ?>">
                         <div class="row mb-3">
                             <div class="form-floating">
                                 <input type="text" class="form-control" id="floatingName"
