@@ -342,10 +342,10 @@ class Evaluation_model extends CI_Model
 	public function edit_sc_ass() //sh5
 	{
 
-		echo '<pre>';
-		print_r($_POST);
-		echo'</pre>';
-		exit;
+		// echo '<pre>';
+		// print_r($_POST);
+		// echo'</pre>';
+		// exit;
 		$data = array(
 			'SchoolAssessmentEducationYear' => $this->input->post('SchoolAssessmentEducationYear'),
 			'SchoolAssessmentSemester' => $this->input->post('SchoolAssessmentSemester'),
