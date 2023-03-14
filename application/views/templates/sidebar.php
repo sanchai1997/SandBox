@@ -82,32 +82,32 @@
        </a>
        <ul id="components-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
          <li>
-           <a href="forms-innovation">
+           <a href="<?php echo site_url('Fm_innovation') ?>">
              <i class="bi bi-circle"></i><span>ข้อมูลนวัตกรรมการศึกษา</span>
            </a>
          </li>
          <li>
-           <a href="forms-learning_technology_media">
+           <a href="<?php echo site_url('Fm_lear_tech_media') ?>">
              <i class="bi bi-circle"></i><span>ข้อมูลเทคโนโลยีและสื่อการเรียนรู้</span>
            </a>
          </li>
          <li>
-           <a href="forms-best_practice">
+           <a href="<?php echo site_url('Fm_best_practice') ?>">
              <i class="bi bi-circle"></i><span>ข้อมูลแนวปฏิบัติที่เป็นเลิศ</span>
            </a>
          </li>
          <li>
-           <a href="forms-participant">
+           <a href="<?php echo site_url('Fm_participant') ?>">
              <i class="bi bi-circle"></i><span>ข้อมูลหน่วยงานที่มีส่วนร่วม</span>
            </a>
          </li>
          <li>
-           <a href="forms-committee">
+           <a href="<?php echo site_url('Fm_committee/committee') ?>">
              <i class="bi bi-circle"></i><span>ข้อมูลเกี่ยวกับอำนาจหน้าที่</span>
            </a>
          </li>
          <li>
-           <a href="forms-evaluation">
+           <a href="<?php echo site_url('Fm_evaluation') ?>">
              <i class="bi bi-circle"></i><span>ข้อมูลประกันคุณภาพ</span>
            </a>
          </li>
