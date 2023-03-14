@@ -92,11 +92,11 @@ class Forms_personnel extends CI_Controller
 
 
 
-    //PageForm additionalposition
+    //PageForms Additionalposition
     public function forms_additionalposition()
     {
 
-        if (!file_exists(APPPATH . 'views/pages/forms/personnel/forms-additionalposition.php')) {
+        if (!file_exists(APPPATH . 'views/pages/forms/personnel/forms-personnel-additionalposition.php')) {
             //Whoops,wedon'thaveapageforthat!
             show_404();
         }
@@ -105,7 +105,15 @@ class Forms_personnel extends CI_Controller
 
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
-        $this->load->view('pages/forms/personnel/forms-additionalposition', $data);
+        $this->load->view('pages/forms/personnel/forms-personnel-additionalposition', $data);
         $this->load->view('templates/footer', $data);
+    }
+
+    //Add Data Form personnel
+    public function add_additionalposition()
+    {
+        $this->forms_personnel->add_personnel();
+        $_SESSION['success'] = "บันทึกข้อมูลเรียบร้อย";
+        redirect(base_url('personnel'));
     }
 }

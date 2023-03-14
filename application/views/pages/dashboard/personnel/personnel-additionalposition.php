@@ -49,7 +49,7 @@
                         <h5 class="card-title">รายละเอียดข้อมูล <span style="padding-right:10px">| Table Additional Position</span> <a href="personnel" class="btn btn-secondary btn-sm" data-mdb-ripple-color="dark">ย้อนกลับ</a></h5>
                     </div>
                     <div class="col">
-                        <h5 style="float: right; padding: 15px;" class="card-title"><a href="fomrs-personnel-additionalposition" class="btn btn-success ">เพิ่มข้อมูลตำแหน่งหน้าที่เพิ่มเติม</a></h5>
+                        <h5 style="float: right; padding: 15px;" class="card-title"><a href="forms-personnel-additionalposition" class="btn btn-success ">เพิ่มข้อมูลตำแหน่งหน้าที่เพิ่มเติม</a></h5>
                     </div>
                 </div>
                 <table class="table table-borderless datatable">

@@ -10,7 +10,7 @@
 <main id="main" class="main">
 
     <div class="pagetitle">
-        <h1>เพิ่มข้อมูลบุคลากรอื่น</h1>
+        <h1>เพิ่มข้อมูลตำแหน่งหน้าที่เพิ่มเติม</h1>
         <nav>
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="index.html">Home</a></li>
@@ -28,7 +28,7 @@
                     <div class="card-body">
 
                         <!-- Floating Labels Form -->
-                        <form class="row g-3" action="<?php echo base_url('add-personnel'); ?>" method="POST">
+                        <form class="row g-3" action="<?php echo base_url('add-personnel'); ?>" method="POST" enctype="multipart/form-data">
                             <h5 class="card-title">เพิ่มตำแหน่งที่เพิ่มเติม</h5>
                             <div class="row mb-3">
                                 <label class="col-sm-3 col-form-label">หน่วยงานต้นสกัด</label>
@@ -58,23 +58,14 @@
                                 <div class="col-sm-10">
                                     <select class="form-select" aria-label="Default select example" name="AdditionalDepartmentCode">
                                         <option selected>เลือก</option>
-                                        <option value="01">กลุ่มอำนวยการ</option>
-                                        <option value="02">กลุ่มนโยบายและแผน</option>
-                                        <option value="03">กลุ่มส่งเสริมการจัดการศึกษา</option>
-                                        <option value="04">กลุ่มบริหารงานบุคคล (เขตพื้นที่)</option>
-                                        <option value="05">กลุ่มนิเทศ ติดตาม และประเมินผลฯ</option>
-                                        <option value="06">กลุ่มบริหารการเงิน และสินทรัพย์</option>
-                                        <option value="07">กลุ่มส่งเสริมการศึกษาทางไกล
-                                            เทคโนโลยีสารสนเทศและการสื่อสาร</option>
-                                        <option value="08">กลุ่มพัฒนาครู และบุคลากรทางการศึกษา</option>
-                                        <option value="09">กลุ่มกฏหมาย และคดี</option>
-                                        <option value="10">หน่วยตรวจสอบภายใน</option>
-                                        <option value="11">กลุ่มบริหารงานทั่วไป</option>
-                                        <option value="12">กลุ่มบริหารงานวิชาการ</option>
-                                        <option value="13">กลุ่มบริหารงานบุคคล (สถานศึกษา)</option>
-                                        <option value="14">กลุ่มบริหารงานแผนงาน และงบประมาณ</option>
-                                        <option value="15">กลุ่มบริหานงานกิจการนักเรียน</option>
-                                        <option value="16">อื่นๆ</option>
+                                        <?php
+                                        $result = $this->db->query('SELECT * FROM CLS_DEPARTMENT');
+                                        foreach ($result->result() as $DEPARTMENT) {
+                                        ?>
+                                            <option value="<?= $DEPARTMENT->DEPARTMENT_CODE; ?>"><?= $DEPARTMENT->DEPARTMENT_NAME; ?></option>
+                                        <?php
+                                        }
+                                        ?>
                                     </select>
                                 </div>
                             </div>
@@ -106,3 +97,41 @@
                                     <input type="file" class="form-control" name="AdditionalDocumentURL">
                                 </div>
                             </div>
+
+                            <div class="text-center">
+                                <a href="personnel" style="float: left;" class="btn btn-light">ยกเลิก</a>
+                                <button style="float: center;" type="reset" class="btn btn-secondary">รีเซ็ต</button>
+                                <button style="float: right;" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#ADD">บันทึกข้อมูล</button>
+                            </div>
+                            <div class="modal fade" id="ADD" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLongTitle">ยืนยันเพิ่มข้อมูล</h5>
+                                            <!--<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>-->
+                                        </div>
+                                        <div class="modal-body">
+                                            <h6>
+                                                <center>คุณต้องการเพิ่มข้อมูลใช่หรือไหม ?</center>
+                                            </h6>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button style="float: right;" type="submit" class="btn btn-primary">ยืนยัน</button>
+                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ยกเลิก</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </form> <!-- end Form ข้อมูลวุฒิการศึกษาของบุคลากรอื่น -->
+
+                    </div>
+                </div>
+
+            </div>
+
+
+        </div>
+    </section>
+
+</main><!-- End #main -->
