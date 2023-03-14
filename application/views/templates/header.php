@@ -1,5 +1,5 @@
 <?php
-defined('BASEPATH') or exit('No direct script access allowed');
+defined('BASEPATH') OR exit('No direct script access allowed');
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -8,28 +8,30 @@ defined('BASEPATH') or exit('No direct script access allowed');
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>Satun Education Sandbox</title>
+  <title>Dashboard - NiceAdmin Bootstrap Template</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
   <!-- Favicons -->
-  <link href="assets/img/mini.png" rel="icon">
-  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+  <link href="<?php  echo base_url('assets/img/mini-icon.png" rel="icon');?>">
+  <link href="<?php  echo base_url('assets/img/apple-touch-icon.png" rel="apple-touch-icon');?>">
 
   <!-- Google Fonts -->
-  <link href='https://fonts.googleapis.com/css?family=Sarabun' rel='stylesheet'>
+  <link href="<?php  echo base_url('https://fonts.gstatic.com" rel="preconnect');?>">
+  <link href="<?php  echo base_url('https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet');?>">
 
   <!-- Vendor CSS Files -->
-  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
-  <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
-  <link href="assets/vendor/quill/quill.snow.css" rel="stylesheet">
-  <link href="assets/vendor/quill/quill.bubble.css" rel="stylesheet">
-  <link href="assets/vendor/remixicon/remixicon.css" rel="stylesheet">
-  <link href="assets/vendor/simple-datatables/style.css" rel="stylesheet">s
+  <link href="<?php  echo base_url('assets/vendor/bootstrap/css/bootstrap.min.css');?>" rel="stylesheet">
+  <link href="<?php  echo base_url('assets/vendor/bootstrap-icons/bootstrap-icons.css');?>" rel="stylesheet">
+  <link href="<?php  echo base_url('assets/vendor/boxicons/css/boxicons.min.css');?>" rel="stylesheet">
+  <link href="<?php  echo base_url('assets/vendor/quill/quill.snow.css');?>" rel="stylesheet">
+  <link href="<?php  echo base_url('assets/vendor/quill/quill.bubble.css');?>" rel="stylesheet">
+  <link href="<?php  echo base_url('assets/vendor/remixicon/remixicon.css');?>" rel="stylesheet">
+  <link href="<?php  echo base_url('assets/vendor/simple-datatables/style.css');?>" rel="stylesheet">
 
   <!-- Template Main CSS File -->
-  <link href="assets/css/style.css" rel="stylesheet">
+  <link href="<?php  echo base_url('assets/css/style.css" rel="stylesheet');?>">
+
   <!-- =======================================================
   * Template Name: NiceAdmin - v2.4.1
   * Template URL: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/
@@ -43,9 +45,9 @@ defined('BASEPATH') or exit('No direct script access allowed');
   <header id="header" class="header fixed-top d-flex align-items-center">
 
     <div class="d-flex align-items-center justify-content-between">
-      <a href="main" class="logo d-flex align-items-center">
-        <img src="assets/img/logo.png" alt="" style="padding-left: 10px; width: 72%;">
-        <span class="d-none d-lg-block"></span>
+      <a href="index.html" class="logo d-flex align-items-center">
+        <img src="<?php  echo base_url('assets/img/logo.png');?>" alt="">
+        <span class="d-none d-lg-block">Satun Sandbox</span>
       </a>
       <i class="bi bi-list toggle-sidebar-btn"></i>
     </div><!-- End Logo -->
@@ -100,7 +102,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
               <div>
                 <h4>พลเมืองนวัตกรในพื้นที่นวัตกรรม</h4>
                 <p>กิจกรรมน่าสนใจบ่ายนี้ที่ ม.ทักษิณ “พลเมืองนวัตกรในพื้นที่นวัตกรรม”
-                  เวลา 13:00 น. เป็นต้นไป หอประชุมปาริชาต มหาวิทยาลัยทักษิณ วิทยาเขตสงขลา</p>
+เวลา 13:00 น. เป็นต้นไป หอประชุมปาริชาต มหาวิทยาลัยทักษิณ วิทยาเขตสงขลา</p>
                 <p>1 ชั่วโมงที่แล้ว</p>
               </div>
             </li>
@@ -211,7 +213,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
         <li class="nav-item dropdown pe-3">
 
           <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
-            <img src="assets/img/profile-img.jpg" alt="Profile" class="rounded-circle">
+            <img src="<?php  echo base_url('assets/img/profile-img.jpg" alt="Profile" class="rounded-circle');?>">
             <span class="d-none d-md-block dropdown-toggle ps-2">K. Anderson</span>
           </a><!-- End Profile Iamge Icon -->
 
@@ -266,25 +268,5 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
       </ul>
     </nav><!-- End Icons Navigation -->
-
-    <!------------------------ format Thai -----------------------!>
-  <?php
-  function DateThai($strDate)
-  {
-    $strYear = date("Y", strtotime($strDate)) + 543;
-    $strMonth = date("n", strtotime($strDate));
-    $strDay = date("j", strtotime($strDate));
-    $strHour = date("H", strtotime($strDate));
-    $strMinute = date("i", strtotime($strDate));
-    $strSeconds = date("s", strtotime($strDate));
-    $strMonthCut = array("", "มกราคม", "กุมภาพันธ์", "มีนาคม", "เมษายน", "พฤษภาคม", "มิถุนายน", "กรกฎาคม", "สิงหาคม", "กันยายน", "ตุลาคม", "พฤศจิกายน", "ธันวาคม");
-    $strMonthThai = $strMonthCut[$strMonth];
-    return "$strDay $strMonthThai $strYear";
-  }
-
-  $strDate = "2008-08-14 13:42:44";
-  echo "ThaiCreate.Com Time now : " . DateThai($strDate);
-  ?>
-  <!-------------------- format Thai - END ---------------------!>
 
   </header><!-- End Header -->
