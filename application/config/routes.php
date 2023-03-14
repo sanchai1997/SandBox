@@ -112,6 +112,7 @@ $route['delete-personnel/(:any)'] = 'forms_personnel/delete_personnel/$1';
 
 $route['personnel-additionalposition'] = 'personnel/additional_position';
 $route['forms-personnel-additionalposition'] = 'forms_personnel/forms_additionalposition';
+$route['add-additionalposition/(:any)']['post'] = 'forms_personnel/add_additionalposition/$1';
 ///////////////////// PERSONNEL - END /////////////////////////
 ////////////////////// ROUTE innovation ////////////////////////
 //PERSONNEL
