@@ -27,13 +27,13 @@ $route['add_curriculum']['post'] = 'CurriculumController/add_curriculum';
 $route['edit_forms-curriculum'] = 'CurriculumController/forms_edit_curriculum';
 $route['edit_curriculum']['post'] = 'CurriculumController/edit_curriculum';
 //Curriculum_subject
-$route['list-curriculum_subject']= 'CurriculumController/list_curriculum_subject';
+$route['list-curriculum_subject'] = 'CurriculumController/list_curriculum_subject';
 $route['forms-curriculum_subject'] = 'CurriculumController/forms_curriculum_subject';
 $route['add_curriculum_subject']['post'] = 'CurriculumController/add_curriculum_subject';
 $route['edit_forms-curriculum_subject'] = 'CurriculumController/forms_edit_curriculum_subject';
 $route['edit_curriculum_subject']['post'] = 'CurriculumController/edit_curriculum_subject';
 //Curriculum__school_competency
-$route['list-curriculum_school_competency']= 'CurriculumController/list_curriculum_school_competency';
+$route['list-curriculum_school_competency'] = 'CurriculumController/list_curriculum_school_competency';
 $route['forms-curriculum_school_competency'] = 'CurriculumController/forms_curriculum_school_competency';
 $route['add_curriculum_school_competency']['post'] = 'CurriculumController/add_curriculum_school_competency';
 $route['edit_forms-curriculum_school_competency'] = 'CurriculumController/forms_edit_curriculum_school_competency';
@@ -111,7 +111,7 @@ $route['update-personnel/(:any)'] = 'forms_personnel/update_personnel/$1';
 $route['delete-personnel/(:any)'] = 'forms_personnel/delete_personnel/$1';
 
 $route['personnel-additionalposition'] = 'personnel/additional_position';
-$route['forms-additionalposition'] = 'forms_personne/add_additionalposition';
+$route['forms-personnel-additionalposition'] = 'forms_personnel/forms_additionalposition';
 ///////////////////// PERSONNEL - END /////////////////////////
 ////////////////////// ROUTE innovation ////////////////////////
 //PERSONNEL
@@ -126,4 +126,3 @@ $route['edit_p1'] = 'Fm_innovation/edit_sh1';
 $route['edit_p2'] = 'Fm_innovation/edit_sh2';
 
 ///////////////////// innovation - END /////////////////////////
-
