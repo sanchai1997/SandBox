@@ -150,4 +150,65 @@ class Forms_personnel extends CI_Controller
         $_SESSION['success'] = "ลบข้อมูลเรียบร้อย";
         redirect(base_url('personnel-additionalposition?PersonnelID=' . $PersonnelID));
     }
+
+
+
+    //PageForms academic
+    public function forms_academic()
+    {
+
+        if (!file_exists(APPPATH . 'views/pages/forms/personnel/forms-personnel-academic.php')) {
+            //Whoops,wedon'thaveapageforthat!
+            show_404();
+        }
+
+        $data['title'] = 'Forms academic'; //Capitalizethefirstletter
+
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/sidebar', $data);
+        $this->load->view('pages/forms/personnel/forms-personnel-academic', $data);
+        $this->load->view('templates/footer', $data);
+    }
+
+    //Add Data Form academic
+    public function add_academic($PersonnelID)
+    {
+        $this->forms_personnel->add_academic();
+        $_SESSION['success'] = "บันทึกข้อมูลเรียบร้อย";
+        redirect(base_url('personnel-academic?PersonnelID=' . $PersonnelID));
+    }
+
+    //edit-forms-academic
+    public function edit_academic()
+    {
+
+        if (!file_exists(APPPATH . 'views/pages/forms/personnel/edit-forms-personnel-academic.php')) {
+            //Whoops,wedon'thaveapageforthat!
+            show_404();
+        }
+
+        $data['title'] = 'Forms edit-forms-personnel-academic'; //Capitalizethefirstletter
+
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/sidebar', $data);
+        $this->load->view('pages/forms/personnel/edit-forms-personnel-academic', $data);
+        $this->load->view('templates/footer', $data);
+    }
+
+    //Update Data academic
+    public function update_academic($PersonnelID, $JurisdictionCode)
+    {
+
+        $this->forms_personnel->update_academic($PersonnelID, $JurisdictionCode);
+        $_SESSION['success'] = "แก้ไขข้อมูลเรียบร้อย";
+        redirect(base_url('personnel-academic?PersonnelID=' . $PersonnelID));
+    }
+
+    //Delete Data academic
+    public function delete_academic($PersonnelID, $JurisdictionCode)
+    {
+        $this->forms_personnel->delete_academic($PersonnelID, $JurisdictionCode);
+        $_SESSION['success'] = "ลบข้อมูลเรียบร้อย";
+        redirect(base_url('personnel-academic?PersonnelID=' . $PersonnelID));
+    }
 }

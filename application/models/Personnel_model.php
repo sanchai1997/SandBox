@@ -262,4 +262,56 @@ class Personnel_model extends CI_Model
         $result = $this->db->where('PersonnelID', $PersonnelID)->where('JurisdictionCode', $JurisdictionCode)->update('PERSONNEL_ADDITIONAL_POSITION', $data);
         return $result;
     }
+
+
+
+
+    //Delete Data academic
+    public function add_academic()
+    {
+
+        $data = [
+
+            'PersonnelID' => $this->input->post('PersonnelID'),
+            'JurisdictionCode' => $this->input->post('JurisdictionCode'),
+            'AcademicStandingCode' => $this->input->post('AcademicStandingCode'),
+            'AcademicDate' => $this->input->post('AcademicDate'),
+            'AcademicProgramCode' => $this->input->post('AcademicProgramCode')
+
+        ];
+
+        $result = $this->db->insert('PERSONNEL_ACADEMIC', $data);
+        return $result;
+    }
+
+
+    //Update Data academic
+    public function update_academic($PersonnelID, $JurisdictionCode)
+    {
+
+        $data = [
+            'AcademicStandingCode' => $this->input->post('AcademicStandingCode'),
+            'AcademicDate' => $this->input->post('AcademicDate'),
+            'AcademicProgramCode' => $this->input->post('AcademicProgramCode')
+        ];
+
+        $result = $this->db->where('PersonnelID', $PersonnelID)->where('JurisdictionCode', $JurisdictionCode)->update('PERSONNEL_ACADEMIC', $data);
+        return $result;
+    }
+
+
+
+
+    //Delete Data academic
+    public function delete_academic($PersonnelID, $JurisdictionCode)
+    {
+        $data = [
+
+            'DeleteStatus' => '1'
+
+        ];
+
+        $result = $this->db->where('PersonnelID', $PersonnelID)->where('JurisdictionCode', $JurisdictionCode)->update('PERSONNEL_ACADEMIC', $data);
+        return $result;
+    }
 }

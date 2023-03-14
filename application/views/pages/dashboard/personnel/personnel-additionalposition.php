@@ -4,7 +4,7 @@
         <div class="row">
             <div class="col-6">
                 <?php
-                $result = $this->db->query('SELECT *  FROM PERSONNEL WHERE PersonnelID = "' . $_GET['PersonnelID'] . '"');
+                $result = $this->db->query('SELECT *  FROM PERSONNEL WHERE DeleteStatus = 0 AND PersonnelID = "' . $_GET['PersonnelID'] . '"');
                 foreach ($result->result() as $PERSONNEL) {
                 ?>
                     <h1>ตำแหน่งหน้าที่เพิ่มเติม - <?= $PERSONNEL->PersonnelNameThai; ?> <?= $PERSONNEL->PersonnelLastNameThai; ?>
@@ -21,7 +21,7 @@
             <div class="col-6" style="padding-right: 25px;">
                 <a href="school-classroom" style="float: right;" class="btn btn-sm btn-light" data-mdb-ripple-color="dark">การช่วยราชการ</a>
                 <a href="school-classroom" style="float: right;" class="btn btn-sm btn-light" data-mdb-ripple-color="dark">ระดับการศึกษา</a>
-                <a href="school" style="float: right;" class="btn btn-sm btn-light" data-mdb-ripple-color="dark">วิทยฐานะและตำแหน่งวิชาการ</a>
+                <a href="personnel-academic?PersonnelID=<?= $_GET['PersonnelID']; ?>" style="float: right;" class="btn btn-sm btn-light" data-mdb-ripple-color="dark">วิทยฐานะและตำแหน่งวิชาการ</a>
                 <a href="personnel-additionalposition?PersonnelID=<?= $_GET['PersonnelID']; ?>" style="float: right;" class="btn btn-sm btn-outline-secondary" data-mdb-ripple-color="dark">ตำแหน่งหน้าที่เพิ่มเติม</a>
 
             </div>
@@ -75,7 +75,7 @@
                         <?php
                         $result = $this->db->query('SELECT *  FROM PERSONNEL_ADDITIONAL_POSITION 
                         INNER JOIN CLS_DEPARTMENT ON PERSONNEL_ADDITIONAL_POSITION.AdditionalDepartmentCode = CLS_DEPARTMENT.DEPARTMENT_CODE
-                        WHERE PersonnelID = "' . $_GET['PersonnelID'] . '"');
+                        WHERE DeleteStatus = 0 AND PersonnelID = "' . $_GET['PersonnelID'] . '"');
                         foreach ($result->result() as $ADDITIONAL_POSITION) {
                         ?>
                             <tr>
@@ -84,11 +84,31 @@
                                 <td style="text-align: center;"><?= DateThai($ADDITIONAL_POSITION->AdditionalDutyDate); ?></td>
                                 <td><?= $ADDITIONAL_POSITION->AdditionalCommand ?></td>
                                 <td><?= $ADDITIONAL_POSITION->AdditionalComment ?></td>
-                                <td style="text-align: center;"><a href="<?php echo base_url('application/documents/personnel/additionalposition') ?>/<?php echo $ADDITIONAL_POSITION->AdditionalDocumentURL; ?>" class="btn btn-primary"><i class="bi bi-file-earmark-text"></i></a></td>
+                                <td style="text-align: center;"><a href="<?php echo base_url('../application/documents/personnel/additionalposition/' . $ADDITIONAL_POSITION->AdditionalDocumentURL) ?>" class="btn btn-primary"><i class="bi bi-file-earmark-text"></i></a></td>
                                 <td style="text-align: center;"><a href="edit-forms-personnel-additionalposition?PersonnelID=<?= $ADDITIONAL_POSITION->PersonnelID ?>&&JurisdictionCode=<?= $ADDITIONAL_POSITION->JurisdictionCode ?>" class="btn btn-warning"><i class="bi bi-pencil-square"></i></a>
-                                    &nbsp; <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#Delete"><i class=" bi bi-trash"></i></button>
+                                    &nbsp; <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#Delete<?= $ADDITIONAL_POSITION->PersonnelID ?>"><i class=" bi bi-trash"></i></button>
                                 </td>
                             </tr>
+                            <div class="modal fade" id="Delete<?= $ADDITIONAL_POSITION->PersonnelID ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLongTitle">ยืนยันการลบข้อมูล</h5>
+                                            <!--<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>-->
+                                        </div>
+                                        <div class="modal-body">
+                                            <h6>
+                                                <center>คุณต้องการลบข้อมูลใช่หรือไหม ?</center>
+                                            </h6>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <a href="<?php echo base_url('delete-additionalposition/' . $ADDITIONAL_POSITION->PersonnelID . '/' . $ADDITIONAL_POSITION->JurisdictionCode);
+                                                        ?>" class="btn btn-danger">ลบ</a>
+                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ยกเลิก</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         <?php } ?>
                     </tbody>
                 </table>
@@ -99,24 +119,3 @@
     </div><!-- End Recent Sales -->
 
 </main><!-- End #main -->
-
-<div class="modal fade" id="Delete" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLongTitle">ยืนยันการลบข้อมูล</h5>
-                <!--<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>-->
-            </div>
-            <div class="modal-body">
-                <h6>
-                    <center>คุณต้องการลบข้อมูลใช่หรือไหม ?</center>
-                </h6>
-            </div>
-            <div class="modal-footer">
-                <a href="<?php echo base_url('delete-award/');
-                            ?>" class="btn btn-danger">ลบ</a>
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ยกเลิก</button>
-            </div>
-        </div>
-    </div>
-</div>

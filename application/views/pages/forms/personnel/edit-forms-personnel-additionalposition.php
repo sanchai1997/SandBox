@@ -35,7 +35,7 @@ foreach ($result->result() as $ADDITIONAL_POSITION) {
 
                             <!-- Floating Labels Form -->
                             <form class="row g-3" action="<?php echo base_url('update-additionalposition/' . $ADDITIONAL_POSITION->PersonnelID . '/' . $ADDITIONAL_POSITION->JurisdictionCode); ?>" method="POST" enctype="multipart/form-data">
-                                <h5 class="card-title">เพิ่มตำแหน่งที่เพิ่มเติม</h5>
+                                <h5 class="card-title">แก้ไขตำแหน่งที่เพิ่มเติม</h5>
                                 <div class="row mb-3">
                                     <label for="inputText" class="col-sm-2 col-form-label">ตำแหน่งหน้าที่เพิ่มเติม</label>
                                     <div class="col-sm-10">
@@ -53,7 +53,7 @@ foreach ($result->result() as $ADDITIONAL_POSITION) {
                                             ?>
                                                 <option <?php if ($ADDITIONAL_POSITION->DEPARTMENT_CODE == $DEPARTMENT->DEPARTMENT_CODE) {
                                                             echo 'selected';
-                                                        } ?>value="<?= $DEPARTMENT->DEPARTMENT_CODE; ?>"><?= $DEPARTMENT->DEPARTMENT_NAME; ?></option>
+                                                        } ?> value="<?= $DEPARTMENT->DEPARTMENT_CODE; ?>"><?= $DEPARTMENT->DEPARTMENT_NAME; ?></option>
                                             <?php
                                             }
                                             ?>

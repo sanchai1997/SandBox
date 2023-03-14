@@ -43,4 +43,20 @@ class Personnel extends CI_Controller
         $this->load->view('pages/dashboard/personnel/personnel-additionalposition', $data);
         $this->load->view('templates/footer', $data);
     }
+
+    //PageForm additional-position
+    public function academic()
+    {
+
+        if (!file_exists(APPPATH . 'views/pages/dashboard/personnel/personnel-academic.php')) {
+            // Whoops, we don't have a page for that!
+            show_404();
+        }
+
+        $data['title'] = 'personnel-additional-position'; // Capitalize the first letter
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/sidebar', $data);
+        $this->load->view('pages/dashboard/personnel/personnel-academic', $data);
+        $this->load->view('templates/footer', $data);
+    }
 }
