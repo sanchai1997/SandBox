@@ -10,6 +10,11 @@ class School_model extends CI_Model
         $this->load->helper('url');
     }
 
+    public function get_school_All() {
+        $query = $this->db->get('SCHOOL');
+        return $query->result();
+    }
+    
     ///////////////////////////////////SCHOOL/////////////////////////////////////////
     //Add Data Form School
     public function add_school()

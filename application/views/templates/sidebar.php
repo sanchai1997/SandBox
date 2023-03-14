@@ -49,14 +49,14 @@
      </li><!-- End ข้อมูลพื้นฐาน Nav -->
 
      <li class="nav-item">
-       <a class="nav-link collapsed" href="forms-curriculum">
+       <a class="nav-link collapsed" href="list-curriculum">
          <i class="bi bi-journal-text"></i>
          <span>ข้อมูลหลักสูตร/หลักสูตรของพื้นที่นวัตกรรม</span>
        </a>
      </li><!-- End ข้อมูลหลักสูตร Page Nav -->
 
      <li class="nav-item">
-       <a class="nav-link collapsed" href="forms-teacher_developmant_avtivity">
+       <a class="nav-link collapsed" href="list-teacher_development_activity">
          <i class="bi bi-person "></i>
          <span>ข้อมูลการพัฒนาบุคลากร</span>
        </a>

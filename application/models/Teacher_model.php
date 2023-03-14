@@ -9,6 +9,12 @@ class Teacher_model extends CI_Model
         $this->load->database();
         $this->load->helper('url');
     }
+
+    public function get_teacher_All() {
+        $query = $this->db->get('TEACHER');
+        return $query->result();
+    }
+    
     public function add_teacher()
     {
         $data = [
