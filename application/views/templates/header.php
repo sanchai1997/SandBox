@@ -268,23 +268,3 @@ defined('BASEPATH') or exit('No direct script access allowed');
     </nav><!-- End Icons Navigation -->
 
   </header><!-- End Header -->
-
-  <!------------------------ format Thai -----------------------!>
-    <?php
-    function DateThai($strDate)
-    {
-      $strYear = date("Y", strtotime($strDate)) + 543;
-      $strMonth = date("n", strtotime($strDate));
-      $strDay = date("j", strtotime($strDate));
-      $strHour = date("H", strtotime($strDate));
-      $strMinute = date("i", strtotime($strDate));
-      $strSeconds = date("s", strtotime($strDate));
-      $strMonthCut = array("", "มกราคม", "กุมภาพันธ์", "มีนาคม", "เมษายน", "พฤษภาคม", "มิถุนายน", "กรกฎาคม", "สิงหาคม", "กันยายน", "ตุลาคม", "พฤศจิกายน", "ธันวาคม");
-      $strMonthThai = $strMonthCut[$strMonth];
-      return "$strDay $strMonthThai $strYear";
-    }
-
-    $strDate = "2008-08-14 13:42:44";
-    echo "ThaiCreate.Com Time now : " . DateThai($strDate);
-    ?>
-  <!-------------------- format Thai - END ---------------------!>
