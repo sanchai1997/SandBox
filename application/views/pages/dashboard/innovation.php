@@ -40,7 +40,7 @@
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="main">Home</a></li>
                         <li class="breadcrumb-item">Form</li>
-                        <li class="breadcrumb-item active">Student</li>
+                        <li class="breadcrumb-item active">ข้อมูลนวัตกรรมการศึกษา</li>
                     </ol>
                 </nav>
             </div>
@@ -70,7 +70,7 @@
             <div class="card-body">
                 <div class="row">
                     <div class="col">
-                        <h5 class="card-title">รายละเอียดข้อมูล <span>| Table Student</span></h5>
+                        <h5 class="card-title">รายละเอียดข้อมูล <span>| ข้อมูลนวัตกรรมการศึกษา</span></h5>
                     </div>
                     <div class="col">
 
@@ -112,7 +112,7 @@
                         <div class="card-body">
                             <div class="row">
                                 <div class="col">
-                                    <h5 class="card-title">รายละเอียดข้อมูล <span>| Table Student</span></h5>
+                                    <h5 class="card-title">รายละเอียดข้อมูล <span>| นวัตกรรมการศึกษา</span></h5>
                                 </div>
                                 <div class="col">
                                     <h5 style="float: right; padding: 15px;" class="card-title"><a
@@ -222,7 +222,7 @@
                                     <div class="card-body">
                                         <div class="row">
                                             <div class="col">
-                                                <h5 class="card-title">รายละเอียดข้อมูล <span>| Table Student</span>
+                                                <h5 class="card-title">รายละเอียดข้อมูล <span>| ผู้จัดทำนวัตกรรมการศึกษา</span>
                                                 </h5>
                                             </div>
                                             <div class="col">

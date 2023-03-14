@@ -49,7 +49,7 @@
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="main">Home</a></li>
                         <li class="breadcrumb-item">Form</li>
-                        <li class="breadcrumb-item active">Student</li>
+                        <li class="breadcrumb-item active">ผู้เข้ามามีส่วนร่วม</li>
                     </ol>
                 </nav>
             </div>
@@ -90,7 +90,7 @@
         <div class="card-body">
             <div class="row">
                 <div class="col">
-                    <h5 class="card-title">รายละเอียดข้อมูล <span>| Table Student</span></h5>
+                    <h5 class="card-title">รายละเอียดข้อมูล <span>| ผู้เข้ามามีส่วนร่วม</span></h5>
                 </div>
                 <div class="col">
                   
@@ -141,7 +141,7 @@
             <div class="card-body">
                 <div class="row">
                     <div class="col">
-                        <h5 class="card-title">รายละเอียดข้อมูล <span>| Table Student</span></h5>
+                        <h5 class="card-title">รายละเอียดข้อมูล <span>| ผู้เข้ามามีส่วนร่วม</span></h5>
                     </div>
                     <div class="col">
                         <h5 style="float: right; padding: 15px;" class="card-title"><a
@@ -232,7 +232,7 @@
             <div class="card-body">
                 <div class="row">
                     <div class="col">
-                        <h5 class="card-title">รายละเอียดข้อมูล <span>| Table Student</span></h5>
+                        <h5 class="card-title">รายละเอียดข้อมูล <span>| การติดต่อของผู้มีส่วนร่วม</span></h5>
                     </div>
                     <div class="col">
                         <h5 style="float: right; padding: 15px;" class="card-title"><a
@@ -256,9 +256,7 @@
                     </thead>
                     <tbody>
 
-                        <tr>
-
-                        </tr> <?php foreach ($query as $show ) {
+                        <?php foreach ($query as $show ) {
                             # code...
                         ?>
                         <tr>
@@ -329,7 +327,7 @@
             <div class="card-body">
                 <div class="row">
                     <div class="col">
-                        <h5 class="card-title">รายละเอียดข้อมูล <span>| Table Student</span></h5>
+                        <h5 class="card-title">รายละเอียดข้อมูล <span>| การมีส่วนร่วม</span></h5>
                     </div>
                     <div class="col">
                         <h5 style="float: right; padding: 15px;" class="card-title"><a
@@ -432,7 +430,7 @@
             <div class="card-body">
                 <div class="row">
                     <div class="col">
-                        <h5 class="card-title">รายละเอียดข้อมูล <span>| Table Student</span></h5>
+                        <h5 class="card-title">รายละเอียดข้อมูล <span>| ข้อมูลบันทึกเพิ่มเติม</span></h5>
                     </div>
                     <div class="col">
                         <h5 style="float: right; padding: 15px;" class="card-title"><a
@@ -455,7 +453,7 @@
                     </thead>
                     <tbody>
                         <?php foreach ($query as $show ) {
-                            # code...
+                           
                         ?>
                         <tr>
                             <th scope="row " style="text-align: center;"><?php echo $show->Note; ?></th>
@@ -509,9 +507,7 @@
                         </tr>
                         <?php  } ?>
 
-                        <tr>
-
-                        </tr>
+                       
 
                     </tbody>
                 </table>

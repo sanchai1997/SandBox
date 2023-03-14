@@ -41,7 +41,7 @@
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="main">Home</a></li>
                         <li class="breadcrumb-item">Form</li>
-                        <li class="breadcrumb-item active">Student</li>
+                        <li class="breadcrumb-item active">ข้อมูลเทคโนโลยีและสื่อการเรียนรู้</li>
                     </ol>
                 </nav>
             </div>
@@ -74,7 +74,7 @@
             <div class="card-body">
                 <div class="row">
                     <div class="col">
-                        <h5 class="card-title">รายละเอียดข้อมูล <span>| Table Student</span></h5>
+                        <h5 class="card-title">รายละเอียดข้อมูล <span>| ข้อมูลเทคโนโลยีและสื่อการเรียนรู้</span></h5>
                     </div>
                     <div class="col">
 
@@ -129,7 +129,7 @@
             <div class="card-body">
                 <div class="row">
                     <div class="col">
-                        <h5 class="card-title">รายละเอียดข้อมูล <span>| Table Student</span></h5>
+                        <h5 class="card-title">รายละเอียดข้อมูล <span>| เทคโนโลยีและสื่อการเรียนรู้</span></h5>
                     </div>
                     <div class="col">
                         <h5 style="float: right; padding: 15px;" class="card-title"><a
@@ -244,7 +244,7 @@
             <div class="card-body">
                 <div class="row">
                     <div class="col">
-                        <h5 class="card-title">รายละเอียดข้อมูล <span>| Table Student</span></h5>
+                        <h5 class="card-title">รายละเอียดข้อมูล <span>| ผู้จัดทำเทคโนโลยีและสื่อการเรียนรู้</span></h5>
                     </div>
                     <div class="col">
                         <h5 style="float: right; padding: 15px;" class="card-title"><a
@@ -261,9 +261,9 @@
                             <th style="text-align: center;" scope="col">หมายเลขบัตรประจำตัวผู้จัดทำ</th>
                             <th style="text-align: center;" scope="col">รหัสประเภทบัตรประจำตัวผู้จัดทำ</th>
                             <th style="text-align: center;" scope="col">รหัสคำนำหน้าชื่อผู้จัดทำ</th>
-                            <th style="text-align: center;" scope="col">ชื่อผู้จัดทำ (ภาษาไทย)</th>
-                            <th style="text-align: center;" scope="col">ชื่อกลางผู้จัดทำ (ภาษาไทย)</th>
-                            <th style="text-align: center;" scope="col">นามสกุลผู้จัดทำ (ภาษาไทย)</th>
+                            <th style="text-align: center;" scope="col">ชื่อผู้จัดทำ </th>
+                            <th style="text-align: center;" scope="col">ชื่อกลางผู้จัดทำ </th>
+                            <th style="text-align: center;" scope="col">นามสกุลผู้จัดทำ </th>
                             <th style="text-align: center;" scope="col">สัดส่วนการมีส่วนร่วม</th>
                             <th style="text-align: center;" scope="col">ปฎิบัติ</th>
 

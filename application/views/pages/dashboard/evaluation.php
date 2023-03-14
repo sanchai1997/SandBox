@@ -23,15 +23,15 @@
         <div class="row ">
             <?php switch (
                 $page
-            ) { case 'sh1': ?> <h1>ฟอร์มการประกันคุณภาพด้วยตัวชี้วัดของพื้นที่</h1>
-            <?php break;case 'sh2': ?> <h1>ฟอร์มข้อมูลระดับตัวชี้วัด</h1>
-            <?php break;case 'sh3': ?> <h1>ฟอร์มข้อมูลองค์ประกอบตัวชี้วัด</h1>
-            <?php break;case 'sh4': ?> <h1>ฟอร์มข้อมูลคำอธิบายระดับของแต่ละองค์ประกอบ</h1>
-            <?php break;case 'sh5': ?> <h1>ฟอร์มข้อมูลการประเมินผลสถานศึกษา</h1>
-            <?php break;case 'sh6': ?> <h1>ฟอร์มข้อมูลการประเมินตามตัวชี้วัด</h1>
-            <?php break;case 'sh7': ?> <h1>ฟอร์มระดับตัวชี้วัดที่ได้ในแต่ละองค์ประกอบ</h1>
-            <?php break;case 'sh8': ?> <h1>ฟอร์มข้อมูลการประเมินสถานศึกษา</h1>
-            <?php break;default: ?><h1>การประกันคุณภาพด้วยตัวชี้สัดของพื้นที่นวัตกรรมการศึกษา</h1>
+            ) { case 'sh1': ?> <h1>การประกันคุณภาพด้วยตัวชี้วัดของพื้นที่</h1>
+            <?php break;case 'sh2': ?> <h1>ข้อมูลระดับตัวชี้วัด</h1>
+            <?php break;case 'sh3': ?> <h1>ข้อมูลองค์ประกอบตัวชี้วัด</h1>
+            <?php break;case 'sh4': ?> <h1>ข้อมูลคำอธิบายระดับของแต่ละองค์ประกอบ</h1>
+            <?php break;case 'sh5': ?> <h1>ข้อมูลการประเมินผลสถานศึกษา</h1>
+            <?php break;case 'sh6': ?> <h1>ข้อมูลการประเมินตามตัวชี้วัด</h1>
+            <?php break;case 'sh7': ?> <h1>ระดับตัวชี้วัดที่ได้ในแต่ละองค์ประกอบ</h1>
+            <?php break;case 'sh8': ?> <h1>ข้อมูลการประเมินสถานศึกษา</h1>
+            <?php break;default: ?><h1>การประกันคุณภาพด้วยตัวชี้วัดของพื้นที่นวัตกรรมการศึกษา</h1>
             <?php break;} ?>
 
             <div class="col-3">
@@ -40,7 +40,7 @@
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="main">Home</a></li>
                         <li class="breadcrumb-item">Form</li>
-                        <li class="breadcrumb-item active">Student</li>
+                        <li class="breadcrumb-item active">การประกันคุณภาพด้วยตัวชี้วัด</li>
                     </ol>
                 </nav>
             </div>
@@ -109,7 +109,7 @@
             <div class="card-body">
                 <div class="row">
                     <div class="col">
-                        <h5 class="card-title">รายละเอียดข้อมูล <span>| Table Student</span></h5>
+                        <h5 class="card-title">รายละเอียดข้อมูล <span>| การประกันคุณภาพด้วยตัวชี้วัดของพื้นที่นวัตกรรมการศึกษา</span></h5>
                     </div>
 
                 </div>
@@ -161,7 +161,7 @@
             <div class="card-body">
                 <div class="row">
                     <div class="col">
-                        <h5 class="card-title">รายละเอียดข้อมูล <span>| Table Student</span></h5>
+                        <h5 class="card-title">รายละเอียดข้อมูล <span>| การประกันคุณภาพด้วยตัวชี้วัดของพื้นที่</span></h5>
                     </div>
                     <div class="col">
                         <h5 style="float: right; padding: 15px;" class="card-title"><a href="<?php echo site_url(
@@ -261,7 +261,7 @@
             <div class="card-body">
                 <div class="row">
                     <div class="col">
-                        <h5 class="card-title">รายละเอียดข้อมูล <span>| Table Student</span></h5>
+                        <h5 class="card-title">รายละเอียดข้อมูล <span>| ข้อมูลระดับตัวชี้วัด</span></h5>
                     </div>
                     <div class="col">
                         <h5 style="float: right; padding: 15px;" class="card-title"><a href="<?php echo site_url(
@@ -362,7 +362,7 @@
             <div class="card-body">
                 <div class="row">
                     <div class="col">
-                        <h5 class="card-title">รายละเอียดข้อมูล <span>| Table Student</span></h5>
+                        <h5 class="card-title">รายละเอียดข้อมูล <span>| องค์ประกอบตัวชี้วัด</span></h5>
                     </div>
                     <div class="col">
                         <h5 style="float: right; padding: 15px;" class="card-title"><a href="<?php echo site_url(
@@ -463,7 +463,7 @@
             <div class="card-body">
                 <div class="row">
                     <div class="col">
-                        <h5 class="card-title">รายละเอียดข้อมูล <span>| Table Student</span></h5>
+                        <h5 class="card-title">รายละเอียดข้อมูล <span>| คำอธิบายระดับของแต่ละองค์ประกอบ</span></h5>
                     </div>
                     <div class="col">
                         <h5 style="float: right; padding: 15px;" class="card-title"><a href="<?php echo site_url(
@@ -560,7 +560,7 @@
             <div class="card-body">
                 <div class="row">
                     <div class="col">
-                        <h5 class="card-title">รายละเอียดข้อมูล <span>| Table Student</span></h5>
+                        <h5 class="card-title">รายละเอียดข้อมูล <span>| การประเมินผลสถานศึกษา</span></h5>
                     </div>
                     <div class="col">
                         <h5 style="float: right; padding: 15px;" class="card-title"><a href="<?php echo site_url(
@@ -661,7 +661,7 @@
             <div class="card-body">
                 <div class="row">
                     <div class="col">
-                        <h5 class="card-title">รายละเอียดข้อมูล <span>| Table Student</span></h5>
+                        <h5 class="card-title">รายละเอียดข้อมูล <span>| การประเมินตามตัวชี้วัด</span></h5>
                     </div>
                     <div class="col">
                         <h5 style="float: right; padding: 15px;" class="card-title"><a href="<?php echo site_url(
@@ -776,7 +776,7 @@
             <div class="card-body">
                 <div class="row">
                     <div class="col">
-                        <h5 class="card-title">รายละเอียดข้อมูล <span>| Table Student</span></h5>
+                        <h5 class="card-title">รายละเอียดข้อมูล <span>| ระดับตัวชี้วัดที่ได้ในแต่ละองค์ประกอบ</span></h5>
                     </div>
                     <div class="col">
                         <h5 style="float: right; padding: 15px;" class="card-title"><a href="<?php echo site_url(
@@ -880,7 +880,7 @@
             <div class="card-body">
                 <div class="row">
                     <div class="col">
-                        <h5 class="card-title">รายละเอียดข้อมูล <span>| Table Student</span></h5>
+                        <h5 class="card-title">รายละเอียดข้อมูล <span>| การประเมินสถานศึกษา</span></h5>
                     </div>
                     <div class="col">
                         <h5 style="float: right; padding: 15px;" class="card-title"><a href="<?php echo site_url(

@@ -32,7 +32,7 @@
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="main">Home</a></li>
                         <li class="breadcrumb-item">Form</li>
-                        <li class="breadcrumb-item active">Student</li>
+                        <li class="breadcrumb-item active">อำนาจและหน้าที่ของคณะกรรมการ</li>
                     </ol>
                 </nav>
             </div>
@@ -62,7 +62,7 @@
             <div class="card-body">
                 <div class="row">
                     <div class="col">
-                        <h5 class="card-title">รายละเอียดข้อมูล <span>| Table Student</span></h5>
+                        <h5 class="card-title">รายละเอียดข้อมูล <span>| อำนาจและหน้าที่ของคณะกรรมการ</span></h5>
                     </div>
                     <div class="col">
 
@@ -109,7 +109,7 @@
             <div class="card-body">
                 <div class="row">
                     <div class="col">
-                        <h5 class="card-title">รายละเอียดข้อมูล <span>| Table Student</span></h5>
+                        <h5 class="card-title">รายละเอียดข้อมูล <span>| ข้อมูลคำสั่งแต่งตั้งคณะกรรมการ</span></h5>
                     </div>
                     <div class="col">
                         <h5 style="float: right; padding: 15px;" class="card-title"><a href="<?php echo site_url(
@@ -208,7 +208,7 @@
             <div class="card-body">
                 <div class="row">
                     <div class="col">
-                        <h5 class="card-title">รายละเอียดข้อมูล <span>| Table Student</span></h5>
+                        <h5 class="card-title">รายละเอียดข้อมูล <span>| รายชื่อคณะกรรมการ</span></h5>
                     </div>
                     <div class="col">
                         <h5 style="float: right; padding: 15px;" class="card-title"><a href="<?php echo site_url(
@@ -224,9 +224,9 @@
                             <th style="text-align: center;" scope="col">ปีที่ออกคำสั่ง</th>
                             <th style="text-align: center;" scope="col">เลขที่คำสั่ง</th>
                             <th style="text-align: center;" scope="col">คำนำหน้าชื่อ</th>
-                            <th style="text-align: center;" scope="col">ชื่อ (ภาษาไทย)</th>
-                            <th style="text-align: center;" scope="col">ชื่อกลาง (ภาษาไทย)</th>
-                            <th style="text-align: center;" scope="col">นามสกุล (ภาษาไทย)</th>
+                            <th style="text-align: center;" scope="col">ชื่อ </th>
+                            <th style="text-align: center;" scope="col">ชื่อกลาง </th>
+                            <th style="text-align: center;" scope="col">นามสกุล </th>
                             <th style="text-align: center;" scope="col">ตำแหน่ง (กรรมการ)</th>
                             <th style="text-align: center;" scope="col">ปฎิบัติ</th>
 
