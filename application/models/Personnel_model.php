@@ -202,4 +202,64 @@ class Personnel_model extends CI_Model
             return $result;
         }
     }
+
+
+    //Update Data additionalposition
+    public function update_additionalposition($PersonnelID, $JurisdictionCode)
+    {
+        if (!empty($data['AdditionalDocumentURL'])) {
+            $config['upload_path'] = './application/documents/personnel/additionalposition';
+            $config['allowed_types'] = 'doc|docx|pdf|jpg|png|xls|ppt|zip|xlsx';
+            $config['encrypt_name'] = TRUE;
+
+            $this->load->library('upload', $config);
+
+            if (!$this->upload->do_upload('AdditionalDocumentURL')) {
+                echo $this->upload->display_errors();
+            } else {
+
+                $data = $this->upload->data();
+                $filename = $data['file_name'];
+                $data = [
+                    'AdditionalPosition' => $this->input->post('AdditionalPosition'),
+                    'AdditionalDepartmentCode' => $this->input->post('AdditionalDepartmentCode'),
+                    'AdditionalDutyDate' => $this->input->post('AdditionalDutyDate'),
+                    'AdditionalCommand' => $this->input->post('AdditionalCommand'),
+                    'AdditionalComment' => $this->input->post('AdditionalComment'),
+                    'AdditionalDocumentURL' => $filename
+                ];
+
+
+                $result = $this->db->where('PersonnelID', $PersonnelID)->where('JurisdictionCode', $JurisdictionCode)->update('PERSONNEL_ADDITIONAL_POSITION', $data);
+                return $result;
+            }
+        } else {
+            $data = [
+
+                'AdditionalPosition' => $this->input->post('AdditionalPosition'),
+                'AdditionalDepartmentCode' => $this->input->post('AdditionalDepartmentCode'),
+                'AdditionalDutyDate' => $this->input->post('AdditionalDutyDate'),
+                'AdditionalCommand' => $this->input->post('AdditionalCommand'),
+                'AdditionalComment' => $this->input->post('AdditionalComment')
+            ];
+
+            $result = $this->db->where('PersonnelID', $PersonnelID)->where('JurisdictionCode', $JurisdictionCode)->update('PERSONNEL_ADDITIONAL_POSITION', $data);
+            return $result;
+        }
+    }
+
+
+
+    //Delete Data additionalposition
+    public function delete_additionalposition($PersonnelID, $JurisdictionCode)
+    {
+        $data = [
+
+            'DeleteStatus' => '1'
+
+        ];
+
+        $result = $this->db->where('PersonnelID', $PersonnelID)->where('JurisdictionCode', $JurisdictionCode)->update('PERSONNEL_ADDITIONAL_POSITION', $data);
+        return $result;
+    }
 }

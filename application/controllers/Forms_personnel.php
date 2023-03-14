@@ -109,11 +109,45 @@ class Forms_personnel extends CI_Controller
         $this->load->view('templates/footer', $data);
     }
 
-    //Add Data Form personnel
+    //Add Data Form additionalposition
     public function add_additionalposition($PersonnelID)
     {
         $this->forms_personnel->add_additionalposition();
         $_SESSION['success'] = "บันทึกข้อมูลเรียบร้อย";
+        redirect(base_url('personnel-additionalposition?PersonnelID=' . $PersonnelID));
+    }
+
+    //edit-forms-additionalposition
+    public function edit_additionalposition()
+    {
+
+        if (!file_exists(APPPATH . 'views/pages/forms/personnel/edit-forms-personnel-additionalposition.php')) {
+            //Whoops,wedon'thaveapageforthat!
+            show_404();
+        }
+
+        $data['title'] = 'Forms edit-forms-personnel-additionalposition'; //Capitalizethefirstletter
+
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/sidebar', $data);
+        $this->load->view('pages/forms/personnel/edit-forms-personnel-additionalposition', $data);
+        $this->load->view('templates/footer', $data);
+    }
+
+    //Update Data additionalposition
+    public function update_additionalposition($PersonnelID, $JurisdictionCode)
+    {
+
+        $this->forms_personnel->update_additionalposition($PersonnelID, $JurisdictionCode);
+        $_SESSION['success'] = "แก้ไขข้อมูลเรียบร้อย";
+        redirect(base_url('personnel-additionalposition?PersonnelID=' . $PersonnelID));
+    }
+
+    //Delete Data additionalposition
+    public function delete_additionalposition($PersonnelID, $JurisdictionCode)
+    {
+        $this->forms_personnel->delete_additionalposition($PersonnelID, $JurisdictionCode);
+        $_SESSION['success'] = "ลบข้อมูลเรียบร้อย";
         redirect(base_url('personnel-additionalposition?PersonnelID=' . $PersonnelID));
     }
 }

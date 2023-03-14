@@ -7,20 +7,20 @@
                 $result = $this->db->query('SELECT *  FROM PERSONNEL WHERE PersonnelID = "' . $_GET['PersonnelID'] . '"');
                 foreach ($result->result() as $PERSONNEL) {
                 ?>
-                    <h1>ตำแหน่งหน้าที่เพิ่มเติม - <?= $PERSONNEL->PersonnelNameThai; ?> <?= $PERSONNEL->PersonnelLastNameThai; ?>
+                    <h1>ระดับการศึกษา - <?= $PERSONNEL->PersonnelNameThai; ?> <?= $PERSONNEL->PersonnelLastNameThai; ?>
                     <?php } ?>
                     </h1>
                     <nav>
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"><a href="main">Home</a></li>
                             <li class="breadcrumb-item">Dashboard</li>
-                            <li class="breadcrumb-item active">Table Additional Position</li>
+                            <li class="breadcrumb-item active">Table Academic</li>
                         </ol>
                     </nav>
             </div>
             <div class="col-6" style="padding-right: 25px;">
                 <a href="school-classroom" style="float: right;" class="btn btn-sm btn-light" data-mdb-ripple-color="dark">การช่วยราชการ</a>
-                <a href="school-classroom" style="float: right;" class="btn btn-sm btn-light" data-mdb-ripple-color="dark">ระดับการศึกษา</a>
+                <a href="personnel-academic?PersonnelID=<?= $_GET['PersonnelID']; ?>" style="float: right;" class="btn btn-sm btn-light" data-mdb-ripple-color="dark">ระดับการศึกษา</a>
                 <a href="school" style="float: right;" class="btn btn-sm btn-light" data-mdb-ripple-color="dark">วิทยฐานะและตำแหน่งวิชาการ</a>
                 <a href="personnel-additionalposition?PersonnelID=<?= $_GET['PersonnelID']; ?>" style="float: right;" class="btn btn-sm btn-outline-secondary" data-mdb-ripple-color="dark">ตำแหน่งหน้าที่เพิ่มเติม</a>
 
@@ -53,7 +53,7 @@
             <div class="card-body">
                 <div class="row">
                     <div class="col">
-                        <h5 class="card-title">รายละเอียดข้อมูล <span style="padding-right:10px">| Table Additional Position</span> <a href="personnel" class="btn btn-secondary btn-sm" data-mdb-ripple-color="dark">ย้อนกลับ</a></h5>
+                        <h5 class="card-title">รายละเอียดข้อมูล <span style="padding-right:10px">| Table Academic</span> <a href="personnel" class="btn btn-secondary btn-sm" data-mdb-ripple-color="dark">ย้อนกลับ</a></h5>
                     </div>
                     <div class="col">
                         <h5 style="float: right; padding: 15px;" class="card-title"><a href="forms-personnel-additionalposition?PersonnelID=<?= $_GET['PersonnelID']; ?>" class="btn btn-success ">เพิ่มข้อมูลตำแหน่งหน้าที่เพิ่มเติม</a></h5>
@@ -62,12 +62,10 @@
                 <table class="table table-borderless datatable">
                     <thead>
                         <tr>
-                            <th scope="col">ชื่อตำแหน่งหน้าที่พิ่มเติม</th>
-                            <th scope="col">กลุ่ม/หมวด ที่ปฏิบัติหน้าที่เพิ่มเติม</th>
-                            <th style="text-align: center;" scope="col">วันที่เริ่มปฏิบัติหน้าที่เพิ่มเติม</th>
-                            <th style="text-align: center;" scope="col">คำสั่งให้ปฎิบัติหน้าที่เพิ่มเติม</th>
-                            <th style="text-align: center;" scope="col">หมายเหตุ</th>
-                            <th style="text-align: center;" scope="col">เอกสารแนบไฟล์</th>
+                            <th scope="col">หน่วยงานต้นสังกัด</th>
+                            <th scope="col">วิทยฐานะ/ตำแหน่งวิชาการ</th>
+                            <th style="text-align: center;" scope="col">วันที่ที่ได้วิทยฐานะ/เข้าสู่ระดับ</th>
+                            <th style="text-align: center;" scope="col">สาขาที่ยื่นข้อวิทยฐานะ</th>
                             <th style="text-align: center;" scope="col">ปฎิบัติ</th>
                         </tr>
                     </thead>
@@ -85,7 +83,7 @@
                                 <td><?= $ADDITIONAL_POSITION->AdditionalCommand ?></td>
                                 <td><?= $ADDITIONAL_POSITION->AdditionalComment ?></td>
                                 <td style="text-align: center;"><a href="<?php echo base_url('application/documents/personnel/additionalposition') ?>/<?php echo $ADDITIONAL_POSITION->AdditionalDocumentURL; ?>" class="btn btn-primary"><i class="bi bi-file-earmark-text"></i></a></td>
-                                <td style="text-align: center;"><a href="edit-forms-personnel-additionalposition?PersonnelID=<?= $ADDITIONAL_POSITION->PersonnelID ?>&&JurisdictionCode=<?= $ADDITIONAL_POSITION->JurisdictionCode ?>" class="btn btn-warning"><i class="bi bi-pencil-square"></i></a>
+                                <td style="text-align: center;"><a href="edit-forms-award" class="btn btn-warning"><i class="bi bi-pencil-square"></i></a>
                                     &nbsp; <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#Delete"><i class=" bi bi-trash"></i></button>
                                 </td>
                             </tr>
