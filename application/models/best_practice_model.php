@@ -224,7 +224,7 @@ public function del_BP(){
 		$this->db->select('BP.*,BPC.*');
 		$this->db->from('best_practice as BP ');
         $this->db->join('BEST_PRACTICE_CREATOR as BPC','BP.BestPracticeID=BPC.BestPracticeID');
-		$this->db->where('BP.DeleteStatus=0');
+
 		$query = $this->db->get();
 		return $query->result();
 	}
