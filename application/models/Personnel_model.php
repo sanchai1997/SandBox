@@ -169,4 +169,37 @@ class Personnel_model extends CI_Model
         $result = $this->db->where('PersonnelID', $PersonnelID)->update('PERSONNEL', $data);
         return $result;
     }
+
+
+    public function add_additionalposition()
+    {
+
+        $config['upload_path'] = './application/documents/personnel/additionalposition';
+        $config['allowed_types'] = 'doc|docx|pdf|jpg|png|xls|ppt|zip|xlsx';
+        $config['encrypt_name'] = TRUE;
+
+        $this->load->library('upload', $config);
+
+        if (!$this->upload->do_upload('AdditionalDocumentURL')) {
+            echo $this->upload->display_errors();
+        } else {
+
+            $data = $this->upload->data();
+            $filename = $data['file_name'];
+            $data = [
+
+                'PersonnelID' => $this->input->post('PersonnelID'),
+                'JurisdictionCode' => $this->input->post('JurisdictionCode'),
+                'AdditionalPosition' => $this->input->post('AdditionalPosition'),
+                'AdditionalDepartmentCode' => $this->input->post('AdditionalDepartmentCode'),
+                'AdditionalDutyDate' => $this->input->post('AdditionalDutyDate'),
+                'AdditionalCommand' => $this->input->post('AdditionalCommand'),
+                'AdditionalComment' => $this->input->post('AdditionalComment'),
+                'AdditionalDocumentURL' => $filename
+            ];
+
+            $result = $this->db->insert('PERSONNEL_ADDITIONAL_POSITION', $data);
+            return $result;
+        }
+    }
 }

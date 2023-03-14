@@ -110,10 +110,10 @@ class Forms_personnel extends CI_Controller
     }
 
     //Add Data Form personnel
-    public function add_additionalposition()
+    public function add_additionalposition($PersonnelID)
     {
-        $this->forms_personnel->add_personnel();
+        $this->forms_personnel->add_additionalposition();
         $_SESSION['success'] = "บันทึกข้อมูลเรียบร้อย";
-        redirect(base_url('personnel'));
+        redirect(base_url('personnel-additionalposition?PersonnelID=' . $PersonnelID));
     }
 }

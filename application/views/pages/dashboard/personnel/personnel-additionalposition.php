@@ -18,6 +18,12 @@
                         </ol>
                     </nav>
             </div>
+            <div class="col-6" style="padding-right: 25px;">
+                <a href="school-classroom" style="float: right;" class="btn btn-sm btn-light" data-mdb-ripple-color="dark">ข้อมูลห้องเรียนสถานศึกษา</a>
+                <a href="school" style="float: right;" class="btn btn-sm btn-light" data-mdb-ripple-color="dark">วิทยฐานะและตำแหน่งวิชาการ</a>
+                <a href="personnel-additionalposition" style="float: right;" class="btn btn-sm btn-outline-secondary" data-mdb-ripple-color="dark">ตำแหน่งหน้าที่เพิ่มเติม</a>
+
+            </div>
 
         </div>
     </div><!-- End Page Title -->
@@ -49,7 +55,7 @@
                         <h5 class="card-title">รายละเอียดข้อมูล <span style="padding-right:10px">| Table Additional Position</span> <a href="personnel" class="btn btn-secondary btn-sm" data-mdb-ripple-color="dark">ย้อนกลับ</a></h5>
                     </div>
                     <div class="col">
-                        <h5 style="float: right; padding: 15px;" class="card-title"><a href="forms-personnel-additionalposition" class="btn btn-success ">เพิ่มข้อมูลตำแหน่งหน้าที่เพิ่มเติม</a></h5>
+                        <h5 style="float: right; padding: 15px;" class="card-title"><a href="forms-personnel-additionalposition?PersonnelID=<?= $_GET['PersonnelID']; ?>" class="btn btn-success ">เพิ่มข้อมูลตำแหน่งหน้าที่เพิ่มเติม</a></h5>
                     </div>
                 </div>
                 <table class="table table-borderless datatable">
@@ -60,6 +66,7 @@
                             <th style="text-align: center;" scope="col">วันที่เริ่มปฏิบัติหน้าที่เพิ่มเติม</th>
                             <th style="text-align: center;" scope="col">คำสั่งให้ปฎิบัติหน้าที่เพิ่มเติม</th>
                             <th style="text-align: center;" scope="col">หมายเหตุ</th>
+                            <th style="text-align: center;" scope="col">เอกสารแนบไฟล์</th>
                             <th style="text-align: center;" scope="col">ปฎิบัติ</th>
                         </tr>
                     </thead>
@@ -73,9 +80,10 @@
                             <tr>
                                 <td><?= $ADDITIONAL_POSITION->AdditionalPosition ?></td>
                                 <td><?= $ADDITIONAL_POSITION->DEPARTMENT_NAME ?></td>
-                                <td><?= DateThai($ADDITIONAL_POSITION->AdditionalDutyDate); ?></td>
+                                <td style="text-align: center;"><?= DateThai($ADDITIONAL_POSITION->AdditionalDutyDate); ?></td>
                                 <td><?= $ADDITIONAL_POSITION->AdditionalCommand ?></td>
                                 <td><?= $ADDITIONAL_POSITION->AdditionalComment ?></td>
+                                <td style="text-align: center;"><a href="" class="btn btn-primary"><i class="bi bi-file-earmark-text"></i></a></td>
                                 <td style="text-align: center;"><a href="edit-forms-award" class="btn btn-warning"><i class="bi bi-pencil-square"></i></a>
                                     &nbsp; <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#Delete"><i class=" bi bi-trash"></i></button>
                                 </td>

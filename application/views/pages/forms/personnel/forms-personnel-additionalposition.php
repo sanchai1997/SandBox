@@ -28,11 +28,11 @@
                     <div class="card-body">
 
                         <!-- Floating Labels Form -->
-                        <form class="row g-3" action="<?php echo base_url('add-personnel'); ?>" method="POST" enctype="multipart/form-data">
+                        <form class="row g-3" action="<?php echo base_url('add-additionalposition/' . $_GET['PersonnelID']); ?>" method="POST" enctype="multipart/form-data">
                             <h5 class="card-title">เพิ่มตำแหน่งที่เพิ่มเติม</h5>
                             <div class="row mb-3">
-                                <label class="col-sm-3 col-form-label">หน่วยงานต้นสกัด</label>
-                                <div class="col-sm-9">
+                                <label class="col-sm-2 col-form-label">หน่วยงานต้นสกัด</label>
+                                <div class="col-sm-10">
                                     <select class="form-select" aria-label="Default select example" name="JurisdictionCode">
                                         <option selected>เลือก</option>
                                         <?php
@@ -97,9 +97,9 @@
                                     <input type="file" class="form-control" name="AdditionalDocumentURL">
                                 </div>
                             </div>
-
+                            <input type="hidden" name="PersonnelID" value="<?= $_GET['PersonnelID']; ?>">
                             <div class="text-center">
-                                <a href="personnel" style="float: left;" class="btn btn-light">ยกเลิก</a>
+                                <a href="personnel-additionalposition?PersonnelID=<?= $_GET['PersonnelID']; ?>" style="float: left;" class="btn btn-light">ยกเลิก</a>
                                 <button style="float: center;" type="reset" class="btn btn-secondary">รีเซ็ต</button>
                                 <button style="float: right;" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#ADD">บันทึกข้อมูล</button>
                             </div>
