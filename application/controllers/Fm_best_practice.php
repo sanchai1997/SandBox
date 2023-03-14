@@ -11,33 +11,33 @@ class Fm_best_practice extends CI_Controller {
 	public function index()
 	{
 		$data['query']=$this->Best_practice_model->show_index();
-		$this->load->view('mycss');
+		
         $this->load->view('templates/header');
         $this->load->view('templates/sidebar');
 		$this->load->view('pages/dashboard/best_practice',$data);
         $this->load->view('templates/footer');
-		$this->load->view('myjs');
+		
 	}
 	public function sh1()
 	{
 		$data['query']=$this->Best_practice_model->show_BP();
-		$this->load->view('mycss');
+		
         $this->load->view('templates/header');
         $this->load->view('templates/sidebar');
 		$this->load->view('pages/dashboard/best_practice',$data);
         $this->load->view('templates/footer');
-		$this->load->view('myjs');
+		
 	}
 	public function sh2()
 	{
 		
 		$data['query']=$this->Best_practice_model->show_BPC();
-		$this->load->view('mycss');
+		
         $this->load->view('templates/header');
         $this->load->view('templates/sidebar');
 		$this->load->view('pages/dashboard/best_practice',$data);
         $this->load->view('templates/footer');
-		$this->load->view('myjs');
+		
 	}
 	public function forms()
     {
@@ -47,12 +47,12 @@ class Fm_best_practice extends CI_Controller {
         // echo '</pre>';
         // exit;
         
-        $this->load->view('mycss');
+        
         $this->load->view('templates/header');
         $this->load->view('templates/sidebar');
 		$this->load->view('pages/forms/EII/forms-best_practice');
         $this->load->view('templates/footer');
-        $this->load->view('myjs');
+        
     }
 	public function add_sh1()
 	{

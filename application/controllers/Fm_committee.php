@@ -20,12 +20,12 @@ class Fm_committee extends CI_Controller {
 // echo '</pre>';
 // exit;
 
-$this->load->view('mycss');
+
 $this->load->view('templates/header');
 $this->load->view('templates/sidebar');
 $this->load->view('pages/dashboard/committee' , $data);
 $this->load->view('templates/footer');
-$this->load->view('myjs');
+
 
 	}
 
@@ -40,12 +40,12 @@ $this->load->view('myjs');
 // echo '</pre>';
 // exit;
 
-$this->load->view('mycss');
+
 $this->load->view('templates/header');
 $this->load->view('templates/sidebar');
 $this->load->view('pages/dashboard/committee', $data);
 $this->load->view('templates/footer');
-$this->load->view('myjs');
+
 
 	}
 	public function index()
@@ -59,12 +59,12 @@ $this->load->view('myjs');
 // echo '</pre>';
 // exit;
 
-$this->load->view('mycss');
+
 $this->load->view('templates/header');
 $this->load->view('templates/sidebar');
 $this->load->view('pages/dashboard/committee' , $data);
 $this->load->view('templates/footer');
-$this->load->view('myjs');
+
 
 	}
 	public function form_page()
@@ -76,12 +76,12 @@ $this->load->view('myjs');
 		// print_r($data);
 		// echo'</pre>';
 		// exit;
-		$this->load->view('mycss');
+		
         $this->load->view('templates/header');
         $this->load->view('templates/sidebar');
 		$this->load->view('pages/forms/EII/forms-committee');
         $this->load->view('templates/footer');
-		$this->load->view('myjs');
+		
 	}
 
 	public function adding()

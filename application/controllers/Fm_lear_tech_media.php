@@ -13,32 +13,32 @@ class Fm_lear_tech_media extends CI_Controller {
 	public function index()
 	{
 		$data['query']=$this->Lear_tech_media_model->show_index();
-		$this->load->view('mycss');
+		
         $this->load->view('templates/header');
         $this->load->view('templates/sidebar');
 		$this->load->view('pages/dashboard/lear_tech_media',$data);
         $this->load->view('templates/footer');
-		$this->load->view('myjs');
+		
 	}
 	public function sh1()
 	{
 		$data['query']=$this->Lear_tech_media_model->show_LTM();
-		$this->load->view('mycss');
+		
         $this->load->view('templates/header');
         $this->load->view('templates/sidebar');
 		$this->load->view('pages/dashboard/lear_tech_media',$data);
         $this->load->view('templates/footer');
-		$this->load->view('myjs');
+		
 	}
 	public function sh2()
 	{
 		$data['query']=$this->Lear_tech_media_model->show_LTMC();
-		$this->load->view('mycss');
+		
         $this->load->view('templates/header');
         $this->load->view('templates/sidebar');
 		$this->load->view('pages/dashboard/lear_tech_media',$data);
         $this->load->view('templates/footer');
-		$this->load->view('myjs');
+		
 	}
 	public function forms()
     {
@@ -48,12 +48,12 @@ class Fm_lear_tech_media extends CI_Controller {
         // echo '</pre>';
         // exit;
         
-        $this->load->view('mycss');
+        
         $this->load->view('templates/header');
         $this->load->view('templates/sidebar');
         $this->load->view('pages/forms/EII/forms-learning_technology_media');
         $this->load->view('templates/footer');
-        $this->load->view('myjs');
+        
     }
 	public function adding_sh1()
 	{

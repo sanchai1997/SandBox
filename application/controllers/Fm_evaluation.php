@@ -17,12 +17,12 @@ class Fm_evaluation extends CI_Controller
         // print_r($data);
         // echo '</pre>';
         // exit;
-        $this->load->view('mycss');
+       
         $this->load->view('templates/header');
         $this->load->view('templates/sidebar');
         $this->load->view('pages/dashboard/evaluation',$data);
         $this->load->view('templates/footer');
-        $this->load->view('myjs');
+        
     }
     public function sh1()
     {
@@ -32,12 +32,12 @@ class Fm_evaluation extends CI_Controller
         // print_r($data);
         // echo '</pre>';
         // exit;
-        $this->load->view('mycss');
+       
         $this->load->view('templates/header');
         $this->load->view('templates/sidebar');
         $this->load->view('pages/dashboard/evaluation',$data);
         $this->load->view('templates/footer');
-        $this->load->view('myjs');
+        
     }
     public function sh2()
     {
@@ -47,12 +47,12 @@ class Fm_evaluation extends CI_Controller
         // print_r($data);
         // echo '</pre>';
         // exit;
-        $this->load->view('mycss');
+       
         $this->load->view('templates/header');
         $this->load->view('templates/sidebar');
         $this->load->view('pages/dashboard/evaluation',$data);
         $this->load->view('templates/footer');
-        $this->load->view('myjs');
+        
     }
 
     public function sh3()
@@ -63,12 +63,12 @@ class Fm_evaluation extends CI_Controller
         // print_r($data);
         // echo '</pre>';
         // exit;
-        $this->load->view('mycss');
+       
         $this->load->view('templates/header');
         $this->load->view('templates/sidebar');
         $this->load->view('pages/dashboard/evaluation',$data);
         $this->load->view('templates/footer');
-        $this->load->view('myjs');
+        
     }
     public function sh4()
     {
@@ -78,12 +78,12 @@ class Fm_evaluation extends CI_Controller
         // print_r($data);
         // echo '</pre>';
         // exit;
-        $this->load->view('mycss');
+       
         $this->load->view('templates/header');
         $this->load->view('templates/sidebar');
         $this->load->view('pages/dashboard/evaluation',$data);
         $this->load->view('templates/footer');
-        $this->load->view('myjs');
+        
     }
     public function sh5()
     {
@@ -93,12 +93,12 @@ class Fm_evaluation extends CI_Controller
         // print_r($data);
         // echo '</pre>';
         // exit;
-        $this->load->view('mycss');
+       
         $this->load->view('templates/header');
         $this->load->view('templates/sidebar');
         $this->load->view('pages/dashboard/evaluation',$data);
         $this->load->view('templates/footer');
-        $this->load->view('myjs');
+        
     }
     public function sh6()
     {
@@ -108,12 +108,12 @@ class Fm_evaluation extends CI_Controller
         // print_r($data);
         // echo '</pre>';
         // exit;
-        $this->load->view('mycss');
+       
         $this->load->view('templates/header');
         $this->load->view('templates/sidebar');
         $this->load->view('pages/dashboard/evaluation',$data);
         $this->load->view('templates/footer');
-        $this->load->view('myjs');
+        
     }
     public function sh7()
     {
@@ -123,12 +123,12 @@ class Fm_evaluation extends CI_Controller
         // print_r($data);
         // echo '</pre>';
         // exit;
-        $this->load->view('mycss');
+       
         $this->load->view('templates/header');
         $this->load->view('templates/sidebar');
         $this->load->view('pages/dashboard/evaluation',$data);
         $this->load->view('templates/footer');
-        $this->load->view('myjs');
+        
     }
     public function sh8()
     {
@@ -138,12 +138,12 @@ class Fm_evaluation extends CI_Controller
         // print_r($data);
         // echo '</pre>';
         // exit;
-        $this->load->view('mycss');
+       
         $this->load->view('templates/header');
         $this->load->view('templates/sidebar');
         $this->load->view('pages/dashboard/evaluation',$data);
         $this->load->view('templates/footer');
-        $this->load->view('myjs');
+        
     }
     
     public function forms()
@@ -154,12 +154,12 @@ class Fm_evaluation extends CI_Controller
         // echo '</pre>';
         // exit;
         
-        $this->load->view('mycss');
+       
         $this->load->view('templates/header');
         $this->load->view('templates/sidebar');
         $this->load->view('pages/forms/EII/forms-evaluation');
         $this->load->view('templates/footer');
-        $this->load->view('myjs');
+        
     }
     
     public function insert_ass_ria()

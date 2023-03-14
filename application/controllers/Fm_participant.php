@@ -13,52 +13,52 @@ class Fm_participant extends CI_Controller {
 	{
 		$data['query']=$this->Participant_model->show_index();
 
-		$this->load->view('mycss');
+		
         $this->load->view('templates/header');
         $this->load->view('templates/sidebar');
 		$this->load->view('pages/dashboard/participant',$data);
         $this->load->view('templates/footer');
-		$this->load->view('myjs');
+		
 	}
 	public function sh1()
 	{
 		$data['query']=$this->Participant_model->show_par();//sh1
-		$this->load->view('mycss');
+		
         $this->load->view('templates/header');
         $this->load->view('templates/sidebar');
 		$this->load->view('pages/dashboard/participant',$data);
         $this->load->view('templates/footer');
-		$this->load->view('myjs');
+		
 	}
 	public function sh2()
 	{
 		$data['query']=$this->Participant_model->show_par_con();//sh2
-		$this->load->view('mycss');
+		
         $this->load->view('templates/header');
         $this->load->view('templates/sidebar');
 		$this->load->view('pages/dashboard/participant',$data);
         $this->load->view('templates/footer');
-		$this->load->view('myjs');
+		
 	}
 	public function sh3()
 	{
 		$data['query']=$this->Participant_model->show_par_coop();//sh3
-		$this->load->view('mycss');
+		
         $this->load->view('templates/header');
         $this->load->view('templates/sidebar');
 		$this->load->view('pages/dashboard/participant',$data);
         $this->load->view('templates/footer');
-		$this->load->view('myjs');
+		
 	}
 	public function sh4()
 	{
 		$data['query']=$this->Participant_model->show_par_note();//sh4
-		$this->load->view('mycss');
+		
         $this->load->view('templates/header');
         $this->load->view('templates/sidebar');
 		$this->load->view('pages/dashboard/participant',$data);
         $this->load->view('templates/footer');
-		$this->load->view('myjs');
+		
 	}
 	public function forms()
     {
@@ -68,12 +68,12 @@ class Fm_participant extends CI_Controller {
         // echo '</pre>';
         // exit;
         
-        $this->load->view('mycss');
+        
         $this->load->view('templates/header');
         $this->load->view('templates/sidebar');
         $this->load->view('pages/forms/EII/forms-participant');
         $this->load->view('templates/footer');
-        $this->load->view('myjs');
+        
     }
 	public function adding_sh1()
 	{
