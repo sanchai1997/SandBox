@@ -197,14 +197,14 @@
 
                             <td style="text-align: center;">
                                 <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                                    data-bs-target="#edit_ass_ria<?php echo $show->id; ?>"><i
+                                    data-bs-target="#edit_ass_ria<?php echo $show->Id; ?>"><i
                                         class="bi bi-card-list"></i></button>
                                 <button type="button" class="btn btn-danger" data-bs-toggle="modal"
-                                    data-bs-target="#del_ass_ria<?php echo $show->id; ?>">
+                                    data-bs-target="#del_ass_ria<?php echo $show->Id; ?>">
                                     <i class="bi bi-trash"></i>
                                 </button>
                                 <!-- Modal -->
-                                <div class="modal fade" id="del_ass_ria<?php echo $show->id; ?>" tabindex="-1"
+                                <div class="modal fade" id="del_ass_ria<?php echo $show->Id; ?>" tabindex="-1"
                                     aria-labelledby="exampleModalLabel" aria-hidden="true">
                                     <div class="modal-dialog">
                                         <div class="modal-content">
@@ -225,7 +225,7 @@
                                                     data-bs-dismiss="modal">ยกเลิก</button>
                                                 <form method="post"
                                                     action="<?php echo site_url('ass_ria_del_p1'); ?>">
-                                                    <input type="hidden" name="id" value="<?php echo $show->id; ?>">
+                                                    <input type="hidden" name="id" value="<?php echo $show->Id; ?>">
                                                     <div class="d-flex justify-content-center">
                                                         <button name="Submit" type="submit"
                                                             class="btn btn-primary">ยืนยันก่อนลบ</button>
@@ -296,14 +296,14 @@
 
                             <td style="text-align: center;">
                                 <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                                    data-bs-target="#edit_ass_ria_lvl<?php echo $show->id; ?>"><i
+                                    data-bs-target="#edit_ass_ria_lvl<?php echo $show->Id; ?>"><i
                                         class="bi bi-card-list"></i></button>
                                 <button type="button" class="btn btn-danger" data-bs-toggle="modal"
-                                    data-bs-target="#del_ass_ria_lvl<?php echo $show->id; ?>">
+                                    data-bs-target="#del_ass_ria_lvl<?php echo $show->Id; ?>">
                                     <i class="bi bi-trash"></i>
                                 </button>
                                 <!-- Modal -->
-                                <div class="modal fade" id="del_ass_ria_lvl<?php echo $show->id; ?>" tabindex="-1"
+                                <div class="modal fade" id="del_ass_ria_lvl<?php echo $show->Id; ?>" tabindex="-1"
                                     aria-labelledby="exampleModalLabel" aria-hidden="true">
                                     <div class="modal-dialog">
                                         <div class="modal-content">
@@ -324,7 +324,7 @@
                                                     data-bs-dismiss="modal">ยกเลิก</button>
                                                 <form method="post"
                                                     action="<?php echo site_url('ass_ria_lvl_del_p2'); ?>">
-                                                    <input type="hidden" name="id" value="<?php echo $show->id; ?>">
+                                                    <input type="hidden" name="id" value="<?php echo $show->Id; ?>">
                                                     <div class="d-flex justify-content-center">
                                                         <button name="Submit" type="submit"
                                                             class="btn btn-primary">ยืนยันก่อนลบ</button>
@@ -400,14 +400,14 @@
 
                             <td style="text-align: center;">
                                 <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                                    data-bs-target="#edit_ass_ria_com<?php echo $show->id; ?>"><i
+                                    data-bs-target="#edit_ass_ria_com<?php echo $show->Id; ?>"><i
                                         class="bi bi-card-list"></i></button>
                                 <button type="button" class="btn btn-danger" data-bs-toggle="modal"
-                                    data-bs-target="#del_ass_ria_com<?php echo $show->id; ?>">
+                                    data-bs-target="#del_ass_ria_com<?php echo $show->Id; ?>">
                                     <i class="bi bi-trash"></i>
                                 </button>
                                 <!-- Modal -->
-                                <div class="modal fade" id="del_ass_ria_com<?php echo $show->id; ?>" tabindex="-1"
+                                <div class="modal fade" id="del_ass_ria_com<?php echo $show->Id; ?>" tabindex="-1"
                                     aria-labelledby="exampleModalLabel" aria-hidden="true">
                                     <div class="modal-dialog">
                                         <div class="modal-content">
@@ -428,7 +428,7 @@
                                                     data-bs-dismiss="modal">ยกเลิก</button>
                                                 <form method="post"
                                                     action="<?php echo site_url('ass_ria_com_del_p3'); ?>">
-                                                    <input type="hidden" name="id" value="<?php echo $show->id; ?>">
+                                                    <input type="hidden" name="id" value="<?php echo $show->Id; ?>">
                                                     <div class="d-flex justify-content-center">
                                                         <button name="Submit" type="submit"
                                                             class="btn btn-primary">ยืนยันก่อนลบ</button>
@@ -499,14 +499,14 @@
 
                             <td style="text-align: center;">
                                 <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                                    data-bs-target="#edit_ass_ria_com_lvl<?php echo $show->id; ?>"><i
+                                    data-bs-target="#edit_ass_ria_com_lvl<?php echo $show->Id; ?>"><i
                                         class="bi bi-card-list"></i></button>
                                 <button type="button" class="btn btn-danger" data-bs-toggle="modal"
-                                    data-bs-target="#del_ass_ria_com_lvl<?php echo $show->id; ?>">
+                                    data-bs-target="#del_ass_ria_com_lvl<?php echo $show->Id; ?>">
                                     <i class="bi bi-trash"></i>
                                 </button>
                                 <!-- Modal -->
-                                <div class="modal fade" id="del_ass_ria_com_lvl<?php echo $show->id; ?>" tabindex="-1"
+                                <div class="modal fade" id="del_ass_ria_com_lvl<?php echo $show->Id; ?>" tabindex="-1"
                                     aria-labelledby="exampleModalLabel" aria-hidden="true">
                                     <div class="modal-dialog">
                                         <div class="modal-content">
@@ -527,7 +527,7 @@
                                                     data-bs-dismiss="modal">ยกเลิก</button>
                                                 <form method="post"
                                                     action="<?php echo site_url('ass_ria_com_lvl_del_p4'); ?>">
-                                                    <input type="hidden" name="id" value="<?php echo $show->id; ?>">
+                                                    <input type="hidden" name="id" value="<?php echo $show->Id; ?>">
                                                     <div class="d-flex justify-content-center">
                                                         <button name="Submit" type="submit"
                                                             class="btn btn-primary">ยืนยันก่อนลบ</button>
@@ -715,14 +715,14 @@
 
                             <td style="text-align: center;">
                                 <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                                    data-bs-target="#edit_sc_ass_ria<?php echo $s->id; ?>"><i
+                                    data-bs-target="#edit_sc_ass_ria<?php echo $s->Id; ?>"><i
                                         class="bi bi-card-list"></i></button>
                                 <button type="button" class="btn btn-danger" data-bs-toggle="modal"
-                                    data-bs-target="#del_sc_ass_ria<?php echo $s->id; ?>">
+                                    data-bs-target="#del_sc_ass_ria<?php echo $s->Id; ?>">
                                     <i class="bi bi-trash"></i>
                                 </button>
                                 <!-- Modal -->
-                                <div class="modal fade" id="del_sc_ass_ria<?php echo $s->id; ?>" tabindex="-1"
+                                <div class="modal fade" id="del_sc_ass_ria<?php echo $s->Id; ?>" tabindex="-1"
                                     aria-labelledby="exampleModalLabel" aria-hidden="true">
                                     <div class="modal-dialog">
                                         <div class="modal-content">
@@ -743,7 +743,7 @@
                                                     data-bs-dismiss="modal">ยกเลิก</button>
                                                 <form method="post"
                                                     action="<?php echo site_url('sc_ass_ria_del_p6'); ?>">
-                                                    <input type="hidden" name="id" value="<?php echo $s->id; ?>">
+                                                    <input type="hidden" name="id" value="<?php echo $s->Id; ?>">
                                                     <div class="d-flex justify-content-center">
                                                         <button name="Submit" type="submit"
                                                             class="btn btn-primary">ยืนยันก่อนลบ</button>
@@ -819,14 +819,14 @@
 
                             <<td style="text-align: center;">
                                 <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                                    data-bs-target="#edit_sc_ass_res<?php echo $show->id; ?>"><i
+                                    data-bs-target="#edit_sc_ass_res<?php echo $show->Id; ?>"><i
                                         class="bi bi-card-list"></i></button>
                                 <button type="button" class="btn btn-danger" data-bs-toggle="modal"
-                                    data-bs-target="#del_sc_ass_res<?php echo $show->id; ?>">
+                                    data-bs-target="#del_sc_ass_res<?php echo $show->Id; ?>">
                                     <i class="bi bi-trash"></i>
                                 </button>
                                 <!-- Modal -->
-                                <div class="modal fade" id="del_sc_ass_res<?php echo $show->id; ?>" tabindex="-1"
+                                <div class="modal fade" id="del_sc_ass_res<?php echo $show->Id; ?>" tabindex="-1"
                                     aria-labelledby="exampleModalLabel" aria-hidden="true">
                                     <div class="modal-dialog">
                                         <div class="modal-content">
@@ -847,7 +847,7 @@
                                                     data-bs-dismiss="modal">ยกเลิก</button>
                                                 <form method="post"
                                                     action="<?php echo site_url('sc_ass_res_del_p7'); ?>">
-                                                    <input type="hidden" name="id" value="<?php echo $show->id; ?>">
+                                                    <input type="hidden" name="id" value="<?php echo $show->Id; ?>">
                                                     <div class="d-flex justify-content-center">
                                                         <button name="Submit" type="submit"
                                                             class="btn btn-primary">ยืนยันก่อนลบ</button>
@@ -927,14 +927,14 @@
                             </th>
                             <td style="text-align: center;">
                                 <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                                    data-bs-target="#edit_achie_ass<?php echo $show->id; ?>"><i
+                                    data-bs-target="#edit_achie_ass<?php echo $show->Id; ?>"><i
                                         class="bi bi-card-list"></i></button>
                                 <button type="button" class="btn btn-danger" data-bs-toggle="modal"
-                                    data-bs-target="#del_achie_ass<?php echo $show->id; ?>">
+                                    data-bs-target="#del_achie_ass<?php echo $show->Id; ?>">
                                     <i class="bi bi-trash"></i>
                                 </button>
                                 <!-- Modal -->
-                                <div class="modal fade" id="del_achie_ass<?php echo $show->id; ?>" tabindex="-1"
+                                <div class="modal fade" id="del_achie_ass<?php echo $show->Id; ?>" tabindex="-1"
                                     aria-labelledby="exampleModalLabel" aria-hidden="true">
                                     <div class="modal-dialog">
                                         <div class="modal-content">
@@ -955,7 +955,7 @@
                                                     data-bs-dismiss="modal">ยกเลิก</button>
                                                 <form method="post"
                                                     action="<?php echo site_url('achie_ass_del_p8'); ?>">
-                                                    <input type="hidden" name="id" value="<?php echo $show->id; ?>">
+                                                    <input type="hidden" name="id" value="<?php echo $show->Id; ?>">
                                                     <div class="d-flex justify-content-center">
                                                         <button name="Submit" type="submit"
                                                             class="btn btn-primary">ยืนยันก่อนลบ</button>
@@ -995,7 +995,7 @@ foreach ($query as $show) {
     ?>
 <tr>
     <!-- edit_ass_ria -->
-    <div class="modal fade" id="edit_ass_ria<?php echo $show->id; ?>" tabindex="-1"
+    <div class="modal fade" id="edit_ass_ria<?php echo $show->Id; ?>" tabindex="-1"
         aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
@@ -1009,7 +1009,7 @@ foreach ($query as $show) {
                                 ); ?>" method="post">
                                     <h5 class="card-title">ฟอร์มการประกันคุณภาพด้วยตัวชี้วัดของพื้นที่</h5>
                                     <div class="row mb-3">
-                                        <input type="hidden" name="id" value="<?php echo $show->id ?>">
+                                        <input type="hidden" name="id" value="<?php echo $show->Id ?>">
                                         <div class="col">
                                             <div class="form-floating">
                                                 <input type="text" class="form-control" id="floatingName"
@@ -1088,7 +1088,7 @@ foreach ($query as $show) {
     ?>
 <tr>
     <!-- edit_ass_ria_lvl -->
-    <div class="modal fade" id="edit_ass_ria_lvl<?php echo $show->id; ?>" tabindex="-1"
+    <div class="modal fade" id="edit_ass_ria_lvl<?php echo $show->Id; ?>" tabindex="-1"
         aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
@@ -1101,7 +1101,7 @@ foreach ($query as $show) {
                                     'ass_ria_lvl_edit_p2'
                                 ); ?>" method="post">
                                     <h5 class="card-title">ฟอร์มข้อมูลระดับตัวชี้วัด</h5>
-<input type="hidden" name="id" value="<?php echo $show->id ?>">
+<input type="hidden" name="id" value="<?php echo $show->Id ?>">
 
                                     <div class="row mb-3">
                                         <div class="col">
@@ -1167,7 +1167,7 @@ foreach ($query as $show) {
     ?>
 <tr>
     <!-- edit_ass_ria_com -->
-    <div class="modal fade" id="edit_ass_ria_com<?php echo $show->id; ?>" tabindex="-1"
+    <div class="modal fade" id="edit_ass_ria_com<?php echo $show->Id; ?>" tabindex="-1"
         aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
@@ -1181,7 +1181,7 @@ foreach ($query as $show) {
                                     ); ?>" method="post">
                                     <h5 class="card-title">ฟอร์มข้อมูลองค์ประกอบตัวชี้วัด</h5>
 
-<input type="hidden" name="id" value="<?php echo $show->id ?>">
+<input type="hidden" name="id" value="<?php echo $show->Id ?>">
                                     <div class="row mb-3">
                                         <div class="col">
                                             <div class="form-floating">
@@ -1261,7 +1261,7 @@ foreach ($query as $show) {
     ?>
 <tr>
     <!-- edit_ass_ria_com_lvl -->
-    <div class="modal fade" id="edit_ass_ria_com_lvl<?php echo $show->id; ?>" tabindex="-1"
+    <div class="modal fade" id="edit_ass_ria_com_lvl<?php echo $show->Id; ?>" tabindex="-1"
         aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
@@ -1274,7 +1274,7 @@ foreach ($query as $show) {
                                         'ass_ria_com_lvl_edit_p4'
                                     ); ?>" method="post">
                                     <h5 class="card-title">ฟอร์มข้อมูลคำอธิบายระดับของแต่ละองค์ประกอบ</h5>
-<input type="hidden" name="id" value="<?php echo $show->id ?>">
+<input type="hidden" name="id" value="<?php echo $show->Id ?>">
                                     <div class="row mb-3">
                                         <div class="col">
                                             <div class="form-floating">
@@ -1339,7 +1339,7 @@ foreach ($query as $show) {
     ?>
 <tr>
     <!-- edit_sc_ass -->
-    <div class="modal fade" id="edit_sc_ass<?php echo $show->id; ?>" tabindex="-1"
+    <div class="modal fade" id="edit_sc_ass<?php echo $show->Id; ?>" tabindex="-1"
         aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
@@ -1352,7 +1352,7 @@ foreach ($query as $show) {
                                     'sc_ass_edit_p5'
                                 ); ?>" method="post">
                                     <h5 class="card-title">ฟอร์มข้อมูลการประเมินผลสถานศึกษา</h5>
-<input type="hidden" name="id" value="<?php echo $show->id ?>">
+<input type="hidden" name="id" value="<?php echo $show->Id ?>">
                                     <div class="row mb-3">
                                         <div class="col">
                                             <div class="form-floating">
@@ -1430,7 +1430,7 @@ foreach ($query as $show) {
     ?>
 <tr>
     <!-- edit_sc_ass_ria -->
-    <div class="modal fade" id="edit_sc_ass_ria<?php echo $show->id; ?>" tabindex="-1"
+    <div class="modal fade" id="edit_sc_ass_ria<?php echo $show->Id; ?>" tabindex="-1"
         aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
@@ -1443,7 +1443,7 @@ foreach ($query as $show) {
                                     'sc_ass_ria_edit_p6'
                                 ); ?>" method="post" enctype="multipart/form-data">
                                     <h5 class="card-title">ฟอร์มข้อมูลการประเมินตามตัวชี้วัด</h5>
-<input type="hidden" name="id" value="<?php echo $show->id ?>">
+<input type="hidden" name="id" value="<?php echo $show->Id ?>">
                                     <div class="row mb-3">
                                         <div class="form-floating">
                                             <input type="text" class="form-control" id="floatingName"
@@ -1550,7 +1550,7 @@ foreach ($query as $show) {
     ?>
 <tr>
     <!-- edit_sc_ass_res -->
-    <div class="modal fade" id="edit_sc_ass_res<?php echo $show->id; ?>" tabindex="-1"
+    <div class="modal fade" id="edit_sc_ass_res<?php echo $show->Id; ?>" tabindex="-1"
         aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
@@ -1561,7 +1561,7 @@ foreach ($query as $show) {
                 <div class="modal-body">
                 <form action="<?php echo site_url('sc_ass_res_edit_p7'); ?>" method="post" enctype="multipart/form-data">
                                     <h5 class="card-title">ฟอร์มระดับตัวชี้วัดที่ได้ในแต่ละองค์ประกอบ</h5>
-                                    <input type="hidden" name="id" value="<?php echo $show->id ?>">
+                                    <input type="hidden" name="id" value="<?php echo $show->Id ?>">
                                     <div class="row mb-3">
                                         <div class="form-floating">
                                             <input type="text" class="form-control" id="floatingName"
@@ -1638,7 +1638,7 @@ foreach ($query as $show) {
     ?>
 <tr>
     <!-- edit_achie_ass -->
-    <div class="modal fade" id="edit_achie_ass<?php echo $show->id; ?>" tabindex="-1"
+    <div class="modal fade" id="edit_achie_ass<?php echo $show->Id; ?>" tabindex="-1"
         aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
@@ -1658,7 +1658,7 @@ foreach ($query as $show) {
                                             </label>
                                         </div>
                                     </div>
-<input type="hidden" name="id" value="<?php echo $show->id ?>">
+<input type="hidden" name="id" value="<?php echo $show->Id ?>">
                                     <div class="row mb-3">
                                         <div class="col">
                                             <div class="form-floating">
