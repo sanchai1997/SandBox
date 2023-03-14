@@ -49,7 +49,7 @@ if (isset( $_SESSION['success'])) { ?>
                     <?php  if ($page=='sh1') {  ?>
                         <h5 class="card-title">ข้อมูลนวัตกรรมการศึกษา</h5>
                         <!-- start Form ข้อมูลนวัตกรรมการศึกษา -->
-                        <form action="<?php echo site_url('Fm_innovation/adding_sh1'); ?>" method="post" enctype="multipart/form-data">
+                        <form action="<?php echo site_url('forms_up_p1'); ?>" method="post" enctype="multipart/form-data">
 
                             <div class="row mb-3">
                                 <div class="form-floating">
@@ -169,7 +169,7 @@ if (isset( $_SESSION['success'])) { ?>
                         <?php  if ($page=='sh2') {  ?>
                         <h5 class="card-title">ข้อมูลผู้จัดทำนวัตกรรมการศึกษา</h5>
                         <!-- start Form ข้อมูลนวัตกรรมการศึกษา -->
-                        <form action="<?php echo site_url('Fm_innovation/adding_sh2'); ?>" method="post">
+                        <form action="<?php echo site_url('forms_up_p2'); ?>" method="post">
 
                             <div class="row mb-3">
                                 <div class="form-floating">

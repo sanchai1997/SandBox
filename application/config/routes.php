@@ -112,3 +112,17 @@ $route['delete-personnel/(:any)'] = 'forms_personnel/delete_personnel/$1';
 
 $route['personnel-additional-position'] = 'personnel/additional_position';
 ///////////////////// PERSONNEL - END /////////////////////////
+////////////////////// ROUTE innovation ////////////////////////
+//PERSONNEL
+$route['Fm_innovation'] = 'Fm_innovation';
+$route['Fm_innovation_das_p1'] = 'Fm_innovation/sh1/$1';
+$route['Fm_innovation_das_p2'] = 'Fm_innovation/sh2/$1';
+$route['forms_p1'] = 'Fm_innovation/forms/$1';
+$route['forms_p2'] = 'Fm_innovation/forms/$1';
+$route['forms_up_p1'] = 'Fm_innovation/adding_sh1';
+$route['forms_up_p2'] = 'Fm_innovation/adding_sh2';
+$route['edit_p1'] = 'Fm_innovation/edit_sh1';
+$route['edit_p2'] = 'Fm_innovation/edit_sh2';
+
+///////////////////// innovation - END /////////////////////////
+

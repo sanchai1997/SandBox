@@ -45,10 +45,10 @@
                 </nav>
             </div>
             <div class="col-lg-9" style="padding-right: 25px;">
-                <a href="<?php echo site_url('Fm_innovation/sh1?page=sh1') ?>" style="float: right;"
+                <a href="<?php echo site_url('Fm_innovation_das_p1?page=sh1') ?>" style="float: right;"
                     class="btn btn-sm btn-light" data-mdb-ripple-color="dark">นวัตกรรมการศึกษา</a>
                 <h5 style="float: right;"> | </h5>
-                <a href="<?php echo site_url('Fm_innovation/sh2?page=sh2') ?>" style="float: right;"
+                <a href="<?php echo site_url('Fm_innovation_das_p2?page=sh2') ?>" style="float: right;"
                     class="btn btn-sm btn-light" data-mdb-ripple-color="dark">ผู้จัดทำนวัตกรรมการศึกษา
                 </a>
                 <h5 style="float: right;"> | </h5>
@@ -116,7 +116,7 @@
                                 </div>
                                 <div class="col">
                                     <h5 style="float: right; padding: 15px;" class="card-title"><a
-                                            href="<?php echo site_url('Fm_innovation/forms?page=sh1') ?>"
+                                            href="<?php echo site_url('forms_p1?page=sh1') ?>"
                                             class="btn btn-success">เพิ่มข้อมูลนวัตกรรมการศึกษา
                                         </a></h5>
                                 </div>
@@ -227,7 +227,7 @@
                                             </div>
                                             <div class="col">
                                                 <h5 style="float: right; padding: 15px;" class="card-title"><a
-                                                        href="<?php echo site_url('Fm_innovation/forms?page=sh2') ?>"
+                                                        href="<?php echo site_url('forms_p2?page=sh2') ?>"
                                                         class="btn btn-success">เพิ่มข้อมูลผู้จัดทำนวัตกรรมการศึกษา
                                                     </a></h5>
                                             </div>
