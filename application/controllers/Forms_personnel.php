@@ -89,4 +89,23 @@ class Forms_personnel extends CI_Controller
         $_SESSION['success'] = "ลบข้อมูลเรียบร้อย";
         redirect(base_url('personnel'));
     }
+
+
+
+    //PageForm additionalposition
+    public function forms_additionalposition()
+    {
+
+        if (!file_exists(APPPATH . 'views/pages/forms/personnel/forms-additionalposition.php')) {
+            //Whoops,wedon'thaveapageforthat!
+            show_404();
+        }
+
+        $data['title'] = 'Forms Additionalposition'; //Capitalizethefirstletter
+
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/sidebar', $data);
+        $this->load->view('pages/forms/personnel/forms-additionalposition', $data);
+        $this->load->view('templates/footer', $data);
+    }
 }

@@ -80,5 +80,6 @@ $route['edit-forms-personnel'] = 'forms_personnel/edit_personnel';
 $route['update-personnel/(:any)'] = 'forms_personnel/update_personnel/$1';
 $route['delete-personnel/(:any)'] = 'forms_personnel/delete_personnel/$1';
 
-$route['personnel-additional-position'] = 'personnel/additional_position';
+$route['personnel-additionalposition'] = 'personnel/additional_position';
+$route['forms-additionalposition'] = 'forms_personne/add_additionalposition';
 ///////////////////// PERSONNEL - END /////////////////////////
