@@ -7,21 +7,21 @@
                 $result = $this->db->query('SELECT *  FROM PERSONNEL WHERE PersonnelID = "' . $_GET['PersonnelID'] . '"');
                 foreach ($result->result() as $PERSONNEL) {
                 ?>
-                    <h1>วิทยฐานะและตำแหน่งวิชาการ - <?= $PERSONNEL->PersonnelNameThai; ?> <?= $PERSONNEL->PersonnelLastNameThai; ?>
+                    <h1>ระดับการศึกษา - <?= $PERSONNEL->PersonnelNameThai; ?> <?= $PERSONNEL->PersonnelLastNameThai; ?>
                     <?php } ?>
                     </h1>
                     <nav>
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"><a href="main">Home</a></li>
                             <li class="breadcrumb-item">Dashboard</li>
-                            <li class="breadcrumb-item active">Table Academic</li>
+                            <li class="breadcrumb-item active">Table Education</li>
                         </ol>
                     </nav>
             </div>
             <div class="col-6" style="padding-right: 25px;">
                 <a href="personnel-assistance?PersonnelID=<?= $_GET['PersonnelID']; ?>" style="float: right;" class="btn btn-sm btn-light" data-mdb-ripple-color="dark">การช่วยราชการ</a>
-                <a href="personnel-education?PersonnelID=<?= $_GET['PersonnelID']; ?>" style="float: right;" class="btn btn-sm btn-light" data-mdb-ripple-color="dark">ระดับการศึกษา</a>
-                <a href="personnel-academic?PersonnelID=<?= $_GET['PersonnelID']; ?>" style="float: right;" class="btn btn-sm btn-outline-secondary" data-mdb-ripple-color="dark">วิทยฐานะและตำแหน่งวิชาการ</a>
+                <a href="personnel-education?PersonnelID=<?= $_GET['PersonnelID']; ?>" style="float: right;" class="btn btn-sm btn-outline-secondary" data-mdb-ripple-color="dark">ระดับการศึกษา</a>
+                <a href="personnel-academic?PersonnelID=<?= $_GET['PersonnelID']; ?>" style="float: right;" class="btn btn-sm btn-light" data-mdb-ripple-color="dark">วิทยฐานะและตำแหน่งวิชาการ</a>
                 <a href="personnel-additionalposition?PersonnelID=<?= $_GET['PersonnelID']; ?>" style="float: right;" class="btn btn-sm btn-light" data-mdb-ripple-color="dark">ตำแหน่งหน้าที่เพิ่มเติม</a>
 
             </div>
@@ -53,34 +53,38 @@
             <div class="card-body">
                 <div class="row">
                     <div class="col">
-                        <h5 class="card-title">รายละเอียดข้อมูล <span style="padding-right:10px">| Table Academic</span> <a href="personnel" class="btn btn-secondary btn-sm" data-mdb-ripple-color="dark">ย้อนกลับ</a></h5>
+                        <h5 class="card-title">รายละเอียดข้อมูล <span style="padding-right:10px">| Table Education</span> <a href="personnel" class="btn btn-secondary btn-sm" data-mdb-ripple-color="dark">ย้อนกลับ</a></h5>
                     </div>
                     <div class="col">
-                        <h5 style="float: right; padding: 15px;" class="card-title"><a href="forms-personnel-academic?PersonnelID=<?= $_GET['PersonnelID']; ?>" class="btn btn-success ">เพิ่มข้อมูลวิทยฐานะและตำแหน่งวิชาการ</a></h5>
+                        <h5 style="float: right; padding: 15px;" class="card-title"><a href="forms-personnel-education?PersonnelID=<?= $_GET['PersonnelID']; ?>" class="btn btn-success ">เพิ่มข้อมูลระดับการศึกษา</a></h5>
                     </div>
                 </div>
                 <table class="table table-borderless datatable">
                     <thead>
                         <tr>
-                            <th scope="col">วิทยฐานะ/ตำแหน่งวิชาการ</th>
-                            <th style="text-align: center;" scope="col">วันที่ที่ได้วิทยฐานะ/เข้าสู่ระดับ</th>
-                            <th style="text-align: center;" scope="col">สาขาที่ยื่นข้อวิทยฐานะ</th>
+                            <th scope="col">ระดับการศึกษาที่สำเร็จ</th>
+                            <th style="text-align: center;" scope="col">กลุ่มวิชาเอกที่สำเร็จ</th>
+                            <th style="text-align: center;" scope="col">สาขาที่สำเร็จการศึกษา</th>
+                            <th style="text-align: center;" scope="col">วุฒิการศึกษาที่สำเร็จ</th>
                             <th style="text-align: center;" scope="col">ปฎิบัติ</th>
                         </tr>
                     </thead>
                     <tbody>
                         <?php
-                        $result = $this->db->query('SELECT *  FROM PERSONNEL_ACADEMIC 
-                        INNER JOIN CLS_ACADEMIC_STANDING ON PERSONNEL_ACADEMIC.AcademicStandingCode = CLS_ACADEMIC_STANDING.ACADEMIC_STANDING_CODE
-                        INNER JOIN CLS_PROGRAM ON PERSONNEL_ACADEMIC.AcademicProgramCode = CLS_PROGRAM.PROGRAM_CODE
+                        $result = $this->db->query('SELECT *  FROM PERSONNEL_EDUCATION_DEGREE 
+                        INNER JOIN CLS_EDUCATION_LEVEL ON PERSONNEL_EDUCATION_DEGREE.EducationLevelCode = CLS_EDUCATION_LEVEL.EDUCATION_LEVEL_CODE
+                        INNER JOIN CLS_MAJOR ON PERSONNEL_EDUCATION_DEGREE.EducationMajorCode = CLS_MAJOR.MAJOR_CODE
+                        INNER JOIN CLS_PROGRAM ON PERSONNEL_EDUCATION_DEGREE.EducationProgramCode = CLS_PROGRAM.PROGRAM_CODE
+                        INNER JOIN CLS_DEGREE ON PERSONNEL_EDUCATION_DEGREE.EducationDegreeCode = CLS_DEGREE.DEGREE_CODE
                         WHERE DeleteStatus = 0 AND PersonnelID = "' . $_GET['PersonnelID'] . '"');
-                        foreach ($result->result() as $ACADEMIC) {
+                        foreach ($result->result() as $EDUCATION) {
                         ?>
                             <tr>
-                                <td><?= $ACADEMIC->ACADEMIC_STANDING_NAME ?></td>
-                                <td style="text-align: center;"><?= DateThai($ACADEMIC->AcademicDate); ?></td>
-                                <td><?= $ACADEMIC->PROGRAM_NAME ?></td>
-                                <td style="text-align: center;"><a href="edit-forms-personnel-academic?PersonnelID=<?= $ACADEMIC->PersonnelID ?>&&JurisdictionCode=<?= $ACADEMIC->JurisdictionCode ?>" class="btn btn-warning"><i class="bi bi-pencil-square"></i></a>
+                                <td><?= $EDUCATION->EDUCATION_LEVEL_NAME; ?></td>
+                                <td><?= $EDUCATION->MAJOR_NAME; ?></td>
+                                <td><?= $EDUCATION->PROGRAM_NAME; ?></td>
+                                <td><?= $EDUCATION->DEGREE_NAME; ?></td>
+                                <td style="text-align: center;"><a href="edit-forms-personnel-education?PersonnelID=<?= $EDUCATION->PersonnelID ?>&&EducationLevelCode=<?= $EDUCATION->EducationLevelCode ?>&&EducationMajorCode=<?= $EDUCATION->EducationMajorCode ?>" class="btn btn-warning"><i class="bi bi-pencil-square"></i></a>
                                     &nbsp; <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#Delete"><i class=" bi bi-trash"></i></button>
                                 </td>
                             </tr>
@@ -108,7 +112,7 @@
                 </h6>
             </div>
             <div class="modal-footer">
-                <a href="<?php echo base_url('delete-academic/' . $ACADEMIC->PersonnelID . '/' . $ACADEMIC->JurisdictionCode);
+                <a href="<?php echo base_url('delete-education/' . $EDUCATION->PersonnelID . '/' . $EDUCATION->EducationLevelCode . '/' . $EDUCATION->EducationMajorCode);
                             ?>" class="btn btn-danger">ลบ</a>
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ยกเลิก</button>
             </div>

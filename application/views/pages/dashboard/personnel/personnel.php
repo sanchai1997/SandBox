@@ -128,9 +128,9 @@ foreach ($result->result() as $PERSONNEL) {
                     </h5>
                     <h5 class="modal-title" id="exampleModalLabel" style="padding-left: 300px; padding-top: 15px;">
                         <a href="personnel-additionalposition?PersonnelID=<?= $PERSONNEL->PersonnelID; ?>" class="btn btn-primary btn-sm">ตำแหน่งหน้าที่เพิ่มเติม</a>
-                        <a href="" class="btn btn-primary btn-sm">วิทยฐานและตำแหน่งวิชาการ</a>
-                        <a href="" class="btn btn-primary btn-sm">ระดับการศึกษา</a>
-                        <a href="" class="btn btn-primary btn-sm">การช่วยราชการ</a>
+                        <a href="personnel-academic?PersonnelID=<?= $PERSONNEL->PersonnelID; ?>" class="btn btn-primary btn-sm">วิทยฐานและตำแหน่งวิชาการ</a>
+                        <a href="personnel-education?PersonnelID=<?= $PERSONNEL->PersonnelID; ?>" class="btn btn-primary btn-sm">ระดับการศึกษา</a>
+                        <a href="personnel-assistance?PersonnelID=<?= $PERSONNEL->PersonnelID; ?>" class="btn btn-primary btn-sm">การช่วยราชการ</a>
                     </h5>
                     <!--<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>-->
                     <hr>

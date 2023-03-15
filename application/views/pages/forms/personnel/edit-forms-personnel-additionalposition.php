@@ -88,7 +88,6 @@ foreach ($result->result() as $ADDITIONAL_POSITION) {
                                         <input type="file" class="form-control" name="AdditionalDocumentURL">
                                     </div>
                                 </div>
-                                <input type="hidden" name="PersonnelID" value="<?= $_GET['PersonnelID']; ?>">
                                 <div class="text-center">
                                     <a href="personnel-additionalposition?PersonnelID=<?= $_GET['PersonnelID']; ?>" style="float: left;" class="btn btn-light">ยกเลิก</a>
                                     <button style="float: center;" type="reset" class="btn btn-secondary">รีเซ็ต</button>
