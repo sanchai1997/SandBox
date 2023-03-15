@@ -82,18 +82,18 @@
                                      </a>
                                 </td>
                                 <td style="text-align: center;">
-                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#view"><i class="bi bi-card-list"></i></button>
+                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#view<?php echo $ls->CurriculumID; ?>"><i class="bi bi-card-list"></i></button>
                                     <a href='edit_forms-curriculum?cid=<?php echo $ls->CurriculumID; ?>'  class="btn btn-warning">
                                         <i class="bi bi-pencil-square"></i>
                                     </a>
-                                    <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#delete">
+                                    <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#delete<?php echo $ls->CurriculumID; ?>">
                                         <i class=" bi bi-trash"></i>
                                     </button>  
                                 </td>
                                 
                             </tr>
                             <!-- Modal -->
-                            <div class="modal fade" id="view" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal fade" id="view<?php echo $ls->CurriculumID; ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-xl">
                                         <div class="modal-content">
 
@@ -174,14 +174,14 @@
 
                                             <div class="modal-footer">
                                                 <a href='edit_forms-curriculum?cid=<?php echo $ls->CurriculumID; ?>' class="btn btn-warning"><i class="bi bi-pencil-square"></i></button> </a>
-                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><i class="bi bi-x-square" data-bs-toggle="modal" data-bs-target="#delete"></i></button>
+                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><i class="bi bi-x-square" data-bs-toggle="modal" data-bs-target="#delete<?php echo $ls->CurriculumID; ?>"></i></button>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             <!----------------------------  END --------------------------------->
                             <!-- Modal -->
-                            <div class="modal fade" id="delete" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+                            <div class="modal fade" id="delete<?php echo $ls->CurriculumID; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
                                     <div class="modal-dialog modal-dialog-centered" role="document">
                                         <div class="modal-content">
                                             <div class="modal-header">

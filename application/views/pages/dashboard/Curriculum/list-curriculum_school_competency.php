@@ -68,13 +68,13 @@
                                     <a href='edit_forms-curriculum_school_competency?sid=<?php echo $ls->SubjectCode; ?>&&cid=<?php echo $ls->CurriculumID; ?>&&cpid=<?php echo $ls->CompetencyCode ; ?>'>
                                         <button type="button" class="btn btn-warning"><i class="bi bi-pencil-square"></i></button> 
                                     </a>
-                                    <button type="button" class="btn btn-danger"  data-bs-toggle="modal" data-bs-target="#delete">
+                                    <button type="button" class="btn btn-danger"  data-bs-toggle="modal" data-bs-target="#delete<?= $ls->CompetencyCode; ?>">
                                         <i class=" bi bi-trash"></i>
                                     </button>  
                                 </td>
                             </tr>
                             <!-- Modal -->
-                            <div class="modal fade" id="delete" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+                            <div class="modal fade" id="delete<?= $ls->CompetencyCode; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
                                     <div class="modal-dialog modal-dialog-centered" role="document">
                                         <div class="modal-content">
                                             <div class="modal-header">

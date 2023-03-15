@@ -264,8 +264,8 @@
         return false;
     }
     
-    //Check_CurriculumDocumentURL1(เอกสารหลักสูตร)
-    if(frm.CurriculumDocumentURL1.value==""){
+    //Check_CurriculumDocumentURL(เอกสารหลักสูตร)
+    if(frm.CurriculumDocumentURL.value==""){
         alert("กรุณาแนบไฟล์เอกสารหลักสูตร");
         return false;
     }

@@ -81,14 +81,14 @@
                                     <a href='edit_forms-curriculum_subject?sid=<?php echo $ls->SubjectCode; ?>&&cid=<?php echo $ls->CurriculumID; ?>'>
                                         <button type="button" class="btn btn-warning"><i class="bi bi-pencil-square"></i></button> 
                                     </a>
-                                    <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#delete">
+                                    <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#delete<?php echo $ls->SubjectCode; ?>">
                                         <i class=" bi bi-trash"></i>
                                     </button>  
                                 </td>
 
                             </tr>
                             <!-- Modal -->
-                            <div class="modal fade" id="delete" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+                            <div class="modal fade" id="delete<?php echo $ls->SubjectCode; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
                                     <div class="modal-dialog modal-dialog-centered" role="document">
                                         <div class="modal-content">
                                             <div class="modal-header">
