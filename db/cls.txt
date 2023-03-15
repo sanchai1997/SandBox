@@ -1,0 +1,732 @@
+
+CREATE TABLE CLS_PERSONAL_ID_TYPE (
+  id INT PRIMARY KEY,
+  code VARCHAR(50),
+  name VARCHAR(255),
+  note TEXT,
+  edited_by VARCHAR(100),
+  edit_date TIMESTAMP
+);
+
+CREATE TABLE CLS_PREFIX (
+  id INT PRIMARY KEY,
+  code VARCHAR(50),
+  name VARCHAR(255),
+  note TEXT,
+  edited_by VARCHAR(100),
+  edit_date TIMESTAMP
+);
+
+CREATE TABLE CLS_GENDER (
+  id INT PRIMARY KEY,
+  code VARCHAR(50),
+  name VARCHAR(255),
+  note TEXT,
+  edited_by VARCHAR(100),
+  edit_date TIMESTAMP
+);
+
+CREATE TABLE CLS_LANGUAGE (
+  id INT PRIMARY KEY,
+  code VARCHAR(50),
+  name VARCHAR(255),
+  note TEXT,
+  edited_by VARCHAR(100),
+  edit_date TIMESTAMP
+);
+
+CREATE TABLE CLS_RELIGION (
+  id INT PRIMARY KEY,
+  code VARCHAR(50),
+  name VARCHAR(255),
+  note TEXT,
+  edited_by VARCHAR(100),
+  edit_date TIMESTAMP
+);
+
+CREATE TABLE CLS_NATIONALITY (
+  id INT PRIMARY KEY,
+  code VARCHAR(50),
+  name VARCHAR(255),
+  note TEXT,
+  edited_by VARCHAR(100),
+  edit_date TIMESTAMP
+);
+
+CREATE TABLE CLS_RACE (
+  id INT PRIMARY KEY,
+  code VARCHAR(50),
+  name VARCHAR(255),
+  note TEXT,
+  edited_by VARCHAR(100),
+  edit_date TIMESTAMP
+);
+
+CREATE TABLE CLS_BLOOD (
+  id INT PRIMARY KEY,
+  code VARCHAR(50),
+  name VARCHAR(255),
+  note TEXT,
+  edited_by VARCHAR(100),
+  edit_date TIMESTAMP
+);
+
+CREATE TABLE CLS_PERSON_STATUS (
+  id INT PRIMARY KEY,
+  code VARCHAR(50),
+  name VARCHAR(255),
+  note TEXT,
+  edited_by VARCHAR(100),
+  edit_date TIMESTAMP
+);
+
+CREATE TABLE CLS_MARRIAGE_STATUS (
+  id INT PRIMARY KEY,
+  code VARCHAR(50),
+  name VARCHAR(255),
+  note TEXT,
+  edited_by VARCHAR(100),
+  edit_date TIMESTAMP
+);
+
+CREATE TABLE CLS_OCCUPATION (
+  id INT PRIMARY KEY,
+  code VARCHAR(50),
+  name VARCHAR(255),
+  note TEXT,
+  edited_by VARCHAR(100),
+  edit_date TIMESTAMP
+);
+
+CREATE TABLE CLS_TALENT (
+  id INT PRIMARY KEY,
+  code VARCHAR(50),
+  name VARCHAR(255),
+  note TEXT,
+  edited_by VARCHAR(100),
+  edit_date TIMESTAMP
+);
+
+CREATE TABLE CLS_SUBDISTRICT (
+  id INT PRIMARY KEY,
+  code VARCHAR(50),
+  name VARCHAR(255),
+  note TEXT,
+  edited_by VARCHAR(100),
+  edit_date TIMESTAMP
+);
+
+CREATE TABLE CLS_DISTRICT (
+  id INT PRIMARY KEY,
+  code VARCHAR(50),
+  name VARCHAR(255),
+  note TEXT,
+  edited_by VARCHAR(100),
+  edit_date TIMESTAMP
+);
+
+CREATE TABLE CLS_PROVINCE (
+  id INT PRIMARY KEY,
+  code VARCHAR(50),
+  name VARCHAR(255),
+  note TEXT,
+  edited_by VARCHAR(100),
+  edit_date TIMESTAMP
+);
+
+CREATE TABLE CLS_GRADE_LEVEL (
+  id INT PRIMARY KEY,
+  code VARCHAR(50),
+  name VARCHAR(255),
+  note TEXT,
+  edited_by VARCHAR(100),
+  edit_date TIMESTAMP
+);
+
+CREATE TABLE CLS_EDUCATION_LEVEL (
+  id INT PRIMARY KEY,
+  code VARCHAR(50),
+  name VARCHAR(255),
+  note TEXT,
+  edited_by VARCHAR(100),
+  edit_date TIMESTAMP
+);
+
+CREATE TABLE CLS_DEGREE (
+  id INT PRIMARY KEY,
+  code VARCHAR(50),
+  name VARCHAR(255),
+  note TEXT,
+  edited_by VARCHAR(100),
+  edit_date TIMESTAMP
+);
+
+CREATE TABLE CLS_SUBJECT_GROUP (
+  id INT PRIMARY KEY,
+  code VARCHAR(50),
+  name VARCHAR(255),
+  note TEXT,
+  edited_by VARCHAR(100),
+  edit_date TIMESTAMP
+);
+
+CREATE TABLE CLS_SUBJECT_TYPE (
+  id INT PRIMARY KEY,
+  code VARCHAR(50),
+  name VARCHAR(255),
+  note TEXT,
+  edited_by VARCHAR(100),
+  edit_date TIMESTAMP
+);
+
+CREATE TABLE CLS_MAJOR (
+  id INT PRIMARY KEY,
+  code VARCHAR(50),
+  name VARCHAR(255),
+  note TEXT,
+  edited_by VARCHAR(100),
+  edit_date TIMESTAMP
+);
+
+CREATE TABLE CLS_PROGRAM (
+  id INT PRIMARY KEY,
+  code VARCHAR(50),
+  name VARCHAR(255),
+  note TEXT,
+  edited_by VARCHAR(100),
+  edit_date TIMESTAMP
+);
+
+CREATE TABLE CLS_CURRICULUM (
+  id INT PRIMARY KEY,
+  code VARCHAR(50),
+  name VARCHAR(255),
+  note TEXT,
+  edited_by VARCHAR(100),
+  edit_date TIMESTAMP
+);
+
+CREATE TABLE CLS_COMPETENCY (
+  id INT PRIMARY KEY,
+  code VARCHAR(50),
+  name VARCHAR(255),
+  note TEXT,
+  edited_by VARCHAR(100),
+  edit_date TIMESTAMP
+);
+
+CREATE TABLE CLS_STUDENT_STATUS (
+  id INT PRIMARY KEY,
+  code VARCHAR(50),
+  name VARCHAR(255),
+  note TEXT,
+  edited_by VARCHAR(100),
+  edit_date TIMESTAMP
+);
+
+CREATE TABLE CLS_STUDENT_LIVE_WITH (
+  id INT PRIMARY KEY,
+  code VARCHAR(50),
+  name VARCHAR(255),
+  note TEXT,
+  edited_by VARCHAR(100),
+  edit_date TIMESTAMP
+);
+
+CREATE TABLE CLS_FAMILY_RELATION (
+  id INT PRIMARY KEY,
+  code VARCHAR(50),
+  name VARCHAR(255),
+  note TEXT,
+  edited_by VARCHAR(100),
+  edit_date TIMESTAMP
+);
+
+CREATE TABLE CLS_DISABILITY (
+  id INT PRIMARY KEY,
+  code VARCHAR(50),
+  name VARCHAR(255),
+  note TEXT,
+  edited_by VARCHAR(100),
+  edit_date TIMESTAMP
+);
+
+CREATE TABLE CLS_DISABILITY_LEVEL (
+  id INT PRIMARY KEY,
+  code VARCHAR(50),
+  name VARCHAR(255),
+  note TEXT,
+  edited_by VARCHAR(100),
+  edit_date TIMESTAMP
+);
+
+CREATE TABLE CLS_DISAVANTAGED (
+  id INT PRIMARY KEY,
+  code VARCHAR(50),
+  name VARCHAR(255),
+  note TEXT,
+  edited_by VARCHAR(100),
+  edit_date TIMESTAMP
+);
+
+CREATE TABLE CLS_FAMILY_STATUS (
+  id INT PRIMARY KEY,
+  code VARCHAR(50),
+  name VARCHAR(255),
+  note TEXT,
+  edited_by VARCHAR(100),
+  edit_date TIMESTAMP
+);
+
+CREATE TABLE CLS_JOURNEY_TYPE (
+  id INT PRIMARY KEY,
+  code VARCHAR(50),
+  name VARCHAR(255),
+  note TEXT,
+  edited_by VARCHAR(100),
+  edit_date TIMESTAMP
+);
+
+CREATE TABLE CLS_GRADE (
+  id INT PRIMARY KEY,
+  code VARCHAR(50),
+  name VARCHAR(255),
+  note TEXT,
+  edited_by VARCHAR(100),
+  edit_date TIMESTAMP
+);
+
+CREATE TABLE CLS_EVALUATION (
+  id INT PRIMARY KEY,
+  code VARCHAR(50),
+  name VARCHAR(255),
+  note TEXT,
+  edited_by VARCHAR(100),
+  edit_date TIMESTAMP
+);
+
+CREATE TABLE CLS_SCHOOL_ASSESSMENT (
+  id INT PRIMARY KEY,
+  code VARCHAR(50),
+  name VARCHAR(255),
+  note TEXT,
+  edited_by VARCHAR(100),
+  edit_date TIMESTAMP
+);
+
+CREATE TABLE CLS_FUNDAMENTAL_SUBJECT_EVALUATION (
+  id INT PRIMARY KEY,
+  code VARCHAR(50),
+  name VARCHAR(255),
+  note TEXT,
+  edited_by VARCHAR(100),
+  edit_date TIMESTAMP
+);
+
+CREATE TABLE CLS_LITERACY_EVALUATION (
+  id INT PRIMARY KEY,
+  code VARCHAR(50),
+  name VARCHAR(255),
+  note TEXT,
+  edited_by VARCHAR(100),
+  edit_date TIMESTAMP
+);
+
+CREATE TABLE CLS_ATTRIBUTE_EVALUATION (
+  id INT PRIMARY KEY,
+  code VARCHAR(50),
+  name VARCHAR(255),
+  note TEXT,
+  edited_by VARCHAR(100),
+  edit_date TIMESTAMP
+);
+
+CREATE TABLE CLS_EXTRACURRICULAR_EVALUATION (
+  id INT PRIMARY KEY,
+  code VARCHAR(50),
+  name VARCHAR(255),
+  note TEXT,
+  edited_by VARCHAR(100),
+  edit_date TIMESTAMP
+);
+
+CREATE TABLE CLS_FUNDAMENTAL_SUBJECT_PASSING (
+  id INT PRIMARY KEY,
+  code VARCHAR(50),
+  name VARCHAR(255),
+  note TEXT,
+  edited_by VARCHAR(100),
+  edit_date TIMESTAMP
+);
+
+CREATE TABLE CLS_LITERACY_PASSING (
+  id INT PRIMARY KEY,
+  code VARCHAR(50),
+  name VARCHAR(255),
+  note TEXT,
+  edited_by VARCHAR(100),
+  edit_date TIMESTAMP
+);
+
+CREATE TABLE CLS_ATTRIBUTE_PASSING (
+  id INT PRIMARY KEY,
+  code VARCHAR(50),
+  name VARCHAR(255),
+  note TEXT,
+  edited_by VARCHAR(100),
+  edit_date TIMESTAMP
+);
+
+CREATE TABLE CLS_EXTRACURRICULAR_PASSING (
+  id INT PRIMARY KEY,
+  code VARCHAR(50),
+  name VARCHAR(255),
+  note TEXT,
+  edited_by VARCHAR(100),
+  edit_date TIMESTAMP
+);
+
+CREATE TABLE CLS_ACTIVITY_PASSING (
+  id INT PRIMARY KEY,
+  code VARCHAR(50),
+  name VARCHAR(255),
+  note TEXT,
+  edited_by VARCHAR(100),
+  edit_date TIMESTAMP
+);
+
+CREATE TABLE CLS_COMPETENCY_EVAULATION (
+  id INT PRIMARY KEY,
+  code VARCHAR(50),
+  name VARCHAR(255),
+  note TEXT,
+  edited_by VARCHAR(100),
+  edit_date TIMESTAMP
+);
+
+CREATE TABLE CLS_PERSONNEL_TYPE (
+  id INT PRIMARY KEY,
+  code VARCHAR(50),
+  name VARCHAR(255),
+  note TEXT,
+  edited_by VARCHAR(100),
+  edit_date TIMESTAMP
+);
+
+CREATE TABLE CLS_POSITION (
+  id INT PRIMARY KEY,
+  code VARCHAR(50),
+  name VARCHAR(255),
+  note TEXT,
+  edited_by VARCHAR(100),
+  edit_date TIMESTAMP
+);
+
+CREATE TABLE CLS_POSITION_LELVEL (
+  id INT PRIMARY KEY,
+  code VARCHAR(50),
+  name VARCHAR(255),
+  note TEXT,
+  edited_by VARCHAR(100),
+  edit_date TIMESTAMP
+);
+
+CREATE TABLE CLS_SALARY_TYPE (
+  id INT PRIMARY KEY,
+  code VARCHAR(50),
+  name VARCHAR(255),
+  note TEXT,
+  edited_by VARCHAR(100),
+  edit_date TIMESTAMP
+);
+
+CREATE TABLE CLS_TEACHER_QUALIFICATION (
+  id INT PRIMARY KEY,
+  code VARCHAR(50),
+  name VARCHAR(255),
+  note TEXT,
+  edited_by VARCHAR(100),
+  edit_date TIMESTAMP
+);
+
+CREATE TABLE CLS_ACADEMIC_STANDING (
+  id INT PRIMARY KEY,
+  code VARCHAR(50),
+  name VARCHAR(255),
+  note TEXT,
+  edited_by VARCHAR(100),
+  edit_date TIMESTAMP
+);
+
+CREATE TABLE CLS_TEACHER_CERTIFICATE (
+  id INT PRIMARY KEY,
+  code VARCHAR(50),
+  name VARCHAR(255),
+  note TEXT,
+  edited_by VARCHAR(100),
+  edit_date TIMESTAMP
+);
+
+CREATE TABLE CLS_CONTRACT_TYPE (
+  id INT PRIMARY KEY,
+  code VARCHAR(50),
+  name VARCHAR(255),
+  note TEXT,
+  edited_by VARCHAR(100),
+  edit_date TIMESTAMP
+);
+
+CREATE TABLE CLS_PERSONNEL_STATUS (
+  id INT PRIMARY KEY,
+  code VARCHAR(50),
+  name VARCHAR(255),
+  note TEXT,
+  edited_by VARCHAR(100),
+  edit_date TIMESTAMP
+);
+
+CREATE TABLE CLS_TEACHER_DEVELOPMENT_ACTIVITY_TYPE (
+  id INT PRIMARY KEY,
+  code VARCHAR(50),
+  name VARCHAR(255),
+  note TEXT,
+  edited_by VARCHAR(100),
+  edit_date TIMESTAMP
+);
+
+CREATE TABLE CLS_DEPARTMENT (
+  id INT PRIMARY KEY,
+  code VARCHAR(50),
+  name VARCHAR(255),
+  note TEXT,
+  edited_by VARCHAR(100),
+  edit_date TIMESTAMP
+);
+
+CREATE TABLE CLS_ASSISTANCE_TYPE (
+  id INT PRIMARY KEY,
+  code VARCHAR(50),
+  name VARCHAR(255),
+  note TEXT,
+  edited_by VARCHAR(100),
+  edit_date TIMESTAMP
+);
+
+CREATE TABLE CLS_JURISDICTION (
+  id INT PRIMARY KEY,
+  code VARCHAR(50),
+  name VARCHAR(255),
+  note TEXT,
+  edited_by VARCHAR(100),
+  edit_date TIMESTAMP
+);
+
+CREATE TABLE CLS_SCHOOL_TYPE (
+  id INT PRIMARY KEY,
+  code VARCHAR(50),
+  name VARCHAR(255),
+  note TEXT,
+  edited_by VARCHAR(100),
+  edit_date TIMESTAMP
+);
+
+CREATE TABLE CLS_MUNICIPAL (
+  id INT PRIMARY KEY,
+  code VARCHAR(50),
+  name VARCHAR(255),
+  note TEXT,
+  edited_by VARCHAR(100),
+  edit_date TIMESTAMP
+);
+
+CREATE TABLE CLS_SCHOOL_STATUS (
+  id INT PRIMARY KEY,
+  code VARCHAR(50),
+  name VARCHAR(255),
+  note TEXT,
+  edited_by VARCHAR(100),
+  edit_date TIMESTAMP
+);
+
+CREATE TABLE CLS_EDUCATION_CONTENT (
+  id INT PRIMARY KEY,
+  code VARCHAR(50),
+  name VARCHAR(255),
+  note TEXT,
+  edited_by VARCHAR(100),
+  edit_date TIMESTAMP
+);
+
+CREATE TABLE CLS_ELECTRIC_TYPE (
+  id INT PRIMARY KEY,
+  code VARCHAR(50),
+  name VARCHAR(255),
+  note TEXT,
+  edited_by VARCHAR(100),
+  edit_date TIMESTAMP
+);
+
+CREATE TABLE CLS_WATER_TYPE (
+  id INT PRIMARY KEY,
+  code VARCHAR(50),
+  name VARCHAR(255),
+  note TEXT,
+  edited_by VARCHAR(100),
+  edit_date TIMESTAMP
+);
+
+CREATE TABLE CLS_INTERNET_TYPE (
+  id INT PRIMARY KEY,
+  code VARCHAR(50),
+  name VARCHAR(255),
+  note TEXT,
+  edited_by VARCHAR(100),
+  edit_date TIMESTAMP
+);
+
+CREATE TABLE CLS_AWARD_LEVEL (
+  id INT PRIMARY KEY,
+  code VARCHAR(50),
+  name VARCHAR(255),
+  note TEXT,
+  edited_by VARCHAR(100),
+  edit_date TIMESTAMP
+);
+
+CREATE TABLE CLS_BUILDING_TYPE (
+  id INT PRIMARY KEY,
+  code VARCHAR(50),
+  name VARCHAR(255),
+  note TEXT,
+  edited_by VARCHAR(100),
+  edit_date TIMESTAMP
+);
+
+CREATE TABLE CLS_BUILDING_DESIGN (
+  id INT PRIMARY KEY,
+  code VARCHAR(50),
+  name VARCHAR(255),
+  note TEXT,
+  edited_by VARCHAR(100),
+  edit_date TIMESTAMP
+);
+
+CREATE TABLE CLS_BUDGET_TYPE (
+  id INT PRIMARY KEY,
+  code VARCHAR(50),
+  name VARCHAR(255),
+  note TEXT,
+  edited_by VARCHAR(100),
+  edit_date TIMESTAMP
+);
+
+CREATE TABLE CLS_EXPENSE_TYPE (
+  id INT PRIMARY KEY,
+  code VARCHAR(50),
+  name VARCHAR(255),
+  note TEXT,
+  edited_by VARCHAR(100),
+  edit_date TIMESTAMP
+);
+
+CREATE TABLE CLS_INNOVATION_AREA (
+  id INT PRIMARY KEY,
+  code VARCHAR(50),
+  name VARCHAR(255),
+  note TEXT,
+  edited_by VARCHAR(100),
+  edit_date TIMESTAMP
+);
+
+CREATE TABLE CLS_COMMITEE_POSITION (
+  id INT PRIMARY KEY,
+  code VARCHAR(50),
+  name VARCHAR(255),
+  note TEXT,
+  edited_by VARCHAR(100),
+  edit_date TIMESTAMP
+);
+
+CREATE TABLE CLS_MEDIA_TYPE (
+  id INT PRIMARY KEY,
+  code VARCHAR(50),
+  name VARCHAR(255),
+  note TEXT,
+  edited_by VARCHAR(100),
+  edit_date TIMESTAMP
+);
+
+CREATE TABLE CLS_INNOVATION_TYPE (
+  id INT PRIMARY KEY,
+  code VARCHAR(50),
+  name VARCHAR(255),
+  note TEXT,
+  edited_by VARCHAR(100),
+  edit_date TIMESTAMP
+);
+
+CREATE TABLE CLS_BEST_PRACTICE_TYPE (
+  id INT PRIMARY KEY,
+  code VARCHAR(50),
+  name VARCHAR(255),
+  note TEXT,
+  edited_by VARCHAR(100),
+  edit_date TIMESTAMP
+);
+
+CREATE TABLE CLS_PARTICIPANT_TYPE (
+  id INT PRIMARY KEY,
+  code VARCHAR(50),
+  name VARCHAR(255),
+  note TEXT,
+  edited_by VARCHAR(100),
+  edit_date TIMESTAMP
+);
+
+CREATE TABLE CLS_COOPERATION_LEVEL (
+  id INT PRIMARY KEY,
+  code VARCHAR(50),
+  name VARCHAR(255),
+  note TEXT,
+  edited_by VARCHAR(100),
+  edit_date TIMESTAMP
+);
+
+CREATE TABLE CLS_COOPERATION_STATUS (
+  id INT PRIMARY KEY,
+  code VARCHAR(50),
+  name VARCHAR(255),
+  note TEXT,
+  edited_by VARCHAR(100),
+  edit_date TIMESTAMP
+);
+
+CREATE TABLE CLS_SANDBOX_CURRICULUM (
+  id INT PRIMARY KEY,
+  code VARCHAR(50),
+  name VARCHAR(255),
+  note TEXT,
+  edited_by VARCHAR(100),
+  edit_date TIMESTAMP
+);
+
+CREATE TABLE CLS_RECOGNIZED_BY (
+  id INT PRIMARY KEY,
+  code VARCHAR(50),
+  name VARCHAR(255),
+  note TEXT,
+  edited_by VARCHAR(100),
+  edit_date TIMESTAMP
+);
+
+CREATE TABLE CLS_APPOINTMENT_TYPE (
+  id INT PRIMARY KEY,
+  code VARCHAR(50),
+  name VARCHAR(255),
+  note TEXT,
+  edited_by VARCHAR(100),
+  edit_date TIMESTAMP
+);
+
+
+

@@ -46,7 +46,7 @@
             <div class="card-body">
                 <div class="row">
                     <div class="col">
-                        <h5 class="card-title">รายละเอียดข้อมูล<span>| Table School-Classroom</span> <a href="school-classroom" class="btn btn-secondary" data-mdb-ripple-color="dark">ย้อนกลับ</a></h5>
+                        <h5 class="card-title">รายละเอียดข้อมูล<span>| Table School-Classroom</span> <a href="school-classroom" class="btn btn-secondary btn-sm" data-mdb-ripple-color="dark">ย้อนกลับ</a></h5>
                     </div>
                     <div class="col">
                         <h5 style="float: right; padding: 15px;" class="card-title"></h5>

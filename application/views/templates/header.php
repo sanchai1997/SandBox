@@ -8,7 +8,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>Satun Education Sandbox</title>
+  <title>Dashboard - NiceAdmin Bootstrap Template</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -43,8 +43,8 @@ defined('BASEPATH') or exit('No direct script access allowed');
   <header id="header" class="header fixed-top d-flex align-items-center">
 
     <div class="d-flex align-items-center justify-content-between">
-      <a href="main" class="logo d-flex align-items-center">
-        <img src="assets/img/logo.png" alt="" style="padding-left: 10px; width: 72%;">
+      <a href="index.html" class="logo d-flex align-items-center">
+        <img src="<?php echo base_url('assets/img/logo.png'); ?>" alt="">
         <span class="d-none d-lg-block"></span>
       </a>
       <i class="bi bi-list toggle-sidebar-btn"></i>
@@ -211,7 +211,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
         <li class="nav-item dropdown pe-3">
 
           <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
-            <img src="assets/img/profile-img.jpg" alt="Profile" class="rounded-circle">
+            <img src="<?php echo base_url('assets/img/profile-img.jpg" alt="Profile" class="rounded-circle'); ?>">
             <span class="d-none d-md-block dropdown-toggle ps-2">K. Anderson</span>
           </a><!-- End Profile Iamge Icon -->
 
@@ -267,24 +267,24 @@ defined('BASEPATH') or exit('No direct script access allowed');
       </ul>
     </nav><!-- End Icons Navigation -->
 
-    <!------------------------ format Thai -----------------------!>
-  <?php
-  function DateThai($strDate)
-  {
-    $strYear = date("Y", strtotime($strDate)) + 543;
-    $strMonth = date("n", strtotime($strDate));
-    $strDay = date("j", strtotime($strDate));
-    $strHour = date("H", strtotime($strDate));
-    $strMinute = date("i", strtotime($strDate));
-    $strSeconds = date("s", strtotime($strDate));
-    $strMonthCut = array("", "มกราคม", "กุมภาพันธ์", "มีนาคม", "เมษายน", "พฤษภาคม", "มิถุนายน", "กรกฎาคม", "สิงหาคม", "กันยายน", "ตุลาคม", "พฤศจิกายน", "ธันวาคม");
-    $strMonthThai = $strMonthCut[$strMonth];
-    return "$strDay $strMonthThai $strYear";
-  }
-
-  $strDate = "2008-08-14 13:42:44";
-  echo "ThaiCreate.Com Time now : " . DateThai($strDate);
-  ?>
-  <!-------------------- format Thai - END ---------------------!>
-
   </header><!-- End Header -->
+
+  <!------------------------ format Thai -----------------------!>
+    <?php
+    function DateThai($strDate)
+    {
+      $strYear = date("Y", strtotime($strDate)) + 543;
+      $strMonth = date("n", strtotime($strDate));
+      $strDay = date("j", strtotime($strDate));
+      $strHour = date("H", strtotime($strDate));
+      $strMinute = date("i", strtotime($strDate));
+      $strSeconds = date("s", strtotime($strDate));
+      $strMonthCut = array("", "มกราคม", "กุมภาพันธ์", "มีนาคม", "เมษายน", "พฤษภาคม", "มิถุนายน", "กรกฎาคม", "สิงหาคม", "กันยายน", "ตุลาคม", "พฤศจิกายน", "ธันวาคม");
+      $strMonthThai = $strMonthCut[$strMonth];
+      return "$strDay $strMonthThai $strYear";
+    }
+
+    $strDate = "2008-08-14 13:42:44";
+    echo "ThaiCreate.Com Time now : " . DateThai($strDate);
+    ?>
+  <!-------------------- format Thai - END ---------------------!>

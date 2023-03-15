@@ -1,0 +1,30 @@
+**models**
+    Model_best_practice
+    Model_committee
+    Model_evaluation
+    Model_lear_tech_media
+    Model_participant
+    Model_innovation
+**views**
+    >pages
+        >dashboard
+            Best_practice
+            Committee
+            Evaluation
+            Lear_tech_media
+            Participant
+            Innovation
+        >forms
+            Form_Best_practice
+            Form_Committee
+            Form_Evaluation
+            Form_Lear_tech_media
+            Form_Participant
+            Form_Innovation
+**controller**
+    Controller_best_practice
+    Controller_committee
+    Controller_evaluation
+    Controller_lear_tech_media
+    Controller_participant
+    Controller_innovation
