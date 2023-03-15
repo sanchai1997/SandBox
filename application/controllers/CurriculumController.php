@@ -101,7 +101,7 @@ class CurriculumController extends CI_Controller{
     
     public function list_curriculum() {
         
-        if ( ! file_exists(APPPATH.'views/pages/forms/Curriculum/list-curriculum.php'))
+        if ( ! file_exists(APPPATH.'views/pages/dashboard/Curriculum/list-curriculum.php'))
         {
             // Whoops, we don't have a page for that!
             show_404();
@@ -113,7 +113,7 @@ class CurriculumController extends CI_Controller{
 
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
-        $this->load->view('pages/forms/Curriculum/list-curriculum', $data);
+        $this->load->view('pages/dashboard/Curriculum/list-curriculum', $data);
         $this->load->view('templates/footer', $data);
 
     }
@@ -229,16 +229,27 @@ class CurriculumController extends CI_Controller{
             $this->session->set_flashdata('errors',"เกิดข้อผิดพลาดในการแก้ไขข้อมูล");
             redirect(base_url('edit_forms-curriculum?cid='. $Old_CurriculumID));
         }
-        
-      
 
+    }
+    public function delete_curriculum($CurriculumID ){
+
+
+        $result =$this->Curriculum_model->delete_curriculum($CurriculumID);
+        if($result == 1 ){
+            $this->session->set_flashdata('success',"ลบข้อมูลสำเร็จ");
+            redirect(base_url('list-curriculum'));
+        }else{
+            $this->session->set_flashdata('errors',"เกิดข้อผิดพลาดในการลบข้อมูล");
+            redirect(base_url('list-curriculum'));
+        }
+        
     }
 
     
 #### curriculum_subject
     public function list_curriculum_subject() {
         
-        if ( ! file_exists(APPPATH.'views/pages/forms/Curriculum/list-curriculum_subject.php'))
+        if ( ! file_exists(APPPATH.'views/pages/dashboard/Curriculum/list-curriculum_subject.php'))
         {
             // Whoops, we don't have a page for that!
             show_404();
@@ -250,7 +261,7 @@ class CurriculumController extends CI_Controller{
 
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
-        $this->load->view('pages/forms/Curriculum/list-curriculum_subject', $data);
+        $this->load->view('pages/dashboard/Curriculum/list-curriculum_subject', $data);
         $this->load->view('templates/footer', $data);
 
     }
@@ -350,11 +361,25 @@ class CurriculumController extends CI_Controller{
         }
     }
 
+    public function delete_curriculum_subject($CurriculumID, $SubjectCode ){
+
+        $result =$this->Curriculum_model->delete_curriculum_subject($CurriculumID, $SubjectCode);
+        if($result == 1 ){
+            $this->session->set_flashdata('success',"ลบข้อมูลสำเร็จ");
+            redirect(base_url('list-curriculum_subject?cid='. $CurriculumID));
+        }else{
+            $this->session->set_flashdata('errors',"เกิดข้อผิดพลาดในการลบข้อมูล");
+            redirect(base_url('list-curriculum_subject?cid='. $CurriculumID));
+        }
+        
+    }
+
+
 
 ### curriculum_school_competency
     public function list_curriculum_school_competency() {
             
-        if ( ! file_exists(APPPATH.'views/pages/forms/Curriculum/list-curriculum_school_competency.php'))
+        if ( ! file_exists(APPPATH.'views/pages/dashboard/Curriculum/list-curriculum_school_competency.php'))
         {
             // Whoops, we don't have a page for that!
             show_404();
@@ -367,7 +392,7 @@ class CurriculumController extends CI_Controller{
 
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
-        $this->load->view('pages/forms/Curriculum/list-curriculum_school_competency', $data);
+        $this->load->view('pages/dashboard/Curriculum/list-curriculum_school_competency', $data);
         $this->load->view('templates/footer', $data);
 
     }
@@ -463,6 +488,21 @@ class CurriculumController extends CI_Controller{
     }
 
     
+    public function delete_curriculum_school_competency($CurriculumID, $SubjectCode, $CompetencyCode ){
+
+        $result =$this->Curriculum_model->delete_curriculum_school_competency($CurriculumID, $SubjectCode, $CompetencyCode);
+        if($result == 1 ){
+            $this->session->set_flashdata('success',"ลบข้อมูลสำเร็จ");
+            redirect(base_url('list-curriculum_school_competency?cid='. $CurriculumID.'&&sid='.$SubjectCode));
+        }else{
+            $this->session->set_flashdata('errors',"เกิดข้อผิดพลาดในการลบข้อมูล");
+            redirect(base_url('list-curriculum_school_competency?cid='. $CurriculumID.'&&sid='.$SubjectCode));
+        }
+        
+    }
+
+    
+
 
 }
 

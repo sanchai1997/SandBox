@@ -101,7 +101,7 @@
                                                 </h6>
                                             </div>
                                             <div class="modal-footer">
-                                                <a href="#" class="btn btn-danger">ลบ</a>
+                                                <a href="<?php echo base_url('delete-curriculum_subject/' .$ls->CurriculumID .'/'.$ls->SubjectCode)  ?>" class="btn btn-danger">ลบ</a>
                                                 <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#delete">ยกเลิก</button>
                                             </div>
                                         </div>

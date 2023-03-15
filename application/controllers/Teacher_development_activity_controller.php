@@ -67,7 +67,7 @@ class Teacher_development_activity_controller extends CI_Controller{
 
      public function list_teacher_development_activity() {
         
-        if ( ! file_exists(APPPATH.'views/pages/forms/TeacherDevelopmentActivity/list-teacher_development_activity.php'))
+        if ( ! file_exists(APPPATH.'views/pages/dashboard/TeacherDevelopmentActivity/list-teacher_development_activity.php'))
         {
             // Whoops, we don't have a page for that!
             show_404();
@@ -79,7 +79,7 @@ class Teacher_development_activity_controller extends CI_Controller{
 
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
-        $this->load->view('pages/forms/TeacherDevelopmentActivity/list-teacher_development_activity', $data);
+        $this->load->view('pages/dashboard/TeacherDevelopmentActivity/list-teacher_development_activity', $data);
         $this->load->view('templates/footer', $data);
 
     }
@@ -172,11 +172,15 @@ class Teacher_development_activity_controller extends CI_Controller{
    
     }
 
-    public function delete_teacher_development_activity($TeacherID, $DevelopmentActivityName, $DevelopmentActivityStartDate ){
-        show_error($TeacherID.' f: '.$DevelopmentActivityName.' : '.$DevelopmentActivityStartDate);
+    public function delete_teacher_development_activity( ){
+        $TeacherID = $_GET['tid'];
+        $DevelopmentActivityName = $_GET['name'];
+        $DevelopmentActivityStartDate  = $_GET['sdate'];
+
+
         $result =$this->TeacherDevelopmentActivity_model->delete_teacher_development_activity($TeacherID, $DevelopmentActivityName, $DevelopmentActivityStartDate);
         if($result == 1 ){
-            $this->session->set_flashdata('success',"ลบข้อมูลเรียบร้อย");
+            $this->session->set_flashdata('success',"ลบข้อมูลสำเร็จ");
             redirect(base_url('list-teacher_development_activity'));
         }else{
             $this->session->set_flashdata('errors',"เกิดข้อผิดพลาดในการลบข้อมูล");
