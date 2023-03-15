@@ -87,6 +87,26 @@
                                 </td>
 
                             </tr>
+                            <!-- Modal -->
+                            <div class="modal fade" id="delete" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+                                    <div class="modal-dialog modal-dialog-centered" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="exampleModalLongTitle">ยืนยันการลบข้อมูล</h5>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <h6>
+                                                    <center>คุณต้องการลบข้อมูลใช่หรือไหม ?</center>
+                                                </h6>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <a href="#" class="btn btn-danger">ลบ</a>
+                                                <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#delete">ยกเลิก</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                            </div>
                         <?php } ?>
                     </tbody>
                 
