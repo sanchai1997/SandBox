@@ -94,11 +94,12 @@ $route['update-teacher/(:any)'] = 'forms_teacher/update_teacher/$1';
 $route['delete-teacher/(:any)'] = 'forms_teacher/delete_teacher/$1';
 ///////////////////// TEACHER - END /////////////////////////
 
-////////////////////// ROUTE CRADUATED ////////////////////////
-//CRADUATED 
-$route['craduated'] = 'craduated';
-$route['forms-craduated'] = 'forms_craduated';
-///////////////////// CRADUATED - END /////////////////////////
+////////////////////// ROUTE GRADUATED ////////////////////////
+//GRADUATED 
+$route['graduated'] = 'graduated';
+$route['graduated-P2'] = 'graduated/P2';
+$route['forms-graduated'] = 'forms_graduated';                                                                                                                                                                                  
+///////////////////// GRADUATED - END /////////////////////////
 
 ////////////////////// ROUTE PERSONNEL ////////////////////////
 //PERSONNEL
