@@ -49,6 +49,15 @@ class Curriculum_model  extends CI_Model {
     
     }
 
+    public function delete_curriculum($CurriculumID){        
+        $data = [
+            'DeleteStatus' => 1
+        ];
+        $this->db->where('CurriculumID', $CurriculumID);
+            
+        $result = $this->db->update('CURRICULUM', $data);
+        return $result;
+    }    
 
 
 ###################### curriculum_subject ################################
@@ -91,6 +100,17 @@ class Curriculum_model  extends CI_Model {
         $result_CURRICULUM_SUBJECT = $this->db->update('CURRICULUM_SUBJECT', $CURRICULUM_SUBJECT);
         return $result_CURRICULUM_SUBJECT;
     
+    }
+
+    public function delete_curriculum_subject($CurriculumID, $SubjectCode){        
+        $data = [
+            'DeleteStatus' => 1
+        ];
+        $this->db->where('CurriculumID', $CurriculumID)
+                ->where('SubjectCode', $SubjectCode);
+            
+        $result = $this->db->update('CURRICULUM_SUBJECT', $data);
+        return $result;
     }
 
 ###################### CURRICULUM_SCHOOL_COMPETENCY ################################
@@ -136,6 +156,17 @@ class Curriculum_model  extends CI_Model {
     
     }
     
+    public function delete_curriculum_school_competency($CurriculumID, $SubjectCode, $CompetencyCode){        
+        $data = [
+            'DeleteStatus' => 1
+        ];
+        $this->db->where('CurriculumID', $CurriculumID)
+                ->where('SubjectCode', $SubjectCode)
+                ->where('CompetencyCode', $CompetencyCode);
+            
+        $result = $this->db->update('CURRICULUM_SCHOOL_COMPETENCY', $data);
+        return $result;
+    }
 
     
 }

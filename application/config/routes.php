@@ -26,28 +26,33 @@ $route['forms-curriculum'] = 'CurriculumController/forms_curriculum';
 $route['add_curriculum']['post'] = 'CurriculumController/add_curriculum';
 $route['edit_forms-curriculum'] = 'CurriculumController/forms_edit_curriculum';
 $route['edit_curriculum']['post'] = 'CurriculumController/edit_curriculum';
+$route['delete-curriculum/(:num)'] = 'CurriculumController/delete_curriculum/$1';
 //Curriculum_subject
 $route['list-curriculum_subject'] = 'CurriculumController/list_curriculum_subject';
 $route['forms-curriculum_subject'] = 'CurriculumController/forms_curriculum_subject';
 $route['add_curriculum_subject']['post'] = 'CurriculumController/add_curriculum_subject';
 $route['edit_forms-curriculum_subject'] = 'CurriculumController/forms_edit_curriculum_subject';
 $route['edit_curriculum_subject']['post'] = 'CurriculumController/edit_curriculum_subject';
+$route['delete-curriculum_subject/(:num)/(:num)'] = 'CurriculumController/delete_curriculum_subject/$1/$2';
 //Curriculum__school_competency
 $route['list-curriculum_school_competency'] = 'CurriculumController/list_curriculum_school_competency';
 $route['forms-curriculum_school_competency'] = 'CurriculumController/forms_curriculum_school_competency';
 $route['add_curriculum_school_competency']['post'] = 'CurriculumController/add_curriculum_school_competency';
 $route['edit_forms-curriculum_school_competency'] = 'CurriculumController/forms_edit_curriculum_school_competency';
 $route['edit_curriculum_school_competency']['post'] = 'CurriculumController/edit_curriculum_school_competency';
-
+$route['delete-curriculum_school_competency/(:num)/(:num)/(:num)'] = 'CurriculumController/delete_curriculum_school_competency/$1/$2/$3';
 //teacher_developmant_activity
 $route['list-teacher_development_activity'] = 'Teacher_development_activity_controller/list_teacher_development_activity';
 $route['forms-teacher_development_activity'] = 'Teacher_development_activity_controller/forms';
 $route['add_teacher_development_activity']['post'] = 'Teacher_development_activity_controller/add_teacher_development_activity';
 $route['edit_forms-teacher_development_activity'] = 'Teacher_development_activity_controller/forms_edit_teacher_development_activity';
 $route['edit_teacher_development_activity']['post'] = 'Teacher_development_activity_controller/edit_teacher_development_activity';
-$route['delete-teacher_development_activity/(:any)/(:any)/(:any)'] = 'Teacher_development_activity_controller/delete_teacher_development_activity/$1/$2/$3';
+$route['delete-teacher_development_activity'] = 'Teacher_development_activity_controller/delete_teacher_development_activity';
 //Files
 $route['load_file'] = 'DocumentController/load_file';
+
+//budget
+$route['forms-budget'] = 'BudgetController/forms_budget';
 
 
 //classrom
@@ -278,3 +283,6 @@ $route['sc_ass_res_del_p7'] = 'Fm_evaluation/del_sc_ass_res';
 $route['achie_ass_del_p8'] = 'Fm_evaluation/del_achie_ass';
 
 ///////////////////// evaluation - END /////////////////////////
+
+
+
