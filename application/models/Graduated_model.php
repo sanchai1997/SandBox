@@ -1,6 +1,6 @@
 <?php
 
-class Craduated_model extends CI_Model
+class Graduated_model extends CI_Model
 {
 
     public function __construct()

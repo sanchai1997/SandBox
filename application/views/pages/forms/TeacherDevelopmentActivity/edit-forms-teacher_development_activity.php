@@ -137,8 +137,29 @@
                 </div>
 
                 <div class="text-center">
-                  <button type="submit" class="btn btn-warning" onclick="return check(teacher_developmant_activity)">แก้ไขข้อมูล</button>
+                  <button type="button" class="btn btn-warning" onclick="return check(teacher_developmant_activity)">แก้ไขข้อมูล</button>
                 </div> 
+
+                <!-- Modal -->
+                <div class="modal fade" id="Modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+                  <div class="modal-dialog modal-dialog-centered" role="document">
+                      <div class="modal-content">
+                          <div class="modal-header">
+                              <h5 class="modal-title" id="exampleModalLongTitle">ยืนยันการแก้ไขข้อมูล</h5>
+                              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                          </div>
+                          <div class="modal-body">
+                              <h6>
+                                  <center>คุณต้องการแก้ไขข้อมูลใช่หรือไหม ?</center>
+                              </h6>
+                          </div>
+                          <div class="modal-footer">
+                              <button type="submit" class="btn btn-warning" >แก้ไขข้อมูล</button> 
+                              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ยกเลิก</button>
+                          </div>
+                      </div>
+                  </div>
+               </div>  
                 
               </form><!-- End Form ข้อมูลการพัฒนาบุคลากรครู -->
 
@@ -292,6 +313,7 @@
       return false;
     } 
     */
+    $('#Modal').modal('show');
   }
 </script>  
 <?php } ?>

@@ -81,12 +81,32 @@
                                     <a href='edit_forms-curriculum_subject?sid=<?php echo $ls->SubjectCode; ?>&&cid=<?php echo $ls->CurriculumID; ?>'>
                                         <button type="button" class="btn btn-warning"><i class="bi bi-pencil-square"></i></button> 
                                     </a>
-                                    <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#delete">
+                                    <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#delete<?php echo $ls->SubjectCode; ?>">
                                         <i class=" bi bi-trash"></i>
                                     </button>  
                                 </td>
 
                             </tr>
+                            <!-- Modal -->
+                            <div class="modal fade" id="delete<?php echo $ls->SubjectCode; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+                                    <div class="modal-dialog modal-dialog-centered" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="exampleModalLongTitle">ยืนยันการลบข้อมูล</h5>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <h6>
+                                                    <center>คุณต้องการลบข้อมูลใช่หรือไหม ?</center>
+                                                </h6>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <a href="<?php echo base_url('delete-curriculum_subject/' .$ls->CurriculumID .'/'.$ls->SubjectCode)  ?>" class="btn btn-danger">ลบ</a>
+                                                <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#delete">ยกเลิก</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                            </div>
                         <?php } ?>
                     </tbody>
                 

@@ -16,12 +16,11 @@ class Fm_innovation extends CI_Controller
 		// print_r($data);
 		// echo'</pre>';
 		// exit;
-		
+
 		$this->load->view('templates/header');
 		$this->load->view('templates/sidebar');
 		$this->load->view('pages/dashboard/innovation', $data);
 		$this->load->view('templates/footer');
-		
 	}
 	public function sh1()
 	{
@@ -30,22 +29,20 @@ class Fm_innovation extends CI_Controller
 		// print_r($data);
 		// echo'</pre>';
 		// exit;
-		
+
 		$this->load->view('templates/header');
 		$this->load->view('templates/sidebar');
 		$this->load->view('pages/dashboard/innovation', $data);
 		$this->load->view('templates/footer');
-		
 	}
 	public function sh2()
 	{
 		$data['query'] = $this->Innovation_model->show_in_tor();
-		
+
 		$this->load->view('templates/header');
 		$this->load->view('templates/sidebar');
 		$this->load->view('pages/dashboard/innovation', $data);
 		$this->load->view('templates/footer');
-		
 	}
 	public function forms()
 	{
@@ -55,12 +52,11 @@ class Fm_innovation extends CI_Controller
 		// echo '</pre>';
 		// exit;
 
-		
+
 		$this->load->view('templates/header');
 		$this->load->view('templates/sidebar');
 		$this->load->view('pages/forms/EII/forms-innovation');
 		$this->load->view('templates/footer');
-		
 	}
 	public function adding_sh1()
 	{

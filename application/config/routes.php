@@ -26,28 +26,33 @@ $route['forms-curriculum'] = 'CurriculumController/forms_curriculum';
 $route['add_curriculum']['post'] = 'CurriculumController/add_curriculum';
 $route['edit_forms-curriculum'] = 'CurriculumController/forms_edit_curriculum';
 $route['edit_curriculum']['post'] = 'CurriculumController/edit_curriculum';
+$route['delete-curriculum/(:num)'] = 'CurriculumController/delete_curriculum/$1';
 //Curriculum_subject
 $route['list-curriculum_subject'] = 'CurriculumController/list_curriculum_subject';
 $route['forms-curriculum_subject'] = 'CurriculumController/forms_curriculum_subject';
 $route['add_curriculum_subject']['post'] = 'CurriculumController/add_curriculum_subject';
 $route['edit_forms-curriculum_subject'] = 'CurriculumController/forms_edit_curriculum_subject';
 $route['edit_curriculum_subject']['post'] = 'CurriculumController/edit_curriculum_subject';
+$route['delete-curriculum_subject/(:num)/(:num)'] = 'CurriculumController/delete_curriculum_subject/$1/$2';
 //Curriculum__school_competency
 $route['list-curriculum_school_competency'] = 'CurriculumController/list_curriculum_school_competency';
 $route['forms-curriculum_school_competency'] = 'CurriculumController/forms_curriculum_school_competency';
 $route['add_curriculum_school_competency']['post'] = 'CurriculumController/add_curriculum_school_competency';
 $route['edit_forms-curriculum_school_competency'] = 'CurriculumController/forms_edit_curriculum_school_competency';
 $route['edit_curriculum_school_competency']['post'] = 'CurriculumController/edit_curriculum_school_competency';
-
+$route['delete-curriculum_school_competency/(:num)/(:num)/(:num)'] = 'CurriculumController/delete_curriculum_school_competency/$1/$2/$3';
 //teacher_developmant_activity
 $route['list-teacher_development_activity'] = 'Teacher_development_activity_controller/list_teacher_development_activity';
 $route['forms-teacher_development_activity'] = 'Teacher_development_activity_controller/forms';
 $route['add_teacher_development_activity']['post'] = 'Teacher_development_activity_controller/add_teacher_development_activity';
 $route['edit_forms-teacher_development_activity'] = 'Teacher_development_activity_controller/forms_edit_teacher_development_activity';
 $route['edit_teacher_development_activity']['post'] = 'Teacher_development_activity_controller/edit_teacher_development_activity';
-$route['delete-teacher_development_activity/(:any)/(:any)/(:any)'] = 'Teacher_development_activity_controller/delete_teacher_development_activity/$1/$2/$3';
+$route['delete-teacher_development_activity'] = 'Teacher_development_activity_controller/delete_teacher_development_activity';
 //Files
 $route['load_file'] = 'DocumentController/load_file';
+
+//budget
+$route['forms-budget'] = 'BudgetController/forms_budget';
 
 
 //classrom
@@ -94,11 +99,12 @@ $route['update-teacher/(:any)'] = 'forms_teacher/update_teacher/$1';
 $route['delete-teacher/(:any)'] = 'forms_teacher/delete_teacher/$1';
 ///////////////////// TEACHER - END /////////////////////////
 
-////////////////////// ROUTE CRADUATED ////////////////////////
-//CRADUATED 
-$route['craduated'] = 'craduated';
-$route['forms-craduated'] = 'forms_craduated';
-///////////////////// CRADUATED - END /////////////////////////
+////////////////////// ROUTE GRADUATED ////////////////////////
+//GRADUATED 
+$route['graduated'] = 'graduated';
+$route['graduated-P2'] = 'graduated/P2';
+$route['forms-graduated'] = 'forms_graduated';                                                                                                                                                                                  
+///////////////////// GRADUATED - END /////////////////////////
 
 ////////////////////// ROUTE PERSONNEL ////////////////////////
 //PERSONNEL
@@ -110,14 +116,37 @@ $route['edit-forms-personnel'] = 'forms_personnel/edit_personnel';
 $route['update-personnel/(:any)'] = 'forms_personnel/update_personnel/$1';
 $route['delete-personnel/(:any)'] = 'forms_personnel/delete_personnel/$1';
 
+//AdditionalPosition
 $route['personnel-additionalposition'] = 'personnel/additional_position';
 $route['forms-personnel-additionalposition'] = 'forms_personnel/forms_additionalposition';
 $route['add-additionalposition/(:any)']['post'] = 'forms_personnel/add_additionalposition/$1';
 $route['edit-forms-personnel-additionalposition'] = 'forms_personnel/edit_additionalposition';
 $route['update-additionalposition/(:any)/(:num)'] = 'forms_personnel/update_additionalposition/$1/$2';
-$route['delete-personnel/(:any)/(:num)'] = 'forms_personnel/delete_additionalposition/$1/$2';
+$route['delete-additionalposition/(:any)/(:num)'] = 'forms_personnel/delete_additionalposition/$1/$2';
 
+//Academic
+$route['personnel-academic'] = 'personnel/academic';
+$route['forms-personnel-academic'] = 'forms_personnel/forms_academic';
+$route['add-academic/(:any)']['post'] = 'forms_personnel/add_academic/$1';
+$route['edit-forms-personnel-academic'] = 'forms_personnel/edit_academic';
+$route['update-academic/(:any)/(:num)'] = 'forms_personnel/update_academic/$1/$2';
+$route['delete-academic/(:any)/(:num)'] = 'forms_personnel/delete_academic/$1/$2';
 
+//Education
+$route['personnel-education'] = 'personnel/education';
+$route['forms-personnel-education'] = 'forms_personnel/forms_education';
+$route['add-education/(:any)']['post'] = 'forms_personnel/add_education/$1';
+$route['edit-forms-personnel-education'] = 'forms_personnel/edit_education';
+$route['update-education/(:any)/(:num)/(:num)'] = 'forms_personnel/update_education/$1/$2/$3';
+$route['delete-education/(:any)/(:num)/(:num)'] = 'forms_personnel/delete_education/$1/$2/$3';
+
+//Assistance
+$route['personnel-assistance'] = 'personnel/assistance';
+$route['forms-personnel-assistance'] = 'forms_personnel/forms_assistance';
+$route['add-assistance/(:any)']['post'] = 'forms_personnel/add_assistance/$1';
+$route['edit-forms-personnel-assistance'] = 'forms_personnel/edit_assistance';
+$route['update-assistance/(:any)/(:num)/(:num)'] = 'forms_personnel/update_assistance/$1/$2/$3';
+$route['delete-assistance/(:any)/(:num)/(:num)'] = 'forms_personnel/delete_assistance/$1/$2/$3';
 ///////////////////// PERSONNEL - END /////////////////////////
 
 ////////////////////// ROUTE innovation ////////////////////////
@@ -254,3 +283,6 @@ $route['sc_ass_res_del_p7'] = 'Fm_evaluation/del_sc_ass_res';
 $route['achie_ass_del_p8'] = 'Fm_evaluation/del_achie_ass';
 
 ///////////////////// evaluation - END /////////////////////////
+
+
+

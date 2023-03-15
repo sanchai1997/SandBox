@@ -94,13 +94,13 @@
                                     <a href='edit_forms-teacher_development_activity?tid=<?php echo $ls->TeacherID;?>&&name=<?php echo $ls->DevelopmentActivityName;?>&&sdate=<?php echo $ls->DevelopmentActivityStartDate;?>' class="btn btn-warning">
                                         <i class="bi bi-pencil-square"></i> 
                                     </a> 
-                                    <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#delete">
+                                    <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#delete<?php echo $ls->TeacherID . $ls->DevelopmentActivityName . $ls->DevelopmentActivityStartDate ; ?>">
                                         <i class=" bi bi-trash"></i>
                                     </button>                           
                                 </td>
                             </tr>
 
-                            <div class="modal fade" id="delete" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+                            <div class="modal fade" id="delete<?php echo $ls->TeacherID . $ls->DevelopmentActivityName . $ls->DevelopmentActivityStartDate ; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
                                     <div class="modal-dialog modal-dialog-centered" role="document">
                                         <div class="modal-content">
                                             <div class="modal-header">
@@ -113,7 +113,7 @@
                                                 </h6>
                                             </div>
                                             <div class="modal-footer">
-                                                <a href="<?php echo base_url('delete-teacher_development_activity/' .$ls->TeacherID . '/' .$ls->DevelopmentActivityName . '/' .$ls->DevelopmentActivityStartDate ); ?>" class="btn btn-danger">ลบ</a>
+                                                <a href="delete-teacher_development_activity?tid=<?php echo $ls->TeacherID;?>&&name=<?php echo $ls->DevelopmentActivityName;?>&&sdate=<?php echo $ls->DevelopmentActivityStartDate;?>" class="btn btn-danger">ลบ</a>
                                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ยกเลิก</button>
                                             </div>
                                         </div>

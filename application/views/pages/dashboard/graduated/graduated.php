@@ -9,7 +9,7 @@
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="main">Home</a></li>
                         <li class="breadcrumb-item">Dashboard</li>
-                        <li class="breadcrumb-item active">Craduated</li>
+                        <li class="breadcrumb-item active">Graduated</li>
                     </ol>
                 </nav>
             </div>
@@ -43,7 +43,7 @@
                         <h5 class="card-title">รายละเอียดข้อมูล <span>| Table Craduated</span></h5>
                     </div>
                     <div class="col">
-                        <h5 style="float: right; padding: 15px;" class="card-title"><a href="forms-craduated" class="btn btn-success">เพิ่มข้อมูลผู้สำเร็จการศึกษา</a></h5>
+                        <h5 style="float: right; padding: 15px;" class="card-title"><a href="forms-graduated" class="btn btn-success">เพิ่มข้อมูลผู้สำเร็จการศึกษา</a></h5>
                     </div>
                 </div>
                 <table class="table table-borderless datatable">
@@ -56,16 +56,23 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td style="text-align: center;"><a href="edit-forms-award?" class="btn btn-warning"><i class="bi bi-pencil-square"></i></a>
-                                &nbsp; <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#Delete"><i class=" bi bi-trash"></i></button>
-                            </td>
-                        </tr>
-
+                        <?php
+                        $AAA = $this->db->query('SELECT * FROM GRADUATED
+                        INNER JOIN SCHOOL ON GRADUATED.GraduatedSchoolID = SCHOOL.SchoolID
+                        INNER JOIN CLS_GRADE_LEVEL ON GRADUATED.GraduatedGradeLevelCode = CLS_GRADE_LEVEL.GRADE_LEVEL_CODE
+                        WHERE GRADUATED.DeleteStatus = 0
+                        GROUP BY GRADUATED.GraduatedGradeLevelCode');
+                        foreach ($AAA->result() as $GRADUATED) {
+                        ?>
+                            <tr>
+                                <td><?= $GRADUATED->SchoolNameThai; ?></td>
+                                <td><?= $GRADUATED->EducationYear; ?></td>
+                                <td><?= $GRADUATED->GRADE_LEVEL_NAME; ?></td>
+                                <td style="text-align: center;">
+                                    <a href="" class="btn btn-warning"><i class="bi bi-pencil-square"></i></a>
+                                </td>
+                            </tr>
+                        <?php } ?>
                     </tbody>
                 </table>
 

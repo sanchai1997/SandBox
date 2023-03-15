@@ -50,9 +50,7 @@ class TeacherDevelopmentActivity_model extends CI_Model {
     
     }
 
-    public function delete_teacher_development_activity($TeacherID, $DevelopmentActivityName, $DevelopmentActivityStartDate){
-        show_error($TeacherID.' : '.$DevelopmentActivityName.' : '.$DevelopmentActivityStartDate);
-        
+    public function delete_teacher_development_activity($TeacherID, $DevelopmentActivityName, $DevelopmentActivityStartDate){        
         $data = [
             'DeleteStatus' => 1
         ];
