@@ -88,7 +88,7 @@ class Participant_model extends CI_Model {
 		if($query){
 			session_start(); // เริ่มต้น session
 			$_SESSION['success'] = "เพิ่มข้อมูลสำเร็จ !"; // กำหนดค่า success ใน session เป็น true
-			header("Location: ".site_url('Fm_participant_das_p2?page=sh2')); // ไปยังหน้าก่อนหน้านี้
+			header("Location: ".site_url('Fm_participant_das_p1?page=sh1')); // ไปยังหน้าก่อนหน้านี้
 			
 		} else {
 			echo 'false';
@@ -114,7 +114,7 @@ class Participant_model extends CI_Model {
 		if($query){
 			session_start(); // เริ่มต้น session
 			$_SESSION['success'] = "แก้ไขข้อมูลสำเร็จ !"; // กำหนดค่า success ใน session เป็น true
-			header("Location: ".site_url('Fm_participant_das_p2?page=sh2')); // ไปยังหน้าก่อนหน้านี้
+			header("Location: ".site_url('Fm_participant_das_p1?page=sh1')); // ไปยังหน้าก่อนหน้านี้
 			
 		} else {
 			echo 'false';
@@ -137,7 +137,7 @@ class Participant_model extends CI_Model {
 		if($query){
 			session_start(); // เริ่มต้น session
 			$_SESSION['success'] = "ลบข้อมูลสำเร็จ !"; // กำหนดค่า success ใน session เป็น true
-			header("Location: ".site_url('Fm_participant_das_p2?page=sh2')); // ไปยังหน้าก่อนหน้านี้
+			header("Location: ".site_url('Fm_participant_das_p1?page=sh1')); // ไปยังหน้าก่อนหน้านี้
 			
 		} else {
 			echo 'false';
@@ -177,7 +177,7 @@ class Participant_model extends CI_Model {
 		if($query){
 			session_start(); // เริ่มต้น session
 			$_SESSION['success'] = "เพิ่มข้อมูลเรียบร้อย !"; // กำหนดค่า success ใน session เป็น true
-			header("Location: ".site_url('Fm_participant_das_p3?page=sh3')); // ไปยังหน้าก่อนหน้านี้
+			header("Location: ".site_url('Fm_participant_das_p1?page=sh1')); // ไปยังหน้าก่อนหน้านี้
 			
 		} else {
 			echo 'false';
@@ -237,7 +237,7 @@ $this->db->where('Id',$this->input->post('Id'));
 		if($query){
 			session_start(); // เริ่มต้น session
 			$_SESSION['success'] = "แก้ไขข้อมูลสำเร็จ !"; // กำหนดค่า success ใน session เป็น true
-			header("Location: ".site_url('Fm_participant_das_p3?page=sh3')); // ไปยังหน้าก่อนหน้านี้
+			header("Location: ".site_url('Fm_participant_das_p1?page=sh1')); // ไปยังหน้าก่อนหน้านี้
 			
 		} else {
 			echo 'false';
@@ -263,7 +263,7 @@ $this->db->where('Id',$this->input->post('Id'));
 			if($query){
 				session_start(); // เริ่มต้น session
 				$_SESSION['success'] = "ลบข้อมูลสำเร็จ !"; // กำหนดค่า success ใน session เป็น true
-				header("Location: ".site_url('Fm_participant_das_p3?page=sh3')); // ไปยังหน้าก่อนหน้านี้
+				header("Location: ".site_url('Fm_participant_das_p1?page=sh1')); // ไปยังหน้าก่อนหน้านี้
 				
 			} else {
 				echo 'false';
@@ -288,7 +288,7 @@ $this->db->where('Id',$this->input->post('Id'));
 		if($query){
 			session_start(); // เริ่มต้น session
 			$_SESSION['success'] = "เพิ่มข้อมูลเรียบร้อย !"; // กำหนดค่า success ใน session เป็น true
-			header("Location: ".site_url('Fm_participant_das_p4?page=sh4')); // ไปยังหน้าก่อนหน้านี้
+			header("Location: ".site_url('Fm_participant_das_p1?page=sh1')); // ไปยังหน้าก่อนหน้านี้
 			
 		} else {
 			echo 'false';
@@ -315,7 +315,7 @@ $this->db->where('Id',$this->input->post('Id'));
 		if($query){
 			session_start(); // เริ่มต้น session
 			$_SESSION['success'] = "แก้ไขข้อมูลสำเร็จ !"; // กำหนดค่า success ใน session เป็น true
-			header("Location: ".site_url('Fm_participant_das_p4?page=sh4')); // ไปยังหน้าก่อนหน้านี้
+			header("Location: ".site_url('Fm_participant_das_p1?page=sh1')); // ไปยังหน้าก่อนหน้านี้
 			
 		} else {
 			echo 'false';
@@ -339,7 +339,7 @@ $this->db->where('Id',$this->input->post('Id'));
 		if($query){
 			session_start(); // เริ่มต้น session
 			$_SESSION['success'] = "ลบข้อมูลสำเร็จ !"; // กำหนดค่า success ใน session เป็น true
-			header("Location: ".site_url('Fm_participant_das_p4?page=sh4')); // ไปยังหน้าก่อนหน้านี้
+			header("Location: ".site_url('Fm_participant_das_p1?page=sh1')); // ไปยังหน้าก่อนหน้านี้
 			
 		} else {
 			echo 'false';
