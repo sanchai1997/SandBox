@@ -112,3 +112,7 @@ $route['delete-personnel/(:any)'] = 'forms_personnel/delete_personnel/$1';
 
 $route['personnel-additional-position'] = 'personnel/additional_position';
 ///////////////////// PERSONNEL - END /////////////////////////
+
+
+//budget
+$route['forms-budget'] = 'BudgetController/forms_budget';
