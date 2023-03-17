@@ -28,9 +28,6 @@ class Budget_model extends CI_Model
 
     }
 }
-<<<<<<< Updated upstream
-  
-=======
 
 ?>
->>>>>>> Stashed changes
+
