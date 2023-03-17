@@ -53,6 +53,7 @@
 
               <!-- End Form ข้อมูลสมรรถนะของหลักสูตร -->
                   <div class="text-center">
+                    <a href="list-curriculum_school_competency?cid=<?php echo $CurriculumID; ?>&&sid=<?php echo $SubjectCode; ?>" class="btn btn-danger">ยกเลิก</a>
                     <button type="button" class="btn btn-warning" onclick="return check(CurriculumCompetency)">แก้ไขข้อมูล</button>
                   </div>
 

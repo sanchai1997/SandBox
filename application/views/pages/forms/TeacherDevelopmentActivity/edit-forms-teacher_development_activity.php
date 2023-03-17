@@ -130,6 +130,7 @@
                 </div>
 
                 <div class="text-center">
+                  <a href="list-teacher_development_activity" class="btn btn-danger">ยกเลิก</a>
                   <button type="button" class="btn btn-warning" onclick="return check(teacher_developmant_activity)">แก้ไขข้อมูล</button>
                 </div> 
 
