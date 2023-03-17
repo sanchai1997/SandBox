@@ -33,6 +33,10 @@
                         <?php break;case 'sh2': ?> <h5 class="card-title">ข้อมูลการติดต่อของผู้มีส่วนร่วม</h5>
                         <?php break;case 'sh3': ?> <h5 class="card-title">ข้อมูลการมีส่วนร่วม</h5>
                         <?php break;case 'sh4': ?><h5 class="card-title">ข้อมูลบันทึกเพิ่มเติม</h5>
+                        <?php break;case 'sh22': ?> <h5 class="card-title">ข้อมูลการติดต่อของผู้มีส่วนร่วม</h5>
+                        <?php break;case 'sh33': ?> <h5 class="card-title">ข้อมูลการมีส่วนร่วม</h5>
+                        <?php break;case 'sh44': ?><h5 class="card-title">ข้อมูลบันทึกเพิ่มเติม</h5>
+                        <?php break;case 'sh11': ?><h5 class="card-title">ข้อมูลผู้เข้ามามีส่วนร่วม</h5>
                         <?php break;default: ?>
                         <?php break;} ?>
 
@@ -74,12 +78,12 @@
                                     <select class="form-select" id="floatingSelect"
                                         aria-label="Floating label select example" name="ParticipantTypeCode">
                                         <option selected>เลือก</option>
-                                        <option value="01">บุคคล</option>
-                                        <option value="02">หน่วยงานรัฐ/รัฐวิสาหกิจ</option>
-                                        <option value="03">บริษัทเอกชน</option>
-                                        <option value="04">มูลนิธิ</option>
-                                        <option value="05">สมาคม</option>
-                                        <option value="06">องค์กรต่างประเทศ</option>
+                                       <?php
+                                            $result = $this->db->query('SELECT * FROM CLS_PARTICIPANT_TYPE');
+                                            foreach ($result->result() as $cls) {
+                                            ?>
+                                             <option value="<?= $cls->PARTICIPANT_TYPE_CODE ; ?>"><?= $cls->PARTICIPANT_TYPE_NAME; ?></option>
+                                            <?php } ?>
                                     </select>
                                     <label for="floatingSelect"><?php echo nbs(
                                         2
@@ -92,6 +96,70 @@
                                                     </div>
                         </form><!-- end Form ข้อมูลบุคคลหรือหน่วยงานที่เข้ามามีส่วนร่วมในพื้นที่นวัตกรรมการศึกษา -->
                         <?php } ?>
+                        <?php if ($page == 'sh11') { ?>
+                            <?php $key = isset($_GET['key']) ? $_GET['key'] : '';  ?>
+                            <?php
+                            
+                            $result = $this->db->query("SELECT * FROM PARTICIPANT 
+                            WHERE Id = '".$key."' 
+                            ");
+ 
+                     foreach ($result->result() as $show) {
+                     ?>
+                        <form action="<?php echo site_url(
+                            'par_edit_p1'
+                        ); ?>" method="post"
+                            enctype="multipart/form-data">
+                           
+<input type="hidden" name="Id" value="<?php echo $show->Id ?>">
+                            <div class="row mb-3">
+                               <div class="col">
+                                    <div class="form-floating">
+                                        <input type="text" class="form-control" id="floatingName"
+                                            placeholder="รหัสภาครัฐหรือภาคเอกชนที่เข้ามาขับเคลื่อนพื้นที่นวัตกรรมการศึกษา"
+                                            name="ParticipantID" value="<?php echo $show->ParticipantID ?>">
+                                        <label for="floatingName"><?php echo nbs(
+                                            2
+                                        ); ?>
+                                            รหัสภาครัฐหรือภาคเอกชนที่เข้ามาขับเคลื่อนพื้นที่นวัตกรรมการศึกษา </label>
+                                    </div>
+                               </div>
+                            
+                                <div class="col">
+                                    <div class="form-floating">
+                                        <input type="text" class="form-control" id="floatingName"
+                                            placeholder="ชื่อภาครัฐหรือภาคเอกชนที่เข้ามาขับเคลื่อนพื้นที่นวัตกรรมการศึกษา"
+                                            name="ParticipantName" value="<?php echo $show->ParticipantName ?>">
+                                        <label for="floatingName"><?php echo nbs(
+                                            2
+                                        ); ?>
+                                            ชื่อภาครัฐหรือภาคเอกชนที่เข้ามาขับเคลื่อนพื้นที่นวัตกรรมการศึกษา </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <div class="form-floating">
+                                    <select class="form-select" id="floatingSelect"
+                                        aria-label="Floating label select example" name="ParticipantTypeCode">
+                                        <option selected>เลือก</option>
+                                       <?php
+                                            $result = $this->db->query('SELECT * FROM CLS_PARTICIPANT_TYPE');
+                                            foreach ($result->result() as $cls) {
+                                            ?>
+                                             <option value="<?= $cls->PARTICIPANT_TYPE_CODE ; ?>"><?= $cls->PARTICIPANT_TYPE_NAME; ?></option>
+                                            <?php } ?>
+                                    </select>
+                                    <label for="floatingSelect"><?php echo nbs(
+                                        2
+                                    ); ?>รหัสประเภทผู้เข้ามามีส่วนร่วม</label>
+                                </div>
+                            </div>
+                             <div class="d-flex justify-content-center">
+                                                        <button name="Submit" type="submit"
+                                                            class="btn btn-primary">บันทึกข้อมูล</button>
+                                                    </div>
+                        </form><!-- end Form ข้อมูลบุคคลหรือหน่วยงานที่เข้ามามีส่วนร่วมในพื้นที่นวัตกรรมการศึกษา -->
+                        <?php } }?>
                         <?php if ($page == 'sh2') { ?>
                         <!-- start Form ข้อมูลการติดต่อของผู้มีส่วนร่วมในพื้นที่ -->
                         <form action="<?php echo site_url(
@@ -171,6 +239,94 @@
                                                     </div>
                         </form><!-- end Form ข้อมูลการติดต่อของผู้มีส่วนร่วมในพื้นที่ -->
                         <?php } ?>
+                        <?php if ($page == 'sh22') { ?>
+                            <?php $key = isset($_GET['key']) ? $_GET['key'] : '';  ?>
+                            <?php
+                            
+                            $result = $this->db->query("SELECT * FROM PARTICIPANT_CONTACT 
+                            WHERE Id = '".$key."' 
+                            ");
+ 
+                     foreach ($result->result() as $show) {
+                     ?>
+                        <!-- start Form ข้อมูลการติดต่อของผู้มีส่วนร่วมในพื้นที่ -->
+                        <form action="<?php echo site_url(
+                            'pc_edit_p2'
+                        ); ?>" method="post"
+                            enctype="multipart/form-data">
+                            
+<input type="hidden" name="Id" value="<?php echo $show->Id ?>">
+                            <div class="row mb-3">
+                                <div class="form-floating">
+                                    <input type="text" class="form-control" id="floatingName"
+                                        placeholder="รหัสภาครัฐหรือภาคเอกชนที่เข้ามาขับเคลื่อนพื้นที่นวัตกรรมการศึกษา"
+                                        name="ParticipantID" value="<?php echo $show->ParticipantID ?>">
+                                    <label for="floatingName"><?php echo nbs(
+                                        2
+                                    ); ?>
+                                        รหัสภาครัฐหรือภาคเอกชนที่เข้ามาขับเคลื่อนพื้นที่นวัตกรรมการศึกษา </label>
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <div class="form-floating">
+                                    <input type="text" class="form-control" id="floatingName"
+                                        placeholder="ชื่อของผู้ติดต่อ" name="ContactName" value="<?php echo $show->ContactName ?>">
+                                    <label for="floatingName"><?php echo nbs(
+                                        2
+                                    ); ?>
+                                        ชื่อของผู้ติดต่อ </label>
+                                </div>
+                            </div>
+
+
+                            <div class="row mb-3">
+                                <div class="col">
+                                    <div class="form-floating">
+                                        <input type="text" class="form-control" id="floatingName"
+                                            placeholder="หมายเลขโทรศัพท์ของผู้ติดต่อ" name="ContactPhone" value="<?php echo $show->ContactPhone ?>">
+                                        <label for="floatingName"><?php echo nbs(
+                                            2
+                                        ); ?> หมายเลขโทรศัพท์ของผู้ติดต่อ </label>
+                                    </div>
+                                </div>
+                           
+                                <div class="col">
+                                    <div class="form-floating">
+                                        <input type="text" class="form-control" id="floatingName"
+                                            placeholder="หมายเลขโทรศัพท์มือถือของผู้ติดต่อ" name="ContactMobilePhone" value="<?php echo $show->ContactMobilePhone ?>">
+                                        <label for="floatingName"><?php echo nbs(
+                                            2
+                                        ); ?> หมายเลขโทรศัพท์มือถือของผู้ติดต่อ</label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row mb-3">
+                                <div class="form-floating">
+                                    <input type="text" class="form-control" id="floatingName"
+                                        placeholder="อีเมลของผู้ติดต่อ" name="ContactEmail" value="<?php echo $show->ContactEmail ?>">
+                                    <label for="floatingName"><?php echo nbs(
+                                        2
+                                    ); ?> อีเมลของผู้ติดต่อ </label>
+                                </div>
+                            </div>
+
+                            <div class="row mb-3">
+                                <div class="form-floating">
+                                    <input type="text" class="form-control" id="floatingName"
+                                        placeholder="ตำแหน่งในองคnกร (ของผู้ติดต่อ)" name="ContactOrganizationPosition" value="<?php echo $show->ContactOrganizationPosition ?>">
+                                    <label for="floatingName"><?php echo nbs(
+                                        2
+                                    ); ?> ตำแหน่งในองคnกร (ของผู้ติดต่อ)
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="d-flex justify-content-center">
+                                                        <button name="Submit" type="submit"
+                                                            class="btn btn-primary">บันทึกข้อมูล</button>
+                                                    </div>
+                        </form><!-- end Form ข้อมูลการติดต่อของผู้มีส่วนร่วมในพื้นที่ -->
+                        <?php } }?>
                         <?php if ($page == 'sh3') { ?>
                         <!-- start Form ข้อมูลการมีส่วนร่วมของผู้เข้ามามีส่วนร่วมในพื้นที่ -->
                         <form action="<?php echo site_url(
@@ -218,9 +374,12 @@
                                     <select class="form-select" id="floatingSelect"
                                         aria-label="Floating label select example" name="CooperationStatusCode">
                                         <option selected>เลือก</option>
-                                        <option value="01">ยังมีส่วนร่วม</option>
-                                        <option value="02">สิ้นสุดการมีส่วนร่วม</option>
-                                        <option value="03">ไม่มีการเข้ามามีส่วนร่วม</option>
+                                     <?php
+                                            $result = $this->db->query('SELECT * FROM CLS_COOPERATION_STATUS');
+                                            foreach ($result->result() as $cls) {
+                                            ?>
+                                             <option value="<?= $cls->COOPERATION_STATUS_CODE ; ?>"><?= $cls->COOPERATION_STATUS_NAME; ?></option>
+                                            <?php } ?>
                                     </select>
                                     <label for="floatingSelect"><?php echo nbs(
                                         2
@@ -243,12 +402,12 @@
                                     <select class="form-select" id="floatingSelect"
                                         aria-label="Floating label select example" name="CooperationLevelCode">
                                         <option selected>เลือก</option>
-                                        <option value="01">ให้ข้อมูล</option>
-                                        <option value="02">ให้คำปรึกษา</option>
-                                        <option value="03">มีส่วนร่วมบางส่วน</option>
-                                        <option value="04">ทำงานร่วมกัน</option>
-                                        <option value="05">สนับสนุนงบประมาณ</option>
-                                        <option value="06">สนับสนุนสื่อ/อุปกรณ์</option>
+                                       <?php
+                                            $result = $this->db->query('SELECT * FROM CLS_COOPERATION_LEVEL');
+                                            foreach ($result->result() as $cls) {
+                                            ?>
+                                             <option value="<?= $cls->COOPERATION_LEVEL_CODE ; ?>"><?= $cls->COOPERATION_LEVEL_NAME; ?></option>
+                                            <?php } ?>
                                     </select>
                                     <label for="floatingSelect"><?php echo nbs(
                                         2
@@ -257,10 +416,19 @@
                             </div>
                             <div class="row mb-3">
                                 <div class="form-floating">
-                                    <input type="text" class="form-control" id="floatingName" placeholder="ปีการศึกษา" name="CooperationSchoolID">
-                                    <label for="floatingName"><?php echo nbs(
+                                    <select class="form-select" id="floatingSelect"
+                                        aria-label="Floating label select example" name="CooperationSchoolID">
+                                        <option selected>เลือก</option>
+                                       <?php
+                                            $result = $this->db->query('SELECT * FROM CLS_COOPERATION_STATUS');
+                                            foreach ($result->result() as $cls) {
+                                            ?>
+                                             <option value="<?= $cls->COOPERATION_STATUS_CODE  ; ?>"><?= $cls->COOPERATION_STATUS_NAME; ?></option>
+                                            <?php } ?>
+                                    </select>
+                                    <label for="floatingSelect"><?php echo nbs(
                                         2
-                                    ); ?> รหัสสถานศึกษาที่เข้าไปมีส่วนร่วม </label>
+                                    ); ?>รหัสสถานศึกษาที่เข้าไปมีส่วนร่วม</label>
                                 </div>
                             </div>
                             <div class="row mb-3">
@@ -275,6 +443,131 @@
                                                     </div>
                         </form><!-- end Form ข้อมูลการมีส่วนร่วมของผู้เข้ามามีส่วนร่วมในพื้นที่ -->
                         <?php } ?>
+                        <?php if ($page == 'sh33') { ?>
+                            <?php $key = isset($_GET['key']) ? $_GET['key'] : '';  ?>
+                            <?php
+                            
+                            $result = $this->db->query("SELECT * FROM PARTICIPANT_COOPERATION 
+                            WHERE Id = '".$key."' 
+                            ");
+ 
+                     foreach ($result->result() as $show) {
+                     ?>
+                        <!-- start Form ข้อมูลการมีส่วนร่วมของผู้เข้ามามีส่วนร่วมในพื้นที่ -->
+                        <form action="<?php echo site_url(
+                            'pcp_edit_p3'
+                        ); ?>" method="post"
+                            enctype="multipart/form-data">
+<input type="hidden" name="Id" value="<?php echo $show->Id ?>">
+                            <div class="row mb-3">
+                                <div class="form-floating">
+                                    <input type="text" class="form-control" id="floatingName"
+                                        placeholder="รหัสภาครัฐหรือภาคเอกชนที่เข้ามาขับเคลื่อนพื้นที่นวัตกรรมการศึกษา"
+                                        name="ParticipantID" value="<?php echo $show->ParticipantID ?>">
+                                    <label for="floatingName"><?php echo nbs(
+                                        2
+                                    ); ?>
+                                        รหัสภาครัฐหรือภาคเอกชนที่เข้ามาขับเคลื่อนพื้นที่นวัตกรรมการศึกษา </label>
+                                </div>
+                            </div>
+
+                            <div class="row mb-3">
+                               <div class="col">
+                                    <div class="form-floating">
+                                        <input type="date" class="form-control" id="Share" placeholder="Share"
+                                            name="CooperationStartDate" value="<?php echo $show->CooperationStartDate ?>">
+                                        <label for="floatingName"><?php echo nbs(
+                                            2
+                                        ); ?>วันที่เริ่มการมีส่วนร่วม</label>
+                                    </div>
+                               </div>
+                            
+                               <div class="col">
+                                    <div class="col-md-12">
+                                        <div class="form-floating">
+                                            <input type="date" class="form-control" id="Share" placeholder="Share"
+                                                name="CooperationEndDate" value="<?php echo $show->CooperationEndDate ?>">
+                                            <label for="Share">วันที่สิ้นสุดการมีส่วนร่วม</label>
+                                        </div>
+                                    </div>
+                               </div>
+                            </div>
+
+
+                            <div class="row mb-3">
+                                <div class="form-floating">
+                                    <select class="form-select" id="floatingSelect"
+                                        aria-label="Floating label select example" name="CooperationStatusCode">
+                                        <option selected>เลือก</option>
+                                     <?php
+                                            $result = $this->db->query('SELECT * FROM CLS_COOPERATION_STATUS');
+                                            foreach ($result->result() as $cls) {
+                                            ?>
+                                             <option value="<?= $cls->COOPERATION_STATUS_CODE ; ?>"><?= $cls->COOPERATION_STATUS_NAME; ?></option>
+                                            <?php } ?>
+                                    </select>
+                                    <label for="floatingSelect"><?php echo nbs(
+                                        2
+                                    ); ?>รหัสระดับการมีส่วนร่วม</label>
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <div class="form-floating">
+                                    <textarea class="form-control" placeholder="Leave a comment here"
+                                        id="floatingTextarea2" style="height: 100px"
+                                        name="CooperationActivity"><?php echo $show->CooperationActivity ?></textarea>
+                                    <label for="floatingTextarea2"><?php echo nbs(
+                                        2
+                                    ); ?>กิจกรรมที่มีส่วนร่วม</label>
+                                </div>
+                            </div>
+
+                            <div class="row mb-3">
+                                <div class="form-floating">
+                                    <select class="form-select" id="floatingSelect"
+                                        aria-label="Floating label select example" name="CooperationLevelCode">
+                                        <option selected>เลือก</option>
+                                       <?php
+                                            $result = $this->db->query('SELECT * FROM CLS_COOPERATION_LEVEL');
+                                            foreach ($result->result() as $cls) {
+                                            ?>
+                                             <option value="<?= $cls->COOPERATION_LEVEL_CODE ; ?>"><?= $cls->COOPERATION_LEVEL_NAME; ?></option>
+                                            <?php } ?>
+                                    </select>
+                                    <label for="floatingSelect"><?php echo nbs(
+                                        2
+                                    ); ?>รหัสระดับการมีส่วนร่วม</label>
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <div class="form-floating">
+                                    <select class="form-select" id="floatingSelect"
+                                        aria-label="Floating label select example" name="CooperationSchoolID">
+                                        <option selected>เลือก</option>
+                                       <?php
+                                            $result = $this->db->query('SELECT * FROM CLS_COOPERATION_STATUS');
+                                            foreach ($result->result() as $cls) {
+                                            ?>
+                                             <option value="<?= $cls->COOPERATION_STATUS_CODE  ; ?>"><?= $cls->COOPERATION_STATUS_NAME; ?></option>
+                                            <?php } ?>
+                                    </select>
+                                    <label for="floatingSelect"><?php echo nbs(
+                                        2
+                                    ); ?>รหัสสถานศึกษาที่เข้าไปมีส่วนร่วม</label>
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <div class="input-group mb-3">
+                                    <label class="input-group-text" for="inputGroupFile01">ลิ้งก์เอกสารแนบ</label>
+                                    <input type="file" class="form-control" id="inputGroupFile01" name="CooperationAttachmentURL">
+                                </div>
+                            </div>
+                            <div class="d-flex justify-content-center">
+                                                        <button name="Submit" type="submit"
+                                                            class="btn btn-primary">บันทึกข้อมูล</button>
+                                                    </div>
+                        </form><!-- end Form ข้อมูลการมีส่วนร่วมของผู้เข้ามามีส่วนร่วมในพื้นที่ -->
+                        <?php } } ?>
                         <?php if ($page == 'sh4') { ?>
                         <!-- start Form ข้อมูลความคิดเห็นต่อผู้เข้ามามีส่วนร่วมในพื้นที่ -->
                         <form action="<?php echo site_url(
@@ -351,6 +644,92 @@
                                                     </div>
                         </form><!-- end Form ข้อมูลความคิดเห็นต่อผู้เข้ามามีส่วนร่วมในพื้นที่ -->
                         <?php } ?>
+                        <?php if ($page == 'sh44') { ?>
+                            <?php $key = isset($_GET['key']) ? $_GET['key'] : '';  ?>
+                            <?php
+                            
+                            $result = $this->db->query("SELECT * FROM PARTICIPANT_NOTE 
+                            WHERE Id = '".$key."' 
+                            ");
+ 
+                     foreach ($result->result() as $show) {
+                     ?>
+                        <!-- start Form ข้อมูลความคิดเห็นต่อผู้เข้ามามีส่วนร่วมในพื้นที่ -->
+                        <form action="<?php echo site_url(
+                            'pn_edit_p4'
+                        ); ?>" method="post"
+                            enctype="multipart/form-data">
+                           <input type="hidden" name="Id" value="<?php echo $show->Id ?>">
+                            <div class="row mb-3">
+                                <div class="form-floating">
+                                    <input type="text" class="form-control" id="floatingName"
+                                        placeholder="รหัสภาครัฐหรือภาคเอกชนที่เข้ามาขับเคลื่อนพื้นที่นวัตกรรมการศึกษา"
+                                        name="ParticipantID" value="<?php echo $show->ParticipantID ?>">
+                                    <label for="floatingName"><?php echo nbs(
+                                        2
+                                    ); ?>
+                                        รหัสภาครัฐหรือภาคเอกชนที่เข้ามาขับเคลื่อนพื้นที่นวัตกรรมการศึกษา </label>
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <div class="form-floating">
+                                    <textarea class="form-control" placeholder="Leave a comment here"
+                                        id="floatingTextarea2" style="height: 100px" name="Note"><?php echo $show->Note ?></textarea>
+                                    <label for="floatingTextarea2"><?php echo nbs(
+                                        2
+                                    ); ?>บันทึกเพิ่มเติม</label>
+                                </div>
+                            </div>
+
+                            <div class="row mb-3">
+                                <div class="form-floating">
+                                    <input type="text" class="form-control" id="floatingName"
+                                        placeholder="ชื่อผู้บันทึกเพิ่มเติม" name="NoteReporterName" value="<?php echo $show->NoteReporterName ?>">
+                                    <label for="floatingName"><?php echo nbs(
+                                        2
+                                    ); ?> ชื่อผู้บันทึกเพิ่มเติม </label>
+                                </div>
+                            </div>
+
+                            <div class="row mb-3">
+                              <div class="col">
+                                    <div class="form-floating">
+                                        <input type="text" class="form-control" id="floatingName"
+                                            placeholder="หมายเลขโทรศัพท์ของผู้บันทึกเพิ่มเติม" name="NoteReporterPhone" value="<?php echo $show->NoteReporterPhone ?>">
+                                        <label for="floatingName"><?php echo nbs(
+                                            2
+                                        ); ?> หมายเลขโทรศัพท์ของผู้บันทึกเพิ่มเติม </label>
+                                    </div>
+                              </div>
+                            
+                               <div  class="col">
+                                    <div class="form-floating">
+                                        <input type="text" class="form-control" id="floatingName"
+                                            placeholder="หมายเลขโทรศัพท์มือถือของผู้บันทึกเพิ่มเติม"
+                                            name="NoteReporterMobilePhone" value="<?php echo $show->NoteReporterMobilePhone ?>">
+                                        <label for="floatingName"><?php echo nbs(
+                                            2
+                                        ); ?> หมายเลขโทรศัพท์มือถือของผู้บันทึกเพิ่มเติม </label>
+                                    </div>
+                               </div>
+                            </div>
+
+                            <div class="row mb-3">
+                                <div class="form-floating">
+                                    <input type="text" class="form-control" id="floatingName"
+                                        placeholder="อีเมลของผู้บันทึกเพิ่มเติม" name="NoteReporterEmail" value="<?php echo $show->NoteReporterEmail ?>">
+                                    <label for="floatingName"><?php echo nbs(
+                                        2
+                                    ); ?> อีเมลของผู้บันทึกเพิ่มเติม </label>
+                                </div>
+                            </div>
+                             <div class="d-flex justify-content-center">
+                                                        <button name="Submit" type="submit"
+                                                            class="btn btn-primary">บันทึกข้อมูล</button>
+                                                    </div>
+                        </form><!-- end Form ข้อมูลความคิดเห็นต่อผู้เข้ามามีส่วนร่วมในพื้นที่ -->
+                        <?php }
+                        } ?>
 
                     </div>
                 </div>
