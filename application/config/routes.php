@@ -54,6 +54,10 @@ $route['load_file'] = 'DocumentController/load_file';
 //budget
 $route['forms-budget'] = 'BudgetController/forms_budget';
 
+//area_identitty
+$route['forms-area_identitty'] = 'Area_identittyController/forms_Area_identitty';
+
+
 
 //classrom
 $route['school-classroom'] = 'school/classroom';
