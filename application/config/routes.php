@@ -52,7 +52,10 @@ $route['delete-teacher_development_activity'] = 'Teacher_development_activity_co
 $route['load_file'] = 'DocumentController/load_file';
 
 //budget
+$route['list-budget'] = 'BudgetController/list_budget';
 $route['forms-budget'] = 'BudgetController/forms_budget';
+$route['add-budget']['post'] = 'BudgetController/add_budget';
+
 
 //area_identitty
 $route['forms-area_identitty'] = 'Area_identittyController/forms_Area_identitty';

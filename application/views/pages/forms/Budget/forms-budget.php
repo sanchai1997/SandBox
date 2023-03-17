@@ -13,7 +13,7 @@
               <h5 class="card-title">ข้อมูลงบประมาณ</h5>
 
               <!-- start Form ข้อมูลงบประมาณ -->
-              <form class="row g-3" action="<?php echo base_url('');?>" method="POST" name="BUDGET" id="BUDGET" enctype="multipart/form-data">
+              <form class="row g-3" action="<?php echo base_url('add-budget');?>" method="POST" name="BUDGET" id="BUDGET" enctype="multipart/form-data">
               
               <div class="col-md-16">
                   <div class="form-floating">
