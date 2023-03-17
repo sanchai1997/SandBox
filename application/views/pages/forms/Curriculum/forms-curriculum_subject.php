@@ -90,7 +90,7 @@
                 </div>
 
               <!-- End Form ข้อมูลหลักสูตรรายวิชา -->
-                <div class="text-center">
+                <div class="d-flex justify-content-between">
                   <a href="list-curriculum_subject?cid=<?php echo $CurriculumID; ?>" class="btn btn-danger">ยกเลิก</a>
                   <button type="button" class="btn btn-primary" onclick="return check(addCurriculumSubject)">บันทึกข้อมูล</button>
                 </div> 

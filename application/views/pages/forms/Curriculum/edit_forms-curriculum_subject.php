@@ -85,7 +85,7 @@
                   </div>
                 </div>
               <!-- End Form ข้อมูลหลักสูตรรายวิชา -->
-                <div class="text-center">
+                <div class="d-flex justify-content-between">
                 <a href="list-curriculum_subject?cid=<?php echo $CurriculumID; ?>" class="btn btn-danger">ยกเลิก</a>
                   <button type="button" class="btn btn-warning" onclick="return check(CurriculumSubject)">แก้ไขข้อมูล</button>
                 </div> 

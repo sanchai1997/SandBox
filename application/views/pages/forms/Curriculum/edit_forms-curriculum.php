@@ -145,9 +145,9 @@
                     </div>
                 </div>
 
-                <div class="text-center">
-                <a href="list-curriculum" class="btn btn-danger">ยกเลิก</a>
-                   <button type="button" class="btn btn-warning" onclick="return check(Curriculum)">แก้ไขข้อมูล</button>
+                <div class="d-flex justify-content-between">
+                  <a href="list-curriculum" class="btn btn-danger">ยกเลิก</a>
+                  <button type="button" class="btn btn-warning" onclick="return check(Curriculum)">แก้ไขข้อมูล</button>
                 </div> 
 
 
