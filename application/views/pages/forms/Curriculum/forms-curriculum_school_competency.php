@@ -3,13 +3,6 @@
 
     <div class="pagetitle">
       <h1>ข้อมูลสมรรถนะของหลักสูตร </h1>
-      <nav>
-        <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-          <li class="breadcrumb-item">Form</li>
-          <li class="breadcrumb-item active"><?php echo $title; ?></li>
-        </ol>
-      </nav>
     </div><!-- End Page Title -->
 
     <section class="section">
@@ -58,7 +51,7 @@
 
               <!-- End Form ข้อมูลสมรรถนะของหลักสูตร -->
                 <div class="text-center">
-                  <button type="button" class="btn btn-primary" onclick="return check(addCurriculumCompetency)">ยืนยัน</button>
+                  <button type="button" class="btn btn-primary" onclick="return check(addCurriculumCompetency)">บันทึกข้อมูล</button>
                 </div> 
                <!-- Modal -->
                <div class="modal fade" id="Modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">

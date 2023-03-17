@@ -11,7 +11,8 @@ class Budget_model extends CI_Model
     }
 
     public function get_expense_type() {
-        $query = $this->db->get('cls_expense_type');
+        $query = $this->db->get('CLS_BUDGET_TYPE');
         return $query->result();
     }
 }
+  

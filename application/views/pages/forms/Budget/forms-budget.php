@@ -2,13 +2,6 @@
 
     <div class="pagetitle">
       <h1>ข้อมูลงบประมาณ</h1>
-      <nav>
-        <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-          <li class="breadcrumb-item">Form</li>
-          <li class="breadcrumb-item active">Budget</li>
-        </ol>
-      </nav>
     </div><!-- End Page Title -->
 
     <section class="section">
@@ -195,7 +188,7 @@
                               </h6>
                           </div>
                           <div class="modal-footer">
-                              <button type="submit" class="btn btn-primary click" >ยืนยัน</button> 
+                              <button type="submit" class="btn btn-primary click" >บันทึกข้อมูล</button> 
                               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ยกเลิก</button>
                           </div>
                       </div>

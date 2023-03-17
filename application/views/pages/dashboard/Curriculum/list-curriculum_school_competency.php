@@ -4,13 +4,6 @@
         <div class="row">
             <div class="col-6">
                 <h1>ข้อมูลสมรรถนะของหลักสูตร</h1>
-                <nav>
-                    <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="main">Home</a></li>
-                        <li class="breadcrumb-item">List</li>
-                        <li class="breadcrumb-item active"><?php echo $title; ?></li>
-                    </ol>
-                </nav>
             </div>
 
         </div>
@@ -43,10 +36,10 @@
 
                 <div class="row">
                     <div class="col">
-                        <h5 class="card-title">รายละเอียดข้อมูล <span>| Table Curriculum_School_Competency</span></h5>
+                        <h5 class="card-title">รายละเอียดข้อมูล</h5>
                     </div>
                     <div class="col">
-                        <h5 style="float: right; padding: 15px;" class="card-title"><a href="forms-curriculum_school_competency?sid=<?php echo $SubjectCode; ?>&&cid=<?php echo $CurriculumID; ?>" class="btn btn-success">เพิ่มข้อมูลสมรรถนะของหลักสูตร</a></h5>
+                        <h5 style="float: right; padding: 15px;" class="card-title"><a href="forms-curriculum_school_competency?sid=<?php echo $SubjectCode; ?>&&cid=<?php echo $CurriculumID; ?>" class="btn btn-success">เพิ่มข้อมูล</a></h5>
                     </div>
                 </div>
                 <table class="table table-borderless datatable">
