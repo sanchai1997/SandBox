@@ -13,7 +13,7 @@
               <h5 class="card-title">ข้อมูลงบประมาณ</h5>
 
               <!-- start Form ข้อมูลงบประมาณ -->
-              <form class="row g-3" action="<?php echo base_url('');?>" method="POST" name="BUDGET" id="BUDGET" enctype="multipart/form-data">
+              <form class="row g-3" action="<?php echo base_url('add-budget');?>" method="POST" name="BUDGET" id="BUDGET" enctype="multipart/form-data">
               
               <div class="col-md-16">
                   <div class="form-floating">
@@ -81,8 +81,9 @@
                   </div>
                 </div>
 
-                <div class="text-center">
-                  <button type="button" class="btn btn-primary" onclick="return check(BUDGET)">ยืนยัน</button>
+                <div class="d-flex justify-content-between">
+                  <a href="list-budget" class="btn btn-danger" >ยกเลิก</a>
+                  <button type="button" class="btn btn-primary" onclick="return check(BUDGET)">บันทึกข้อมูล</button>
                 </div> 
             <!-- Modal -->
             <div class="modal fade" id="Modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">

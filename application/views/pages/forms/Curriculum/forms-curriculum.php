@@ -144,8 +144,8 @@
                     </div>
                 </div>
 
-                <div class="text-center">
-                  <a href="list-curriculum" class="btn btn-danger">ยกเลิก</a>
+                <div class="d-flex justify-content-between">
+                  <a href="list-curriculum" class="btn btn-danger" >ยกเลิก</a>
                   <button type="button" class="btn btn-primary" onclick="return check(addCurriculum)">บันทึกข้อมูล</button>
                 </div> 
                <!-- Modal -->
@@ -163,7 +163,7 @@
                           </div>
                           <div class="modal-footer">
                           <div class="text-center">
-                              <button type="submit" class="btn btn-primary click" >ยืนยัน</button> 
+                              <button type="submit" class="btn btn-primary" >ยืนยัน</button> 
                               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ยกเลิก</button>
                           </div>
                       </div>

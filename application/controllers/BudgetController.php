@@ -26,5 +26,48 @@ class BudgetController extends CI_Controller{
         $this->load->view('templates/footer');
 
     }
+    public function list_budget() {
+        
+        if ( ! file_exists(APPPATH.'views/pages/dashboard/Budget/list-budget.php'))
+        {
+            // Whoops, we don't have a page for that!
+            show_404();
+        }
+
+       
+
+
+        $this->load->view('templates/header');
+        $this->load->view('templates/sidebar');
+        $this->load->view('pages/dashboard/Budget/list-budget');
+        $this->load->view('templates/footer');
+
+    }
+
+    public function add_budget() {
+       
+            $budget = [
+                'BudgetEducationYear' => $this->input->post('BudgetEducationYear'),
+                'BudgetSemester' => $this->input->post('BudgetSemester'),
+                'BudgetYear' => $this->input->post('BudgetYear'),
+                'BudgetSchoolID'  =>  $this->input->post('BudgetSchoolID'),
+                'BudgetProgram' => $this->input->post('BudgetProgram'),
+                'BudgetAmount' => $this->input->post('BudgetAmount'),
+                'BudgetDate' => $this->input->post('BudgetDate'),
+                'BudgetReceivedDate' => $this->input->post('BudgetReceivedDate'),
+            ];
+           
+            $result_budget =  $this->Budget_model->insert_budget($budget);
+            
+            if($result_budget == 1 ){
+                $this->session->set_flashdata('success',"บันทึกข้อมูลสำเร็จ");
+                redirect(base_url('forms-budget'));
+            }else{
+                $this->session->set_flashdata('errors',"เกิดข้อผิดพลาดในการบันทึกข้อมูล");
+                redirect(base_url('forms-budget'));
+            }
+        
+    }
 
 }
+?>

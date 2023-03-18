@@ -63,7 +63,7 @@
      </li><!-- End ข้อมูลการพัฒนาบุคลากร Page Nav -->
 
      <li class="nav-item">
-       <a class="nav-link collapsed" href="forms-budget">
+       <a class="nav-link collapsed" href="list-budget">
          <i class="bi bi-journal-text"></i>
          <span>ข้อมูลงบประมาณ</span>
        </a>
