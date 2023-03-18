@@ -36,13 +36,13 @@
 
             <div class="col-3">
 
-                <nav>
+                <!-- <nav>
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="main">Home</a></li>
                         <li class="breadcrumb-item">Form</li>
                         <li class="breadcrumb-item active">การประกันคุณภาพด้วยตัวชี้วัด</li>
                     </ol>
-                </nav>
+                </nav> -->
             </div>
             <div class="col-lg-9" style="padding-right: 25px;">
                 <a href="<?php echo site_url(
@@ -110,13 +110,13 @@
             <div class="card-body">
                 <div class="row">
                     <div class="col">
-                        <h5 class="card-title">รายละเอียดข้อมูล <span>| การประกันคุณภาพด้วยตัวชี้วัดของพื้นที่</span>
+                        <h5 class="card-title">รายละเอียดข้อมูล 
                         </h5>
                     </div>
                     <div class="col">
                         <h5 style="float: right; padding: 15px;" class="card-title"><a href="<?php echo site_url(
                                 'ass_ria_forms_p1?page=sh1'
-                            ); ?>" class="btn btn-success">เพิ่มข้อมูลการประกันคุณภาพด้วยตัวชี้วัดของพื้นที่</a></h5>
+                            ); ?>" class="btn btn-success">เพิ่มข้อมูล</a></h5>
                     </div>
                 </div>
                 <table class="table table-borderless datatable">
@@ -218,12 +218,12 @@
             <div class="card-body">
                 <div class="row">
                     <div class="col">
-                        <h5 class="card-title">รายละเอียดข้อมูล <span>| ข้อมูลระดับตัวชี้วัด</span></h5>
+                        <h5 class="card-title">รายละเอียดข้อมูล </h5>
                     </div>
                     <div class="col">
                         <h5 style="float: right; padding: 15px;" class="card-title"><a href="<?php echo site_url(
                                 'ass_ria_lvl_forms_p2?page=sh2'
-                            ); ?>" class="btn btn-success">เพิ่มข้อมูลระดับตัวชี้วัด</a></h5>
+                            ); ?>" class="btn btn-success">เพิ่มข้อมูล</a></h5>
                     </div>
                 </div>
                 <table class="table table-borderless datatable">
@@ -322,12 +322,12 @@
             <div class="card-body">
                 <div class="row">
                     <div class="col">
-                        <h5 class="card-title">รายละเอียดข้อมูล <span>| องค์ประกอบตัวชี้วัด</span></h5>
+                        <h5 class="card-title">รายละเอียดข้อมูล </h5>
                     </div>
                     <div class="col">
                         <h5 style="float: right; padding: 15px;" class="card-title"><a href="<?php echo site_url(
                                 'ass_ria_com_forms_p3?page=sh3'
-                            ); ?>" class="btn btn-success">เพิ่มข้อมูลข้อมูลองค์ประกอบตัวชี้วัด</a></h5>
+                            ); ?>" class="btn btn-success">เพิ่มข้อมูล</a></h5>
                     </div>
                 </div>
                 <table class="table table-borderless datatable">
@@ -427,12 +427,12 @@
             <div class="card-body">
                 <div class="row">
                     <div class="col">
-                        <h5 class="card-title">รายละเอียดข้อมูล <span>| คำอธิบายระดับของแต่ละองค์ประกอบ</span></h5>
+                        <h5 class="card-title">รายละเอียดข้อมูล </h5>
                     </div>
                     <div class="col">
                         <h5 style="float: right; padding: 15px;" class="card-title"><a href="<?php echo site_url(
                                 'ass_ria_com_lvl_forms_p4?page=sh4'
-                            ); ?>" class="btn btn-success">เพิ่มข้อมูลองค์ประกอบตัวชี้วัดพื้นที่</a></h5>
+                            ); ?>" class="btn btn-success">เพิ่มข้อมูล</a></h5>
                     </div>
                 </div>
                 <table class="table table-borderless datatable">
@@ -530,12 +530,12 @@
             <div class="card-body">
                 <div class="row">
                     <div class="col">
-                        <h5 class="card-title">รายละเอียดข้อมูล <span>| การประเมินผลสถานศึกษา</span></h5>
+                        <h5 class="card-title">รายละเอียดข้อมูล </h5>
                     </div>
                     <div class="col">
                         <h5 style="float: right; padding: 15px;" class="card-title"><a href="<?php echo site_url(
                                 'sc_ass_forms_p5?page=sh5'
-                            ); ?>" class="btn btn-success">เพิ่มข้อมูลการประเมินสถานศึกษา</a></h5>
+                            ); ?>" class="btn btn-success">เพิ่มข้อมูล</a></h5>
                     </div>
                 </div>
                 <table class="table table-borderless datatable">
@@ -634,12 +634,12 @@
             <div class="card-body">
                 <div class="row">
                     <div class="col">
-                        <h5 class="card-title">รายละเอียดข้อมูล <span>| การประเมินตามตัวชี้วัด</span></h5>
+                        <h5 class="card-title">รายละเอียดข้อมูล </h5>
                     </div>
                     <div class="col">
                         <h5 style="float: right; padding: 15px;" class="card-title"><a href="<?php echo site_url(
                                 'sc_ass_ria_forms_p6?page=sh6'
-                            ); ?>" class="btn btn-success">เพิ่มข้อมูลผลการประเมินตามตัวชี้วัด</a></h5>
+                            ); ?>" class="btn btn-success">เพิ่มข้อมูล</a></h5>
                     </div>
                 </div>
                 <table class="table table-borderless datatable">
@@ -740,13 +740,13 @@
             <div class="card-body">
                 <div class="row">
                     <div class="col">
-                        <h5 class="card-title">รายละเอียดข้อมูล <span>| ระดับตัวชี้วัดที่ได้ในแต่ละองค์ประกอบ</span>
+                        <h5 class="card-title">รายละเอียดข้อมูล 
                         </h5>
                     </div>
                     <div class="col">
                         <h5 style="float: right; padding: 15px;" class="card-title"><a href="<?php echo site_url(
                                 'sc_ass_res_forms_p7?page=sh7'
-                            ); ?>" class="btn btn-success">เพิ่มข้อมูลระดับตัวชี้วัดที่ได้ในแต่ละองค์ประกอบ</a></h5>
+                            ); ?>" class="btn btn-success">เพิ่มข้อมูล</a></h5>
                     </div>
                 </div>
                 <table class="table table-borderless datatable">
@@ -851,12 +851,12 @@
             <div class="card-body">
                 <div class="row">
                     <div class="col">
-                        <h5 class="card-title">รายละเอียดข้อมูล <span>| การประเมินสถานศึกษา</span></h5>
+                        <h5 class="card-title">รายละเอียดข้อมูล </h5>
                     </div>
                     <div class="col">
                         <h5 style="float: right; padding: 15px;" class="card-title"><a href="<?php echo site_url(
                                 'achie_ass_forms_p8?page=sh8'
-                            ); ?>" class="btn btn-success">เพิ่มข้อมูลการประเมินสถานศึกษา</a></h5>
+                            ); ?>" class="btn btn-success">เพิ่มข้อมูล</a></h5>
                     </div>
                 </div>
                 <table class="table table-borderless datatable">

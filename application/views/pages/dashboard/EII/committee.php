@@ -28,13 +28,13 @@
 
             <div class="col-3">
 
-                <nav>
+                <!-- <nav>
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="main">Home</a></li>
                         <li class="breadcrumb-item">Form</li>
                         <li class="breadcrumb-item active">อำนาจและหน้าที่ของคณะกรรมการ</li>
                     </ol>
-                </nav>
+                </nav> -->
             </div>
             <div class="col-lg-9" style="padding-right: 25px;">
                 <a href="<?php echo site_url(
@@ -55,12 +55,12 @@
             <div class="card-body">
                 <div class="row">
                     <div class="col">
-                        <h6 class="card-title">รายละเอียดข้อมูล <span>| ข้อมูลคำสั่งแต่งตั้งคณะกรรมการ</span></h6>
+                        <h6 class="card-title">รายละเอียดข้อมูล </h6>
                     </div>
                     <div class="col">
                         <h6 style="float: right; padding: 15px;" class="card-title"><a href="<?php echo site_url(
                                     'c_forms_p1?page=sh1'
-                                ); ?>" class="btn btn-success">เพิ่มข้อมูลคำสั่งแต่งตั้งคณะกรรมการ</a>
+                                ); ?>" class="btn btn-success">เพิ่มข้อมูล</a>
                         </h6>
                     </div>
                 </div>
@@ -80,7 +80,20 @@
                         <?php foreach ($query as $show) { ?>
 
                         <tr>
-                            
+                            <?php
+                            $Id= $show->Id;
+                            $results = $this->db->query("SELECT * FROM COMMITTEE 
+                            INNER JOIN CLS_PROVINCE 
+                            ON CLS_PROVINCE.PROVINCE_CODE = COMMITTEE.CommitteeProvinceCode 
+                            -- BestPracticeTypeCode
+                            INNER JOIN CLS_APPOINTMENT_TYPE 
+                            ON CLS_APPOINTMENT_TYPE.APPOINTMENT_TYPE_CODE = COMMITTEE.CommitteeAppointmentTypeCode 
+                            -- TargetEducationLevelCode
+                            WHERE Id = $Id
+                            ");
+
+foreach ($results->result() as $shows) {
+                     ?> 
                             <td style="text-align: center;"><?php echo $show->CommitteeAppointmentNumber; ?>
                             <th scope="row" style="text-align: center;"><?php echo $show->CommitteeYear; ?></th>
                             <td style="text-align: center;"><a
@@ -131,7 +144,7 @@
 
 
                         </tr>
-                        <?php } ?>
+                        <?php } }?>
                     </tbody>
                 </table>
 
@@ -150,12 +163,12 @@
             <div class="card-body">
                 <div class="row">
                     <div class="col">
-                        <h6 class="card-title">รายละเอียดข้อมูล <span>| รายชื่อคณะกรรมการ</span></h6>
+                        <h6 class="card-title">รายละเอียดข้อมูล </h6>
                     </div>
                     <div class="col">
                         <h6 style="float: right; padding: 15px;" class="card-title"><a href="<?php echo site_url(
                                     'cm_forms_p2?page=sh2'
-                                ); ?>" class="btn btn-success">เพิ่มข้อมูลรายชื่อคณะกรรมการ</a></h6>
+                                ); ?>" class="btn btn-success">เพิ่มข้อมูล</a></h6>
                     </div>
                 </div>
                 <table class="table table-borderless datatable">
@@ -174,6 +187,23 @@
                     </thead>
                     <tbody>
                         <?php foreach ($query as $show_member) { ?>
+                            <?php
+                            $Id= $show_member->Id;
+                            $results = $this->db->query("SELECT * FROM COMMITTEE_MEMBER 
+                            INNER JOIN CLS_PROVINCE 
+                            ON CLS_PROVINCE.PROVINCE_CODE = COMMITTEE_MEMBER.CommitteeProvinceCode 
+                            -- BestPracticeTypeCode
+                            INNER JOIN CLS_PREFIX 
+                            ON CLS_PREFIX.PREFIX_CODE = COMMITTEE_MEMBER.CommitteeMemberPrefixCode 
+                            -- -- TargetEducationLevelCode
+                            INNER JOIN CLS_COMMITEE_POSITION 
+                            ON CLS_COMMITEE_POSITION.COMMITEE_POSITION_CODE  = COMMITTEE_MEMBER.CommitteeMemberPositionCode 
+                            -- -- RecognizedCode
+                            WHERE Id = $Id
+                            ");
+
+foreach ($results->result() as $shows) {
+                     ?> 
                         <tr>
                             <th scope="row" style="text-align: center;"><?php echo $show_member->CommitteeAppointmentNumber; ?></th>
                             <th scope="row" style="text-align: center;"><?php echo $show_member->CommitteeMemberNameThai; ?><?php echo nbs(2); ?><?php echo $show_member->CommitteeMemberLastNameThai; ?></th>
@@ -222,7 +252,7 @@
                                 </div> <!-- Modal -->
                             </td>
                         </tr>
-                        <?php } ?>
+                        <?php } }?>
                     </tbody>
                 </table>
 
@@ -255,16 +285,30 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
+            <?php
+                            $Id= $show->Id;
+                            $results = $this->db->query("SELECT * FROM COMMITTEE 
+                            INNER JOIN CLS_PROVINCE 
+                            ON CLS_PROVINCE.PROVINCE_CODE = COMMITTEE.CommitteeProvinceCode 
+                            -- BestPracticeTypeCode
+                            INNER JOIN CLS_APPOINTMENT_TYPE 
+                            ON CLS_APPOINTMENT_TYPE.APPOINTMENT_TYPE_CODE = COMMITTEE.CommitteeAppointmentTypeCode 
+                            -- TargetEducationLevelCode
+                            WHERE Id = $Id
+                            ");
+
+foreach ($results->result() as $shows) {
+                     ?> 
                 <div class="row">
                     <div class="col">
                         <h6 class="fw-bold">จังหวัด</h6>
-                        <p><?php echo $show->CommitteeProvinceCode; ?></p>
+                        <p><?php echo $shows->PROVINCE_NAME; ?></p>
                         <h6 class="fw-bold">ปีที่ออกคำสั่ง</h6>
                         <p><?php echo $show->CommitteeYear; ?></p>
                         <h6 class="fw-bold">เลขออกคำสั่ง</h6>
                         <p><?php echo $show->CommitteeAppointmentNumber; ?></p>
-                        <h6 class="fw-bold">รหัสประเภทการแต่งตั้ง</h6>
-                        <p><?php echo $show->CommitteeAppointmentTypeCode; ?></p>
+                        <h6 class="fw-bold">ประเภทการแต่งตั้ง</h6>
+                        <p><?php echo $shows->APPOINTMENT_TYPE_NAME; ?></p>
                         <h6 class="fw-bold">ลิงก์เอกสารคำสั่ง</h6>
                         <p><th scope="row " style="text-align: center;">
                                 <a href="<?php echo base_url('document') ?>/<?php echo $show->CommitteeAppointmentAttachmentURL; ?>"
@@ -277,6 +321,7 @@
 
                     
                 </div>
+                <?php } ?>
             </div>
             <div class="modal-footer">
             <a href="<?php echo site_url('c_forms_p1?page=sh11') ?>&&key=<?php echo $show->Id; ?>"class="btn btn-warning"> <i class="bi bi-pencil-square"></i></a>
@@ -308,16 +353,33 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
+            <?php
+                            $Id= $show_member->Id;
+                            $results = $this->db->query("SELECT * FROM COMMITTEE_MEMBER 
+                            INNER JOIN CLS_PROVINCE 
+                            ON CLS_PROVINCE.PROVINCE_CODE = COMMITTEE_MEMBER.CommitteeProvinceCode 
+                            -- BestPracticeTypeCode
+                            INNER JOIN CLS_PREFIX 
+                            ON CLS_PREFIX.PREFIX_CODE = COMMITTEE_MEMBER.CommitteeMemberPrefixCode 
+                            -- -- TargetEducationLevelCode
+                            INNER JOIN CLS_COMMITEE_POSITION 
+                            ON CLS_COMMITEE_POSITION.COMMITEE_POSITION_CODE  = COMMITTEE_MEMBER.CommitteeMemberPositionCode 
+                            -- -- RecognizedCode
+                            WHERE Id = $Id
+                            ");
+
+foreach ($results->result() as $shows) {
+                     ?> 
                 <div class="row">
                     <div class="col">
                         <h6 class="fw-bold">จังหวัด</h6>
-                        <p><?php echo $show->CommitteeProvinceCode; ?></p>
+                        <p><?php echo $shows->PROVINCE_NAME; ?></p>
                         <h6 class="fw-bold">ปีที่ออกคำสั่ง</h6>
                         <p><?php echo $show->CommitteeYear; ?></p>
                         <h6 class="fw-bold">เลขที่คำสั่ง</h6>
                         <p><?php echo $show->CommitteeAppointmentNumber; ?></p>
                         <h6 class="fw-bold">คำนำหน้าชื่อ</h6>
-                        <p><?php echo $show->CommitteeMemberPrefixCode; ?></p>
+                        <p><?php echo $shows->PREFIX_NAME; ?></p>
                     </div>
                  <div class="col">
                         <h6 class="fw-bold">ชื่อกรรมการและอนุกรรมการที่คณะกรรมการขับเคลื่อนพื้นที่นวัตกรรมการศึกษาแต่งตั้ง(ภาษาไทย)</h6>
@@ -337,7 +399,7 @@
 
                     <div class="col">
                         <h6 class="fw-bold">รหัสตำแหน่งกรรมการและอนุกรรมการที่คณะกรรมการขับเคลื่อนพื้นที่นวัตกรรมการศึกษาแต่งตั้ง</h6>
-                        <p><?php echo $show->CommitteeMemberPositionCode; ?></p>
+                        <p><?php echo $shows->COMMITEE_POSITION_NAME; ?></p>
                         <h6 class="fw-bold">ตำแหน่งในองค์กรของกรรมการและอนุกรรมการที่คณะกรรมการขับเคลื่อนพื้นที่นวัตกรรมการศึกษาแต่งตั้ง</h6>
                         <p><?php echo $show->CommitteeMemberOrganizationPosition; ?></p>
                         
@@ -348,6 +410,7 @@
                         
                     </div>
                 </div>
+                <?php } ?>
             </div>
             <div class="modal-footer">
             <a href="<?php echo site_url('cm_forms_p2?page=sh22') ?>&&key=<?php echo $show->Id; ?>"class="btn btn-warning"> <i class="bi bi-pencil-square"></i></a>

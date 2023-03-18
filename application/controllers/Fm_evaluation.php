@@ -20,7 +20,7 @@ class Fm_evaluation extends CI_Controller
        
         $this->load->view('templates/header');
         $this->load->view('templates/sidebar');
-        $this->load->view('pages/dashboard/evaluation',$data);
+        $this->load->view('pages/dashboard/EII/evaluation',$data);
         $this->load->view('templates/footer');
         
     }
@@ -35,7 +35,7 @@ class Fm_evaluation extends CI_Controller
        
         $this->load->view('templates/header');
         $this->load->view('templates/sidebar');
-        $this->load->view('pages/dashboard/evaluation',$data);
+        $this->load->view('pages/dashboard/EII/evaluation',$data);
         $this->load->view('templates/footer');
         
     }
@@ -50,7 +50,7 @@ class Fm_evaluation extends CI_Controller
        
         $this->load->view('templates/header');
         $this->load->view('templates/sidebar');
-        $this->load->view('pages/dashboard/evaluation',$data);
+        $this->load->view('pages/dashboard/EII/evaluation',$data);
         $this->load->view('templates/footer');
         
     }
@@ -66,7 +66,7 @@ class Fm_evaluation extends CI_Controller
        
         $this->load->view('templates/header');
         $this->load->view('templates/sidebar');
-        $this->load->view('pages/dashboard/evaluation',$data);
+        $this->load->view('pages/dashboard/EII/evaluation',$data);
         $this->load->view('templates/footer');
         
     }
@@ -81,7 +81,7 @@ class Fm_evaluation extends CI_Controller
        
         $this->load->view('templates/header');
         $this->load->view('templates/sidebar');
-        $this->load->view('pages/dashboard/evaluation',$data);
+        $this->load->view('pages/dashboard/EII/evaluation',$data);
         $this->load->view('templates/footer');
         
     }
@@ -96,7 +96,7 @@ class Fm_evaluation extends CI_Controller
        
         $this->load->view('templates/header');
         $this->load->view('templates/sidebar');
-        $this->load->view('pages/dashboard/evaluation',$data);
+        $this->load->view('pages/dashboard/EII/evaluation',$data);
         $this->load->view('templates/footer');
         
     }
@@ -111,7 +111,7 @@ class Fm_evaluation extends CI_Controller
        
         $this->load->view('templates/header');
         $this->load->view('templates/sidebar');
-        $this->load->view('pages/dashboard/evaluation',$data);
+        $this->load->view('pages/dashboard/EII/evaluation',$data);
         $this->load->view('templates/footer');
         
     }
@@ -126,7 +126,7 @@ class Fm_evaluation extends CI_Controller
        
         $this->load->view('templates/header');
         $this->load->view('templates/sidebar');
-        $this->load->view('pages/dashboard/evaluation',$data);
+        $this->load->view('pages/dashboard/EII/evaluation',$data);
         $this->load->view('templates/footer');
         
     }
@@ -141,7 +141,7 @@ class Fm_evaluation extends CI_Controller
        
         $this->load->view('templates/header');
         $this->load->view('templates/sidebar');
-        $this->load->view('pages/dashboard/evaluation',$data);
+        $this->load->view('pages/dashboard/EII/evaluation',$data);
         $this->load->view('templates/footer');
         
     }

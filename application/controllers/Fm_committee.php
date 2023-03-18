@@ -23,7 +23,7 @@ class Fm_committee extends CI_Controller {
 
 $this->load->view('templates/header');
 $this->load->view('templates/sidebar');
-$this->load->view('pages/dashboard/committee' , $data);
+$this->load->view('pages/dashboard/EII/committee' , $data);
 $this->load->view('templates/footer');
 
 
@@ -43,7 +43,7 @@ $this->load->view('templates/footer');
 
 $this->load->view('templates/header');
 $this->load->view('templates/sidebar');
-$this->load->view('pages/dashboard/committee', $data);
+$this->load->view('pages/dashboard/EII/committee', $data);
 $this->load->view('templates/footer');
 
 
@@ -62,7 +62,7 @@ $this->load->view('templates/footer');
 
 $this->load->view('templates/header');
 $this->load->view('templates/sidebar');
-$this->load->view('pages/dashboard/committee' , $data);
+$this->load->view('pages/dashboard/EII/committee' , $data);
 $this->load->view('templates/footer');
 
 

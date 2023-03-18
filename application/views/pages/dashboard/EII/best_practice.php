@@ -43,21 +43,21 @@
 
             <div class="col-3">
 
-                <nav>
+                <!-- <nav>
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="main">Home</a></li>
                         <li class="breadcrumb-item">Form</li>
                         <li class="breadcrumb-item active">แนวปฏิบัติที่เป็นเลิศในการจัดการศึกษา</li>
                     </ol>
-                </nav>
+                </nav> -->
             </div>
             <div class="col-lg-9" style="padding-right: 25px;">
                 <a href="<?php echo site_url('Fm_best_practice_das_p1?page=sh1') ?>" style="float: right;"
                     class="btn btn-sm btn-light" data-mdb-ripple-color="dark">แนวปฏิบัติที่เป็นเลิศในการจัดการศึกษา</a>
-                <h5 style="float: right;"> | </h5>
+                <!-- <h5 style="float: right;"> | </h5>
                 <a href="<?php echo site_url('Fm_best_practice_das_p2?page=sh2') ?>" style="float: right;"
                     class="btn btn-sm btn-light"
-                    data-mdb-ripple-color="dark">ผู้จัดทำวิธีปฏิบัติที่เป็นเลิศในการจัดการศึกษา</a>
+                    data-mdb-ripple-color="dark">ผู้จัดทำวิธีปฏิบัติที่เป็นเลิศในการจัดการศึกษา</a> -->
                 
             </div>
 
@@ -75,12 +75,12 @@
             <div class="card-body">
                 <div class="row">
                     <div class="col">
-                        <h5 class="card-title">รายละเอียดข้อมูล <span>| แนวปฏิบัติที่เป็นเลิศในการจัดการศึกษา</span></h5>
+                        <h5 class="card-title">รายละเอียดข้อมูล </h5>
                     </div>
                     <div class="col">
                         <h5 style="float: right; padding: 15px;" class="card-title"><a
                                 href="<?php echo site_url('BP_forms_p1?page=sh1') ?>"
-                                class="btn btn-success">เพิ่มข้อมูลแนวปฏิบัติที่เป็นเลิศในการจัดการศึกษา</a></h5>
+                                class="btn btn-success">เพิ่มข้อมูล</a></h5>
                     </div>
                 </div>
                 <table class="table table-borderless datatable">
@@ -100,6 +100,18 @@
                         <?php foreach ($query as $show) {
                                 # code...
                                 ?>
+                              <?php
+                            $Id= $show->Id;
+                            $results = $this->db->query("SELECT * FROM BEST_PRACTICE 
+                            INNER JOIN CLS_BEST_PRACTICE_TYPE 
+                            ON CLS_BEST_PRACTICE_TYPE.BEST_PRACTICE_TYPE_CODE = BEST_PRACTICE.BestPracticeTypeCode 
+                            INNER JOIN CLS_EDUCATION_LEVEL 
+                            ON CLS_EDUCATION_LEVEL.EDUCATION_LEVEL_CODE = BEST_PRACTICE.TargetEducationLevelCode 
+                            WHERE Id = $Id
+                            ");
+
+foreach ($results->result() as $shows) {
+                     ?> 
                         <tr>
                             <th scope="row " style="text-align: center;">
                                 <?php echo $show->BestPracticeID; ?>
@@ -108,11 +120,11 @@
                             <td style="text-align: center;">
                                 <?php echo $show->BestPracticeName; ?>
                         </td>
-                            <th scope="row">
-                                <?php echo $show->BestPracticeTypeCode; ?>
+                            <th style="text-align: center;">
+                                <?php echo $shows->BEST_PRACTICE_TYPE_NAME; ?>
                             </th>
                             <td style="text-align: center;">
-                                <?php echo $show->TargetEducationLevelCode; ?>
+                                <?php echo $shows->EDUCATION_LEVEL_NAME; ?>
                                 </td>
                                 <th scope="row " style="text-align: center;"> <a
                                     href="<?php echo site_url('Fm_best_practice_das_p1?page=sh1.1') ?>&&key=<?php echo $show->BestPracticeID ?>"
@@ -166,7 +178,7 @@
 
 
                         </tr>
-                        <?php } ?>
+                        <?php } }?>
                     </tbody>
                 </table>
 
@@ -184,12 +196,12 @@
         <div class="card-body">
             <div class="row">
                 <div class="col">
-                    <h5 class="card-title">รายละเอียดข้อมูล <span>| ผู้จัดทำวิธีปฏิบัติที่เป็นเลิศในการจัดการศึกษา</span></h5>
+                    <h5 class="card-title">รายละเอียดข้อมูล </h5>
                 </div>
                 <div class="col">
                     <h5 style="float: right; padding: 15px;" class="card-title"><a
                             href="<?php echo site_url('BPC_forms_p2?page=sh2') ?>"
-                            class="btn btn-success">เพิ่มข้อมูลผู้จัดทำวิธีปฏิบัติที่เป็นเลิศในการจัดการศึกษา</a>
+                            class="btn btn-success">เพิ่มข้อมูล</a>
                     </h5>
                 </div>
             </div>
@@ -198,8 +210,8 @@
 
                     <tr>
                         <th style="text-align: center;" scope="col">หมายเลขบัตรประจำตัวผู้จัดทำ</th>
-                        <th style="text-align: center;" scope="col">รหัสประเภทบัตรประจำตัวผู้จัดทำ</th>
-                        <th style="text-align: center;" scope="col">ชื่อผู้จัดทำ (ภาษาไทย)</th>
+                        <th style="text-align: center;" scope="col">ประเภทบัตรประจำตัวผู้จัดทำ</th>
+                        <th style="text-align: center;" scope="col">ชื่อผู้จัดทำ</th>
                         <th style="text-align: center;" scope="col">ปฎิบัติ</th>
                     </tr>
 
@@ -208,7 +220,11 @@
                 <?php  $key = isset($_GET['key']) ? $_GET['key'] : '';  ?>
                     <?php 
                 $result = $this->db->query("SELECT * FROM BEST_PRACTICE_CREATOR 
-                
+                INNER JOIN CLS_PERSONAL_ID_TYPE 
+                ON CLS_PERSONAL_ID_TYPE.PERSONAL_ID_TYPE_CODE = BEST_PRACTICE_CREATOR.CreatorPersonalIDTypeCode 
+                INNER JOIN CLS_PREFIX 
+                ON CLS_PREFIX.PREFIX_CODE = BEST_PRACTICE_CREATOR.CreatorPrefixCode 
+
                 WHERE BestPracticeID ='" . $key . "' AND DeleteStatus = '0'");
                 foreach ($result->result() as $show) {  ?>
                     <tr>
@@ -217,7 +233,7 @@
                             <?php echo $show->CreatorPersonalID; ?>
                         </th>
                         <td style="text-align: center;">
-                            <?php echo $show->CreatorPersonalIDTypeCode; ?></td>
+                            <?php echo $show->PERSONAL_ID_TYPE_NAME; ?></td>
                         <th style="text-align: center;">
                             <?php echo $show->CreatorNameThai; ?><?php echo nbs(2); ?><?php echo $show->CreatorLastNameThai; ?>
                         </th>
@@ -289,12 +305,12 @@
             <div class="card-body">
                 <div class="row">
                     <div class="col">
-                        <h5 class="card-title">รายละเอียดข้อมูล <span>| ผู้จัดทำวิธีปฏิบัติที่เป็นเลิศในการจัดการศึกษา</span></h5>
+                        <h5 class="card-title">รายละเอียดข้อมูล </h5>
                     </div>
                     <div class="col">
                         <h5 style="float: right; padding: 15px;" class="card-title"><a
                                 href="<?php echo site_url('BPC_forms_p2?page=sh2') ?>"
-                                class="btn btn-success">เพิ่มข้อมูลผู้จัดทำวิธีปฏิบัติที่เป็นเลิศในการจัดการศึกษา</a>
+                                class="btn btn-success">เพิ่มข้อมูล</a>
                         </h5>
                     </div>
                 </div>
@@ -407,6 +423,20 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
+            <?php
+                            $Id= $show->Id;
+                            $results = $this->db->query("SELECT * FROM BEST_PRACTICE 
+                            INNER JOIN CLS_BEST_PRACTICE_TYPE 
+                            ON CLS_BEST_PRACTICE_TYPE.BEST_PRACTICE_TYPE_CODE = BEST_PRACTICE.BestPracticeTypeCode 
+                            INNER JOIN CLS_EDUCATION_LEVEL 
+                            ON CLS_EDUCATION_LEVEL.EDUCATION_LEVEL_CODE = BEST_PRACTICE.TargetEducationLevelCode 
+                            INNER JOIN CLS_RECOGNIZED_BY 
+                            ON CLS_RECOGNIZED_BY.RECOGNIZED_BY_CODE = BEST_PRACTICE.RecognizedCode 
+                            WHERE Id = $Id
+                            ");
+
+foreach ($results->result() as $shows) {
+                     ?> 
                 <div class="row">
                     <div class="col">
                         <h5 class="fw-bold">รหัสวิธีปฏิบัติที่เป็นเลิศในการจัดการศึกษา</h5>
@@ -418,15 +448,15 @@
                         <h5 class="fw-bold">ชื่อวิธีปฏิบัติ</h5>
                         <p><?php echo $show->BestPracticeName; ?></p>
                         <h5 class="fw-bold">รหัสประเภทวิธีปฏิบัติ</h5>
-                        <p><?php echo $show->BestPracticeTypeCode; ?></p>
+                        <p><?php echo $shows->BEST_PRACTICE_TYPE_NAME; ?></p>
                         <h5 class="fw-bold">รหัสระดับการศึกษาที่นำไปใช้</h5>
-                        <p><?php echo $show->TargetEducationLevelCode; ?></p>
+                        <p><?php echo $shows->EDUCATION_LEVEL_NAME; ?></p>
                     </div>
 
 
                     <div class="col">
                         <h5 class="fw-bold">รหัสการเผยแพร่ที่ได้รับการยอมรับ</h5>
-                        <p><?php echo $show->RecognizedCode; ?></p>
+                        <p><?php echo $shows->RECOGNIZED_BY_NAME; ?></p>
                         <h5 class="fw-bold">ประโยชน์ที่ได้รับ</h5>
                         <p><?php echo $show->Benefit; ?></p>
                         <h5 class="fw-bold">บทคัดย่อ</h5>
@@ -454,7 +484,7 @@
     </div>
 </div>
 
-<?php  } ?>
+<?php  } }?>
 </tbody>
 </table>
 <?php } ?>
@@ -462,9 +492,16 @@
 
 
     <?php 
-                $result = $this->db->query("SELECT * FROM BEST_PRACTICE_CREATOR 
                 
-                WHERE BestPracticeID='" . $key . "' AND DeleteStatus = '0'");
+                 $result = $this->db->query("SELECT * FROM BEST_PRACTICE_CREATOR 
+                INNER JOIN CLS_PERSONAL_ID_TYPE 
+                ON CLS_PERSONAL_ID_TYPE.PERSONAL_ID_TYPE_CODE = BEST_PRACTICE_CREATOR.CreatorPersonalIDTypeCode 
+                INNER JOIN CLS_PREFIX 
+                ON CLS_PREFIX.PREFIX_CODE = BEST_PRACTICE_CREATOR.CreatorPrefixCode 
+
+                WHERE  DeleteStatus = '0'");
+                
+                
                 foreach ($result->result() as $show) {  ?>
 <div class="modal fade" id="las2<?php echo $show->Id; ?>" tabindex="-1" aria-labelledby="exampleModalLabel"
     aria-hidden="true">
@@ -482,9 +519,9 @@
                         <h5 class="fw-bold">หมายเลขบัตรประจำตัวผู้จัดทำ</h5>
                         <p><?php echo $show->CreatorPersonalID; ?></p>
                         <h5 class="fw-bold">รหัสประเภทบัตรประจำตัวผู้จัดทำ</h5>
-                        <p><?php echo $show->CreatorPersonalIDTypeCode; ?></p>
+                        <p><?php echo $show->PERSONAL_ID_TYPE_NAME; ?></p>
                         <h5 class="fw-bold">รหัสคำนำหน้าชื่อผู้จัดทำ</h5>
-                        <p><?php echo $show->CreatorPrefixCode; ?></p>
+                        <p><?php echo $show->PREFIX_NAME; ?></p>
                         <h5 class="fw-bold">สัดส่วนการมีส่วนร่วม</h5>
                         <p><?php echo $show->ParticipantRatio; ?></p>
                     </div>

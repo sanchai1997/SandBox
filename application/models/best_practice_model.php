@@ -8,6 +8,9 @@ class Best_practice_model extends CI_Model {
 		// print_r($_POST);
 		// echo'</pre>';
 		// exit;
+		if (isset($_FILES['AttachmentURL'])) {
+			$file = $_FILES['AttachmentURL']['tmp_name'];
+			if (file_exists($file)) {
         $config['upload_path'] = './document/';
 		$config['allowed_types'] = 'doc|docx|pdf|jpg|png|xls|ppt|zip|xlsx';
 		$config['encrypt_name'] = TRUE;
@@ -33,7 +36,27 @@ class Best_practice_model extends CI_Model {
             'PracticeProcess' => $this->input->post('PracticeProcess'),
             'Source' => $this->input->post('Source'),
             'PublishDate' => $this->input->post('PublishDate')
-        );
+       
+					);
+				}
+			} else {
+				$data = array(
+					'BestPracticeID' => $this->input->post('BestPracticeID'),
+					'EducationYear' => $this->input->post('EducationYear'),
+					'Semester' => $this->input->post('Semester'),
+					'BestPracticeName' => $this->input->post('BestPracticeName'),
+					'BestPracticeTypeCode' => $this->input->post('BestPracticeTypeCode'),
+					'TargetEducationLevelCode' => $this->input->post('TargetEducationLevelCode'),
+					'Benefit' => $this->input->post('Benefit'),
+					'RecognizedCode' => $this->input->post('RecognizedCode'),
+					'Abstract' => $this->input->post('Abstract'),
+					'SearchKeyword' => $this->input->post('SearchKeyword'),
+					'PracticeProcess' => $this->input->post('PracticeProcess'),
+					'Source' => $this->input->post('Source'),
+					'PublishDate' => $this->input->post('PublishDate')
+				);
+			}
+		}
 		$query=$this->db->insert('BEST_PRACTICE',$data);
 		if($query){
 			session_start(); // เริ่มต้น session
@@ -44,7 +67,7 @@ class Best_practice_model extends CI_Model {
 			echo 'false';
 		}
     }
-}
+
 public function edit_BP()
 {
 
@@ -165,7 +188,7 @@ public function del_BP(){
 		if($query){
 			session_start(); // เริ่มต้น session
 			$_SESSION['success'] = "เพิ่มข้อมูลเรียบร้อย !"; // กำหนดค่า success ใน session เป็น true
-			header("Location: " . site_url('Fm_best_practice_das_p2?page=sh2')); // ไปยังหน้าก่อนหน้านี้
+			header("Location: " . site_url('Fm_best_practice_das_p1?page=sh1')); // ไปยังหน้าก่อนหน้านี้
 			
 		} else {
 			echo 'false';
@@ -196,7 +219,7 @@ public function del_BP(){
 		if($query){
 			session_start(); // เริ่มต้น session
 			$_SESSION['success'] = "แก้ไขสำเร็จ !"; // กำหนดค่า success ใน session เป็น true
-			header("Location: " . site_url('Fm_best_practice_das_p2?page=sh2')); // ไปยังหน้าก่อนหน้านี้
+			header("Location: " . site_url('Fm_best_practice_das_p1?page=sh1')); // ไปยังหน้าก่อนหน้านี้
 			
 		} else {
 			echo 'false';
@@ -213,7 +236,7 @@ public function del_BP(){
 				if($query){
 					session_start(); // เริ่มต้น session
 					$_SESSION['success'] = "ลบสำเร็จ !"; // กำหนดค่า success ใน session เป็น true
-					header("Location: " . site_url('Fm_best_practice_das_p2?page=sh2')); // ไปยังหน้าก่อนหน้านี้
+					header("Location: " . site_url('Fm_best_practice_das_p1?page=sh1')); // ไปยังหน้าก่อนหน้านี้
 					
 				} else {
 					echo 'false';

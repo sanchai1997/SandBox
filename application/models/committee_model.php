@@ -8,6 +8,9 @@ class Committee_model extends CI_Model {
 		// print_r($_POST);
 		// echo'</pre>';
 		// exit;
+		if (isset($_FILES['CommitteeAppointmentAttachmentURL'])) {
+			$file = $_FILES['CommitteeAppointmentAttachmentURL']['tmp_name'];
+			if (file_exists($file)) {
 		$config['upload_path'] = './document/';
         $config['allowed_types'] = 'doc|docx|pdf|jpg|png|xls|ppt|zip|xlsx';
         $config['encrypt_name'] = TRUE;
@@ -28,6 +31,18 @@ class Committee_model extends CI_Model {
             'CommitteeAppointmentAttachmentURL' => $filename
           
         );
+	}
+} else {
+	$data = array(
+		'CommitteeProvinceCode' => $this->input->post('CommitteeProvinceCode'),
+		'CommitteeYear' => $this->input->post('CommitteeYear'),
+		'CommitteeAppointmentNumber' => $this->input->post('CommitteeAppointmentNumber'),
+		'CommitteeAppointmentTypeCode' => $this->input->post('CommitteeAppointmentTypeCode'),
+
+	  
+	);
+}
+}
 		$query=$this->db->insert('COMMITTEE',$data);
 		if($query){
 			session_start(); // เริ่มต้น session
@@ -38,7 +53,7 @@ class Committee_model extends CI_Model {
 			echo 'false';
 		}
     }
-}
+
 public function edit_committee()
 {
 

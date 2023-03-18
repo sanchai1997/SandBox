@@ -150,6 +150,9 @@ class Participant_model extends CI_Model {
 		// print_r($_POST);
 		// echo'</pre>';
 		// exit;
+		if (isset($_FILES['CooperationAttachmentURL'])) {
+			$file = $_FILES['CooperationAttachmentURL']['tmp_name'];
+			if (file_exists($file)) {
 		$config['upload_path'] = './document/';
         $config['allowed_types'] = 'doc|docx|pdf|jpg|png|xls|ppt|zip|xlsx';
         $config['encrypt_name'] = TRUE;
@@ -172,7 +175,21 @@ class Participant_model extends CI_Model {
             'CooperationLevelCode' => $this->input->post('CooperationLevelCode'),
             'CooperationSchoolID' => $this->input->post('CooperationSchoolID'),
             'CooperationAttachmentURL' =>  $filename
-        );
+		);
+	}
+} else {
+	$data = array(
+		'ParticipantID' => $this->input->post('ParticipantID'),
+		'CooperationStartDate' => $this->input->post('CooperationStartDate'),
+		'CooperationEndDate' => $this->input->post('CooperationEndDate'),
+		'CooperationStatusCode' => $this->input->post('CooperationStatusCode'),
+		'CooperationActivity' => $this->input->post('CooperationActivity'),
+		'CooperationLevelCode' => $this->input->post('CooperationLevelCode'),
+		'CooperationSchoolID' => $this->input->post('CooperationSchoolID'),
+
+	);
+}
+}
 		$query=$this->db->insert('PARTICIPANT_COOPERATION',$data);
 		if($query){
 			session_start(); // เริ่มต้น session
@@ -183,7 +200,7 @@ class Participant_model extends CI_Model {
 			echo 'false';
 		}
 	}
-    }
+    
 	public function edit_par_coop()
     {
 
