@@ -4,13 +4,6 @@
 
     <div class="pagetitle">
       <h1>แก้ไขข้อมูลหลักสูตร / หลักสูตรของพื้นที่นวัตกรรม</h1>
-      <nav>
-        <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-          <li class="breadcrumb-item">Form</li>
-          <li class="breadcrumb-item active"><?php echo $title; ?></li>
-        </ol>
-      </nav>
     </div><!-- End Page Title -->
 
     <section class="section">
@@ -152,8 +145,9 @@
                     </div>
                 </div>
 
-                <div class="text-center">
-                   <button type="button" class="btn btn-warning" onclick="return check(Curriculum)">แก้ไขข้อมูล</button>
+                <div class="d-flex justify-content-between">
+                  <a href="list-curriculum" class="btn btn-danger">ยกเลิก</a>
+                  <button type="button" class="btn btn-warning" onclick="return check(Curriculum)">แก้ไขข้อมูล</button>
                 </div> 
 
 

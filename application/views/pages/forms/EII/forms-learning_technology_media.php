@@ -9,6 +9,13 @@
                 ?> <h1>ผู้จัดทำเทคโนโลยีและสื่อการเรียนรู้</h1>
         <?php
                     break;
+                    case 'sh11':
+            ?> <h1>เทคโนโลยีและสื่อการเรียนรู้</h1>
+        <?php break;
+                case 'sh22':
+                ?> <h1>ผู้จัดทำเทคโนโลยีและสื่อการเรียนรู้</h1>
+        <?php
+                    break;
                                default:
                 ?>
         <?php
@@ -31,7 +38,7 @@
                 <div class="card">
                     <div class="card-body">
 
-                        <?php switch ($page) {
+                    <?php switch ($page) {
                 case 'sh1':
             ?> <h5 class="card-title">ข้อมูลเทคโนโลยี และสื่อการเรียนรู้</h5>
                         <?php break;
@@ -39,6 +46,15 @@
                 ?> <h5 class="card-title">ข้อมูลผู้จัดทำเทคโนโลยีและสื่อการเรียนรู้</h5>
                         <?php
                     break;
+                    case 'sh22':
+                    ?> <h5 class="card-title">ข้อมูลผู้จัดทำเทคโนโลยีและสื่อการเรียนรู้</h5>
+                            <?php
+                        break;
+                        case 'sh11':
+                        ?> <h5 class="card-title">ข้อมูลเทคโนโลยี และสื่อการเรียนรู้</h5>
+                                <?php
+                            break;
+                                
                                default:
                 ?>
                         <?php
@@ -86,8 +102,12 @@
                                         <select class="form-select" id="floatingSelect"
                                             aria-label="Floating label select example" name="MediaTypeCode">
                                             <option selected>เลือก</option>
-                                            <option value="01">สื่อประเภทวัสดุ</option>
-                                            <option value="02">สื่อประเภทอุปกรณ์</option>
+                                           <?php
+                                            $result = $this->db->query('SELECT * FROM CLS_MEDIA_TYPE');
+                                            foreach ($result->result() as $cls) {
+                                            ?>
+                                             <option value="<?= $cls->MEDIA_TYPE_CODE ; ?>"><?= $cls->MEDIA_TYPE_NAME; ?></option>
+                                            <?php } ?>
                                         </select>
                                         <label for="floatingSelect"><?php echo nbs(2); ?>รหัสประเภทเทคโนโลยีและสื่อการเรียนรู้</label>
                                     </div>
@@ -98,8 +118,12 @@
                                         <select class="form-select" id="floatingSelect"
                                             aria-label="Floating label select example" name="TargetEducationLevelCode" require>
                                             <option selected>เลือก</option>
-                                            <option value="00">เตรียมอนุบาล</option>
-                                            <option value="10">ก่อนประถมศึกษา </option>
+                                            <?php
+                                            $result = $this->db->query('SELECT * FROM CLS_EDUCATION_LEVEL');
+                                            foreach ($result->result() as $cls) {
+                                            ?>
+                                             <option value="<?= $cls->EDUCATION_LEVEL_CODE ; ?>"><?= $cls->EDUCATION_LEVEL_NAME; ?></option>
+                                            <?php } ?>
                                         </select>
                                         <label for="floatingSelect"><?php echo nbs(2); ?>รหัสระดับการศึกษาที่นำไปใช้</label>
                                     </div>
@@ -160,6 +184,143 @@
                                                     </div>
                         </form><!-- End Form ข้อมูลเทคโนโลยี และสื่อการเรียนรู้ -->
                         <?php  } ?>
+                        <?php if($page=='sh11'){  ?>
+
+                            <?php $key = isset($_GET['key']) ? $_GET['key'] : '';  ?>
+                            <?php
+                            
+                            $result = $this->db->query("SELECT * FROM LEARNING_TECHNOLOGY_MEDIA 
+                            WHERE Id = '".$key."' 
+                            ");
+ 
+                     foreach ($result->result() as $show) {
+                     ?>
+                        <!-- start Form ข้อมูลเทคโนโลยี และสื่อการเรียนรู้ -->
+                        <form action="<?php echo site_url('LTM_edit_p1'); ?>" method="post"enctype="multipart/form-data">
+                        <input type="hidden" name="Id" value="<?php echo $show->Id ?>">
+                            <div class="row mb-3">
+                                <div class="form-floating">
+                                    <input type="text" class="form-control" id="floatingName"
+                                        placeholder="รหัสข้อมูลเทคโนโลยีและสื่อการเรียนรู้" name="MediaID" value="<?php echo $show->MediaID ?>">
+                                    <label for="floatingName"><?php echo nbs(2); ?>
+                                        รหัสข้อมูลเทคโนโลยีและสื่อการเรียนรู้ </label>
+                                </div>
+                            </div>
+
+                            <div class="row mb-3">
+                               <div class="col">
+                                    <div class="form-floating">
+                                        <input type="text" class="form-control" id="floatingName" placeholder="ปีการศึกษา"
+                                            name="EducationYear" value="<?php echo $show->EducationYear ?>">
+                                        <label for="floatingName"><?php echo nbs(2); ?> ปีการศึกษา </label>
+                                    </div>
+                               </div>
+                            
+                                <div class="col">
+                                    <div class="form-floating">
+                                        <input type="text" class="form-control" id="floatingName" placeholder="ภาคเรียน"
+                                            name="Semester" value="<?php echo $show->Semester ?>">
+                                        <label for="floatingName"><?php echo nbs(2); ?> ภาคเรียน </label>
+                                    </div>
+                                </div>
+                            </div>
+                             <div class="row mb-3">
+                                <div class="form-floating">
+                                    <input type="text" class="form-control" id="floatingName" placeholder="ชื่อเทคโนโลยีและสื่อการเรียนรู้"
+                                        name="MediaName" value="<?php echo $show->MediaName ?>">
+                                    <label for="floatingName"><?php echo nbs(2); ?> ชื่อเทคโนโลยีและสื่อการเรียนรู้ </label>
+                                </div>
+                            </div>
+
+                            <div class="row mb-3">
+                                <div class="col">
+                                    <div class="form-floating">
+                                        <select class="form-select" id="floatingSelect"
+                                            aria-label="Floating label select example" name="MediaTypeCode" value="<?php echo $show->MediaTypeCode ?>">
+                                            <option selected>เลือก</option>
+                                           <?php
+                                            $result = $this->db->query('SELECT * FROM CLS_MEDIA_TYPE');
+                                            foreach ($result->result() as $cls) {
+                                            ?>
+                                             <option value="<?= $cls->MEDIA_TYPE_CODE ; ?>"><?= $cls->MEDIA_TYPE_NAME; ?></option>
+                                            <?php } ?>
+                                        </select>
+                                        <label for="floatingSelect"><?php echo nbs(2); ?>รหัสประเภทเทคโนโลยีและสื่อการเรียนรู้</label>
+                                    </div>
+                                </div>
+                           
+                              <div class="col">
+                                    <div class="form-floating">
+                                        <select class="form-select" id="floatingSelect"
+                                            aria-label="Floating label select example" name="TargetEducationLevelCode" require value="<?php echo $show->TargetEducationLevelCode ?>">
+                                            <option selected>เลือก</option>
+                                            <?php
+                                            $result = $this->db->query('SELECT * FROM CLS_EDUCATION_LEVEL');
+                                            foreach ($result->result() as $cls) {
+                                            ?>
+                                             <option value="<?= $cls->EDUCATION_LEVEL_CODE ; ?>"><?= $cls->EDUCATION_LEVEL_NAME; ?></option>
+                                            <?php } ?>
+                                        </select>
+                                        <label for="floatingSelect"><?php echo nbs(2); ?>รหัสระดับการศึกษาที่นำไปใช้</label>
+                                    </div>
+                              </div>
+                            </div>
+                             <div class="row mb-3">
+                                <div class="form-floating">
+                                    <input type="text" class="form-control" id="floatingName" placeholder="ประโยชน์ของเทคโนโลยีและสื่อการเรียนรู้"
+                                        name="MediaBenefit" value="<?php echo $show->MediaBenefit ?>">
+                                    <label for="floatingName"><?php echo nbs(2); ?> ประโยชน์ของเทคโนโลยีและสื่อการเรียนรู้ </label>
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <div class="form-floating">
+                                    <textarea class="form-control" placeholder="Leave a comment here"
+                                        id="floatingTextarea2" style="height: 100px" name="Abstract"><?php echo $show->Abstract ?></textarea>
+                                    <label for="floatingTextarea2"><?php echo nbs(2); ?>บทคัดย่อ</label>
+                                </div>
+                            </div>
+                             <div class="row mb-3">
+                               <div class="col">
+                                    <div class="form-floating">
+                                        <input type="text" class="form-control" id="floatingName" placeholder="คำค้นห้า"
+                                            name="SearchKeyword" value="<?php echo $show->SearchKeyword ?>">
+                                        <label for="floatingName"><?php echo nbs(2); ?> คำค้นห้า </label>
+                                    </div>
+                               </div>
+                            
+                                <div class="col">
+                                    <div class="input-group mb-3">
+                                        <label class="input-group-text" for="inputGroupFile01">เอกสารแนบ</label>
+                                        <input type="file" class="form-control" id="inputGroupFile01" name="AttachmentURL" >
+                                    </div>
+                                </div>
+                            </div>
+                             <div class="row mb-3">
+                               <div class="col">
+                                    <div class="form-floating">
+                                        <input type="text" class="form-control" id="floatingName" placeholder="แหล่งที่มา"
+                                            name="Source" value="<?php echo $show->Source ?>">
+                                        <label for="floatingName"><?php echo nbs(2); ?> แหล่งที่มา </label>
+                                    </div>
+                               </div>
+                           
+                                <div class="col">
+                                    <div class="col-md-12">
+                                        <div class="form-floating">
+                                            <input type="date" class="form-control" id="Share" placeholder="Share"
+                                                name="PublishDate" value="<?php echo $show->PublishDate ?>">
+                                            <label for="Share">วันที่เผยแพร่</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="d-flex justify-content-center">
+                                                        <button name="Submit" type="submit"
+                                                            class="btn btn-primary">บันทึกข้อมูล</button>
+                                                    </div>
+                        </form><!-- End Form ข้อมูลเทคโนโลยี และสื่อการเรียนรู้ -->
+                        <?php  }
+                        } ?>
                         <?php if($page=='sh2'){ ?>
                           <form action="<?php echo site_url('LTMC_forms_up_p2'); ?>" method="post" enctype="multipart/form-data">
                             <div class="row mb-3">
@@ -183,9 +344,12 @@
                                         <select class="form-select" id="floatingSelect"
                                             aria-label="Floating label select example" name="CreatorPersonalIDTypeCode">
                                             <option selected>เลือก</option>
-                                            <option value="I">บัตรประจำตัวประชาชน</option>
-                                            <option value="O">บัตรอื่นๆ</option>
-                                            <option value="N">ไม่มีบัตรอะไรเลย</option>
+                                           <?php
+                                            $result = $this->db->query('SELECT * FROM CLS_PERSONAL_ID_TYPE');
+                                            foreach ($result->result() as $cls) {
+                                            ?>
+                                             <option value="<?= $cls->PERSONAL_ID_TYPE_CODE ; ?>"><?= $cls->PERSONAL_ID_TYPE_NAME; ?></option>
+                                            <?php } ?>
                                         
                                         </select>
                                         <label for="floatingSelect"><?php echo nbs(2); ?>รหัสประเภทบัตรประจำตัวผู้จัดทำ</label>
@@ -197,9 +361,12 @@
                                         <select class="form-select" id="floatingSelect"
                                             aria-label="Floating label select example" name="CreatorPrefixCode">
                                             <option selected>เลือก</option>
-                                            <option value="003">นาย</option>
-                                            <option value="004">นางสาว</option>
-                                            <option value="005">นาง</option>
+                                            <?php
+                                            $result = $this->db->query('SELECT * FROM CLS_PREFIX');
+                                            foreach ($result->result() as $cls) {
+                                            ?>
+                                             <option value="<?= $cls->PREFIX_CODE ; ?>"><?= $cls->PREFIX_NAME; ?></option>
+                                            <?php } ?>
                                         
                                         </select>
                                         <label for="floatingSelect"><?php echo nbs(2); ?>รหัสคำนำหน้าชื่อผู้จัดทำ</label>
@@ -272,6 +439,135 @@
                                                     </div>
                         </form><!-- End Form ข้อมูลเทคโนโลยี และสื่อการเรียนรู้ -->
                           <?php }  ?>
+                          <?php if($page=='sh22'){ ?>
+                            <?php $key = isset($_GET['key']) ? $_GET['key'] : '';  ?>
+                            <?php
+                            
+                            $result = $this->db->query("SELECT * FROM LEARNING_TECHNOLOGY_MEDIA_CREATOR 
+                            WHERE Id = '".$key."' 
+                            ");
+ 
+                     foreach ($result->result() as $show) {
+                     ?>
+                          <form action="<?php echo site_url('LTMC_edit_p2'); ?>" method="post" enctype="multipart/form-data">
+                          <input type="hidden" name="Id" value="<?php echo $show->Id ?>">
+                            <div class="row mb-3">
+                                <div class="form-floating">
+                                    <input type="text" class="form-control" id="floatingName"
+                                        placeholder="รหัสข้อมูลเทคโนโลยีและสื่อการเรียนรู้" name="MediaID" value="<?php echo $show->MediaID ?>">
+                                    <label for="floatingName"><?php echo nbs(2); ?>
+                                        รหัสข้อมูลเทคโนโลยีและสื่อการเรียนรู้ </label>
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <div class="form-floating">
+                                    <input type="text" class="form-control" id="floatingName" placeholder="หมายเลขบัตรประจำตัวผู้จัดทำ"
+                                        name="CreatorPersonalID" value="<?php echo $show->CreatorPersonalID ?>">
+                                    <label for="floatingName"><?php echo nbs(2); ?> หมายเลขบัตรประจำตัวผู้จัดทำ </label>
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                              <div class="col">
+                                    <div class="form-floating">
+                                        <select class="form-select" id="floatingSelect"
+                                            aria-label="Floating label select example" name="CreatorPersonalIDTypeCode" value="<?php echo $show->CreatorPersonalIDTypeCode ?>">
+                                            <option selected>เลือก</option>
+                                           <?php
+                                            $result = $this->db->query('SELECT * FROM CLS_PERSONAL_ID_TYPE');
+                                            foreach ($result->result() as $cls) {
+                                            ?>
+                                             <option value="<?= $cls->PERSONAL_ID_TYPE_CODE ; ?>"><?= $cls->PERSONAL_ID_TYPE_NAME; ?></option>
+                                            <?php } ?>
+                                        
+                                        </select>
+                                        <label for="floatingSelect"><?php echo nbs(2); ?>รหัสประเภทบัตรประจำตัวผู้จัดทำ</label>
+                                    </div>
+                        </div>
+                           
+                               <div class="col">
+                                    <div class="form-floating">
+                                        <select class="form-select" id="floatingSelect"
+                                            aria-label="Floating label select example" name="CreatorPrefixCode" value="<?php echo $show->CreatorPrefixCode ?>">
+                                            <option selected>เลือก</option>
+                                            <?php
+                                            $result = $this->db->query('SELECT * FROM CLS_PREFIX');
+                                            foreach ($result->result() as $cls) {
+                                            ?>
+                                             <option value="<?= $cls->PREFIX_CODE ; ?>"><?= $cls->PREFIX_NAME; ?></option>
+                                            <?php } ?>
+                                        
+                                        </select>
+                                        <label for="floatingSelect"><?php echo nbs(2); ?>รหัสคำนำหน้าชื่อผู้จัดทำ</label>
+                                    </div>
+                               </div>
+                            </div>
+                             <div class="row mb-3">
+                               <div class="col">
+                                    <div class="form-floating">
+                                        <input type="text" class="form-control" id="floatingName" placeholder="ชื่อผู้จัดทำ (ภาษาไทย)"
+                                            name="CreatorNameThai" value="<?php echo $show->CreatorNameThai ?>">
+                                        <label for="floatingName"><?php echo nbs(2); ?> ชื่อผู้จัดทำ (ภาษาไทย) </label>
+                                    </div>
+                               </div>
+                            
+                                <div class="col">
+                                    <div class="form-floating">
+                                        <input type="text" class="form-control" id="floatingName" placeholder="ชื่อผู้จัดทำ (ภาษาอังกฤษ)"
+                                            name="CreatorNameEnglish" value="<?php echo $show->CreatorNameEnglish ?>">
+                                        <label for="floatingName"><?php echo nbs(2); ?> ชื่อผู้จัดทำ (ภาษาอังกฤษ) </label>
+                                    </div>
+                                </div>
+                            </div>
+                             <div class="row mb-3">
+                               <div class="col">
+                                    <div class="form-floating">
+                                        <input type="text" class="form-control" id="floatingName" placeholder="ชื่อกลางผู้จัดทำ (ภาษาไทย)"
+                                            name="CreatorMiddleNameThai" value="<?php echo $show->CreatorMiddleNameThai ?>">
+                                        <label for="floatingName"><?php echo nbs(2); ?> ชื่อกลางผู้จัดทำ (ภาษาไทย) </label>
+                                    </div>
+                               </div>
+                          
+                                <div class="col">
+                                    <div class="form-floating">
+                                        <input type="text" class="form-control" id="floatingName" placeholder="ชื่อกลางผู้จัดทำ(ภาษาอังกฤษ)"
+                                            name="CreatorMiddleNameEnglish" value="<?php echo $show->CreatorMiddleNameEnglish ?>">
+                                        <label for="floatingName"><?php echo nbs(2); ?> ชื่อกลางผู้จัดทำ(ภาษาอังกฤษ) </label>
+                                    </div>
+                                </div>
+                            </div>
+                             <div class="row mb-3">
+                               <div class="col">
+                                    <div class="form-floating">
+                                        <input type="text" class="form-control" id="floatingName" placeholder="นามสกุลผู้จัดทำ (ภาษาไทย)"
+                                            name="CreatorLastNameThai" value="<?php echo $show->CreatorLastNameThai ?>">
+                                        <label for="floatingName"><?php echo nbs(2); ?> นามสกุลผู้จัดทำ (ภาษาไทย) </label>
+                                    </div>
+                               </div>
+                            
+                                <div class="col">
+                                    <div class="form-floating">
+                                        <input type="text" class="form-control" id="floatingName" placeholder="นามสกุลผู้จัดทำ(ภาษาอังกฤษ)"
+                                            name="CreatorLastNameEnglish" value="<?php echo $show->CreatorLastNameEnglish ?>">
+                                        <label for="floatingName"><?php echo nbs(2); ?> นามสกุลผู้จัดทำ(ภาษาอังกฤษ) </label>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                             <div class="row mb-3">
+                                <div class="form-floating">
+                                    <input type="text" class="form-control" id="floatingName" placeholder="สัดส่วนการมีส่วนร่วม"
+                                        name="ParticipantRatio" value="<?php echo $show->ParticipantRatio ?>">
+                                    <label for="floatingName"><?php echo nbs(2); ?> สัดส่วนการมีส่วนร่วม </label>
+                                </div>
+                            </div>
+                            
+                            <div class="d-flex justify-content-center">
+                                                        <button name="Submit" type="submit"
+                                                            class="btn btn-primary">บันทึกข้อมูล</button>
+                                                    </div>
+                        </form><!-- End Form ข้อมูลเทคโนโลยี และสื่อการเรียนรู้ -->
+                          <?php } 
+                          } ?>
 
                     </div>
                 </div>

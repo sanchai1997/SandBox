@@ -4,13 +4,6 @@
 
     <div class="pagetitle">
       <h1>แก้ไขข้อมูลสมรรถนะของหลักสูตร </h1>
-      <nav>
-        <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-          <li class="breadcrumb-item">Form</li>
-          <li class="breadcrumb-item active"><?php echo $title; ?></li>
-        </ol>
-      </nav>
     </div><!-- End Page Title -->
 
     <section class="section">
@@ -59,7 +52,8 @@
                 </div>
 
               <!-- End Form ข้อมูลสมรรถนะของหลักสูตร -->
-                  <div class="text-center">
+                  <div class="d-flex justify-content-between">
+                    <a href="list-curriculum_school_competency?cid=<?php echo $CurriculumID; ?>&&sid=<?php echo $SubjectCode; ?>" class="btn btn-danger">ยกเลิก</a>
                     <button type="button" class="btn btn-warning" onclick="return check(CurriculumCompetency)">แก้ไขข้อมูล</button>
                   </div>
 

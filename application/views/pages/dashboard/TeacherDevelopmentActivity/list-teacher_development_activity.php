@@ -3,14 +3,7 @@
     <div class="pagetitle">
         <div class="row">
             <div class="col-6">
-                <h1>ข้อมูลหลักสูตร / หลักสูตรของพื้นที่นวัตกรรม</h1>
-                <nav>
-                    <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="main">Home</a></li>
-                        <li class="breadcrumb-item">List</li>
-                        <li class="breadcrumb-item active"><?php echo $title; ?></li>
-                    </ol>
-                </nav>
+                <h1>ข้อมูลการพัฒนาบุคลากร</h1>
             </div>
 
         </div>
@@ -43,145 +36,113 @@
 
                 <div class="row">
                     <div class="col">
-                        <h5 class="card-title">รายละเอียดข้อมูล <span>| Table Curriculum</span></h5>
+                        <h5 class="card-title">รายละเอียดข้อมูล</h5>
                     </div>
                     <div class="col">
-                        <h5 style="float: right; padding: 15px;" class="card-title"><a href="forms-curriculum" class="btn btn-success">เพิ่มข้อมูลหลักสูตร</a></h5>
+                        <h5 style="float: right; padding: 15px;" class="card-title"><a href="forms-teacher_development_activity" class="btn btn-success">เพิ่มข้อมูล</a></h5>
                     </div>
                 </div>
                 <table class="table table-borderless datatable">
                     <thead>
                         <tr>
-                            <th style="text-align: center;" scope="col">สถานศึกษา</th>
                             <th style="text-align: center;" scope="col">ปีการศึกษา</th>
                             <th style="text-align: center;" scope="col">ภาคเรียน</th>
-                            <th style="text-align: center;" scope="col">ชื่อหลักสูตร</th>
-                            <th style="text-align: center;" scope="col">รายวิชา</th>
+                            <th style="text-align: center;" scope="col">ประเภทกิจกรรม</th>
+                            <th style="text-align: center;" scope="col">ชื่อกิจกรรม</th>
                             <th style="text-align: center;" scope="col">ปฎิบัติ</th>
-                            
-                            
+
                         </tr>
                     </thead>
                     <tbody>
-                        <?php foreach ($listCurriculum as $ls) { ?>
+                        <?php foreach ($listTeacherDevelopmentActivity as $ls) { ?>
                             <tr>
-                                <th scope="row"><?php echo $ls->SchoolNameThai ; ?></th>
-                                <td style="text-align: center;"><?php echo $ls->EducationYear; ?></td>
+                                <td style="text-align: center;"><?php echo $ls->DevelopmentActivityEducationYear ; ?></th>
                                 <td style="text-align: center;">
                                     <?php 
-                                        $Semester_code = $ls->Semester ;
+                                        $Semester_code = $ls->DevelopmentActivitySemester ;
                                         if($Semester_code==0) echo "ตลอดปีการศึกษา"; 
                                         else if($Semester_code==1) echo "ภาคเรียนที่ 1"; 
                                         else if($Semester_code==2) echo "ภาคเรียนที่ 2"; 
                                     ?>
                                 </td>
-                                <td style="text-align: center;"><?php echo $ls->CurriculumName; ?></td>
+                                <td style="text-align: center;"><?php echo $ls->TEACHER_DEVELOPMENT_ACTIVITY_TYPE_NAME; ?></td>
+                                <td style="text-align: center;"><?php echo $ls->DevelopmentActivityName; ?></td>
                                 <td style="text-align: center;">
-                                    <a href='list-curriculum_subject?cid=<?php echo $ls->CurriculumID; ?>' class="btn btn-primary">
-                                        <i class="bi bi-eye-fill"></i>
-                                     </a>
-                                </td>
-                                <td style="text-align: center;">
-                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#view"><i class="bi bi-card-list"></i></button>
-                                    <a href='edit_forms-curriculum?cid=<?php echo $ls->CurriculumID; ?>'  class="btn btn-warning">
-                                        <i class="bi bi-pencil-square"></i>
-                                    </a>
-                                    <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#delete">
+                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#view<?php echo $ls->TeacherID; echo $ls->DevelopmentActivityName; echo $ls->DevelopmentActivityStartDate; ?>"><i class="bi bi-card-list"></i></button>
+                                    <a href='edit_forms-teacher_development_activity?tid=<?php echo $ls->TeacherID;?>&&name=<?php echo $ls->DevelopmentActivityName;?>&&sdate=<?php echo $ls->DevelopmentActivityStartDate;?>' class="btn btn-warning">
+                                        <i class="bi bi-pencil-square"></i> 
+                                    </a> 
+                                    <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#delete<?php echo $ls->TeacherID . $ls->DevelopmentActivityName . $ls->DevelopmentActivityStartDate ; ?>">
                                         <i class=" bi bi-trash"></i>
-                                    </button>  
+                                    </button>                           
                                 </td>
-                                
                             </tr>
                             <!-- Modal -->
-                            <div class="modal fade" id="view" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal fade" id="view<?php echo $ls->TeacherID; echo $ls->DevelopmentActivityName; echo $ls->DevelopmentActivityStartDate; ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-xl">
                                         <div class="modal-content">
 
                                             <div class="modal-header">
-                                                <h5 class="modal-title" id="exampleModalLabel" style="padding-left: 30px; padding-top: 15px;"> <i class="bi bi-card-heading"></i> ข้อมูลหลักสูตร / หลักสูตรของพื้นที่นวัตกรรม</h5>
+                                                <h5 class="modal-title" id="exampleModalLabel" style="padding-left: 30px; padding-top: 15px;"> <i class="bi bi-card-heading"></i> ข้อมูลการพัฒนาบุคลากร</h5>
                                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                 <hr>
                                             </div>
                                             <div class="modal-body" style="padding-left: 70px; padding-top: 20px;">
-                                                <div class="row">
-                                                    <h6 style="padding-top: 10px;"><b>รหัสหลักสูตร</b></h6>
-                                                    <div class=" col-8" style="padding-bottom: 8px; padding-left: 40px;">
-                                                        รหัสหลักสูตร - <?= $ls->CurriculumID ; ?> 
-                                                    </div>
-                                                </div>
 
                                                 <div class="row">
                                                     <h6 style="padding-top: 10px;"><b>ปีการศึกษา</b></h6>
                                                     <div class=" col-8" style="padding-bottom: 8px; padding-left: 40px;">
-                                                        ปีการศึกษา - <?= $ls->EducationYear; ?> 
+                                                        ปีการศึกษา - <?= $ls->DevelopmentActivityEducationYear; ?> 
                                                     </div>
                                                     <div class=" col-8" style="padding-bottom: 8px; padding-left: 40px;">
-                                                        ภาคเรียน -  <?php $Semester_code = $ls->Semester ;
+                                                        ภาคเรียน -  <?php $Semester_code = $ls->DevelopmentActivitySemester ;
                                                                         if($Semester_code==0) echo "ตลอดปีการศึกษา"; 
                                                                         else if($Semester_code==1) echo "ภาคเรียนที่ 1"; 
                                                                         else if($Semester_code==2) echo "ภาคเรียนที่ 2"; ?>                                                        
                                                     </div>
                                                 </div>
+                                           
 
                                                 <div class="row">
-                                                    <h6 style="padding-top: 10px;"><b>สถานศึกษา</b></h6>
+                                                    <h6 style="padding-top: 10px;"><b>ข้อมูลการพัฒนาบุคลากร</b></h6>
                                                     <div class=" col-8" style="padding-bottom: 8px; padding-left: 40px;">
-                                                    สถานศึกษา - <?= $ls->SchoolNameThai ; ?> 
-                                                    </div>
-                                                </div>
-
-                                                <div class="row">
-                                                    <h6 style="padding-top: 10px;"><b>ข้อมูลหลักสูตร</b></h6>
-                                                    <div class=" col-8" style="padding-bottom: 8px; padding-left: 40px;">
-                                                        ชื่อหลักสูตร - <?= $ls->CurriculumName ; ?> 
+                                                        ประเภทกิจกรรม - <?= $ls->TEACHER_DEVELOPMENT_ACTIVITY_TYPE_NAME ; ?> 
                                                     </div>
                                                     <div class=" col-8" style="padding-bottom: 8px; padding-left: 40px;">
-                                                        ประเภทหลักสูตร - <?= $ls->CURRICULUM_NAME ; ?> 
+                                                        ชื่อกิจกรรม - <?= $ls->DevelopmentActivityName ; ?> 
                                                     </div>
                                                     <div class=" col-8" style="padding-bottom: 8px; padding-left: 40px;">
-                                                        ระดับการศึกษา - <?= $ls->EDUCATION_LEVEL_NAME ; ?> 
+                                                        จำนวนชั่วโมง - <?= $ls->DevelopmentActivityHour ; ?> 
                                                     </div>
                                                     <div class=" col-8" style="padding-bottom: 8px; padding-left: 40px;">
-                                                        ชั้นปี - <?= $ls->GRADE_LEVEL_NAME ; ?> 
+                                                        สถานที่จัดกิจกรรม - <?= $ls->DevelopmentActivityPlace ; ?> 
                                                     </div>
                                                     <div class=" col-8" style="padding-bottom: 8px; padding-left: 40px;">
-                                                        จำนวนห้องที่สอนด้วยหลักสูตร - <?= $ls->ClassroomNumber ; ?> 
+                                                        หน่วยงานที่จัดกิจกรรม - <?= $ls->Organizer ; ?> 
                                                     </div>
                                                     <div class=" col-8" style="padding-bottom: 8px; padding-left: 40px;">
-                                                        เอกสารแนบหลักสูตร -  <a href="load_file?file=<?php echo $ls->CurriculumDocumentURL; ?>" ><i class="bi bi-file-earmark-text-fill"></i> เอกสารแนบหลักสูตร</a>   
-                                                    </div>
-                                                </div>
-
-                                                <div class="row">
-                                                    <h6 style="padding-top: 10px;"><b>ข้อมูลหลักสูตรท้องถิ่น</b></h6>
-                                                    <div class=" col-8" style="padding-bottom: 8px; padding-left: 40px;">
-                                                        อ้างอิงหลักสูตรท้องถิ่น - <?php $LocalCurriculumFlag_code = $ls->LocalCurriculumFlag ;
-                                                                        if($Semester_code==0) echo "อ้างอิง"; 
-                                                                        else if($Semester_code==1) echo "ไม่อ้างอิง"; ?>   
-                                                        
+                                                        วันที่เริ่มจัดกิจกรรม - <?= $ls->DevelopmentActivityStartDate ; ?> 
                                                     </div>
                                                     <div class=" col-8" style="padding-bottom: 8px; padding-left: 40px;">
-                                                    ชื่อหลักสูตรท้องถิ่นที่อ้างอิง - <?= $ls->LocalCurriculumName ; ?> 
+                                                        วันที่สิ้นสุดกิจกรรม - <?= $ls->DevelopmentActivityStartDate ; ?>
                                                     </div>
                                                     <div class=" col-8" style="padding-bottom: 8px; padding-left: 40px;">
-                                                        เอกสารแนบหลักสูตรท้องถิ่นที่อ้างอิง -  <a href="load_file?file=<?php echo $ls->LocalCurriculumDocumentURL; ?>" ><i class="bi bi-file-earmark-text-fill"></i> เอกสารแนบหลักสูตร</a>   
+                                                        เอกสารแนบ/เกียรติบัตร -  <a href="load_file?file=<?php echo $ls->DevelopmentDocument; ?>" ><i class="bi bi-file-earmark-text-fill"></i> เอกสารแนบ/เกียรติบัตร </a>   
                                                     </div>
-                                                </div>
-
-                                               
+                                                </div>                                              
 
                                             </div>
 
                                             <div class="modal-footer">
                                                 <a href='edit_forms-curriculum?cid=<?php echo $ls->CurriculumID; ?>' class="btn btn-warning"><i class="bi bi-pencil-square"></i></button> </a>
-                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><i class="bi bi-x-square" data-bs-toggle="modal" data-bs-target="#delete"></i></button>
+                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><i class="bi bi-x-square" data-bs-toggle="modal" data-bs-target="#delete<?php echo $ls->TeacherID . $ls->DevelopmentActivityName . $ls->DevelopmentActivityStartDate ; ?>"></i></button>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             <!----------------------------  END --------------------------------->
                             <!-- Modal -->
-                            <div class="modal fade" id="delete" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+                            <div class="modal fade" id="delete<?php echo $ls->TeacherID . $ls->DevelopmentActivityName . $ls->DevelopmentActivityStartDate ; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
                                     <div class="modal-dialog modal-dialog-centered" role="document">
                                         <div class="modal-content">
                                             <div class="modal-header">
@@ -194,13 +155,12 @@
                                                 </h6>
                                             </div>
                                             <div class="modal-footer">
-                                                <a href="#" class="btn btn-danger">ลบ</a>
+                                                <a href="delete-teacher_development_activity?tid=<?php echo $ls->TeacherID;?>&&name=<?php echo $ls->DevelopmentActivityName;?>&&sdate=<?php echo $ls->DevelopmentActivityStartDate;?>" class="btn btn-danger">ลบ</a>
                                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ยกเลิก</button>
                                             </div>
                                         </div>
                                     </div>
-                            </div>
-
+                            </div>                            
                         <?php } ?>
                     </tbody>
                 </table>
@@ -211,6 +171,3 @@
     </div><!-- End Recent Sales -->
 
 </main><!-- End #main -->
-
-
-
