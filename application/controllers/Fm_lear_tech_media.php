@@ -16,7 +16,7 @@ class Fm_lear_tech_media extends CI_Controller {
 		
         $this->load->view('templates/header');
         $this->load->view('templates/sidebar');
-		$this->load->view('pages/dashboard/lear_tech_media',$data);
+		$this->load->view('pages/dashboard/EII/lear_tech_media',$data);
         $this->load->view('templates/footer');
 		
 	}
@@ -26,7 +26,7 @@ class Fm_lear_tech_media extends CI_Controller {
 		
         $this->load->view('templates/header');
         $this->load->view('templates/sidebar');
-		$this->load->view('pages/dashboard/lear_tech_media',$data);
+		$this->load->view('pages/dashboard/EII/lear_tech_media',$data);
         $this->load->view('templates/footer');
 		
 	}
@@ -36,7 +36,7 @@ class Fm_lear_tech_media extends CI_Controller {
 		
         $this->load->view('templates/header');
         $this->load->view('templates/sidebar');
-		$this->load->view('pages/dashboard/lear_tech_media',$data);
+		$this->load->view('pages/dashboard/EII/lear_tech_media',$data);
         $this->load->view('templates/footer');
 		
 	}

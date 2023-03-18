@@ -23,13 +23,13 @@
                 <?php break;case 'sh88': ?> <h1>ข้อมูลการประเมินสถานศึกษา</h1>
                 <?php break;default: ?>
                 <?php break;} ?>
-                <nav>
+                <!-- <nav>
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="index.html">Home</a></li>
                         <li class="breadcrumb-item">Form</li>
                         <li class="breadcrumb-item active">การประกันคุณภาพด้วยตัวชี้วัด</li>
                     </ol>
-                </nav>
+                </nav> -->
             </div><!-- End Page Title -->
 
             <section class="section">
@@ -102,19 +102,50 @@
                                             ); ?> คะแนนการผ่านเกณฑ์(%)</label>
                                         </div>
                                     </div>
-                                    <div class="d-flex justify-content-center">
-                                        <button name="Submit" type="submit"
-                                            class="btn btn-primary">บันทึกข้อมูล</button>
-                                    </div>
+                                   <div class="text-center">
+  <a href="list-teacher_development_activity" class="btn btn-danger" style="float: left;">ยกเลิก</a>
+
+  <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" style="float: right;">บันทึกข้อมูล</button>  
+</div> 
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">ยืนยันกาบันทึก</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <h6>
+          <center>คุณต้องกาบันทึกข้อมูลใช่หรือไหม ?</center>
+        </h6>
+      </div>
+      <div class="modal-footer">
+        <button type="submit" class="btn btn-primary">ยืนยัน</button> 
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ยกเลิก</button>
+      </div>
+    </div>
+  </div>
+</div> 
                                 </form><!-- end Form การประกันคุณภาพด้วยตัวชี้วัดของพื้นที่ -->
                                 <?php } ?>
                                 <?php if ($page == 'sh11') { ?>
-
+ <?php $key = isset($_GET['key']) ? $_GET['key'] : '';  ?>
+                            <?php
+                            
+                            $result = $this->db->query("SELECT * FROM ASSESSMENT_CRITERIA 
+                            WHERE Id = '".$key."' 
+                            ");
+ 
+                     foreach ($result->result() as $show) {
+                     ?>
 
                                 <!-- start Form การประกันคุณภาพด้วยตัวชี้วัดของพื้นที่ -->
                                 <form action="<?php echo site_url(
     'ass_ria_forms_up_p1'
 ); ?>" method="post">
+
                                     <h5 class="card-title">ฟอร์มการประกันคุณภาพด้วยตัวชี้วัดของพื้นที่</h5>
                                     <div class="row mb-3">
                                         <div class="col">
@@ -165,12 +196,35 @@
                                             <label for="floatingName"><?php echo nbs(2); ?> คะแนนการผ่านเกณฑ์(%)</label>
                                         </div>
                                     </div>
-                                    <div class="d-flex justify-content-center">
-                                        <button name="Submit" type="submit"
-                                            class="btn btn-primary">บันทึกข้อมูล</button>
-                                    </div>
+                                        <div class="text-center">
+  <a href="list-teacher_development_activity" class="btn btn-danger" style="float: left;">ยกเลิก</a>
+
+  <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#exampleModal" style="float: right;">แก้ไขข้อมูล</button>  
+</div> 
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">ยืนยันการแก้ไขข้อมูล</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <h6>
+          <center>คุณต้องการแก้ไขข้อมูลใช่หรือไหม ?</center>
+        </h6>
+      </div>
+      <div class="modal-footer">
+        <button type="submit" class="btn btn-warning">แก้ไขข้อมูล</button> 
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ยกเลิก</button>
+      </div>
+    </div>
+  </div>
+</div>  
                                 </form><!-- end Form การประกันคุณภาพด้วยตัวชี้วัดของพื้นที่ -->
-                                <?php } ?>
+                                <?php }
+                                } ?>
                                 <?php if ($page == 'sh2') { ?>
                                 <!-- start Form ข้อมูลระดับตัวชี้วัด -->
                                 <form action="<?php echo site_url(
@@ -228,19 +282,50 @@
                                             ); ?> คะแนนระดับตัวชี้วัด </label>
                                         </div>
                                     </div>
-                                    <div class="d-flex justify-content-center">
-                                        <button name="Submit" type="submit"
-                                            class="btn btn-primary">บันทึกข้อมูล</button>
-                                    </div>
+                                    <div class="text-center">
+  <a href="list-teacher_development_activity" class="btn btn-danger" style="float: left;">ยกเลิก</a>
+
+  <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" style="float: right;">บันทึกข้อมูล</button>  
+</div> 
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">ยืนยันกาบันทึก</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <h6>
+          <center>คุณต้องกาบันทึกข้อมูลใช่หรือไหม ?</center>
+        </h6>
+      </div>
+      <div class="modal-footer">
+        <button type="submit" class="btn btn-primary">ยืนยัน</button> 
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ยกเลิก</button>
+      </div>
+    </div>
+  </div>
+</div> 
                                 </form><!-- end Form ข้อมูลระดับตัวชี้วัด -->
                                 <?php } ?>
                                 <?php if ($page == 'sh22') { ?>
+                                     <?php $key = isset($_GET['key']) ? $_GET['key'] : '';  ?>
+                            <?php
+                            
+                            $result = $this->db->query("SELECT * FROM ASSESSMENT_CRITERIA_LEVEL 
+                            WHERE Id = '".$key."' 
+                            ");
+ 
+                     foreach ($result->result() as $show) {
+                     ?>
                                 <!-- start Form ข้อมูลระดับตัวชี้วัด -->
                                 <form action="<?php echo site_url(
                                     'ass_ria_lvl_forms_up_p2'
                                 ); ?>" method="post">
                                     <h5 class="card-title">ฟอร์มข้อมูลระดับตัวชี้วัด</h5>
-
+<input type="hidden" name="Id" value="<?php echo $show->Id ?>">
 
                                     <div class="row mb-3">
                                     <div class="col">
@@ -265,7 +350,7 @@
                                         <div class="col">
                                             <div class="form-floating">
                                                 <input type="text" class="form-control" id="floatingName"
-                                                    placeholder="ลำดับของระดับตัวชี้วัด" name="LevelIndex">
+                                                    placeholder="ลำดับของระดับตัวชี้วัด" name="LevelIndex" value="<?php echo $show->LevelIndex ?>">
                                                 <label for="floatingName"><?php echo nbs(2); ?> ลำดับของระดับตัวชี้วัด
                                                 </label>
                                             </div>
@@ -275,7 +360,7 @@
                                     <div class="row mb-3">
                                         <div class="form-floating">
                                             <input type="text" class="form-control" id="floatingName"
-                                                placeholder="หัวข้อระดับตัวชี้วัด" name="LevelName">
+                                                placeholder="หัวข้อระดับตัวชี้วัด" name="LevelName" value="<?php echo $show->LevelName ?>">
                                             <label for="floatingName"><?php echo nbs(
                                                 2
                                             ); ?> หัวข้อระดับตัวชี้วัด </label>
@@ -285,18 +370,41 @@
                                     <div class="row mb-3">
                                         <div class="form-floating">
                                             <input type="text" class="form-control" id="floatingName"
-                                                placeholder="คะแนนระดับตัวชี้วัด" name="LevelScore">
+                                                placeholder="คะแนนระดับตัวชี้วัด" name="LevelScore" value="<?php echo $show->LevelScore ?>">
                                             <label for="floatingName"><?php echo nbs(
                                                 2
                                             ); ?> คะแนนระดับตัวชี้วัด </label>
                                         </div>
                                     </div>
-                                    <div class="d-flex justify-content-center">
-                                        <button name="Submit" type="submit"
-                                            class="btn btn-primary">บันทึกข้อมูล</button>
-                                    </div>
+                                       <div class="text-center">
+  <a href="list-teacher_development_activity" class="btn btn-danger" style="float: left;">ยกเลิก</a>
+
+  <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#exampleModal" style="float: right;">แก้ไขข้อมูล</button>  
+</div> 
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">ยืนยันการแก้ไขข้อมูล</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <h6>
+          <center>คุณต้องการแก้ไขข้อมูลใช่หรือไหม ?</center>
+        </h6>
+      </div>
+      <div class="modal-footer">
+        <button type="submit" class="btn btn-warning">แก้ไขข้อมูล</button> 
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ยกเลิก</button>
+      </div>
+    </div>
+  </div>
+</div>  
                                 </form><!-- end Form ข้อมูลระดับตัวชี้วัด -->
-                                <?php } ?>
+                                <?php } 
+                                }?>
                                 <?php if ($page == 'sh3') { ?>
                                 <!-- start Form ข้อมูลองค์ประกอบตัวชี้วัด -->
                                 <form action="<?php echo site_url(
@@ -369,20 +477,51 @@
                                             </label>
                                         </div>
                                     </div>
-                                    <div class="d-flex justify-content-center">
-                                        <button name="Submit" type="submit"
-                                            class="btn btn-primary">บันทึกข้อมูล</button>
-                                    </div>
+                                    <div class="text-center">
+  <a href="list-teacher_development_activity" class="btn btn-danger" style="float: left;">ยกเลิก</a>
+
+  <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" style="float: right;">บันทึกข้อมูล</button>  
+</div> 
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">ยืนยันกาบันทึก</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <h6>
+          <center>คุณต้องกาบันทึกข้อมูลใช่หรือไหม ?</center>
+        </h6>
+      </div>
+      <div class="modal-footer">
+        <button type="submit" class="btn btn-primary">ยืนยัน</button> 
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ยกเลิก</button>
+      </div>
+    </div>
+  </div>
+</div> 
                                 </form><!-- end Form ข้อมูลองค์ประกอบตัวชี้วัด -->
                                 <?php } ?>
                                 <?php if ($page == 'sh33') { ?>
+                                     <?php $key = isset($_GET['key']) ? $_GET['key'] : '';  ?>
+                            <?php
+                            
+                            $result = $this->db->query("SELECT * FROM ASSESSMENT_CRITERIA_COMPOSITION 
+                            WHERE Id = '".$key."' 
+                            ");
+ 
+                     foreach ($result->result() as $show) {
+                     ?>
                                 <!-- start Form ข้อมูลองค์ประกอบตัวชี้วัด -->
                                 <form action="<?php echo site_url(
                                         'ass_ria_com_forms_up_p3'
                                     ); ?>" method="post">
                                     <h5 class="card-title">ฟอร์มข้อมูลองค์ประกอบตัวชี้วัด</h5>
 
-
+<input type="hidden" name="Id" value="<?php echo $show->Id ?>">
                                     <div class="row mb-3">
                                     <div class="col">
                                             <div class="form-floating">
@@ -406,7 +545,7 @@
                                         <div class="col">
                                             <div class="form-floating">
                                                 <input type="text" class="form-control" id="floatingName"
-                                                    placeholder="ลำดับองค์ประกอบตัวชี้วัด" name="CompositionIndex">
+                                                    placeholder="ลำดับองค์ประกอบตัวชี้วัด" name="CompositionIndex" value="<?php echo $show->CompositionIndex ?>"> 
                                                 <label for="floatingName"><?php echo nbs(
                                                     2
                                                 ); ?> ลำดับองค์ประกอบตัวชี้วัด </label>
@@ -416,7 +555,7 @@
                                         <div class="col">
                                             <div class="form-floating">
                                                 <input type="text" class="form-control" id="floatingName"
-                                                    placeholder="หัวข้อองค์ประกอบตัวชี้วัด" name="CompositionName">
+                                                    placeholder="หัวข้อองค์ประกอบตัวชี้วัด" name="CompositionName" value="<?php echo $show->CompositionName ?>">
                                                 <label for="floatingName"><?php echo nbs(
                                                     2
                                                 ); ?> หัวข้อองค์ประกอบตัวชี้วัด </label>
@@ -428,7 +567,7 @@
                                         <div class="form-floating">
                                             <input type="text" class="form-control" id="floatingName"
                                                 placeholder="ค่าน้ำหนักการประเมินตัวชี้วัด"
-                                                name="CompositionWeightScore">
+                                                name="CompositionWeightScore" value="<?php echo $show->CompositionWeightScore ?>">
                                             <label for="floatingName"><?php echo nbs(
                                                 2
                                             ); ?> ค่าน้ำหนักการประเมินตัวชี้วัด
@@ -440,19 +579,42 @@
                                         <div class="form-floating">
                                             <input type="text" class="form-control" id="floatingName"
                                                 placeholder="หลักฐานประกอบการประเมินขององค์ประกอบตัวชี้วัด"
-                                                name="CompositionGuideline">
+                                                name="CompositionGuideline" value="<?php echo $show->CompositionGuideline ?>">
                                             <label for="floatingName"><?php echo nbs(
                                                 2
                                             ); ?> หลักฐานประกอบการประเมินขององค์ประกอบตัวชี้วัด
                                             </label>
                                         </div>
                                     </div>
-                                    <div class="d-flex justify-content-center">
-                                        <button name="Submit" type="submit"
-                                            class="btn btn-primary">บันทึกข้อมูล</button>
-                                    </div>
+                                       <div class="text-center">
+  <a href="list-teacher_development_activity" class="btn btn-danger" style="float: left;">ยกเลิก</a>
+
+  <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#exampleModal" style="float: right;">แก้ไขข้อมูล</button>  
+</div> 
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">ยืนยันการแก้ไขข้อมูล</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <h6>
+          <center>คุณต้องการแก้ไขข้อมูลใช่หรือไหม ?</center>
+        </h6>
+      </div>
+      <div class="modal-footer">
+        <button type="submit" class="btn btn-warning">แก้ไขข้อมูล</button> 
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ยกเลิก</button>
+      </div>
+    </div>
+  </div>
+</div>  
                                 </form><!-- end Form ข้อมูลองค์ประกอบตัวชี้วัด -->
-                                <?php } ?>
+                                <?php }
+                                } ?>
                                 <?php if ($page == 'sh4') { ?>
                                 <!-- start Form ข้อมูลองค์ประกอบตัวชี้วัดพื้นที่ -->
                                 <form action="<?php echo site_url(
@@ -509,19 +671,50 @@
                                             ); ?> คำอธิบายระดับของแต่ละองค์ประกอบ </label>
                                         </div>
                                     </div>
-                                    <div class="d-flex justify-content-center">
-                                        <button name="Submit" type="submit"
-                                            class="btn btn-primary">บันทึกข้อมูล</button>
-                                    </div>
+                                    <div class="text-center">
+  <a href="list-teacher_development_activity" class="btn btn-danger" style="float: left;">ยกเลิก</a>
+
+  <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" style="float: right;">บันทึกข้อมูล</button>  
+</div> 
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">ยืนยันกาบันทึก</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <h6>
+          <center>คุณต้องกาบันทึกข้อมูลใช่หรือไหม ?</center>
+        </h6>
+      </div>
+      <div class="modal-footer">
+        <button type="submit" class="btn btn-primary">ยืนยัน</button> 
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ยกเลิก</button>
+      </div>
+    </div>
+  </div>
+</div> 
                                 </form><!-- end Form ข้อมูลองค์ประกอบตัวชี้วัดพื้นที่ -->
                                 <?php } ?>
                                 <?php if ($page == 'sh44') { ?>
+                                     <?php $key = isset($_GET['key']) ? $_GET['key'] : '';  ?>
+                            <?php
+                            
+                            $result = $this->db->query("SELECT * FROM ASSESSMENT_CRITERIA_COMPOSITION_LEVEL 
+                            WHERE Id = '".$key."' 
+                            ");
+ 
+                     foreach ($result->result() as $show) {
+                     ?>
                                 <!-- start Form ข้อมูลองค์ประกอบตัวชี้วัดพื้นที่ -->
                                 <form action="<?php echo site_url(
                                         'ass_ria_com_lvl_forms_up_p4'
                                     ); ?>" method="post">
                                     <h5 class="card-title">ฟอร์มข้อมูลคำอธิบายระดับของแต่ละองค์ประกอบ</h5>
-
+<input type="hidden" name="Id" value="<?php echo $show->Id ?>">
                                     <div class="row mb-3">
                                     <div class="col">
                                             <div class="form-floating">
@@ -545,7 +738,7 @@
                                         <div class="col">
                                             <div class="form-floating">
                                                 <input type="text" class="form-control" id="floatingName"
-                                                    placeholder="ลำดับองค์ประกอบตัวชี้วัด" name="CompositionIndex">
+                                                    placeholder="ลำดับองค์ประกอบตัวชี้วัด" name="CompositionIndex" value="<?php echo $show->CompositionIndex ?>">
                                                 <label for="floatingName"><?php echo nbs(
                                                     2
                                                 ); ?> ลำดับองค์ประกอบตัวชี้วัด </label>
@@ -554,7 +747,7 @@
                                         <div class="col">
                                             <div class="form-floating">
                                                 <input type="text" class="form-control" id="floatingName"
-                                                    placeholder="ลำดับของระดับตัวชี้วัด" name="LevelIndex">
+                                                    placeholder="ลำดับของระดับตัวชี้วัด" name="LevelIndex" value="<?php echo $show->LevelIndex ?>">
                                                 <label for="floatingName"><?php echo nbs(
                                                     2
                                                 ); ?> ลำดับของระดับตัวชี้วัด </label>
@@ -565,18 +758,40 @@
                                         <div class="form-floating">
                                             <input type="text" class="form-control" id="floatingName"
                                                 placeholder="คำอธิบายระดับของแต่ละองค์ประกอบ"
-                                                name="CompositionLevelDescription">
+                                                name="CompositionLevelDescription" value="<?php echo $show->CompositionLevelDescription ?>">
                                             <label for="floatingName"><?php echo nbs(
                                                 2
                                             ); ?> คำอธิบายระดับของแต่ละองค์ประกอบ </label>
                                         </div>
                                     </div>
-                                    <div class="d-flex justify-content-center">
-                                        <button name="Submit" type="submit"
-                                            class="btn btn-primary">บันทึกข้อมูล</button>
-                                    </div>
+                                       <div class="text-center">
+  <a href="list-teacher_development_activity" class="btn btn-danger" style="float: left;">ยกเลิก</a>
+
+  <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#exampleModal" style="float: right;">แก้ไขข้อมูล</button>  
+</div> 
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">ยืนยันการแก้ไขข้อมูล</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <h6>
+          <center>คุณต้องการแก้ไขข้อมูลใช่หรือไหม ?</center>
+        </h6>
+      </div>
+      <div class="modal-footer">
+        <button type="submit" class="btn btn-warning">แก้ไขข้อมูล</button> 
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ยกเลิก</button>
+      </div>
+    </div>
+  </div>
+</div>  
                                 </form><!-- end Form ข้อมูลองค์ประกอบตัวชี้วัดพื้นที่ -->
-                                <?php } ?>
+                                <?php } }?>
                                 <?php if ($page == 'sh5') { ?>
                                 <!-- start Form ข้อมูลผลการประเมินโรงเรียน -->
                                 <form action="<?php echo site_url(
@@ -644,25 +859,56 @@
                                                 for="floatingTextarea2"><?php echo nbs(2); ?>คำอธิบายการประเมิน</label>
                                         </div>
                                     </div>
-                                    <div class="d-flex justify-content-center">
-                                        <button name="Submit" type="submit"
-                                            class="btn btn-primary">บันทึกข้อมูล</button>
-                                    </div>
+                                    <div class="text-center">
+  <a href="list-teacher_development_activity" class="btn btn-danger" style="float: left;">ยกเลิก</a>
+
+  <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" style="float: right;">บันทึกข้อมูล</button>  
+</div> 
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">ยืนยันกาบันทึก</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <h6>
+          <center>คุณต้องกาบันทึกข้อมูลใช่หรือไหม ?</center>
+        </h6>
+      </div>
+      <div class="modal-footer">
+        <button type="submit" class="btn btn-primary">ยืนยัน</button> 
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ยกเลิก</button>
+      </div>
+    </div>
+  </div>
+</div> 
                                 </form><!-- end Form ข้อมูลผลการประเมินโรงเรียน -->
                                 <?php } ?>
                                 <?php if ($page == 'sh55') { ?>
+                                     <?php $key = isset($_GET['key']) ? $_GET['key'] : '';  ?>
+                            <?php
+                            
+                            $result = $this->db->query("SELECT * FROM SCHOOL_ASSESSMENT 
+                            WHERE Id = '".$key."' 
+                            ");
+ 
+                     foreach ($result->result() as $show) {
+                     ?>
                                 <!-- start Form ข้อมูลผลการประเมินโรงเรียน -->
                                 <form action="<?php echo site_url(
                                     'sc_ass_forms_up_p5'
                                 ); ?>" method="post">
                                     <h5 class="card-title">ฟอร์มข้อมูลการประเมินผลสถานศึกษา</h5>
-
+<input type="hidden" name="Id" value="<?php echo $show->Id ?>">
                                     <div class="row mb-3">
                                         <div class="col">
                                             <div class="form-floating">
                                                 <input type="text" class="form-control" id="floatingName"
                                                     placeholder="ปีการศึกษาที่ทำกระประเมิน"
-                                                    name="SchoolAssessmentEducationYear">
+                                                    name="SchoolAssessmentEducationYear" value="<?php echo $show->SchoolAssessmentEducationYear ?>">
                                                 <label for="floatingName"><?php echo nbs(
                                                     2
                                                 ); ?> ปีการศึกษาที่ทำกระประเมิน </label>
@@ -673,7 +919,7 @@
                                             <div class="form-floating">
                                                 <input type="text" class="form-control" id="floatingName"
                                                     placeholder="ภาคเรียนที่ทำการประเมิน"
-                                                    name="SchoolAssessmentSemester">
+                                                    name="SchoolAssessmentSemester" value="<?php echo $show->SchoolAssessmentSemester ?>">
                                                 <label for="floatingName"><?php echo nbs(
                                                     2
                                                 ); ?> ภาคเรียนที่ทำการประเมิน </label>
@@ -702,7 +948,7 @@
                                     <div class="row mb-3">
                                         <div class="form-floating">
                                             <input type="text" class="form-control" id="floatingName"
-                                                placeholder="ชื่อการประเมิน" name="SchoolAssessmentName">
+                                                placeholder="ชื่อการประเมิน" name="SchoolAssessmentName" value="<?php echo $show->SchoolAssessmentName ?>">
                                             <label for="floatingName"><?php echo nbs(
                                                 2
                                             ); ?> ชื่อการประเมิน </label>
@@ -712,17 +958,39 @@
                                         <div class="form-floating">
                                             <textarea class="form-control" placeholder="Leave a comment here"
                                                 id="floatingTextarea2" style="height: 100px"
-                                                name="SchoolAssessmentDescription"></textarea>
+                                                name="SchoolAssessmentDescription"><?php echo $show->SchoolAssessmentDescription ?></textarea>
                                             <label
                                                 for="floatingTextarea2"><?php echo nbs(2); ?>คำอธิบายการประเมิน</label>
                                         </div>
                                     </div>
-                                    <div class="d-flex justify-content-center">
-                                        <button name="Submit" type="submit"
-                                            class="btn btn-primary">บันทึกข้อมูล</button>
-                                    </div>
+                                       <div class="text-center">
+  <a href="list-teacher_development_activity" class="btn btn-danger" style="float: left;">ยกเลิก</a>
+
+  <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#exampleModal" style="float: right;">แก้ไขข้อมูล</button>  
+</div> 
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">ยืนยันการแก้ไขข้อมูล</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <h6>
+          <center>คุณต้องการแก้ไขข้อมูลใช่หรือไหม ?</center>
+        </h6>
+      </div>
+      <div class="modal-footer">
+        <button type="submit" class="btn btn-warning">แก้ไขข้อมูล</button> 
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ยกเลิก</button>
+      </div>
+    </div>
+  </div>
+</div>  
                                 </form><!-- end Form ข้อมูลผลการประเมินโรงเรียน -->
-                                <?php } ?>
+                                <?php } }?>
                                 <?php if ($page == 'sh6') { ?>
                                 <!-- start Form ข้อมูลผลการประเมินตามตัวชี้วัด -->
                                 <form action="<?php echo site_url(
@@ -836,24 +1104,55 @@
                                                 name="SchoolAssessmentAttachmentURL">
                                         </div>
                                     </div>
-                                    <div class="d-flex justify-content-center">
-                                        <button name="Submit" type="submit"
-                                            class="btn btn-primary">บันทึกข้อมูล</button>
-                                    </div>
+                                   <div class="text-center">
+  <a href="list-teacher_development_activity" class="btn btn-danger" style="float: left;">ยกเลิก</a>
+
+  <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" style="float: right;">บันทึกข้อมูล</button>  
+</div> 
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">ยืนยันกาบันทึก</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <h6>
+          <center>คุณต้องกาบันทึกข้อมูลใช่หรือไหม ?</center>
+        </h6>
+      </div>
+      <div class="modal-footer">
+        <button type="submit" class="btn btn-primary">ยืนยัน</button> 
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ยกเลิก</button>
+      </div>
+    </div>
+  </div>
+</div> 
                                 </form><!-- end Form ข้อมูลผลการประเมินตามตัวชี้วัด -->
                                 <?php } ?>
                                 <?php if ($page == 'sh66') { ?>
+                                     <?php $key = isset($_GET['key']) ? $_GET['key'] : '';  ?>
+                            <?php
+                            
+                            $result = $this->db->query("SELECT * FROM SCHOOL_ASSESSMENT_CRITERIA 
+                            WHERE Id = '".$key."' 
+                            ");
+ 
+                     foreach ($result->result() as $show) {
+                     ?>
                                 <!-- start Form ข้อมูลผลการประเมินตามตัวชี้วัด -->
                                 <form action="<?php echo site_url(
                                     'sc_ass_ria_forms_up_p6'
                                 ); ?>" method="post" enctype="multipart/form-data">
                                     <h5 class="card-title">ฟอร์มข้อมูลการประเมินตามตัวชี้วัด</h5>
-
+<input type="hidden" name="Id" value="<?php echo $show->Id ?>">
                                     <div class="row mb-3">
                                         <div class="form-floating">
                                             <input type="text" class="form-control" id="floatingName"
                                                 placeholder="ปีการศึกษาที่ทำการประเมิน"
-                                                name="SchoolAssessmentEducationYear">
+                                                name="SchoolAssessmentEducationYear" value="<?php echo $show->SchoolAssessmentEducationYear ?>">
                                             <label for="floatingName"><?php echo nbs(
                                                 2
                                             ); ?>
@@ -866,7 +1165,7 @@
                                             <div class="form-floating">
                                                 <input type="text" class="form-control" id="floatingName"
                                                     placeholder="ภาคเรียนที่ทำการประเมิน"
-                                                    name="SchoolAssessmentSemester">
+                                                    name="SchoolAssessmentSemester" value="<?php echo $show->SchoolAssessmentSemester ?>">
                                                 <label for="floatingName"><?php echo nbs(
                                                     2
                                                 ); ?> ภาคเรียนที่ทำการประเมิน
@@ -916,14 +1215,14 @@
                                     <div class="row mb-3">
                                         <div class="form-floating">
                                             <input type="text" class="form-control" id="floatingName"
-                                                placeholder="ชื่อผู้ประเมิน" name="AssessmentorName">
+                                                placeholder="ชื่อผู้ประเมิน" name="AssessmentorName" value="<?php echo $show->AssessmentorName ?>">
                                             <label for="floatingName"><?php echo nbs(2); ?> ชื่อผู้ประเมิน </label>
                                         </div>
                                     </div>
                                     <div class="row mb-3">
                                         <div class="form-floating">
                                             <input type="text" class="form-control" id="floatingName"
-                                                placeholder="คะแนน" name="SchoolAssessmentScore">
+                                                placeholder="คะแนน" name="SchoolAssessmentScore" value="<?php echo $show->SchoolAssessmentScore ?>">
                                             <label for="floatingName"><?php echo nbs(2); ?> คะแนน </label>
                                         </div>
                                     </div>
@@ -950,15 +1249,37 @@
                                             <label class="input-group-text"
                                                 for="inputGroupFile01">ลิงก์เอกสารแนบรายละเอียดการประเมิน</label>
                                             <input type="file" class="form-control" id="inputGroupFile01"
-                                                name="SchoolAssessmentAttachmentURL">
+                                                name="SchoolAssessmentAttachmentURL" value="<?php echo $show->SchoolAssessmentAttachmentURL ?>">
                                         </div>
                                     </div>
-                                    <div class="d-flex justify-content-center">
-                                        <button name="Submit" type="submit"
-                                            class="btn btn-primary">บันทึกข้อมูล</button>
-                                    </div>
+                                           <div class="text-center">
+  <a href="list-teacher_development_activity" class="btn btn-danger" style="float: left;">ยกเลิก</a>
+
+  <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#exampleModal" style="float: right;">แก้ไขข้อมูล</button>  
+</div> 
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">ยืนยันการแก้ไขข้อมูล</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <h6>
+          <center>คุณต้องการแก้ไขข้อมูลใช่หรือไหม ?</center>
+        </h6>
+      </div>
+      <div class="modal-footer">
+        <button type="submit" class="btn btn-warning">แก้ไขข้อมูล</button> 
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ยกเลิก</button>
+      </div>
+    </div>
+  </div>
+</div>  
                                 </form><!-- end Form ข้อมูลผลการประเมินตามตัวชี้วัด -->
-                                <?php } ?>
+                                <?php } }?>
                                 <?php if ($page == 'sh7') { ?>
                                 <!-- start Form ข้อมูลผลการประเมินตามตัวชี้วัด -->
                                 <form action="<?php echo site_url('sc_ass_res_forms_up_p7'); ?>" method="post"
@@ -1037,22 +1358,54 @@
                                             </label>
                                         </div>
                                     </div>
-                                    <div class="d-flex justify-content-center">
-                                        <button name="Submit" type="submit"
-                                            class="btn btn-primary">บันทึกข้อมูล</button>
-                                    </div>
+                                 <div class="text-center">
+  <a href="list-teacher_development_activity" class="btn btn-danger" style="float: left;">ยกเลิก</a>
+
+  <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" style="float: right;">บันทึกข้อมูล</button>  
+</div> 
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">ยืนยันกาบันทึก</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <h6>
+          <center>คุณต้องกาบันทึกข้อมูลใช่หรือไหม ?</center>
+        </h6>
+      </div>
+      <div class="modal-footer">
+        <button type="submit" class="btn btn-primary">ยืนยัน</button> 
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ยกเลิก</button>
+      </div>
+    </div>
+  </div>
+</div> 
                                 </form><!-- end Form ข้อมูลผลการประเมินตามตัวชี้วัด -->
                                 <?php } ?>
                                 <?php if ($page == 'sh77') { ?>
+                                     <?php $key = isset($_GET['key']) ? $_GET['key'] : '';  ?>
+                            <?php
+                            
+                            $result = $this->db->query("SELECT * FROM SCHOOL_ASSESSMENT_RESULT 
+                            WHERE Id = '".$key."' 
+                            ");
+ 
+                     foreach ($result->result() as $show) {
+                     ?>
                                 <!-- start Form ข้อมูลผลการประเมินตามตัวชี้วัด -->
                                 <form action="<?php echo site_url('sc_ass_res_forms_up_p7'); ?>" method="post"
                                     enctype="multipart/form-data">
+                                    <input type="hidden" name="Id" value="<?php echo $show->Id ?>">
                                     <h5 class="card-title">ฟอร์มระดับตัวชี้วัดที่ได้ในแต่ละองค์ประกอบ</h5>
                                     <div class="row mb-3">
                                         <div class="form-floating">
                                             <input type="text" class="form-control" id="floatingName"
                                                 placeholder="ปีการศึกษาที่ทำการประเมิน"
-                                                name="SchoolAssessmentEducationYear">
+                                                name="SchoolAssessmentEducationYear" value="<?php echo $show->SchoolAssessmentEducationYear ?>">
                                             <label for="floatingName"><?php echo nbs(2); ?> ปีการศึกษาที่ทำการประเมิน
                                             </label>
                                         </div>
@@ -1060,7 +1413,7 @@
                                     <div class="row mb-3">
                                         <div class="form-floating">
                                             <input type="text" class="form-control" id="floatingName"
-                                                placeholder="ภาคเรียนที่ทำการประเมิน" name="SchoolAssessmentSemester">
+                                                placeholder="ภาคเรียนที่ทำการประเมิน" name="SchoolAssessmentSemester" value="<?php echo $show->SchoolAssessmentSemester ?>">
                                             <label for="floatingName"><?php echo nbs(2); ?> ภาคเรียนที่ทำการประเมิน
                                             </label>
                                         </div>
@@ -1107,7 +1460,7 @@
                                     <div class="row mb-3">
                                         <div class="form-floating">
                                             <input type="text" class="form-control" id="floatingName"
-                                                placeholder="ลำดับองค์ประกอบตัวชี้วัด" name="CompositionIndex">
+                                                placeholder="ลำดับองค์ประกอบตัวชี้วัด" name="CompositionIndex" value="<?php echo $show->CompositionIndex ?>">
                                             <label for="floatingName"><?php echo nbs(2); ?> ลำดับองค์ประกอบตัวชี้วัด
                                             </label>
                                         </div>
@@ -1115,17 +1468,39 @@
                                     <div class="row mb-3">
                                         <div class="form-floating">
                                             <input type="text" class="form-control" id="floatingName"
-                                                placeholder="ลำดับของระดับตัวชี้วัดที่ได้" name="LevelIndex">
+                                                placeholder="ลำดับของระดับตัวชี้วัดที่ได้" name="LevelIndex" value="<?php echo $show->LevelIndex ?>">
                                             <label for="floatingName"><?php echo nbs(2); ?> ลำดับของระดับตัวชี้วัดที่ได้
                                             </label>
                                         </div>
                                     </div>
-                                    <div class="d-flex justify-content-center">
-                                        <button name="Submit" type="submit"
-                                            class="btn btn-primary">บันทึกข้อมูล</button>
-                                    </div>
+                                        <div class="text-center">
+  <a href="list-teacher_development_activity" class="btn btn-danger" style="float: left;">ยกเลิก</a>
+
+  <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#exampleModal" style="float: right;">แก้ไขข้อมูล</button>  
+</div> 
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">ยืนยันการแก้ไขข้อมูล</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <h6>
+          <center>คุณต้องการแก้ไขข้อมูลใช่หรือไหม ?</center>
+        </h6>
+      </div>
+      <div class="modal-footer">
+        <button type="submit" class="btn btn-warning">แก้ไขข้อมูล</button> 
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ยกเลิก</button>
+      </div>
+    </div>
+  </div>
+</div>  
                                 </form><!-- end Form ข้อมูลผลการประเมินตามตัวชี้วัด -->
-                                <?php } ?>
+                                <?php } }?>
                                 <?php if ($page == 'sh8') { ?>
                                 <!-- start Form ข้อมูลผลการประเมินตามตัวชี้วัด -->
                                 <form action="<?php echo site_url('achie_ass_forms_up_p8'); ?>" method="post"
@@ -1217,22 +1592,54 @@
                                                 name="AchievementAssessmentAttachmentURL">
                                         </div>
                                     </div>
-                                    <div class="d-flex justify-content-center">
-                                        <button name="Submit" type="submit"
-                                            class="btn btn-primary">บันทึกข้อมูล</button>
-                                    </div>
+                                   <div class="text-center">
+  <a href="list-teacher_development_activity" class="btn btn-danger" style="float: left;">ยกเลิก</a>
+
+  <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" style="float: right;">บันทึกข้อมูล</button>  
+</div> 
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">ยืนยันกาบันทึก</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <h6>
+          <center>คุณต้องกาบันทึกข้อมูลใช่หรือไหม ?</center>
+        </h6>
+      </div>
+      <div class="modal-footer">
+        <button type="submit" class="btn btn-primary">ยืนยัน</button> 
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ยกเลิก</button>
+      </div>
+    </div>
+  </div>
+</div> 
                                 </form><!-- end Form ข้อมูลผลการประเมินตามตัวชี้วัด -->
                                 <?php } ?>
                                 <?php if ($page == 'sh88') { ?>
+                                     <?php $key = isset($_GET['key']) ? $_GET['key'] : '';  ?>
+                            <?php
+                            
+                            $result = $this->db->query("SELECT * FROM ACHIEVEMENT_ASSESSMENT 
+                            WHERE Id = '".$key."' 
+                            ");
+ 
+                     foreach ($result->result() as $show) {
+                     ?>
                                 <!-- start Form ข้อมูลผลการประเมินตามตัวชี้วัด -->
                                 <form action="<?php echo site_url('achie_ass_forms_up_p8'); ?>" method="post"
                                     enctype="multipart/form-data">
                                     <h5 class="card-title">ฟอร์มข้อมูลการประเมินสถานศึกษา</h5>
+                                    <input type="hidden" name="Id" value="<?php echo $show->Id ?>">
                                     <div class="row mb-3">
                                         <div class="form-floating">
                                             <input type="text" class="form-control" id="floatingName"
                                                 placeholder="ปีการศึกษาที่ทำการประเมิน"
-                                                name="AchievementAssessmentYear">
+                                                name="AchievementAssessmentYear" value="<?php echo $show->AchievementAssessmentYear ?>">
                                             <label for="floatingName"><?php echo nbs(2); ?> ปีการศึกษาที่ทำการประเมิน
                                             </label>
                                         </div>
@@ -1261,7 +1668,7 @@
                                         <div class="col">
                                             <div class="form-floating">
                                                 <input type="text" class="form-control" id="floatingName"
-                                                    placeholder="ชื่อการประเมิน" name="SchoolAssessmentName">
+                                                    placeholder="ชื่อการประเมิน" name="SchoolAssessmentName" value="<?php echo $show->SchoolAssessmentName ?>">
                                                 <label for="floatingName"><?php echo nbs(
                                                     2
                                                 ); ?> ชื่อการประเมิน </label>
@@ -1271,7 +1678,7 @@
                                     <div class="row mb-3">
                                         <div class="form-floating">
                                             <input type="text" class="form-control" id="floatingName"
-                                                placeholder="คำอธิบายการประเมิน" name="SchoolAssessmentDescription">
+                                                placeholder="คำอธิบายการประเมิน" name="SchoolAssessmentDescription" value="<?php echo $show->SchoolAssessmentDescription ?>">
                                             <label for="floatingName"><?php echo nbs(
                                                 2
                                             ); ?> คำอธิบายการประเมิน </label>
@@ -1280,19 +1687,20 @@
                                     <div class="row mb-3">
                                         <div class="form-floating">
                                             <input type="text" class="form-control" id="floatingName"
-                                                placeholder="ชื่อผู้ประเมิน" name="AssessmentorName">
+                                                placeholder="ชื่อผู้ประเมิน" name="AssessmentorName" value="<?php echo $show->AssessmentorName ?>">
                                             <label for="floatingName"><?php echo nbs(
                                                 2
                                             ); ?> ชื่อผู้ประเมิน </label>
                                         </div>
                                     </div>
+                                        <?php if($show->CriteriaID =='0'){ ?>
                                     <fieldset class="row mb-3">
                                         <legend class="col-form-label col-sm-2 pt-0">ผลการประเมินผลสัมฤทธิ์การศึกษา
                                         </legend>
                                         <div class="col-sm-10">
                                             <div class="form-check">
                                                 <input class="form-check-input" type="radio"
-                                                    name="AchievementAssessmentPassingFlag" id="gridRadios1" value="0">
+                                                    name="AchievementAssessmentPassingFlag" id="gridRadios1" value="0" checked>
                                                 <label class="form-check-label" for="gridRadios1">
                                                     ไม่ผ่าน
                                                 </label>
@@ -1306,6 +1714,30 @@
                                             </div>
                                         </div>
                                     </fieldset>
+                                    <?php }else{
+                                        ?>
+                                         <fieldset class="row mb-3">
+                                        <legend class="col-form-label col-sm-2 pt-0">ผลการประเมินผลสัมฤทธิ์การศึกษา
+                                        </legend>
+                                        <div class="col-sm-10">
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio"
+                                                    name="AchievementAssessmentPassingFlag" id="gridRadios1" value="0" >
+                                                <label class="form-check-label" for="gridRadios1">
+                                                    ไม่ผ่าน
+                                                </label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio"
+                                                    name="AchievementAssessmentPassingFlag" id="gridRadios2" value="1"checked>
+                                                <label class="form-check-label" for="gridRadios2">
+                                                    ผ่าน
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </fieldset>
+                                        <?php
+                                    } ?>
                                     <div class="row mb-3">
                                         <div class="input-group mb-3">
                                             <label class="input-group-text"
@@ -1314,12 +1746,34 @@
                                                 name="AchievementAssessmentAttachmentURL">
                                         </div>
                                     </div>
-                                    <div class="d-flex justify-content-center">
-                                        <button name="Submit" type="submit"
-                                            class="btn btn-primary">บันทึกข้อมูล</button>
-                                    </div>
+                                 <div class="text-center">
+  <a href="list-teacher_development_activity" class="btn btn-danger" style="float: left;">ยกเลิก</a>
+
+  <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#exampleModal" style="float: right;">แก้ไขข้อมูล</button>  
+</div> 
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">ยืนยันการแก้ไขข้อมูล</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <h6>
+          <center>คุณต้องการแก้ไขข้อมูลใช่หรือไหม ?</center>
+        </h6>
+      </div>
+      <div class="modal-footer">
+        <button type="submit" class="btn btn-warning">แก้ไขข้อมูล</button> 
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ยกเลิก</button>
+      </div>
+    </div>
+  </div>
+</div>  
                                 </form><!-- end Form ข้อมูลผลการประเมินตามตัวชี้วัด -->
-                                <?php } ?>
+                                <?php } }?>
                             </div>
                         </div>
 

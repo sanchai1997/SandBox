@@ -31,13 +31,13 @@ if (isset( $_SESSION['success'])) { ?>
                 <?php
                         break;
                 }  ?>
-        <nav>
+        <!-- <nav>
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="index.html">Home</a></li>
                 <li class="breadcrumb-item">Form</li>
                 <li class="breadcrumb-item active">นวัตกรรมการศึกษา</li>
             </ol>
-        </nav>
+        </nav> -->
     </div><!-- End Page Title -->
 
     <section class="section">
@@ -54,7 +54,7 @@ if (isset( $_SESSION['success'])) { ?>
                             <div class="row mb-3">
                                 <div class="form-floating">
                                     <input type="text" class="form-control" id="floatingName"
-                                        placeholder="รหัสนวัตกรรมการศึกษา" name="InnovationID" required max="16">
+                                        placeholder="รหัสนวัตกรรมการศึกษา" name="InnovationID"  required aria-label="รหัสนวัตกรรมการศึกษา">
                                     <label for="floatingName"><?php echo nbs(2); ?> รหัสนวัตกรรมการศึกษา </label>
                                 </div>
                             </div>
@@ -70,7 +70,7 @@ if (isset( $_SESSION['success'])) { ?>
                                 <div class="col">
                                     <div class="form-floating">
                                         <input type="number" class="form-control" id="floatingName" placeholder="ภาคเรียน"
-                                            name="Semester"  required max="1">
+                                            name="Semester"  required max="2">
                                         <label for="floatingName"><?php echo nbs(2); ?> ภาคเรียน </label>
                                     </div>
                                 </div>
@@ -138,7 +138,7 @@ if (isset( $_SESSION['success'])) { ?>
                             <div class="row mb-3">
                                 <div class="input-group mb-3">
                                     <label class="input-group-text" for="inputGroupFile01">เอกสารแนบ</label>
-                                    <input type="file" class="form-control" id="inputGroupFile01" name="AttachmentURL" required >
+                                    <input type="file" class="form-control" id="inputGroupFile01" name="AttachmentURL">
                                 </div>
                             </div>
 
@@ -168,10 +168,32 @@ if (isset( $_SESSION['success'])) { ?>
                                 </div>
 
                             </div>
-                            <div class="d-flex justify-content-center">
-                                                        <button name="Submit" type="submit"
-                                                            class="btn btn-primary">บันทึกข้อมูล</button>
-                                                    </div>
+                           <div class="text-center">
+  <a href="list-teacher_development_activity" class="btn btn-danger" style="float: left;">ยกเลิก</a>
+
+  <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" style="float: right;">บันทึกข้อมูล</button>  
+</div> 
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">ยืนยันกาบันทึก</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <h6>
+          <center>คุณต้องกาบันทึกข้อมูลใช่หรือไหม ?</center>
+        </h6>
+      </div>
+      <div class="modal-footer">
+        <button type="submit" class="btn btn-primary">ยืนยัน</button> 
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ยกเลิก</button>
+      </div>
+    </div>
+  </div>
+</div> 
                         </form><!-- End Form ข้อมูลนวัตกรรมการศึกษา -->
                         <?php } ?>
                         <?php  if ($page=='sh11') {  ?>
@@ -275,7 +297,7 @@ if (isset( $_SESSION['success'])) { ?>
                             <div class="row mb-3">
                                 <div class="input-group mb-3">
                                     <label class="input-group-text" for="inputGroupFile01">เอกสารแนบ</label>
-                                    <input type="file" class="form-control" id="inputGroupFile01" name="AttachmentURL" required >
+                                    <input type="file" class="form-control" id="inputGroupFile01" name="AttachmentURL"  >
                                 </div>
                             </div>
 
@@ -305,10 +327,32 @@ if (isset( $_SESSION['success'])) { ?>
                                 </div>
 
                             </div>
-                            <div class="d-flex justify-content-center">
-                                                        <button name="Submit" type="submit"
-                                                            class="btn btn-primary">บันทึกข้อมูล</button>
-                                                    </div>
+                              <div class="text-center">
+  <a href="list-teacher_development_activity" class="btn btn-danger" style="float: left;">ยกเลิก</a>
+
+  <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#exampleModal" style="float: right;">แก้ไขข้อมูล</button>  
+</div> 
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">ยืนยันการแก้ไขข้อมูล</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <h6>
+          <center>คุณต้องการแก้ไขข้อมูลใช่หรือไหม ?</center>
+        </h6>
+      </div>
+      <div class="modal-footer">
+        <button type="submit" class="btn btn-warning">แก้ไขข้อมูล</button> 
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ยกเลิก</button>
+      </div>
+    </div>
+  </div>
+</div>  
                         </form><!-- End Form ข้อมูลนวัตกรรมการศึกษา -->
                         <?php } 
                         }?>
@@ -354,8 +398,8 @@ if (isset( $_SESSION['success'])) { ?>
                                <div class="col">
                                     <div class="form-floating">
                                         <select class="form-select" id="floatingSelect"
-                                            aria-label="Floating label select example" name="CreatorPrefixCode" required>
-                                            <option selected>เลือก</option>
+                                            aria-label="Floating label select example" name="CreatorPrefixCode" required >
+                                            <option selected  >เลือก</option>
                                             <?php
                                             $result = $this->db->query('SELECT * FROM CLS_PREFIX');
                                             foreach ($result->result() as $cls) {
@@ -426,11 +470,32 @@ if (isset( $_SESSION['success'])) { ?>
                                     <label for="floatingName"><?php echo nbs(2); ?>สัดส่วนการมีส่วนร่วม </label>
                                 </div>
                             </div>
+ <div class="text-center">
+  <a href="list-teacher_development_activity" class="btn btn-danger" style="float: left;">ยกเลิก</a>
 
-                            <div class="d-flex justify-content-center">
-                                                        <button name="Submit" type="submit"
-                                                            class="btn btn-primary">บันทึกข้อมูล</button>
-                                                    </div>
+  <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" style="float: right;">บันทึกข้อมูล</button>  
+</div> 
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">ยืนยันกาบันทึก</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <h6>
+          <center>คุณต้องกาบันทึกข้อมูลใช่หรือไหม ?</center>
+        </h6>
+      </div>
+      <div class="modal-footer">
+        <button type="submit" class="btn btn-primary">ยืนยัน</button> 
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ยกเลิก</button>
+      </div>
+    </div>
+  </div>
+</div> 
                         </form><!-- End Form ข้อมูลนวัตกรรมการศึกษา -->
                         <?php } ?>
                         <?php  if ($page=='sh22') {  ?>
@@ -446,7 +511,7 @@ if (isset( $_SESSION['success'])) { ?>
                         <h5 class="card-title">ข้อมูลผู้จัดทำนวัตกรรมการศึกษา</h5>
                         <!-- start Form ข้อมูลนวัตกรรมการศึกษา -->
                         <form action="<?php echo site_url('edit_p2'); ?>" method="post">
-
+<input type="hidden" name="Id" value="<?php echo $show->Id ?>">
                             <div class="row mb-3">
                                 <div class="form-floating">
                                     <input type="text" class="form-control" id="floatingName"
@@ -557,10 +622,32 @@ if (isset( $_SESSION['success'])) { ?>
                                 </div>
                             </div>
 
-                            <div class="d-flex justify-content-center">
-                                                        <button name="Submit" type="submit"
-                                                            class="btn btn-primary">บันทึกข้อมูล</button>
-                                                    </div>
+                               <div class="text-center">
+  <a href="list-teacher_development_activity" class="btn btn-danger" style="float: left;">ยกเลิก</a>
+
+  <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#exampleModal" style="float: right;">แก้ไขข้อมูล</button>  
+</div> 
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">ยืนยันการแก้ไขข้อมูล</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <h6>
+          <center>คุณต้องการแก้ไขข้อมูลใช่หรือไหม ?</center>
+        </h6>
+      </div>
+      <div class="modal-footer">
+        <button type="submit" class="btn btn-warning">แก้ไขข้อมูล</button> 
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ยกเลิก</button>
+      </div>
+    </div>
+  </div>
+</div>  
                         </form><!-- End Form ข้อมูลนวัตกรรมการศึกษา -->
                         <?php } 
                         }?>

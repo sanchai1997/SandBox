@@ -35,22 +35,22 @@
                 }  ?>
 
             <div class="col-3">
-
+<!-- 
                 <nav>
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="main">Home</a></li>
                         <li class="breadcrumb-item">Form</li>
                         <li class="breadcrumb-item active">ข้อมูลนวัตกรรมการศึกษา</li>
                     </ol>
-                </nav>
+                </nav> -->
             </div>
             <div class="col-lg-9" style="padding-right: 25px;">
                 <a href="<?php echo site_url('Fm_innovation_das_p1?page=sh1') ?>" style="float: right;"
                     class="btn btn-sm btn-light" data-mdb-ripple-color="dark">นวัตกรรมการศึกษา</a>
-                <h5 style="float: right;"> | </h5>
+                <!-- <h5 style="float: right;"> | </h5>
                 <a href="<?php echo site_url('Fm_innovation_das_p2?page=sh2') ?>" style="float: right;"
                     class="btn btn-sm btn-light" data-mdb-ripple-color="dark">ผู้จัดทำนวัตกรรมการศึกษา
-                </a>
+                </a> -->
 
 
             </div>
@@ -68,12 +68,12 @@
             <div class="card-body">
                 <div class="row">
                     <div class="col">
-                        <h5 class="card-title">รายละเอียดข้อมูล <span>| นวัตกรรมการศึกษา</span></h5>
+                        <h5 class="card-title">รายละเอียดข้อมูล </h5>
                     </div>
                     <div class="col">
                         <h5 style="float: right; padding: 15px;" class="card-title"><a
                                 href="<?php echo site_url('forms_p1?page=sh1') ?>"
-                                class="btn btn-success">เพิ่มข้อมูลนวัตกรรมการศึกษา
+                                class="btn btn-success">เพิ่มข้อมูล
                             </a></h5>
                     </div>
                 </div>
@@ -159,12 +159,12 @@
                         <div class="card-body">
                             <div class="row">
                                 <div class="col">
-                                    <h5 class="card-title">รายละเอียดข้อมูล <span>| นวัตกรรมการศึกษา</span></h5>
+                                    <h5 class="card-title">รายละเอียดข้อมูล </h5>
                                 </div>
                                 <div class="col">
                                     <h5 style="float: right; padding: 15px;" class="card-title"><a
                                             href="<?php echo site_url('forms_p2?page=sh2') ?>"
-                                            class="btn btn-success">เพิ่มข้อมูลผู้จัดทำนวัตกรรมการศึกษา
+                                            class="btn btn-success">เพิ่มข้อมูล
                                         </a></h5>
                                 </div>
                             </div>
@@ -175,7 +175,7 @@
 
                                     <tr>
                                         <th style="text-align: center;" scope="col">หมายเลขบัตรประจำตัวผู้จัดทำ</th>
-                                        <th style="text-align: center;" scope="col">รหัสประเภทบัตรประจำตัวผู้จัดทำ</th>
+                                        <th style="text-align: center;" scope="col">ประเภทบัตรประจำตัวผู้จัดทำ</th>
                                         <th style="text-align: center;" scope="col"> ชื่อผู้จัดทำ</th>
                                         <th style="text-align: center;" scope="col">ดูรายละเอียด</th>
 
@@ -185,16 +185,17 @@
                                 </thead>
                                 <tbody>
                                     <?php  $key = isset($_GET['key']) ? $_GET['key'] : '';  ?>
-                                    <?php 
-                                $result = $this->db->query("SELECT * FROM INNOVATION_CREATOR 
-                                
-                                WHERE InnovationID='" . $key . "' AND DeleteStatus = '0'");
-                                foreach ($result->result() as $show) {  ?>
+                                    <?php $result = $this->db->query("SELECT * FROM INNOVATION_CREATOR 
+JOIN CLS_PERSONAL_ID_TYPE ON INNOVATION_CREATOR.CreatorPersonalIDTypeCode = CLS_PERSONAL_ID_TYPE.PERSONAL_ID_TYPE_CODE 
+JOIN CLS_PREFIX ON INNOVATION_CREATOR.CreatorPrefixCode = CLS_PREFIX.PREFIX_CODE  
+WHERE InnovationID='" . $key . "' AND DeleteStatus = '0'");
+foreach ($result->result() as $show) {  ?> 
+                                  
                                     <tr>
                                         <th scope="row " style="text-align: center;">
                                             <?php echo $show->CreatorPersonalID; ?></th>
                                         <th scope="row " style="text-align: center;">
-                                            <?php echo $show->CreatorPersonalIDTypeCode; ?></th>
+                                            <?php echo $show->PERSONAL_ID_TYPE_NAME; ?></th>
                                         <th scope="row " style="text-align: center;">
                                             <?php echo $show->CreatorNameThai; ?><?php echo nbs(2); ?><?php echo $show->CreatorLastNameThai; ?>
                                         </th>
@@ -251,13 +252,13 @@
                                     <div class="card-body">
                                         <div class="row">
                                             <div class="col">
-                                                <h5 class="card-title">รายละเอียดข้อมูล <span>| นวัตกรรมการศึกษา</span>
+                                                <h5 class="card-title">รายละเอียดข้อมูล 
                                                 </h5>
                                             </div>
                                             <div class="col">
                                                 <h5 style="float: right; padding: 15px;" class="card-title"><a
                                                         href="<?php echo site_url('forms_p2?page=sh2') ?>"
-                                                        class="btn btn-success">เพิ่มข้อมูลผู้จัดทำนวัตกรรมการศึกษา
+                                                        class="btn btn-success">เพิ่มข้อมูล
                                                     </a></h5>
                                             </div>
                                         </div>
@@ -376,6 +377,18 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
+                      <?php
+                            $Id= $show->Id;
+                            $results = $this->db->query("SELECT * FROM INNOVATION 
+                            INNER JOIN CLS_INNOVATION_TYPE 
+                            ON INNOVATION.InnovationTypeCode = CLS_INNOVATION_TYPE.INNOVATION_TYPE_CODE 
+                            INNER JOIN CLS_EDUCATION_LEVEL 
+                            ON INNOVATION.TargetEducationLevelCode = CLS_EDUCATION_LEVEL.EDUCATION_LEVEL_CODE 
+                            WHERE Id = $Id
+                            ");
+
+foreach ($results->result() as $shows) {
+                     ?> 
                 <div class="row">
                     <div class="col">
                         <h5 class="fw-bold">รหัสนวัตกรรมการศึกษา</h5>
@@ -386,10 +399,12 @@
                         <p><?php echo $show->Semester; ?></p>
                         <h5 class="fw-bold">ชื่อนวัตกรรม</h5>
                         <p><?php echo $show->InnovationName; ?></p>
-                        <h5 class="fw-bold">รหัสประเภทนวัตกรรม</h5>
-                        <p><?php echo $show->InnovationTypeCode; ?></p>
-                        <h5 class="fw-bold">รหัสระดับการศึกษาที่นำไปใช้</h5>
-                        <p><?php echo $show->TargetEducationLevelCode; ?></p>
+
+                        <h5 class="fw-bold">ประเภทนวัตกรรม</h5>
+                        <p><?php echo $shows->INNOVATION_TYPE_NAME; ?></p>
+                        
+                        <h5 class="fw-bold">ระดับการศึกษาที่นำไปใช้</h5>
+                        <p><?php echo $shows->EDUCATION_LEVEL_NAME; ?></p>
                     </div>
 
 
@@ -409,6 +424,7 @@
                         <p><?php echo $show->SearchKeyword; ?></p>
                     </div>
                 </div>
+                <?php } ?>
             </div>
             <div class="modal-footer">
             <a href="<?php echo site_url('forms_p1?page=sh11') ?>&&key=<?php echo $show->Id; ?>"class="btn btn-warning"> <i class="bi bi-pencil-square"></i></a>
@@ -448,7 +464,7 @@ foreach ($result->result() as $show) {  ?>
                         <p><?php echo $show->InnovationID; ?></p>
                         <h5 class="fw-bold">หมายเลขบัตรประจำตัวผู้จัดทำ</h5>
                         <p><?php echo $show->CreatorPersonalID; ?></p>
-                        <h5 class="fw-bold">รหัสประเภทบัตรประจำตัวผู้จัดทำ</h5>
+                        <h5 class="fw-bold">ประเภทบัตรประจำตัวผู้จัดทำ</h5>
                         <p><?php echo $show->PERSONAL_ID_TYPE_NAME; ?></p>
                         <h5 class="fw-bold">สัดส่วนการมีส่วนร่วม</h5>
                         <p><?php echo $show->ParticipantRatio; ?></p>
@@ -489,10 +505,11 @@ foreach ($result->result() as $show) {  ?>
 
 
     <?php 
-        $re_ic1 = $this->db->query("SELECT * FROM INNOVATION_CREATOR ");
-        foreach ($re_ic1->result() as $show) {
-        # code...
-    ?>
+$result = $this->db->query("SELECT * FROM INNOVATION_CREATOR 
+JOIN CLS_PERSONAL_ID_TYPE ON INNOVATION_CREATOR.CreatorPersonalIDTypeCode = CLS_PERSONAL_ID_TYPE.PERSONAL_ID_TYPE_CODE 
+JOIN CLS_PREFIX ON INNOVATION_CREATOR.CreatorPrefixCode = CLS_PREFIX.PREFIX_CODE  
+WHERE Id='" . $show->Id . "'");
+foreach ($result->result() as $show) {  ?>
 <div class="modal fade" id="dastwo<?php echo $show->Id; ?>" tabindex="-1" aria-labelledby="exampleModalLabel"
     aria-hidden="true">
     <div class="modal-dialog modal-lg">
@@ -504,18 +521,18 @@ foreach ($result->result() as $show) {  ?>
             <div class="modal-body">
                 <div class="row">
                     <div class="col">
-                        <h5 class="fw-bold">รหัสนวัตกรรมการศึกษา</h5>
+                    <h5 class="fw-bold">รหัสนวัตกรรมการศึกษา</h5>
                         <p><?php echo $show->InnovationID; ?></p>
                         <h5 class="fw-bold">หมายเลขบัตรประจำตัวผู้จัดทำ</h5>
                         <p><?php echo $show->CreatorPersonalID; ?></p>
                         <h5 class="fw-bold">รหัสประเภทบัตรประจำตัวผู้จัดทำ</h5>
-                        <p><?php echo $show->CreatorPersonalIDTypeCode; ?></p>
+                        <p><?php echo $show->PERSONAL_ID_TYPE_NAME; ?></p>
                         <h5 class="fw-bold">สัดส่วนการมีส่วนร่วม</h5>
                         <p><?php echo $show->ParticipantRatio; ?></p>
                     </div>
                     <div class="col">
-                        <h5 class="fw-bold">รหัสคำนำหน้าชื่อผู้จัดทำ</h5>
-                        <p><?php echo $show->CreatorPrefixCode; ?></p>
+                    <h5 class="fw-bold">รหัสคำนำหน้าชื่อผู้จัดทำ</h5>
+                        <p><?php echo $show->PREFIX_NAME; ?></p>
                         <h5 class="fw-bold"> ชื่อผู้จัดทำ (ภาษาไทย)</h5>
                         <p><?php echo $show->CreatorNameThai; ?></p>
                         <h5 class="fw-bold">ชื่อผู้จัดทำ (ภาษาอังกฤษ)</h5>
