@@ -3,7 +3,7 @@
     <div class="pagetitle">
         <div class="row">
             <div class="col-6">
-                <h1>ข้อมูลหลักสูตร / หลักสูตรของพื้นที่นวัตกรรม</h1>
+                <h1>ข้อมูลงบประมาณ</h1>
                 
             </div>
 
@@ -37,22 +37,21 @@
 
                 <div class="row">
                     <div class="col">
-                        <h5 class="card-title">รายละเอียดข้อมูล <span>| Table Curriculum</span></h5>
+                        <h5 class="card-title">รายละเอียดข้อมูล</span></h5>
                     </div>
                     <div class="col">
-                        <h5 style="float: right; padding: 15px;" class="card-title"><a href="forms-budget" class="btn btn-success">เพิ่มข้อมูลหลักสูตร</a></h5>
+                        <h5 style="float: right; padding: 15px;" class="card-title"><a href="forms-budget" class="btn btn-success">เพิ่มข้อมูล</a></h5>
                     </div>
                 </div>
                 <table class="table table-borderless datatable">
                     <thead>
                         <tr>
-                            <th style="text-align: center;" scope="col">สถานศึกษา</th>
-                            <th style="text-align: center;" scope="col">ปีการศึกษา</th>
-                            <th style="text-align: center;" scope="col">ภาคเรียน</th>
-                            <th style="text-align: center;" scope="col">ชื่อหลักสูตร</th>
-                            <th style="text-align: center;" scope="col">รายวิชา</th>
-                            <th style="text-align: center;" scope="col">ปฎิบัติ</th>
-                            
+                            <th style="text-align: center;" scope="col"></th>
+                            <th style="text-align: center;" scope="col"></th>
+                            <th style="text-align: center;" scope="col"></th>
+                            <th style="text-align: center;" scope="col"></th>
+                            <th style="text-align: center;" scope="col"></th>
+                            <th style="text-align: center;" scope="col"></th>
                             
                         </tr>
                     </thead>

@@ -81,8 +81,9 @@
                   </div>
                 </div>
 
-                <div class="text-center">
-                  <button type="button" class="btn btn-primary" onclick="return check(BUDGET)">ยืนยัน</button>
+                <div class="d-flex justify-content-between">
+                  <a href="list-budget" class="btn btn-danger" >ยกเลิก</a>
+                  <button type="button" class="btn btn-primary" onclick="return check(BUDGET)">บันทึกข้อมูล</button>
                 </div> 
             <!-- Modal -->
             <div class="modal fade" id="Modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
