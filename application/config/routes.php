@@ -98,8 +98,20 @@ $route['delete-teacher/(:any)'] = 'forms_teacher/delete_teacher/$1';
 //GRADUATED 
 $route['graduated'] = 'graduated';
 $route['graduated-P2'] = 'graduated/P2';
-$route['forms-graduated'] = 'forms_graduated';                                                                                                                                                                                  
+$route['forms-graduated'] = 'forms_graduated';
+$route['add-graduated']['post'] = 'forms_graduated/add_graduated';
+$route['edit-forms-graduated'] = 'forms_graduated/edit_graduated';
+$route['update-graduated/(:any)/(:any)/(:any)/(:any)'] = 'forms_graduated/update_graduated/$1/$2/$3/$4';
+$route['delete-graduated/(:any)/(:any)/(:any)/(:any)'] = 'forms_graduated/delete_graduated/$1/$2/$3/$4';
 ///////////////////// GRADUATED - END /////////////////////////
+
+////////////////////// ROUTE Transcript ////////////////////////
+//Transcript
+$route['transcript'] = 'transcript';
+$route['transcript-P2'] = 'transcript/P2';
+$route['transcript-P3'] = 'transcript/P3';
+$route['forms-transcript'] = 'forms_transcript';
+///////////////////// Transcript - END /////////////////////////
 
 ////////////////////// ROUTE PERSONNEL ////////////////////////
 //PERSONNEL

@@ -9,13 +9,6 @@ foreach ($result->result() as $CLASSROOM) {
 
         <div class="pagetitle">
             <h1>แก้ไขข้อมูลห้องเรียน - <?= $CLASSROOM->SchoolNameThai; ?></h1>
-            <nav>
-                <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="main">Home</a></li>
-                    <li class="breadcrumb-item">Form</li>
-                    <li class="breadcrumb-item active">Edit ClassRoom</li>
-                </ol>
-            </nav>
         </div><!-- End Page Title -->
 
         <section class="section">

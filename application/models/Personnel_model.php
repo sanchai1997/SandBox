@@ -278,9 +278,6 @@ class Personnel_model extends CI_Model
         return $result;
     }
 
-
-
-
     //ADD Data academic
     public function add_academic()
     {

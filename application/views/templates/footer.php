@@ -33,7 +33,30 @@
 
 <!-- Multiple Dropdown PROVINCE DISTRICT SUBDISTRICT -->
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script>
+  $(document).ready(function() {
+    $("#DISTRICT").children('option:gt(0)').hide();
+    $("#SUBDISTRICT").children('option:gt(0)').hide();
 
+    $("#PROVINCE").change(function() {
+      $("#DISTRICT").children('option').hide();
+      $("#DISTRICT").children("option[ id^=" + $(this).val() + "]").show()
+    })
+
+    $("#DISTRICT").change(function() {
+      $("#SUBDISTRICT").children('option').hide();
+      $("#SUBDISTRICT").children("option[ id^=" + $(this).val() + "]").show()
+    })
+    /////////////////////////////////////////////////////////////////////////////////////////////
+    $("#Student").children('option:gt(0)').hide();
+    $("#School").change(function() {
+      $("#Student").children('option').hide();
+      $("#Student").children("option[ id^=" + $(this).val() + "]").show()
+    })
+    /////////////////////////////////////////////////////////////////////////////////////////////
+
+  })
+</script>
 </body>
 
 </html>

@@ -10,13 +10,6 @@
                     <h1>การช่วยราชการ - <?= $PERSONNEL->PersonnelNameThai; ?> <?= $PERSONNEL->PersonnelLastNameThai; ?>
                     <?php } ?>
                     </h1>
-                    <nav>
-                        <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="main">Home</a></li>
-                            <li class="breadcrumb-item">Dashboard</li>
-                            <li class="breadcrumb-item active">Table Assistance</li>
-                        </ol>
-                    </nav>
             </div>
             <div class="col-6" style="padding-right: 25px;">
                 <a href="personnel-assistance?PersonnelID=<?= $_GET['PersonnelID']; ?>" style="float: right;" class="btn btn-sm btn-outline-secondary" data-mdb-ripple-color="dark">การช่วยราชการ</a>
@@ -56,7 +49,7 @@
                         <h5 class="card-title">รายละเอียดข้อมูล <span style="padding-right:10px">| Table Assistance</span> <a href="personnel" class="btn btn-secondary btn-sm" data-mdb-ripple-color="dark">ย้อนกลับ</a></h5>
                     </div>
                     <div class="col">
-                        <h5 style="float: right; padding: 15px;" class="card-title"><a href="forms-personnel-assistance?PersonnelID=<?= $_GET['PersonnelID']; ?>" class="btn btn-success ">เพิ่มข้อมูลการช่วยราชการ</a></h5>
+                        <h5 style="float: right; padding: 15px;" class="card-title"><a href="forms-personnel-assistance?PersonnelID=<?= $_GET['PersonnelID']; ?>" class="btn btn-success ">เพิ่มข้อมูล</a></h5>
                     </div>
                 </div>
                 <table class="table table-borderless datatable">

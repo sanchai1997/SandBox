@@ -10,13 +10,6 @@ foreach ($result->result() as $AWARD) {
     <main id="main" class="main">
         <div class="pagetitle">
             <h1>แก้ไขข้อมูลรางวัลสถานศึกษา</h1>
-            <nav>
-                <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="main">Home</a></li>
-                    <li class="breadcrumb-item">Form</li>
-                    <li class="breadcrumb-item active">Edit Award</li>
-                </ol>
-            </nav>
         </div><!-- End Page Title -->
 
         <section class="section">
