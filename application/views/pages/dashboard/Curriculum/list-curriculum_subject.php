@@ -35,9 +35,7 @@
 
 
                 <div class="row">
-                    <div class="col">
-                        <h5 class="card-title">รายละเอียดข้อมูล</h5>
-                    </div>
+                    
                     <div class="col">
                         <h5 style="float: right; padding: 15px;" class="card-title"><a href="forms-curriculum_subject?cid=<?php echo $CurriculumID; ?>" class="btn btn-success">เพิ่มข้อมูล</a></h5>
                     </div>

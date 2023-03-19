@@ -21,13 +21,25 @@ class Budget_model extends CI_Model
         return $result_budget;
     }
 
-    public function insert_curriculum($curriculum) {    
+    public function get_Budget_All() {
+        $this->db->select('b.*, s.SchoolNameThai, ')
+        ->from('budget b')
+        ->join('SCHOOL s', 's.SchoolID   = b.BudgetSchoolID   ', 'LEFT') 
+        ;
        
-        $result_curriculum = $this->db->insert('CURRICULUM', $curriculum);
-        return $result_curriculum;
-
+        $query = $this->db->get();
+        
+        return $query->result();
+    }
+    
+    public function get_Budget( $BudgetID) {
+        $this->db->from('budget')
+        ->where('BudgetID ', $BudgetID );
+        
+        $query = $this->db->get();
+    
+        return $query->result();
     }
 }
-
 ?>
 

@@ -109,6 +109,7 @@ class CurriculumController extends CI_Controller{
 
         $data['title'] = 'Curriculum'; // Capitalize the first letter
         $data['listCurriculum'] = $this->Curriculum_model->get_Curriculum_All();
+        $data['listSchool'] = $this->School_model->get_school_All();
 
 
         $this->load->view('templates/header', $data);

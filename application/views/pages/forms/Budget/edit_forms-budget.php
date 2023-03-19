@@ -1,7 +1,7 @@
 <main id="main" class="main">
-
+<?php foreach($Budget as $b) { ?>
     <div class="pagetitle">
-      <h1>ข้อมูลงบประมาณ</h1>
+      <h1>แก้ไขข้อมูลงบประมาณ</h1>
     </div><!-- End Page Title -->
 
     <section class="section">
@@ -17,8 +17,8 @@
               
               <div class="col-md-16">
                   <div class="form-floating">
-                    <input type="text" class="form-control"name="BudgetEducationYear"id="BudgetEducationYear" placeholder="ปีการศึกษา" maxlength="4">
-                    <label >ปีการศึกษาที่ได้รับเงินอุดหนุนทั่วไปเพื่อพัฒนานวัตกรรมการศึกษา</label>
+                    <input type="text" class="form-control"name="BudgetEducationYear"id="BudgetEducationYear" placeholder="ปีการศึกษา" maxlength="4" value="<?php echo $b->BudgetEducationYear; ?>">
+                    <label >ปีการศึกษาที่ได้รับเงินอุดหนุนทั่วไปเพื่อพัฒนานวัตกรรมการศึกษา </label>
                   </div>
                 </div>
 
@@ -36,7 +36,7 @@
 
                 <div class="col-md-16">
                   <div class="form-floating">
-                    <input type="text" class="form-control"name="BudgetYear"id="BudgetYear" placeholder="ปีงบการศึกษา" maxlength="4">
+                    <input type="text" class="form-control"name="BudgetYear"id="BudgetYear" placeholder="ปีงบการศึกษา" maxlength="4" value="<?php echo $b->BudgetYear;?>">
                     <label >ปีงบประมาณ</label>
                   </div>
                 </div>
@@ -45,9 +45,6 @@
                   <div class="form-floating">
                   <select class="form-select" aria-label="Default select example" name="ExpenseTypeCode" id="ExpenseTypeCode">
                       <option selected value="-1">ประเภทงบประมาณ</option>
-                      <?php foreach($listBudget_type as $lb_t) { ?>
-                        <option value="<?php echo $lb_t->BUDGET_TYPE_NAME; ?>"><?php echo $lb_t->BUDGET_TYPE_NAME; ?></option>
-                      <?php } ?>
                     </select>
                     <label>ประเภทงบประมาณ</label>
                   </div>
@@ -57,9 +54,7 @@
                   <div class="form-floating">
                   <select class="form-select" aria-label="Default select example" name="BudgetSchoolID" id="BudgetSchoolID">
                       <option selected value="-1">เลือกสถานศึกษา</option>
-                      <?php foreach($listSchool as $ls) { ?>
-                        <option value="<?php echo $ls->SchoolID; ?>"><?php echo $ls->SchoolNameThai; ?></option>
-                      <?php } ?>
+                      
                     </select>
                     <label>รหัสสถานศึกษาที่ได้รับเงินอุดหนุนทั่วไปเพื่อพัฒนานวัตกรรมการศึกษา</label>
                   </div>
@@ -67,28 +62,28 @@
 
                 <div class="col-md-16">
                   <div class="form-floating">
-                    <input type="text" class="form-control"name="BudgetProgram"id="BudgetProgram" placeholder="ชื่อ แผนงาน/โครงการ/กิจกรรม/รายการ">
+                    <input type="text" class="form-control"name="BudgetProgram"id="BudgetProgram" placeholder="ชื่อ แผนงาน/โครงการ/กิจกรรม/รายการ" value="<?php echo $b->BudgetProgram;?>">
                     <label >แผนงาน/โครงการ/กิจกรรม/รายการ</label>
                   </div>
                 </div>
 
                 <div class="col-md-16">
                   <div class="form-floating">
-                    <input type="text" class="form-control"name="BudgetAmount"id="BudgetAmount" placeholder="จำนวนเงินอุดหนุนทั่วไปเพื่อพัฒนานวัตกรรมการศึกษา" maxlength="12">
+                    <input type="text" class="form-control"name="BudgetAmount"id="BudgetAmount" placeholder="จำนวนเงินอุดหนุนทั่วไปเพื่อพัฒนานวัตกรรมการศึกษา" maxlength="12" value="<?php echo $b->BudgetAmount;?>">
                     <label >จำนวนเงินอุดหนุนทั่วไปเพื่อพัฒนานวัตกรรมการศึกษา</label>
                   </div>
                 </div>
 
                 <div class="col-md-6">
                   <div class="form-floating">
-                    <input type="date" class="form-control" name="BudgetDate"id="BudgetDate">
+                    <input type="date" class="form-control" name="BudgetDate"id="BudgetDate" value="<?php echo $b->BudgetDate;?>">
                     <label >วันที่อนุมัติเงินอุดหนุนทั่วไปเพื่อพัฒนานวัตกรรมการศึกษา</label>
                   </div>
                 </div>
 
                 <div class="col-md-6">
                   <div class="form-floating">
-                    <input type="date" class="form-control" name="BudgetReceivedDate"id="BudgetReceivedDate">
+                    <input type="date" class="form-control" name="BudgetReceivedDate"id="BudgetReceivedDate" value="<?php echo $b->BudgetReceivedDate;?>">
                     <label >วันที่ได้รับเงินอุดหนุนทั่วไปเพื่อพัฒนานวัตกรรมการศึกษา</label>
                   </div>
                 </div>
@@ -151,9 +146,7 @@
                   <div class="form-floating">
                   <select class="form-select" aria-label="Default select example" name="BudgetSchoolID" id="BudgetSchoolID">
                       <option selected value="-1">เลือกสถานศึกษา</option>
-                      <?php foreach($listSchool as $ls) { ?>
-                        <option value="<?php echo $ls->SchoolID; ?>"><?php echo $ls->SchoolNameThai; ?></option>
-                      <?php } ?>
+                      
                     </select>
                     <label>สถานศึกษาที่เบิกจ่าย</label>
                   </div>
@@ -163,9 +156,7 @@
                   <div class="form-floating">
                   <select class="form-select" aria-label="Default select example" name="ExpenseTypeCode" id="ExpenseTypeCode">
                       <option selected value="-1">เลือกประเภทการเบิกจ่าย</option>
-                      <?php foreach($listBudget_type as $lb_t) { ?>
-                        <option value="<?php echo $lb_t->BUDGET_TYPE_NAME; ?>"><?php echo $lb_t->BUDGET_TYPE_NAME; ?></option>
-                      <?php } ?>
+                      
                     </select>
                     <label>รหัสประเภทการเบิกจ่าย</label>
                   </div>
@@ -335,5 +326,5 @@
   $('#Modal').modal('show');
   }
 </script>
-
+<?php } ?> 
   </main><!-- End #main -->
