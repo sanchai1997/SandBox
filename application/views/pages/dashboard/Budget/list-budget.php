@@ -46,37 +46,34 @@
                 <table class="table table-borderless datatable">
                     <thead>
                         <tr>
-                            <th style="text-align: center;" scope="col"></th>
-                            <th style="text-align: center;" scope="col"></th>
-                            <th style="text-align: center;" scope="col"></th>
-                            <th style="text-align: center;" scope="col"></th>
-                            <th style="text-align: center;" scope="col"></th>
-                            <th style="text-align: center;" scope="col"></th>
+                            <th style="text-align: center;" scope="col">ปีการศึกษา</th>
+                            <th style="text-align: center;" scope="col">ภาคเรียน</th>
+                            <th style="text-align: center;" scope="col">ปีงบประมาณ</th>
+                            <th style="text-align: center;" scope="col">สถานศึกษา</th>
+                            <th style="text-align: center;" scope="col">ปฏิบัติ</th>
                             
                         </tr>
                     </thead>
                     <tbody>
-          
+                    <?php foreach ($listBudget as $lb) { ?>
                             <tr>
-                                <th scope="row"></th>
-                                <td style="text-align: center;"></td>
+                                <td style="text-align: center;"><?php echo $lb->BudgetEducationYear ; ?></td>
+
+                                <td style="text-align: center;"><?php 
+                                        $Semester_code = $lb->BudgetSemester ;
+                                        if($Semester_code==0) echo "ตลอดปีการศึกษา"; 
+                                        else if($Semester_code==1) echo "ภาคเรียนที่ 1"; 
+                                        else if($Semester_code==2) echo "ภาคเรียนที่ 2"; 
+                                    ?></td>
+                                <td style="text-align: center;"><?php echo $lb->BudgetYear ; ?></td>  
+                                <td style="text-align: center;"><?php echo $lb->SchoolNameThai ; ?></td>
                                 <td style="text-align: center;">
-                                  
-                                </td>
-                                <td style="text-align: center;">></td>
-                                <td style="text-align: center;">
-                                    <a href='' class="btn btn-primary">
-                                        <i class="bi bi-eye-fill"></i>
-                                     </a>
-                                </td>
-                                <td style="text-align: center;">
-                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#view"><i class="bi bi-card-list"></i></button>
-                                    <a href=''  class="btn btn-warning">
-                                        <i class="bi bi-pencil-square"></i>
-                                    </a>
+                                    <a href='edit_forms_budget?bid=<?php echo $lb->BudgetID ;?>' class="btn btn-warning">
+                                        <i class="bi bi-pencil-square"></i> 
+                                    </a> 
                                     <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#delete">
                                         <i class=" bi bi-trash"></i>
-                                    </button>  
+                                    </button>                           
                                 </td>
                                 
                             </tr>
@@ -133,7 +130,7 @@
                                     </div>
                             </div>
 
-                 
+                            <?php } ?>
                     </tbody>
                 </table>
 

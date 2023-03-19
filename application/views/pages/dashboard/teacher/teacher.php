@@ -3,13 +3,6 @@
         <div class="row">
             <div class="col-6">
                 <h1>ข้อมูลครูและบุคลากรทางการศึกษา</h1>
-                <nav>
-                    <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="main">Home</a></li>
-                        <li class="breadcrumb-item">Dashboard</li>
-                        <li class="breadcrumb-item active">Teacher</li>
-                    </ol>
-                </nav>
             </div>
         </div>
     </div><!-- End Page Title -->
@@ -38,10 +31,10 @@
             <div class="card-body">
                 <div class="row">
                     <div class="col">
-                        <h5 class="card-title">รายละเอียดข้อมูล <span>| Table Teacher</span></h5>
+                        <h5 class="card-title">รายละเอียดข้อมูล <span></span></h5>
                     </div>
                     <div class="col">
-                        <h5 style="float: right; padding: 15px;" class="card-title"><a href="forms-teacher" class="btn btn-success">เพิ่มข้อมูลครูและบุคลากรทางการศึกษา</a></h5>
+                        <h5 style="float: right; padding: 15px;" class="card-title"><a href="forms-teacher" class="btn btn-success">เพิ่มข้อมูล</a></h5>
                     </div>
                 </div>
                 <table class="table table-borderless datatable">

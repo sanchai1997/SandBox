@@ -11,13 +11,7 @@
 
     <div class="pagetitle">
         <h1>เพิ่มข้อมูลวิทยฐานะและตำแหน่งวิชาการ</h1>
-        <nav>
-            <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-                <li class="breadcrumb-item">Form</li>
-                <li class="breadcrumb-item active">Add-Academic</li>
-            </ol>
-        </nav>
+
     </div><!-- End Page Title -->
 
     <section class="section">
@@ -87,7 +81,6 @@
                             <input type="hidden" name="PersonnelID" value="<?= $_GET['PersonnelID']; ?>">
                             <div class="text-center">
                                 <a href="personnel-academic?PersonnelID=<?= $_GET['PersonnelID']; ?>" style="float: left;" class="btn btn-light">ยกเลิก</a>
-                                <button style="float: center;" type="reset" class="btn btn-secondary">รีเซ็ต</button>
                                 <button style="float: right;" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#ADD">บันทึกข้อมูล</button>
                             </div>
                             <div class="modal fade" id="ADD" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">

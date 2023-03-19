@@ -11,13 +11,7 @@ foreach ($result->result() as $STUDENT) {
     <main id="main" class="main">
         <div class="pagetitle">
             <h1>แก้ไขข้อมูลนักเรียน</h1>
-            <nav>
-                <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-                    <li class="breadcrumb-item">Form</li>
-                    <li class="breadcrumb-item active">Edit Student</li>
-                </ol>
-            </nav>
+
         </div><!-- End Page Title -->
 
         <section class="section">

@@ -18,13 +18,6 @@ foreach ($result->result() as $ACADEMIC) {
 
         <div class="pagetitle">
             <h1>แก้ไขข้อมูลวิทยฐานะและตำแหน่งวิชาการ</h1>
-            <nav>
-                <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-                    <li class="breadcrumb-item">Form</li>
-                    <li class="breadcrumb-item active">Edit-Academic</li>
-                </ol>
-            </nav>
         </div><!-- End Page Title -->
 
         <section class="section">

@@ -14,11 +14,10 @@ class BudgetController extends CI_Controller{
         
         if ( ! file_exists(APPPATH.'views/pages/forms/Budget/forms-budget.php'))
         {
-            // Whoops, we don't have a page for that!
             show_404();
         }
         $data['listSchool'] = $this->School_model->get_school_All();
-        $data['listEXPENSE_TYPE'] = $this->Budget_model->get_expense_type();
+        $data['listBudget_type'] = $this->Budget_model->get_expense_type();
 
         $this->load->view('templates/header');
         $this->load->view('templates/sidebar');
@@ -26,20 +25,37 @@ class BudgetController extends CI_Controller{
         $this->load->view('templates/footer');
 
     }
+
+    public function edit_forms_budget() {
+        
+        if ( ! file_exists(APPPATH.'views/pages/forms/Budget/edit_forms-budget.php'))
+        {
+            show_404();
+        }
+
+        $data['BudgetID'] = $_GET['bid']; 
+
+        $data['Budget'] = $this->Budget_model->get_Budget($data['BudgetID'] );
+
+        $this->load->view('templates/header');
+        $this->load->view('templates/sidebar');
+        $this->load->view('pages/forms/Budget/edit_forms-budget',$data);
+        $this->load->view('templates/footer');
+
+    }
+
     public function list_budget() {
         
         if ( ! file_exists(APPPATH.'views/pages/dashboard/Budget/list-budget.php'))
         {
-            // Whoops, we don't have a page for that!
             show_404();
         }
 
-       
-
+        $data['listBudget'] = $this->Budget_model->get_Budget_All();
 
         $this->load->view('templates/header');
         $this->load->view('templates/sidebar');
-        $this->load->view('pages/dashboard/Budget/list-budget');
+        $this->load->view('pages/dashboard/Budget/list-budget',$data);
         $this->load->view('templates/footer');
 
     }

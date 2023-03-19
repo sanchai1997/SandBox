@@ -36,7 +36,7 @@
            </a>
          </li>
          <li>
-           <a href="forms-transcript">
+           <a href="transcript">
              <i class="bi bi-circle"></i><span>ข้อมูลผลสัมฤทธิ์ทางการศึกษา</span>
            </a>
          </li>

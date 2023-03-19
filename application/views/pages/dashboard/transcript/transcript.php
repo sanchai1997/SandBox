@@ -3,8 +3,10 @@
     <div class="pagetitle">
         <div class="row">
             <div class="col-6">
-                <h1>ข้อมูลผู้สำเร็จการศึกษา
-                </h1>
+                <h1>ข้อมูลผลสัมฤทธิ์ทางการศึกษา</h1>
+            </div>
+            <div class="col-6" style="padding-right: 25px;">
+
             </div>
         </div>
     </div><!-- End Page Title -->
@@ -35,34 +37,34 @@
                     <div class="col">
                         <h5 class="card-title">รายละเอียดข้อมูล <span></span></h5>
                     </div>
-                    <div class="col">
-                        <h5 style="float: right; padding: 15px;" class="card-title"><a href="forms-graduated" class="btn btn-success">เพิ่มข้อมูล</a></h5>
-                    </div>
+
                 </div>
                 <table class="table table-borderless datatable">
                     <thead>
                         <tr>
-                            <th scope="col">ชื่อสถานศึกษา</th>
-                            <th scope="col">ปีการศึกษา</th>
+                            <th style="text-align: center;" scope="col">ชื่อสถานศึกษา</th>
+                            <th style="text-align: center;" scope="col">ปีการศึกษา</th>
+                            <th style="text-align: center;" scope="col">ระดับการศึกษา</th>
                             <th style="text-align: center;" scope="col">ชั้นเรียน</th>
-                            <th style="text-align: center;" scope="col">ดูรายละเอียด</th>
+                            <th style="text-align: center;" scope="col">ดูรายชื่อนักเรียน</th>
                         </tr>
                     </thead>
                     <tbody>
                         <?php
-                        $AAA = $this->db->query('SELECT * FROM GRADUATED
-                        INNER JOIN SCHOOL ON GRADUATED.GraduatedSchoolID = SCHOOL.SchoolID
-                        INNER JOIN CLS_GRADE_LEVEL ON GRADUATED.GraduatedGradeLevelCode = CLS_GRADE_LEVEL.GRADE_LEVEL_CODE
-                        WHERE GRADUATED.DeleteStatus = 0
-                        GROUP BY GRADUATED.GraduatedGradeLevelCode');
-                        foreach ($AAA->result() as $GRADUATED) {
+                        $result = $this->db->query('SELECT SCHOOL.SchoolNameThai, STUDENT.SchoolID, STUDENT.EducationYear, STUDENT.EducationLevelCode, STUDENT.GradeLevelCode, STUDENT.Semester, CLS_EDUCATION_LEVEL.EDUCATION_LEVEL_NAME, CLS_GRADE_LEVEL.GRADE_LEVEL_NAME FROM STUDENT
+                        INNER JOIN SCHOOL ON STUDENT.SchoolID = SCHOOL.SchoolID
+                        INNER JOIN CLS_EDUCATION_LEVEL ON STUDENT.EducationLevelCode = CLS_EDUCATION_LEVEL.EDUCATION_LEVEL_CODE
+                        INNER JOIN CLS_GRADE_LEVEL ON STUDENT.GradeLevelCode = CLS_GRADE_LEVEL.GRADE_LEVEL_CODE
+                        WHERE STUDENT.DeleteStatus = 0');
+                        foreach ($result->result() as $STUDENT) {
                         ?>
                             <tr>
-                                <td><?= $GRADUATED->SchoolNameThai; ?></td>
-                                <td><?= $GRADUATED->EducationYear; ?></td>
-                                <td><?= $GRADUATED->GRADE_LEVEL_NAME; ?></td>
+                                <td><?= $STUDENT->SchoolNameThai; ?></td>
+                                <td><?= $STUDENT->EducationYear; ?></td>
+                                <td><?= $STUDENT->EDUCATION_LEVEL_NAME; ?></td>
+                                <td><?= $STUDENT->GRADE_LEVEL_NAME; ?></td>
                                 <td style="text-align: center;">
-                                    <a href="graduated-P2?SchoolID=<?= $GRADUATED->SchoolID; ?>&&EducationYear=<?= $GRADUATED->EducationYear; ?>&&GraduatedGradeLevelCode=<?= $GRADUATED->GraduatedGradeLevelCode; ?>" class="btn btn-primary"><i class="bi bi-card-list"></i></i></a>
+                                    <a class="btn btn-primary" href="transcript-P2?SchoolID=<?= $STUDENT->SchoolID; ?>&&EducationYear=<?= $STUDENT->EducationYear; ?>&&Semester=<?= $STUDENT->Semester; ?>&&EducationLevelCode=<?= $STUDENT->EducationLevelCode; ?>&&GradeLevelCode=<?= $STUDENT->GradeLevelCode; ?>"><i class="bi bi-card-list"></i></a>
                                 </td>
                             </tr>
                         <?php } ?>
@@ -70,6 +72,7 @@
                 </table>
 
             </div>
+
 
         </div>
     </div><!-- End Recent Sales -->
