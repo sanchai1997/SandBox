@@ -30,13 +30,23 @@
     <!-- Recent Sales -->
     <div class="col-12">
         <div class="card recent-sales overflow-auto">
-
             <div class="card-body">
-
-
                 <div class="row">
-                    <div class="col">
-                        <h5 class="card-title">รายละเอียดข้อมูล</h5>
+                    <div class="col card-title">
+                        <select name="cars" id="cars">
+                            <?php foreach ($listCurriculum as $ls) { ?>
+                                
+                                <option value="select"> 
+                                    <?php 
+                                    if(Empty($ls))
+                                        echo "1150";
+                                    else 
+                                        echo "เลือกโรงเรียน"
+                                    ?>
+                                </option>
+                                <option value=<?php echo $ls->SchoolNameThai ;?>><?php echo $ls->SchoolNameThai ;?></option>
+                            <?php } ?>
+                        </select>
                     </div>
                     <div class="col">
                         <h5 style="float: right; padding: 15px;" class="card-title"><a href="forms-curriculum" class="btn btn-success">เพิ่มข้อมูล</a></h5>
@@ -58,7 +68,7 @@
                     <tbody>
                         <?php foreach ($listCurriculum as $ls) { ?>
                             <tr>
-                                <th scope="row"><?php echo $ls->SchoolNameThai ; ?></th>
+                                <td style="text-align: center;"><?php echo $ls->SchoolNameThai ; ?></td>
                                 <td style="text-align: center;"><?php echo $ls->EducationYear; ?></td>
                                 <td style="text-align: center;">
                                     <?php 
@@ -166,8 +176,8 @@
                                             </div>
 
                                             <div class="modal-footer">
-                                                <a href='edit_forms-curriculum?cid=<?php echo $ls->CurriculumID; ?>' class="btn btn-warning"><i class="bi bi-pencil-square"></i></button> </a>
-                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><i class="bi bi-x-square" data-bs-toggle="modal" data-bs-target="#delete<?php echo $ls->CurriculumID; ?>"></i></button>
+                                                <a href='edit_forms-curriculum?cid=<?php echo $ls->CurriculumID; ?>' class="btn btn-warning"><i class="bi bi-pencil-square"></i></button></a>
+                                                <button type="button" class="btn btn-danger" data-bs-dismiss="modal"><i class="bi bi-x-square" data-bs-toggle="modal" data-bs-target=""></i></button>
                                             </div>
                                         </div>
                                     </div>
