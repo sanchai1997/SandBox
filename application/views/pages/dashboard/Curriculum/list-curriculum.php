@@ -33,10 +33,9 @@
             <div class="card-body">
                 <div class="row">
                     <div class="col card-title">
-                        <select name="cars" id="cars">
-                            <?php foreach ($listCurriculum as $ls) { ?>
-                                
-                                <option value="select"> 
+                        <select class="form-select" aria-label="Default select example" name="listSchool" id="listSchool">
+                            <option selected value="-1">เลือกโรงเรียน</option>
+                        <!--    <option value="select"> 
                                     <?php 
                                     if(Empty($ls))
                                         echo "1150";
@@ -44,7 +43,9 @@
                                         echo "เลือกโรงเรียน"
                                     ?>
                                 </option>
-                                <option value=<?php echo $ls->SchoolNameThai ;?>><?php echo $ls->SchoolNameThai ;?></option>
+                        -->
+                            <?php foreach($listSchool as $ls) { ?>
+                                <option value="<?php echo $ls-> SchoolID; ?>"><?php echo $ls->SchoolNameThai; ?></option>
                             <?php } ?>
                         </select>
                     </div>
@@ -67,6 +68,7 @@
                     </thead>
                     <tbody>
                         <?php foreach ($listCurriculum as $ls) { ?>
+                            
                             <tr>
                                 <td style="text-align: center;"><?php echo $ls->SchoolNameThai ; ?></td>
                                 <td style="text-align: center;"><?php echo $ls->EducationYear; ?></td>
