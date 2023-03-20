@@ -18,7 +18,7 @@ class Forms_school extends CI_Controller
     public function index()
     {
 
-        if (!file_exists(APPPATH . 'views/pages/forms/school/forms-school-P1.php')) {
+        if (!file_exists(APPPATH . 'views/pages/forms/school/forms-school.php')) {
             // Whoops, we don't have a page for that!
             show_404();
         }
@@ -26,26 +26,9 @@ class Forms_school extends CI_Controller
         $data['title'] = 'Forms School'; // Capitalize the first letter
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
-        $this->load->view('pages/forms/school/forms-school-P1', $data);
+        $this->load->view('pages/forms/school/forms-school', $data);
         $this->load->view('templates/footer', $data);
     }
-
-    public function P2()
-    {
-
-        if (!file_exists(APPPATH . 'views/pages/forms/school/forms-school-P2.php')) {
-            // Whoops, we don't have a page for that!
-            show_404();
-        }
-
-        $data['title'] = 'Forms School Detail'; // Capitalize the first letter
-
-        $this->load->view('templates/header', $data);
-        $this->load->view('templates/sidebar', $data);
-        $this->load->view('pages/forms/school/forms-school-P2', $data);
-        $this->load->view('templates/footer', $data);
-    }
-
 
     //Add Data Form School
     public function add_school()
@@ -55,27 +38,177 @@ class Forms_school extends CI_Controller
         redirect(base_url('school'));
     }
 
-    //Edit Data Form School
-    public function edit_school()
+    //Edit Data Form School MAIN
+    public function edit_school_main()
     {
+
+        if (!file_exists(APPPATH . 'views/pages/forms/school/edit-forms-school-main.php')) {
+            // Whoops, we don't have a page for that!
+            show_404();
+        }
+
         $data['title'] = "Edit School";
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
-        $this->load->view('pages/forms/school/edit-forms-school', $data);
+        $this->load->view('pages/forms/school/edit-forms-school-main', $data);
         $this->load->view('templates/footer', $data);
     }
 
-    //Add Data Form School
-    public function update_school($id)
+    //Edit Data Form School Address
+    public function edit_forms_school_address()
     {
-        $this->forms_school->update_school($id);
+
+        if (!file_exists(APPPATH . 'views/pages/forms/school/edit-forms-school-address.php')) {
+            // Whoops, we don't have a page for that!
+            show_404();
+        }
+
+        $data['title'] = "Edit School";
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/sidebar', $data);
+        $this->load->view('pages/forms/school/edit-forms-school-address', $data);
+        $this->load->view('templates/footer', $data);
+    }
+
+    //Edit Data Form School Contact
+    public function edit_forms_school_contact()
+    {
+
+        if (!file_exists(APPPATH . 'views/pages/forms/school/edit-forms-school-contact.php')) {
+            // Whoops, we don't have a page for that!
+            show_404();
+        }
+
+        $data['title'] = "Edit School";
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/sidebar', $data);
+        $this->load->view('pages/forms/school/edit-forms-school-contact', $data);
+        $this->load->view('templates/footer', $data);
+    }
+
+    //Edit Data Form School Administrator
+    public function edit_forms_school_administrator()
+    {
+
+        if (!file_exists(APPPATH . 'views/pages/forms/school/edit-forms-school-administrator.php')) {
+            // Whoops, we don't have a page for that!
+            show_404();
+        }
+
+        $data['title'] = "Edit School";
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/sidebar', $data);
+        $this->load->view('pages/forms/school/edit-forms-school-administrator', $data);
+        $this->load->view('templates/footer', $data);
+    }
+
+    //Edit Data Form School Utilities
+    public function edit_forms_school_utilities()
+    {
+
+        if (!file_exists(APPPATH . 'views/pages/forms/school/edit-forms-school-utilities.php')) {
+            // Whoops, we don't have a page for that!
+            show_404();
+        }
+
+        $data['title'] = "Edit School";
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/sidebar', $data);
+        $this->load->view('pages/forms/school/edit-forms-school-utilities', $data);
+        $this->load->view('templates/footer', $data);
+    }
+
+    //Edit Data Form School Teaching
+    public function edit_forms_school_teaching()
+    {
+
+        if (!file_exists(APPPATH . 'views/pages/forms/school/edit-forms-school-teaching.php')) {
+            // Whoops, we don't have a page for that!
+            show_404();
+        }
+
+        $data['title'] = "Edit School";
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/sidebar', $data);
+        $this->load->view('pages/forms/school/edit-forms-school-teaching', $data);
+        $this->load->view('templates/footer', $data);
+    }
+    //Edit Data Form School Statistical
+    public function edit_forms_school_statistical()
+    {
+
+        if (!file_exists(APPPATH . 'views/pages/forms/school/edit-forms-school-statistical.php')) {
+            // Whoops, we don't have a page for that!
+            show_404();
+        }
+
+        $data['title'] = "Edit School";
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/sidebar', $data);
+        $this->load->view('pages/forms/school/edit-forms-school-statistical', $data);
+        $this->load->view('templates/footer', $data);
+    }
+
+    //Update Data Form School MAIN
+    public function update_school_main($SchoolID)
+    {
+        $this->forms_school->update_school_main($SchoolID);
         $_SESSION['success'] = "แก้ไขข้อมูลเรียบร้อย";
         redirect(base_url('school'));
     }
-    //Delete Data Form School
-    public function delete_school($id)
+
+    //Update Data Form School Address
+    public function update_school_address($SchoolID)
     {
-        $this->forms_school->delete_school($id);
+        $this->forms_school->update_school_address($SchoolID);
+        $_SESSION['success'] = "แก้ไขข้อมูลเรียบร้อย";
+        redirect(base_url('school'));
+    }
+
+    //Update Data Form School Contact
+    public function update_school_contact($SchoolID)
+    {
+        $this->forms_school->update_school_contact($SchoolID);
+        $_SESSION['success'] = "แก้ไขข้อมูลเรียบร้อย";
+        redirect(base_url('school'));
+    }
+
+    //Update Data Form School Administrator
+    public function update_school_administrator($SchoolID)
+    {
+        $this->forms_school->update_school_administrator($SchoolID);
+        $_SESSION['success'] = "แก้ไขข้อมูลเรียบร้อย";
+        redirect(base_url('school'));
+    }
+
+    //Update Data Form School Utilities
+    public function update_school_utilities($SchoolID)
+    {
+        $this->forms_school->update_school_utilities($SchoolID);
+        $_SESSION['success'] = "แก้ไขข้อมูลเรียบร้อย";
+        redirect(base_url('school'));
+    }
+
+    //Update Data Form School Teaching
+    public function update_school_teaching($SchoolID)
+    {
+        $this->forms_school->update_school_teaching($SchoolID);
+        $_SESSION['success'] = "แก้ไขข้อมูลเรียบร้อย";
+        redirect(base_url('school'));
+    }
+
+    //Update Data Form School Teaching
+    public function update_school_statistical($SchoolID)
+    {
+        $this->forms_school->update_school_statistical($SchoolID);
+        $_SESSION['success'] = "แก้ไขข้อมูลเรียบร้อย";
+        redirect(base_url('school'));
+    }
+
+    //Delete Data Form School
+    public function delete_school($SchoolID)
+    {
+        $this->forms_school->delete_school($SchoolID);
         $_SESSION['success'] = "ลบข้อมูลเรียบร้อย";
         redirect(base_url('school'));
     }
@@ -101,11 +234,11 @@ class Forms_school extends CI_Controller
     }
 
     //Add Data Classroom
-    public function add_classroom()
+    public function add_classroom($SchoolID)
     {
         $this->forms_school->add_classroom();
         $_SESSION['success'] = "บันทึกข้อมูลเรียบร้อย";
-        redirect(base_url('school-classroom'));
+        redirect(base_url('school-classroom?SchoolID=' . $SchoolID));
     }
 
     //Edit Data Form ClassRoom
@@ -124,7 +257,7 @@ class Forms_school extends CI_Controller
 
         $this->forms_school->update_classroom($SchoolID, $ClassID);
         $_SESSION['success'] = "แก้ไขข้อมูลเรียบร้อย";
-        redirect(base_url('school-classroom-P2?SchoolID=' . $SchoolID));
+        redirect(base_url('school-classroom?SchoolID=' . $SchoolID));
     }
 
     //Delete Data Form ClassRoom
@@ -132,7 +265,7 @@ class Forms_school extends CI_Controller
     {
         $this->forms_school->delete_classroom($SchoolID, $ClassID);
         $_SESSION['success'] = "ลบข้อมูลเรียบร้อย";
-        redirect(base_url('school-classroom-P2?SchoolID=' . $SchoolID));
+        redirect(base_url('school-classroom?SchoolID=' . $SchoolID));
     }
     ///////////////////////////////////CLASSROM- END /////////////////////////////////////////
 
@@ -155,11 +288,11 @@ class Forms_school extends CI_Controller
     }
 
     //Add Data AWARD
-    public function add_award()
+    public function add_award($SchoolID)
     {
         $this->forms_school->add_award();
         $_SESSION['success'] = "บันทึกข้อมูลเรียบร้อย";
-        redirect(base_url('school-award'));
+        redirect(base_url('school-award?SchoolID=' . $SchoolID));
     }
 
     //Edit Data Form ClassRoom
@@ -173,20 +306,78 @@ class Forms_school extends CI_Controller
     }
 
     //Add Data Form Award
-    public function update_award($SchoolID, $Year, $Name)
+    public function update_award($SchoolID, $Year)
     {
 
-        $this->forms_school->update_award($SchoolID, $Year, $Name);
+        $this->forms_school->update_award($SchoolID, $Year);
         $_SESSION['success'] = "แก้ไขข้อมูลเรียบร้อย";
-        redirect(base_url('school-award-P2?SchoolID=' . $SchoolID));
+        redirect(base_url('school-award?SchoolID=' . $SchoolID));
     }
 
     //Delete Data Form Award
-    public function delete_award($SchoolID, $Year, $Name)
+    public function delete_award($SchoolID, $Year)
     {
-        $this->forms_school->delete_award($SchoolID, $Year, $Name);
+        $this->forms_school->delete_award($SchoolID, $Year);
         $_SESSION['success'] = "ลบข้อมูลเรียบร้อย";
-        redirect(base_url('school-award-P2?SchoolID=' . $SchoolID));
+        redirect(base_url('school-award?SchoolID=' . $SchoolID));
     }
     ///////////////////////////////////// AWARD- END /////////////////////////////////////////
+
+
+    //////////////////////////////////////Buildingฺ///////////////////////////////////////////////
+    //Page Form building
+    public function building()
+    {
+
+        if (!file_exists(APPPATH . 'views/pages/forms/school/forms-school-building.php')) {
+            // Whoops, we don't have a page for that!
+            show_404();
+        }
+
+        $data['title'] = 'Forms School building'; // Capitalize the first letter
+
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/sidebar', $data);
+        $this->load->view('pages/forms/school/forms-school-building', $data);
+        $this->load->view('templates/footer', $data);
+    }
+
+    //Add Data AWARD
+    public function add_building($SchoolID)
+    {
+        $this->forms_school->add_building();
+        $_SESSION['success'] = "บันทึกข้อมูลเรียบร้อย";
+        redirect(base_url('school-building?SchoolID=' . $SchoolID));
+    }
+
+
+    //Edit Data Form building
+    public function edit_building()
+    {
+        $data['title'] = "Edit building";
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/sidebar', $data);
+        $this->load->view('pages/forms/school/edit-forms-building', $data);
+        $this->load->view('templates/footer', $data);
+    }
+
+    //Add Data Form building
+    public function update_building($SchoolID, $Id)
+    {
+
+        $this->forms_school->update_building($Id);
+        $_SESSION['success'] = "แก้ไขข้อมูลเรียบร้อย";
+        redirect(base_url('school-building?SchoolID=' . $SchoolID));
+    }
+
+    //Delete Data Form building
+    public function delete_building($SchoolID, $Id)
+    {
+        $this->forms_school->delete_building($Id);
+        $_SESSION['success'] = "ลบข้อมูลเรียบร้อย";
+        redirect(base_url('school-building?SchoolID=' . $SchoolID));
+    }
+
+    //////////////////////////////////////Buildingฺ- END///////////////////////////////////////////////
+
 }

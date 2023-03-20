@@ -1,7 +1,14 @@
 <main id="main" class="main">
 
     <div class="pagetitle">
-        <h1>เพิ่มข้อมูลรางวัลสถานศึกษา</h1>
+        <h1>เพิ่มข้อมูลรางวัล -
+            <?php
+            $result = $this->db->query('SELECT *  FROM SCHOOL WHERE SchoolID = ' . $_GET['SchoolID'] . '');
+            foreach ($result->result() as $SCHOOL) {
+                echo $SCHOOL->SchoolNameThai;
+            }
+            ?>
+        </h1>
     </div><!-- End Page Title -->
 
     <section class="section">
@@ -10,49 +17,39 @@
 
                 <div class="card">
                     <div class="card-body">
-                        <h5 class="card-title">ข้อมูลผู้รางวัลที่โรงเรียนได้รับ</h5>
+                        <h5 class="card-title"></h5>
 
                         <!-- General Form Elements -->
-                        <form action="<?php echo base_url('add-award'); ?>" method="POST">
-
+                        <form action="<?php echo base_url('add-award/' . $_GET['SchoolID']); ?>" method="POST" id="Award">
+                            <!-- ID สถานศึกษา -->
+                            <input type="hidden" value="<?= $_GET['SchoolID']; ?>" name="SchoolID">
+                            <!-- END -->
                             <div class="row mb-3">
-                                <label for="inputText" class="col-sm-2 col-form-label">สถานศึกษา</label>
+                                <label for="inputText" class="col-sm-2 col-form-label">ปีที่ได้รับรางวัล <font color="red"> *</font></label>
                                 <div class="col-sm-10">
-                                    <select class="form-select" name="SchoolID" aria-label="Default select example" required>
-                                        <option selected>เลือก</option>
-                                        <?php foreach ($this->db->get("SCHOOL")->result() as $school) { ?>
-                                            <option value="<?= $school->SchoolID; ?>"><?= $school->SchoolNameThai; ?></option>
-                                        <?php } ?>
-                                    </select>
+                                    <input type="text" class="form-control" name="AwardYear" id="AwardYear">
                                 </div>
                             </div>
 
                             <div class="row mb-3">
-                                <label for="inputText" class="col-sm-2 col-form-label">ปีที่ได้รับรางวัล</label>
+                                <label for="inputText" class="col-sm-2 col-form-label">ชื่อรางวัล <font color="red"> *</font></label>
                                 <div class="col-sm-10">
-                                    <input type="text" class="form-control" name="AwardYear" required>
+                                    <input type="text" class="form-control" name="AwardName" id="AwardName">
                                 </div>
                             </div>
 
                             <div class="row mb-3">
-                                <label for="inputText" class="col-sm-2 col-form-label">ชื่อรางวัล</label>
+                                <label for="inputText" class="col-sm-2 col-form-label">แหล่งที่มาของรางวัล <font color="red"> *</font></label>
                                 <div class="col-sm-10">
-                                    <input type="text" class="form-control" name="AwardName" required>
+                                    <input type="text" class="form-control" name="AwardSource" id="AwardSource">
                                 </div>
                             </div>
 
                             <div class="row mb-3">
-                                <label for="inputText" class="col-sm-2 col-form-label">แหล่งที่มาของรางวัล</label>
+                                <label class="col-sm-2 col-form-label">ระดับของรางวัลที่ได้รับ <font color="red"> *</font></label>
                                 <div class="col-sm-10">
-                                    <input type="text" class="form-control" name="AwardSource" required>
-                                </div>
-                            </div>
-
-                            <div class="row mb-3">
-                                <label class="col-sm-2 col-form-label">ระดับของรางวัลที่ได้รับ</label>
-                                <div class="col-sm-10">
-                                    <select class="form-select" aria-label="Default select example" name="AwardLevelCode" required>
-                                        <option selected>เลือก</option>
+                                    <select class="form-select" aria-label="Default select example" name="AwardLevelCode" id="AwardLevelCode">
+                                        <option value="" selected>เลือก</option>
                                         <?php foreach ($this->db->get("CLS_AWARD_LEVEL")->result() as $AWARD_LEVEL) { ?>
                                             <option value="<?= $AWARD_LEVEL->AWARD_LEVEL_CODE; ?>"><?= $AWARD_LEVEL->AWARD_LEVEL_NAME; ?></option>
                                         <?php } ?>
@@ -60,28 +57,30 @@
                                 </div>
                             </div>
                             <div class="text-center">
-                                <a href="school-award" style="float: left;" class="btn btn-light">ยกเลิก</a>
-                                <button style="float: right;" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#ADD">บันทึกข้อมูล</button>
+                                <a href="school-award?SchoolID=<?= $_GET['SchoolID']; ?>" style="float: left;" class="btn btn-danger">ยกเลิก</a>
+                                <button type="button" class="btn btn-primary" style="float: right;" onclick="return check(Award)">บันทึกข้อมูล</button>
                             </div>
-                            <div class="modal fade" id="ADD" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+                            <!-- Modal -->
+                            <div class="modal fade" id="Modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
                                 <div class="modal-dialog modal-dialog-centered" role="document">
                                     <div class="modal-content">
                                         <div class="modal-header">
-                                            <h5 class="modal-title" id="exampleModalLongTitle">ยืนยันเพิ่มข้อมูล</h5>
-                                            <!--<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>-->
+                                            <h5 class="modal-title" id="exampleModalLongTitle">ยืนยันบันทึกข้อมูล</h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                         </div>
                                         <div class="modal-body">
                                             <h6>
-                                                <center>คุณต้องการเพิ่มข้อมูลใช่หรือไหม ?</center>
+                                                <center>คุณต้องการบันทึกข้อมูลใช่หรือไหม ?</center>
                                             </h6>
                                         </div>
                                         <div class="modal-footer">
-                                            <button style="float: right;" type="submit" class="btn btn-primary">ยืนยัน</button>
+                                            <button type="submit" class="btn btn-primary">ยืนยัน</button>
                                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ยกเลิก</button>
                                         </div>
                                     </div>
                                 </div>
                             </div>
+                            
                         </form><!-- End floating Labels Form -->
 
                     </div>
@@ -92,5 +91,46 @@
 
         </div>
     </section>
+    <script type="text/javascript">
+        function check(frm) {
 
+            var YearAward = /^[1-9]{4,4}$/;
+            if (frm.AwardYear.value == "") {
+                alert("กรุณากรอกปีที่ได้รับรางวัล");
+                return false;
+            } else if (!frm.AwardYear.value.match(YearAward)) {
+                alert("กรุณากรอกปีที่ได้รับรางวัลเป็น(ตัวเลข)และเป็น 4 หลัก");
+                frm.AwardYear.value = "";
+                return false;
+            }
+
+            var NameAward = /^[A-Z,a-z,ก-์,0-9]{1,255}$/;
+            if (frm.AwardName.value == "") {
+                alert("กรุณากรอกชื่อรางวัล)");
+                frm.AwardName.value = "";
+                return false;
+            } else if (!frm.AwardName.value.match(NameAward)) {
+                alert("กรุณากรอกชื่อรางวัลให้น้อยกว่า 255 อักษร");
+                frm.AwardName.value = "";
+                return false;
+            }
+
+            if (frm.AwardSource.value == "") {
+                alert("กรุณากรอกแหล่งที่มารางวัล)");
+                frm.AwardSource.value = "";
+                return false;
+            } else if (!frm.AwardSource.value.match(NameAward)) {
+                alert("กรุณากรอกแหล่งที่มารางวัลให้น้อยกว่า 255 อักษร");
+                frm.AwardSource.value = "";
+                return false;
+            }
+
+            if (frm.AwardLevelCode.value == "") {
+                alert("กรุณาเลือกระดับรางวัลที่ได้รับ");
+                return false;
+            }
+            $('#Modal').modal('show');
+
+        }
+    </script>
 </main><!-- End #main -->

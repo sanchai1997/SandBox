@@ -47,6 +47,14 @@
       $("#SUBDISTRICT").children('option').hide();
       $("#SUBDISTRICT").children("option[ id^=" + $(this).val() + "]").show()
     })
+
+    $("#SUBDISTRICT_2").children('option:gt(0)').hide();
+
+    $("#DISTRICT_2").change(function() {
+      $("#SUBDISTRICT_2").children('option').hide();
+      $("#SUBDISTRICT_2").children("option[ id^=" + $(this).val() + "]").show()
+    })
+
     /////////////////////////////////////////////////////////////////////////////////////////////
     $("#Student").children('option:gt(0)').hide();
     $("#School").change(function() {

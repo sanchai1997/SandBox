@@ -10,133 +10,218 @@ class School_model extends CI_Model
         $this->load->helper('url');
     }
 
-    public function get_school_All() {
+    public function get_school_All()
+    {
         $query = $this->db->get('SCHOOL');
         return $query->result();
     }
-    
+
     ///////////////////////////////////SCHOOL/////////////////////////////////////////
     //Add Data Form School
     public function add_school()
     {
-        $data = [
+        $config['upload_path'] = 'image/school';
+        $config['allowed_types'] = 'doc|docx|pdf|jpg|png|xls|ppt|zip|xlsx';
+        $config['encrypt_name'] = TRUE;
 
-            'SchoolID' => $this->input->post('SchoolID'),
-            'EducationYear' => $this->input->post('EducationYear'),
-            'Semester' => $this->input->post('Semester'),
-            'JurisdictionCode' => $this->input->post('JurisdictionCode'),
-            'InnovationAreaCode' => $this->input->post('InnovationAreaCode'),
-            'SchoolNameThai' => $this->input->post('SchoolNameThai'),
-            'SchoolNameEnglish' => $this->input->post('SchoolNameEnglish'),
-            'SchoolEstablishedDate' => $this->input->post('SchoolEstablishedDate'),
-            'SchoolTypeCode' => $this->input->post('SchoolTypeCode'),
-            'SchoolStatusCode' => $this->input->post('SchoolStatusCode'),
-            'MunicipalCode' => $this->input->post('MunicipalCode'),
-            'SchoolAddressHouseRegisterID' => $this->input->post('SchoolAddressHouseRegisterID'),
-            'SchoolAddressHouseNumber' => $this->input->post('SchoolAddressHouseNumber'),
-            'SchoolAddressMoo' => $this->input->post('SchoolAddressMoo'),
-            'SchoolAddressStreet' => $this->input->post('SchoolAddressStreet'),
-            'SchoolAddressSoi' => $this->input->post('SchoolAddressSoi'),
-            'SchoolAddressTrok' => $this->input->post('SchoolAddressTrok'),
-            'SchoolAddressSubdistrictCode' => $this->input->post('SchoolAddressSubdistrictCode'),
-            'SchoolAddressDistrictCode' => $this->input->post('SchoolAddressDistrictCode'),
-            'SchoolAddressProvinceCode' => $this->input->post('SchoolAddressProvinceCode'),
-            'SchoolAddressPostcode' => $this->input->post('SchoolAddressPostcode'),
-            'SchoolLatitude' => $this->input->post('SchoolLatitude'),
-            'SchoolLongitude' => $this->input->post('SchoolLongitude'),
-            'SchoolMapURL' => $this->input->post('SchoolMapURL'),
-            'SchoolPhoneNumber' => $this->input->post('SchoolPhoneNumber'),
-            'SchoolSecondPhoneNumber' => $this->input->post('SchoolSecondPhoneNumber'),
-            'SchoolFaxNumber' => $this->input->post('SchoolFaxNumber'),
-            'SchoolSecondFaxNumber' => $this->input->post('SchoolSecondFaxNumber'),
-            'SchoolEmail' => $this->input->post('SchoolEmail'),
-            'SchoolWebsiteURL' => $this->input->post('SchoolWebsiteURL'),
-            'AdministratorPersonalID' => $this->input->post('AdministratorPersonalID'),
-            'AdministratorPrefixCode' => $this->input->post('AdministratorPrefixCode'),
-            'AdministratorNameThai' => $this->input->post('AdministratorNameThai'),
-            'AdministratorMiddleNameThai' => $this->input->post('AdministratorMiddleNameThai'),
-            'AdministratorLastNameThai' => $this->input->post('AdministratorLastNameThai'),
-            'EducationLevelCode' => $this->input->post('EducationLevelCode'),
-            'ElectricTypeCode' => $this->input->post('ElectricTypeCode'),
-            'InternetTypeCode' => $this->input->post('InternetTypeCode'),
-            'WaterTypeCode' => $this->input->post('WaterTypeCode'),
-            'EducationContentCode' => $this->input->post('EducationContentCode'),
-            'DLTVFlag' => $this->input->post('DLTVFlag'),
-            'ComputerOnlineNumber' => $this->input->post('ComputerOnlineNumber'),
-            'ComputerStandaloneNumber' => $this->input->post('ComputerStandaloneNumber'),
-            'ComputerTeachNumber' => $this->input->post('ComputerTeachNumber'),
-            'ComputerManageNumber' => $this->input->post('ComputerManageNumber'),
-            'ToiletMaleStudentNumber' => $this->input->post('ToiletMaleStudentNumber'),
-            'ToiletFemaleStudentNumber' => $this->input->post('ToiletFemaleStudentNumber'),
-            'ToiletCombinationNumber' => $this->input->post('ToiletCombinationNumber')
+        $this->load->library('upload', $config);
 
-        ];
+        if (!$this->upload->do_upload('ImageSchool')) {
+            echo $this->upload->display_errors();
+        } else {
 
-        $result = $this->db->insert('SCHOOL', $data);
-        return $result;
+            $data = $this->upload->data();
+            $filename = $data['file_name'];
+
+            $data = [
+
+                'SchoolID ' => $_POST['JurisdictionCode'] . $_POST['SchoolAddressProvinceCode'],
+                'InnovationAreaCode' => $this->input->post('InnovationAreaCode'),
+                'ImageSchool' => $filename,
+                'SchoolNameThai' => $this->input->post('SchoolNameThai'),
+                'SchoolNameEnglish' => $this->input->post('SchoolNameEnglish'),
+                'SchoolEstablishedDate' => $this->input->post('SchoolEstablishedDate'),
+                'EducationLevelCode' => $this->input->post('EducationLevelCode'),
+                'SchoolTypeCode ' => $this->input->post('SchoolTypeCode'),
+                'SchoolStatusCode' => $this->input->post('SchoolStatusCode'),
+                'MunicipalCode' => $this->input->post('MunicipalCode'),
+                'JurisdictionCode' => $this->input->post('JurisdictionCode'),
+                'SchoolAddressHouseNumber' => $this->input->post('SchoolAddressHouseNumber'),
+                'SchoolAddressMoo' => $this->input->post('SchoolAddressMoo'),
+                'SchoolAddressStreet' => $this->input->post('SchoolAddressStreet'),
+                'SchoolAddressSoi' => $this->input->post('SchoolAddressSoi'),
+                'SchoolAddressTrok' => $this->input->post('SchoolAddressTrok'),
+                'SchoolAddressPostcode' => $this->input->post('SchoolAddressPostcode'),
+                'SchoolAddressProvinceCode' => $this->input->post('SchoolAddressProvinceCode'),
+                'SchoolAddressDistrictCode' => $this->input->post('SchoolAddressDistrictCode'),
+                'SchoolAddressSubdistrictCode' => $this->input->post('SchoolAddressSubdistrictCode'),
+                'SchoolLatitude' => $this->input->post('SchoolLatitude'),
+                'SchoolLongitude' => $this->input->post('SchoolLongitude'),
+                'SchoolMapURL' => $this->input->post('SchoolMapURL')
+            ];
+
+            $result = $this->db->insert('SCHOOL', $data);
+            return $result;
+        }
     }
 
-    //Update Data Form School
-    public function update_school($id)
+    //Update Data Form School MAIN
+    public function update_school_main($SchoolID)
+    {
+        if (!empty($data['ImageSchool'])) {
+            $config['upload_path'] = 'image/school';
+            $config['allowed_types'] = 'doc|docx|pdf|jpg|png|xls|ppt|zip|xlsx';
+            $config['encrypt_name'] = TRUE;
+
+            $this->load->library('upload', $config);
+
+            if (!$this->upload->do_upload('ImageSchool')) {
+                echo $this->upload->display_errors();
+            } else {
+                $data = $this->upload->data();
+                $filename = $data['file_name'];
+
+                $data = [
+
+                    'InnovationAreaCode' => $this->input->post('InnovationAreaCode'),
+                    'ImageSchool' => $filename,
+                    'SchoolNameThai' => $this->input->post('SchoolNameThai'),
+                    'SchoolNameEnglish' => $this->input->post('SchoolNameEnglish'),
+                    'SchoolEstablishedDate' => $this->input->post('SchoolEstablishedDate'),
+                    'EducationLevelCode' => $this->input->post('EducationLevelCode'),
+                    'SchoolTypeCode ' => $this->input->post('SchoolTypeCode'),
+                    'SchoolStatusCode' => $this->input->post('SchoolStatusCode'),
+                    'MunicipalCode' => $this->input->post('MunicipalCode'),
+                    'JurisdictionCode' => $this->input->post('JurisdictionCode')
+
+                ];
+
+                $result = $this->db->where('SchoolID', $SchoolID)->update('SCHOOL', $data);
+                return $result;
+            }
+        } else {
+
+
+            $data = [
+
+                'InnovationAreaCode' => $this->input->post('InnovationAreaCode'),
+                'SchoolNameThai' => $this->input->post('SchoolNameThai'),
+                'SchoolNameEnglish' => $this->input->post('SchoolNameEnglish'),
+                'SchoolEstablishedDate' => $this->input->post('SchoolEstablishedDate'),
+                'EducationLevelCode' => $this->input->post('EducationLevelCode'),
+                'SchoolTypeCode ' => $this->input->post('SchoolTypeCode'),
+                'SchoolStatusCode' => $this->input->post('SchoolStatusCode'),
+                'MunicipalCode' => $this->input->post('MunicipalCode'),
+                'JurisdictionCode' => $this->input->post('JurisdictionCode')
+
+            ];
+
+            $result = $this->db->where('SchoolID', $SchoolID)->update('SCHOOL', $data);
+            return $result;
+        }
+    }
+
+    //Update Data Form School Address
+    public function update_school_address($SchoolID)
     {
         $data = [
 
-            'EducationYear' => $this->input->post('EducationYear'),
-            'Semester' => $this->input->post('Semester'),
-            'JurisdictionCode' => $this->input->post('JurisdictionCode'),
-            'InnovationAreaCode' => $this->input->post('InnovationAreaCode'),
-            'SchoolNameThai' => $this->input->post('SchoolNameThai'),
-            'SchoolNameEnglish' => $this->input->post('SchoolNameEnglish'),
-            'SchoolEstablishedDate' => $this->input->post('SchoolEstablishedDate'),
-            'SchoolTypeCode' => $this->input->post('SchoolTypeCode'),
-            'SchoolStatusCode' => $this->input->post('SchoolStatusCode'),
-            'MunicipalCode' => $this->input->post('MunicipalCode'),
-            'SchoolAddressHouseRegisterID' => $this->input->post('SchoolAddressHouseRegisterID'),
             'SchoolAddressHouseNumber' => $this->input->post('SchoolAddressHouseNumber'),
             'SchoolAddressMoo' => $this->input->post('SchoolAddressMoo'),
             'SchoolAddressStreet' => $this->input->post('SchoolAddressStreet'),
             'SchoolAddressSoi' => $this->input->post('SchoolAddressSoi'),
             'SchoolAddressTrok' => $this->input->post('SchoolAddressTrok'),
-            'SchoolAddressSubdistrictCode' => $this->input->post('SchoolAddressSubdistrictCode'),
-            'SchoolAddressDistrictCode' => $this->input->post('SchoolAddressDistrictCode'),
-            'SchoolAddressProvinceCode' => $this->input->post('SchoolAddressProvinceCode'),
             'SchoolAddressPostcode' => $this->input->post('SchoolAddressPostcode'),
+            'SchoolAddressProvinceCode' => $this->input->post('SchoolAddressProvinceCode'),
+            'SchoolAddressDistrictCode' => $this->input->post('SchoolAddressDistrictCode'),
+            'SchoolAddressSubdistrictCode' => $this->input->post('SchoolAddressSubdistrictCode'),
             'SchoolLatitude' => $this->input->post('SchoolLatitude'),
             'SchoolLongitude' => $this->input->post('SchoolLongitude'),
-            'SchoolMapURL' => $this->input->post('SchoolMapURL'),
+            'SchoolMapURL' => $this->input->post('SchoolMapURL')
+
+        ];
+
+        $result = $this->db->where('SchoolID', $SchoolID)->update('SCHOOL', $data);
+        return $result;
+    }
+
+    //Update Data Form School Contact
+    public function update_school_contact($SchoolID)
+    {
+        $data = [
             'SchoolPhoneNumber' => $this->input->post('SchoolPhoneNumber'),
             'SchoolSecondPhoneNumber' => $this->input->post('SchoolSecondPhoneNumber'),
             'SchoolFaxNumber' => $this->input->post('SchoolFaxNumber'),
             'SchoolSecondFaxNumber' => $this->input->post('SchoolSecondFaxNumber'),
+            'SchoolAddressTrok' => $this->input->post('SchoolAddressTrok'),
             'SchoolEmail' => $this->input->post('SchoolEmail'),
-            'SchoolWebsiteURL' => $this->input->post('SchoolWebsiteURL'),
+            'SchoolWebsiteURL' => $this->input->post('SchoolWebsiteURL')
+        ];
+
+        $result = $this->db->where('SchoolID', $SchoolID)->update('SCHOOL', $data);
+        return $result;
+    }
+
+    //Update Data Form School Administrator
+    public function update_school_administrator($SchoolID)
+    {
+        $data = [
             'AdministratorPersonalID' => $this->input->post('AdministratorPersonalID'),
             'AdministratorPrefixCode' => $this->input->post('AdministratorPrefixCode'),
             'AdministratorNameThai' => $this->input->post('AdministratorNameThai'),
             'AdministratorMiddleNameThai' => $this->input->post('AdministratorMiddleNameThai'),
-            'AdministratorLastNameThai' => $this->input->post('AdministratorLastNameThai'),
-            'EducationLevelCode' => $this->input->post('EducationLevelCode'),
+            'SchoolAddressTrok' => $this->input->post('SchoolAddressTrok'),
+            'AdministratorLastNameThai' => $this->input->post('AdministratorLastNameThai')
+        ];
+
+        $result = $this->db->where('SchoolID', $SchoolID)->update('SCHOOL', $data);
+        return $result;
+    }
+
+    //Update Data Form School Utilities
+    public function update_school_utilities($SchoolID)
+    {
+        $data = [
             'ElectricTypeCode' => $this->input->post('ElectricTypeCode'),
             'InternetTypeCode' => $this->input->post('InternetTypeCode'),
-            'WaterTypeCode' => $this->input->post('WaterTypeCode'),
+            'WaterTypeCode' => $this->input->post('WaterTypeCode')
+        ];
+
+        $result = $this->db->where('SchoolID', $SchoolID)->update('SCHOOL', $data);
+        return $result;
+    }
+
+    //Update Data Form School Teaching
+    public function update_school_teaching($SchoolID)
+    {
+        $data = [
             'EducationContentCode' => $this->input->post('EducationContentCode'),
-            'DLTVFlag' => $this->input->post('DLTVFlag'),
+            'DLTVFlag' => $this->input->post('DLTVFlag')
+        ];
+
+        $result = $this->db->where('SchoolID', $SchoolID)->update('SCHOOL', $data);
+        return $result;
+    }
+
+    //Update Data Form School Statistical
+    public function update_school_statistical($SchoolID)
+    {
+        $data = [
             'ComputerOnlineNumber' => $this->input->post('ComputerOnlineNumber'),
             'ComputerStandaloneNumber' => $this->input->post('ComputerStandaloneNumber'),
             'ComputerTeachNumber' => $this->input->post('ComputerTeachNumber'),
             'ComputerManageNumber' => $this->input->post('ComputerManageNumber'),
             'ToiletMaleStudentNumber' => $this->input->post('ToiletMaleStudentNumber'),
             'ToiletFemaleStudentNumber' => $this->input->post('ToiletFemaleStudentNumber'),
-            'ToiletCombinationNumber' => $this->input->post('ToiletCombinationNumber')
-
+            'ToiletCombinationNumber' => $_POST['ToiletMaleStudentNumber'] + $_POST['ToiletFemaleStudentNumber']
         ];
 
-        $result = $this->db->where('SchoolID', $id)->update('SCHOOL', $data);
+        $result = $this->db->where('SchoolID', $SchoolID)->update('SCHOOL', $data);
         return $result;
     }
 
     //Delete Data Form School
-    public function delete_school($id)
+    public function delete_school($SchoolID)
     {
         $data = [
 
@@ -144,7 +229,7 @@ class School_model extends CI_Model
 
         ];
 
-        $result = $this->db->where('SchoolID', $id)->update('SCHOOL', $data);
+        $result = $this->db->where('SchoolID', $SchoolID)->update('SCHOOL', $data);
         return $result;
     }
     ///////////////////////////////////SCHOOL- END /////////////////////////////////////////
@@ -215,23 +300,22 @@ class School_model extends CI_Model
     }
 
     //Update Data Form Award
-    public function update_award($SchoolID, $Year, $Name)
+    public function update_award($SchoolID, $Year)
     {
         $data = [
 
-            'AwardYear' => $this->input->post('AwardYear'),
             'AwardName' => $this->input->post('AwardName'),
             'AwardSource' => $this->input->post('AwardSource'),
             'AwardLevelCode' => $this->input->post('AwardLevelCode')
 
         ];
 
-        $result = $this->db->where('SchoolID', $SchoolID)->where('AwardYear', $Year)->where('AwardName', $Name)->update('SCHOOL_AWARD', $data);
+        $result = $this->db->where('SchoolID', $SchoolID)->where('AwardYear', $Year)->update('SCHOOL_AWARD', $data);
         return $result;
     }
 
     //Delete Data Form Award
-    public function delete_award($SchoolID, $Year, $Name)
+    public function delete_award($SchoolID, $Year)
     {
         $data = [
 
@@ -239,9 +323,63 @@ class School_model extends CI_Model
 
         ];
 
-        $result = $this->db->where('SchoolID', $SchoolID)->where('AwardYear', $Year)->where('AwardName', $Name)->update('SCHOOL_AWARD', $data);
+        $result = $this->db->where('SchoolID', $SchoolID)->where('AwardYear', $Year)->update('SCHOOL_AWARD', $data);
         return $result;
     }
     ///////////////////////////////////AWARD- END /////////////////////////////////////////
+
+    /////////////////////////////////// Building /////////////////////////////////////////
+    //Add Data Form Building 
+    public function add_building()
+    {
+        $data = [
+
+            //Page forms-school-Building
+            'SchoolID' => $this->input->post('SchoolID'),
+            'BuildingName' => $this->input->post('BuildingName'),
+            'BuildingTypeCode' => $this->input->post('BuildingTypeCode'),
+            'BuildingDesignCode' => $this->input->post('BuildingDesignCode'),
+            'BuildingDetail' => $this->input->post('BuildingDetail'),
+            'BuildingRoom' => $this->input->post('BuildingRoom'),
+            'BuildingConstructionDate' => $this->input->post('BuildingConstructionDate')
+
+        ];
+
+        $result = $this->db->insert('SCHOOL_BUILDING', $data);
+        return $result;
+    }
+
+    //Update Data Form Building 
+    public function update_building($Id)
+    {
+        $data = [
+
+            'BuildingName' => $this->input->post('BuildingName'),
+            'BuildingTypeCode' => $this->input->post('BuildingTypeCode'),
+            'BuildingDesignCode' => $this->input->post('BuildingDesignCode'),
+            'BuildingDetail' => $this->input->post('BuildingDetail'),
+            'BuildingRoom' => $this->input->post('BuildingRoom'),
+            'BuildingConstructionDate' => $this->input->post('BuildingConstructionDate')
+
+        ];
+
+        $result = $this->db->where('Id', $Id)->update('SCHOOL_BUILDING', $data);
+        return $result;
+    }
+
+    //Delete Data Form Building 
+    public function delete_building($Id)
+    {
+        $data = [
+
+            'DeleteStatus' => '1'
+
+        ];
+
+        $result = $this->db->where('Id', $Id)->update('SCHOOL_BUILDING', $data);
+        return $result;
+    }
+    ///////////////////////////////////Building- END /////////////////////////////////////////
+
 
 }
