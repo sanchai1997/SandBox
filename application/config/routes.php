@@ -50,6 +50,8 @@ $route['add-budget']['post'] = 'BudgetController/add_budget';
 //curriculum_plan
 $route['list-curriculum_plan'] = 'CurriculumController/list_curriculum_plan';
 $route['forms-curriculum_plan'] = 'CurriculumController/forms_curriculum_plan';
+//Curriculum_by_school
+$route['list_curriculum_by_school'] = 'CurriculumController/list_curriculum_by_school';
 
 
 

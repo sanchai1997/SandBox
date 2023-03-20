@@ -12,7 +12,23 @@ class School_model extends CI_Model
 
     public function get_school_All()
     {
-        $query = $this->db->get('SCHOOL');
+        $this->db->from('SCHOOL')
+        ->where('DeleteStatus', 0)
+        ;
+        $query = $this->db->get();
+    
+        return $query->result();
+
+    }
+
+    public function get_school_top()
+    {
+        $this->db->from('SCHOOL')
+        ->where('DeleteStatus', 0)
+        ->LIMIT(1)
+        ;
+        $query = $this->db->get();
+    
         return $query->result();
     }
 
