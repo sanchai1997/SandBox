@@ -33,19 +33,13 @@
             <div class="card-body">
                 <div class="row">
                     <div class="col card-title">
-                        <select class="form-select" aria-label="Default select example" name="listSchool" id="listSchool">
-                            <option selected value="-1">เลือกโรงเรียน</option>
-                        <!--    <option value="select"> 
-                                    <?php 
-                                    if(Empty($ls))
-                                        echo "1150";
-                                    else 
-                                        echo "เลือกโรงเรียน"
-                                    ?>
-                                </option>
-                        -->
+                    <?php
+
+?>
+                        <select class="form-select" aria-label="Default select example" name="listSchool" id="listSchool" onchange="javascript:handleSelect(this)">
+                            <option selected value="-1">เลือกโรงเรียน</option>                 
                             <?php foreach($listSchool as $ls) { ?>
-                                <option value="<?php echo $ls-> SchoolID; ?>"><?php echo $ls->SchoolNameThai; ?></option>
+                                <option value="list-curriculum?cid=<?php echo $ls-> SchoolID; ?>"><?php echo $ls->SchoolNameThai; ?></option>
                             <?php } ?>
                         </select>
                     </div>
@@ -214,7 +208,16 @@
 
         </div>
     </div><!-- End Recent Sales -->
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+<script>
+$("select").click(function() {
+  var open = $(this).data("isopen");
+  if(open) {
+    window.location.href = $(this).val()
+  }
+  $(this).data("isopen", !open);
+});
+</script>
 </main><!-- End #main -->
 
 

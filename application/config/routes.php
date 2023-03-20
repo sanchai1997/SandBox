@@ -50,13 +50,17 @@ $route['edit_teacher_development_activity']['post'] = 'Teacher_development_activ
 $route['delete-teacher_development_activity'] = 'Teacher_development_activity_controller/delete_teacher_development_activity';
 //Files
 $route['load_file'] = 'DocumentController/load_file';
-
 //budget
-
 $route['list-budget'] = 'BudgetController/list_budget';
 $route['edit_forms_budget'] = 'BudgetController/edit_forms_budget';
 $route['forms-budget'] = 'BudgetController/forms_budget';
 $route['add-budget']['post'] = 'BudgetController/add_budget';
+//curriculum_plan
+$route['list-curriculum_plan'] = 'CurriculumController/list_curriculum_plan';
+$route['forms-curriculum_plan'] = 'CurriculumController/forms_curriculum_plan';
+
+
+
 
 
 //area_identitty

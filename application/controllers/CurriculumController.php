@@ -53,6 +53,25 @@ class CurriculumController extends CI_Controller{
         $this->load->view('templates/footer', $data);
 
     }
+    public function list_curriculum_by_school() {
+        
+        if ( ! file_exists(APPPATH.'views/pages/dashboard/Curriculum/list-curriculum.php'))
+        {
+            // Whoops, we don't have a page for that!
+            show_404();
+        }
+
+        $data['title'] = 'Curriculum'; // Capitalize the first letter
+        $data['listCurriculum'] = $this->Curriculum_model->get_Curriculum_All();
+        $data['listSchool'] = $this->School_model->get_school_All();
+
+
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/sidebar', $data);
+        $this->load->view('pages/dashboard/Curriculum/list-curriculum', $data);
+        $this->load->view('templates/footer', $data);
+
+    }
 
     public function add_curriculum() {
         // add_curriculum
@@ -500,6 +519,34 @@ class CurriculumController extends CI_Controller{
             redirect(base_url('list-curriculum_school_competency?cid='. $CurriculumID.'&&sid='.$SubjectCode));
         }
         
+    }
+    ##curriculum_plan
+    public function list_curriculum_plan() {
+            
+        if ( ! file_exists(APPPATH.'views/pages/dashboard/Curriculum/list-curriculum_plan.php'))
+        {
+            show_404();
+        }
+
+        $this->load->view('templates/header');
+        $this->load->view('templates/sidebar');
+        $this->load->view('pages/dashboard/Curriculum/list-curriculum_plan');
+        $this->load->view('templates/footer');
+
+    }
+
+    public function forms_curriculum_plan() {
+            
+        if ( ! file_exists(APPPATH.'views/pages/forms/Curriculum/forms-curriculum_plan.php'))
+        {
+            show_404();
+        }
+
+        $this->load->view('templates/header');
+        $this->load->view('templates/sidebar');
+        $this->load->view('pages/forms/Curriculum/forms-curriculum_plan');
+        $this->load->view('templates/footer');
+
     }
 
     
