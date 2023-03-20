@@ -105,17 +105,17 @@
                                                 <div class="row">
                                                     <h6 style="padding-top: 10px;"><b>รหัสหลักสูตร</b></h6>
                                                     <div class=" col-8" style="padding-bottom: 8px; padding-left: 40px;">
-                                                        รหัสหลักสูตร - <?= $ls->CurriculumID ; ?> 
+                                                        รหัสหลักสูตร : <?= $ls->CurriculumID ; ?> 
                                                     </div>
                                                 </div>
 
                                                 <div class="row">
                                                     <h6 style="padding-top: 10px;"><b>ปีการศึกษา</b></h6>
                                                     <div class=" col-8" style="padding-bottom: 8px; padding-left: 40px;">
-                                                        ปีการศึกษา - <?= $ls->EducationYear; ?> 
+                                                        ปีการศึกษา : <?= $ls->EducationYear; ?> 
                                                     </div>
                                                     <div class=" col-8" style="padding-bottom: 8px; padding-left: 40px;">
-                                                        ภาคเรียน -  <?php $Semester_code = $ls->Semester ;
+                                                        ภาคเรียน :  <?php $Semester_code = $ls->Semester ;
                                                                         if($Semester_code==0) echo "ตลอดปีการศึกษา"; 
                                                                         else if($Semester_code==1) echo "ภาคเรียนที่ 1"; 
                                                                         else if($Semester_code==2) echo "ภาคเรียนที่ 2"; ?>                                                        
@@ -125,45 +125,45 @@
                                                 <div class="row">
                                                     <h6 style="padding-top: 10px;"><b>สถานศึกษา</b></h6>
                                                     <div class=" col-8" style="padding-bottom: 8px; padding-left: 40px;">
-                                                    สถานศึกษา - <?= $ls->SchoolNameThai ; ?> 
+                                                    สถานศึกษา : <?= $ls->SchoolNameThai ; ?> 
                                                     </div>
                                                 </div>
 
                                                 <div class="row">
                                                     <h6 style="padding-top: 10px;"><b>ข้อมูลหลักสูตร</b></h6>
                                                     <div class=" col-8" style="padding-bottom: 8px; padding-left: 40px;">
-                                                        ชื่อหลักสูตร - <?= $ls->CurriculumName ; ?> 
+                                                        ชื่อหลักสูตร : <?= $ls->CurriculumName ; ?> 
                                                     </div>
                                                     <div class=" col-8" style="padding-bottom: 8px; padding-left: 40px;">
-                                                        ประเภทหลักสูตร - <?= $ls->CURRICULUM_NAME ; ?> 
+                                                        ประเภทหลักสูตร : <?= $ls->CURRICULUM_NAME ; ?> 
                                                     </div>
                                                     <div class=" col-8" style="padding-bottom: 8px; padding-left: 40px;">
-                                                        ระดับการศึกษา - <?= $ls->EDUCATION_LEVEL_NAME ; ?> 
+                                                        ระดับการศึกษา : <?= $ls->EDUCATION_LEVEL_NAME ; ?> 
                                                     </div>
                                                     <div class=" col-8" style="padding-bottom: 8px; padding-left: 40px;">
-                                                        ชั้นปี - <?= $ls->GRADE_LEVEL_NAME ; ?> 
+                                                        ชั้นปี : <?= $ls->GRADE_LEVEL_NAME ; ?> 
                                                     </div>
                                                     <div class=" col-8" style="padding-bottom: 8px; padding-left: 40px;">
-                                                        จำนวนห้องที่สอนด้วยหลักสูตร - <?= $ls->ClassroomNumber ; ?> 
+                                                        จำนวนห้องที่สอนด้วยหลักสูตร : <?= $ls->ClassroomNumber ; ?> 
                                                     </div>
                                                     <div class=" col-8" style="padding-bottom: 8px; padding-left: 40px;">
-                                                        เอกสารแนบหลักสูตร -  <a href="load_file?file=<?php echo $ls->CurriculumDocumentURL; ?>" ><i class="bi bi-file-earmark-text-fill"></i> เอกสารแนบหลักสูตร</a>   
+                                                        เอกสารแนบหลักสูตร :  <a href="load_file?file=<?php echo $ls->CurriculumDocumentURL; ?>" ><i class="bi bi-file-earmark-text-fill"></i> เอกสารแนบหลักสูตร</a>   
                                                     </div>
                                                 </div>
 
                                                 <div class="row">
                                                     <h6 style="padding-top: 10px;"><b>ข้อมูลหลักสูตรท้องถิ่น</b></h6>
                                                     <div class=" col-8" style="padding-bottom: 8px; padding-left: 40px;">
-                                                        อ้างอิงหลักสูตรท้องถิ่น - <?php $LocalCurriculumFlag_code = $ls->LocalCurriculumFlag ;
+                                                        อ้างอิงหลักสูตรท้องถิ่น : <?php $LocalCurriculumFlag_code = $ls->LocalCurriculumFlag ;
                                                                         if($Semester_code==0) echo "อ้างอิง"; 
                                                                         else if($Semester_code==1) echo "ไม่อ้างอิง"; ?>   
                                                         
                                                     </div>
                                                     <div class=" col-8" style="padding-bottom: 8px; padding-left: 40px;">
-                                                    ชื่อหลักสูตรท้องถิ่นที่อ้างอิง - <?= $ls->LocalCurriculumName ; ?> 
+                                                    ชื่อหลักสูตรท้องถิ่นที่อ้างอิง : <?= $ls->LocalCurriculumName ; ?> 
                                                     </div>
                                                     <div class=" col-8" style="padding-bottom: 8px; padding-left: 40px;">
-                                                        เอกสารแนบหลักสูตรท้องถิ่นที่อ้างอิง -  <a href="load_file?file=<?php echo $ls->LocalCurriculumDocumentURL; ?>" ><i class="bi bi-file-earmark-text-fill"></i> เอกสารแนบหลักสูตร</a>   
+                                                        เอกสารแนบหลักสูตรท้องถิ่นที่อ้างอิง :  <a href="load_file?file=<?php echo $ls->LocalCurriculumDocumentURL; ?>" ><i class="bi bi-file-earmark-text-fill"></i> เอกสารแนบหลักสูตร</a>   
                                                     </div>
                                                 </div>
 

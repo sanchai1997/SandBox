@@ -29,8 +29,7 @@
 
             <div class="card-body">
 
-
-              <h5 class="card-title">ข้อมูลสมรรถนะของหลักสูตร </h5>
+              <h5 class="card-title"> </h5>
 
               <!-- start Form ข้อมูลหลักสูตรรายวิชา -->
               <form class="row g-3" action="<?php echo base_url('add_curriculum_school_competency');?>" method="POST" name="addCurriculumCompetency" id="addCurriculumCompetency" enctype="multipart/form-data"> 
@@ -45,7 +44,7 @@
                         <option value="<?php echo $ls->COMPETENCY_CODE; ?>"><?php echo $ls->COMPETENCY_NAME; ?></option>
                       <?php } ?> 
                     </select>    
-                    <label>สมรรถนะ</label>
+                    <label>สมรรถนะ<font color="red"> *</font></label>
                   </div>
                 </div>
 

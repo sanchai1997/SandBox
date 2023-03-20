@@ -27,7 +27,7 @@
         <div class="col-lg-9">
           <div class="card">
             <div class="card-body">
-              <h5 class="card-title">ข้อมูลหลักสูตร</h5>
+              <h5 class="card-title"></h5>
 
               <!-- start Form ข้อมูลหลักสูตร -->
               <form class="row g-3" action="<?php echo base_url('edit_curriculum');?>" method="POST" name="Curriculum" id="Curriculum" enctype="multipart/form-data"> 
@@ -37,7 +37,7 @@
                 <div class="col-md-6">
                   <div class="form-floating">
                     <input type="text" class="form-control" name="EducationYear" id="EducationYear" placeholder="ปีการศึกษา (พ.ศ.)" maxlength="4" value="<?php echo $c->EducationYear; ?>">
-                    <label >ปีการศึกษา</label>
+                    <label >ปีการศึกษา<font color="red"> *</font></label>
                   </div>
                 </div>
                 
@@ -48,7 +48,7 @@
                         <option value="1">ภาคเรียนที่ 1</option>
                         <option value="2">ภาคเรียนที่ 2</option>
                       </select>
-                    <label >ภาคเรียน</label>
+                    <label >ภาคเรียน<font color="red"> *</font></label>
                   </div>
                 </div>
 
@@ -59,14 +59,14 @@
                         <option value="<?php echo $ls->SchoolID; ?>"><?php echo $ls->SchoolNameThai; ?></option>
                       <?php } ?>
                     </select>
-                    <label >สถานศึกษา</label>
+                    <label >สถานศึกษา<font color="red"> *</font></label>
                   </div>
                 </div>
                 
                 <div class="col-md-6">
                   <div class="form-floating">
                   <input type="text" class="form-control" name="CurriculumName" id="CurriculumName" placeholder="ชื่อหลักสูตร"  value="<?php echo $c->CurriculumName; ?>">
-                    <label >ชื่อหลักสูตร</label>
+                    <label >ชื่อหลักสูตร<font color="red"> *</font></label>
                   </div>
                 </div>
 
@@ -77,7 +77,7 @@
                         <option value="<?php echo $ls->CURRICULUM_CODE; ?>"><?php echo $ls->CURRICULUM_NAME; ?></option>
                       <?php } ?>
                     </select>
-                    <label >ประเภทหลักสูตร</label>
+                    <label >ประเภทหลักสูตร<font color="red"> *</font></label>
                   </div>
                 </div>
 
@@ -88,7 +88,7 @@
                         <option value="<?php echo $ls->EDUCATION_LEVEL_CODE; ?>"><?php echo $ls->EDUCATION_LEVEL_NAME; ?></option>
                       <?php } ?>
                     </select>
-                    <label >ระดับการศึกษา</label>
+                    <label >ระดับการศึกษา<font color="red"> *</font></label>
                   </div>
                 </div>
 
@@ -99,13 +99,13 @@
                         <option value="<?php echo $ls->GRADE_LEVEL_CODE; ?>"><?php echo $ls->GRADE_LEVEL_NAME; ?></option>
                       <?php } ?>
                     </select>
-                    <label >ชั้นปี</label>
+                    <label >ชั้นปี<font color="red"> *</font></label>
                   </div>
                 </div>
 
                 <div class="col-md-16">
                   <div class="form-floating">
-                    <input type="number" class="form-control"  name="ClassroomNumber" id="ClassroomNumber" min="1" max="999" placeholder="จำนวนห้องที่สอนด้วยหลักสูตร"  value="<?php echo $c->ClassroomNumber; ?>">                  
+                    <input type="number" class="form-control"  name="ClassroomNumber" id="ClassroomNumber" min="0" max="999" placeholder="จำนวนห้องที่สอนด้วยหลักสูตร"  value="<?php echo $c->ClassroomNumber; ?>">                  
                     <label>จำนวนห้องที่สอนด้วยหลักสูตร</label>
                   </div>
                 </div>
@@ -122,6 +122,7 @@
                 <div class="col-md-6">
                   <div class="form-floating">
                     <select class="form-select" aria-label="Default select example" name="LocalCurriculumFlag" id="LocalCurriculumFlag">
+                      <option selected value="-1">เลือกอ้างอิงหลักสูตรท้องถิ่น</option>  
                       <option value="0">อ้างอิง</option>
                       <option value="1">ไม่อ้างอิง</option>
                     </select>
@@ -308,36 +309,58 @@
       return false;
     }
 
-    //Check_ClassroomNumber(จำนวนห้องที่สอนด้วยหลักสูตร)
-    var check_ClassroomNumber = /^[0-9]{1,3}$/;
+       //Check_ClassroomNumber(จำนวนห้องที่สอนด้วยหลักสูตร)
+       var check_ClassroomNumber = /^[0-9]{1,3}$/;
+    /*
     if(frm.ClassroomNumber.value ==""){
         alert("กรุณากรอกข้อมูลจำนวนห้องที่สอนด้วยหลักสูตร");
         frm.ClassroomNumber.value = "";
         return false;
-    }else if (!frm.ClassroomNumber.value.match(check_ClassroomNumber)){
+    }else
+    */
+    if (!frm.ClassroomNumber.value.match(check_ClassroomNumber) && frm.ClassroomNumber.value !=""){
         alert("กรุณากรอกข้อมูลจำนวนห้องที่สอนด้วยหลักสูตรตัวเลขเท่านั้น");
         frm.ClassroomNumber.value = "";
         return false;
     }
-    
+    /*
+    //Check_CurriculumDocumentURL(เอกสารหลักสูตร)
+    if(frm.CurriculumDocumentURL.value==""){
+        alert("กรุณาแนบไฟล์เอกสารหลักสูตร");
+        return false;
+    }
+   
     //Check_LocalCurriculumFlag(ชื่อหลักสูตรท้องถิ่นที่อ้างอิง)
     if(frm.LocalCurriculumFlag.value==-1){
       alert("กรุณาเลือกอ้างอิงหลักสูตรท้องถิ่น");
       return false;
     }
+     */
 
     //Check_LocalCurriculumName(ชื่อหลักสูตรท้องถิ่นที่อ้างอิง)
     var CHECK_LOCAL_CURRICULUM_NAME = /^[A-Z,a-z,ก-์,0-9]{1,255}$/;
+    /*
     if(frm.LocalCurriculumName.value==""){
         alert("กรุณากรอกชื่อหลักสูตรท้องถิ่นที่อ้างอิง");
         frm.LocalCurriculumName.value = "";
         return false;
     }
-    else if(!frm.LocalCurriculumName.value.match(CHECK_LOCAL_CURRICULUM_NAME)){
+    else */
+    if(!frm.LocalCurriculumName.value.match(CHECK_LOCAL_CURRICULUM_NAME) && frm.LocalCurriculumName.value!=""){
         alert("กรุณากรอกชื่อหลักสูตรท้องถิ่นที่อ้างอิงให้ถูกต้อง");
         frm.LocalCurriculumName.value = "";
         return false;
+    }else if(frm.LocalCurriculumFlag.value==-1 && frm.LocalCurriculumName.value!=""){
+      alert("กรุณาเลือกอ้างอิงหลักสูตรท้องถิ่น");
+      return false;   
     }
+    /*
+    //Check_LocalCurriculumDocumentURL(เอกสารแนบหลักสูตรอ้างอิง)
+    if(frm.LocalCurriculumDocumentURL.value==""){
+        alert("กรุณาแนบไฟล์เอกสารแนบหลักสูตรอ้างอิง");
+        return false;
+    }
+    */
 
 
     $('#Modal').modal('show');

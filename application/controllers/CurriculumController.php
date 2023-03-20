@@ -83,37 +83,34 @@ class CurriculumController extends CI_Controller{
         $CurriculumDocumentURL = $this->do_upload('CurriculumDocument'.$CurriculumID ,"CurriculumDocumentURL");
         $LocalCurriculumDocumentURL = $this->do_upload('LocalCurriculumDocument'.$CurriculumID ,"LocalCurriculumDocumentURL");
 
-        if($CurriculumDocumentURL != -1 && $LocalCurriculumDocumentURL !=-1 ){
-            $curriculum = [
-                'CurriculumID' => $CurriculumID,
-                'EducationYear' => $EducationYear,
-                'Semester' =>  $Semester,
-                'SchoolID' => $SchoolID,
-                'CurriculumName' => $this->input->post('CurriculumName'),
-                'CurriculumCode' => $this->input->post('CurriculumCode'),
-                'EducationLevelCode' => $this->input->post('EducationLevelCode'),
-                'GradeLevelCode' => $this->input->post('GradeLevelCode'),
-                'ClassroomNumber' => $this->input->post('ClassroomNumber'),
-                'CurriculumDocumentURL' => $CurriculumDocumentURL,
-                'LocalCurriculumFlag' => $this->input->post('LocalCurriculumFlag'),
-                'LocalCurriculumName' => $this->input->post('LocalCurriculumName'),
-                'LocalCurriculumDocumentURL' => $LocalCurriculumDocumentURL,
-                'DeleteStatus' => 0 
-            ];
-            $result_curriculum =  $this->Curriculum_model->insert_curriculum($curriculum);
+        if($CurriculumDocumentURL != -1) {$CurriculumDocumentURL=null;}
+        if($LocalCurriculumDocumentURL != -1) {$LocalCurriculumDocumentURL=null;}
 
-            if($result_curriculum == 1 ){
-                $this->session->set_flashdata('success',"บันทึกข้อมูลสำเร็จ");
-                redirect(base_url('list-curriculum'));
-            }else{
-                $this->session->set_flashdata('errors',"เกิดข้อผิดพลาดในการบันทึกข้อมูล");
-                redirect(base_url('forms-curriculum'));
-            }
-        
+        $curriculum = [
+            'CurriculumID' => $CurriculumID,
+            'EducationYear' => $EducationYear,
+            'Semester' =>  $Semester,
+            'SchoolID' => $SchoolID,
+            'CurriculumName' => $this->input->post('CurriculumName'),
+            'CurriculumCode' => $this->input->post('CurriculumCode'),
+            'EducationLevelCode' => $this->input->post('EducationLevelCode'),
+            'GradeLevelCode' => $this->input->post('GradeLevelCode'),
+            'ClassroomNumber' => $this->input->post('ClassroomNumber'),
+            'CurriculumDocumentURL' => $CurriculumDocumentURL,
+            'LocalCurriculumFlag' => $this->input->post('LocalCurriculumFlag'),
+            'LocalCurriculumName' => $this->input->post('LocalCurriculumName'),
+            'LocalCurriculumDocumentURL' => $LocalCurriculumDocumentURL,
+            'DeleteStatus' => 0 
+        ];
+        $result_curriculum =  $this->Curriculum_model->insert_curriculum($curriculum);
+
+        if($result_curriculum == 1 ){
+            $this->session->set_flashdata('success',"บันทึกข้อมูลสำเร็จ");
+            redirect(base_url('list-curriculum'));
         }else{
             $this->session->set_flashdata('errors',"เกิดข้อผิดพลาดในการบันทึกข้อมูล");
             redirect(base_url('forms-curriculum'));
-        }
+        }   
 
     }
 
