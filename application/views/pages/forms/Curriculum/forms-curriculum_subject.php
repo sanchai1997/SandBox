@@ -30,8 +30,7 @@
 
             <div class="card-body">
 
-
-              <h5 class="card-title">ข้อมูลหลักสูตรรายวิชา</h5>
+              <h5 class="card-title"></h5>
 
               <!-- start Form ข้อมูลหลักสูตรรายวิชา -->
               <form class="row g-3" action="<?php echo base_url('add_curriculum_subject');?>" method="POST" name="addCurriculumSubject" id="addCurriculumSubject" enctype="multipart/form-data"> 
@@ -40,14 +39,14 @@
                 <div class="col-md-16">
                     <div class="form-floating">
                       <input type="text" class="form-control" name="SubjectName" id="SubjectName" placeholder="ชื่อรายวิชา"  maxlength="100">
-                      <label >ชื่อรายวิชา</label>
+                      <label >ชื่อรายวิชา<font color="red"> *</font></label>
                     </div>
                 </div>
 
                 <div class="col-md-16">
                     <div class="form-floating">
                       <input type="text" class="form-control"name="SubjectCode" id="SubjectCode" placeholder="รหัสวิชา" maxlength="10">
-                      <label >รหัสวิชา</label>
+                      <label >รหัสวิชา<font color="red"> *</font></label>
                     </div>
                 </div>
 
@@ -59,7 +58,7 @@
                         <option value="<?php echo $ls->SUBJECT_GROUP_CODE; ?>"><?php echo $ls->SUBJECT_GROUP_NAME; ?></option>
                       <?php } ?>
                     </select>
-                    <label>กลุ่มสาระการเรียนรู้ / การศึกษาค้นคว้าด้วยตนเอง</label>
+                    <label>กลุ่มสาระการเรียนรู้ / การศึกษาค้นคว้าด้วยตนเอง<font color="red"> *</font></label>
                   </div>
                 </div>
 
@@ -71,21 +70,21 @@
                         <option value="<?php echo $ls->SUBJECT_TYPE_CODE; ?>"><?php echo $ls->SUBJECT_TYPE_NAME ; ?></option>
                       <?php } ?>
                     </select>
-                    <label>ประเภทวิชา</label>
+                    <label>ประเภทวิชา<font color="red"> *</font></label>
                   </div>
                 </div>
 
                 <div class="col-md-16">
                   <div class="form-floating">
                     <input type="text" class="form-control" name="Credit"id="Credit" placeholder="หน่วยกิต/หน่วยน้ำหนัก">
-                    <label>หน่วยกิต/หน่วยน้ำหนัก</label>
+                    <label>หน่วยกิต/หน่วยน้ำหนัก<font color="red"> *</font></label>
                   </div>
                 </div>
 
                 <div class="col-md-16">
                   <div class="form-floating">
                     <input type="text" class="form-control" name="LearningHour"id="LearningHour" placeholder="จำนวนชั่วโมงเรียน">
-                    <label>จำนวนชั่วโมงเรียน</label>
+                    <label>จำนวนชั่วโมงเรียน<font color="red"> *</font></label>
                   </div>
                 </div>
 
