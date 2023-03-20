@@ -392,7 +392,6 @@
               </div>
               <div class="text-center">
                 <a href="teacher" style="float: left;" class="btn btn-light">ยกเลิก</a>
-                <button style="float: center;" type="reset" class="btn btn-secondary">รีเซ็ต</button>
                 <button style="float: right;" name="Submit" type="submit" class="btn btn-primary">หน้าถัดไป</button>
               </div>
             </form><!-- End General Form Elements -->

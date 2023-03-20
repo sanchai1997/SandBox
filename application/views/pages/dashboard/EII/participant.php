@@ -45,22 +45,22 @@
 
             <div class="col-3">
 
-                <nav>
+                <!-- <nav>
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="main">Home</a></li>
                         <li class="breadcrumb-item">Form</li>
                         <li class="breadcrumb-item active">ผู้เข้ามามีส่วนร่วม</li>
                     </ol>
-                </nav>
+                </nav> -->
             </div>
-            <div class="col-lg-9" style="padding-right: 25px;">
+            <!-- <div class="col-lg-9" style="padding-right: 25px;">
                 <a href="<?php echo site_url('Fm_participant_das_p1?page=sh1') ?>" style="float: right;"
                     class="btn btn-sm btn-light" data-mdb-ripple-color="dark">ข้อมูลหม่วยงานที่เข้ามามีส่วนร่วมในพื้นที่นวัตกรรมการศึกษา</a>
                 
                 
 
 
-            </div>
+            </div> -->
         </div>
     </div>
 
@@ -76,13 +76,25 @@
             <div class="card-body">
                 <div class="row">
                     <div class="col">
-                        <h5 class="card-title">รายละเอียดข้อมูล <span>| ผู้เข้ามามีส่วนร่วม</span></h5>
+                        <h5 class="card-title"> </h5>
                     </div>
                     <div class="col">
                         <h5 style="float: right; padding: 15px;" class="card-title"><a
                                 href="<?php echo site_url('par_forms_p1?page=sh1') ?>"
-                                class="btn btn-success">เพิ่มข้อมูลผู้เข้ามามีส่วนร่วม</a></h5>
+                                class="btn btn-success">เพิ่มข้อมูล</a></h5>
                     </div>
+                </div>
+                <div class="dropdown">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1"
+                        data-bs-toggle="dropdown" aria-expanded="false">
+                        ประเภทข้อมูล
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                        <li><a class="dropdown-item"
+                                href="<?php echo site_url('Fm_participant_das_p1?page=sh1') ?>">ข้อมูลหม่วยงานที่เข้ามามีส่วนร่วมในพื้นที่นวัตกรรมการศึกษา</a>
+                        </li>
+
+                    </ul>
                 </div>
                 <table class="table table-borderless datatable">
                     <thead>
@@ -103,6 +115,17 @@
                             # code...
                         ?>
                         <tr>
+                            <?php
+                            $Id= $show->Id;
+                            $results = $this->db->query("SELECT * FROM PARTICIPANT 
+                            INNER JOIN CLS_PARTICIPANT_TYPE 
+                            ON CLS_PARTICIPANT_TYPE.PARTICIPANT_TYPE_CODE = PARTICIPANT.ParticipantTypeCode 
+                            
+                            WHERE Id = $Id
+                            ");
+
+foreach ($results->result() as $shows) {
+                     ?> 
                             <td style="text-align: center;"><?php echo $show->ParticipantID; ?></td>
                             <td style="text-align: center;"><?php echo $show->ParticipantName; ?></td>
                             <td style="text-align: center;"><a
@@ -157,7 +180,7 @@
                                 </div> <!-- Modal -->
                             </td>
                         </tr>
-                        <?php  } ?>
+                        <?php }  } ?>
 
 
                     </tbody>
@@ -176,13 +199,25 @@
             <div class="card-body">
                 <div class="row">
                     <div class="col">
-                        <h5 class="card-title">รายละเอียดข้อมูล <span>| การติดต่อของผู้มีส่วนร่วม</span></h5>
+                        <h5 class="card-title"> </h5>
                     </div>
                     <div class="col">
                         <h5 style="float: right; padding: 15px;" class="card-title"><a
                                 href="<?php echo site_url('pc_forms_p2?page=sh2') ?>"
-                                class="btn btn-success">เพิ่มข้อมูลการติดต่อของผู้มีส่วนร่วม</a></h5>
+                                class="btn btn-success">เพิ่มข้อมูล</a></h5>
                     </div>
+                </div>
+                <div class="dropdown">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1"
+                        data-bs-toggle="dropdown" aria-expanded="false">
+                        ประเภทข้อมูล
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                        <li><a class="dropdown-item"
+                                href="<?php echo site_url('Fm_participant_das_p1?page=sh1') ?>">ข้อมูลหม่วยงานที่เข้ามามีส่วนร่วมในพื้นที่นวัตกรรมการศึกษา</a>
+                        </li>
+
+                    </ul>
                 </div>
                 <table class="table table-borderless datatable">
                     <thead>
@@ -271,13 +306,25 @@
             <div class="card-body">
                 <div class="row">
                     <div class="col">
-                        <h5 class="card-title">รายละเอียดข้อมูล <span>| การมีส่วนร่วม</span></h5>
+                        <h5 class="card-title"> </h5>
                     </div>
                     <div class="col">
                         <h5 style="float: right; padding: 15px;" class="card-title"><a
                                 href="<?php echo site_url('pcp_forms_p3?page=sh3') ?>"
-                                class="btn btn-success">เพิ่มข้อมูลการมีส่วนร่วม</a></h5>
+                                class="btn btn-success">เพิ่มข้อมูล</a></h5>
                     </div>
+                </div>
+                <div class="dropdown">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1"
+                        data-bs-toggle="dropdown" aria-expanded="false">
+                        ประเภทข้อมูล
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                        <li><a class="dropdown-item"
+                                href="<?php echo site_url('Fm_participant_das_p1?page=sh1') ?>">ข้อมูลหม่วยงานที่เข้ามามีส่วนร่วมในพื้นที่นวัตกรรมการศึกษา</a>
+                        </li>
+
+                    </ul>
                 </div>
                 <table class="table table-borderless datatable">
                     <thead>
@@ -298,10 +345,25 @@
                 
                 WHERE ParticipantID='" . $key . "' AND DeleteStatus = '0'");
                 foreach ($result->result() as $show) {  ?>
+                <?php
+                            $Id= $show->Id;
+                            $results = $this->db->query("SELECT * FROM PARTICIPANT_COOPERATION 
+                            INNER JOIN CLS_COOPERATION_STATUS 
+                            ON CLS_COOPERATION_STATUS.COOPERATION_STATUS_CODE = PARTICIPANT_COOPERATION.CooperationStatusCode 
+                            -- BestPracticeTypeCode
+                            INNER JOIN CLS_COOPERATION_LEVEL 
+                            ON CLS_COOPERATION_LEVEL.COOPERATION_LEVEL_CODE = PARTICIPANT_COOPERATION.CooperationLevelCode 
+                            -- TargetEducationLevelCode
+                           
+                            WHERE Id = $Id
+                            ");
+
+foreach ($results->result() as $shows) {
+                     ?> 
                         <tr>
                             <th scope="row " style="text-align: center;"><?php echo $show->CooperationStartDate; ?></th>
                             <th scope="row" style="text-align: center;"><?php echo $show->CooperationEndDate; ?></th>
-                            <td scope="row" style="text-align: center;"><?php echo $show->CooperationStatusCode; ?></td>
+                            <td scope="row" style="text-align: center;"><?php echo $shows->COOPERATION_STATUS_NAME; ?></td>
                             
                             
                             <!-- แก้ไข+ลบ -->
@@ -349,7 +411,7 @@
 
 
                         </tr>
-                        <?php  } ?>
+                        <?php } } ?>
 
 
                     </tbody>
@@ -368,13 +430,25 @@
             <div class="card-body">
                 <div class="row">
                     <div class="col">
-                        <h5 class="card-title">รายละเอียดข้อมูล <span>| ข้อมูลบันทึกเพิ่มเติม</span></h5>
+                        <h5 class="card-title"> </h5>
                     </div>
                     <div class="col">
                         <h5 style="float: right; padding: 15px;" class="card-title"><a
                                 href="<?php echo site_url('pn_forms_p4?page=sh4') ?>"
-                                class="btn btn-success">เพิ่มข้อมูลบันทึกเพิ่มเติม</a></h5>
+                                class="btn btn-success">เพิ่มข้อมูล</a></h5>
                     </div>
+                </div>
+                <div class="dropdown">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1"
+                        data-bs-toggle="dropdown" aria-expanded="false">
+                        ประเภทข้อมูล
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                        <li><a class="dropdown-item"
+                                href="<?php echo site_url('Fm_participant_das_p1?page=sh1') ?>">ข้อมูลหม่วยงานที่เข้ามามีส่วนร่วมในพื้นที่นวัตกรรมการศึกษา</a>
+                        </li>
+
+                    </ul>
                 </div>
                 <table class="table table-borderless datatable">
                     <thead>
@@ -481,6 +555,17 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
+            <?php
+                            $Id= $show->Id;
+                            $results = $this->db->query("SELECT * FROM PARTICIPANT 
+                            INNER JOIN CLS_PARTICIPANT_TYPE 
+                            ON CLS_PARTICIPANT_TYPE.PARTICIPANT_TYPE_CODE = PARTICIPANT.ParticipantTypeCode 
+                            
+                            WHERE Id = $Id
+                            ");
+
+foreach ($results->result() as $shows) {
+                     ?>
                 <div class="row">
                     <div class="col">
                         <h5 class="fw-bold">รหัสภาครัฐหรือภาคเอกชนที่เข้ามาขับเคลื่อนพื้นที่นวัตกรรมการศึกษา</h5>
@@ -488,10 +573,11 @@
                         <h5 class="fw-bold">ชื่อภาครัฐหรือภาคเอกชนที่เข้ามาขับเคลื่อนพื้นที่นวัตกรรมการศึกษา</h5>
                         <p><?php echo $show->ParticipantName; ?></p>
                         <h5 class="fw-bold">รหัสประเภทผู้เข้ามามีส่วนร่วม</h5>
-                        <p><?php echo $show->ParticipantTypeCode; ?></p>
+                        <p><?php echo $shows->PARTICIPANT_TYPE_NAME; ?></p>
                         
                     </div>
                 </div>
+                <?php } ?>
             </div>
             <div class="modal-footer">
             <a href="<?php echo site_url('par_forms_p1?page=sh11') ?>&&key=<?php echo $show->Id; ?>"class="btn btn-warning"> <i class="bi bi-pencil-square"></i></a>
@@ -572,6 +658,21 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
+            <?php
+                            $Id= $show->Id;
+                            $results = $this->db->query("SELECT * FROM PARTICIPANT_COOPERATION 
+                            INNER JOIN CLS_COOPERATION_STATUS 
+                            ON CLS_COOPERATION_STATUS.COOPERATION_STATUS_CODE = PARTICIPANT_COOPERATION.CooperationStatusCode 
+                            -- BestPracticeTypeCode
+                            INNER JOIN CLS_COOPERATION_LEVEL 
+                            ON CLS_COOPERATION_LEVEL.COOPERATION_LEVEL_CODE = PARTICIPANT_COOPERATION.CooperationLevelCode 
+                            -- TargetEducationLevelCode
+                           
+                            WHERE Id = $Id
+                            ");
+
+foreach ($results->result() as $shows) {
+                     ?> 
                 <div class="row">
                     <div class="col">
                         <h5 class="fw-bold">รหัสภาครัฐหรือภาคเอกชนที่เข้ามาขับเคลื่อนพื้นที่นวัตกรรมการศึกษา</h5>
@@ -581,11 +682,11 @@
                         <h5 class="fw-bold">วันที่สิ้นสุดการมีส่วนร่วม</h5>
                         <p><?php echo $show->CooperationEndDate; ?></p>
                         <h5 class="fw-bold">รหัสระดับการมีส่วนร่วม</h5>
-                        <p><?php echo $show->CooperationStatusCode; ?></p>
+                        <p><?php echo $shows->COOPERATION_STATUS_NAME; ?></p>
                         <h5 class="fw-bold">กิจกรรมที่มีส่วนร่วม</h5>
                         <p><?php echo $show->CooperationActivity; ?></p>
                         <h5 class="fw-bold">รหัสระดับการมีส่วนร่วม</h5>
-                        <p><?php echo $show->CooperationLevelCode; ?></p>
+                        <p><?php echo $shows->COOPERATION_LEVEL_NAME; ?></p>
                     </div>
 
 
@@ -599,6 +700,7 @@
                         
                     </div>
                 </div>
+                <?php } ?>
             </div>
             <div class="modal-footer">
             <a href="<?php echo site_url('pcp_forms_p3?page=sh33') ?>&&key=<?php echo $show->Id; ?>"class="btn btn-warning"> <i class="bi bi-pencil-square"></i></a>

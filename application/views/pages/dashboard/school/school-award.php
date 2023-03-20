@@ -3,19 +3,15 @@
     <div class="pagetitle">
         <div class="row">
             <div class="col-6">
-                <h1>ข้อมูลรางวัลสถานศึกษา</h1>
-                <nav>
-                    <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="main">Home</a></li>
-                        <li class="breadcrumb-item">Dashboard</li>
-                        <li class="breadcrumb-item active">Award</li>
-                    </ol>
-                </nav>
-            </div>
-            <div class="col-6" style="padding-right: 25px;">
-                <a href="school-award" style="float: right;" class="btn btn-sm btn-outline-secondary" active data-mdb-ripple-color="dark">ข้อมูลรางวัลสถานศึกษา</a>
-                <a href="school-classroom" style="float: right;" class="btn btn-sm btn-light" data-mdb-ripple-color="dark">ข้อมูลห้องเรียนสถานศึกษา</a>
-                <a href="school" style="float: right; " class="btn btn-sm btn-light" data-mdb-ripple-color="dark">ข้อมูลสถานศึกษา</a>
+                <h1>รายละเอียดรางวัล
+                    -
+                    <?php
+                    $result = $this->db->query('SELECT *  FROM SCHOOL WHERE SchoolID = ' . $_GET['SchoolID'] . '');
+                    foreach ($result->result() as $SCHOOL) {
+                        echo $SCHOOL->SchoolNameThai;
+                    }
+                    ?>
+                </h1>
             </div>
         </div>
     </div><!-- End Page Title -->
@@ -44,36 +40,40 @@
             <div class="card-body">
                 <div class="row">
                     <div class="col">
-                        <h5 class="card-title">รายละเอียดข้อมูล <span>| Table School-Award</span></h5>
+                        <h5 class="card-title"><span></span> <a href="school" class="btn btn-secondary btn-sm" data-mdb-ripple-color="dark">ย้อนกลับ</a></h5>
                     </div>
                     <div class="col">
-                        <h5 style="float: right; padding: 15px;" class="card-title"><a href="forms-school-award" class="btn btn-success">เพิ่มข้อมูลรางวัล</a></h5>
+                        <h5 style="float: right; padding: 15px;" class="card-title"><a href="forms-school-award?SchoolID=<?= $_GET['SchoolID']; ?>" class="btn btn-success">เพิ่มข้อมูล</a></h5>
                     </div>
                 </div>
                 <table class="table table-borderless datatable">
                     <thead>
                         <tr>
-                            <th scope="col">ชื่อสถานศึกษา</th>
-                            <th style="text-align: center;" scope="col">จำนวนรางวัลทั้งหมด</th>
-                            <th style="text-align: center;" scope="col">ดูรายละเอียด</th>
+                            <th scope="col">ปีที่ได้รับรางวัล</th>
+                            <th scope="col">ชื่อรางวัล</th>
+                            <th scope="col">แหล่งที่มา</th>
+                            <th scope="col">ระดับ</th>
+                            <th style="text-align: center;" scope="col">ปฎิบัติ</th>
                         </tr>
                     </thead>
                     <tbody>
                         <?php
-                        $result = $this->db->query('SELECT SCHOOL_AWARD.SchoolID, SCHOOL.SchoolNameThai, COUNT(SCHOOL_AWARD.AwardName) AS Total 
+                        $result = $this->db->query('SELECT *
                                     FROM SCHOOL_AWARD 
                                     INNER JOIN SCHOOL ON SCHOOL_AWARD.SchoolID = SCHOOL.SchoolID
-                                    WHERE SCHOOL_AWARD.DeleteStatus = 0
-                                    GROUP BY SCHOOL_AWARD.SchoolID');
+                                    INNER JOIN CLS_AWARD_LEVEL ON SCHOOL_AWARD.AwardLevelCode = CLS_AWARD_LEVEL.AWARD_LEVEL_CODE
+                                    WHERE SCHOOL_AWARD.DeleteStatus = 0 AND SCHOOL_AWARD.SchoolID = ' . $_GET['SchoolID'] . '
+                                    ');
 
                         foreach ($result->result() as $AWARD) {
                         ?>
                             <tr>
-                                <td><?= $AWARD->SchoolNameThai; ?></td>
-                                <td style="text-align: center;">
-                                    <?= $AWARD->Total; ?>
-                                </td>
-                                <td style="text-align: center;"><a class="btn btn-primary" href="school-award-P2?SchoolID=<?= $AWARD->SchoolID; ?>"><i class="bi bi-card-list"></i></a>
+                                <td><?= $AWARD->AwardYear; ?></td>
+                                <td><?= $AWARD->AwardName; ?></td>
+                                <td><?= $AWARD->AwardSource; ?></td>
+                                <td><?= $AWARD->AWARD_LEVEL_NAME; ?></td>
+                                <td style="text-align: center;"><a href="edit-forms-award?SchoolID=<?= $AWARD->SchoolID; ?>&&AwardYear=<?= $AWARD->AwardYear; ?>&&AwardName=<?= $AWARD->AwardName; ?>" class="btn btn-warning"><i class="bi bi-pencil-square"></i></a>
+                                    &nbsp; <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#Delete<?= $AWARD->SchoolID; ?><?= $AWARD->AwardYear; ?><?= $AWARD->AwardName; ?>"><i class=" bi bi-trash"></i></button>
                                 </td>
                             </tr>
                         <?php } ?>
@@ -86,3 +86,35 @@
     </div><!-- End Recent Sales -->
 
 </main><!-- End #main -->
+
+<?php
+$result = $this->db->query('SELECT *
+ FROM SCHOOL_AWARD 
+ INNER JOIN SCHOOL ON SCHOOL_AWARD.SchoolID = SCHOOL.SchoolID
+ INNER JOIN CLS_AWARD_LEVEL ON SCHOOL_AWARD.AwardLevelCode = CLS_AWARD_LEVEL.AWARD_LEVEL_CODE
+ WHERE SCHOOL_AWARD.DeleteStatus = 0 AND SCHOOL_AWARD.SchoolID = ' . $_GET['SchoolID'] . '
+ ');
+
+foreach ($result->result() as $AWARD) {
+?>
+    <div class="modal fade" id="Delete<?= $AWARD->SchoolID; ?><?= $AWARD->AwardYear; ?><?= $AWARD->AwardName; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">ยืนยันการลบข้อมูล</h5>
+                    <!--<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>-->
+                </div>
+                <div class="modal-body">
+                    <h6>
+                        <center>คุณต้องการลบข้อมูลใช่หรือไหม ?</center>
+                    </h6>
+                </div>
+                <div class="modal-footer">
+                    <a href="<?php echo base_url('delete-award/'  . $AWARD->SchoolID . '/' . $AWARD->AwardYear);
+                                ?>" class="btn btn-danger">ลบ</a>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ยกเลิก</button>
+                </div>
+            </div>
+        </div>
+    </div>
+<?php } ?>

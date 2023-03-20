@@ -36,6 +36,12 @@ defined('BASEPATH') or exit('No direct script access allowed');
   * Author: BootstrapMade.com
   * License: https://bootstrapmade.com/license/
   ======================================================== -->
+  <style>
+    label[for="Y"]:after {
+  content: " *";
+  color: red;
+}
+  </style>
 </head>
 
 <body>

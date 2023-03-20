@@ -17,13 +17,7 @@ foreach ($result->result() as $ADDITIONAL_POSITION) {
 
         <div class="pagetitle">
             <h1>แก้ไขข้อมูลตำแหน่งหน้าที่เพิ่มเติม</h1>
-            <nav>
-                <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-                    <li class="breadcrumb-item">Form</li>
-                    <li class="breadcrumb-item active">Edit-Additional-Position </li>
-                </ol>
-            </nav>
+
         </div><!-- End Page Title -->
 
         <section class="section">

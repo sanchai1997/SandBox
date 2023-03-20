@@ -6,13 +6,6 @@
 <main id="main" class="main">
   <div class="pagetitle">
     <h1>เพิ่มข้อมูลนักเรียน</h1>
-    <nav>
-      <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-        <li class="breadcrumb-item">Form</li>
-        <li class="breadcrumb-item active">Add Student</li>
-      </ol>
-    </nav>
   </div><!-- End Page Title -->
   <section class="section">
     <div class="row">
@@ -523,7 +516,6 @@
               </div>
               <div class="text-center">
                 <a href="student" style="float: left;" class="btn btn-light">ยกเลิก</a>
-                <button style="float: center;" type="reset" class="btn btn-secondary">รีเซ็ต</button>
                 <button style="float: right;" name="Submit" type="submit" class="btn btn-primary">หน้าถัดไป</button>
               </div>
         </form><!-- End floating Labels Form -->

@@ -125,12 +125,12 @@
   function onloadpage(){
    
    ///SubjectGroupCode
-   var my_SubjectGroupCode = "<?php echo $cs->SubjectGroupCode; ?>";
-   var selectoption_SubjectGroupCode = document.querySelector('#SubjectGroupCode');
+   var my_SubjectGroupCode = "<?php echo $cs->SubjectGroupCode; ?>"; 
+   var selectoption_SubjectGroupCode = document.querySelector('#SubjectGroupCode'); 
    var size_my_SubjectGroupCode =  document.getElementById("SubjectGroupCode").options.length;
-   for (let i = 0; i < size_my_SubjectGroupCode; i++) {
-     if(selectoption_SubjectGroupCode[i].value==my_SubjectGroupCode){
-      selectoption_SubjectGroupCode[i].selected = true;
+   for (let i = 0; i < size_my_SubjectGroupCode; i++) {  
+     if(selectoption_SubjectGroupCode[i].value==my_SubjectGroupCode){  
+      selectoption_SubjectGroupCode[i].selected = true;       
      }
    }
 

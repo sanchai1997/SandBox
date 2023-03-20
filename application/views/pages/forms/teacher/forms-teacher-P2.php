@@ -426,7 +426,6 @@
                                     </div>
                                     <div class="text-center">
                                         <a href="teacher" style="float: left;" class="btn btn-light">ยกเลิก</a>
-                                        <button style="float: center;" type="reset" class="btn btn-secondary">รีเซ็ต</button>
                                         <button style="float: right;" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#ADD">บันทึกข้อมูล</button>
                                     </div>
                                     <div class="modal fade" id="ADD" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">

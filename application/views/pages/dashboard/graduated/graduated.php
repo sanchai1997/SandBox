@@ -5,13 +5,6 @@
             <div class="col-6">
                 <h1>ข้อมูลผู้สำเร็จการศึกษา
                 </h1>
-                <nav>
-                    <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="main">Home</a></li>
-                        <li class="breadcrumb-item">Dashboard</li>
-                        <li class="breadcrumb-item active">Graduated</li>
-                    </ol>
-                </nav>
             </div>
         </div>
     </div><!-- End Page Title -->
@@ -40,10 +33,10 @@
             <div class="card-body">
                 <div class="row">
                     <div class="col">
-                        <h5 class="card-title">รายละเอียดข้อมูล <span>| Table Craduated</span></h5>
+                        <h5 class="card-title">รายละเอียดข้อมูล <span></span></h5>
                     </div>
                     <div class="col">
-                        <h5 style="float: right; padding: 15px;" class="card-title"><a href="forms-graduated" class="btn btn-success">เพิ่มข้อมูลผู้สำเร็จการศึกษา</a></h5>
+                        <h5 style="float: right; padding: 15px;" class="card-title"><a href="forms-graduated" class="btn btn-success">เพิ่มข้อมูล</a></h5>
                     </div>
                 </div>
                 <table class="table table-borderless datatable">
@@ -69,7 +62,7 @@
                                 <td><?= $GRADUATED->EducationYear; ?></td>
                                 <td><?= $GRADUATED->GRADE_LEVEL_NAME; ?></td>
                                 <td style="text-align: center;">
-                                    <a href="" class="btn btn-warning"><i class="bi bi-pencil-square"></i></a>
+                                    <a href="graduated-P2?SchoolID=<?= $GRADUATED->SchoolID; ?>&&EducationYear=<?= $GRADUATED->EducationYear; ?>&&GraduatedGradeLevelCode=<?= $GRADUATED->GraduatedGradeLevelCode; ?>" class="btn btn-primary"><i class="bi bi-card-list"></i></i></a>
                                 </td>
                             </tr>
                         <?php } ?>

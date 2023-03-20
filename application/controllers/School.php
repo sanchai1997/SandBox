@@ -47,22 +47,6 @@ class School extends CI_Controller
         $this->load->view('pages/dashboard/school/school-classroom', $data);
         $this->load->view('templates/footer', $data);
     }
-    public function classroom_P2()
-    {
-
-        if (!file_exists(APPPATH . 'views/pages/dashboard/school/school-classroom-P2.php')) {
-            // Whoops, we don't have a page for that!
-            show_404();
-        }
-
-
-        $data['title'] = 'School-classrom-detail'; // Capitalize the first letter
-
-        $this->load->view('templates/header', $data);
-        $this->load->view('templates/sidebar', $data);
-        $this->load->view('pages/dashboard/school/school-classroom-P2', $data);
-        $this->load->view('templates/footer', $data);
-    }
 
     ///////////////////////////////////CLASSROM- END /////////////////////////////////////////
 
@@ -83,23 +67,25 @@ class School extends CI_Controller
         $this->load->view('pages/dashboard/school/school-award', $data);
         $this->load->view('templates/footer', $data);
     }
+    ///////////////////////////////////// AWARD- END /////////////////////////////////////////
 
-    public function award_P2()
+    //////////////////////////////////////Building///////////////////////////////////////////////
+    public function building()
     {
 
-        if (!file_exists(APPPATH . 'views/pages/dashboard/school/school-award-P2.php')) {
+        if (!file_exists(APPPATH . 'views/pages/dashboard/school/school-building.php')) {
             // Whoops, we don't have a page for that!
             show_404();
         }
 
 
-        $data['title'] = 'School-award-P2'; // Capitalize the first letter
+        $data['title'] = 'School-Building'; // Capitalize the first letter
 
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
-        $this->load->view('pages/dashboard/school/school-award-P2', $data);
+        $this->load->view('pages/dashboard/school/school-building', $data);
         $this->load->view('templates/footer', $data);
     }
-    ///////////////////////////////////// AWARD- END /////////////////////////////////////////
+    ///////////////////////////////////// Building- END /////////////////////////////////////////
 
 }

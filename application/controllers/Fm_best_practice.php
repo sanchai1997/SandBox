@@ -14,7 +14,7 @@ class Fm_best_practice extends CI_Controller {
 		
         $this->load->view('templates/header');
         $this->load->view('templates/sidebar');
-		$this->load->view('pages/dashboard/best_practice',$data);
+		$this->load->view('pages/dashboard/EII/best_practice',$data);
         $this->load->view('templates/footer');
 		
 	}
@@ -24,7 +24,7 @@ class Fm_best_practice extends CI_Controller {
 		
         $this->load->view('templates/header');
         $this->load->view('templates/sidebar');
-		$this->load->view('pages/dashboard/best_practice',$data);
+		$this->load->view('pages/dashboard/EII/best_practice',$data);
         $this->load->view('templates/footer');
 		
 	}
@@ -35,7 +35,7 @@ class Fm_best_practice extends CI_Controller {
 		
         $this->load->view('templates/header');
         $this->load->view('templates/sidebar');
-		$this->load->view('pages/dashboard/best_practice',$data);
+		$this->load->view('pages/dashboard/EII/best_practice',$data);
         $this->load->view('templates/footer');
 		
 	}
