@@ -154,7 +154,7 @@ class Forms_school extends CI_Controller
     {
         $this->forms_school->update_school_main($SchoolID);
         $_SESSION['success'] = "แก้ไขข้อมูลเรียบร้อย";
-        redirect(base_url('school'));
+        redirect(base_url('school?SchoolID=' . $SchoolID));
     }
 
     //Update Data Form School Address
@@ -162,7 +162,7 @@ class Forms_school extends CI_Controller
     {
         $this->forms_school->update_school_address($SchoolID);
         $_SESSION['success'] = "แก้ไขข้อมูลเรียบร้อย";
-        redirect(base_url('school'));
+        redirect(base_url('school?SchoolID=' . $SchoolID));
     }
 
     //Update Data Form School Contact
@@ -170,7 +170,7 @@ class Forms_school extends CI_Controller
     {
         $this->forms_school->update_school_contact($SchoolID);
         $_SESSION['success'] = "แก้ไขข้อมูลเรียบร้อย";
-        redirect(base_url('school'));
+        redirect(base_url('school?SchoolID=' . $SchoolID));
     }
 
     //Update Data Form School Administrator
@@ -178,7 +178,7 @@ class Forms_school extends CI_Controller
     {
         $this->forms_school->update_school_administrator($SchoolID);
         $_SESSION['success'] = "แก้ไขข้อมูลเรียบร้อย";
-        redirect(base_url('school'));
+        redirect(base_url('school?SchoolID=' . $SchoolID));
     }
 
     //Update Data Form School Utilities
@@ -186,7 +186,7 @@ class Forms_school extends CI_Controller
     {
         $this->forms_school->update_school_utilities($SchoolID);
         $_SESSION['success'] = "แก้ไขข้อมูลเรียบร้อย";
-        redirect(base_url('school'));
+        redirect(base_url('school?SchoolID=' . $SchoolID));
     }
 
     //Update Data Form School Teaching
@@ -194,7 +194,7 @@ class Forms_school extends CI_Controller
     {
         $this->forms_school->update_school_teaching($SchoolID);
         $_SESSION['success'] = "แก้ไขข้อมูลเรียบร้อย";
-        redirect(base_url('school'));
+        redirect(base_url('school?SchoolID=' . $SchoolID));
     }
 
     //Update Data Form School Teaching
@@ -202,7 +202,7 @@ class Forms_school extends CI_Controller
     {
         $this->forms_school->update_school_statistical($SchoolID);
         $_SESSION['success'] = "แก้ไขข้อมูลเรียบร้อย";
-        redirect(base_url('school'));
+        redirect(base_url('school?SchoolID=' . $SchoolID));
     }
 
     //Delete Data Form School

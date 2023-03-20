@@ -24,19 +24,21 @@
                             <div class="row mb-3">
                                 <label for="inputText" class="col-sm-4 col-form-label">หมายเลขบัตรประจำตัวประชาชน</label>
                                 <div class="col-sm-8">
-                                    <input type="text" name="AdministratorPersonalID" class="form-control">
+                                    <input type="text" name="AdministratorPersonalID" class="form-control" value="<?= $SCHOOL->AdministratorPersonalID ?>">
                                 </div>
                             </div>
                             <div class="row mb-3">
                                 <label class="col-sm-2 col-form-label">คำนำหน้าชื่อ</label>
                                 <div class="col-sm-10">
                                     <select class="form-select" aria-label="Default select example" name="AdministratorPrefixCode">
-                                        <option value="" selected>คำนำหน้าชื่อ</option>
+                                        <option value="">เลือก</option>
                                         <?php
                                         $result = $this->db->query('SELECT * FROM CLS_PREFIX');
                                         foreach ($result->result() as $PREFIX) {
                                         ?>
-                                            <option value="<?= $PREFIX->PREFIX_CODE; ?>"><?= $PREFIX->PREFIX_NAME; ?></option>
+                                            <option <?php if ($SCHOOL->AdministratorPrefixCode == $PREFIX->PREFIX_CODE) {
+                                                        echo 'selected';
+                                                    } ?> value="<?= $PREFIX->PREFIX_CODE; ?>"><?= $PREFIX->PREFIX_NAME; ?></option>
                                         <?php
                                         }
                                         ?>
@@ -46,27 +48,28 @@
                             <div class="row mb-3">
                                 <label for="inputText" class="col-sm-2 col-form-label">ชื่อ (ภาษาไทย)</label>
                                 <div class="col-sm-10">
-                                    <input type="text" name="AdministratorNameThai" id="AdministratorNameThai" class="form-control">
+                                    <input type="text" name="AdministratorNameThai" id="AdministratorNameThai" class="form-control" value="<?= $SCHOOL->AdministratorNameThai ?>">
                                 </div>
                             </div>
                             <div class="row mb-3">
                                 <label for="inputText" class="col-sm-2 col-form-label">ชื่อกลาง (ภาษาไทย)</label>
                                 <div class="col-sm-10">
-                                    <input type="text" name="AdministratorMiddleNameThai" id="AdministratorMiddleNameThai" class="form-control">
+                                    <input type="text" name="AdministratorMiddleNameThai" id="AdministratorMiddleNameThai" class="form-control" value="<?= $SCHOOL->AdministratorMiddleNameThai ?>">
                                 </div>
                             </div>
                             <div class="row mb-3">
                                 <label for="inputText" class="col-sm-2 col-form-label">นามสกุล (ภาษาไทย)</label>
                                 <div class="col-sm-10">
-                                    <input type="text" name="AdministratorLastNameThai" id="AdministratorLastNameThai" class="form-control">
+                                    <input type="text" name="AdministratorLastNameThai" id="AdministratorLastNameThai" class="form-control" value="<?= $SCHOOL->AdministratorLastNameThai ?>">
                                 </div>
                             </div>
 
+                            <div class="d-flex justify-content-between">
+                                <a href="school?SchoolID=<?= $SCHOOL->SchoolID ?>" class="btn btn-danger">ยกเลิก</a>
+                                <button type="button" class="btn btn-warning" onclick="return check(School)">แก้ไขข้อมูล</button>
+                            </div>
                         <?php } ?>
-                        <div class="d-flex justify-content-between">
-                            <a href="school" class="btn btn-danger">ยกเลิก</a>
-                            <button type="button" class="btn btn-warning" onclick="return check(School)">แก้ไขข้อมูล</button>
-                        </div>
+
                         <!-- Modal -->
                         <div class="modal fade" id="Modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
                             <div class="modal-dialog modal-dialog-centered" role="document">

@@ -39,7 +39,7 @@
             <div class="card-body">
                 <div class="row">
                     <div class="col">
-                        <h5 class="card-title"><span></span> <a href="school" class="btn btn-secondary btn-sm" data-mdb-ripple-color="dark">ย้อนกลับ</a></h5>
+                        <h5 class="card-title"><span></span> <a href="school?SchoolID=<?= $_GET['SchoolID'] ?>" class="btn btn-secondary btn-sm" data-mdb-ripple-color="dark">ย้อนกลับ</a></h5>
                     </div>
                     <div class="col">
                         <h5 style="float: right; padding: 15px;" class="card-title"><a href="forms-school-classroom?SchoolID=<?= $_GET['SchoolID']; ?>" class="btn btn-success">เพิ่มข้อมูล</a></h5>
