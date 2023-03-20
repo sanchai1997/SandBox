@@ -134,8 +134,10 @@
                                             </div>
 
                                             <div class="modal-footer">
-                                                <a href='edit_forms-curriculum?cid=<?php echo $ls->CurriculumID; ?>' class="btn btn-warning"><i class="bi bi-pencil-square"></i></button> </a>
-                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><i class="bi bi-x-square" data-bs-toggle="modal" data-bs-target="#delete<?php echo $ls->TeacherID . $ls->DevelopmentActivityName . $ls->DevelopmentActivityStartDate ; ?>"></i></button>
+                                                <a href='edit_forms-teacher_development_activity?tid=<?php echo $ls->TeacherID;?>&&name=<?php echo $ls->DevelopmentActivityName;?>&&sdate=<?php echo $ls->DevelopmentActivityStartDate;?>' class="btn btn-warning">
+                                                    <i class="bi bi-pencil-square"></i> 
+                                                </a> 
+                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><i class="bi bi-x-square" data-bs-toggle="modal"></i></button>
                                             </div>
                                         </div>
                                     </div>

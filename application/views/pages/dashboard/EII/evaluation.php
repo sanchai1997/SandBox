@@ -45,10 +45,10 @@
                 </nav> -->
             </div>
             <div class="col-lg-9" style="padding-right: 25px;">
-                <a href="<?php echo site_url(
+                <!-- <a href="<?php echo site_url(
                     'Fm_evaluation_das_p1?page=sh1'
                 ); ?>" style="float: right;" class="btn btn-sm btn-light"
-                    data-mdb-ripple-color="dark">การประกันคุณภาพด้วยตัวชี้วัดของพื้นที่</a>
+                    data-mdb-ripple-color="dark">การประกันคุณภาพด้วยตัวชี้วัดของพื้นที่</a> -->
                 <!-- <h5 style="float: right;"> | </h5>
                 <a href="<?php echo site_url(
                     'Fm_evaluation_das_p2?page=sh2'
@@ -67,12 +67,12 @@
                 ); ?>" style="float: right;" class="btn btn-sm btn-light"
                     data-mdb-ripple-color="dark">ข้อมูลคำอธิบายระดับของแต่ละองค์ประกอบ
                 </a> -->
-                <h5 style="float: right;"> | </h5>
+                <!-- <h5 style="float: right;"> | </h5>
                 <a href="<?php echo site_url(
                     'Fm_evaluation_das_p5?page=sh5'
                 ); ?>" style="float: right;" class="btn btn-sm btn-light"
                     data-mdb-ripple-color="dark">ข้อมูลการประเมินผลสถานศึกษา
-                </a>
+                </a> -->
                 <!-- <h5 style="float: right;"> | </h5>
                 <a href="<?php echo site_url(
                     'Fm_evaluation_das_p6?page=sh6'
@@ -85,12 +85,12 @@
                 ); ?>" style="float: right;" class="btn btn-sm btn-light"
                     data-mdb-ripple-color="dark">ระดับตัวชี้วัดที่ได้ในแต่ละองค์ประกอบ
                 </a> -->
-                <h5 style="float: right;"> | </h5>
+                <!-- <h5 style="float: right;"> | </h5>
                 <a href="<?php echo site_url(
                     'Fm_evaluation_das_p8?page=sh8'
                 ); ?>" style="float: right;" class="btn btn-sm btn-light"
                     data-mdb-ripple-color="dark">ข้อมูลการประเมินสถานศึกษา
-                </a>
+                </a> -->
                 <!-- <h5 style="float: right;"> | </h5>
                 <a href="<?php echo site_url(
                     'Fm_evaluation'
@@ -110,7 +110,7 @@
             <div class="card-body">
                 <div class="row">
                     <div class="col">
-                        <h5 class="card-title">รายละเอียดข้อมูล 
+                        <h5 class="card-title"> 
                         </h5>
                     </div>
                     <div class="col">
@@ -119,6 +119,19 @@
                             ); ?>" class="btn btn-success">เพิ่มข้อมูล</a></h5>
                     </div>
                 </div>
+                <div class="dropdown">
+                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                            ประเภทข้อมูล
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                            <li>
+                                <a class="dropdown-item" href="<?php echo site_url('Fm_evaluation_das_p1?page=sh1'); ?>">การประกันคุณภาพด้วยตัวชี้วัดของพื้นที่</a>
+                                <a class="dropdown-item" href="<?php echo site_url('Fm_evaluation_das_p5?page=sh5'); ?>">ข้อมูลการประเมินผลสถานศึกษา</a>
+                                <a class="dropdown-item" href="<?php echo site_url('Fm_evaluation_das_p8?page=sh8'); ?>">ข้อมูลการประเมินสถานศึกษา</a>
+                            </li>
+
+                        </ul>
+                    </div>
                 <table class="table table-borderless datatable">
                     <thead>
 
@@ -218,7 +231,7 @@
             <div class="card-body">
                 <div class="row">
                     <div class="col">
-                        <h5 class="card-title">รายละเอียดข้อมูล </h5>
+                        <h5 class="card-title"> </h5>
                     </div>
                     <div class="col">
                         <h5 style="float: right; padding: 15px;" class="card-title"><a href="<?php echo site_url(
@@ -226,6 +239,19 @@
                             ); ?>" class="btn btn-success">เพิ่มข้อมูล</a></h5>
                     </div>
                 </div>
+                <div class="dropdown">
+                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                            ประเภทข้อมูล
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                            <li>
+                                <a class="dropdown-item" href="<?php echo site_url('Fm_evaluation_das_p1?page=sh1'); ?>">การประกันคุณภาพด้วยตัวชี้วัดของพื้นที่</a>
+                                <a class="dropdown-item" href="<?php echo site_url('Fm_evaluation_das_p5?page=sh5'); ?>">ข้อมูลการประเมินผลสถานศึกษา</a>
+                                <a class="dropdown-item" href="<?php echo site_url('Fm_evaluation_das_p8?page=sh8'); ?>">ข้อมูลการประเมินสถานศึกษา</a>
+                            </li>
+
+                        </ul>
+                    </div>
                 <table class="table table-borderless datatable">
                     <thead>
 
@@ -322,7 +348,7 @@
             <div class="card-body">
                 <div class="row">
                     <div class="col">
-                        <h5 class="card-title">รายละเอียดข้อมูล </h5>
+                        <h5 class="card-title"> </h5>
                     </div>
                     <div class="col">
                         <h5 style="float: right; padding: 15px;" class="card-title"><a href="<?php echo site_url(
@@ -330,6 +356,19 @@
                             ); ?>" class="btn btn-success">เพิ่มข้อมูล</a></h5>
                     </div>
                 </div>
+                <div class="dropdown">
+                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                            ประเภทข้อมูล
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                            <li>
+                                <a class="dropdown-item" href="<?php echo site_url('Fm_evaluation_das_p1?page=sh1'); ?>">การประกันคุณภาพด้วยตัวชี้วัดของพื้นที่</a>
+                                <a class="dropdown-item" href="<?php echo site_url('Fm_evaluation_das_p5?page=sh5'); ?>">ข้อมูลการประเมินผลสถานศึกษา</a>
+                                <a class="dropdown-item" href="<?php echo site_url('Fm_evaluation_das_p8?page=sh8'); ?>">ข้อมูลการประเมินสถานศึกษา</a>
+                            </li>
+
+                        </ul>
+                    </div>
                 <table class="table table-borderless datatable">
                     <thead>
 
@@ -427,7 +466,7 @@
             <div class="card-body">
                 <div class="row">
                     <div class="col">
-                        <h5 class="card-title">รายละเอียดข้อมูล </h5>
+                        <h5 class="card-title"> </h5>
                     </div>
                     <div class="col">
                         <h5 style="float: right; padding: 15px;" class="card-title"><a href="<?php echo site_url(
@@ -435,6 +474,19 @@
                             ); ?>" class="btn btn-success">เพิ่มข้อมูล</a></h5>
                     </div>
                 </div>
+                <div class="dropdown">
+                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                            ประเภทข้อมูล
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                            <li>
+                                <a class="dropdown-item" href="<?php echo site_url('Fm_evaluation_das_p1?page=sh1'); ?>">การประกันคุณภาพด้วยตัวชี้วัดของพื้นที่</a>
+                                <a class="dropdown-item" href="<?php echo site_url('Fm_evaluation_das_p5?page=sh5'); ?>">ข้อมูลการประเมินผลสถานศึกษา</a>
+                                <a class="dropdown-item" href="<?php echo site_url('Fm_evaluation_das_p8?page=sh8'); ?>">ข้อมูลการประเมินสถานศึกษา</a>
+                            </li>
+
+                        </ul>
+                    </div>
                 <table class="table table-borderless datatable">
                     <thead>
 
@@ -530,7 +582,7 @@
             <div class="card-body">
                 <div class="row">
                     <div class="col">
-                        <h5 class="card-title">รายละเอียดข้อมูล </h5>
+                        <h5 class="card-title"> </h5>
                     </div>
                     <div class="col">
                         <h5 style="float: right; padding: 15px;" class="card-title"><a href="<?php echo site_url(
@@ -538,6 +590,19 @@
                             ); ?>" class="btn btn-success">เพิ่มข้อมูล</a></h5>
                     </div>
                 </div>
+                <div class="dropdown">
+                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                            ประเภทข้อมูล
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                            <li>
+                                <a class="dropdown-item" href="<?php echo site_url('Fm_evaluation_das_p1?page=sh1'); ?>">การประกันคุณภาพด้วยตัวชี้วัดของพื้นที่</a>
+                                <a class="dropdown-item" href="<?php echo site_url('Fm_evaluation_das_p5?page=sh5'); ?>">ข้อมูลการประเมินผลสถานศึกษา</a>
+                                <a class="dropdown-item" href="<?php echo site_url('Fm_evaluation_das_p8?page=sh8'); ?>">ข้อมูลการประเมินสถานศึกษา</a>
+                            </li>
+
+                        </ul>
+                    </div>
                 <table class="table table-borderless datatable">
                     <thead>
 
@@ -634,7 +699,7 @@
             <div class="card-body">
                 <div class="row">
                     <div class="col">
-                        <h5 class="card-title">รายละเอียดข้อมูล </h5>
+                        <h5 class="card-title"> </h5>
                     </div>
                     <div class="col">
                         <h5 style="float: right; padding: 15px;" class="card-title"><a href="<?php echo site_url(
@@ -642,6 +707,19 @@
                             ); ?>" class="btn btn-success">เพิ่มข้อมูล</a></h5>
                     </div>
                 </div>
+                <div class="dropdown">
+                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                            ประเภทข้อมูล
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                            <li>
+                                <a class="dropdown-item" href="<?php echo site_url('Fm_evaluation_das_p1?page=sh1'); ?>">การประกันคุณภาพด้วยตัวชี้วัดของพื้นที่</a>
+                                <a class="dropdown-item" href="<?php echo site_url('Fm_evaluation_das_p5?page=sh5'); ?>">ข้อมูลการประเมินผลสถานศึกษา</a>
+                                <a class="dropdown-item" href="<?php echo site_url('Fm_evaluation_das_p8?page=sh8'); ?>">ข้อมูลการประเมินสถานศึกษา</a>
+                            </li>
+
+                        </ul>
+                    </div>
                 <table class="table table-borderless datatable">
                     <thead>
 
@@ -740,7 +818,7 @@
             <div class="card-body">
                 <div class="row">
                     <div class="col">
-                        <h5 class="card-title">รายละเอียดข้อมูล 
+                        <h5 class="card-title"> 
                         </h5>
                     </div>
                     <div class="col">
@@ -749,6 +827,19 @@
                             ); ?>" class="btn btn-success">เพิ่มข้อมูล</a></h5>
                     </div>
                 </div>
+                <div class="dropdown">
+                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                            ประเภทข้อมูล
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                            <li>
+                                <a class="dropdown-item" href="<?php echo site_url('Fm_evaluation_das_p1?page=sh1'); ?>">การประกันคุณภาพด้วยตัวชี้วัดของพื้นที่</a>
+                                <a class="dropdown-item" href="<?php echo site_url('Fm_evaluation_das_p5?page=sh5'); ?>">ข้อมูลการประเมินผลสถานศึกษา</a>
+                                <a class="dropdown-item" href="<?php echo site_url('Fm_evaluation_das_p8?page=sh8'); ?>">ข้อมูลการประเมินสถานศึกษา</a>
+                            </li>
+
+                        </ul>
+                    </div>
                 <table class="table table-borderless datatable">
                     <thead>
 
@@ -851,7 +942,7 @@
             <div class="card-body">
                 <div class="row">
                     <div class="col">
-                        <h5 class="card-title">รายละเอียดข้อมูล </h5>
+                        <h5 class="card-title"> </h5>
                     </div>
                     <div class="col">
                         <h5 style="float: right; padding: 15px;" class="card-title"><a href="<?php echo site_url(
@@ -859,6 +950,19 @@
                             ); ?>" class="btn btn-success">เพิ่มข้อมูล</a></h5>
                     </div>
                 </div>
+                <div class="dropdown">
+                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                            ประเภทข้อมูล
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                            <li>
+                                <a class="dropdown-item" href="<?php echo site_url('Fm_evaluation_das_p1?page=sh1'); ?>">การประกันคุณภาพด้วยตัวชี้วัดของพื้นที่</a>
+                                <a class="dropdown-item" href="<?php echo site_url('Fm_evaluation_das_p5?page=sh5'); ?>">ข้อมูลการประเมินผลสถานศึกษา</a>
+                                <a class="dropdown-item" href="<?php echo site_url('Fm_evaluation_das_p8?page=sh8'); ?>">ข้อมูลการประเมินสถานศึกษา</a>
+                            </li>
+
+                        </ul>
+                    </div>
                 <table class="table table-borderless datatable">
                     <thead>
 

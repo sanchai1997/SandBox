@@ -53,14 +53,14 @@
                     </ol>
                 </nav> -->
             </div>
-            <div class="col-lg-9" style="padding-right: 25px;">
+            <!-- <div class="col-lg-9" style="padding-right: 25px;">
                 <a href="<?php echo site_url('Fm_participant_das_p1?page=sh1') ?>" style="float: right;"
                     class="btn btn-sm btn-light" data-mdb-ripple-color="dark">ข้อมูลหม่วยงานที่เข้ามามีส่วนร่วมในพื้นที่นวัตกรรมการศึกษา</a>
                 
                 
 
 
-            </div>
+            </div> -->
         </div>
     </div>
 
@@ -76,13 +76,25 @@
             <div class="card-body">
                 <div class="row">
                     <div class="col">
-                        <h5 class="card-title">รายละเอียดข้อมูล </h5>
+                        <h5 class="card-title"> </h5>
                     </div>
                     <div class="col">
                         <h5 style="float: right; padding: 15px;" class="card-title"><a
                                 href="<?php echo site_url('par_forms_p1?page=sh1') ?>"
                                 class="btn btn-success">เพิ่มข้อมูล</a></h5>
                     </div>
+                </div>
+                <div class="dropdown">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1"
+                        data-bs-toggle="dropdown" aria-expanded="false">
+                        ประเภทข้อมูล
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                        <li><a class="dropdown-item"
+                                href="<?php echo site_url('Fm_participant_das_p1?page=sh1') ?>">ข้อมูลหม่วยงานที่เข้ามามีส่วนร่วมในพื้นที่นวัตกรรมการศึกษา</a>
+                        </li>
+
+                    </ul>
                 </div>
                 <table class="table table-borderless datatable">
                     <thead>
@@ -187,13 +199,25 @@ foreach ($results->result() as $shows) {
             <div class="card-body">
                 <div class="row">
                     <div class="col">
-                        <h5 class="card-title">รายละเอียดข้อมูล </h5>
+                        <h5 class="card-title"> </h5>
                     </div>
                     <div class="col">
                         <h5 style="float: right; padding: 15px;" class="card-title"><a
                                 href="<?php echo site_url('pc_forms_p2?page=sh2') ?>"
                                 class="btn btn-success">เพิ่มข้อมูล</a></h5>
                     </div>
+                </div>
+                <div class="dropdown">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1"
+                        data-bs-toggle="dropdown" aria-expanded="false">
+                        ประเภทข้อมูล
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                        <li><a class="dropdown-item"
+                                href="<?php echo site_url('Fm_participant_das_p1?page=sh1') ?>">ข้อมูลหม่วยงานที่เข้ามามีส่วนร่วมในพื้นที่นวัตกรรมการศึกษา</a>
+                        </li>
+
+                    </ul>
                 </div>
                 <table class="table table-borderless datatable">
                     <thead>
@@ -282,13 +306,25 @@ foreach ($results->result() as $shows) {
             <div class="card-body">
                 <div class="row">
                     <div class="col">
-                        <h5 class="card-title">รายละเอียดข้อมูล </h5>
+                        <h5 class="card-title"> </h5>
                     </div>
                     <div class="col">
                         <h5 style="float: right; padding: 15px;" class="card-title"><a
                                 href="<?php echo site_url('pcp_forms_p3?page=sh3') ?>"
                                 class="btn btn-success">เพิ่มข้อมูล</a></h5>
                     </div>
+                </div>
+                <div class="dropdown">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1"
+                        data-bs-toggle="dropdown" aria-expanded="false">
+                        ประเภทข้อมูล
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                        <li><a class="dropdown-item"
+                                href="<?php echo site_url('Fm_participant_das_p1?page=sh1') ?>">ข้อมูลหม่วยงานที่เข้ามามีส่วนร่วมในพื้นที่นวัตกรรมการศึกษา</a>
+                        </li>
+
+                    </ul>
                 </div>
                 <table class="table table-borderless datatable">
                     <thead>
@@ -394,13 +430,25 @@ foreach ($results->result() as $shows) {
             <div class="card-body">
                 <div class="row">
                     <div class="col">
-                        <h5 class="card-title">รายละเอียดข้อมูล </h5>
+                        <h5 class="card-title"> </h5>
                     </div>
                     <div class="col">
                         <h5 style="float: right; padding: 15px;" class="card-title"><a
                                 href="<?php echo site_url('pn_forms_p4?page=sh4') ?>"
                                 class="btn btn-success">เพิ่มข้อมูล</a></h5>
                     </div>
+                </div>
+                <div class="dropdown">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1"
+                        data-bs-toggle="dropdown" aria-expanded="false">
+                        ประเภทข้อมูล
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                        <li><a class="dropdown-item"
+                                href="<?php echo site_url('Fm_participant_das_p1?page=sh1') ?>">ข้อมูลหม่วยงานที่เข้ามามีส่วนร่วมในพื้นที่นวัตกรรมการศึกษา</a>
+                        </li>
+
+                    </ul>
                 </div>
                 <table class="table table-borderless datatable">
                     <thead>
