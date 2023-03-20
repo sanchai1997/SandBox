@@ -49,13 +49,13 @@ if (isset( $_SESSION['success'])) { ?>
                     <?php  if ($page=='sh1') {  ?>
                         <h5 class="card-title">ข้อมูลนวัตกรรมการศึกษา</h5>
                         <!-- start Form ข้อมูลนวัตกรรมการศึกษา -->
-                        <form action="<?php echo site_url('forms_up_p1'); ?>" method="post" enctype="multipart/form-data">
+                        <form action="<?php echo site_url('forms_up_p1'); ?>" method="post" enctype="multipart/form-data" onsubmit="return checkSelectedOption()">
 
                             <div class="row mb-3">
                                 <div class="form-floating">
                                     <input type="text" class="form-control" id="floatingName"
                                         placeholder="รหัสนวัตกรรมการศึกษา" name="InnovationID"  required aria-label="รหัสนวัตกรรมการศึกษา">
-                                    <label for="floatingName"><?php echo nbs(2); ?> รหัสนวัตกรรมการศึกษา </label>
+                                    <label for="Y"><?php echo nbs(2); ?> รหัสนวัตกรรมการศึกษา </label>
                                 </div>
                             </div>
                             <div class="row mb-3">
@@ -63,7 +63,7 @@ if (isset( $_SESSION['success'])) { ?>
                                     <div class="form-floating">
                                         <input type="text" class="form-control" id="floatingName" placeholder="ปีการศึกษา"
                                             name="EducationYear"  required max="4">
-                                        <label for="floatingName"><?php echo nbs(2); ?> ปีการศึกษา </label>
+                                        <label for="Y"><?php echo nbs(2); ?> ปีการศึกษา </label>
                                     </div>
                                </div>
                           
@@ -71,7 +71,7 @@ if (isset( $_SESSION['success'])) { ?>
                                     <div class="form-floating">
                                         <input type="number" class="form-control" id="floatingName" placeholder="ภาคเรียน"
                                             name="Semester"  required max="2">
-                                        <label for="floatingName"><?php echo nbs(2); ?> ภาคเรียน </label>
+                                        <label for="Y"><?php echo nbs(2); ?> ภาคเรียน </label>
                                     </div>
                                 </div>
                             </div>
@@ -80,16 +80,16 @@ if (isset( $_SESSION['success'])) { ?>
                                 <div class="form-floating">
                                     <input type="text" class="form-control" id="floatingName" placeholder="ชื่อนวัตกรรม"
                                         name="InnovationName" required>
-                                    <label for="floatingName"><?php echo nbs(2); ?> ชื่อนวัตกรรม </label>
+                                    <label for="Y"><?php echo nbs(2); ?> ชื่อนวัตกรรม </label>
                                 </div>
                             </div>
 
                             <div class="row mb-3">
                              <div class="col">
                                     <div class="form-floating">
-                                        <select class="form-select" id="floatingSelect"
+                                        <select class="form-select" id="InnovationTypeCode"
                                             aria-label="Floating label select example" name="InnovationTypeCode" required>
-                                            <option selected>เลือก</option>
+                                            <option value="-1" selected>เลือก</option>
                                             <?php
                                             $result = $this->db->query('SELECT * FROM CLS_INNOVATION_TYPE');
                                             foreach ($result->result() as $cls) {
@@ -97,15 +97,15 @@ if (isset( $_SESSION['success'])) { ?>
                                              <option value="<?= $cls->INNOVATION_TYPE_CODE; ?>"><?= $cls->INNOVATION_TYPE_NAME; ?></option>
                                             <?php } ?>
                                         </select>
-                                        <label for="floatingSelect"><?php echo nbs(2); ?>รหัสประเภทนวัตกรรม</label>
+                                        <label for="Y"><?php echo nbs(2); ?>ประเภทนวัตกรรม</label>
                                     </div>
                              </div>
                             
                                <div class="col">
                                     <div class="form-floating">
-                                        <select class="form-select" id="floatingSelect"
+                                        <select class="form-select" id="TargetEducationLevelCode"
                                             aria-label="Floating label select example" name="TargetEducationLevelCode" required>
-                                            <option selected>เลือก</option>
+                                            <option value="-1" selected>เลือก</option>
                                             <?php
                                             $result = $this->db->query('SELECT * FROM CLS_EDUCATION_LEVEL');
                                             foreach ($result->result() as $cls) {
@@ -113,7 +113,7 @@ if (isset( $_SESSION['success'])) { ?>
                                              <option value="<?= $cls->EDUCATION_LEVEL_CODE ; ?>"><?= $cls->EDUCATION_LEVEL_NAME; ?></option>
                                             <?php } ?>
                                         </select>
-                                        <label for="floatingSelect"><?php echo nbs(2); ?>รหัสระดับการศึกษาที่นำไปใช้</label>
+                                        <label for="floatingSelect"><?php echo nbs(2); ?>ระดับการศึกษาที่นำไปใช้</label>
                                     </div>
                                </div>
                             </div>
@@ -129,7 +129,7 @@ if (isset( $_SESSION['success'])) { ?>
                                 <div class="form-floating">
                                     <textarea class="form-control" placeholder="Leave a comment here"
                                         id="floatingTextarea2" style="height: 60px" name="Abstract" required></textarea>
-                                    <label for="floatingTextarea2"><?php echo nbs(2); ?>บทคัดย่อ</label>
+                                    <label for="Y"><?php echo nbs(2); ?>บทคัดย่อ</label>
                                 </div>
                             </div>
 
@@ -137,7 +137,7 @@ if (isset( $_SESSION['success'])) { ?>
 
                             <div class="row mb-3">
                                 <div class="input-group mb-3">
-                                    <label class="input-group-text" for="inputGroupFile01">เอกสารแนบ</label>
+                                    <label class="input-group-text" for="Y">เอกสารแนบ</label>
                                     <input type="file" class="form-control" id="inputGroupFile01" name="AttachmentURL">
                                 </div>
                             </div>
@@ -147,7 +147,7 @@ if (isset( $_SESSION['success'])) { ?>
                                     <div class="form-floating">
                                         <input type="text" class="form-control" id="floatingName" placeholder="แหล่งนวัตกรรม"
                                             name="Source" required>
-                                        <label for="floatingName"><?php echo nbs(2); ?> แหล่งนวัตกรรม </label>
+                                        <label for="Y"><?php echo nbs(2); ?> แหล่งนวัตกรรม </label>
                                     </div>
                                </div>
                           
@@ -155,7 +155,7 @@ if (isset( $_SESSION['success'])) { ?>
                                     <div class="form-floating">
                                         <input type="date" class="form-control" id="Share" placeholder="Share"
                                             name="PublishDate" required>
-                                        <label for="Share">วันที่เผยแพร่</label>
+                                        <label for="Y">วันที่เผยแพร่</label>
                                     </div>
                                 </div>
                             </div>
@@ -164,7 +164,7 @@ if (isset( $_SESSION['success'])) { ?>
                                 <div class="form-floating">
                                     <input type="text" class="form-control" id="floatingName" placeholder="คำค้นหา"
                                         name="SearchKeyword" required>
-                                    <label for="floatingName"><?php echo nbs(2); ?> คำค้นหา </label>
+                                    <label for="Y"><?php echo nbs(2); ?> คำค้นหา </label>
                                 </div>
 
                             </div>
@@ -195,6 +195,26 @@ if (isset( $_SESSION['success'])) { ?>
   </div>
 </div> 
                         </form><!-- End Form ข้อมูลนวัตกรรมการศึกษา -->
+                        <script>
+                        function checkSelectedOption() {
+                            
+                            const CLS_INNOVATION_TYPE = document.querySelector('#InnovationTypeCode');
+                            const CLS_INNOVATION_TYPE_Value = CLS_INNOVATION_TYPE.value;
+
+                            if (CLS_INNOVATION_TYPE_Value === '-1') {
+                                alert('กรุณาเลือกประเภทนวัตกรรม');
+                                return false;
+                            }
+                            const CLS_EDUCATION_LEVEL = document.querySelector('#TargetEducationLevelCode');
+                            const CLS_EDUCATION_LEVEL_Value = CLS_EDUCATION_LEVEL.value;
+
+                            if (CLS_EDUCATION_LEVEL_Value === '-1') {
+                                alert('กรุณาเลือกระดับการศึกษาที่นำไปใช้');
+                                return false;
+                            }
+                            
+                        }
+                        </script>
                         <?php } ?>
                         <?php  if ($page=='sh11') {  ?>
                             <?php $key = isset($_GET['key']) ? $_GET['key'] : '';  ?>
@@ -516,7 +536,7 @@ if (isset( $_SESSION['success'])) { ?>
                                 <div class="form-floating">
                                     <input type="text" class="form-control" id="floatingName"
                                         placeholder="รหัสนวัตกรรมการศึกษา" name="InnovationID" required value="<?php echo $show->InnovationID ?>">
-                                    <label for="floatingName"><?php echo nbs(2); ?> รหัสนวัตกรรมการศึกษา </label>
+                                    <label for="Y"><?php echo nbs(2); ?> รหัสนวัตกรรมการศึกษา </label>
                                 </div>
                             </div>
                             <div class="row mb-3">
