@@ -57,14 +57,13 @@ class CurriculumController extends CI_Controller{
         
         if ( ! file_exists(APPPATH.'views/pages/dashboard/Curriculum/list-curriculum.php'))
         {
-            // Whoops, we don't have a page for that!
             show_404();
         }
 
-        $data['title'] = 'Curriculum'; // Capitalize the first letter
-        $data['listCurriculum'] = $this->Curriculum_model->get_Curriculum_All();
-        $data['listSchool'] = $this->School_model->get_school_All();
+        $data['SchoolID'] = $_GET['sid']; 
 
+        $data['listCurriculum'] = $this->Curriculum_model->get_Curriculum_by_school($data['SchoolID']);  
+        $data['School'] = $this->School_model->get_school_All();
 
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
@@ -122,14 +121,20 @@ class CurriculumController extends CI_Controller{
         
         if ( ! file_exists(APPPATH.'views/pages/dashboard/Curriculum/list-curriculum.php'))
         {
-            // Whoops, we don't have a page for that!
             show_404();
         }
 
-        $data['title'] = 'Curriculum'; // Capitalize the first letter
-        $data['listCurriculum'] = $this->Curriculum_model->get_Curriculum_All();
-        $data['listSchool'] = $this->School_model->get_school_All();
+        $data['School'] = $this->School_model->get_school_All();
 
+        if($data['School']==null){
+            $data['listCurriculum'] = null;  
+        }else{
+            $data['School_id'] = $this->School_model->get_school_top();
+            $SchoolID = array_column($data['School_id'],'SchoolID');
+            $data['listCurriculum'] = $this->Curriculum_model->get_Curriculum_by_school($SchoolID);  
+          
+        }
+        
 
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
@@ -142,7 +147,6 @@ class CurriculumController extends CI_Controller{
         
         if ( ! file_exists(APPPATH.'views/pages/forms/Curriculum/edit_forms-curriculum.php'))
         {
-            // Whoops, we don't have a page for that!
             show_404();
         }
 

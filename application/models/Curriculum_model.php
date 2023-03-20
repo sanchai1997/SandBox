@@ -24,6 +24,8 @@ class Curriculum_model  extends CI_Model {
         ->join('CLS_EDUCATION_LEVEL e', 'e.EDUCATION_LEVEL_CODE     = c.EducationLevelCode    ', 'LEFT') 
         ->join('CLS_GRADE_LEVEL g', 'g.GRADE_LEVEL_CODE    = c.GradeLevelCode   ', 'LEFT') 
         ->where('c.DeleteStatus', 0)
+        ->where('s.DeleteStatus', 0)
+        
         ;
        
         $query = $this->db->get();
@@ -40,6 +42,26 @@ class Curriculum_model  extends CI_Model {
         $query = $this->db->get();
     
         return $query->result();
+    }
+
+    public function get_Curriculum_by_school($SchoolID) {
+        $this->db->select('c.*,c.SchoolID,s.SchoolNameThai, ct.CURRICULUM_NAME, e.EDUCATION_LEVEL_NAME, g.GRADE_LEVEL_NAME')
+        ->from('CURRICULUM c')
+        ->join('SCHOOL s', 's.SchoolID   = c.SchoolID  ', 'LEFT') 
+        ->join('CLS_CURRICULUM ct', 'ct.CURRICULUM_CODE    = c.CurriculumCode   ', 'LEFT') 
+        ->join('CLS_EDUCATION_LEVEL e', 'e.EDUCATION_LEVEL_CODE     = c.EducationLevelCode    ', 'LEFT') 
+        ->join('CLS_GRADE_LEVEL g', 'g.GRADE_LEVEL_CODE    = c.GradeLevelCode   ', 'LEFT') 
+        ->where('c.DeleteStatus', 0)
+        ->where('s.DeleteStatus', 0)
+        ->where_in('c.SchoolID', $SchoolID  ) 
+        ;
+
+        $query = $this->db->get();
+        
+        //show_error($this->db->last_query());
+        
+        return $query->result();
+        
     }
 
     public function update_curriculum($Old_CurriculumID, $curriculum) {
