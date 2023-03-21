@@ -1,5 +1,7 @@
 <main id="main" class="main">
-    <?php $page = isset($_GET['page']) ? $_GET['page'] : '';  ?>
+    <?php $page = isset($_GET['page']) ? $_GET['page'] : ''; ?>
+    <?php $name = isset($_GET['name']) ? $_GET['name'] : ''; ?>
+    <?php $key = isset($_GET['key']) ? $_GET['key'] : ''; ?>
     <?php
     session_start(); // เริ่มต้น session
     if (isset($_SESSION['success'])) { ?>
@@ -24,20 +26,20 @@
             ?> <h1>ผู้เข้ามามีส่วนร่วม</h1>
             <?php break;
                 case 'sh2':
-                ?> <h1>การติดต่อของผู้มีส่วนร่วม</h1>
+                ?> <h1>การติดต่อของผู้มีส่วนร่วม - <?php echo $name; ?></h1>
             <?php
                     break;
                 case 'sh3':
-                ?> <h1>การมีส่วนร่วม</h1>
+                ?> <h1>การมีส่วนร่วม - <?php echo $name; ?></h1>
             <?php
                     break;
                 case 'sh4':
-                ?> <h1>ข้อมูลบันทึกเพิ่มเติม</h1>
+                ?> <h1>ข้อมูลบันทึกเพิ่มเติม - <?php echo $name; ?></h1>
             <?php
                     break;
                 default:
                 ?>
-           <h1>ผู้เข้ามามีส่วนร่วม</h1>
+            <h1>ผู้เข้ามามีส่วนร่วม</h1>
             <?php
                     break;
             }  ?>
@@ -65,9 +67,9 @@
     </div>
 
     </div><!-- End Page Title -->
-  
 
-    
+
+
     <?php if($page=='sh1'){ ?>
 
     <div class="col-12">
@@ -76,16 +78,9 @@
             <div class="card-body">
                 <div class="row">
                     <div class="col">
-                        <h5 class="card-title"> </h5>
-                    </div>
-                    <div class="col">
-                        <h5 style="float: right; padding: 15px;" class="card-title"><a
-                                href="<?php echo site_url('par_forms_p1?page=sh1') ?>"
-                                class="btn btn-success">เพิ่มข้อมูล</a></h5>
-                    </div>
-                </div>
-                <div class="dropdown">
-                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1"
+                        <h5 class="card-title"> 
+                        <div class="dropdown">
+                    <button class="btn btn-white dropdown-toggle" type="button" id="dropdownMenuButton1"
                         data-bs-toggle="dropdown" aria-expanded="false">
                         ประเภทข้อมูล
                     </button>
@@ -96,6 +91,15 @@
 
                     </ul>
                 </div>
+                        </h5>
+                    </div>
+                    <div class="col">
+                        <h5 style="float: right; padding: 15px;" class="card-title"><a
+                                href="<?php echo site_url('par_forms_p1?page=sh1') ?>"
+                                class="btn btn-success">เพิ่มข้อมูล</a></h5>
+                    </div>
+                </div>
+
                 <table class="table table-borderless datatable">
                     <thead>
 
@@ -116,29 +120,31 @@
                         ?>
                         <tr>
                             <?php
-                            $Id= $show->Id;
-                            $results = $this->db->query("SELECT * FROM PARTICIPANT 
-                            INNER JOIN CLS_PARTICIPANT_TYPE 
-                            ON CLS_PARTICIPANT_TYPE.PARTICIPANT_TYPE_CODE = PARTICIPANT.ParticipantTypeCode 
+//                             $Id= $show->Id;
+//                             $results = $this->db->query("SELECT * FROM PARTICIPANT 
+//                             INNER JOIN CLS_PARTICIPANT_TYPE 
+//                             ON CLS_PARTICIPANT_TYPE.PARTICIPANT_TYPE_CODE = PARTICIPANT.ParticipantTypeCode 
                             
-                            WHERE Id = $Id
-                            ");
+//                             WHERE Id = $Id
+//                             ");
 
-foreach ($results->result() as $shows) {
-                     ?> 
+// foreach ($results->result() as $shows) {
+                     ?>
                             <td style="text-align: center;"><?php echo $show->ParticipantID; ?></td>
                             <td style="text-align: center;"><?php echo $show->ParticipantName; ?></td>
                             <td style="text-align: center;"><a
-                                    href="<?php echo site_url('Fm_participant_das_p2?page=sh2') ?>&&key=<?php echo $show->ParticipantID ?>"
-                                    class="btn btn-warning"><i class="bi bi-eye"></i></a></td>
+                                    href="<?php echo site_url('Fm_participant_das_p2?page=sh2') ?>&&key=<?php echo $show->ParticipantID ?>&&name=<?php echo $show->ParticipantName ?>"
+                                    class="btn btn-info"><i class="bi bi-eye"></i></a></td>
                             <td style="text-align: center;"><a
-                                    href="<?php echo site_url('Fm_participant_das_p3?page=sh3') ?>&&key=<?php echo $show->ParticipantID ?>"
-                                    class="btn btn-warning"><i class="bi bi-eye"></i></a></td>
+                                    href="<?php echo site_url('Fm_participant_das_p3?page=sh3') ?>&&key=<?php echo $show->ParticipantID ?>&&name=<?php echo $show->ParticipantName ?>"
+                                    class="btn btn-info"><i class="bi bi-eye"></i></a></td>
                             <td style="text-align: center;"><a
-                                    href="<?php echo site_url('Fm_participant_das_p4?page=sh4') ?>&&key=<?php echo $show->ParticipantID ?>"
-                                    class="btn btn-warning"><i class="bi bi-eye"></i></a></td>
+                                    href="<?php echo site_url('Fm_participant_das_p4?page=sh4') ?>&&key=<?php echo $show->ParticipantID ?>&&name=<?php echo $show->ParticipantName ?>"
+                                    class="btn btn-info"><i class="bi bi-eye"></i></a></td>
                             <!-- แก้ไข+ลบ -->
                             <td style="text-align: center;">
+                            <a href="<?php echo site_url('par_forms_p1?page=sh11') ?>&&key=<?php echo $show->Id; ?>&&name=<?php echo $name; ?>"
+                    class="btn btn-warning"> <i class="bi bi-pencil-square"></i></a>
                                 <button type="button" class="btn btn-primary" data-bs-toggle="modal"
                                     data-bs-target="#look1<?php echo $show->Id; ?>"><i
                                         class="bi bi-card-list"></i></button>
@@ -166,8 +172,7 @@ foreach ($results->result() as $shows) {
                                             <div class="modal-footer">
                                                 <button type="button" class="btn btn-secondary"
                                                     data-bs-dismiss="modal">ยกเลิก</button>
-                                                <form method="post"
-                                                    action="<?php echo site_url('par_del_p1'); ?>">
+                                                <form method="post" action="<?php echo site_url('par_del_p1'); ?>">
                                                     <input type="hidden" name="Id" value="<?php echo $show->Id; ?>">
                                                     <div class="d-flex justify-content-center">
                                                         <button name="Submit" type="submit"
@@ -180,7 +185,9 @@ foreach ($results->result() as $shows) {
                                 </div> <!-- Modal -->
                             </td>
                         </tr>
-                        <?php }  } ?>
+                        <?php
+                        //  }
+                      } ?>
 
 
                     </tbody>
@@ -199,16 +206,9 @@ foreach ($results->result() as $shows) {
             <div class="card-body">
                 <div class="row">
                     <div class="col">
-                        <h5 class="card-title"> </h5>
-                    </div>
-                    <div class="col">
-                        <h5 style="float: right; padding: 15px;" class="card-title"><a
-                                href="<?php echo site_url('pc_forms_p2?page=sh2') ?>"
-                                class="btn btn-success">เพิ่มข้อมูล</a></h5>
-                    </div>
-                </div>
-                <div class="dropdown">
-                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1"
+                        <h5 class="card-title"> 
+                        <div class="dropdown">
+                    <button class="btn btn-white dropdown-toggle" type="button" id="dropdownMenuButton1"
                         data-bs-toggle="dropdown" aria-expanded="false">
                         ประเภทข้อมูล
                     </button>
@@ -219,12 +219,21 @@ foreach ($results->result() as $shows) {
 
                     </ul>
                 </div>
+                        </h5>
+                    </div>
+                    <div class="col">
+                        <h5 style="float: right; padding: 15px;" class="card-title"><a
+                                href="<?php echo site_url('pc_forms_p2?page=sh2') ?>&&name=<?php echo $name; ?>"
+                                class="btn btn-success">เพิ่มข้อมูล</a></h5>
+                    </div>
+                </div>
+               
                 <table class="table table-borderless datatable">
                     <thead>
 
                         <tr>
                             <th style="text-align: center;" scope="col">ชื่อของผู้ติดต่อ</th>
-                            
+
                             <th style="text-align: center;" scope="col">ตำแหน่งในองค์กรของผู้ติดต่อ</th>
                             <th style="text-align: center;" scope="col">ปฎิบัติ</th>
 
@@ -233,8 +242,8 @@ foreach ($results->result() as $shows) {
                     </thead>
                     <tbody>
 
-                    <?php  $key = isset($_GET['key']) ? $_GET['key'] : '';  ?>
-                    <?php 
+                        <?php  $key = isset($_GET['key']) ? $_GET['key'] : '';  ?>
+                        <?php 
                 $result = $this->db->query("SELECT * FROM PARTICIPANT_CONTACT 
                 
                 WHERE ParticipantID='" . $key . "' AND DeleteStatus = '0'");
@@ -242,10 +251,12 @@ foreach ($results->result() as $shows) {
                         <tr>
                             <th scope="row " style="text-align: center;">
                                 <?php echo $show->ContactName; ?></th>
-                            
+
                             <td style="text-align: center;"><?php echo $show->ContactOrganizationPosition; ?>
-                            <!-- แก้ไข+ลบ -->
+                                <!-- แก้ไข+ลบ -->
                             <td style="text-align: center;">
+                            <a href="<?php echo site_url('pc_forms_p2?page=sh22') ?>&&key=<?php echo $show->Id; ?>&&name=<?php echo $name; ?>"
+                    class="btn btn-warning"> <i class="bi bi-pencil-square"></i></a>
                                 <button type="button" class="btn btn-primary" data-bs-toggle="modal"
                                     data-bs-target="#look2<?php echo $show->Id; ?>"><i
                                         class="bi bi-card-list"></i></button>
@@ -273,8 +284,7 @@ foreach ($results->result() as $shows) {
                                             <div class="modal-footer">
                                                 <button type="button" class="btn btn-secondary"
                                                     data-bs-dismiss="modal">ยกเลิก</button>
-                                                <form method="post"
-                                                    action="<?php echo site_url('pc_del_p2'); ?>">
+                                                <form method="post" action="<?php echo site_url('pc_del_p2'); ?>">
                                                     <input type="hidden" name="Id" value="<?php echo $show->Id; ?>">
                                                     <div class="d-flex justify-content-center">
                                                         <button name="Submit" type="submit"
@@ -306,16 +316,9 @@ foreach ($results->result() as $shows) {
             <div class="card-body">
                 <div class="row">
                     <div class="col">
-                        <h5 class="card-title"> </h5>
-                    </div>
-                    <div class="col">
-                        <h5 style="float: right; padding: 15px;" class="card-title"><a
-                                href="<?php echo site_url('pcp_forms_p3?page=sh3') ?>"
-                                class="btn btn-success">เพิ่มข้อมูล</a></h5>
-                    </div>
-                </div>
-                <div class="dropdown">
-                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1"
+                        <h5 class="card-title"> 
+                        <div class="dropdown">
+                    <button class="btn btn-white dropdown-toggle" type="button" id="dropdownMenuButton1"
                         data-bs-toggle="dropdown" aria-expanded="false">
                         ประเภทข้อมูล
                     </button>
@@ -326,6 +329,15 @@ foreach ($results->result() as $shows) {
 
                     </ul>
                 </div>
+                        </h5>
+                    </div>
+                    <div class="col">
+                        <h5 style="float: right; padding: 15px;" class="card-title"><a
+                                href="<?php echo site_url('pcp_forms_p3?page=sh3') ?>&&name=<?php echo $name; ?>"
+                                class="btn btn-success">เพิ่มข้อมูล</a></h5>
+                    </div>
+                </div>
+               
                 <table class="table table-borderless datatable">
                     <thead>
 
@@ -339,13 +351,13 @@ foreach ($results->result() as $shows) {
                     </thead>
                     <tbody>
 
-                    <?php  $key = isset($_GET['key']) ? $_GET['key'] : '';  ?>
-                    <?php 
+                        <?php  $key = isset($_GET['key']) ? $_GET['key'] : '';  ?>
+                        <?php 
                 $result = $this->db->query("SELECT * FROM PARTICIPANT_COOPERATION 
                 
                 WHERE ParticipantID='" . $key . "' AND DeleteStatus = '0'");
                 foreach ($result->result() as $show) {  ?>
-                <?php
+                        <?php
                             $Id= $show->Id;
                             $results = $this->db->query("SELECT * FROM PARTICIPANT_COOPERATION 
                             INNER JOIN CLS_COOPERATION_STATUS 
@@ -359,15 +371,18 @@ foreach ($results->result() as $shows) {
                             ");
 
 foreach ($results->result() as $shows) {
-                     ?> 
+                     ?>
                         <tr>
                             <th scope="row " style="text-align: center;"><?php echo $show->CooperationStartDate; ?></th>
                             <th scope="row" style="text-align: center;"><?php echo $show->CooperationEndDate; ?></th>
-                            <td scope="row" style="text-align: center;"><?php echo $shows->COOPERATION_STATUS_NAME; ?></td>
-                            
-                            
+                            <td scope="row" style="text-align: center;"><?php echo $shows->COOPERATION_STATUS_NAME; ?>
+                            </td>
+
+
                             <!-- แก้ไข+ลบ -->
                             <td style="text-align: center;">
+                            <a href="<?php echo site_url('pcp_forms_p3?page=sh33') ?>&&key=<?php echo $show->Id; ?>&&name=<?php echo $name; ?>"
+                    class="btn btn-warning"> <i class="bi bi-pencil-square"></i></a>
                                 <button type="button" class="btn btn-primary" data-bs-toggle="modal"
                                     data-bs-target="#look3<?php echo $show->Id; ?>"><i
                                         class="bi bi-card-list"></i></button>
@@ -395,8 +410,7 @@ foreach ($results->result() as $shows) {
                                             <div class="modal-footer">
                                                 <button type="button" class="btn btn-secondary"
                                                     data-bs-dismiss="modal">ยกเลิก</button>
-                                                <form method="post"
-                                                    action="<?php echo site_url('pcp_del_p3'); ?>">
+                                                <form method="post" action="<?php echo site_url('pcp_del_p3'); ?>">
                                                     <input type="hidden" name="Id" value="<?php echo $show->Id; ?>">
                                                     <div class="d-flex justify-content-center">
                                                         <button name="Submit" type="submit"
@@ -430,16 +444,9 @@ foreach ($results->result() as $shows) {
             <div class="card-body">
                 <div class="row">
                     <div class="col">
-                        <h5 class="card-title"> </h5>
-                    </div>
-                    <div class="col">
-                        <h5 style="float: right; padding: 15px;" class="card-title"><a
-                                href="<?php echo site_url('pn_forms_p4?page=sh4') ?>"
-                                class="btn btn-success">เพิ่มข้อมูล</a></h5>
-                    </div>
-                </div>
-                <div class="dropdown">
-                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1"
+                        <h5 class="card-title"> 
+                        <div class="dropdown">
+                    <button class="btn btn-white dropdown-toggle" type="button" id="dropdownMenuButton1"
                         data-bs-toggle="dropdown" aria-expanded="false">
                         ประเภทข้อมูล
                     </button>
@@ -450,30 +457,41 @@ foreach ($results->result() as $shows) {
 
                     </ul>
                 </div>
+                        </h5>
+                    </div>
+                    <div class="col">
+                        <h5 style="float: right; padding: 15px;" class="card-title"><a
+                                href="<?php echo site_url('pn_forms_p4?page=sh4') ?>&&name=<?php echo $name; ?>"
+                                class="btn btn-success">เพิ่มข้อมูล</a></h5>
+                    </div>
+                </div>
+               
                 <table class="table table-borderless datatable">
                     <thead>
 
                         <tr>
                             <th style="text-align: center;" scope="col">บันทึกเพิ่มเติม</th>
                             <th style="text-align: center;" scope="col">ชื่อผู้บันทึกเพิ่มเติม</th>
-                           
+
                             <th style="text-align: center;" scope="col">ปฎิบัติ</th>
                         </tr>
 
                     </thead>
                     <tbody>
-                    <?php  $key = isset($_GET['key']) ? $_GET['key'] : '';  ?>
-                    <?php 
+                        <?php  $key = isset($_GET['key']) ? $_GET['key'] : '';  ?>
+                        <?php 
                 $result = $this->db->query("SELECT * FROM PARTICIPANT_NOTE 
                 
                 WHERE ParticipantID='" . $key . "' AND DeleteStatus = '0'");
                 foreach ($result->result() as $show) {  ?>
                         <tr>
                             <th scope="row " style="text-align: center;"><?php echo $show->Note; ?></th>
-                            <th scope="row"><?php echo $show->NoteReporterName; ?></th>
-                            
+                            <th scope="row" style="text-align: center;"><?php echo $show->NoteReporterName; ?></th>
+
                             <!-- แก้ไข+ลบ -->
                             <td style="text-align: center;">
+                            <a href="<?php echo site_url('pn_forms_p4?page=sh44') ?>&&key=<?php echo $show->Id; ?>&&name=<?php echo $name; ?>"
+                    class="btn btn-warning"> <i class="bi bi-pencil-square"></i></a>
                                 <button type="button" class="btn btn-primary" data-bs-toggle="modal"
                                     data-bs-target="#look4<?php echo $show->Id; ?>"><i
                                         class="bi bi-card-list"></i></button>
@@ -501,8 +519,7 @@ foreach ($results->result() as $shows) {
                                             <div class="modal-footer">
                                                 <button type="button" class="btn btn-secondary"
                                                     data-bs-dismiss="modal">ยกเลิก</button>
-                                                <form method="post"
-                                                    action="<?php echo site_url('pn_del_p4'); ?>">
+                                                <form method="post" action="<?php echo site_url('pn_del_p4'); ?>">
                                                     <input type="hidden" name="Id" value="<?php echo $show->Id; ?>">
                                                     <div class="d-flex justify-content-center">
                                                         <button name="Submit" type="submit"
@@ -519,7 +536,7 @@ foreach ($results->result() as $shows) {
                         </tr>
                         <?php  } ?>
 
-                       
+
 
                     </tbody>
                 </table>
@@ -555,8 +572,8 @@ foreach ($results->result() as $shows) {
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-            <?php
-                            $Id= $show->Id;
+                <?php
+                           $Id= $show->Id;
                             $results = $this->db->query("SELECT * FROM PARTICIPANT 
                             INNER JOIN CLS_PARTICIPANT_TYPE 
                             ON CLS_PARTICIPANT_TYPE.PARTICIPANT_TYPE_CODE = PARTICIPANT.ParticipantTypeCode 
@@ -572,15 +589,16 @@ foreach ($results->result() as $shows) {
                         <p><?php echo $show->ParticipantID; ?></p>
                         <h5 class="fw-bold">ชื่อภาครัฐหรือภาคเอกชนที่เข้ามาขับเคลื่อนพื้นที่นวัตกรรมการศึกษา</h5>
                         <p><?php echo $show->ParticipantName; ?></p>
-                        <h5 class="fw-bold">รหัสประเภทผู้เข้ามามีส่วนร่วม</h5>
+                        <h5 class="fw-bold">ประเภทผู้เข้ามามีส่วนร่วม</h5>
                         <p><?php echo $shows->PARTICIPANT_TYPE_NAME; ?></p>
-                        
+
                     </div>
                 </div>
                 <?php } ?>
             </div>
             <div class="modal-footer">
-            <a href="<?php echo site_url('par_forms_p1?page=sh11') ?>&&key=<?php echo $show->Id; ?>"class="btn btn-warning"> <i class="bi bi-pencil-square"></i></a>
+                <!-- <a href="<?php echo site_url('par_forms_p1?page=sh11') ?>&&key=<?php echo $show->Id; ?>&&name=<?php echo $name; ?>"
+                    class="btn btn-warning"> <i class="bi bi-pencil-square"></i></a> -->
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ปิด</button>
 
             </div>
@@ -625,11 +643,11 @@ foreach ($results->result() as $shows) {
                     </div>
 
 
-                    
+
                 </div>
             </div>
             <div class="modal-footer">
-            <a href="<?php echo site_url('pc_forms_p2?page=sh22') ?>&&key=<?php echo $show->Id; ?>"class="btn btn-warning"> <i class="bi bi-pencil-square"></i></a>
+               
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ปิด</button>
 
             </div>
@@ -658,7 +676,7 @@ foreach ($results->result() as $shows) {
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-            <?php
+                <?php
                             $Id= $show->Id;
                             $results = $this->db->query("SELECT * FROM PARTICIPANT_COOPERATION 
                             INNER JOIN CLS_COOPERATION_STATUS 
@@ -666,13 +684,15 @@ foreach ($results->result() as $shows) {
                             -- BestPracticeTypeCode
                             INNER JOIN CLS_COOPERATION_LEVEL 
                             ON CLS_COOPERATION_LEVEL.COOPERATION_LEVEL_CODE = PARTICIPANT_COOPERATION.CooperationLevelCode 
+                            INNER JOIN SCHOOL 
+                            ON SCHOOL.SchoolID  = PARTICIPANT_COOPERATION.CooperationSchoolID 
                             -- TargetEducationLevelCode
                            
                             WHERE Id = $Id
                             ");
 
 foreach ($results->result() as $shows) {
-                     ?> 
+                     ?>
                 <div class="row">
                     <div class="col">
                         <h5 class="fw-bold">รหัสภาครัฐหรือภาคเอกชนที่เข้ามาขับเคลื่อนพื้นที่นวัตกรรมการศึกษา</h5>
@@ -692,18 +712,18 @@ foreach ($results->result() as $shows) {
 
                     <div class="col">
                         <h5 class="fw-bold">รหัสสถานศึกษาที่เข้าไปมีส่วนร่วม</h5>
-                        <p><?php echo $show->CooperationSchoolID; ?></p>
-                        
+                        <p><?php echo $shows->SchoolNameThai; ?></p>
+
                         <h5 class="fw-bold">เอกสารแนบ</h5>
                         <p><a href="<?php echo base_url('document') ?>/<?php echo $show->CooperationAttachmentURL; ?>"
                                 target="_blank"><i class="bi bi-file-text"></i></a></p>
-                        
+
                     </div>
                 </div>
                 <?php } ?>
             </div>
             <div class="modal-footer">
-            <a href="<?php echo site_url('pcp_forms_p3?page=sh33') ?>&&key=<?php echo $show->Id; ?>"class="btn btn-warning"> <i class="bi bi-pencil-square"></i></a>
+               
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ปิด</button>
 
             </div>
@@ -752,7 +772,8 @@ foreach ($results->result() as $shows) {
                 </div>
             </div>
             <div class="modal-footer">
-            <a href="<?php echo site_url('pn_forms_p4?page=sh44') ?>&&key=<?php echo $show->Id; ?>"class="btn btn-warning"> <i class="bi bi-pencil-square"></i></a>
+                <!-- <a href="<?php echo site_url('pn_forms_p4?page=sh44') ?>&&key=<?php echo $show->Id; ?>&&name=<?php echo $name; ?>"
+                    class="btn btn-warning"> <i class="bi bi-pencil-square"></i></a> -->
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ปิด</button>
 
             </div>

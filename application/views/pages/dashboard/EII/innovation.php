@@ -1,5 +1,7 @@
 <main id="main" class="main">
     <?php $page = isset($_GET['page']) ? $_GET['page'] : '';  ?>
+    <?php  $key = isset($_GET['key']) ? $_GET['key'] : '';  ?>
+    <?php $name = isset($_GET['name']) ? $_GET['name'] : '';  ?>
     <?php
     session_start(); // เริ่มต้น session
     if (isset($_SESSION['success'])) { ?>
@@ -23,13 +25,13 @@
                     case 'sh1':
                 ?> <h1>นวัตกรรมการศึกษา</h1>
             <?php break;
-                    case 'sh2':
-                    ?> <h1>ผู้จัดทำนวัตกรรมการศึกษา</h1>
+                    case 'sh1.1':
+                    ?> <h1>ผู้จัดทำนวัตกรรมการศึกษา - <?php echo $name; ?></h1>
             <?php
                         break;
                    
                     default:
-                    ?><h1>ข้อมูลนวัตกรรมการศึกษา</h1>
+                    ?><h1>ข้อมูลนวัตกรรมการศึกษา - <?php echo $name; ?></h1>
             <?php
                         break;
                 }  ?>
@@ -59,19 +61,9 @@
             <div class="card-body">
                 <div class="row">
                     <div class="col">
-                        <h5 class="card-title"> </h5>
-                    </div>
-                    <div class="col">
-                        <h5 style="float: right; padding: 15px;" class="card-title"><a
-                                href="<?php echo site_url('forms_p1?page=sh1') ?>" class="btn btn-success">เพิ่มข้อมูล
-                            </a></h5>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col">
-
+                        <h5 class="card-title"> 
                         <div class="dropdown">
-                            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1"
+                            <button class="btn btn-white dropdown-toggle" type="button" id="dropdownMenuButton1"
                                 data-bs-toggle="dropdown" aria-expanded="false">
                                 ประเภทข้อมูล
                             </button>
@@ -81,9 +73,15 @@
                                 </li>
                             </ul>
                         </div>
+                        </h5>
                     </div>
-
+                    <div class="col">
+                        <h5 style="float: right; padding: 15px;" class="card-title"><a
+                                href="<?php echo site_url('forms_p1?page=sh1') ?>" class="btn btn-success">เพิ่มข้อมูล
+                            </a></h5>
+                    </div>
                 </div>
+                
 
 
                 <table class="table table-borderless datatable">
@@ -112,9 +110,10 @@
                             <th scope="row " style="text-align: center;"><?php echo $show->EducationYear; ?></th>
                             <th scope="row " style="text-align: center;"><?php echo $show->InnovationName; ?></th>
                             <th scope="row " style="text-align: center;"> <a
-                                    href="<?php echo site_url('Fm_innovation_das_p1?page=sh1.1') ?>&&key=<?php echo $show->InnovationID ?>"
-                                    class="btn btn-warning"><i class="bi bi-eye"></i></a> </th>
-                            <td style="text-align: center;"><button type="button" class="btn btn-primary"
+                                    href="<?php echo site_url('Fm_innovation_das_p1?page=sh1.1') ?>&&key=<?php echo $show->InnovationID ?>&&name=<?php echo $show->InnovationName ?>"
+                                    class="btn btn-info"><i class="bi bi-eye"></i></a> </th>
+                            <td style="text-align: center;">  <a href="<?php echo site_url('forms_p1?page=sh11') ?>&&key=<?php echo $show->Id; ?>&&name=<?php echo $show->InnovationName; ?>"
+                    class="btn btn-warning"> <i class="bi bi-pencil-square"></i></a> <button type="button" class="btn btn-primary"
                                     data-bs-toggle="modal" data-bs-target="#das<?php echo $show->Id; ?>"><i
                                         class="bi bi-card-list"></i></button><?php echo nbs(1); ?> <button type="button"
                                     class="btn btn-danger" data-bs-toggle="modal"
@@ -161,28 +160,16 @@
 
                 <?php } ?>
                 <?php  if ($page=='sh1.1') {  ?>
-
+                   
                 <div class="col-12">
                     <div class="card recent-sales overflow-auto">
 
                         <div class="card-body">
                             <div class="row">
                                 <div class="col">
-                                    <h5 class="card-title"> </h5>
-                                </div>
-                                <div class="col">
-                                    <h5 style="float: right; padding: 15px;" class="card-title"><a
-                                            href="<?php echo site_url('forms_p2?page=sh2') ?>"
-                                            class="btn btn-success">เพิ่มข้อมูล
-                                        </a></h5>
-                                </div>
-                            </div>
-
-                            <div class="row">
-                                <div class="col">
-
+                                    <h5 class="card-title">
                                     <div class="dropdown">
-                                        <button class="btn btn-secondary dropdown-toggle" type="button"
+                                        <button class="btn btn-white dropdown-toggle" type="button"
                                             id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
                                             ประเภทข้อมูล
                                         </button>
@@ -191,10 +178,18 @@
                                                     href="<?php echo site_url('Fm_innovation_das_p1?page=sh1') ?>">นวัตกรรมการศึกษา</a>
                                             </li>
                                         </ul>
-                                    </div>
+                                    </div>        
+                                </h5>
                                 </div>
-
+                                <div class="col">
+                                    <h5 style="float: right; padding: 15px;" class="card-title"><a
+                                            href="<?php echo site_url('forms_p2?page=sh2') ?>&&name=<?php echo $name; ?>"
+                                            class="btn btn-success">เพิ่มข้อมูล
+                                        </a></h5>
+                                </div>
                             </div>
+
+
                             <table class="table table-borderless datatable">
                                 <thead>
 
@@ -209,7 +204,7 @@
 
                                 </thead>
                                 <tbody>
-                                    <?php  $key = isset($_GET['key']) ? $_GET['key'] : '';  ?>
+                                   
                                     <?php $result = $this->db->query("SELECT * FROM INNOVATION_CREATOR 
 JOIN CLS_PERSONAL_ID_TYPE ON INNOVATION_CREATOR.CreatorPersonalIDTypeCode = CLS_PERSONAL_ID_TYPE.PERSONAL_ID_TYPE_CODE 
 JOIN CLS_PREFIX ON INNOVATION_CREATOR.CreatorPrefixCode = CLS_PREFIX.PREFIX_CODE  
@@ -224,7 +219,8 @@ foreach ($result->result() as $show) {  ?>
                                         <th scope="row " style="text-align: center;">
                                             <?php echo $show->CreatorNameThai; ?><?php echo nbs(2); ?><?php echo $show->CreatorLastNameThai; ?>
                                         </th>
-                                        <td style="text-align: center;"><button type="button" class="btn btn-primary"
+                                        <td style="text-align: center;"> <a href="<?php echo site_url('forms_p1?page=sh22') ?>&&key=<?php echo $show->Id; ?>&&name=<?php echo $show->CreatorPersonalID; ?>"
+                    class="btn btn-warning"> <i class="bi bi-pencil-square"></i></a> <button type="button" class="btn btn-primary"
                                                 data-bs-toggle="modal"
                                                 data-bs-target="#dasof<?php echo $show->Id; ?>"><i
                                                     class="bi bi-card-list"></i></button> <button type="button"
@@ -281,6 +277,18 @@ foreach ($result->result() as $show) {  ?>
                                         <div class="row">
                                             <div class="col">
                                                 <h5 class="card-title">
+                                                     <div class="dropdown">
+                                                    <button class="btn btn-secondary dropdown-toggle" type="button"
+                                                        id="dropdownMenuButton1" data-bs-toggle="dropdown"
+                                                        aria-expanded="false">
+                                                        ประเภทข้อมูล
+                                                    </button>
+                                                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                                        <li><a class="dropdown-item"
+                                                                href="<?php echo site_url('Fm_innovation_das_p1?page=sh1') ?>">นวัตกรรมการศึกษา</a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
                                                 </h5>
                                             </div>
                                             <div class="col">
@@ -293,18 +301,7 @@ foreach ($result->result() as $show) {  ?>
                                         <div class="row">
                                             <div class="col">
 
-                                                <div class="dropdown">
-                                                    <button class="btn btn-secondary dropdown-toggle" type="button"
-                                                        id="dropdownMenuButton1" data-bs-toggle="dropdown"
-                                                        aria-expanded="false">
-                                                        ประเภทข้อมูล
-                                                    </button>
-                                                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                                                        <li><a class="dropdown-item"
-                                                                href="<?php echo site_url('Fm_innovation_das_p1?page=sh1') ?>">นวัตกรรมการศึกษา</a>
-                                                        </li>
-                                                    </ul>
-                                                </div>
+                                               
                                             </div>
 
                                         </div>
@@ -476,8 +473,8 @@ foreach ($results->result() as $shows) {
                 <?php } ?>
             </div>
             <div class="modal-footer">
-                <a href="<?php echo site_url('forms_p1?page=sh11') ?>&&key=<?php echo $show->Id; ?>"
-                    class="btn btn-warning"> <i class="bi bi-pencil-square"></i></a>
+                <!-- <a href="<?php echo site_url('forms_p1?page=sh11') ?>&&key=<?php echo $show->Id; ?>&&name=<?php echo $show->InnovationName; ?>"
+                    class="btn btn-warning"> <i class="bi bi-pencil-square"></i></a> -->
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ปิด</button>
 
             </div>
@@ -538,8 +535,8 @@ foreach ($result->result() as $show) {  ?>
                 </div>
             </div>
             <div class="modal-footer">
-                <a href="<?php echo site_url('forms_p1?page=sh22') ?>&&key=<?php echo $show->Id; ?>"
-                    class="btn btn-warning"> <i class="bi bi-pencil-square"></i></a>
+                <!-- <a href="<?php echo site_url('forms_p1?page=sh22') ?>&&key=<?php echo $show->Id; ?>&&name=<?php echo $show->CreatorPersonalID; ?>"
+                    class="btn btn-warning"> <i class="bi bi-pencil-square"></i></a> -->
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ปิด</button>
 
             </div>
@@ -600,8 +597,8 @@ foreach ($result->result() as $show) {  ?>
                 </div>
             </div>
             <div class="modal-footer">
-                <a href="<?php echo site_url('forms_p1?page=sh22') ?>&&key=<?php echo $show->Id; ?>"
-                    class="btn btn-warning"> <i class="bi bi-pencil-square"></i></a>
+                <!-- <a href="<?php echo site_url('forms_p1?page=sh22') ?>&&key=<?php echo $show->Id; ?>&&name=<?php echo $show->InnovationID; ?>"
+                    class="btn btn-warning"> <i class="bi bi-pencil-square"></i></a> -->
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ปิด</button>
 
             </div>
