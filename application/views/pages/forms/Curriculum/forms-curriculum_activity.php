@@ -2,7 +2,7 @@
 <main id="main" class="main">
 
     <div class="pagetitle">
-      <h1>ข้อมูลแผนการเรียนรู้ </h1>
+      <h1>ข้อมูลกิจกรรม</h1>
     </div><!-- End Page Title -->
 
     <section class="section">
@@ -26,9 +26,9 @@
         <div class="col-lg-9">
           <div class="card">
             <div class="card-body">
-              <h5 class="card-title">ข้อมูลหลักสูตร</h5>
+              <h5 class="card-title">กิจกรรม</h5>
 
-              <!-- start Form ข้อมูลแผนการเรียนรู้  -->
+              <!-- start Form ข้อมูลกิจกรรม  -->
               <form class="row g-3" action="<?php echo base_url('add_curriculum');?>" method="POST" name="addCurriculum" id="addCurriculum" enctype="multipart/form-data"> 
                 
                 <div class="col-md-16">
@@ -141,7 +141,7 @@
                   </div>
                </div>  
              </form>
-              <!-- End Form ข้อมูลแผนการเรียนรู้  -->
+              <!-- End Form ข้อมูลกิจกรรม  -->
             </div>
           </div>
 

@@ -33,6 +33,13 @@ $route['add_curriculum_school_competency']['post'] = 'CurriculumController/add_c
 $route['edit_forms-curriculum_school_competency'] = 'CurriculumController/forms_edit_curriculum_school_competency';
 $route['edit_curriculum_school_competency']['post'] = 'CurriculumController/edit_curriculum_school_competency';
 $route['delete-curriculum_school_competency/(:num)/(:num)/(:num)'] = 'CurriculumController/delete_curriculum_school_competency/$1/$2/$3';
+//curriculum_plan
+$route['list-curriculum_plan'] = 'CurriculumController/list_curriculum_plan';
+$route['forms-curriculum_plan'] = 'CurriculumController/forms_curriculum_plan';
+//Curriculum_by_school
+$route['list_curriculum_by_school'] = 'CurriculumController/list_curriculum_by_school';
+//Curriculum_by_school
+$route['forms-curriculum_activity'] = 'CurriculumController/forms_curriculum_activity';
 //teacher_developmant_activity
 $route['list-teacher_development_activity'] = 'Teacher_development_activity_controller/list_teacher_development_activity';
 $route['forms-teacher_development_activity'] = 'Teacher_development_activity_controller/forms';
@@ -47,11 +54,6 @@ $route['list-budget'] = 'BudgetController/list_budget';
 $route['edit_forms_budget'] = 'BudgetController/edit_forms_budget';
 $route['forms-budget'] = 'BudgetController/forms_budget';
 $route['add-budget']['post'] = 'BudgetController/add_budget';
-//curriculum_plan
-$route['list-curriculum_plan'] = 'CurriculumController/list_curriculum_plan';
-$route['forms-curriculum_plan'] = 'CurriculumController/forms_curriculum_plan';
-//Curriculum_by_school
-$route['list_curriculum_by_school'] = 'CurriculumController/list_curriculum_by_school';
 
 
 

@@ -26,7 +26,6 @@
     </div>
     <?php } ?>  
 
-
     <!-- Recent Sales -->
     <div class="col-12">
         <div class="card recent-sales overflow-auto">
