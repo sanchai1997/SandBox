@@ -29,7 +29,7 @@
 
           <div class="card">
             <div class="card-body">
-              <h5 class="card-title">ข้อมูลการพัฒนาบุคลากร</h5>
+              <h5 class="card-title"></h5>
 
               <!-- start Form ข้อมูลการพัฒนาบุคลากรครู -->
               <form class="row g-3" action="<?php echo base_url('edit_teacher_development_activity');?>" method="POST" name="teacher_developmant_activity" id="teacher_developmant_activity" enctype="multipart/form-data">

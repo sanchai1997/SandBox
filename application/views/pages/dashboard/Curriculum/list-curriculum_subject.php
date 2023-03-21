@@ -44,8 +44,8 @@
                     <thead>
                         <tr>
                             <th style="text-align: center;" scope="col">รหัสวิชา</th>
-                            <th style="text-align: center;" scope="col">ชื่อรายวิชาหรือกิจกรรม</th>
-                            <th style="text-align: center;" scope="col">กลุ่มสาระการเรียนรู้/การศึกษาค้นคว้าด้วยตนเอง</th>
+                            <th style="text-align: center;" scope="col">ชื่อรายวิชา</th>
+                            <th style="text-align: center;" scope="col">กลุ่มสาระการเรียนรู้</th>
                             <th style="text-align: center;" scope="col">ประเภทรายวิชา</th>
                             <th style="text-align: center;" scope="col">หน่วยกิต/น้ำหนัก</th>
                             <th style="text-align: center;" scope="col">จำนวนชั่วโมงเรียน</th>
@@ -66,12 +66,12 @@
                                 <td style="text-align: center;"><?php echo $ls-> LearningHour; ?></td>
                                 <td style="text-align: center;">
                                     <a href='list-curriculum_school_competency?sid=<?php echo $ls->SubjectCode; ?>&&cid=<?php echo $ls->CurriculumID; ?>'>
-                                        <button type="button" class="btn btn-primary"><i class="bi bi-eye-fill"></i></button> 
+                                        <button type="button" class="btn btn-info"><i class="bi bi-eye-fill"></i></button> 
                                     </a>
                                 </td>
                                 <td style="text-align: center;">
                                     <a href='list-curriculum_plan'>
-                                        <button type="button" class="btn btn-primary"><i class="bi bi-eye-fill"></i></button> 
+                                        <button type="button" class="btn btn-info"><i class="bi bi-eye-fill"></i></button> 
                                     </a>
                                 </td>
                                 <td style="text-align: center;">
