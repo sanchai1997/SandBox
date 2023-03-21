@@ -606,8 +606,8 @@
                                     <div class="form-floating">
                                         <input type="text" class="form-control" id="floatingName"
                                             placeholder="ชื่อกลางผู้จัดทำ (ภาษาไทย)" name="CreatorMiddleNameThai"
-                                            value="" required>
-                                        <label for="Y">
+                                            value="" >
+                                        <label for="">
                                             <?php echo nbs(2); ?> ชื่อกลางผู้จัดทำ (ภาษาไทย)
                                         </label>
                                     </div>
@@ -813,8 +813,8 @@
                                     <div class="form-floating">
                                         <input type="text" class="form-control" id="floatingName"
                                             placeholder="ชื่อกลางผู้จัดทำ (ภาษาไทย)" name="CreatorMiddleNameThai"
-                                            value="<?php echo $show->CreatorMiddleNameThai ?>" required>
-                                        <label for="Y">
+                                            value="<?php echo $show->CreatorMiddleNameThai ?>" >
+                                        <label for="">
                                             <?php echo nbs(2); ?> ชื่อกลางผู้จัดทำ (ภาษาไทย)
                                         </label>
                                     </div>

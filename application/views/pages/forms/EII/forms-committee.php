@@ -76,7 +76,7 @@
                                         <option value="<?= $cls->PROVINCE_CODE; ?>"><?= $cls->PROVINCE_NAME; ?></option>
                                         <?php } ?>
                                     </select>
-                                    <label for="floatingSelect"><?php echo nbs(2); ?>จังหวัด</label>
+                                    <label for="Y"><?php echo nbs(2); ?>จังหวัด</label>
                                 </div>
                             </div>
 
@@ -84,16 +84,16 @@
                                 <div class="col">
                                     <div class="form-floating">
                                         <input type="text" class="form-control" id="floatingName"
-                                            placeholder="ปีที่ออกคำสั่ง" name="CommitteeYear">
-                                        <label for="floatingName"><?php echo nbs(2); ?> ปีที่ออกคำสั่ง </label>
+                                            placeholder="ปีที่ออกคำสั่ง" name="CommitteeYear" required>
+                                        <label for="Y"><?php echo nbs(2); ?> ปีที่ออกคำสั่ง </label>
                                     </div>
                                 </div>
 
                                 <div class="col">
                                     <div class="form-floating">
                                         <input type="text" class="form-control" id="floatingName"
-                                            placeholder="เลขออกคำสั่ง" name="CommitteeAppointmentNumber">
-                                        <label for="floatingName"><?php echo nbs(2); ?> เลขออกคำสั่ง </label>
+                                            placeholder="เลขออกคำสั่ง" name="CommitteeAppointmentNumber" required>
+                                        <label for="Y"><?php echo nbs(2); ?> เลขออกคำสั่ง </label>
                                     </div>
                                 </div>
                             </div>
@@ -111,7 +111,7 @@
                                         <?php } ?>
 
                                     </select>
-                                    <label for="floatingSelect"><?php echo nbs(2); ?>รหัสประเภทการแต่งตั้ง</label>
+                                    <label for="Y"><?php echo nbs(2); ?>รหัสประเภทการแต่งตั้ง</label>
                                 </div>
                             </div>
                             <div class="row mb-2">
@@ -207,7 +207,7 @@ if ($page == 'sh11') {
                                         <option value="<?= $cls->PROVINCE_CODE; ?>"><?= $cls->PROVINCE_NAME; ?></option>
                                         <?php } ?>
                                     </select>
-                                    <label for="floatingSelect"><?php echo nbs(2); ?>จังหวัด</label>
+                                    <label for="Y"><?php echo nbs(2); ?>จังหวัด</label>
                                 </div>
                             </div>
 
@@ -216,8 +216,8 @@ if ($page == 'sh11') {
                                     <div class="form-floating">
                                         <input type="text" class="form-control" id="floatingName"
                                             placeholder="ปีที่ออกคำสั่ง" name="CommitteeYear"
-                                            value="<?php echo $show->CommitteeYear ?>">
-                                        <label for="floatingName"><?php echo nbs(2); ?> ปีที่ออกคำสั่ง </label>
+                                            value="<?php echo $show->CommitteeYear ?>" required>
+                                        <label for="Y"><?php echo nbs(2); ?> ปีที่ออกคำสั่ง </label>
                                     </div>
                                 </div>
 
@@ -225,8 +225,8 @@ if ($page == 'sh11') {
                                     <div class="form-floating">
                                         <input type="text" class="form-control" id="floatingName"
                                             placeholder="เลขออกคำสั่ง" name="CommitteeAppointmentNumber"
-                                            value="<?php echo $show->CommitteeAppointmentNumber ?>">
-                                        <label for="floatingName"><?php echo nbs(2); ?> เลขออกคำสั่ง </label>
+                                            value="<?php echo $show->CommitteeAppointmentNumber ?>" required>
+                                        <label for="Y"><?php echo nbs(2); ?> เลขออกคำสั่ง </label>
                                     </div>
                                 </div>
                             </div>
@@ -244,7 +244,7 @@ if ($page == 'sh11') {
                                         <?php } ?>
 
                                     </select>
-                                    <label for="floatingSelect"><?php echo nbs(2); ?>รหัสประเภทการแต่งตั้ง</label>
+                                    <label for="Y"><?php echo nbs(2); ?>รหัสประเภทการแต่งตั้ง</label>
                                 </div>
                             </div>
                             <div class="row mb-2">
@@ -337,7 +337,7 @@ if ($page == 'sh11') {
                                         <?php } ?>
 
                                     </select>
-                                    <label for="floatingSelect"><?php echo nbs(2); ?>จังหวัด</label>
+                                    <label for="Y"><?php echo nbs(2); ?>จังหวัด</label>
                                 </div>
                             </div>
                             <div class="row mb-3">
@@ -345,14 +345,14 @@ if ($page == 'sh11') {
                                     <div class="form-floating">
                                         <input type="text" class="form-control" id="floatingName"
                                             placeholder="ปีที่ออกคำสั่ง" name="CommitteeYear">
-                                        <label for="floatingName"><?php echo nbs(2); ?> ปีที่ออกคำสั่ง </label>
+                                        <label for="Y"><?php echo nbs(2); ?> ปีที่ออกคำสั่ง </label>
                                     </div>
                                 </div>
                                 <div class="col">
                                     <div class="form-floating">
                                         <input type="text" class="form-control" id="floatingName"
                                             placeholder="เลขที่คำสั่ง" name="CommitteeAppointmentNumber">
-                                        <label for="floatingName"><?php echo nbs(2); ?> เลขที่คำสั่ง </label>
+                                        <label for="Y"><?php echo nbs(2); ?> เลขที่คำสั่ง </label>
                                     </div>
                                 </div>
                             </div>
@@ -368,7 +368,7 @@ if ($page == 'sh11') {
                                         <option value="<?= $cls->PREFIX_CODE ; ?>"><?= $cls->PREFIX_NAME; ?></option>
                                         <?php } ?>
                                     </select>
-                                    <label for="floatingSelect"><?php echo nbs(2); ?>คำนำหน้าชื่อ</label>
+                                    <label for="Y"><?php echo nbs(2); ?>คำนำหน้าชื่อ</label>
                                 </div>
                             </div>
                             <div class="row mb-3">
@@ -377,7 +377,7 @@ if ($page == 'sh11') {
                                         <input type="text" class="form-control" id="floatingName"
                                             placeholder="ชื่อกรรมการและอนุกรรมการ (ภาษาไทย)"
                                             name="CommitteeMemberNameThai">
-                                        <label for="floatingName"><?php echo nbs(2); ?>
+                                        <label for="Y"><?php echo nbs(2); ?>
                                             ชื่อกรรมการและอนุกรรมการ
                                             (ภาษาไทย) </label>
                                     </div>
@@ -399,7 +399,7 @@ if ($page == 'sh11') {
                                         <input type="text" class="form-control" id="floatingName"
                                             placeholder="ชื่อกลางกรรมการและอนุกรรมการ (ภาษาไทย)"
                                             name="CommitteeMemberMiddleNameThai" value="">
-                                        <label for="floatingName"><?php echo nbs(2); ?>
+                                        <label for=""><?php echo nbs(2); ?>
                                             ชื่อกลางกรรมการและอนุกรรมการ
                                             (ภาษาไทย)</label>
                                     </div>
@@ -422,7 +422,7 @@ if ($page == 'sh11') {
                                         <input type="text" class="form-control" id="floatingName"
                                             placeholder="นามสกุลกรรมการและอนุกรรมการ (ภาษาไทย)"
                                             name="CommitteeMemberLastNameThai" value="">
-                                        <label for="floatingName"><?php echo nbs(2); ?>
+                                        <label for="Y"><?php echo nbs(2); ?>
                                             นามสกุลกรรมการและอนุกรรมการ
                                             (ภาษาไทย)</label>
                                     </div>
@@ -452,7 +452,7 @@ if ($page == 'sh11') {
                                         <?php } ?>
                                     </select>
                                     <label
-                                        for="floatingSelect"><?php echo nbs(2); ?>ตำแหน่งกรรมการและอนุกรรมการ</label>
+                                        for="Y"><?php echo nbs(2); ?>ตำแหน่งกรรมการและอนุกรรมการ</label>
                                 </div>
                             </div>
                             <div class="row mb-3">
@@ -470,7 +470,7 @@ if ($page == 'sh11') {
                                         <div class="form-floating">
                                             <input type="date" class="form-control" id="Share" placeholder="Share"
                                                 name="CommitteeMemberTermStartDate" value="">
-                                            <label for="Share">เริ่มวาระการดำรงตำแหน่ง</label>
+                                            <label for="Y">เริ่มวาระการดำรงตำแหน่ง</label>
                                         </div>
                                     </div>
                                 </div>
@@ -480,7 +480,7 @@ if ($page == 'sh11') {
                                         <div class="form-floating">
                                             <input type="date" class="form-control" id="Share" placeholder="Share"
                                                 name="CommitteeMemberTermEndDate" value="">
-                                            <label for="Share">สิ้นสุดวาระการดำรงตำแหน่ง</label>
+                                            <label for="Y">สิ้นสุดวาระการดำรงตำแหน่ง</label>
                                         </div>
                                     </div>
                                 </div>
@@ -578,7 +578,7 @@ if ($page == 'sh22') { ?>
                                         <?php } ?>
 
                                     </select>
-                                    <label for="floatingSelect"><?php echo nbs(2); ?>จังหวัด</label>
+                                    <label for="Y"><?php echo nbs(2); ?>จังหวัด</label>
                                 </div>
                             </div>
                             <div class="row mb-3">
@@ -587,7 +587,7 @@ if ($page == 'sh22') { ?>
                                         <input type="text" class="form-control" id="floatingName"
                                             placeholder="ปีที่ออกคำสั่ง" name="CommitteeYear"
                                             value="<?php echo $show->CommitteeYear ?>">
-                                        <label for="floatingName"><?php echo nbs(2); ?> ปีที่ออกคำสั่ง </label>
+                                        <label for="Y"><?php echo nbs(2); ?> ปีที่ออกคำสั่ง </label>
                                     </div>
                                 </div>
                                 <div class="col">
@@ -595,7 +595,7 @@ if ($page == 'sh22') { ?>
                                         <input type="text" class="form-control" id="floatingName"
                                             placeholder="เลขที่คำสั่ง" name="CommitteeAppointmentNumber"
                                             value="<?php echo $show->CommitteeAppointmentNumber ?>">
-                                        <label for="floatingName"><?php echo nbs(2); ?> เลขที่คำสั่ง </label>
+                                        <label for="Y"><?php echo nbs(2); ?> เลขที่คำสั่ง </label>
                                     </div>
                                 </div>
                             </div>
@@ -611,7 +611,7 @@ if ($page == 'sh22') { ?>
                                         <option value="<?= $cls->PREFIX_CODE ; ?>"><?= $cls->PREFIX_NAME; ?></option>
                                         <?php } ?>
                                     </select>
-                                    <label for="floatingSelect"><?php echo nbs(2); ?>คำนำหน้าชื่อ</label>
+                                    <label for="Y"><?php echo nbs(2); ?>คำนำหน้าชื่อ</label>
                                 </div>
                             </div>
                             <div class="row mb-3">
@@ -621,7 +621,7 @@ if ($page == 'sh22') { ?>
                                             placeholder="ชื่อกรรมการและอนุกรรมการ (ภาษาไทย)"
                                             name="CommitteeMemberNameThai"
                                             value="<?php echo $show->CommitteeMemberNameThai ?>">
-                                        <label for="floatingName"><?php echo nbs(2); ?>
+                                        <label for="Y"><?php echo nbs(2); ?>
                                             ชื่อกรรมการและอนุกรรมการ
                                             (ภาษาไทย) </label>
                                     </div>
@@ -670,7 +670,7 @@ if ($page == 'sh22') { ?>
                                             placeholder="นามสกุลกรรมการและอนุกรรมการ (ภาษาไทย)"
                                             name="CommitteeMemberLastNameThai"
                                             value="<?php echo $show->CommitteeMemberLastNameThai ?>">
-                                        <label for="floatingName"><?php echo nbs(2); ?>
+                                        <label for="Y"><?php echo nbs(2); ?>
                                             นามสกุลกรรมการและอนุกรรมการ
                                             (ภาษาไทย)</label>
                                     </div>
@@ -710,7 +710,7 @@ if ($page == 'sh22') { ?>
                                         placeholder="ตำแหน่งในองค์กรของกรรมการและอนุกรรมการ"
                                         name="CommitteeMemberOrganizationPosition"
                                         value="<?php echo $show->CommitteeMemberOrganizationPosition ?>">
-                                    <label for="floatingName"><?php echo nbs(2); ?>
+                                    <label for="Y"><?php echo nbs(2); ?>
                                         ตำแหน่งในองค์กรของกรรมการและอนุกรรมการ</label>
                                 </div>
                             </div>
@@ -721,7 +721,7 @@ if ($page == 'sh22') { ?>
                                             <input type="date" class="form-control" id="Share" placeholder="Share"
                                                 name="CommitteeMemberTermStartDate"
                                                 value="<?php echo $show->CommitteeMemberTermStartDate ?>">
-                                            <label for="Share">เริ่มวาระการดำรงตำแหน่ง</label>
+                                            <label for="Y">เริ่มวาระการดำรงตำแหน่ง</label>
                                         </div>
                                     </div>
                                 </div>
@@ -732,7 +732,7 @@ if ($page == 'sh22') { ?>
                                             <input type="date" class="form-control" id="Share" placeholder="Share"
                                                 name="CommitteeMemberTermEndDate"
                                                 value="<?php echo $show->CommitteeMemberTermEndDate ?>">
-                                            <label for="Share">สิ้นสุดวาระการดำรงตำแหน่ง</label>
+                                            <label for="Y">สิ้นสุดวาระการดำรงตำแหน่ง</label>
                                         </div>
                                     </div>
                                 </div>

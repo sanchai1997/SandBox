@@ -120,6 +120,8 @@
                                     class="btn btn-info"><i class="bi bi-eye"></i></a></td>
                             <!-- แก้ไขลบ -->
                             <td style="text-align: center;">
+                            <a href="<?php echo site_url('c_forms_p1?page=sh11') ?>&&key=<?php echo $show->Id; ?>&&name=<?php echo $show->CommitteeAppointmentNumber; ?>"
+                    class="btn btn-warning"> <i class="bi bi-pencil-square"></i></a>
                                 <button type="button" class="btn btn-primary" data-bs-toggle="modal"
                                     data-bs-target="#look1<?php echo $show->Id; ?>"><i
                                         class="bi bi-card-list"></i></button>
@@ -367,8 +369,8 @@
                 <?php } ?>
             </div>
             <div class="modal-footer">
-                <a href="<?php echo site_url('c_forms_p1?page=sh11') ?>&&key=<?php echo $show->Id; ?>&&name=<?php echo $show->CommitteeAppointmentNumber; ?>"
-                    class="btn btn-warning"> <i class="bi bi-pencil-square"></i></a>
+                <!-- <a href="<?php echo site_url('c_forms_p1?page=sh11') ?>&&key=<?php echo $show->Id; ?>&&name=<?php echo $show->CommitteeAppointmentNumber; ?>"
+                    class="btn btn-warning"> <i class="bi bi-pencil-square"></i></a> -->
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ปิด</button>
 
             </div>

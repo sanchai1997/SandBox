@@ -550,8 +550,8 @@ if (isset( $_SESSION['success'])) { ?>
                                         <div class="form-floating">
                                             <input type="text" class="form-control" id="floatingName"
                                                 placeholder="ชื่อกลางผู้จัดทำ (ภาษาไทย)" name="CreatorMiddleNameThai"
-                                                required>
-                                            <label for="Y"><?php echo nbs(2); ?>ชื่อกลางผู้จัดทำ (ภาษาไทย) </label>
+                                                >
+                                            <label for=""><?php echo nbs(2); ?>ชื่อกลางผู้จัดทำ (ภาษาไทย) </label>
                                         </div>
                                     </div>
 
@@ -746,9 +746,9 @@ if (isset( $_SESSION['success'])) { ?>
                                             <div class="form-floating">
                                                 <input type="text" class="form-control" id="floatingName"
                                                     placeholder="ชื่อกลางผู้จัดทำ (ภาษาไทย)"
-                                                    name="CreatorMiddleNameThai" required
+                                                    name="CreatorMiddleNameThai" 
                                                     value="<?php echo $show->CreatorMiddleNameThai ?>">
-                                                <label for="Y"><?php echo nbs(2); ?>ชื่อกลางผู้จัดทำ (ภาษาไทย) </label>
+                                                <label for=""><?php echo nbs(2); ?>ชื่อกลางผู้จัดทำ (ภาษาไทย) </label>
                                             </div>
                                         </div>
 
