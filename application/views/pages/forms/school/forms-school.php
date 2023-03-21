@@ -15,12 +15,13 @@
                 <h6 class="card-title"></h6>
                 <div class="form-floating">
                   <select class="form-select" name="InnovationAreaCode" id="InnovationAreaCode" aria-label="InnovationAreaCode">
-                    <option value="" selected>เลือก</option>
                     <?php
                     $result = $this->db->query('SELECT * FROM CLS_INNOVATION_AREA ');
                     foreach ($result->result() as $INNOVATION_AREA) {
                     ?>
-                      <option value="<?= $INNOVATION_AREA->INNOVATION_AREA_CODE; ?>"><?= $INNOVATION_AREA->INNOVATION_AREA_NAME; ?></option>
+                      <option <?php if ($INNOVATION_AREA->INNOVATION_AREA_CODE == '91') {
+                                echo 'selected';
+                              } ?> value="<?= $INNOVATION_AREA->INNOVATION_AREA_CODE; ?>"><?= $INNOVATION_AREA->INNOVATION_AREA_NAME; ?></option>
                     <?php
                     }
                     ?>
@@ -188,7 +189,7 @@
               </div>
               <div class="col-md-4">
                 <div class="form-floating">
-                  <select class="form-select" id="DISTRICT_2" name="SchoolAddressDistrictCode">
+                  <select class="form-select" id="DISTRICT" name="SchoolAddressDistrictCode">
                     <option value="" selected>เลือก</option>
                     <?php
                     $result = $this->db->query('SELECT * FROM CLS_DISTRICT WHERE PROVINCE_CODE = 91');
@@ -202,7 +203,7 @@
               </div>
               <div class="col-md-4">
                 <div class="form-floating">
-                  <select class="form-select" id="SUBDISTRICT_2" aria-label="SUBDISTRICT" name="SchoolAddressSubdistrictCode">
+                  <select class="form-select" id="SUBDISTRICT" aria-label="SUBDISTRICT" name="SchoolAddressSubdistrictCode">
                     <option value="" selected>เลือก</option>
                     <?php
                     $result = $this->db->query('SELECT * FROM CLS_SUBDISTRICT WHERE PROVINCE_CODE = 91');
@@ -344,17 +345,12 @@
         alert("กรุณาเลือกจังหวัด");
         return false;
       }
-      //SchoolAddressProvinceCode
-      if (frm.SchoolAddressProvinceCode.value == "") {
-        alert("กรุณาเลือกจังหวัด");
-        return false;
-      }
       //SchoolAddressDistrictCode
-      if (frm.DISTRICT_2.value == "") {
+      if (frm.DISTRICT.value == "") {
         alert("กรุณาเลือกอำเภอ");
         return false;
       } //SchoolAddressSubdistrictCode
-      if (frm.SUBDISTRICT_2.value == "") {
+      if (frm.SUBDISTRICT.value == "") {
         alert("กรุณาเลือกตำบล");
         return false;
       }
@@ -362,5 +358,19 @@
       $('#Modal').modal('show');
 
     }
+  </script>
+
+  <!-- Multiple Dropdown PROVINCE DISTRICT SUBDISTRICT -->
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+  <script>
+    $(document).ready(function() {
+      $("#SUBDISTRICT").children('option:gt(0)').hide();
+
+      $("#DISTRICT").change(function() {
+        $("#SUBDISTRICT").children('option').hide();
+        $("#SUBDISTRICT").children("option[ id^=" + $(this).val() + "]").show()
+      })
+
+    })
   </script>
 </main><!-- End #main -->

@@ -16,7 +16,6 @@
               <h5 class="card-title">ข้อมูลปีการศึกษา</h5>
               <div class="row mb-3">
                 <label for="inputText" class="col-sm-2 col-form-label">ปีการศึกษา</label>
-                <div class="col-sm-4">
                   <input type="text" class="form-control" name="EducationYear" required>
                 </div>
                 <label for="inputText" class="col-sm-2 col-form-label">ภาคเรียน</label>

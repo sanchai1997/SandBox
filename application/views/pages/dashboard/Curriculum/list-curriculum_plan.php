@@ -35,6 +35,7 @@
                 <div class="row">
                     
                     <div class="col">
+                    <h5 style="float: right; padding: 15px;" class="card-title"><a href="forms-curriculum_activity" class="btn btn-success">ๅๅๅ</a></h5>
                         <h5 style="float: right; padding: 15px;" class="card-title"><a href="forms-curriculum_plan" class="btn btn-success">เพิ่มข้อมูล</a></h5>
                     </div>
                 </div>

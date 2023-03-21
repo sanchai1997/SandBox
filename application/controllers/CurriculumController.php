@@ -53,6 +53,19 @@ class CurriculumController extends CI_Controller{
         $this->load->view('templates/footer', $data);
 
     }
+    public function forms_curriculum_activity() {
+        
+        if ( ! file_exists(APPPATH.'views/pages/forms/Curriculum/forms-curriculum_activity.php'))
+        {
+            show_404();
+        }
+        $this->load->view('templates/header');
+        $this->load->view('templates/sidebar');
+        $this->load->view('pages/forms/Curriculum/forms-curriculum_activity');
+        $this->load->view('templates/footer');
+
+    }
+    
     public function list_curriculum_by_school() {
         
         if ( ! file_exists(APPPATH.'views/pages/dashboard/Curriculum/list-curriculum.php'))

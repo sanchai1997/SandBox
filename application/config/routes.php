@@ -33,6 +33,13 @@ $route['add_curriculum_school_competency']['post'] = 'CurriculumController/add_c
 $route['edit_forms-curriculum_school_competency'] = 'CurriculumController/forms_edit_curriculum_school_competency';
 $route['edit_curriculum_school_competency']['post'] = 'CurriculumController/edit_curriculum_school_competency';
 $route['delete-curriculum_school_competency/(:num)/(:num)/(:num)'] = 'CurriculumController/delete_curriculum_school_competency/$1/$2/$3';
+//curriculum_plan
+$route['list-curriculum_plan'] = 'CurriculumController/list_curriculum_plan';
+$route['forms-curriculum_plan'] = 'CurriculumController/forms_curriculum_plan';
+//Curriculum_by_school
+$route['list_curriculum_by_school'] = 'CurriculumController/list_curriculum_by_school';
+//Curriculum_by_school
+$route['forms-curriculum_activity'] = 'CurriculumController/forms_curriculum_activity';
 //teacher_developmant_activity
 $route['list-teacher_development_activity'] = 'Teacher_development_activity_controller/list_teacher_development_activity';
 $route['forms-teacher_development_activity'] = 'Teacher_development_activity_controller/forms';
@@ -47,11 +54,6 @@ $route['list-budget'] = 'BudgetController/list_budget';
 $route['edit_forms_budget'] = 'BudgetController/edit_forms_budget';
 $route['forms-budget'] = 'BudgetController/forms_budget';
 $route['add-budget']['post'] = 'BudgetController/add_budget';
-//curriculum_plan
-$route['list-curriculum_plan'] = 'CurriculumController/list_curriculum_plan';
-$route['forms-curriculum_plan'] = 'CurriculumController/forms_curriculum_plan';
-//Curriculum_by_school
-$route['list_curriculum_by_school'] = 'CurriculumController/list_curriculum_by_school';
 
 
 
@@ -116,15 +118,10 @@ $route['delete-building/(:num)/(:any)'] = 'forms_school/delete_building/$1/$2';
 ////////////////////// ROUTE STUDENT ////////////////////////
 //student
 $route['student'] = 'student/index';
-$route['student-P2'] = 'student/student_P2';
 $route['forms-student'] = 'forms_student';
-$route['forms-student-P2'] = 'forms_student/P2';
-$route['forms-student-P3'] = 'forms_student/P3';
-$route['forms-student-P4'] = 'forms_student/P4';
-$route['add-student']['post'] = 'forms_student/add_student';
-$route['edit-forms-student'] = 'forms_student/edit_student';
-$route['update-student/(:any)/(:any)/(:any)/(:any)/(:any)/(:any)'] = 'forms_student/update_student/$1/$2/$3/$4/$5/$6';
-$route['delete-student/(:any)/(:any)/(:any)/(:any)/(:any)/(:any)'] = 'forms_student/delete_student/$1/$2/$3/$4/$5/$6';
+$route['add-student/(:num)']['post'] = 'forms_student/add_student/$1';
+
+
 ///////////////////// STUDENT - END /////////////////////////
 
 ////////////////////// ROUTE TEACHER ////////////////////////

@@ -39,11 +39,26 @@
                 <div class="card-body">
                     <div class="row">
                         <div class="col">
-                            <h4 class="card-title">
-                            </h4>
+                            <h1 class="card-title">
+                                <div class="dropdown">
+                                    <button class="btn btn-light dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                                        เลือกสถานศึกษา
+                                    </button>
+                                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                        <?php
+                                        $result = $this->db->query('SELECT * FROM SCHOOL WHERE DeleteStatus = 0');
+                                        foreach ($result->result() as $SHOW_SCHOOL) {
+                                        ?>
+                                            <li>
+                                                <a class="dropdown-item" href="school?SchoolID=<?= $SHOW_SCHOOL->SchoolID  ?>"><?= $SHOW_SCHOOL->SchoolNameThai  ?></a>
+                                            </li>
+                                        <?php } ?>
+                                    </ul>
+                                </div>
+                            </h1>
                         </div>
                         <div class="col">
-                            <h5 style="float: right; padding: 15px;" class="card-title"><a href="forms-school" class="btn btn-success">เพิ่มข้อมูล</a></h5>
+                            <h5 style="float: right; padding: 15px;" class="card-title"><a href="" class="btn btn-success">อัพโหลดไฟล์</a>&nbsp;&nbsp;<a href="forms-school" class="btn btn-success">เพิ่มข้อมูล</a></h5>
                         </div>
                     </div>
                     <table class="table table-borderless datatable">
@@ -65,7 +80,7 @@
                                     <td style="padding-top: 30px;"><?= $SCHOOL->SchoolNameThai; ?></td>
                                     <td style="padding-top: 30px;"><?= $SCHOOL->INNOVATION_AREA_NAME; ?></td>
                                     <td style="padding-top: 30px; text-align: center;"><a href="?SchoolID=<?= $SCHOOL->SchoolID; ?>" class="btn btn-primary"><i class="bi bi-card-list"></i></a>
-                                        &nbsp;<button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#Delete<?= $SCHOOL->SchoolID; ?>"><i class=" bi bi-trash"></i></button>
+                                        &nbsp;&nbsp;<button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#Delete<?= $SCHOOL->SchoolID; ?>"><i class=" bi bi-trash"></i></button>
                                     </td>
                                 </tr>
                             <?php } ?>
@@ -100,24 +115,35 @@ WHERE SCHOOL.SchoolID = ' . $_GET['SchoolID'] . '
                     <div class="card-body">
                         <div class="row">
                             <div class="col">
-                                <h3 class="card-title">
+                                <h3 class="card-title" style="padding-left: 25px;">
                                     <i class="bi bi-card-list"></i> รายละเอียดข้อมูลสถานศึกษา &nbsp;&nbsp;<a href="school" class="btn btn-secondary btn-sm">ย้อนกลับ</a>
                                 </h3>
                             </div>
                             <div class="col">
-                                <h5 style="float: left; padding: 15px;" class="card-title"></h5>
+                                <h5 style="float: left; padding: 15px;" class="card-title">
+                                </h5>
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-2" style="padding-bottom: 8px; padding-left: 60px; padding-top: 0px;">
-                                <div class="card">
-                                    <img style="text-align: center; padding: 15px;" src="image/school/<?= $SCHOOL_DETAIL->ImageSchool; ?>" alt="" width="100%" height="100%" style="padding-top: 20px;">
+                            <?php if ($SCHOOL_DETAIL->ImageSchool != '') { ?>
+                                <div class="col-2" style="padding-bottom: 8px; padding-left: 60px; padding-top: 0px;">
+                                    <div class="card">
+                                        <img style="text-align: center; padding: 15px;" src="image/school/<?= $SCHOOL_DETAIL->ImageSchool; ?>" alt="" width="100%" height="100%" style="padding-top: 20px;">
+                                    </div>
                                 </div>
-                            </div>
+                            <?php } else { ?>
+                                <div class="col-2" style="padding-bottom: 8px; padding-left: 60px; padding-top: 60px;">
+                                    <div class="card">
+                                        <h6 style="text-align: center; padding: 15px;">
+                                            - ไม่พบรูปภาพ -
+                                        </h6>
+                                    </div>
+                                </div>
+                            <?php } ?>
                             <div class=" col-10" style="padding-top: 0px; padding-left: 40px; padding-right: 60px;">
                                 <div class="card">
                                     <div class="card-body">
-                                        <h5 style="text-align: left; padding-left: 25px; padding-top: 30px;" class="card-title">ชื่อสถานศึกษา : <?= $SCHOOL_DETAIL->SchoolNameThai; ?> (<?= $SCHOOL_DETAIL->SchoolNameEnglish; ?> )
+                                        <h5 style="text-align: left; padding-left: 25px; padding-top: 30px;" class="card-title">ชื่อสถานศึกษา : <?= $SCHOOL_DETAIL->SchoolNameThai; ?> (<?= $SCHOOL_DETAIL->SchoolNameEnglish; ?>)
                                             <a style="float: right;" href="edit-school-main?SchoolID=<?= $SCHOOL_DETAIL->SchoolID; ?>" class="btn btn-sm btn-warning"><i class="bi bi-pencil-square"></i></a>
                                         </h5>
                                         <div class="row">

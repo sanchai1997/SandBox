@@ -31,40 +31,8 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 
-<!-- Multiple Dropdown PROVINCE DISTRICT SUBDISTRICT -->
-<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-<script>
-  $(document).ready(function() {
-    $("#DISTRICT").children('option:gt(0)').hide();
-    $("#SUBDISTRICT").children('option:gt(0)').hide();
 
-    $("#PROVINCE").change(function() {
-      $("#DISTRICT").children('option').hide();
-      $("#DISTRICT").children("option[ id^=" + $(this).val() + "]").show()
-    })
 
-    $("#DISTRICT").change(function() {
-      $("#SUBDISTRICT").children('option').hide();
-      $("#SUBDISTRICT").children("option[ id^=" + $(this).val() + "]").show()
-    })
-
-    $("#SUBDISTRICT_2").children('option:gt(0)').hide();
-
-    $("#DISTRICT_2").change(function() {
-      $("#SUBDISTRICT_2").children('option').hide();
-      $("#SUBDISTRICT_2").children("option[ id^=" + $(this).val() + "]").show()
-    })
-
-    /////////////////////////////////////////////////////////////////////////////////////////////
-    $("#Student").children('option:gt(0)').hide();
-    $("#School").change(function() {
-      $("#Student").children('option').hide();
-      $("#Student").children("option[ id^=" + $(this).val() + "]").show()
-    })
-    /////////////////////////////////////////////////////////////////////////////////////////////
-
-  })
-</script>
 </body>
 
 </html>
