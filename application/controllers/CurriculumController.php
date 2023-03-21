@@ -53,6 +53,24 @@ class CurriculumController extends CI_Controller{
         $this->load->view('templates/footer', $data);
 
     }
+    public function list_curriculum_by_school() {
+        
+        if ( ! file_exists(APPPATH.'views/pages/dashboard/Curriculum/list-curriculum.php'))
+        {
+            show_404();
+        }
+
+        $data['SchoolID'] = $_GET['sid']; 
+
+        $data['listCurriculum'] = $this->Curriculum_model->get_Curriculum_by_school($data['SchoolID']);  
+        $data['School'] = $this->School_model->get_school_All();
+
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/sidebar', $data);
+        $this->load->view('pages/dashboard/Curriculum/list-curriculum', $data);
+        $this->load->view('templates/footer', $data);
+
+    }
 
     public function add_curriculum() {
         // add_curriculum
@@ -64,37 +82,34 @@ class CurriculumController extends CI_Controller{
         $CurriculumDocumentURL = $this->do_upload('CurriculumDocument'.$CurriculumID ,"CurriculumDocumentURL");
         $LocalCurriculumDocumentURL = $this->do_upload('LocalCurriculumDocument'.$CurriculumID ,"LocalCurriculumDocumentURL");
 
-        if($CurriculumDocumentURL != -1 && $LocalCurriculumDocumentURL !=-1 ){
-            $curriculum = [
-                'CurriculumID' => $CurriculumID,
-                'EducationYear' => $EducationYear,
-                'Semester' =>  $Semester,
-                'SchoolID' => $SchoolID,
-                'CurriculumName' => $this->input->post('CurriculumName'),
-                'CurriculumCode' => $this->input->post('CurriculumCode'),
-                'EducationLevelCode' => $this->input->post('EducationLevelCode'),
-                'GradeLevelCode' => $this->input->post('GradeLevelCode'),
-                'ClassroomNumber' => $this->input->post('ClassroomNumber'),
-                'CurriculumDocumentURL' => $CurriculumDocumentURL,
-                'LocalCurriculumFlag' => $this->input->post('LocalCurriculumFlag'),
-                'LocalCurriculumName' => $this->input->post('LocalCurriculumName'),
-                'LocalCurriculumDocumentURL' => $LocalCurriculumDocumentURL,
-                'DeleteStatus' => 0 
-            ];
-            $result_curriculum =  $this->Curriculum_model->insert_curriculum($curriculum);
+        if($CurriculumDocumentURL != -1) {$CurriculumDocumentURL=null;}
+        if($LocalCurriculumDocumentURL != -1) {$LocalCurriculumDocumentURL=null;}
 
-            if($result_curriculum == 1 ){
-                $this->session->set_flashdata('success',"บันทึกข้อมูลสำเร็จ");
-                redirect(base_url('list-curriculum'));
-            }else{
-                $this->session->set_flashdata('errors',"เกิดข้อผิดพลาดในการบันทึกข้อมูล");
-                redirect(base_url('forms-curriculum'));
-            }
-        
+        $curriculum = [
+            'CurriculumID' => $CurriculumID,
+            'EducationYear' => $EducationYear,
+            'Semester' =>  $Semester,
+            'SchoolID' => $SchoolID,
+            'CurriculumName' => $this->input->post('CurriculumName'),
+            'CurriculumCode' => $this->input->post('CurriculumCode'),
+            'EducationLevelCode' => $this->input->post('EducationLevelCode'),
+            'GradeLevelCode' => $this->input->post('GradeLevelCode'),
+            'ClassroomNumber' => $this->input->post('ClassroomNumber'),
+            'CurriculumDocumentURL' => $CurriculumDocumentURL,
+            'LocalCurriculumFlag' => $this->input->post('LocalCurriculumFlag'),
+            'LocalCurriculumName' => $this->input->post('LocalCurriculumName'),
+            'LocalCurriculumDocumentURL' => $LocalCurriculumDocumentURL,
+            'DeleteStatus' => 0 
+        ];
+        $result_curriculum =  $this->Curriculum_model->insert_curriculum($curriculum);
+
+        if($result_curriculum == 1 ){
+            $this->session->set_flashdata('success',"บันทึกข้อมูลสำเร็จ");
+            redirect(base_url('list-curriculum'));
         }else{
             $this->session->set_flashdata('errors',"เกิดข้อผิดพลาดในการบันทึกข้อมูล");
             redirect(base_url('forms-curriculum'));
-        }
+        }   
 
     }
 
@@ -103,14 +118,20 @@ class CurriculumController extends CI_Controller{
         
         if ( ! file_exists(APPPATH.'views/pages/dashboard/Curriculum/list-curriculum.php'))
         {
-            // Whoops, we don't have a page for that!
             show_404();
         }
 
-        $data['title'] = 'Curriculum'; // Capitalize the first letter
-        $data['listCurriculum'] = $this->Curriculum_model->get_Curriculum_All();
-        $data['listSchool'] = $this->School_model->get_school_All();
+        $data['School'] = $this->School_model->get_school_All();
 
+        if($data['School']==null){
+            $data['listCurriculum'] = null;  
+        }else{
+            $data['School_id'] = $this->School_model->get_school_top();
+            $SchoolID = array_column($data['School_id'],'SchoolID');
+            $data['listCurriculum'] = $this->Curriculum_model->get_Curriculum_by_school($SchoolID);  
+          
+        }
+        
 
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
@@ -123,7 +144,6 @@ class CurriculumController extends CI_Controller{
         
         if ( ! file_exists(APPPATH.'views/pages/forms/Curriculum/edit_forms-curriculum.php'))
         {
-            // Whoops, we don't have a page for that!
             show_404();
         }
 
@@ -500,6 +520,34 @@ class CurriculumController extends CI_Controller{
             redirect(base_url('list-curriculum_school_competency?cid='. $CurriculumID.'&&sid='.$SubjectCode));
         }
         
+    }
+    ##curriculum_plan
+    public function list_curriculum_plan() {
+            
+        if ( ! file_exists(APPPATH.'views/pages/dashboard/Curriculum/list-curriculum_plan.php'))
+        {
+            show_404();
+        }
+
+        $this->load->view('templates/header');
+        $this->load->view('templates/sidebar');
+        $this->load->view('pages/dashboard/Curriculum/list-curriculum_plan');
+        $this->load->view('templates/footer');
+
+    }
+
+    public function forms_curriculum_plan() {
+            
+        if ( ! file_exists(APPPATH.'views/pages/forms/Curriculum/forms-curriculum_plan.php'))
+        {
+            show_404();
+        }
+
+        $this->load->view('templates/header');
+        $this->load->view('templates/sidebar');
+        $this->load->view('pages/forms/Curriculum/forms-curriculum_plan');
+        $this->load->view('templates/footer');
+
     }
 
     

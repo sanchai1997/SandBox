@@ -34,7 +34,7 @@
             <div class="card-body">
                 <div class="row">
                     <div class="col">
-                        <h5 class="card-title">ข้อมูลครูและบุคลากรทางการศึกษา <span></span></h5>
+                        <h5 class="card-title"><span></span></h5>
                     </div>
                     <div class="col">
                         <h5 style="float: right; padding: 15px;" class="card-title"><a href="forms-student" class="btn btn-success">เพิ่มข้อมูล</a></h5>

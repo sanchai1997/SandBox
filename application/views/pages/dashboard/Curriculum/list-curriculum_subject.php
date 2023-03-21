@@ -50,6 +50,7 @@
                             <th style="text-align: center;" scope="col">หน่วยกิต/น้ำหนัก</th>
                             <th style="text-align: center;" scope="col">จำนวนชั่วโมงเรียน</th>
                             <th style="text-align: center;" scope="col">สมรรถนะ</th>
+                            <th style="text-align: center;" scope="col">แผนการเรียนรู้</th>
                             <th style="text-align: center;" scope="col">ปฎิบัติ</th>
                         </tr>
                     </thead>
@@ -65,6 +66,11 @@
                                 <td style="text-align: center;"><?php echo $ls-> LearningHour; ?></td>
                                 <td style="text-align: center;">
                                     <a href='list-curriculum_school_competency?sid=<?php echo $ls->SubjectCode; ?>&&cid=<?php echo $ls->CurriculumID; ?>'>
+                                        <button type="button" class="btn btn-primary"><i class="bi bi-eye-fill"></i></button> 
+                                    </a>
+                                </td>
+                                <td style="text-align: center;">
+                                    <a href='list-curriculum_plan'>
                                         <button type="button" class="btn btn-primary"><i class="bi bi-eye-fill"></i></button> 
                                     </a>
                                 </td>

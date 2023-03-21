@@ -10,15 +10,7 @@ $route['translate_uri_dashes'] = FALSE;
 $route['login'] = 'login';
 /////////////////////// LOIN - END /////////////////////////
 
-////////////////////// ROUTE SCHOOL ////////////////////////
-//school
-$route['school'] = 'school/index';
-$route['forms-school'] = 'forms_school';
-$route['forms-school-P2'] = 'forms_school/P2';
-$route['add-school']['post'] = 'forms_school/add_school';
-$route['edit-forms-school'] = 'forms_school/edit_school';
-$route['update-school/(:num)'] = 'forms_school/update_school/$1';
-$route['delete-school/(:num)'] = 'forms_school/delete_school/$1';
+
 
 //Curriculum
 $route['list-curriculum'] = 'CurriculumController/list_curriculum';
@@ -50,38 +42,76 @@ $route['edit_teacher_development_activity']['post'] = 'Teacher_development_activ
 $route['delete-teacher_development_activity'] = 'Teacher_development_activity_controller/delete_teacher_development_activity';
 //Files
 $route['load_file'] = 'DocumentController/load_file';
-
 //budget
-
 $route['list-budget'] = 'BudgetController/list_budget';
 $route['edit_forms_budget'] = 'BudgetController/edit_forms_budget';
 $route['forms-budget'] = 'BudgetController/forms_budget';
 $route['add-budget']['post'] = 'BudgetController/add_budget';
+//curriculum_plan
+$route['list-curriculum_plan'] = 'CurriculumController/list_curriculum_plan';
+$route['forms-curriculum_plan'] = 'CurriculumController/forms_curriculum_plan';
+//Curriculum_by_school
+$route['list_curriculum_by_school'] = 'CurriculumController/list_curriculum_by_school';
+
+
+
 
 
 //area_identitty
 $route['forms-area_identitty'] = 'Area_identittyController/forms_Area_identitty';
 
 
+////////////////////// ROUTE SCHOOL ////////////////////////
+//school
+$route['school'] = 'school/index';
+$route['forms-school'] = 'forms_school/index';
+$route['add-school']['post'] = 'forms_school/add_school';
+$route['edit-school-main'] = 'forms_school/edit_school_main';
+$route['edit-forms-school-address'] = 'forms_school/edit_forms_school_address';
+$route['edit-forms-school-contact'] = 'forms_school/edit_forms_school_contact';
+$route['edit-forms-school-administrator'] = 'forms_school/edit_forms_school_administrator';
+$route['edit-forms-school-utilities'] = 'forms_school/edit_forms_school_utilities';
+$route['edit-forms-school-teaching'] = 'forms_school/edit_forms_school_teaching';
+$route['edit-forms-school-statistical'] = 'forms_school/edit_forms_school_statistical';
+
+
+$route['update-school-main/(:num)'] = 'forms_school/update_school_main/$1';
+$route['update-school-address/(:num)'] = 'forms_school/update_school_address/$1';
+$route['update-school-contact/(:num)'] = 'forms_school/update_school_contact/$1';
+$route['update-school-administrator/(:num)'] = 'forms_school/update_school_administrator/$1';
+$route['update-school-utilities/(:num)'] = 'forms_school/update_school_utilities/$1';
+$route['update-school-teaching/(:num)'] = 'forms_school/update_school_teaching/$1';
+$route['update-school-statistical/(:num)'] = 'forms_school/update_school_statistical/$1';
+
+
+$route['delete-school/(:num)'] = 'forms_school/delete_school/$1';
 
 //classrom
 $route['school-classroom'] = 'school/classroom';
-$route['school-classroom-P2'] = 'school/classroom_P2';
 $route['forms-school-classroom'] = 'forms_school/classroom';
-$route['add-classroom']['post'] = 'forms_school/add_classroom';
+$route['add-classroom/(:num)']['post'] = 'forms_school/add_classroom/$1';
 $route['edit-forms-classroom'] = 'forms_school/edit_classroom';
 $route['update-classroom/(:num)/(:num)'] = 'forms_school/update_classroom/$1/$2';
 $route['delete-classroom/(:num)/(:num)'] = 'forms_school/delete_classroom/$1/$2';
 
 //AWARD
 $route['school-award'] = 'school/award';
-$route['school-award-P2'] = 'school/award_P2';
 $route['forms-school-award'] = 'forms_school/award';
-$route['add-award']['post'] = 'forms_school/add_award';
+$route['add-award/(:num)']['post'] = 'forms_school/add_award/$1';
 $route['edit-forms-award'] = 'forms_school/edit_award';
-$route['update-award/(:num)/(:num)/(:any)'] = 'forms_school/update_award/$1/$2/$3';
-$route['delete-award/(:num)/(:num)/(:any)'] = 'forms_school/delete_award/$1/$2/$3';
+$route['update-award/(:num)/(:num)'] = 'forms_school/update_award/$1/$2';
+$route['delete-award/(:num)/(:num)'] = 'forms_school/delete_award/$1/$2';
+
+//building
+$route['school-building'] = 'school/building';
+$route['forms-school-building'] = 'forms_school/building';
+$route['add-building/(:num)']['post'] = 'forms_school/add_building/$1';
+$route['edit-forms-building'] = 'forms_school/edit_building';
+$route['update-building/(:num)/(:any)'] = 'forms_school/update_building/$1/$2';
+$route['delete-building/(:num)/(:any)'] = 'forms_school/delete_building/$1/$2';
+
 ////////////////////// SCHOOL - END /////////////////////////
+
 
 ////////////////////// ROUTE STUDENT ////////////////////////
 //student
@@ -304,6 +334,3 @@ $route['sc_ass_res_del_p7'] = 'Fm_evaluation/del_sc_ass_res';
 $route['achie_ass_del_p8'] = 'Fm_evaluation/del_achie_ass';
 
 ///////////////////// evaluation - END /////////////////////////
-
-
-
