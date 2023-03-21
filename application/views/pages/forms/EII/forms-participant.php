@@ -27,7 +27,7 @@
                 <div class="card">
                     <div class="card-body">
 
-                        <?php switch (
+                        <!-- <?php switch (
                             $page
                         ) { case 'sh1': ?> <h5 class="card-title">ข้อมูลผู้เข้ามามีส่วนร่วม</h5>
                         <?php break;case 'sh2': ?> <h5 class="card-title">ข้อมูลการติดต่อของผู้มีส่วนร่วม</h5>
@@ -38,8 +38,8 @@
                         <?php break;case 'sh44': ?><h5 class="card-title">ข้อมูลบันทึกเพิ่มเติม</h5>
                         <?php break;case 'sh11': ?><h5 class="card-title">ข้อมูลผู้เข้ามามีส่วนร่วม</h5>
                         <?php break;default: ?>
-                        <?php break;} ?>
-
+                        <?php break;} ?> -->
+                           <?php echo br(2); ?>
                         <!-- start Form ข้อมูลบุคคลหรือหน่วยงานที่เข้ามามีส่วนร่วมในพื้นที่นวัตกรรมการศึกษา -->
                         <?php if ($page == 'sh1') { ?>
                         <form action="<?php echo site_url(
@@ -202,6 +202,25 @@
     </div>
   </div>
 </div>  
+<script>
+    function checkSelectedOption() {
+                            const CLS_PERSONAL_ID_TYPE = document.querySelector('#CommitteeProvinceCode');
+                            const CLS_PERSONAL_ID_TYPE_Value = CLS_PERSONAL_ID_TYPE.value;
+
+                            if (CLS_PERSONAL_ID_TYPE_Value === '-1') {
+                                alert('กรุณาเลือกประเภทบัตรประจำตัวผู้จัดทำ');
+                                return false;
+                            }
+                            const CLS_PREFIX = document.querySelector('#CreatorPrefixCode');
+                            const CLS_PREFIX_Value = CLS_PREFIX.value;
+
+                            if (CLS_PREFIX_Value === '-1') {
+                                alert('กรุณาเลือกคำนำหน้าชื่อผู้จัดทำ');
+                                return false;
+                            }
+                        }
+                        </script>
+</script>
                         </form><!-- end Form ข้อมูลบุคคลหรือหน่วยงานที่เข้ามามีส่วนร่วมในพื้นที่นวัตกรรมการศึกษา -->
                         <?php } }?>
                         <?php if ($page == 'sh2') { ?>

@@ -3,7 +3,7 @@
     <div class="pagetitle">
         <div class="pagetitle">
             <div class="row ">
-                <?php switch (
+                <!-- <?php switch (
                     $page
                 ) { case 'sh1': ?> <h1>การประกันคุณภาพด้วยตัวชี้วัดของพื้นที่</h1>
                 <?php break;case 'sh2': ?> <h1>ข้อมูลระดับตัวชี้วัด</h1>
@@ -22,7 +22,8 @@
                 <?php break;case 'sh77': ?> <h1>ระดับตัวชี้วัดที่ได้ในแต่ละองค์ประกอบ</h1>
                 <?php break;case 'sh88': ?> <h1>ข้อมูลการประเมินสถานศึกษา</h1>
                 <?php break;default: ?>
-                <?php break;} ?>
+                <?php break;} ?> -->
+                <?php echo br(2); ?>
                 <!-- <nav>
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="index.html">Home</a></li>

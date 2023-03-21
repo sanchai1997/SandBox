@@ -118,15 +118,10 @@ $route['delete-building/(:num)/(:any)'] = 'forms_school/delete_building/$1/$2';
 ////////////////////// ROUTE STUDENT ////////////////////////
 //student
 $route['student'] = 'student/index';
-$route['student-P2'] = 'student/student_P2';
 $route['forms-student'] = 'forms_student';
-$route['forms-student-P2'] = 'forms_student/P2';
-$route['forms-student-P3'] = 'forms_student/P3';
-$route['forms-student-P4'] = 'forms_student/P4';
-$route['add-student']['post'] = 'forms_student/add_student';
-$route['edit-forms-student'] = 'forms_student/edit_student';
-$route['update-student/(:any)/(:any)/(:any)/(:any)/(:any)/(:any)'] = 'forms_student/update_student/$1/$2/$3/$4/$5/$6';
-$route['delete-student/(:any)/(:any)/(:any)/(:any)/(:any)/(:any)'] = 'forms_student/delete_student/$1/$2/$3/$4/$5/$6';
+$route['add-student/(:num)']['post'] = 'forms_student/add_student/$1';
+
+
 ///////////////////// STUDENT - END /////////////////////////
 
 ////////////////////// ROUTE TEACHER ////////////////////////

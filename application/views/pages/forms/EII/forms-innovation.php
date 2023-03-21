@@ -31,6 +31,7 @@ if (isset( $_SESSION['success'])) { ?>
                 <?php
                         break;
                 }  ?>
+                
         <!-- <nav>
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="index.html">Home</a></li>
@@ -47,7 +48,8 @@ if (isset( $_SESSION['success'])) { ?>
                 <div class="card">
                     <div class="card-body">
                     <?php  if ($page=='sh1') {  ?>
-                        <h5 class="card-title">ข้อมูลนวัตกรรมการศึกษา</h5>
+                        <!-- <h5 class="card-title">ข้อมูลนวัตกรรมการศึกษา</h5> -->
+                        <?php echo br(2); ?>
                         <!-- start Form ข้อมูลนวัตกรรมการศึกษา -->
                         <form action="<?php echo site_url('forms_up_p1'); ?>" method="post" enctype="multipart/form-data">
 
@@ -206,7 +208,8 @@ if (isset( $_SESSION['success'])) { ?>
  
                      foreach ($result->result() as $show) {
                      ?>
-                        <h5 class="card-title">ข้อมูลนวัตกรรมการศึกษา</h5>
+                        <!-- <h5 class="card-title">ข้อมูลนวัตกรรมการศึกษา</h5> -->
+                        <?php echo br(2); ?>
                         <!-- start Form ข้อมูลนวัตกรรมการศึกษา -->
                         <form action="<?php echo site_url('edit_p1'); ?>" method="post" enctype="multipart/form-data">
 
@@ -357,7 +360,8 @@ if (isset( $_SESSION['success'])) { ?>
                         <?php } 
                         }?>
                         <?php  if ($page=='sh2') {  ?>
-                        <h5 class="card-title">ข้อมูลผู้จัดทำนวัตกรรมการศึกษา</h5>
+                        <!-- <h5 class="card-title">ข้อมูลผู้จัดทำนวัตกรรมการศึกษา</h5> -->
+                        <?php echo br(2); ?>
                         <!-- start Form ข้อมูลนวัตกรรมการศึกษา -->
                         <form action="<?php echo site_url('forms_up_p2'); ?>" method="post">
 
@@ -508,7 +512,8 @@ if (isset( $_SESSION['success'])) { ?>
  
                      foreach ($result->result() as $show) {
                      ?>
-                        <h5 class="card-title">ข้อมูลผู้จัดทำนวัตกรรมการศึกษา</h5>
+                        <!-- <h5 class="card-title">ข้อมูลผู้จัดทำนวัตกรรมการศึกษา</h5> -->
+                        <?php echo br(2); ?>
                         <!-- start Form ข้อมูลนวัตกรรมการศึกษา -->
                         <form action="<?php echo site_url('edit_p2'); ?>" method="post">
 <input type="hidden" name="Id" value="<?php echo $show->Id ?>">

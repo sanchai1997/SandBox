@@ -1,7 +1,7 @@
 <main id="main" class="main">
     <?php $page = isset($_GET['page']) ? $_GET['page'] : '';  ?>
     <div class="pagetitle">
-        <h1>ข้อมูลแนวปฏิบัติที่เป็นเลิศในการจัดการศึกษา</h1>
+        <!-- <h1>ข้อมูลแนวปฏิบัติที่เป็นเลิศในการจัดการศึกษา</h1> -->
         <!-- <nav>
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="index.html">Home</a></li>
@@ -18,7 +18,7 @@
                 <div class="card">
                     <div class="card-body">
 
-                        <?php switch ($page) {
+                        <!-- <?php switch ($page) {
                             case 'sh1': ?> <h5 class="card-title">ข้อมูลแนวปฏิบัติที่เป็นเลิศในการจักดการศึกษา</h5>
                         <?php break;
                             case 'sh2': ?> <h5 class="card-title">ข้อมูลผู้จัดทำวิธีปฏิบัติที่เป็นเลิศในการจัดการศึกษา
@@ -31,7 +31,8 @@
                         <?php break;
                             default: ?>
                         <?php break;
-                        } ?>
+                        } ?> -->
+                         <?php echo br(2); ?>
                         <?php if ($page == 'sh1') { ?>
 
                         <!-- start Form ข้อมูลแนวปฏิบัติที่เป็นเลิศในการจัดการศึกษา -->

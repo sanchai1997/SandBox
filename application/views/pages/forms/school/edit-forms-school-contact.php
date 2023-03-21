@@ -56,11 +56,12 @@
                                 </div>
                             </div>
 
+                            <div class="d-flex justify-content-between">
+                                <a href="school?SchoolID=<?= $SCHOOL->SchoolID ?>" class="btn btn-danger">ยกเลิก</a>
+                                <button type="button" class="btn btn-warning" onclick="return check(School)">แก้ไขข้อมูล</button>
+                            </div>
                         <?php } ?>
-                        <div class="d-flex justify-content-between">
-                            <a href="school" class="btn btn-danger">ยกเลิก</a>
-                            <button type="button" class="btn btn-warning" onclick="return check(School)">แก้ไขข้อมูล</button>
-                        </div>
+
                         <!-- Modal -->
                         <div class="modal fade" id="Modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
                             <div class="modal-dialog modal-dialog-centered" role="document">
