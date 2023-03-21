@@ -54,9 +54,9 @@
              
               ?>
 
-                        <h5 class="card-title fs-5">
-                            ข้อมูลอำนาจและหน้าที่ของคณะกรรมการขับเคลื่อนพื้นที่นวัตกรรมการศึกษาด้านต่าง ๆ</h5>
-
+                        <!-- <h5 class="card-title fs-5">
+                            ข้อมูลอำนาจและหน้าที่ของคณะกรรมการขับเคลื่อนพื้นที่นวัตกรรมการศึกษาด้านต่าง ๆ</h5> -->
+                            <?php echo br(2); ?>
                         <!-- start Form ข้อมูลอำนาจและหน้าที่ของคณะกรรมการขับเคลื่อนพื้นที่นวัตกรรมการศึกษาด้านต่าง ๆ -->
                         <form action="<?php echo site_url('c_forms_up_p1'); ?>" method="post"
                             enctype="multipart/form-data" onsubmit="return checkSelectedOption()">
@@ -73,7 +73,7 @@
                                         <option value="<?= $cls->PROVINCE_CODE; ?>"><?= $cls->PROVINCE_NAME; ?></option>
                                         <?php } ?>
                                     </select>
-                                    <label for="floatingSelect"><?php echo nbs(2); ?>จังหวัด</label>
+                                    <label for="Y"><?php echo nbs(2); ?>จังหวัด</label>
                                 </div>
                             </div>
 
@@ -82,7 +82,7 @@
                                     <div class="form-floating">
                                         <input type="text" class="form-control" id="floatingName"
                                             placeholder="ปีที่ออกคำสั่ง" name="CommitteeYear">
-                                        <label for="floatingName"><?php echo nbs(2); ?> ปีที่ออกคำสั่ง </label>
+                                        <label for="Y"><?php echo nbs(2); ?> ปีที่ออกคำสั่ง </label>
                                     </div>
                                 </div>
 
@@ -90,7 +90,7 @@
                                     <div class="form-floating">
                                         <input type="text" class="form-control" id="floatingName"
                                             placeholder="เลขออกคำสั่ง" name="CommitteeAppointmentNumber">
-                                        <label for="floatingName"><?php echo nbs(2); ?> เลขออกคำสั่ง </label>
+                                        <label for="Y"><?php echo nbs(2); ?> เลขออกคำสั่ง </label>
                                     </div>
                                 </div>
                             </div>
@@ -108,7 +108,7 @@
                                         <?php } ?>
 
                                     </select>
-                                    <label for="floatingSelect"><?php echo nbs(2); ?>รหัสประเภทการแต่งตั้ง</label>
+                                    <label for="Y"><?php echo nbs(2); ?>รหัสประเภทการแต่งตั้ง</label>
                                 </div>
                             </div>
                             <div class="row mb-2">
@@ -185,8 +185,10 @@ if ($page == 'sh11') {
                      foreach ($result->result() as $show) {
                      ?>
 
-                        <h5 class="card-title fs-5">
+                        <!-- <h5 class="card-title fs-5">
                             ข้อมูลอำนาจและหน้าที่ของคณะกรรมการขับเคลื่อนพื้นที่นวัตกรรมการศึกษาด้านต่าง ๆ</h5>
+                         -->
+                         <?php echo br(2); ?>
 
                         <!-- start Form ข้อมูลอำนาจและหน้าที่ของคณะกรรมการขับเคลื่อนพื้นที่นวัตกรรมการศึกษาด้านต่าง ๆ -->
                         <form action="<?php echo site_url('c_edit_p1'); ?>" method="post" enctype="multipart/form-data">
@@ -203,7 +205,7 @@ if ($page == 'sh11') {
                                         <option value="<?= $cls->PROVINCE_CODE; ?>"><?= $cls->PROVINCE_NAME; ?></option>
                                         <?php } ?>
                                     </select>
-                                    <label for="floatingSelect"><?php echo nbs(2); ?>จังหวัด</label>
+                                    <label for="Y"><?php echo nbs(2); ?>จังหวัด</label>
                                 </div>
                             </div>
 
@@ -213,7 +215,7 @@ if ($page == 'sh11') {
                                         <input type="text" class="form-control" id="floatingName"
                                             placeholder="ปีที่ออกคำสั่ง" name="CommitteeYear"
                                             value="<?php echo $show->CommitteeYear ?>">
-                                        <label for="floatingName"><?php echo nbs(2); ?> ปีที่ออกคำสั่ง </label>
+                                        <label for="Y"><?php echo nbs(2); ?> ปีที่ออกคำสั่ง </label>
                                     </div>
                                 </div>
 
@@ -222,7 +224,7 @@ if ($page == 'sh11') {
                                         <input type="text" class="form-control" id="floatingName"
                                             placeholder="เลขออกคำสั่ง" name="CommitteeAppointmentNumber"
                                             value="<?php echo $show->CommitteeAppointmentNumber ?>">
-                                        <label for="floatingName"><?php echo nbs(2); ?> เลขออกคำสั่ง </label>
+                                        <label for="Y"><?php echo nbs(2); ?> เลขออกคำสั่ง </label>
                                     </div>
                                 </div>
                             </div>
@@ -240,7 +242,7 @@ if ($page == 'sh11') {
                                         <?php } ?>
 
                                     </select>
-                                    <label for="floatingSelect"><?php echo nbs(2); ?>รหัสประเภทการแต่งตั้ง</label>
+                                    <label for="Y"><?php echo nbs(2); ?>ประเภทการแต่งตั้ง</label>
                                 </div>
                             </div>
                             <div class="row mb-2">
@@ -318,7 +320,8 @@ if ($page == 'sh11') {
                         <form action="<?php echo site_url('cm_forms_up_p2'); ?>" method="post"
                             onsubmit="return checkSelectedOption()">
 
-                            <h5 class="card-title ">ข้อมูลรายชื่อคณะกรรมการ</h5>
+                            <!-- <h5 class="card-title ">ข้อมูลรายชื่อคณะกรรมการ</h5> -->
+                            <?php echo br(2); ?>
                             <div class="row mb-3">
                                 <div class="form-floating">
                                     <select class="form-select" id="CommitteeProvinceCode"
@@ -333,7 +336,7 @@ if ($page == 'sh11') {
                                         <?php } ?>
 
                                     </select>
-                                    <label for="floatingSelect"><?php echo nbs(2); ?>จังหวัด</label>
+                                    <label for="Y"><?php echo nbs(2); ?>จังหวัด</label>
                                 </div>
                             </div>
                             <div class="row mb-3">
@@ -341,14 +344,14 @@ if ($page == 'sh11') {
                                     <div class="form-floating">
                                         <input type="text" class="form-control" id="floatingName"
                                             placeholder="ปีที่ออกคำสั่ง" name="CommitteeYear">
-                                        <label for="floatingName"><?php echo nbs(2); ?> ปีที่ออกคำสั่ง </label>
+                                        <label for="Y"><?php echo nbs(2); ?> ปีที่ออกคำสั่ง </label>
                                     </div>
                                 </div>
                                 <div class="col">
                                     <div class="form-floating">
                                         <input type="text" class="form-control" id="floatingName"
                                             placeholder="เลขที่คำสั่ง" name="CommitteeAppointmentNumber">
-                                        <label for="floatingName"><?php echo nbs(2); ?> เลขที่คำสั่ง </label>
+                                        <label for="Y"><?php echo nbs(2); ?> เลขที่คำสั่ง </label>
                                     </div>
                                 </div>
                             </div>
@@ -364,7 +367,7 @@ if ($page == 'sh11') {
                                         <option value="<?= $cls->PREFIX_CODE ; ?>"><?= $cls->PREFIX_NAME; ?></option>
                                         <?php } ?>
                                     </select>
-                                    <label for="floatingSelect"><?php echo nbs(2); ?>คำนำหน้าชื่อ</label>
+                                    <label for="Y"><?php echo nbs(2); ?>คำนำหน้าชื่อ</label>
                                 </div>
                             </div>
                             <div class="row mb-3">
@@ -373,7 +376,7 @@ if ($page == 'sh11') {
                                         <input type="text" class="form-control" id="floatingName"
                                             placeholder="ชื่อกรรมการและอนุกรรมการที่คณะกรรมการขับเคลื่อนพื้นที่นวัตกรรมการศึกษาแต่งตั้ง (ภาษาไทย)"
                                             name="CommitteeMemberNameThai">
-                                        <label for="floatingName"><?php echo nbs(2); ?>
+                                        <label for="Y"><?php echo nbs(2); ?>
                                             ชื่อกรรมการและอนุกรรมการที่คณะกรรมการขับเคลื่อนพื้นที่นวัตกรรมการศึกษาแต่งตั้ง
                                             (ภาษาไทย) </label>
                                     </div>
@@ -395,7 +398,7 @@ if ($page == 'sh11') {
                                         <input type="text" class="form-control" id="floatingName"
                                             placeholder="ชื่อกลางกรรมการและอนุกรรมการที่คณะกรรมการขับเคลื่อนพื้นที่นวัตกรรมการศึกษาแต่งตั้ง (ภาษาไทย)"
                                             name="CommitteeMemberMiddleNameThai" value="">
-                                        <label for="floatingName"><?php echo nbs(2); ?>
+                                        <label for="Y"><?php echo nbs(2); ?>
                                             ชื่อกลางกรรมการและอนุกรรมการที่คณะกรรมการขับเคลื่อนพื้นที่นวัตกรรมการศึกษาแต่งตั้ง
                                             (ภาษาไทย)</label>
                                     </div>
@@ -418,7 +421,7 @@ if ($page == 'sh11') {
                                         <input type="text" class="form-control" id="floatingName"
                                             placeholder="นามสกุลกรรมการและอนุกรรมการที่คณะกรรมการขับเคลื่อนพื้นที่นวัตกรรมการศึกษาแต่งตั้ง (ภาษาไทย)"
                                             name="CommitteeMemberLastNameThai" value="">
-                                        <label for="floatingName"><?php echo nbs(2); ?>
+                                        <label for="Y"><?php echo nbs(2); ?>
                                             นามสกุลกรรมการและอนุกรรมการที่คณะกรรมการขับเคลื่อนพื้นที่นวัตกรรมการศึกษาแต่งตั้ง
                                             (ภาษาไทย)</label>
                                     </div>
@@ -448,7 +451,7 @@ if ($page == 'sh11') {
                                         <?php } ?>
                                     </select>
                                     <label
-                                        for="floatingSelect"><?php echo nbs(2); ?>ตำแหน่งกรรมการและอนุกรรมการที่คณะกรรมการขับเคลื่อนพื้นที่นวัตกรรมการศึกษาแต่งตั้ง</label>
+                                        for="Y"><?php echo nbs(2); ?>ตำแหน่งกรรมการและอนุกรรมการที่คณะกรรมการขับเคลื่อนพื้นที่นวัตกรรมการศึกษาแต่งตั้ง</label>
                                 </div>
                             </div>
                             <div class="row mb-3">
@@ -466,7 +469,7 @@ if ($page == 'sh11') {
                                         <div class="form-floating">
                                             <input type="date" class="form-control" id="Share" placeholder="Share"
                                                 name="CommitteeMemberTermStartDate" value="">
-                                            <label for="Share">เริ่มวาระการดำรงตำแหน่ง</label>
+                                            <label for="Y">เริ่มวาระการดำรงตำแหน่ง</label>
                                         </div>
                                     </div>
                                 </div>
@@ -476,7 +479,7 @@ if ($page == 'sh11') {
                                         <div class="form-floating">
                                             <input type="date" class="form-control" id="Share" placeholder="Share"
                                                 name="CommitteeMemberTermEndDate" value="">
-                                            <label for="Share">สิ้นสุดวาระการดำรงตำแหน่ง</label>
+                                            <label for="Y">สิ้นสุดวาระการดำรงตำแหน่ง</label>
                                         </div>
                                     </div>
                                 </div>
@@ -559,7 +562,8 @@ if ($page == 'sh22') { ?>
                      ?>
                         <form action="<?php echo site_url('cm_edit_p2'); ?>" method="post">
                             <input type="hidden" name="Id" value="<?php echo $show->Id ?>">
-                            <h5 class="card-title ">ข้อมูลรายชื่อคณะกรรมการ</h5>
+                            <!-- <h5 class="card-title ">ข้อมูลรายชื่อคณะกรรมการ</h5> -->
+                            <?php echo br(2); ?>
                             <div class="row mb-3">
                                 <div class="form-floating">
                                     <select class="form-select" id="CommitteeProvinceCode"
