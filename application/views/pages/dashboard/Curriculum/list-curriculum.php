@@ -26,7 +26,6 @@
         </div>
     <?php } ?>
 
-
     <!-- Recent Sales -->
     <div class="col-12">
         <div class="card recent-sales overflow-auto">
@@ -40,7 +39,7 @@
 
                             ?>
                                 <div class="dropdown">
-                                    <button class="btn btn-light dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <button class="btn btn-dark dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
                                         เลือกสถานศึกษา
                                     </button>
                                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
@@ -62,7 +61,6 @@
                 <table class="table table-borderless datatable">
                     <thead>
                         <tr>
-                            <th style="text-align: center;" scope="col">สถานศึกษา</th>
                             <th style="text-align: center;" scope="col">ปีการศึกษา</th>
                             <th style="text-align: center;" scope="col">ภาคเรียน</th>
                             <th style="text-align: center;" scope="col">ชื่อหลักสูตร</th>
@@ -75,12 +73,9 @@
                     <tbody>
                         <?php if ($listCurriculum != null) { ?>
 
-
-
                             <?php foreach ($listCurriculum as $ls) { ?>
 
                                 <tr>
-                                    <td style="text-align: center;"><?php echo $ls->SchoolNameThai; ?></td>
                                     <td style="text-align: center;"><?php echo $ls->EducationYear; ?></td>
                                     <td style="text-align: center;">
                                         <?php
@@ -92,7 +87,7 @@
                                     </td>
                                     <td style="text-align: center;"><?php echo $ls->CurriculumName; ?></td>
                                     <td style="text-align: center;">
-                                        <a href='list-curriculum_subject?cid=<?php echo $ls->CurriculumID; ?>' class="btn btn-primary">
+                                        <a href='list-curriculum_subject?cid=<?php echo $ls->CurriculumID; ?>' class="btn btn-info">
                                             <i class="bi bi-eye-fill"></i>
                                         </a>
                                     </td>
@@ -189,8 +184,7 @@
 
                                             <div class="modal-footer">
                                                 <a href='edit_forms-curriculum?cid=<?php echo $ls->CurriculumID; ?>' class="btn btn-warning"><i class="bi bi-pencil-square"></i></button></a>
-                                                <button type="button" class="btn btn-danger" data-bs-dismiss="modal"><i class="bi bi-x-square" data-bs-toggle="modal" data-bs-target=""></i></button>
-                                            </div>
+                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ปิด</button>                                            </div>
                                         </div>
                                     </div>
                                 </div>

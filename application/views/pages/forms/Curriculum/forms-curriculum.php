@@ -26,7 +26,7 @@
         <div class="col-lg-9">
           <div class="card">
             <div class="card-body">
-              <h5 class="card-title">ข้อมูลหลักสูตร</h5>
+              <h5 class="card-title"></h5>
 
               <!-- start Form ข้อมูลหลักสูตร -->
               <form class="row g-3" action="<?php echo base_url('add_curriculum');?>" method="POST" name="addCurriculum" id="addCurriculum" enctype="multipart/form-data"> 

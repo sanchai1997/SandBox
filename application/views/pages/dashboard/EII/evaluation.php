@@ -111,16 +111,8 @@
                 <div class="row">
                     <div class="col">
                         <h5 class="card-title"> 
-                        </h5>
-                    </div>
-                    <div class="col">
-                        <h5 style="float: right; padding: 15px;" class="card-title"><a href="<?php echo site_url(
-                                'ass_ria_forms_p1?page=sh1'
-                            ); ?>" class="btn btn-success">เพิ่มข้อมูล</a></h5>
-                    </div>
-                </div>
-                <div class="dropdown">
-                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                        <div class="dropdown">
+                        <button class="btn btn-white dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
                             ประเภทข้อมูล
                         </button>
                         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
@@ -132,6 +124,15 @@
 
                         </ul>
                     </div>
+                        </h5>
+                    </div>
+                    <div class="col">
+                        <h5 style="float: right; padding: 15px;" class="card-title"><a href="<?php echo site_url(
+                                'ass_ria_forms_p1?page=sh1'
+                            ); ?>" class="btn btn-success">เพิ่มข้อมูล</a></h5>
+                    </div>
+                </div>
+                
                 <table class="table table-borderless datatable">
                     <thead>
 
@@ -158,13 +159,13 @@
                             <th scope="row" style="text-align: center;"><?php echo $show->CriteriaName; ?></th>
                             <td style="text-align: center;"><a
                                     href="<?php echo site_url('Fm_evaluation_das_p2?page=sh2') ?>&&key=<?php echo $show->CriteriaID ?>"
-                                    class="btn btn-warning"><i class="bi bi-eye"></i></a></td>
+                                    class="btn btn-info"><i class="bi bi-eye"></i></a></td>
                             <td style="text-align: center;"><a
                                     href="<?php echo site_url('Fm_evaluation_das_p3?page=sh3') ?>&&key=<?php echo $show->CriteriaID ?>"
-                                    class="btn btn-warning"><i class="bi bi-eye"></i></a></td>
+                                    class="btn btn-info"><i class="bi bi-eye"></i></a></td>
                                     <td style="text-align: center;"><a
                                     href="<?php echo site_url('Fm_evaluation_das_p4?page=sh4') ?>&&key=<?php echo $show->CriteriaID ?>"
-                                    class="btn btn-warning"><i class="bi bi-eye"></i></a></td>
+                                    class="btn btn-info"><i class="bi bi-eye"></i></a></td>
                             <!-- แก้ไขลบ -->
                             <td style="text-align: center;">
                                 <button type="button" class="btn btn-primary" data-bs-toggle="modal"
@@ -231,16 +232,9 @@
             <div class="card-body">
                 <div class="row">
                     <div class="col">
-                        <h5 class="card-title"> </h5>
-                    </div>
-                    <div class="col">
-                        <h5 style="float: right; padding: 15px;" class="card-title"><a href="<?php echo site_url(
-                                'ass_ria_lvl_forms_p2?page=sh2'
-                            ); ?>" class="btn btn-success">เพิ่มข้อมูล</a></h5>
-                    </div>
-                </div>
-                <div class="dropdown">
-                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                        <h5 class="card-title"> 
+                        <div class="dropdown">
+                        <button class="btn btn-white dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
                             ประเภทข้อมูล
                         </button>
                         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
@@ -252,6 +246,15 @@
 
                         </ul>
                     </div>
+                        </h5>
+                    </div>
+                    <div class="col">
+                        <h5 style="float: right; padding: 15px;" class="card-title"><a href="<?php echo site_url(
+                                'ass_ria_lvl_forms_p2?page=sh2'
+                            ); ?>" class="btn btn-success">เพิ่มข้อมูล</a></h5>
+                    </div>
+                </div>
+                
                 <table class="table table-borderless datatable">
                     <thead>
 
@@ -348,16 +351,9 @@
             <div class="card-body">
                 <div class="row">
                     <div class="col">
-                        <h5 class="card-title"> </h5>
-                    </div>
-                    <div class="col">
-                        <h5 style="float: right; padding: 15px;" class="card-title"><a href="<?php echo site_url(
-                                'ass_ria_com_forms_p3?page=sh3'
-                            ); ?>" class="btn btn-success">เพิ่มข้อมูล</a></h5>
-                    </div>
-                </div>
-                <div class="dropdown">
-                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                        <h5 class="card-title"> 
+                        <div class="dropdown">
+                        <button class="btn btn-white dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
                             ประเภทข้อมูล
                         </button>
                         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
@@ -369,6 +365,15 @@
 
                         </ul>
                     </div>
+                        </h5>
+                    </div>
+                    <div class="col">
+                        <h5 style="float: right; padding: 15px;" class="card-title"><a href="<?php echo site_url(
+                                'ass_ria_com_forms_p3?page=sh3'
+                            ); ?>" class="btn btn-success">เพิ่มข้อมูล</a></h5>
+                    </div>
+                </div>
+               
                 <table class="table table-borderless datatable">
                     <thead>
 
@@ -466,16 +471,9 @@
             <div class="card-body">
                 <div class="row">
                     <div class="col">
-                        <h5 class="card-title"> </h5>
-                    </div>
-                    <div class="col">
-                        <h5 style="float: right; padding: 15px;" class="card-title"><a href="<?php echo site_url(
-                                'ass_ria_com_lvl_forms_p4?page=sh4'
-                            ); ?>" class="btn btn-success">เพิ่มข้อมูล</a></h5>
-                    </div>
-                </div>
-                <div class="dropdown">
-                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                        <h5 class="card-title"> 
+                        <div class="dropdown">
+                        <button class="btn btn-white dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
                             ประเภทข้อมูล
                         </button>
                         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
@@ -487,6 +485,15 @@
 
                         </ul>
                     </div>
+                        </h5>
+                    </div>
+                    <div class="col">
+                        <h5 style="float: right; padding: 15px;" class="card-title"><a href="<?php echo site_url(
+                                'ass_ria_com_lvl_forms_p4?page=sh4'
+                            ); ?>" class="btn btn-success">เพิ่มข้อมูล</a></h5>
+                    </div>
+                </div>
+                
                 <table class="table table-borderless datatable">
                     <thead>
 
@@ -582,16 +589,9 @@
             <div class="card-body">
                 <div class="row">
                     <div class="col">
-                        <h5 class="card-title"> </h5>
-                    </div>
-                    <div class="col">
-                        <h5 style="float: right; padding: 15px;" class="card-title"><a href="<?php echo site_url(
-                                'sc_ass_forms_p5?page=sh5'
-                            ); ?>" class="btn btn-success">เพิ่มข้อมูล</a></h5>
-                    </div>
-                </div>
-                <div class="dropdown">
-                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                        <h5 class="card-title">
+                        <div class="dropdown">
+                        <button class="btn btn-white dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
                             ประเภทข้อมูล
                         </button>
                         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
@@ -602,7 +602,15 @@
                             </li>
 
                         </ul>
+                    </div> </h5>
                     </div>
+                    <div class="col">
+                        <h5 style="float: right; padding: 15px;" class="card-title"><a href="<?php echo site_url(
+                                'sc_ass_forms_p5?page=sh5'
+                            ); ?>" class="btn btn-success">เพิ่มข้อมูล</a></h5>
+                    </div>
+                </div>
+               
                 <table class="table table-borderless datatable">
                     <thead>
 
@@ -699,16 +707,9 @@
             <div class="card-body">
                 <div class="row">
                     <div class="col">
-                        <h5 class="card-title"> </h5>
-                    </div>
-                    <div class="col">
-                        <h5 style="float: right; padding: 15px;" class="card-title"><a href="<?php echo site_url(
-                                'sc_ass_ria_forms_p6?page=sh6'
-                            ); ?>" class="btn btn-success">เพิ่มข้อมูล</a></h5>
-                    </div>
-                </div>
-                <div class="dropdown">
-                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                        <h5 class="card-title"> 
+                        <div class="dropdown">
+                        <button class="btn btn-white dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
                             ประเภทข้อมูล
                         </button>
                         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
@@ -720,6 +721,15 @@
 
                         </ul>
                     </div>
+                        </h5>
+                    </div>
+                    <div class="col">
+                        <h5 style="float: right; padding: 15px;" class="card-title"><a href="<?php echo site_url(
+                                'sc_ass_ria_forms_p6?page=sh6'
+                            ); ?>" class="btn btn-success">เพิ่มข้อมูล</a></h5>
+                    </div>
+                </div>
+                
                 <table class="table table-borderless datatable">
                     <thead>
 
@@ -819,16 +829,8 @@
                 <div class="row">
                     <div class="col">
                         <h5 class="card-title"> 
-                        </h5>
-                    </div>
-                    <div class="col">
-                        <h5 style="float: right; padding: 15px;" class="card-title"><a href="<?php echo site_url(
-                                'sc_ass_res_forms_p7?page=sh7'
-                            ); ?>" class="btn btn-success">เพิ่มข้อมูล</a></h5>
-                    </div>
-                </div>
-                <div class="dropdown">
-                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                        <div class="dropdown">
+                        <button class="btn btn-white dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
                             ประเภทข้อมูล
                         </button>
                         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
@@ -840,6 +842,15 @@
 
                         </ul>
                     </div>
+                        </h5>
+                    </div>
+                    <div class="col">
+                        <h5 style="float: right; padding: 15px;" class="card-title"><a href="<?php echo site_url(
+                                'sc_ass_res_forms_p7?page=sh7'
+                            ); ?>" class="btn btn-success">เพิ่มข้อมูล</a></h5>
+                    </div>
+                </div>
+               
                 <table class="table table-borderless datatable">
                     <thead>
 
@@ -942,16 +953,9 @@
             <div class="card-body">
                 <div class="row">
                     <div class="col">
-                        <h5 class="card-title"> </h5>
-                    </div>
-                    <div class="col">
-                        <h5 style="float: right; padding: 15px;" class="card-title"><a href="<?php echo site_url(
-                                'achie_ass_forms_p8?page=sh8'
-                            ); ?>" class="btn btn-success">เพิ่มข้อมูล</a></h5>
-                    </div>
-                </div>
-                <div class="dropdown">
-                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                        <h5 class="card-title"> 
+                        <div class="dropdown">
+                        <button class="btn btn-white dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
                             ประเภทข้อมูล
                         </button>
                         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
@@ -963,6 +967,15 @@
 
                         </ul>
                     </div>
+                        </h5>
+                    </div>
+                    <div class="col">
+                        <h5 style="float: right; padding: 15px;" class="card-title"><a href="<?php echo site_url(
+                                'achie_ass_forms_p8?page=sh8'
+                            ); ?>" class="btn btn-success">เพิ่มข้อมูล</a></h5>
+                    </div>
+                </div>
+               
                 <table class="table table-borderless datatable">
                     <thead>
 

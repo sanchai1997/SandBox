@@ -35,9 +35,7 @@
 
 
                 <div class="row">
-                    <div class="col">
-                        <h5 class="card-title">รายละเอียดข้อมูล</h5>
-                    </div>
+
                     <div class="col">
                         <h5 style="float: right; padding: 15px;" class="card-title"><a href="forms-teacher_development_activity" class="btn btn-success">เพิ่มข้อมูล</a></h5>
                     </div>
@@ -137,8 +135,7 @@
                                                 <a href='edit_forms-teacher_development_activity?tid=<?php echo $ls->TeacherID;?>&&name=<?php echo $ls->DevelopmentActivityName;?>&&sdate=<?php echo $ls->DevelopmentActivityStartDate;?>' class="btn btn-warning">
                                                     <i class="bi bi-pencil-square"></i> 
                                                 </a> 
-                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><i class="bi bi-x-square" data-bs-toggle="modal"></i></button>
-                                            </div>
+                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ปิด</button>                                            </div>
                                         </div>
                                     </div>
                                 </div>

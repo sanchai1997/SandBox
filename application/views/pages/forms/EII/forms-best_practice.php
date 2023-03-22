@@ -1,7 +1,27 @@
 <main id="main" class="main">
     <?php $page = isset($_GET['page']) ? $_GET['page'] : '';  ?>
+    <?php $key = isset($_GET['key']) ? $_GET['key'] : '';  ?>
+    <?php $name = isset($_GET['name']) ? $_GET['name'] : '';  ?>
     <div class="pagetitle">
-        <!-- <h1>ข้อมูลแนวปฏิบัติที่เป็นเลิศในการจัดการศึกษา</h1> -->
+       
+        <?php switch ($page) {
+            case 'sh1': ?> <h1>ข้อมูลแนวปฏิบัติที่เป็นเลิศในการจัดการศึกษา</h1>
+                
+               <?php break;
+                case 'sh11': ?> <h1>ข้อมูลแนวปฏิบัติที่เป็นเลิศในการจัดการศึกษา - <?php echo $name; ?></h1>
+                
+                <?php break;
+                 case 'sh2': ?> <h1>ข้อมูลผู้จัดทำวิธีปฏิบัติที่เป็นเลิศในการจัดการศึกษา - <?php echo $name; ?></h1>
+                
+                 <?php break;
+                  case 'sh22': ?> <h1>ข้อมูลผู้จัดทำวิธีปฏิบัติที่เป็นเลิศในการจัดการศึกษา - หมายเลข:<?php echo $name; ?></h1>
+                
+                  <?php break;
+            
+            default:
+                # code...
+                break;
+        } ?>
         <!-- <nav>
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="index.html">Home</a></li>
@@ -32,7 +52,7 @@
                             default: ?>
                         <?php break;
                         } ?> -->
-                         <?php echo br(2); ?>
+                         <?php  echo br(2); ?>
                         <?php if ($page == 'sh1') { ?>
 
                         <!-- start Form ข้อมูลแนวปฏิบัติที่เป็นเลิศในการจัดการศึกษา -->
@@ -44,16 +64,16 @@
                             <div class="row mb-3">
                                 <div class="form-floating">
                                     <input type="text" class="form-control" id="floatingName"
-                                        placeholder="รหัสวิธีปฏิบัติที่เป็นเลิศในการจัดการศึกษา" name="BestPracticeID">
+                                        placeholder="รหัสวิธีปฏิบัติที่เป็นเลิศในการจัดการศึกษา" name="BestPracticeID" required>
                                     <label for="Y"><?php echo nbs(2); ?>
-                                        รหัสวิธีปฏิบัติที่เป็นเลิศในการจัดการศึกษา  </label>
+                                        รหัสวิธีปฏิบัติที่เป็นเลิศในการจัดการศึกษา </label>
                                 </div>
                             </div>
                             <div class="row mb-3">
                                 <div class="col">
                                     <div class="form-floating">
                                         <input type="text" class="form-control" id="floatingName"
-                                            placeholder="ปีการศึกษา" name="EducationYear">
+                                            placeholder="ปีการศึกษา" name="EducationYear" required>
                                         <label for="Y"><?php echo nbs(2); ?> ปีการศึกษา </label>
                                     </div>
                                 </div>
@@ -61,7 +81,7 @@
                                 <div class="col">
                                     <div class="form-floating">
                                         <input type="text" class="form-control" id="floatingName" placeholder="ภาคเรียน"
-                                            name="Semester">
+                                            name="Semester" required>
                                         <label for="Y"><?php echo nbs(2); ?> ภาคเรียน </label>
                                     </div>
                                 </div>
@@ -69,7 +89,7 @@
                             <div class="row mb-3">
                                 <div class="form-floating">
                                     <input type="text" class="form-control" id="floatingName"
-                                        placeholder="ชื่อวิธีปฏิบัติ" name="BestPracticeName">
+                                        placeholder="ชื่อวิธีปฏิบัติ" name="BestPracticeName" required>
                                     <label for="Y"><?php echo nbs(2); ?> ชื่อวิธีปฏิบัติ </label>
                                 </div>
                             </div>
@@ -143,7 +163,7 @@
                             <div class="row mb-3">
                                 <div class="form-floating">
                                     <textarea class="form-control" placeholder="Leave a comment here"
-                                        id="floatingTextarea2" style="height: 60px" name="Abstract"></textarea>
+                                        id="floatingTextarea2" style="height: 60px" name="Abstract" required></textarea>
                                     <label for="Y"><?php echo nbs(2); ?>บทคัดย่อ</label>
                                 </div>
                             </div>
@@ -151,7 +171,7 @@
                                 <div class="col">
                                     <div class="form-floating">
                                         <input type="text" class="form-control" id="floatingName" placeholder="คำค้นหา"
-                                            name="SearchKeyword">
+                                            name="SearchKeyword" required>
                                         <label for="Y"><?php echo nbs(1); ?>คำค้นหา</label>
                                     </div>
                                 </div>
@@ -184,7 +204,7 @@
                                 <div class="col">
                                     <div class="form-floating">
                                         <input type="date" class="form-control" id="Share" placeholder="Share"
-                                            name="PublishDate">
+                                            name="PublishDate" required>
                                         <label for="Y">วันที่เผยแพร่</label>
                                     </div>
                                 </div>
@@ -270,7 +290,7 @@
                                 <div class="form-floating">
                                     <input type="text" class="form-control" id="floatingName"
                                         placeholder="รหัสวิธีปฏิบัติที่เป็นเลิศในการจัดการศึกษา" name="BestPracticeID"
-                                        value="<?php echo $show->BestPracticeID ?>">
+                                        value="<?php echo $show->BestPracticeID ?>" required>
                                     <label for="Y"><?php echo nbs(2); ?>
                                         รหัสวิธีปฏิบัติที่เป็นเลิศในการจัดการศึกษา </label>
                                 </div>
@@ -280,7 +300,7 @@
                                     <div class="form-floating">
                                         <input type="text" class="form-control" id="floatingName"
                                             placeholder="ปีการศึกษา" name="EducationYear"
-                                            value="<?php echo $show->EducationYear ?>">
+                                            value="<?php echo $show->EducationYear ?>" required>
                                         <label for="Y"><?php echo nbs(2); ?> ปีการศึกษา </label>
                                     </div>
                                 </div>
@@ -288,7 +308,7 @@
                                 <div class="col">
                                     <div class="form-floating">
                                         <input type="text" class="form-control" id="floatingName" placeholder="ภาคเรียน"
-                                            name="Semester" value="<?php echo $show->Semester ?>">
+                                            name="Semester" value="<?php echo $show->Semester ?>" required>
                                         <label for="Y"><?php echo nbs(2); ?> ภาคเรียน </label>
                                     </div>
                                 </div>
@@ -297,7 +317,7 @@
                                 <div class="form-floating">
                                     <input type="text" class="form-control" id="floatingName"
                                         placeholder="ชื่อวิธีปฏิบัติ" name="BestPracticeName"
-                                        value="<?php echo $show->BestPracticeName ?>">
+                                        value="<?php echo $show->BestPracticeName ?>" required>
                                     <label for="Y"><?php echo nbs(2); ?> ชื่อวิธีปฏิบัติ </label>
                                 </div>
                             </div>
@@ -307,7 +327,7 @@
                                     <div class="form-floating">
                                         <select class="form-select" id="BestPracticeTypeCode"
                                             aria-label="Floating label select example" name="BestPracticeTypeCode">
-                                           
+
                                             <?php
                                                     $result = $this->db->query('SELECT * FROM CLS_BEST_PRACTICE_TYPE');
                                                     foreach ($result->result() as $cls) {
@@ -327,7 +347,7 @@
                                             aria-label="Floating label select example" name="TargetEducationLevelCode"
                                             require value="<?php echo $show->TargetEducationLevelCode ?>">
 
-                                           
+
                                             <?php
                                                     $result = $this->db->query('SELECT * FROM CLS_EDUCATION_LEVEL');
                                                     foreach ($result->result() as $cls) {
@@ -346,7 +366,7 @@
                                         <select class="form-select" id="RecognizedCode"
                                             aria-label="Floating label select example" name="RecognizedCode" require
                                             value="<?php echo $show->RecognizedCode ?>">
-                                           
+
                                             <?php
                                                     $result = $this->db->query('SELECT * FROM CLS_RECOGNIZED_BY');
                                                     foreach ($result->result() as $cls) {
@@ -375,7 +395,7 @@
                                 <div class="form-floating">
                                     <textarea class="form-control" placeholder="Leave a comment here"
                                         id="floatingTextarea2" style="height: 60px"
-                                        name="Abstract"><?php echo $show->Abstract ?></textarea>
+                                        name="Abstract" required><?php echo $show->Abstract ?></textarea>
                                     <label for="Y"><?php echo nbs(2); ?>บทคัดย่อ</label>
                                 </div>
                             </div>
@@ -383,7 +403,7 @@
                                 <div class="col">
                                     <div class="form-floating">
                                         <input type="text" class="form-control" id="floatingName" placeholder="คำค้นหา"
-                                            name="SearchKeyword" value="<?php echo $show->SearchKeyword ?>">
+                                            name="SearchKeyword" value="<?php echo $show->SearchKeyword ?>" required>
                                         <label for="Y"><?php echo nbs(2); ?> คำค้นหา </label>
                                     </div>
                                 </div>
@@ -417,7 +437,7 @@
                                 <div class="col">
                                     <div class="form-floating">
                                         <input type="date" class="form-control" id="Share" placeholder="Share"
-                                            name="PublishDate" value="<?php echo $show->PublishDate ?>">
+                                            name="PublishDate" value="<?php echo $show->PublishDate ?>" required>
                                         <label for="Y">วันที่เผยแพร่</label>
                                     </div>
                                 </div>
@@ -460,28 +480,30 @@
 
                         </form><!-- ข้อมูลแนวปฏิบัติที่เป็นเลิศในการจัดการศึกษา -->
                         <script>
-                        function chk() {
+                        
 
                             ///CLS_BEST_PRACTICE_TYPE
-                            var my_CLS_BEST_PRACTICE_TYPE = "<?= $cls->BEST_PRACTICE_TYPE_CODE; ?>";
+                            var my_CLS_BEST_PRACTICE_TYPE = "<?php echo $show->BestPracticeTypeCode ?>";
                             var selectoption_CLS_BEST_PRACTICE_TYPE = document.querySelector('#BestPracticeTypeCode');
-                            var size_my_CLS_BEST_PRACTICE_TYPE = document.getElementById("BestPracticeTypeCode").options.length;
+                            var size_my_CLS_BEST_PRACTICE_TYPE = document.getElementById("BestPracticeTypeCode").options
+                                .length;
                             for (let i = 0; i < size_my_CLS_BEST_PRACTICE_TYPE; i++) {
                                 if (selectoption_CLS_BEST_PRACTICE_TYPE[i].value == my_CLS_BEST_PRACTICE_TYPE) {
                                     selectoption_CLS_BEST_PRACTICE_TYPE[i].selected = true;
                                 }
                             }
-                             ///CLS_EDUCATION_LEVEL
-                             var my_CLS_EDUCATION_LEVEL = "<?= $cls->EDUCATION_LEVEL_CODE; ?>";
+                            ///CLS_EDUCATION_LEVEL
+                            var my_CLS_EDUCATION_LEVEL = "<?php echo $show->TargetEducationLevelCode ?>";
                             var selectoption_CLS_EDUCATION_LEVEL = document.querySelector('#TargetEducationLevelCode');
-                            var size_my_CLS_EDUCATION_LEVEL = document.getElementById("TargetEducationLevelCode").options.length;
+                            var size_my_CLS_EDUCATION_LEVEL = document.getElementById("TargetEducationLevelCode")
+                                .options.length;
                             for (let i = 0; i < size_my_CLS_EDUCATION_LEVEL; i++) {
                                 if (selectoption_CLS_EDUCATION_LEVEL[i].value == my_CLS_EDUCATION_LEVEL) {
                                     selectoption_CLS_EDUCATION_LEVEL[i].selected = true;
                                 }
                             }
-                             ///CLS_RECOGNIZED_BY
-                             var my_CLS_RECOGNIZED_BY = "<?= $cls->EDUCATION_LEVEL_CODE; ?>";
+                            ///CLS_RECOGNIZED_BY
+                            var my_CLS_RECOGNIZED_BY = "<?php echo $show->RecognizedCode ?>";
                             var selectoption_CLS_RECOGNIZED_BY = document.querySelector('#RecognizedCode');
                             var size_my_CLS_RECOGNIZED_BY = document.getElementById("RecognizedCode").options.length;
                             for (let i = 0; i < size_my_CLS_RECOGNIZED_BY; i++) {
@@ -489,7 +511,7 @@
                                     selectoption_CLS_RECOGNIZED_BY[i].selected = true;
                                 }
                             }
-                        }
+                        
                         </script>
                         <?php }
                         } ?>
@@ -498,14 +520,15 @@
                         <!-- start Form ข้อมูลแนวปฏิบัติที่เป็นเลิศในการจัดการศึกษา -->
                         <form action="<?php echo site_url(
                                                 'BPC_forms_up_p2'
-                                            ); ?>" method="post" enctype="multipart/form-data"  onsubmit="return checkSelectedOption()">
+                                            ); ?>" method="post" enctype="multipart/form-data"
+                            onsubmit="return checkSelectedOption()">
 
                             <div class="row mb-3">
                                 <div class="col">
                                     <div class="form-floating">
                                         <input type="text" class="form-control" id="floatingName"
                                             placeholder="รหัสวิธีปฏิบัติที่เป็นเลิศในการจัดการศึกษา"
-                                            name="BestPracticeID" value="">
+                                            name="BestPracticeID" value="" required>
                                         <label for="Y">
                                             <?php echo nbs(2); ?> รหัสวิธีปฏิบัติที่เป็นเลิศในการจัดการศึกษา
                                         </label>
@@ -515,7 +538,7 @@
                                 <div class="col">
                                     <div class="form-floating">
                                         <input type="text" class="form-control" id="floatingName"
-                                            placeholder="หมายเลขบัตรประจำตัวผู้จัดทำ" name="CreatorPersonalID" value="">
+                                            placeholder="หมายเลขบัตรประจำตัวผู้จัดทำ" name="CreatorPersonalID" value="" required>
                                         <label for="Y">
                                             <?php echo nbs(2); ?> หมายเลขบัตรประจำตัวผู้จัดทำ
                                         </label>
@@ -535,7 +558,7 @@
                                             <?= $cls->PERSONAL_ID_TYPE_NAME; ?></option>
                                         <?php } ?>
                                     </select>
-                                    <label for="Y">
+                                    <label for="Y" >
                                         <?php echo nbs(2); ?>ประเภทบัตรประจำตัวผู้จัดทำ
                                     </label>
                                 </div>
@@ -561,7 +584,7 @@
                                 <div class="col">
                                     <div class="form-floating">
                                         <input type="text" class="form-control" id="floatingName"
-                                            placeholder="ชื่อผู้จัดทำ (ภาษาไทย)" name="CreatorNameThai" value="">
+                                            placeholder="ชื่อผู้จัดทำ (ภาษาไทย)" name="CreatorNameThai" value="" required>
                                         <label for="Y">
                                             <?php echo nbs(2); ?> ชื่อผู้จัดทำ (ภาษาไทย)
                                         </label>
@@ -583,8 +606,8 @@
                                     <div class="form-floating">
                                         <input type="text" class="form-control" id="floatingName"
                                             placeholder="ชื่อกลางผู้จัดทำ (ภาษาไทย)" name="CreatorMiddleNameThai"
-                                            value="">
-                                        <label for="Y">
+                                            value="" >
+                                        <label for="">
                                             <?php echo nbs(2); ?> ชื่อกลางผู้จัดทำ (ภาษาไทย)
                                         </label>
                                     </div>
@@ -606,7 +629,7 @@
                                     <div class="form-floating">
                                         <input type="text" class="form-control" id="floatingName"
                                             placeholder=" นามสกุลผู้จัดทำ (ภาษาไทย)" name="CreatorLastNameThai"
-                                            value="">
+                                            value="" required>
                                         <label for="Y">
                                             <?php echo nbs(2); ?> นามสกุลผู้จัดทำ (ภาษาไทย)
                                         </label>
@@ -627,7 +650,7 @@
                             <div class="row mb-3">
                                 <div class="form-floating">
                                     <input type="text" class="form-control" id="floatingName"
-                                        placeholder=" สัดส่วนการมีส่วนร่วม" name="ParticipantRatio" value="">
+                                        placeholder=" สัดส่วนการมีส่วนร่วม" name="ParticipantRatio" value="" required>
                                     <label for="Y">
                                         <?php echo nbs(2); ?> สัดส่วนการมีส่วนร่วม
                                     </label>
@@ -668,7 +691,7 @@
                         </form><!-- ข้อมูลแนวปฏิบัติที่เป็นเลิศในการจัดการศึกษา -->
                         <script>
                         function checkSelectedOption() {
-                            
+
                             const CLS_PERSONAL_ID_TYPE = document.querySelector('#CreatorPersonalIDTypeCode');
                             const CLS_PERSONAL_ID_TYPE_Value = CLS_PERSONAL_ID_TYPE.value;
 
@@ -683,7 +706,7 @@
                                 alert('กรุณาเลือกคำนำหน้าชื่อผู้จัดทำ');
                                 return false;
                             }
-                            
+
                         }
                         </script>
                         <?php } ?>
@@ -707,7 +730,7 @@
                                     <div class="form-floating">
                                         <input type="text" class="form-control" id="floatingName"
                                             placeholder="รหัสวิธีปฏิบัติที่เป็นเลิศในการจัดการศึกษา"
-                                            name="BestPracticeID" value="<?php echo $show->BestPracticeID ?>">
+                                            name="BestPracticeID" value="<?php echo $show->BestPracticeID ?>" required>
                                         <label for="Y">
                                             <?php echo nbs(2); ?> รหัสวิธีปฏิบัติที่เป็นเลิศในการจัดการศึกษา
                                         </label>
@@ -718,7 +741,7 @@
                                     <div class="form-floating">
                                         <input type="text" class="form-control" id="floatingName"
                                             placeholder="หมายเลขบัตรประจำตัวผู้จัดทำ" name="CreatorPersonalID"
-                                            value="<?php echo $show->CreatorPersonalID ?>">
+                                            value="<?php echo $show->CreatorPersonalID ?>" required>
                                         <label for="Y">
                                             <?php echo nbs(2); ?> หมายเลขบัตรประจำตัวผู้จัดทำ
                                         </label>
@@ -730,7 +753,7 @@
                                     <select class="form-select" id="CreatorPersonalIDTypeCode"
                                         aria-label="Floating label select example" name="CreatorPersonalIDTypeCode"
                                         value="<?php echo $show->CreatorPersonalIDTypeCode ?>">
-                                       
+
                                         <?php
                                                 $result = $this->db->query('SELECT * FROM CLS_PERSONAL_ID_TYPE');
                                                 foreach ($result->result() as $cls) {
@@ -749,7 +772,7 @@
                                     <select class="form-select" id="CreatorPrefixCode"
                                         aria-label="Floating label select example" name="CreatorPrefixCode"
                                         value="<?php echo $show->CreatorPrefixCode ?>">
-                                        
+
                                         <?php
                                                 $result = $this->db->query('SELECT * FROM CLS_PREFIX');
                                                 foreach ($result->result() as $cls) {
@@ -767,7 +790,7 @@
                                     <div class="form-floating">
                                         <input type="text" class="form-control" id="floatingName"
                                             placeholder="ชื่อผู้จัดทำ (ภาษาไทย)" name="CreatorNameThai"
-                                            value="<?php echo $show->CreatorNameThai ?>">
+                                            value="<?php echo $show->CreatorNameThai ?>" required>
                                         <label for="Y">
                                             <?php echo nbs(2); ?> ชื่อผู้จัดทำ (ภาษาไทย)
                                         </label>
@@ -790,8 +813,8 @@
                                     <div class="form-floating">
                                         <input type="text" class="form-control" id="floatingName"
                                             placeholder="ชื่อกลางผู้จัดทำ (ภาษาไทย)" name="CreatorMiddleNameThai"
-                                            value="<?php echo $show->CreatorMiddleNameThai ?>">
-                                        <label for="Y">
+                                            value="<?php echo $show->CreatorMiddleNameThai ?>" >
+                                        <label for="">
                                             <?php echo nbs(2); ?> ชื่อกลางผู้จัดทำ (ภาษาไทย)
                                         </label>
                                     </div>
@@ -813,7 +836,7 @@
                                     <div class="form-floating">
                                         <input type="text" class="form-control" id="floatingName"
                                             placeholder=" นามสกุลผู้จัดทำ (ภาษาไทย)" name="CreatorLastNameThai"
-                                            value="<?php echo $show->CreatorLastNameThai ?>">
+                                            value="<?php echo $show->CreatorLastNameThai ?>" required>
                                         <label for="Y">
                                             <?php echo nbs(2); ?> นามสกุลผู้จัดทำ (ภาษาไทย)
                                         </label>
@@ -835,7 +858,7 @@
                                 <div class="form-floating">
                                     <input type="text" class="form-control" id="floatingName"
                                         placeholder=" สัดส่วนการมีส่วนร่วม" name="ParticipantRatio"
-                                        value="<?php echo $show->ParticipantRatio ?>">
+                                        value="<?php echo $show->ParticipantRatio ?>" required>
                                     <label for="Y">
                                         <?php echo nbs(2); ?> สัดส่วนการมีส่วนร่วม
                                     </label>
@@ -874,24 +897,25 @@
                             </div>
                         </form><!-- ข้อมูลแนวปฏิบัติที่เป็นเลิศในการจัดการศึกษา -->
                         <script>
-                              ///CLS_PERSONAL_ID_TYPE
-                             var my_CLS_PERSONAL_ID_TYPE = "<?= $cls->EDUCATION_LEVEL_CODE; ?>";
-                            var selectoption_CLS_PERSONAL_ID_TYPE = document.querySelector('#CreatorPersonalIDTypeCode');
-                            var size_my_CLS_PERSONAL_ID_TYPE = document.getElementById("CreatorPersonalIDTypeCode").options.length;
-                            for (let i = 0; i < size_my_CLS_PERSONAL_ID_TYPE; i++) {
-                                if (selectoption_CLS_PERSONAL_ID_TYPE[i].value == my_CLS_PERSONAL_ID_TYPE) {
-                                    selectoption_CLS_PERSONAL_ID_TYPE[i].selected = true;
-                                }
+                        ///CLS_PERSONAL_ID_TYPE
+                        var my_CLS_PERSONAL_ID_TYPE = "<?php echo $show->CreatorPersonalIDTypeCode ?>";
+                        var selectoption_CLS_PERSONAL_ID_TYPE = document.querySelector('#CreatorPersonalIDTypeCode');
+                        var size_my_CLS_PERSONAL_ID_TYPE = document.getElementById("CreatorPersonalIDTypeCode").options
+                            .length;
+                        for (let i = 0; i < size_my_CLS_PERSONAL_ID_TYPE; i++) {
+                            if (selectoption_CLS_PERSONAL_ID_TYPE[i].value == my_CLS_PERSONAL_ID_TYPE) {
+                                selectoption_CLS_PERSONAL_ID_TYPE[i].selected = true;
                             }
-                             ///CLS_PREFIX
-                             var my_CLS_PREFIX = "<?= $cls->EDUCATION_LEVEL_CODE; ?>";
-                            var selectoption_CLS_PREFIX = document.querySelector('#CreatorPrefixCode');
-                            var size_my_CLS_PREFIX = document.getElementById("CreatorPrefixCode").options.length;
-                            for (let i = 0; i < size_my_CLS_PREFIX; i++) {
-                                if (selectoption_CLS_PREFIX[i].value == my_CLS_PREFIX) {
-                                    selectoption_CLS_PREFIX[i].selected = true;
-                                }
+                        }
+                        ///CLS_PREFIX
+                        var my_CLS_PREFIX = "<?php echo $show->CreatorPrefixCode ?>";
+                        var selectoption_CLS_PREFIX = document.querySelector('#CreatorPrefixCode');
+                        var size_my_CLS_PREFIX = document.getElementById("CreatorPrefixCode").options.length;
+                        for (let i = 0; i < size_my_CLS_PREFIX; i++) {
+                            if (selectoption_CLS_PREFIX[i].value == my_CLS_PREFIX) {
+                                selectoption_CLS_PREFIX[i].selected = true;
                             }
+                        }
                         </script>
                         <?php }
                         } ?>

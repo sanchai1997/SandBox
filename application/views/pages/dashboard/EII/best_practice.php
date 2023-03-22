@@ -1,5 +1,7 @@
 <main id="main" class="main">
-    <?php $page = isset($_GET['page']) ? $_GET['page'] : ''; ?>
+    <?php $page = isset($_GET['page']) ? $_GET['page'] : '';  ?>
+    <?php $key = isset($_GET['key']) ? $_GET['key'] : '';  ?>
+    <?php $name = isset($_GET['name']) ? $_GET['name'] : '';  ?>
     <?php
     session_start(); // เริ่มต้น session
     if (isset($_SESSION['success'])) { ?>
@@ -26,11 +28,11 @@
             <?php break;
                 case 'sh1.1':
                 ?>
-            <h1>แนวปฏิบัติที่เป็นเลิศในการจัดการศึกษา</h1>
+            <h1>แนวปฏิบัติที่เป็นเลิศในการจัดการศึกษา - <?php echo $name; ?></h1>
             <?php break;
                 case 'sh2':
                 ?>
-            <h1>ผู้จัดทำวิธีปฏิบัติที่เป็นเลิศในการจัดการศึกษา</h1>
+            <h1>ผู้จัดทำวิธีปฏิบัติที่เป็นเลิศในการจัดการศึกษา - <?php echo $name; ?></h1>
             <?php
                     break;
                 default:
@@ -75,16 +77,9 @@
             <div class="card-body">
                 <div class="row">
                     <div class="col">
-                        <h5 class="card-title"> </h5>
-                    </div>
-                    <div class="col">
-                        <h5 style="float: right; padding: 15px;" class="card-title"><a
-                                href="<?php echo site_url('BP_forms_p1?page=sh1') ?>"
-                                class="btn btn-success">เพิ่มข้อมูล</a></h5>
-                    </div>
-                </div>
-                <div class="dropdown">
-                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1"
+                        <h5 class="card-title">
+                        <div class="dropdown">
+                    <button class="btn btn-white dropdown-toggle" type="button" id="dropdownMenuButton1"
                         data-bs-toggle="dropdown" aria-expanded="false">
                         ประเภทข้อมูล
                     </button>
@@ -94,15 +89,24 @@
                         </li>
 
                     </ul>
+                </div>        
+                    </h5>
+                    </div>
+                    <div class="col">
+                        <h5 style="float: right; padding: 15px;" class="card-title"><a
+                                href="<?php echo site_url('BP_forms_p1?page=sh1') ?>"
+                                class="btn btn-success">เพิ่มข้อมูล</a></h5>
+                    </div>
                 </div>
+
                 <table class="table table-borderless datatable">
                     <thead>
 
                         <tr>
                             <th style="text-align: center;" scope="col">รหัสวิธีปฏิบัติที่เป็นเลิศในการจัดการศึกษา</th>
                             <th style="text-align: center;" scope="col">ชื่อวิธีปฏิบัติ</th>
-                            <th style="text-align: center;" scope="col">รหัสประเภทวิธีปฏิบัติ</th>
-                            <th style="text-align: center;" scope="col">รหัสระดับการศึกษาที่นำไปใช้</th>
+                            <th style="text-align: center;" scope="col">ประเภทวิธีปฏิบัติ</th>
+                            <th style="text-align: center;" scope="col">ระดับการศึกษาที่นำไปใช้</th>
                             <th style="text-align: center;" scope="col">ผู้จัดทำ</th>
                             <th style="text-align: center;" scope="col">ปฎิบัติ</th>
                         </tr>
@@ -139,11 +143,13 @@
                                 <?php echo $shows->EDUCATION_LEVEL_NAME; ?>
                             </td>
                             <th scope="row " style="text-align: center;"> <a
-                                    href="<?php echo site_url('Fm_best_practice_das_p1?page=sh1.1') ?>&&key=<?php echo $show->BestPracticeID ?>"
-                                    class="btn btn-warning"><i class="bi bi-eye"></i></a> </th>
+                                    href="<?php echo site_url('Fm_best_practice_das_p1?page=sh1.1') ?>&&key=<?php echo $show->BestPracticeID ?>&&name=<?php echo $show->BestPracticeName ?>"
+                                    class="btn btn-info"><i class="bi bi-eye"></i></a> </th>
 
 
                             <td style="text-align: center;">
+                            <a href="<?php echo site_url('BP_forms_p1?page=sh11') ?>&&key=<?php echo $show->Id; ?>&&name=<?php echo $show->BestPracticeName; ?>"
+                    class="btn btn-warning"> <i class="bi bi-pencil-square"></i></a>
                                 <button type="button" class="btn btn-primary" data-bs-toggle="modal"
                                     data-bs-target="#look<?php echo $show->Id; ?>"><i
                                         class="bi bi-card-list"></i></button>
@@ -206,17 +212,9 @@
             <div class="card-body">
                 <div class="row">
                     <div class="col">
-                        <h5 class="card-title"> </h5>
-                    </div>
-                    <div class="col">
-                        <h5 style="float: right; padding: 15px;" class="card-title"><a
-                                href="<?php echo site_url('BPC_forms_p2?page=sh2') ?>"
-                                class="btn btn-success">เพิ่มข้อมูล</a>
-                        </h5>
-                    </div>
-                </div>
-                <div class="dropdown">
-                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1"
+                        <h5 class="card-title"> 
+                        <div class="dropdown">
+                    <button class="btn btn-white dropdown-toggle" type="button" id="dropdownMenuButton1"
                         data-bs-toggle="dropdown" aria-expanded="false">
                         ประเภทข้อมูล
                     </button>
@@ -227,6 +225,16 @@
 
                     </ul>
                 </div>
+                        </h5>
+                    </div>
+                    <div class="col">
+                        <h5 style="float: right; padding: 15px;" class="card-title"><a
+                                href="<?php echo site_url('BPC_forms_p2?page=sh2') ?>"
+                                class="btn btn-success">เพิ่มข้อมูล</a>
+                        </h5>
+                    </div>
+                </div>
+                
                 <table class="table table-borderless datatable">
                     <thead>
 
@@ -264,6 +272,8 @@
 
 
                             <td style="text-align: center;" scope="row">
+                            <a href="<?php echo site_url('BPC_forms_p2?page=sh22') ?>&&key=<?php echo $show->Id; ?>&&name=<?php echo $show->CreatorPersonalID; ?>"
+                    class="btn btn-warning"> <i class="bi bi-pencil-square"></i></a>
                                 <button type="button" class="btn btn-primary" data-bs-toggle="modal"
                                     data-bs-target="#las2<?php echo $show->Id; ?>"><i
                                         class="bi bi-card-list"></i></button>
@@ -324,17 +334,9 @@
             <div class="card-body">
                 <div class="row">
                     <div class="col">
-                        <h5 class="card-title"> </h5>
-                    </div>
-                    <div class="col">
-                        <h5 style="float: right; padding: 15px;" class="card-title"><a
-                                href="<?php echo site_url('BPC_forms_p2?page=sh2') ?>"
-                                class="btn btn-success">เพิ่มข้อมูล</a>
-                        </h5>
-                    </div>
-                </div>
-                <div class="dropdown">
-                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1"
+                        <h5 class="card-title"> 
+                        <div class="dropdown">
+                    <button class="btn btn-white dropdown-toggle" type="button" id="dropdownMenuButton1"
                         data-bs-toggle="dropdown" aria-expanded="false">
                         ประเภทข้อมูล
                     </button>
@@ -345,6 +347,16 @@
 
                     </ul>
                 </div>
+                        </h5>
+                    </div>
+                    <div class="col">
+                        <h5 style="float: right; padding: 15px;" class="card-title"><a
+                                href="<?php echo site_url('BPC_forms_p2?page=sh2') ?>"
+                                class="btn btn-success">เพิ่มข้อมูล</a>
+                        </h5>
+                    </div>
+                </div>
+                
                 <table class="table table-borderless datatable">
                     <thead>
 
@@ -504,8 +516,8 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <a href="<?php echo site_url('BP_forms_p1?page=sh11') ?>&&key=<?php echo $show->Id; ?>"
-                    class="btn btn-warning"> <i class="bi bi-pencil-square"></i></a>
+                <!-- <a href="<?php echo site_url('BP_forms_p1?page=sh11') ?>&&key=<?php echo $show->Id; ?>&&name=<?php echo $show->BestPracticeName; ?>"
+                    class="btn btn-warning"> <i class="bi bi-pencil-square"></i></a> -->
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ปิด</button>
 
             </div>
@@ -550,14 +562,12 @@
                         <p><?php echo $show->CreatorPersonalID; ?></p>
                         <h5 class="fw-bold">รหัสประเภทบัตรประจำตัวผู้จัดทำ</h5>
                         <p><?php echo $show->PERSONAL_ID_TYPE_NAME; ?></p>
-                        <h5 class="fw-bold">รหัสคำนำหน้าชื่อผู้จัดทำ</h5>
-                        <p><?php echo $show->PREFIX_NAME; ?></p>
                         <h5 class="fw-bold">สัดส่วนการมีส่วนร่วม</h5>
                         <p><?php echo $show->ParticipantRatio; ?></p>
                     </div>
                     <div class="col">
                         <h5 class="fw-bold">รหัสคำนำหน้าชื่อผู้จัดทำ</h5>
-                        <p><?php echo $show->CreatorPrefixCode; ?></p>
+                        <p><?php echo $show->PREFIX_NAME; ?></p>
                         <h5 class="fw-bold"> ชื่อผู้จัดทำ (ภาษาไทย)</h5>
                         <p><?php echo $show->CreatorNameThai; ?></p>
                         <h5 class="fw-bold">ชื่อผู้จัดทำ (ภาษาอังกฤษ)</h5>
@@ -574,8 +584,8 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <a href="<?php echo site_url('BPC_forms_p2?page=sh22') ?>&&key=<?php echo $show->Id; ?>"
-                    class="btn btn-warning"> <i class="bi bi-pencil-square"></i></a>
+                <!-- <a href="<?php echo site_url('BPC_forms_p2?page=sh22') ?>&&key=<?php echo $show->Id; ?>&&name=<?php echo $show->CreatorPersonalID; ?>"
+                    class="btn btn-warning"> <i class="bi bi-pencil-square"></i></a> -->
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ปิด</button>
 
             </div>
