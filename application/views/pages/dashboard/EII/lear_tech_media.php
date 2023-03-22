@@ -1,5 +1,7 @@
 <main id="main" class="main">
     <?php $page = isset($_GET['page']) ? $_GET['page'] : '';  ?>
+    <?php $key = isset($_GET['key']) ? $_GET['key'] : '';  ?>
+    <?php $name = isset($_GET['name']) ? $_GET['name'] : '';  ?>
     <?php
     session_start(); // เริ่มต้น session
     if (isset($_SESSION['success'])) { ?>
@@ -20,15 +22,15 @@
 
             <?php switch ($page) {
                 case 'sh1':
-            ?> <h1>เทคโนโลยีและสื่อการเรียนรู้</h1>
+            ?> <h1>เทคโนโลยีและสื่อการเรียนรู้ </h1>
                 <?php break;
                 case 'sh2':
-                ?> <h1>ผู้จัดทำเทคโนโลยีและสื่อการเรียนรู้</h1>
+                ?> <h1>ผู้จัดทำเทคโนโลยีและสื่อการเรียนรู้ - <?php echo $name; ?></h1>
                 <?php
 
                     break;
                 default:
-                ?> <h1>ข้อมูลเทคโนโลยีและสื่อการเรียนรู้</h1>
+                ?> <h1>ข้อมูลเทคโนโลยีและสื่อการเรียนรู้ - <?php echo $name; ?></h1>
             <?php
                     break;
             }  ?>
@@ -71,15 +73,9 @@
                 <div class="card-body">
                     <div class="row">
                         <div class="col">
-                            <h5 class="card-title"> </h5>
-                        </div>
-                        <div class="col">
-                            <h5 style="float: right; padding: 15px;" class="card-title"><a href="<?php echo site_url('LTM_forms_p1?page=sh1') ?>" class="btn btn-success">เพิ่มข้อมูล
-                                </a></h5>
-                        </div>
-                    </div>
-                    <div class="dropdown">
-                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                            <h5 class="card-title">
+                            <div class="dropdown">
+                        <button class="btn btn-white dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
                             ประเภทข้อมูล
                         </button>
                         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
@@ -87,7 +83,15 @@
                             </li>
 
                         </ul>
+                    </div>        
+                        </h5>
+                        </div>
+                        <div class="col">
+                            <h5 style="float: right; padding: 15px;" class="card-title"><a href="<?php echo site_url('LTM_forms_p1?page=sh1') ?>" class="btn btn-success">เพิ่มข้อมูล
+                                </a></h5>
+                        </div>
                     </div>
+                    
                     <table class="table table-borderless datatable">
                         <thead>
 
@@ -95,7 +99,7 @@
                                 <th style="text-align: center;" scope="col">รหัสข้อมูลเทคโนโลยีและสื่อการเรียนรู้</th>
                                 <th style="text-align: center;" scope="col">ภาคเรียน</th>
                                 <th style="text-align: center;" scope="col">ชื่อเทคโนโลยีและสื่อการเรียนรู้</th>
-                                <th style="text-align: center;" scope="col">รหัสประเภทเทคโนโลยีและสื่อการเรียนรู้</th>
+                                <th style="text-align: center;" scope="col">ประเภทเทคโนโลยีและสื่อการเรียนรู้</th>
                                 <th style="text-align: center;" scope="col">ผู้จัดทำ</th>
                                 <th style="text-align: center;" scope="col">ดูรายละเอียด</th>
                             </tr>
@@ -123,12 +127,12 @@
                                 ?>
                                     <tr>
                                         <th scope="row " style="text-align: center;"><?php echo $show->MediaID; ?></th>
-                                        <th scope="row"><?php echo $show->EducationYear; ?></th>
                                         <td style="text-align: center;"><?php echo $show->Semester; ?></td>
                                         <td style="text-align: center;"><?php echo $show->MediaName; ?></td>
-
-                                        <th scope="row " style="text-align: center;"> <a href="<?php echo site_url('Fm_lear_tech_media_das_p1?page=sh1.1') ?>&&key=<?php echo $show->MediaID ?>" class="btn btn-warning"><i class="bi bi-eye"></i></a> </th>
+                                        <td style="text-align: center;"><?php echo $shows->MEDIA_TYPE_NAME; ?></td>
+                                        <th scope="row " style="text-align: center;"> <a href="<?php echo site_url('Fm_lear_tech_media_das_p1?page=sh1.1') ?>&&key=<?php echo $show->MediaID ?>&&name=<?php echo $show->MediaName ?>" class="btn btn-info"><i class="bi bi-eye"></i></a> </th>
                                         <td style="text-align: center;">
+                                        <a href="<?php echo site_url('LTM_forms_p1?page=sh11') ?>&&key=<?php echo $show->Id; ?>&&name=<?php echo $show->MediaName; ?>" class="btn btn-warning"> <i class="bi bi-pencil-square"></i></a>
                                             <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#look<?php echo $show->Id; ?>"><i class="bi bi-card-list"></i></button>
                                             <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#del_LTM<?php echo $show->Id; ?>">
                                                 <i class="bi bi-trash"></i>
@@ -184,16 +188,9 @@
                 <div class="card-body">
                     <div class="row">
                         <div class="col">
-                            <h5 class="card-title"> </h5>
-                        </div>
-                        <div class="col">
-                            <h5 style="float: right; padding: 15px;" class="card-title"><a href="<?php echo site_url('LTM_forms_p1?page=sh2') ?>" class="btn btn-success">เพิ่มข้อมูล
-                                </a></h5>
-                        </div>
-                    </div>
-
-                    <div class="dropdown">
-                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                            <h5 class="card-title">
+                            <div class="dropdown">
+                        <button class="btn btn-white dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
                             ประเภทข้อมูล
                         </button>
                         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
@@ -201,7 +198,16 @@
                             </li>
 
                         </ul>
+                    </div>        
+                        </h5>
+                        </div>
+                        <div class="col">
+                            <h5 style="float: right; padding: 15px;" class="card-title"><a href="<?php echo site_url('LTM_forms_p1?page=sh2') ?>&&name=<?php echo $name; ?>" class="btn btn-success">เพิ่มข้อมูล
+                                </a></h5>
+                        </div>
                     </div>
+
+                    
                     <table class="table table-borderless datatable">
                         <thead>
 
@@ -217,11 +223,7 @@
                         </thead>
                         <tbody>
                             <?php $key = isset($_GET['key']) ? $_GET['key'] : '';  ?>
-                            <?php
-                            $result = $this->db->query("SELECT * FROM LEARNING_TECHNOLOGY_MEDIA_CREATOR 
-                
-                WHERE MediaID='" . $key . "' AND DeleteStatus = '0'");
-                            foreach ($result->result() as $show) {  ?>
+                  
 
                                 <?php
 
@@ -238,22 +240,24 @@
                                 foreach ($results->result() as $shows) { ?>
                                     <tr>
                                         <th scope="row " style="text-align: center;">
-                                            <?php echo $show->CreatorPersonalID; ?></th>
+                                            <?php echo $shows->CreatorPersonalID; ?></th>
                                         <th scope="row " style="text-align: center;">
                                             <?php echo $shows->PERSONAL_ID_TYPE_NAME; ?></th>
                                         <th scope="row " style="text-align: center;">
-                                            <?php echo $show->CreatorNameThai; ?><?php echo nbs(2); ?><?php echo $show->CreatorLastNameThai; ?>
+                                            <?php echo $shows->CreatorNameThai; ?><?php echo nbs(2); ?><?php echo $shows->CreatorLastNameThai; ?>
                                         </th>
-                                        <td style="text-align: center;"><button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#LTM<?php echo $show->Id; ?>"><i class="bi bi-card-list"></i></button> <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#del_1st<?php echo $show->Id; ?>">
+                                        <td style="text-align: center;">
+                                        <a href="<?php echo site_url('LTMC_forms_p2?page=sh22') ?>&&key=<?php echo $shows->Id; ?>&&num=<?php echo $shows->CreatorPersonalID; ?>" class="btn btn-warning"> <i class="bi bi-pencil-square"></i></a>
+                                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#LTM<?php echo $shows->Id; ?>"><i class="bi bi-card-list"></i></button> <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#del_1st<?php echo $shows->Id; ?>">
                                                 <i class="bi bi-trash"></i>
                                             </button>
                                             <!-- Modal -->
-                                            <div class="modal fade" id="del_1st<?php echo $show->Id; ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                            <div class="modal fade" id="del_1st<?php echo $shows->Id; ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                                 <div class="modal-dialog">
                                                     <div class="modal-content">
                                                         <div class="modal-header">
                                                             <h5 class="modal-title" id="exampleModalLabel">
-                                                                ยืนยันการลบข้อมูลรหัส<?php echo nbs(2); ?><?php echo $show->CreatorPersonalID; ?>
+                                                                ยืนยันการลบข้อมูลรหัส<?php echo nbs(2); ?><?php echo $shows->CreatorPersonalID; ?>
                                                             </h5>
 
                                                         </div>
@@ -266,7 +270,7 @@
                                                         <div class="modal-footer">
                                                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ยกเลิก</button>
                                                             <form method="post" action="<?php echo site_url('LTMC_del_p2'); ?>">
-                                                                <input type="hidden" name="Id" value="<?php echo $show->Id; ?>">
+                                                                <input type="hidden" name="Id" value="<?php echo $shows->Id; ?>">
                                                                 <div class="d-flex justify-content-center">
                                                                     <button name="Submit" type="submit" class="btn btn-primary">ยืนยันก่อนลบ</button>
                                                                 </div>
@@ -279,7 +283,7 @@
 
 
                                     </tr>
-                            <?php  }
+                            <?php  
                             } ?>
                         </tbody>
                     </table>
@@ -293,15 +297,9 @@
                             <div class="card-body">
                                 <div class="row">
                                     <div class="col">
-                                        <h5 class="card-title"> </h5>
-                                    </div>
-                                    <div class="col">
-                                        <h5 style="float: right; padding: 15px;" class="card-title"><a href="<?php echo site_url('LTMC_forms_p2?page=sh2') ?>" class="btn btn-success">เพิ่มข้อมูล
-                                            </a></h5>
-                                    </div>
-                                </div>
-                                <div class="dropdown">
-                                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                                        <h5 class="card-title"> 
+                                        <div class="dropdown">
+                                    <button class="btn btn-white dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
                                         ประเภทข้อมูล
                                     </button>
                                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
@@ -310,12 +308,21 @@
 
                                     </ul>
                                 </div>
+
+                                        </h5>
+                                    </div>
+                                    <div class="col">
+                                        <h5 style="float: right; padding: 15px;" class="card-title"><a href="<?php echo site_url('LTMC_forms_p2?page=sh2') ?>" class="btn btn-success">เพิ่มข้อมูล
+                                            </a></h5>
+                                    </div>
+                                </div>
+                                
                                 <table class="table table-borderless datatable">
                                     <thead>
 
                                         <tr>
                                             <th style="text-align: center;" scope="col">หมายเลขบัตรประจำตัวผู้จัดทำ</th>
-                                            <th style="text-align: center;" scope="col">รหัสประเภทบัตรประจำตัวผู้จัดทำ</th>
+                                            <th style="text-align: center;" scope="col">ประเภทบัตรประจำตัวผู้จัดทำ</th>
                                             <th style="text-align: center;" scope="col"> ชื่อผู้จัดทำ</th>
                                             <th style="text-align: center;" scope="col">ดูรายละเอียด</th>
 
@@ -325,7 +332,7 @@
                                     </thead>
                                     <tbody>
                                         <?php foreach ($query as $show) {
-                                            # code...
+                                           
                                         ?>
                                             <tr>
                                                 <th scope="row " style="text-align: center;">
@@ -459,7 +466,7 @@
                         <?php } ?>
                     </div>
                     <div class="modal-footer">
-                        <a href="<?php echo site_url('LTM_forms_p1?page=sh11') ?>&&key=<?php echo $show->Id; ?>" class="btn btn-warning"> <i class="bi bi-pencil-square"></i></a>
+                        <!-- <a href="<?php echo site_url('LTM_forms_p1?page=sh11') ?>&&key=<?php echo $show->Id; ?>&&name=<?php echo $show->MediaName; ?>" class="btn btn-warning"> <i class="bi bi-pencil-square"></i></a> -->
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ปิด</button>
 
                     </div>
@@ -498,7 +505,7 @@
                   ON CLS_PREFIX.PREFIX_CODE = LEARNING_TECHNOLOGY_MEDIA_CREATOR.CreatorPrefixCode 
                   -- CreatorPrefixCode
                   -- PREFIX_NAME
-                  WHERE MediaID= $key");
+                  WHERE Id= $show->Id");
                         foreach ($results->result() as $shows) { ?>
                             <div class="row">
                                 <div class="col">
@@ -531,7 +538,7 @@
                         <?php } ?>
                     </div>
                     <div class="modal-footer">
-                        <a href="<?php echo site_url('LTMC_forms_p2?page=sh22') ?>&&key=<?php echo $show->Id; ?>" class="btn btn-warning"> <i class="bi bi-pencil-square"></i></a>
+                        <!-- <a href="<?php echo site_url('LTMC_forms_p2?page=sh22') ?>&&key=<?php echo $show->Id; ?>&&num=<?php echo $show->CreatorPersonalID; ?>" class="btn btn-warning"> <i class="bi bi-pencil-square"></i></a> -->
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ปิด</button>
 
                     </div>

@@ -29,7 +29,6 @@ class Student_model extends CI_Model
 
                 'StudentReferenceID ' => $_POST['StudentPrefixCode'] . $_POST['StudentPersonalID'],
                 'SchoolID ' => $SchoolID,
-                'ImageStudent' => $data['file_name'],
                 'SchoolAdmissionYear' => $this->input->post('SchoolAdmissionYear'),
                 'CurrentEducationLevelAdmissionYear' => $this->input->post('CurrentEducationLevelAdmissionYear'),
                 'EducationLevelCode' => $this->input->post('EducationLevelCode'),
@@ -38,6 +37,7 @@ class Student_model extends CI_Model
                 'GradeLevelCode' => $this->input->post('GradeLevelCode'),
                 'ImageStudent' => $this->input->post('ImageStudent'),
                 'StudentID' => $this->input->post('StudentID'),
+                'ImageStudent' => $data['file_name'],
                 'StudentStatusCode' => $this->input->post('StudentStatusCode'),
                 'StudentPersonalIDTypeCode' => $this->input->post('StudentPersonalIDTypeCode'),
                 'StudentPersonalID' => $this->input->post('StudentPersonalID'),
