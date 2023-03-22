@@ -45,38 +45,38 @@
     <div class="col-12">
         <div class="card recent-sales overflow-auto">
             <div class="card-body">
-                <div class="row">
-                    <div class="col">
-                        <h1 class="card-title">
-                            <div class="dropdown">
-                                <button class="btn btn-light dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                                    เลือกสถานศึกษา
-                                </button>
-                                <?php if (isset($_GET['SchoolID'])) { ?>
-                                    &nbsp;<a href="student" class="btn btn-secondary btn-sm" data-mdb-ripple-color="dark">ย้อนกลับ</a>
-                                <?php } ?>
-                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                                    <?php
-                                    $result = $this->db->query('SELECT * FROM SCHOOL WHERE DeleteStatus = 0');
-                                    foreach ($result->result() as $SHOW_SCHOOL) {
-                                    ?>
-                                        <li>
-                                            <a class="dropdown-item" href="?SchoolID=<?= $SHOW_SCHOOL->SchoolID  ?>"><?= $SHOW_SCHOOL->SchoolNameThai  ?></a>
-                                        </li>
-                                    <?php } ?>
-                                </ul>
-                            </div>
-                        </h1>
-                    </div>
-                    <div class="col">
-                        <?php if (isset($_GET['SchoolID'])) {
-                        ?>
-                            <h5 style="float: right; padding: 15px;" class="card-title"><a href="forms-student?SchoolID=<?= $_GET['SchoolID'] ?>" class="btn btn-success">เพิ่มข้อมูล</a></h5>
-                        <?php } ?>
-                    </div>
-                </div>
-                <?php if (!isset($_GET['SchoolID'])) { ?>
 
+                <?php if (!isset($_GET['SchoolID'])) { ?>
+                    <div class="row">
+                        <div class="col">
+                            <h1 class="card-title">
+                                <div class="dropdown">
+                                    <button class="btn btn-light dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                                        เลือกสถานศึกษา
+                                    </button>
+                                    <?php if (isset($_GET['SchoolID'])) { ?>
+                                        &nbsp;<a href="student" class="btn btn-secondary btn-sm" data-mdb-ripple-color="dark">ย้อนกลับ</a>
+                                    <?php } ?>
+                                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                        <?php
+                                        $result = $this->db->query('SELECT * FROM SCHOOL WHERE DeleteStatus = 0');
+                                        foreach ($result->result() as $SHOW_SCHOOL) {
+                                        ?>
+                                            <li>
+                                                <a class="dropdown-item" href="?SchoolID=<?= $SHOW_SCHOOL->SchoolID  ?>"><?= $SHOW_SCHOOL->SchoolNameThai  ?></a>
+                                            </li>
+                                        <?php } ?>
+                                    </ul>
+                                </div>
+                            </h1>
+                        </div>
+                        <div class="col">
+                            <?php if (isset($_GET['SchoolID'])) {
+                            ?>
+                                <h5 style="float: right; padding: 15px;" class="card-title"><a href="forms-student?SchoolID=<?= $_GET['SchoolID'] ?>" class="btn btn-success">เพิ่มข้อมูล</a></h5>
+                            <?php } ?>
+                        </div>
+                    </div>
                     <table class="table table-borderless datatable">
                         <thead>
                             <tr>
@@ -102,8 +102,37 @@
 
                         </tbody>
                     </table>
-                <?php } else if (isset($_GET['SchoolID'])) { ?>
-
+                <?php } else if (isset($_GET['SchoolID']) && empty($_GET['EducationYear']) && empty($_GET['Semester']) && empty($_GET['GradeLevelCode'])) { ?>
+                    <div class="row">
+                        <div class="col">
+                            <h1 class="card-title">
+                                <div class="dropdown">
+                                    <button class="btn btn-light dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                                        เลือกสถานศึกษา
+                                    </button>
+                                    <?php if (isset($_GET['SchoolID'])) { ?>
+                                        &nbsp;<a href="student" class="btn btn-secondary btn-sm" data-mdb-ripple-color="dark">ย้อนกลับ</a>
+                                    <?php } ?>
+                                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                        <?php
+                                        $result = $this->db->query('SELECT * FROM SCHOOL WHERE DeleteStatus = 0');
+                                        foreach ($result->result() as $SHOW_SCHOOL) {
+                                        ?>
+                                            <li>
+                                                <a class="dropdown-item" href="?SchoolID=<?= $SHOW_SCHOOL->SchoolID  ?>"><?= $SHOW_SCHOOL->SchoolNameThai  ?></a>
+                                            </li>
+                                        <?php } ?>
+                                    </ul>
+                                </div>
+                            </h1>
+                        </div>
+                        <div class="col">
+                            <?php if (isset($_GET['SchoolID'])) {
+                            ?>
+                                <h5 style="float: right; padding: 15px;" class="card-title"><a href="forms-student?SchoolID=<?= $_GET['SchoolID'] ?>" class="btn btn-success">เพิ่มข้อมูล</a></h5>
+                            <?php } ?>
+                        </div>
+                    </div>
                     <table class="table table-borderless datatable">
                         <thead>
                             <tr>
@@ -123,10 +152,71 @@
                             foreach ($result->result() as $STUDENT) {
                             ?>
                                 <tr>
-                                    <td style="text-align: center;"><img src="image/school/<?= $STUDENT->EducationYear; ?>" alt="" width="90px" height="80px"></td>
-                                    <td style="padding-top: 30px;"><?= $STUDENT->Semester; ?></td>
-                                    <td style="padding-top: 30px;"><?= $STUDENT->EDUCATION_LEVEL_NAME; ?></td>
-                                    <td style="padding-top: 30px; text-align: center;"><a href="?SchoolID=<?= $SCHOOL->SchoolID; ?>&&EducationYear=<?= $STUDENT->EducationYear; ?>&&Semester=<?= $STUDENT->Semester; ?>&&EducationLevelCode=<?= $STUDENT->EducationLevelCode; ?>" class="btn btn-primary"><i class="bi bi-card-list"></i></a>
+                                    <td style="text-align: center;"><?= $STUDENT->EducationYear; ?></td>
+                                    <td><?= $STUDENT->Semester; ?></td>
+                                    <td><?= $STUDENT->GRADE_LEVEL_NAME; ?></td>
+                                    <td style="text-align: center;"><a href="?SchoolID=<?= $SCHOOL->SchoolID; ?>&&EducationYear=<?= $STUDENT->EducationYear; ?>&&Semester=<?= $STUDENT->Semester; ?>&&GradeLevelCode=<?= $STUDENT->GradeLevelCode; ?>" class="btn btn-primary"><i class="bi bi-card-list"></i></a>
+                                    </td>
+                                </tr>
+                            <?php } ?>
+
+                        </tbody>
+                    </table>
+
+                <?php } else if (!empty($_GET['SchoolID']) && !empty($_GET['EducationYear']) && !empty($_GET['Semester']) && !empty($_GET['GradeLevelCode'])) {
+                    $result = $this->db->query('SELECT * FROM CLS_GRADE_LEVEL WHERE GRADE_LEVEL_CODE = ' . $_GET['GradeLevelCode'] . '');
+                    foreach ($result->result() as $GRADE_LEVEL) {
+                        $GRADE_NAME = $GRADE_LEVEL->GRADE_LEVEL_NAME;
+                    }
+                ?>
+                    <div class="row">
+                        <div class="col">
+                            <h1 class="card-title">
+                                <?php if (isset($_GET['SchoolID'])) { ?>
+                                    <a href="?SchoolID=<?= $_GET['SchoolID'] ?>" class="btn btn-secondary btn-sm" data-mdb-ripple-color="dark">ย้อนกลับ</a>&nbsp;
+                                <?php } ?>
+                                <a href="?SchoolID=<?= $_GET['SchoolID'] ?>" class="btn btn-light btn-sm" data-mdb-ripple-color="dark">ปีการศึกษา: <?= $_GET['EducationYear'] ?>&nbsp; ภาคเรียน: <?= $_GET['Semester'] ?> &nbsp;ระดับชั้นเรียน: <?= $GRADE_NAME ?></a>
+                            </h1>
+                        </div>
+                        <div class="col">
+                            <?php if (isset($_GET['SchoolID'])) {
+                            ?>
+                                <h5 style="float: right; padding: 15px;" class="card-title"><a href="forms-student?SchoolID=<?= $_GET['SchoolID'] ?>" class="btn btn-success">เพิ่มข้อมูล</a></h5>
+                            <?php } ?>
+                        </div>
+                    </div>
+                    <table class="table table-borderless datatable">
+                        <thead>
+                            <tr>
+                                <th style="text-align: center;">รูปภาพ</th>
+                                <th scope="col">รหัสประจำตัวนักเรียน</th>
+                                <th scope="col">คำนำหน้า</th>
+                                <th scope="col">ชื่อ</th>
+                                <th scope="col">นามสกุล</th>
+                                <th scope="col">สถานภาพ</th>
+                                <th style="text-align: center;" scope="col">รายละเอียด</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            <?php
+                            $result = $this->db->query('SELECT * FROM STUDENT
+                            INNER JOIN CLS_GRADE_LEVEL ON STUDENT.GradeLevelCode =  CLS_GRADE_LEVEL.GRADE_LEVEL_CODE
+                            INNER JOIN CLS_STUDENT_STATUS ON STUDENT.StudentStatusCode = CLS_STUDENT_STATUS.STUDENT_STATUS_CODE
+                            INNER JOIN CLS_PREFIX ON STUDENT.StudentPrefixCode = CLS_PREFIX.PREFIX_CODE
+                            WHERE DeleteStatus = 0 AND SchoolID = ' . $_GET['SchoolID'] . ' AND EducationYear = ' . $_GET['EducationYear'] . ' AND Semester = ' . $_GET['Semester'] . ' AND GradeLevelCode = ' . $_GET['GradeLevelCode'] . '');
+                            foreach ($result->result() as $STUDENT) {
+                            ?>
+                                <tr>
+                                    <td style="text-align: center;"><img src="image/student/<?= $STUDENT->ImageStudent; ?>" alt="" width="70" height="80"></td>
+                                    <td style="padding-top: 30px;"><?= $STUDENT->StudentID; ?></td>
+                                    <td style="padding-top: 30px;"><?= $STUDENT->PREFIX_NAME; ?></td>
+                                    <td style="padding-top: 30px;"><?= $STUDENT->StudentNameThai; ?></td>
+                                    <td style="padding-top: 30px;"><?= $STUDENT->StudentLastNameThai; ?></td>
+                                    <td style="padding-top: 30px;"><?= $STUDENT->STUDENT_STATUS_NAME; ?></td>
+                                    <td style="padding-top: 30px; text-align: center;">
+                                        <a href="?SchoolID=<?= $STUDENT->SchoolID; ?>" class="btn btn-danger"><i class="bi bi-card-list"></i></a>
+                                        <a href="?SchoolID=<?= $STUDENT->SchoolID; ?>&&EducationYear=<?= $STUDENT->EducationYear; ?>&&Semester=<?= $STUDENT->Semester; ?>&&GradeLevelCode=<?= $STUDENT->GradeLevelCode; ?>" class="btn btn-primary"><i class="bi bi-card-list"></i></a>
                                     </td>
                                 </tr>
                             <?php } ?>
@@ -135,7 +225,6 @@
                     </table>
 
                 <?php } ?>
-
             </div>
 
 
