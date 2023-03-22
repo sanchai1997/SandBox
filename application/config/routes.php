@@ -49,6 +49,7 @@ $route['edit_curriculum_activity']['post'] = 'CurriculumController/edit_curricul
 $route['delete-curriculum_activity/(:num)/(:num)'] = 'CurriculumController/delete_curriculum_activity/$1/$2';
 //curriculum_assessment
 $route['forms-curriculum_assessment'] = 'CurriculumController/forms_curriculum_assessment';
+$route['add_curriculum_assessment']['post'] = 'CurriculumController/add_curriculum_assessment';
 //teacher_developmant_activity
 $route['list-teacher_development_activity'] = 'Teacher_development_activity_controller/list_teacher_development_activity';
 $route['forms-teacher_development_activity'] = 'Teacher_development_activity_controller/forms';

@@ -259,6 +259,13 @@ class Curriculum_model  extends CI_Model {
         $result = $this->db->update('activity', $data);
         return $result;
     }
+###################### curriculum_assessment ################################
+
+public function insert_curriculum_assessment($curriculum_assessment) {
+    $result_curriculum_activity = $this->db->insert('assessment', $curriculum_assessment);
+    return $result_curriculum_activity;
+}    
+
     
 
     

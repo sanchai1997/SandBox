@@ -757,20 +757,41 @@ class CurriculumController extends CI_Controller{
         }
     }
 
-###
+###curriculum_assessment
     public function forms_curriculum_assessment() {
         
-        if ( ! file_exists(APPPATH.'views/pages/forms/Curriculum/forms-curriculum_activity.php'))
+        if ( ! file_exists(APPPATH.'views/pages/forms/Curriculum/forms-curriculum_assessment.php'))
         {
             show_404();
         }
-        $data['PLAN_ID'] = $_GET['pid']; 
+        $data['ACTIVITY_ID'] = $_GET['aid']; 
        
 
         $this->load->view('templates/header');
         $this->load->view('templates/sidebar');
-        $this->load->view('pages/forms/Curriculum/forms-curriculum_activity',$data);
+        $this->load->view('pages/forms/Curriculum/forms-curriculum_assessment',$data);
         $this->load->view('templates/footer');
+
+    }
+    public function add_curriculum_assessment() {
+
+        $ACTIVITY_ID =  $this->input->post('ACTIVITY_ID');
+        $curriculum_assessment = [
+            'ASSESSMENT_NAME' => $this->input->post('ASSESSMENT_NAME'),
+            'ASSESSMENT_PEOPLE_ID' => $this->input->post('ASSESSMENT_PEOPLE_ID'),
+            'ASSESSMENT_TOOL_CODE' => $this->input->post('ASSESSMENT_TOOL_CODE'),
+            'ACTIVITY_ID' =>$ACTIVITY_ID ,
+            'DeleteStatus' => 0 
+        ];
+        $result_curriculum_assessment = $this->Curriculum_model->insert_curriculum_assessment($curriculum_assessment);
+
+      
+        if($result_curriculum_assessment == 1 ){    
+            show_error("success");
+           
+        }else{
+            show_error("fail");
+        }
 
     }
     

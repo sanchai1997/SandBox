@@ -49,7 +49,7 @@
                             <tr>
                                 <th style="text-align: center;" scope="col"><?php echo$lca->ACTIVITY_NAME ?></th>
                                 <td style="text-align: center;">
-                                        <a href='list-curriculum_subject' class="btn btn-info">
+                                        <a href='forms-curriculum_assessment?aid=<?php echo$lca->ACTIVITY_ID ?>' class="btn btn-info">
                                             <i class="bi bi-eye-fill"></i>
                                         </a>
                                     </td>
