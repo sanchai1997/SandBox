@@ -195,6 +195,7 @@ class Curriculum_model  extends CI_Model {
     public function get_Curriculum_plan_All( $CurriculumID, $SubjectCode) {
         $this->db->select('*')
         ->from('plan')
+        ->where('DeleteStatus ', 0  ) 
         ->where('CurriculumID ', $CurriculumID  ) 
         ->where('SubjectCode ', $SubjectCode  ) ;
         $query = $this->db->get();
@@ -214,8 +215,48 @@ class Curriculum_model  extends CI_Model {
         return $result;
     }
     public function delete_Curriculum_plan($PLAN_ID){   
+        $data = [
+            'DeleteStatus' => 1
+        ];
         $this->db->where('PLAN_ID', $PLAN_ID);
-        $result = $this->db->delete('plan');
+            
+        $result = $this->db->update('plan', $data);
+        return $result;
+    }
+###################### curriculum_activity ################################
+
+    public function insert_curriculum_activity($curriculum_activity) {
+        $result_curriculum_activity = $this->db->insert('activity', $curriculum_activity);
+        return $result_curriculum_activity;
+    }
+    public function get_curriculum_activity_All() {
+        $this->db->select('*')
+        ->from('activity')
+        ->where('DeleteStatus ', 0  ) ;
+        $query = $this->db->get();
+       
+        return $query->result();
+    }
+    public function get_curriculum_activity($ACTIVITY_ID) {
+        $this->db->select('*')
+        ->from('activity')
+        ->where('ACTIVITY_ID',$ACTIVITY_ID);
+        $query = $this->db->get();
+       
+        return $query->result();
+    }
+    public function update_curriculum_activity($curriculum_activity,$ACTIVITY_ID){
+        $this->db->where('ACTIVITY_ID', $ACTIVITY_ID);
+        $result = $this->db->update('activity',  $curriculum_activity);
+        return $result;
+    }
+    public function delete_curriculum_activity($ACTIVITY_ID){   
+        $data = [
+            'DeleteStatus' => 1
+        ];
+        $this->db->where('ACTIVITY_ID', $ACTIVITY_ID);
+            
+        $result = $this->db->update('activity', $data);
         return $result;
     }
     

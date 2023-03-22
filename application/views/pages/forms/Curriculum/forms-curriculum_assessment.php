@@ -2,7 +2,7 @@
 <main id="main" class="main">
 
     <div class="pagetitle">
-      <h1>ข้อมูลกิจกรรม</h1>
+      <h1>ข้อมูลการวัดและประเมินผล</h1>
     </div><!-- End Page Title -->
 
     <section class="section">
