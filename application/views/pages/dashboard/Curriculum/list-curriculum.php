@@ -40,12 +40,12 @@
                             ?>
                                 <div class="dropdown">
                                     <button class="btn btn-dark dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                                        เลือกสถานศึกษา
+                                    <?php echo $SchoolNameThai; ?>
                                     </button>
                                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                                         <?php foreach ($School as $ls) { ?>
                                             <li>
-                                                <a class="dropdown-item" href="list_curriculum_by_school?sid=<?php echo $ls->SchoolID; ?>"><?php echo $ls->SchoolNameThai; ?></a>
+                                                <a class="dropdown-item" href="list_curriculum_by_school?sid=<?php echo $ls->SchoolID; ?>&&sname=<?php echo $ls->SchoolNameThai; ?>"><?php echo $ls->SchoolNameThai; ?></a>
                                             </li>
                                         <?php } ?>
                                     </ul>

@@ -63,6 +63,7 @@ class CurriculumController extends CI_Controller{
         }
 
         $data['SchoolID'] = $_GET['sid']; 
+        $data['SchoolNameThai'] = $_GET['sname']; 
 
         $data['listCurriculum'] = $this->Curriculum_model->get_Curriculum_by_school($data['SchoolID']);  
         $data['School'] = $this->School_model->get_school_All();
@@ -130,6 +131,7 @@ class CurriculumController extends CI_Controller{
         }else{
             $data['School_id'] = $this->School_model->get_school_top();
             $SchoolID = array_column($data['School_id'],'SchoolID');
+            $data['SchoolNameThai'] = $data['School_id'][0]-> SchoolNameThai;
             $data['listCurriculum'] = $this->Curriculum_model->get_Curriculum_by_school($SchoolID);  
           
         }
