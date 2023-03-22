@@ -189,12 +189,12 @@ class Curriculum_model  extends CI_Model {
 ###################### curriculum_plan ################################
 
     public function insert_curriculum_plan($curriculum_plan) {
-        $result_curriculum_plan = $this->db->insert('plan', $curriculum_plan);
+        $result_curriculum_plan = $this->db->insert('PLAN', $curriculum_plan);
         return $result_curriculum_plan;
     }
     public function get_Curriculum_plan_All( $CurriculumID, $SubjectCode) {
         $this->db->select('*')
-        ->from('plan')
+        ->from('PLAN')
         ->where('DeleteStatus ', 0  ) 
         ->where('CurriculumID ', $CurriculumID  ) 
         ->where('SubjectCode ', $SubjectCode  ) ;
@@ -203,7 +203,7 @@ class Curriculum_model  extends CI_Model {
         return $query->result();
     }
     public function get_Curriculum_plan($PLAN_ID) {
-        $this->db->from('plan')
+        $this->db->from('PLAN')
         ->where('PLAN_ID', $PLAN_ID);
 
         $query = $this->db->get();
@@ -211,7 +211,7 @@ class Curriculum_model  extends CI_Model {
     }
     public function update_Curriculum_plan($PLAN_ID, $curriculum_plan){
         $this->db->where('PLAN_ID', $PLAN_ID);
-        $result = $this->db->update('plan',  $curriculum_plan);
+        $result = $this->db->update('PLAN',  $curriculum_plan);
         return $result;
     }
     public function delete_Curriculum_plan($PLAN_ID){   
@@ -220,18 +220,18 @@ class Curriculum_model  extends CI_Model {
         ];
         $this->db->where('PLAN_ID', $PLAN_ID);
             
-        $result = $this->db->update('plan', $data);
+        $result = $this->db->update('PLAN', $data);
         return $result;
     }
 ###################### curriculum_activity ################################
 
     public function insert_curriculum_activity($curriculum_activity) {
-        $result_curriculum_activity = $this->db->insert('activity', $curriculum_activity);
+        $result_curriculum_activity = $this->db->insert('ACTIVITY', $curriculum_activity);
         return $result_curriculum_activity;
     }
     public function get_curriculum_activity_All() {
         $this->db->select('*')
-        ->from('activity')
+        ->from('ACTIVITY')
         ->where('DeleteStatus ', 0  ) ;
         $query = $this->db->get();
        
@@ -239,7 +239,7 @@ class Curriculum_model  extends CI_Model {
     }
     public function get_curriculum_activity($ACTIVITY_ID) {
         $this->db->select('*')
-        ->from('activity')
+        ->from('ACTIVITY')
         ->where('ACTIVITY_ID',$ACTIVITY_ID);
         $query = $this->db->get();
        
@@ -247,7 +247,7 @@ class Curriculum_model  extends CI_Model {
     }
     public function update_curriculum_activity($curriculum_activity,$ACTIVITY_ID){
         $this->db->where('ACTIVITY_ID', $ACTIVITY_ID);
-        $result = $this->db->update('activity',  $curriculum_activity);
+        $result = $this->db->update('ACTIVITY',  $curriculum_activity);
         return $result;
     }
     public function delete_curriculum_activity($ACTIVITY_ID){   
@@ -256,13 +256,13 @@ class Curriculum_model  extends CI_Model {
         ];
         $this->db->where('ACTIVITY_ID', $ACTIVITY_ID);
             
-        $result = $this->db->update('activity', $data);
+        $result = $this->db->update('ACTIVITY', $data);
         return $result;
     }
 ###################### curriculum_assessment ################################
 
 public function insert_curriculum_assessment($curriculum_assessment) {
-    $result_curriculum_activity = $this->db->insert('assessment', $curriculum_assessment);
+    $result_curriculum_activity = $this->db->insert('ASSESSMENT', $curriculum_assessment);
     return $result_curriculum_activity;
 }    
 
