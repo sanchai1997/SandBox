@@ -36,21 +36,10 @@ $route['delete-curriculum_school_competency/(:num)/(:num)/(:num)'] = 'Curriculum
 //curriculum_plan
 $route['list-curriculum_plan'] = 'CurriculumController/list_curriculum_plan';
 $route['forms-curriculum_plan'] = 'CurriculumController/forms_curriculum_plan';
-$route['add_curriculum_plan']['post'] = 'CurriculumController/add_curriculum_plan';
-$route['edit_forms_curriculum_plan'] = 'CurriculumController/forms_edit_curriculum_plan';
-$route['edit_curriculum_plan']['post'] = 'CurriculumController/edit_curriculum_plan';
-$route['delete-curriculum_plan/(:num)/(:num)/(:num)'] = 'CurriculumController/delete_curriculum_plan/$1/$2/$3';
-//Curriculum_activity
-$route['list-curriculum_activity'] = 'CurriculumController/list_curriculum_activity';
-$route['forms-curriculum_activity'] = 'CurriculumController/forms_curriculum_activity';
-$route['add_curriculum_activity']['post'] = 'CurriculumController/add_curriculum_activity';
-$route['edit_forms-curriculum_activity'] = 'CurriculumController/edit_forms_curriculum_activity';
-$route['edit_curriculum_activity']['post'] = 'CurriculumController/edit_curriculum_activity';
-$route['delete-curriculum_activity/(:num)/(:num)'] = 'CurriculumController/delete_curriculum_activity/$1/$2';
-//curriculum_assessment
-$route['forms-curriculum_assessment'] = 'CurriculumController/forms_curriculum_assessment';
-$route['add_curriculum_assessment']['post'] = 'CurriculumController/add_curriculum_assessment';
+//Curriculum_by_school
 $route['list_curriculum_by_school'] = 'CurriculumController/list_curriculum_by_school';
+//Curriculum_by_school
+$route['forms-curriculum_activity'] = 'CurriculumController/forms_curriculum_activity';
 //teacher_developmant_activity
 $route['list-teacher_development_activity'] = 'Teacher_development_activity_controller/list_teacher_development_activity';
 $route['forms-teacher_development_activity'] = 'Teacher_development_activity_controller/forms';
@@ -130,8 +119,16 @@ $route['delete-building/(:num)/(:any)'] = 'forms_school/delete_building/$1/$2';
 //student
 $route['student'] = 'student/index';
 $route['forms-student'] = 'forms_student';
+$route['forms-student-select'] = 'forms_student/forms_student_select';
 $route['add-student/(:num)']['post'] = 'forms_student/add_student/$1';
+$route['add-student-select/(:num)/(:num)/(:num)/(:num)']['post'] = 'forms_student/add_student_select/$1/$2/$3/$4';
 
+
+
+
+
+
+$route['delete-student/(:any)/(:num)/(:num)/(:num)/(:num)'] = 'forms_student/delete_student/$1/$2/$3/$4/$5';
 
 ///////////////////// STUDENT - END /////////////////////////
 
