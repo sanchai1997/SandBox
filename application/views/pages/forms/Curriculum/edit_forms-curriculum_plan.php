@@ -98,13 +98,6 @@
 
                 <div class="col-md-16">
                   <div class="form-floating">
-                    <input type="text" class="form-control" name="PLAN_ACTIVITY" id="PLAN_ACTIVITY" placeholder="รหัสกิจกรรม" maxlength="100" value="<?php echo  $cp->PLAN_ACTIVITY?>">
-                    <label >รหัสกิจกรรม</label>
-                  </div>
-                </div>
-
-                <div class="col-md-16">
-                  <div class="form-floating">
                     <input type="text" class="form-control" name="PLAN_RECOMMEND" id="PLAN_RECOMMEND" placeholder="กิจกรรมเสนอแนะ" maxlength="100" value="<?php echo  $cp->PLAN_RECOMMEND?>">
                     <label >กิจกรรมเสนอแนะ</label>
                   </div>
@@ -127,7 +120,8 @@
                 
 
                 <div class="d-flex justify-content-between">
-                  <a href="list-curriculum" class="btn btn-danger" >ยกเลิก</a>
+                  <a href="list-curriculum_plan?cid=<?php echo $cp->CurriculumID; ?>&&sid=<?php echo $cp->SubjectCode; ?>" class="btn btn-danger">ยกเลิก</a>
+
                   <button type="button" class="btn btn-warning" onclick="return check(addCurriculum)">แก้ไขข้อมูล</button>
                 </div> 
                <!-- Modal -->
@@ -145,7 +139,7 @@
                           </div>
                           <div class="modal-footer">
                           <div class="text-center">
-                              <button type="submit" class="btn btn-primary" >ยืนยัน</button> 
+                          <button type="submit" class="btn btn-warning" >แก้ไขข้อมูล</button> 
                               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ยกเลิก</button>
                           </div>
                       </div>

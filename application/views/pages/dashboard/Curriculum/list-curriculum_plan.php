@@ -33,7 +33,9 @@
 
             <div class="card-body">
                 <div class="row">
-                    
+                    <div class="col">
+                        <h5 class="card-title"><a href="list-curriculum_subject?cid=<?php echo $CurriculumID; ?>" class="btn btn-secondary" data-mdb-ripple-color="dark">ย้อนกลับ</a></h5>
+                    </div>            
                     <div class="col">
                         <h5 style="float: right; padding: 15px;" class="card-title"><a href="forms-curriculum_plan?sid=<?php echo $SubjectCode; ?>&&cid=<?php echo $CurriculumID; ?>" class="btn btn-success">เพิ่มข้อมูล</a></h5>
                     </div>
@@ -55,7 +57,7 @@
                                 <th style="text-align: center;" scope="col"><?php echo $lcp->SEMESTER?></th>
                                 <th style="text-align: center;" scope="col"><?php echo $lcp->PLAN_NAME?></th>
                                 <td style="text-align: center;">
-                                    <a href='list-curriculum_activity?pid=<?php echo $lcp->PLAN_ID; ?>'>
+                                    <a href='list-curriculum_activity?pid=<?php echo $lcp->PLAN_ID; ?>&&sid=<?php echo $SubjectCode; ?>&&cid=<?php echo $CurriculumID; ?>'>
                                         <button type="button" class="btn btn-info"><i class="bi bi-eye-fill"></i></button> 
                                     </a>
                                 </td>

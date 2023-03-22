@@ -333,7 +333,7 @@ class CurriculumController extends CI_Controller{
             redirect(base_url('list-curriculum_subject?cid='. $CurriculumID));
         }else{
             $this->session->set_flashdata('errors',"เกิดข้อผิดพลาดในการบันทึกข้อมูล");
-            redirect(base_url('forms-curriculum_subject' ));
+            redirect(base_url('forms-curriculum_subject?cid='. $CurriculumID ));
         }
 
     }
@@ -575,7 +575,6 @@ class CurriculumController extends CI_Controller{
             'PLAN_CHARACTER' => $this->input->post('PLAN_CHARACTER'),
             'PLAN_DETAILS' => $this->input->post('PLAN_DETAILS'),
             'PLAN_PROCESS' => $this->input->post('PLAN_PROCESS'),
-            'PLAN_ACTIVITY' => $this->input->post('PLAN_ACTIVITY'),
             'PLAN_RECOMMEND' => $this->input->post('PLAN_RECOMMEND'),
             'PLAN_MEMO_TA' => $this->input->post('PLAN_MEMO_TA'),
             'PLAN_MEMO_SV' => $this->input->post('PLAN_MEMO_SV'),
@@ -590,7 +589,7 @@ class CurriculumController extends CI_Controller{
             redirect(base_url('list-curriculum_plan?sid='. $SubjectCode.'&&cid='.$CurriculumID));
         }else{
             $this->session->set_flashdata('errors',"เกิดข้อผิดพลาดในการบันทึกข้อมูล");
-            redirect(base_url('forms-forms_curriculum_plan'));
+            redirect(base_url('forms-forms_curriculum_plan?sid='. $SubjectCode.'&&cid='.$CurriculumID));
         }
 
     }
@@ -625,7 +624,6 @@ class CurriculumController extends CI_Controller{
             'PLAN_CHARACTER' => $this->input->post('PLAN_CHARACTER'),
             'PLAN_DETAILS' => $this->input->post('PLAN_DETAILS'),
             'PLAN_PROCESS' => $this->input->post('PLAN_PROCESS'),
-            'PLAN_ACTIVITY' => $this->input->post('PLAN_ACTIVITY'),
             'PLAN_RECOMMEND' => $this->input->post('PLAN_RECOMMEND'),
             'PLAN_MEMO_TA' => $this->input->post('PLAN_MEMO_TA'),
             'PLAN_MEMO_SV' => $this->input->post('PLAN_MEMO_SV'),
@@ -640,7 +638,7 @@ class CurriculumController extends CI_Controller{
             redirect(base_url('list-curriculum_plan?sid='. $SubjectCode.'&&cid='.$CurriculumID));
         }else{
             $this->session->set_flashdata('errors',"เกิดข้อผิดพลาดในการบันทึกข้อมูล");
-            redirect(base_url('forms-forms_curriculum_plan'));
+            redirect(base_url('forms-forms_curriculum_plan?sid='. $SubjectCode.'&&cid='.$CurriculumID));
         }
 
     }
@@ -653,7 +651,7 @@ class CurriculumController extends CI_Controller{
             redirect(base_url('list-curriculum_plan?sid='. $SubjectCode.'&&cid='. $CurriculumID));
         }else{
             $this->session->set_flashdata('errors',"เกิดข้อผิดพลาดในการลบข้อมูล");
-            redirect(base_url('forms-forms_curriculum_plan'));
+            redirect(base_url('list-curriculum_plan?sid='. $SubjectCode.'&&cid='. $CurriculumID));
         }
     }
     ##curriculum_activity
@@ -664,6 +662,8 @@ class CurriculumController extends CI_Controller{
             show_404();
         }
         $data['PLAN_ID'] = $_GET['pid']; 
+        $data['CurriculumID'] = $_GET['cid']; 
+        $data['SubjectCode'] = $_GET['sid']; 
         $data['list_curriculum_activity'] = $this->Curriculum_model->get_curriculum_activity_All();
 
         
@@ -685,10 +685,10 @@ class CurriculumController extends CI_Controller{
       
         if($result_curriculum_activity == 1 ){    
             $this->session->set_flashdata('success',"บันทึกข้อมูลสำเร็จ");
-            redirect(base_url('list-curriculum_activity?pid='. $PLAN_ID ));
+            redirect(base_url('list-curriculum_activity?pid='. $PLAN_ID.'&&sid='. $SubjectCode.'&&cid='. $CurriculumID ));
         }else{
             $this->session->set_flashdata('errors',"เกิดข้อผิดพลาดในการบันทึกข้อมูล");
-            redirect(base_url('forms-curriculum_activity'));
+            redirect(base_url('forms-curriculum_activity?pid='. $PLAN_ID.'&&sid='. $SubjectCode.'&&cid='. $CurriculumID));
         }
 
     }
@@ -699,7 +699,8 @@ class CurriculumController extends CI_Controller{
             show_404();
         }
         $data['PLAN_ID'] = $_GET['pid']; 
-       
+        $data['CurriculumID'] = $_GET['cid']; 
+        $data['SubjectCode'] = $_GET['sid']; 
 
         $this->load->view('templates/header');
         $this->load->view('templates/sidebar');
@@ -714,7 +715,9 @@ class CurriculumController extends CI_Controller{
             show_404();
         }
         $data['PLAN_ID'] = $_GET['pid']; 
-        $data['ACTIVITY_ID'] = $_GET['ACTIVITY_ID']; 
+        $data['ACTIVITY_ID'] = $_GET['ACTIVITY_ID'];
+        $data['CurriculumID'] = $_GET['cid']; 
+        $data['SubjectCode'] = $_GET['sid']; 
 
         $data['curriculum_activity'] = $this->Curriculum_model->get_curriculum_activity($data['ACTIVITY_ID']);
 
@@ -729,6 +732,8 @@ class CurriculumController extends CI_Controller{
 
         $PLAN_ID =  $this->input->post('PLAN_ID');
         $ACTIVITY_ID =  $this->input->post('ACTIVITY_ID');
+        $CurriculumID = $this->input->post('CurriculumID');
+        $SubjectCode = $this->input->post('SubjectCode');
         $curriculum_activity = [
             'ACTIVITY_NAME' => $this->input->post('ACTIVITY_NAME'),
             'PLAN_ID' =>$PLAN_ID ,
@@ -738,10 +743,10 @@ class CurriculumController extends CI_Controller{
       
         if($result_curriculum_activity == 1 ){    
             $this->session->set_flashdata('success',"บันทึกข้อมูลสำเร็จ");
-            redirect(base_url('list-curriculum_activity?pid='. $PLAN_ID ));
+            redirect(base_url('list-curriculum_activity?pid='. $PLAN_ID.'&&sid='. $SubjectCode.'&&cid='. $CurriculumID ));
         }else{
             $this->session->set_flashdata('errors',"เกิดข้อผิดพลาดในการบันทึกข้อมูล");
-            redirect(base_url('forms-curriculum_activity'));
+            redirect(base_url('forms-curriculum_activity?pid='. $PLAN_ID.'&&sid='. $SubjectCode.'&&cid='. $CurriculumID));
         }
 
     }
@@ -752,10 +757,10 @@ class CurriculumController extends CI_Controller{
 
         if($result == 1 ){
             $this->session->set_flashdata('success',"ลบข้อมูลสำเร็จ");
-            redirect(base_url('list-curriculum_activity?pid='. $PLAN_ID ));
+            redirect(base_url('list-curriculum_activity?pid='. $PLAN_ID.'&&sid='. $SubjectCode.'&&cid='. $CurriculumID ));
         }else{
             $this->session->set_flashdata('errors',"เกิดข้อผิดพลาดในการลบข้อมูล");
-            redirect(base_url('forms-curriculum_activity'));
+            redirect(base_url('list-curriculum_activity?pid='. $PLAN_ID.'&&sid='. $SubjectCode.'&&cid='. $CurriculumID ));
         }
     }
 

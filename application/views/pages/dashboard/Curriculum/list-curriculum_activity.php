@@ -33,7 +33,10 @@
             <div class="card-body">
                 <div class="row">
                     <div class="col">
-                        <h5 style="float: right; padding: 15px;" class="card-title"><a href="forms-curriculum_activity?pid=<?php echo $PLAN_ID; ?>" class="btn btn-success">เพิ่มข้อมูล</a></h5>
+                        <h5 class="card-title"><a href="list-curriculum_plan?sid=<?php echo $SubjectCode; ?>&&cid=<?php echo $CurriculumID; ?>" class="btn btn-secondary" data-mdb-ripple-color="dark">ย้อนกลับ</a></h5>
+                    </div>   
+                    <div class="col">
+                        <h5 style="float: right; padding: 15px;" class="card-title"><a href="forms-curriculum_activity?pid=<?php echo $PLAN_ID; ?>&&sid=<?php echo $SubjectCode; ?>&&cid=<?php echo $CurriculumID; ?>" class="btn btn-success">เพิ่มข้อมูล</a></h5>
                     </div>
                 </div>
                 <table class="table table-borderless datatable">
@@ -49,13 +52,13 @@
                             <tr>
                                 <th style="text-align: center;" scope="col"><?php echo$lca->ACTIVITY_NAME ?></th>
                                 <td style="text-align: center;">
-                                        <a href='forms-curriculum_assessment?aid=<?php echo$lca->ACTIVITY_ID ?>' class="btn btn-info">
+                                        <a href='forms-curriculum_assessment?aid=<?php echo$lca->ACTIVITY_ID ?>&&sid=<?php echo $SubjectCode; ?>&&cid=<?php echo $CurriculumID; ?>' class="btn btn-info">
                                             <i class="bi bi-eye-fill"></i>
                                         </a>
                                     </td>
                                 <td style="text-align: center;">
                                        
-                                        <a href='edit_forms-curriculum_activity?pid=<?php echo$lca->PLAN_ID ?>&&ACTIVITY_ID=<?php echo$lca->ACTIVITY_ID ?>' class="btn btn-warning">
+                                        <a href='edit_forms-curriculum_activity?pid=<?php echo$lca->PLAN_ID ?>&&ACTIVITY_ID=<?php echo$lca->ACTIVITY_ID ?>&&sid=<?php echo $SubjectCode; ?>&&cid=<?php echo $CurriculumID; ?>' class="btn btn-warning">
                                             <i class="bi bi-pencil-square"></i>
                                         </a>
                                         <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#delete">

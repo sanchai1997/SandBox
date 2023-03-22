@@ -94,13 +94,6 @@
 
                 <div class="col-md-16">
                   <div class="form-floating">
-                    <input type="text" class="form-control" name="PLAN_ACTIVITY" id="PLAN_ACTIVITY" placeholder="รหัสกิจกรรม" maxlength="100">
-                    <label >รหัสกิจกรรม</label>
-                  </div>
-                </div>
-
-                <div class="col-md-16">
-                  <div class="form-floating">
                     <input type="text" class="form-control" name="PLAN_RECOMMEND" id="PLAN_RECOMMEND" placeholder="กิจกรรมเสนอแนะ" maxlength="100">
                     <label >กิจกรรมเสนอแนะ</label>
                   </div>
@@ -123,7 +116,7 @@
                 
 
                 <div class="d-flex justify-content-between">
-                  <a href="list-curriculum" class="btn btn-danger" >ยกเลิก</a>
+                  <a href="list-curriculum_plan?cid=<?php echo $CurriculumID; ?>&&sid=<?php echo $SubjectCode; ?>" class="btn btn-danger">ยกเลิก</a>
                   <button type="button" class="btn btn-primary" onclick="return check(addCurriculum)">บันทึกข้อมูล</button>
                 </div> 
                <!-- Modal -->

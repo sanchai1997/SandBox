@@ -26,7 +26,7 @@
         <div class="col-lg-9">
           <div class="card">
             <div class="card-body">
-              <h5 class="card-title">กิจกรรม</h5>
+              <h5 class="card-title"></h5>
         <?php foreach ($curriculum_activity as $ac) {?>
 
 
@@ -36,7 +36,9 @@
 
               <input type="hidden" class="form-control" name="PLAN_ID" id="PLAN_ID"value="<?php echo $PLAN_ID?>">
               <input type="hidden" class="form-control" name="ACTIVITY_ID" id="ACTIVITY_ID" value="<?php echo $ac->ACTIVITY_ID ?>">
-                <div class="col-md-16">
+              <input type="hidden" name="CurriculumID" id="CurriculumID" value="<?php echo $CurriculumID; ?>">
+              <input type="hidden" name="SubjectCode" id="SubjectCode" value="<?php echo $SubjectCode; ?>">
+              <div class="col-md-16">
                   <div class="form-floating">
                     <input type="text" class="form-control" name="ACTIVITY_NAME" id="ACTIVITY_NAME" placeholder="ชื่อกิจกรรม" maxlength="100" value="<?php echo$ac->ACTIVITY_NAME ?>">
                     <label >ชื่อกิจกรรม</label>
@@ -47,7 +49,7 @@
                 
 
                 <div class="d-flex justify-content-between">
-                  <a href="list-curriculum_activity?pid=<?php echo $PLAN_ID; ?>" class="btn btn-danger" >ยกเลิก</a>
+                  <a href="list-curriculum_activity?pid=<?php echo $PLAN_ID; ?>&&sid=<?php echo $SubjectCode; ?>&&cid=<?php echo $CurriculumID; ?>" class="btn btn-danger" >ยกเลิก</a>
                   <button type="button" class="btn btn-warning" onclick="return check(ACTIVITY)">แก้ไขข้อมูล</button>
                 </div> 
                <!-- Modal -->
@@ -65,8 +67,8 @@
                           </div>
                           <div class="modal-footer">
                           <div class="text-center">
-                              <button type="submit" class="btn btn-primary" >ยืนยัน</button> 
-                              <button type="button" class="btn btn-danger" data-bs-dismiss="modal">ยกเลิก</button>
+                            <button type="submit" class="btn btn-warning" >แก้ไขข้อมูล</button> 
+                              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ยกเลิก</button>
                           </div>
                       </div>
                   </div>

@@ -26,7 +26,7 @@
         <div class="col-lg-9">
           <div class="card">
             <div class="card-body">
-              <h5 class="card-title">กิจกรรม</h5>
+              <h5 class="card-title"></h5>
 
               <!-- start Form ข้อมูลกิจกรรม  -->
               <form class="row g-3" action="<?php echo base_url('add_curriculum_activity');?>" method="POST" name="ACTIVITY" id="ACTIVITY" enctype="multipart/form-data"> 
@@ -45,7 +45,7 @@
                 
 
                 <div class="d-flex justify-content-between">
-                  <a href="list-curriculum_activity?pid=<?php echo $PLAN_ID; ?>" class="btn btn-danger" >ยกเลิก</a>
+                  <a href="list-curriculum_activity?pid=<?php echo $PLAN_ID; ?>&&sid=<?php echo $SubjectCode; ?>&&cid=<?php echo $CurriculumID; ?>" class="btn btn-danger" >ยกเลิก</a>
                   <button type="button" class="btn btn-primary" onclick="return check(ACTIVITY)">บันทึกข้อมูล</button>
                 </div> 
                <!-- Modal -->

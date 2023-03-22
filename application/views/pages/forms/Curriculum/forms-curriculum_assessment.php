@@ -26,7 +26,7 @@
         <div class="col-lg-9">
           <div class="card">
             <div class="card-body">
-              <h5 class="card-title">การวัดและประเมินผล</h5>
+              <h5 class="card-title"></h5>
 
               <!-- start Form การวัดและประเมินผล  -->
               <form class="row g-3" action="<?php echo base_url('add_curriculum_assessment');?>" method="POST" name="assessment" id="assessment" enctype="multipart/form-data"> 
