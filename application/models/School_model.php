@@ -35,7 +35,7 @@ class School_model extends CI_Model
     {
 
         $config['file_name'] = 'ImageSchool_' . $_POST['JurisdictionCode'] . $_POST['SchoolAddressProvinceCode'];
-        $config['upload_path'] = './assets/school/';
+        $config['upload_path'] = './assets/img/school/';
         $config['allowed_types'] = 'doc|docx|pdf|jpg|png|xls|ppt|zip|xlsx';
 
         $this->load->library('upload', $config);
@@ -83,7 +83,7 @@ class School_model extends CI_Model
     {
 
         $config['file_name'] = 'ImageSchool_' . $SchoolID;
-        $config['upload_path'] = './assets/school/';
+        $config['upload_path'] = './assets/img/school/';
         $config['allowed_types'] = 'doc|docx|pdf|jpg|png|xls|ppt|zip|xlsx';
         $config['overwrite'] = TRUE;
 
