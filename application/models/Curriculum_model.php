@@ -57,9 +57,6 @@ class Curriculum_model  extends CI_Model {
         ;
 
         $query = $this->db->get();
-        
-        //show_error($this->db->last_query());
-        
         return $query->result();
         
     }
@@ -189,6 +186,39 @@ class Curriculum_model  extends CI_Model {
         $result = $this->db->update('CURRICULUM_SCHOOL_COMPETENCY', $data);
         return $result;
     }
+###################### curriculum_plan ################################
+
+    public function insert_curriculum_plan($curriculum_plan) {
+        $result_curriculum_plan = $this->db->insert('plan', $curriculum_plan);
+        return $result_curriculum_plan;
+    }
+    public function get_Curriculum_plan_All( $CurriculumID, $SubjectCode) {
+        $this->db->select('*')
+        ->from('plan')
+        ->where('CurriculumID ', $CurriculumID  ) 
+        ->where('SubjectCode ', $SubjectCode  ) ;
+        $query = $this->db->get();
+       
+        return $query->result();
+    }
+    public function get_Curriculum_plan($PLAN_ID) {
+        $this->db->from('plan')
+        ->where('PLAN_ID', $PLAN_ID);
+
+        $query = $this->db->get();
+        return $query->result();
+    }
+    public function update_Curriculum_plan($PLAN_ID, $curriculum_plan){
+        $this->db->where('PLAN_ID', $PLAN_ID);
+        $result = $this->db->update('plan',  $curriculum_plan);
+        return $result;
+    }
+    public function delete_Curriculum_plan($PLAN_ID){   
+        $this->db->where('PLAN_ID', $PLAN_ID);
+        $result = $this->db->delete('plan');
+        return $result;
+    }
+    
 
     
 }

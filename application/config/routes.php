@@ -36,6 +36,10 @@ $route['delete-curriculum_school_competency/(:num)/(:num)/(:num)'] = 'Curriculum
 //curriculum_plan
 $route['list-curriculum_plan'] = 'CurriculumController/list_curriculum_plan';
 $route['forms-curriculum_plan'] = 'CurriculumController/forms_curriculum_plan';
+$route['add_curriculum_plan']['post'] = 'CurriculumController/add_curriculum_plan';
+$route['edit_forms_curriculum_plan'] = 'CurriculumController/forms_edit_curriculum_plan';
+$route['edit_curriculum_plan']['post'] = 'CurriculumController/edit_curriculum_plan';
+$route['delete-curriculum_plan/(:num)/(:num)/(:num)'] = 'CurriculumController/delete_curriculum_plan/$1/$2/$3';
 //Curriculum_by_school
 $route['list_curriculum_by_school'] = 'CurriculumController/list_curriculum_by_school';
 //Curriculum_by_school

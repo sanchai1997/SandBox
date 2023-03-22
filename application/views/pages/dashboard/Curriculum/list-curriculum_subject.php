@@ -70,7 +70,7 @@
                                     </a>
                                 </td>
                                 <td style="text-align: center;">
-                                    <a href='list-curriculum_plan'>
+                                    <a href='list-curriculum_plan?sid=<?php echo $ls->SubjectCode; ?>&&cid=<?php echo $ls->CurriculumID; ?>'>
                                         <button type="button" class="btn btn-info"><i class="bi bi-eye-fill"></i></button> 
                                     </a>
                                 </td>

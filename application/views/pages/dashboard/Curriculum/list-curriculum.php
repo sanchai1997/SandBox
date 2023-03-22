@@ -181,10 +181,9 @@
 
 
                                             </div>
-
                                             <div class="modal-footer">
                                                 <a href='edit_forms-curriculum?cid=<?php echo $ls->CurriculumID; ?>' class="btn btn-warning"><i class="bi bi-pencil-square"></i></button></a>
-                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ปิด</button>                                            </div>
+                                                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">ปิด</button>                                            </div>
                                         </div>
                                     </div>
                                 </div>

@@ -36,7 +36,7 @@
                     
                     <div class="col">
                     <h5 style="float: right; padding: 15px;" class="card-title"><a href="forms-curriculum_activity" class="btn btn-success">ๅๅๅ</a></h5>
-                        <h5 style="float: right; padding: 15px;" class="card-title"><a href="forms-curriculum_plan" class="btn btn-success">เพิ่มข้อมูล</a></h5>
+                        <h5 style="float: right; padding: 15px;" class="card-title"><a href="forms-curriculum_plan?sid=<?php echo $SubjectCode; ?>&&cid=<?php echo $CurriculumID; ?>" class="btn btn-success">เพิ่มข้อมูล</a></h5>
                     </div>
                 </div>
                 <table class="table table-borderless datatable">
@@ -44,12 +44,94 @@
                         <tr>
                             <th style="text-align: center;" scope="col">ปีการศึกษา</th>
                             <th style="text-align: center;" scope="col">ภาคเรียน</th>
+                            <th style="text-align: center;" scope="col">เรื่อง</th>
+                            <th style="text-align: center;" scope="col">กิจกกรม</th>
                             <th style="text-align: center;" scope="col">ปฎิบัติ</th>
                         </tr>
                     </thead>
-                
                     <tbody>
-                        
+                        <?php foreach($listcurriculum_plan as $lcp){ ?>
+                            <tr>
+                                <th style="text-align: center;" scope="col"><?php echo $lcp->EDUCATION_YEAR  ?></th>
+                                <th style="text-align: center;" scope="col"><?php echo $lcp->SEMESTER?></th>
+                                <th style="text-align: center;" scope="col"><?php echo $lcp->PLAN_NAME?></th>
+                                <td style="text-align: center;">
+                                    <a href='list-curriculum_school_competency'>
+                                        <button type="button" class="btn btn-info"><i class="bi bi-eye-fill"></i></button> 
+                                    </a>
+                                </td>
+                                <td style="text-align: center;">
+                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#view"><i class="bi bi-card-list"></i></button>
+                                        <a href='edit_forms_curriculum_plan?pid=<?php echo $lcp->PLAN_ID; ?>' class="btn btn-warning">
+                                            <i class="bi bi-pencil-square"></i>
+                                        </a>
+                                    <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#delete">
+                                            <i class=" bi bi-trash"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                            <!-- Modal view -->
+                            <div class="modal fade" id="view" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-xl">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel" style="padding-left: 30px; padding-top: 15px;"> <i class="bi bi-card-heading"></i>ข้อมูลแผนการเรียนรู้ </h5>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                            <hr>
+                                        </div>
+                                        <div class="modal-body" style="padding-left: 70px; padding-top: 20px;">
+                                            <div class="row">
+                                                <h6 style="padding-top: 10px;"><b>รหัสหลักสูตร</b></h6>
+                                                    <div class=" col-8" style="padding-bottom: 8px; padding-left: 40px;">
+                                                        รหัสหลักสูตร : 
+                                                    </div>
+                                            </div>
+                                            <div class="row">
+                                                <h6 style="padding-top: 10px;"><b>ปีการศึกษา</b></h6>
+                                                    <div class=" col-8" style="padding-bottom: 8px; padding-left: 40px;">
+                                                        ปีการศึกษา : <?php echo $lcp->EDUCATION_YEAR  ?>
+                                                    </div>
+                                                <div class=" col-8" style="padding-bottom: 8px; padding-left: 40px;">
+                                                        ภาคเรียน : 
+                                                    </div>
+                                            </div>
+                                            <div class="row">
+                                                <h6 style="padding-top: 10px;"><b>สถานศึกษา</b></h6>
+                                                    <div class=" col-8" style="padding-bottom: 8px; padding-left: 40px;">
+                                                        สถานศึกษา :
+                                                    </div>
+                                            </div>
+                                    </div>
+                                        <div class="modal-footer">
+                                            <a href='edit_forms_curriculum_plan?pid=<?php echo $lcp->PLAN_ID; ?>' class="btn btn-warning"><i class="bi bi-pencil-square"></i></button></a>
+                                            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">ปิด</button>                                            </div>
+                                        </div>
+                                </div>
+                            </div>
+                            <!----------------------------  END Modal view --------------------------------->
+                            <!-- Modal delete -->
+                                <div class="modal fade" id="delete" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+                                    <div class="modal-dialog modal-dialog-centered" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="exampleModalLongTitle">ยืนยันการลบข้อมูล</h5>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <h6>
+                                                    <center>คุณต้องการลบข้อมูลใช่หรือไหม ?</center>
+                                                </h6>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <a href="<?php echo base_url('delete-curriculum_plan/' . $lcp->PLAN_ID.'/'.$lcp->SubjectCode. '/'.$lcp->CurriculumID ) ?>" class="btn btn-danger">ลบ</a>
+                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ยกเลิก</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                             <!----------------------------  END Modal delete--------------------------------->
+                        <?php } ?>
+
                     </tbody>
                 
                 </table>
