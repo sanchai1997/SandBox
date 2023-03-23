@@ -37,7 +37,7 @@
                 <div class="col-md-16">
                   <div class="form-floating">
                     <input type="text" class="form-control" name="ASSESSMENT_NAME" id="ASSESSMENT_NAME" placeholder="ชื่อการวัดและประเมินผล" maxlength="255">
-                    <label >ชื่อการวัดและประเมินผล</label>
+                    <label >ชื่อการวัดและประเมินผล<font color="red"> *</font></label>
                   </div>
                 </div>
 

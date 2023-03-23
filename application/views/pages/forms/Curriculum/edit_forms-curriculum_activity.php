@@ -41,7 +41,7 @@
               <div class="col-md-16">
                   <div class="form-floating">
                     <input type="text" class="form-control" name="ACTIVITY_NAME" id="ACTIVITY_NAME" placeholder="ชื่อกิจกรรม" maxlength="100" value="<?php echo$ac->ACTIVITY_NAME ?>">
-                    <label >ชื่อกิจกรรม</label>
+                    <label >ชื่อกิจกรรม<font color="red"> *</font></label>
                   </div>
                 </div>
 
