@@ -188,7 +188,7 @@
                                     <select class="form-select" name="StudentNationalityCode" id="StudentNationalityCode" aria-label="StudentNationalityCode">
                                         <option value="" selected>เลือก</option>
                                         <?php
-                                        $result = $this->db->query('SELECT * FROM CLS_NATIONALITY');
+                                        $result = $this->db->query('SELECT * FROM CLS_NATIONALITY ORDER BY NATIONALITY_NAME ASC');
                                         foreach ($result->result() as $NATIONALITY) {
                                         ?>
                                             <option value="<?= $NATIONALITY->NATIONALITY_CODE; ?>"><?= $NATIONALITY->NATIONALITY_NAME; ?></option>
@@ -204,7 +204,7 @@
                                     <select class="form-select" name="StudentRaceCode" id="StudentRaceCode" aria-label="StudentRaceCode">
                                         <option value="" selected>เลือก</option>
                                         <?php
-                                        $result = $this->db->query('SELECT * FROM CLS_RACE');
+                                        $result = $this->db->query('SELECT * FROM CLS_RACE ORDER BY RACE_NAME ASC');
                                         foreach ($result->result() as $RACE) {
                                         ?>
                                             <option value="<?= $RACE->RACE_CODE; ?>"><?= $RACE->RACE_NAME; ?></option>
@@ -220,7 +220,7 @@
                                     <select class="form-select" name="StudentReligionCode" id="StudentReligionCode" aria-label="StudentReligionCode">
                                         <option value="" selected>เลือก</option>
                                         <?php
-                                        $result = $this->db->query('SELECT * FROM CLS_RELIGION');
+                                        $result = $this->db->query('SELECT * FROM CLS_RELIGION ORDER BY RELIGION_NAME ASC');
                                         foreach ($result->result() as $RELIGION) {
                                         ?>
                                             <option value="<?= $RELIGION->RELIGION_CODE; ?>"><?= $RELIGION->RELIGION_NAME; ?></option>
@@ -236,7 +236,7 @@
                                     <select class="form-select" name="StudentLanguageCode" id="StudentLanguageCode" aria-label="StudentLanguageCode">
                                         <option value="" selected>เลือก</option>
                                         <?php
-                                        $result = $this->db->query('SELECT * FROM CLS_LANGUAGE');
+                                        $result = $this->db->query('SELECT * FROM CLS_LANGUAGE ORDER BY LANGUAGE_NAME ASC');
                                         foreach ($result->result() as $LANGUAGE) {
                                         ?>
                                             <option value="<?= $LANGUAGE->LANGUAGE_CODE; ?>"><?= $LANGUAGE->LANGUAGE_NAME; ?></option>

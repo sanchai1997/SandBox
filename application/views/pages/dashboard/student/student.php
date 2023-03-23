@@ -267,11 +267,11 @@
                                 <div class=" col-10" style="padding-top: 0px; padding-left: 40px; padding-right: 60px;">
                                     <div class="card">
                                         <div class="card-body">
-                                            <h5 style="text-align: left; padding-left: 25px; padding-top: 30px;" class="card-title">
+                                            <h5 style="text-align: left; padding-left: 25px; padding-top: 25px;" class="card-title">
                                                 ชื่อ-นามสกุล : <?= $STUDENT_DETAIL->PREFIX_NAME . $STUDENT_DETAIL->StudentNameThai . ' ' . $STUDENT_DETAIL->StudentLastNameThai ?> <?php if ($STUDENT_DETAIL->StudentNameEnglish != NULL && $STUDENT_DETAIL->StudentLastNameEnglish != NULL) {
                                                                                                                                                                                         echo ' (' . $STUDENT_DETAIL->StudentNameEnglish . ' ' . $STUDENT_DETAIL->StudentLastNameEnglish . ')';
                                                                                                                                                                                     } ?>
-                                                <a style="float: right;" href="" class="btn btn-sm btn-warning"><i class="bi bi-pencil-square"></i></a>
+                                                <a style="float: right;" href="edit-forms-student-main?SchoolID=<?= $STUDENT_DETAIL->SchoolID; ?>&&StudentReferenceID=<?= $STUDENT_DETAIL->StudentReferenceID ?>&&EducationYear=<?= $STUDENT_DETAIL->EducationYear; ?>&&Semester=<?= $STUDENT_DETAIL->Semester; ?>&&GradeLevelCode=<?= $STUDENT_DETAIL->GradeLevelCode; ?>" class="btn btn-sm btn-warning"><i class="bi bi-pencil-square"></i></a>
                                             </h5>
 
                                             <div class="row">
@@ -279,8 +279,16 @@
                                                     <label style="padding-left: 25px;"> รหัสประจำตัวนักเรียน: &nbsp;<?= $STUDENT_DETAIL->StudentID ?></label><br>
                                                     <label style="padding-left: 25px;"> ระดับการศึกษา: &nbsp;<?= $STUDENT_DETAIL->EDUCATION_LEVEL_NAME ?></label><br>
                                                     <label style="padding-left: 25px;"> ระดับชั้นเรียน: &nbsp;<?= $STUDENT_DETAIL->GRADE_LEVEL_NAME ?></label><br>
-                                                    <label style="padding-left: 25px;"> ห้องเรียน: &nbsp;<?= $STUDENT_DETAIL->Classroom ?></label><br>
-                                                    <label style="padding-left: 25px;"> สถานภาพ: &nbsp;<?= $STUDENT_DETAIL->STUDENT_STATUS_NAME ?></label>
+                                                    <label style="padding-left: 25px;"> หลักสูตร: &nbsp; <?php if ($STUDENT_DETAIL->CurriculumID == '') {
+                                                                                                                echo '-';
+                                                                                                            } else {
+                                                                                                                echo $STUDENT_DETAIL->CurriculumID;
+                                                                                                            } ?></label><br>
+                                                    <label style="padding-left: 25px;"> ห้องเรียน: &nbsp;<?php if ($STUDENT_DETAIL->Classroom == '') {
+                                                                                                                echo '-';
+                                                                                                            } else {
+                                                                                                                echo $STUDENT_DETAIL->Classroom;
+                                                                                                            } ?></label><br>
                                                 </div>
                                                 <div class="col-6" style="text-align: left; padding-left: 25px; padding-bottom: 5px;">
                                                     <label style="padding-left: 25px;"> ปีการศึกษา: &nbsp;<?= $STUDENT_DETAIL->EducationYear ?></label>
@@ -291,7 +299,8 @@
                                                     } ?>
                                                     <label style="padding-left: 25px;"> ปีการศึกษาที่เริ่มเข้าเรียน: &nbsp;<?= $STUDENT_DETAIL->SchoolAdmissionYear ?></label><br>
                                                     <label style="padding-left: 25px;"> ปีการศึกษาที่เริ่มเข้าเรียนในระดับการศึกษาปัจจุบัน: &nbsp;<?= $STUDENT_DETAIL->CurrentEducationLevelAdmissionYear ?></label><br>
-                                                    <label style="padding-left: 25px;"> สถานศึกษา: &nbsp;<?= $SCHOOL_NAME ?></label>
+                                                    <label style="padding-left: 25px;"> สถานศึกษา: &nbsp;<?= $SCHOOL_NAME ?></label><br>
+                                                    <label style="padding-left: 25px;"> สถานภาพ: &nbsp;<?= $STUDENT_DETAIL->STUDENT_STATUS_NAME ?></label>
                                                 </div>
                                             </div>
 
@@ -306,9 +315,9 @@
                                     <div class=" col-12" style="padding-top: 0px; padding-left: 60px; padding-right: 40px;">
                                         <div class="card">
                                             <div class="card-body">
-                                                <h5 style="text-align: left; padding-left: 25px; padding-top: 30px;" class="card-title">
+                                                <h5 style="text-align: left; padding-left: 25px; padding-top: 25px;" class="card-title">
                                                     ข้อมูลบุคคล
-                                                    <a style="float: right;" href="" class="btn btn-sm btn-warning"><i class="bi bi-pencil-square"></i></a>
+                                                    <a style="float: right;" href="edit-forms-student-person?SchoolID=<?= $STUDENT_DETAIL->SchoolID; ?>&&StudentReferenceID=<?= $STUDENT_DETAIL->StudentReferenceID ?>&&EducationYear=<?= $STUDENT_DETAIL->EducationYear; ?>&&Semester=<?= $STUDENT_DETAIL->Semester; ?>&&GradeLevelCode=<?= $STUDENT_DETAIL->GradeLevelCode; ?>" class="btn btn-sm btn-warning"><i class="bi bi-pencil-square"></i></a>
                                                 </h5>
                                                 <div class="row">
                                                     <div class="col-4" style="text-align: left; padding-left: 25px; padding-bottom: 5px;">
@@ -373,26 +382,809 @@
 
                                                     </div>
                                                 </div>
-
                                             </div>
-
                                         </div>
+                                        <div class="card">
+                                            <div class="card-body">
+                                                <div class="row">
+                                                    <div class="col-6">
+                                                        <h5 style="text-align: left; padding-left: 25px; padding-top: 25px;" class="card-title">
+                                                            ข้อมูลที่อยู่ (ตามทะเบียนบ้าน)
+                                                        </h5>
+                                                        <div class="col-12" style="text-align: left; padding-left: 25px; padding-bottom: 5px;">
+                                                            <label style="padding-left: 20px;">บ้านเลขที่
+                                                                <?php if ($STUDENT_DETAIL->StudentOfficialAddressHouseNumber == "") {
+                                                                    echo '-';
+                                                                } else {
+                                                                    echo $STUDENT_DETAIL->StudentOfficialAddressHouseNumber;
+                                                                } ?>
+                                                            </label>
+                                                            <label style="padding-left: 10px;">หมู่ที่
+                                                                <?php if ($STUDENT_DETAIL->StudentOfficialAddressMoo == "") {
+                                                                    echo '-';
+                                                                } else {
+                                                                    echo $STUDENT_DETAIL->StudentOfficialAddressMoo;
+                                                                } ?>
+                                                            </label>
+                                                            <label style="padding-left: 10px;">ถนน
+                                                                <?php if ($STUDENT_DETAIL->StudentOfficialAddressStreet == "") {
+                                                                    echo '-';
+                                                                } else {
+                                                                    echo $STUDENT_DETAIL->StudentOfficialAddressStreet;
+                                                                } ?>
+                                                            </label>
+                                                            <label style="padding-left: 10px;">ซอย
+                                                                <?php if ($STUDENT_DETAIL->StudentOfficialAddressSoi == "") {
+                                                                    echo '-';
+                                                                } else {
+                                                                    echo $STUDENT_DETAIL->StudentOfficialAddressSoi;
+                                                                } ?>
+                                                            </label>
+                                                            <label style="padding-left: 10px;">ตรอก
+                                                                <?php if ($STUDENT_DETAIL->StudentOfficialAddressTrok == "") {
+                                                                    echo '-';
+                                                                } else {
+                                                                    echo $STUDENT_DETAIL->StudentOfficialAddressTrok;
+                                                                } ?>
+                                                            </label><br>
+                                                            <?php
+                                                            $result = $this->db->query('SELECT * FROM CLS_SUBDISTRICT WHERE SUBDISTRICT_CODE = "' . $STUDENT_DETAIL->StudentOfficialAddressSubdistrictCode . '"');
+                                                            foreach ($result->result() as $SUBDISTRICT) {
+                                                                $SUBDISTRICT_NAME_2 = $SUBDISTRICT->SUBDISTRICT_NAME;
+                                                            }
+                                                            $result = $this->db->query('SELECT * FROM CLS_DISTRICT WHERE DISTRICT_CODE = "' . $STUDENT_DETAIL->StudentOfficialAddressDistrictCode . '"');
+                                                            foreach ($result->result() as $DISTRICT) {
+                                                                $DISTRICT_NAME_2 = $DISTRICT->DISTRICT_NAME;
+                                                            }
+                                                            $result = $this->db->query('SELECT * FROM CLS_PROVINCE WHERE PROVINCE_CODE = "' . $STUDENT_DETAIL->StudentOfficialAddressProvinceCode . '"');
+                                                            foreach ($result->result() as $PROVINCE) {
+                                                                $PROVINCE_NAME_2 = $PROVINCE->PROVINCE_NAME;
+                                                            }
+                                                            ?>
+                                                            <label style="padding-left: 20px;">ตำบล
+                                                                <?php if ($STUDENT_DETAIL->StudentOfficialAddressSubdistrictCode == "") {
+                                                                    echo '-';
+                                                                } else {
+                                                                    echo $SUBDISTRICT_NAME_2;
+                                                                } ?>
+                                                            </label>
+                                                            <label style="padding-left: 10px;">อำเภอ
+                                                                <?php if ($STUDENT_DETAIL->StudentOfficialAddressDistrictCode == "") {
+                                                                    echo '-';
+                                                                } else {
+                                                                    echo $DISTRICT_NAME_2;
+                                                                } ?>
+                                                            </label>
+                                                            <label style="padding-left: 10px;">จังหวัด
+                                                                <?php if ($STUDENT_DETAIL->StudentOfficialAddressProvinceCode == "") {
+                                                                    echo '-';
+                                                                } else {
+                                                                    echo $PROVINCE_NAME_2;
+                                                                } ?>
+                                                            </label>
+                                                            <label style="padding-left: 10px;">รหัสไปรษณีย์
+                                                                <?php if ($STUDENT_DETAIL->StudentOfficialAddressPostcode == "") {
+                                                                    echo '-';
+                                                                } else {
+                                                                    echo $STUDENT_DETAIL->StudentOfficialAddressPostcode;
+                                                                } ?>
+                                                            </label><br>
+                                                            <label style="padding-left: 20px;">หมายเลขโทรศัพท์
+                                                                <?php if ($STUDENT_DETAIL->StudentOfficialAddressPhoneNumber == "") {
+                                                                    echo '-';
+                                                                } else {
+                                                                    echo $STUDENT_DETAIL->StudentOfficialAddressPhoneNumber;
+                                                                } ?>
+                                                            </label><br>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-6">
+                                                        <h5 style="text-align: left; padding-left: 25px; padding-top: 25px;" class="card-title">
+                                                            ข้อมูลที่อยู่ (ปัจจุบัน)
+                                                            <a style="float: right;" href="edit-forms-student-address?SchoolID=<?= $STUDENT_DETAIL->SchoolID; ?>&&StudentReferenceID=<?= $STUDENT_DETAIL->StudentReferenceID ?>&&EducationYear=<?= $STUDENT_DETAIL->EducationYear; ?>&&Semester=<?= $STUDENT_DETAIL->Semester; ?>&&GradeLevelCode=<?= $STUDENT_DETAIL->GradeLevelCode; ?>" class="btn btn-sm btn-warning"><i class="bi bi-pencil-square"></i></a>
+                                                        </h5>
+                                                        <div class="col-12" style="text-align: left; padding-left: 25px; padding-bottom: 5px;">
+                                                            <label style="padding-left: 20px;">บ้านเลขที่
+                                                                <?php if ($STUDENT_DETAIL->StudentCurrentAddressHouseNumber == "") {
+                                                                    echo '-';
+                                                                } else {
+                                                                    echo $STUDENT_DETAIL->StudentCurrentAddressHouseNumber;
+                                                                } ?>
+                                                            </label>
+                                                            <label style="padding-left: 10px;">หมู่ที่
+                                                                <?php if ($STUDENT_DETAIL->StudentCurrentAddressMoo == "") {
+                                                                    echo '-';
+                                                                } else {
+                                                                    echo $STUDENT_DETAIL->StudentCurrentAddressMoo;
+                                                                } ?>
+                                                            </label>
+                                                            <label style="padding-left: 10px;">ถนน
+                                                                <?php if ($STUDENT_DETAIL->StudentCurrentAddressStreet == "") {
+                                                                    echo '-';
+                                                                } else {
+                                                                    echo $STUDENT_DETAIL->StudentCurrentAddressStreet;
+                                                                } ?>
+                                                            </label>
+                                                            <label style="padding-left: 10px;">ซอย
+                                                                <?php if ($STUDENT_DETAIL->StudentCurrentAddressSoi == "") {
+                                                                    echo '-';
+                                                                } else {
+                                                                    echo $STUDENT_DETAIL->StudentCurrentAddressSoi;
+                                                                } ?>
+                                                            </label>
+                                                            <label style="padding-left: 10px;">ตรอก
+                                                                <?php if ($STUDENT_DETAIL->StudentCurrentAddressTrok == "") {
+                                                                    echo '-';
+                                                                } else {
+                                                                    echo $STUDENT_DETAIL->StudentCurrentAddressTrok;
+                                                                } ?>
+                                                            </label><br>
+                                                            <?php
+                                                            $result = $this->db->query('SELECT * FROM CLS_SUBDISTRICT WHERE SUBDISTRICT_CODE = "' . $STUDENT_DETAIL->StudentCurrentAddressSubdistrictCode . '"');
+                                                            foreach ($result->result() as $SUBDISTRICT) {
+                                                                $SUBDISTRICT_NAME = $SUBDISTRICT->SUBDISTRICT_NAME;
+                                                            }
+                                                            $result = $this->db->query('SELECT * FROM CLS_DISTRICT WHERE DISTRICT_CODE = "' . $STUDENT_DETAIL->StudentCurrentAddressDistrictCode . '"');
+                                                            foreach ($result->result() as $DISTRICT) {
+                                                                $DISTRICT_NAME = $DISTRICT->DISTRICT_NAME;
+                                                            }
+                                                            $result = $this->db->query('SELECT * FROM CLS_PROVINCE WHERE PROVINCE_CODE = "' . $STUDENT_DETAIL->StudentCurrentAddressProvinceCode . '"');
+                                                            foreach ($result->result() as $PROVINCE) {
+                                                                $PROVINCE_NAME = $PROVINCE->PROVINCE_NAME;
+                                                            }
+                                                            ?>
+                                                            <label style="padding-left: 20px;">ตำบล
+                                                                <?php if ($STUDENT_DETAIL->StudentCurrentAddressSubdistrictCode == "") {
+                                                                    echo '-';
+                                                                } else {
+                                                                    echo $SUBDISTRICT_NAME;
+                                                                } ?>
+                                                            </label>
+
+                                                            <label style="padding-left: 10px;">อำเภอ
+                                                                <?php if ($STUDENT_DETAIL->StudentCurrentAddressDistrictCode == "") {
+                                                                    echo '-';
+                                                                } else {
+                                                                    echo $DISTRICT_NAME;
+                                                                } ?>
+                                                            </label>
+                                                            <label style="padding-left: 10px;">จังหวัด
+                                                                <?php if ($STUDENT_DETAIL->StudentCurrentAddressProvinceCode == "") {
+                                                                    echo '-';
+                                                                } else {
+                                                                    echo $PROVINCE_NAME;
+                                                                } ?>
+                                                            </label>
+                                                            <label style="padding-left: 10px;">รหัสไปรษณีย์
+                                                                <?php if ($STUDENT_DETAIL->StudentCurrentAddressPostcode == "") {
+                                                                    echo '-';
+                                                                } else {
+                                                                    echo $STUDENT_DETAIL->StudentCurrentAddressPostcode;
+                                                                } ?>
+                                                            </label><br>
+                                                            <label style="padding-left: 20px;">หมายเลขโทรศัพท์
+                                                                <?php if ($STUDENT_DETAIL->StudentCurrentAddressPhoneNumber == "") {
+                                                                    echo '-';
+                                                                } else {
+                                                                    echo $STUDENT_DETAIL->StudentCurrentAddressPhoneNumber;
+                                                                } ?>
+                                                            </label><br>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="card">
+                                            <div class="card-body">
+                                                <div class="row">
+                                                    <div class="col-6">
+                                                        <h5 style="text-align: left; padding-left: 25px; padding-top: 25px;" class="card-title">
+                                                            ข้อมูลบิดา
+                                                        </h5>
+                                                        <div class="col-12" style="text-align: left; padding-left: 25px; padding-bottom: 5px;">
+                                                            <?php
+                                                            $result = $this->db->query('SELECT * FROM CLS_PREFIX WHERE PREFIX_CODE = "' . $STUDENT_DETAIL->FatherPrefixCode . '"');
+                                                            foreach ($result->result() as $PREFIX) {
+                                                                $PREFIX_NAME = $PREFIX->PREFIX_NAME;
+                                                            }
+                                                            ?>
+                                                            <label style="padding-left: 20px;">ชื่อ-นามสกุล:
+                                                                <?php if ($STUDENT_DETAIL->FatherNameThai == "") {
+                                                                    echo '-';
+                                                                } else {
+                                                                    echo $PREFIX_NAME . $STUDENT_DETAIL->FatherNameThai . ' ';
+                                                                }
+
+                                                                if ($STUDENT_DETAIL->FatherLastNameThai != "") {
+                                                                    echo $STUDENT_DETAIL->FatherLastNameThai;
+                                                                }
+
+                                                                if ($STUDENT_DETAIL->FatherNameEnglish != "" && $STUDENT_DETAIL->FatherLastNameEnglish != "") {
+                                                                    echo ' (' . $STUDENT_DETAIL->FatherNameEnglish . ' ' . $STUDENT_DETAIL->FatherLastNameEnglish . ')';
+                                                                } ?>
+
+                                                            </label><br>
+                                                            <label style="padding-left: 20px;">หมายเลขบัตรประจำตัวประชาชน:
+                                                                <?php if ($STUDENT_DETAIL->FatherPersonalID == "") {
+                                                                    echo '-';
+                                                                } else {
+                                                                    echo $STUDENT_DETAIL->FatherPersonalID;
+                                                                } ?>
+                                                            </label><br>
+                                                            <label style="padding-left: 20px;">เลขที่หนังสือเดินทาง:
+                                                                <?php if ($STUDENT_DETAIL->FatherPassportNumber == "") {
+                                                                    echo '-';
+                                                                } else {
+                                                                    echo $STUDENT_DETAIL->FatherPassportNumber;
+                                                                } ?>
+                                                            </label><br>
+                                                            <?php
+                                                            $result = $this->db->query('SELECT * FROM CLS_PERSON_STATUS WHERE PERSON_STATUS_CODE = "' . $STUDENT_DETAIL->FatherPersonStatusCode . '"');
+                                                            foreach ($result->result() as $PERSON_STATUS) {
+                                                                $PERSON_STATUS_NAME = $PERSON_STATUS->PERSON_STATUS_NAME;
+                                                            }
+                                                            ?>
+                                                            <label style="padding-left: 20px;">สถานภาพ:
+                                                                <?php if ($STUDENT_DETAIL->FatherPersonStatusCode == "") {
+                                                                    echo '-';
+                                                                } else {
+                                                                    echo $PERSON_STATUS_NAME;
+                                                                } ?>
+                                                            </label><br>
+                                                            <label style="padding-left: 20px;">หมายเลขโทรศัพท์:
+                                                                <?php if ($STUDENT_DETAIL->FatherPhoneNumber == "") {
+                                                                    echo '-';
+                                                                } else {
+                                                                    echo $STUDENT_DETAIL->FatherPhoneNumber;
+                                                                } ?>
+                                                            </label><br>
+                                                            <?php
+                                                            $result = $this->db->query('SELECT * FROM CLS_OCCUPATION WHERE OCCUPATION_CODE = "' . $STUDENT_DETAIL->FatherOccupationCode . '"');
+                                                            foreach ($result->result() as $OCCUPATION) {
+                                                                $OCCUPATION_NAME = $OCCUPATION->OCCUPATION_NAME;
+                                                            }
+                                                            ?>
+                                                            <label style="padding-left: 20px;">กลุ่มอาชีพ:
+                                                                <?php if ($STUDENT_DETAIL->FatherOccupationCode == "") {
+                                                                    echo '-';
+                                                                } else {
+                                                                    echo $OCCUPATION_NAME;
+                                                                } ?>
+                                                            </label>
+                                                            <label style="padding-left: 20px;">รายได้ต่อเดือน:
+                                                                <?php if ($STUDENT_DETAIL->FatherSalary == "") {
+                                                                    echo '-';
+                                                                } else {
+                                                                    echo $STUDENT_DETAIL->FatherSalary;
+                                                                } ?>
+                                                            </label><br>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-6">
+                                                        <h5 style="text-align: left; padding-left: 25px; padding-top: 25px;" class="card-title">
+                                                            ข้อมูลมารดา
+                                                            <a style="float: right;" href="edit-forms-student-parents?SchoolID=<?= $STUDENT_DETAIL->SchoolID; ?>&&StudentReferenceID=<?= $STUDENT_DETAIL->StudentReferenceID ?>&&EducationYear=<?= $STUDENT_DETAIL->EducationYear; ?>&&Semester=<?= $STUDENT_DETAIL->Semester; ?>&&GradeLevelCode=<?= $STUDENT_DETAIL->GradeLevelCode; ?>" class="btn btn-sm btn-warning"><i class="bi bi-pencil-square"></i></a>
+                                                        </h5>
+                                                        <div class="col-12" style="text-align: left; padding-left: 25px; padding-bottom: 5px;">
+                                                            <?php
+                                                            $result = $this->db->query('SELECT * FROM CLS_PREFIX WHERE PREFIX_CODE = "' . $STUDENT_DETAIL->MotherPrefixCode . '"');
+                                                            foreach ($result->result() as $PREFIX) {
+                                                                $PREFIX_NAME = $PREFIX->PREFIX_NAME;
+                                                            }
+                                                            ?>
+                                                            <label style="padding-left: 20px;">ชื่อ-นามสกุล:
+                                                                <?php if ($STUDENT_DETAIL->MotherNameThai == "") {
+                                                                    echo '-';
+                                                                } else {
+                                                                    echo $PREFIX_NAME . $STUDENT_DETAIL->MotherNameThai . ' ';
+                                                                }
+
+                                                                if ($STUDENT_DETAIL->MotherLastNameThai != "") {
+                                                                    echo $STUDENT_DETAIL->MotherLastNameThai;
+                                                                }
+
+                                                                if ($STUDENT_DETAIL->MotherNameEnglish != "" && $STUDENT_DETAIL->MotherLastNameEnglish != "") {
+                                                                    echo ' (' . $STUDENT_DETAIL->MotherNameEnglish . ' ' . $STUDENT_DETAIL->MotherLastNameEnglish . ')';
+                                                                } ?>
+
+                                                            </label><br>
+                                                            <label style="padding-left: 20px;">หมายเลขบัตรประจำตัวประชาชน:
+                                                                <?php if ($STUDENT_DETAIL->MotherPersonalID == "") {
+                                                                    echo '-';
+                                                                } else {
+                                                                    echo $STUDENT_DETAIL->MotherPersonalID;
+                                                                } ?>
+                                                            </label><br>
+                                                            <label style="padding-left: 20px;">เลขที่หนังสือเดินทาง:
+                                                                <?php if ($STUDENT_DETAIL->MotherPassportNumber == "") {
+                                                                    echo '-';
+                                                                } else {
+                                                                    echo $STUDENT_DETAIL->MotherPassportNumber;
+                                                                } ?>
+                                                            </label><br>
+                                                            <?php
+                                                            $result = $this->db->query('SELECT * FROM CLS_PERSON_STATUS WHERE PERSON_STATUS_CODE = "' . $STUDENT_DETAIL->MotherPersonStatusCode . '"');
+                                                            foreach ($result->result() as $PERSON_STATUS) {
+                                                                $PERSON_STATUS_NAME = $PERSON_STATUS->PERSON_STATUS_NAME;
+                                                            }
+                                                            ?>
+                                                            <label style="padding-left: 20px;">สถานภาพ:
+                                                                <?php if ($STUDENT_DETAIL->MotherPersonStatusCode == "") {
+                                                                    echo '-';
+                                                                } else {
+                                                                    echo $PERSON_STATUS_NAME;
+                                                                } ?>
+                                                            </label><br>
+                                                            <label style="padding-left: 20px;">หมายเลขโทรศัพท์:
+                                                                <?php if ($STUDENT_DETAIL->MotherPhoneNumber == "") {
+                                                                    echo '-';
+                                                                } else {
+                                                                    echo $STUDENT_DETAIL->MotherPhoneNumber;
+                                                                } ?>
+                                                            </label><br>
+                                                            <?php
+                                                            $result = $this->db->query('SELECT * FROM CLS_OCCUPATION WHERE OCCUPATION_CODE = "' . $STUDENT_DETAIL->MotherOccupationCode . '"');
+                                                            foreach ($result->result() as $OCCUPATION) {
+                                                                $OCCUPATION_NAME = $OCCUPATION->OCCUPATION_NAME;
+                                                            }
+                                                            ?>
+                                                            <label style="padding-left: 20px;">กลุ่มอาชีพ:
+                                                                <?php if ($STUDENT_DETAIL->MotherOccupationCode == "") {
+                                                                    echo '-';
+                                                                } else {
+                                                                    echo $OCCUPATION_NAME;
+                                                                } ?>
+                                                            </label>
+                                                            <label style="padding-left: 20px;">รายได้ต่อเดือน:
+                                                                <?php if ($STUDENT_DETAIL->MotherSalary == "") {
+                                                                    echo '-';
+                                                                } else {
+                                                                    echo $STUDENT_DETAIL->MotherSalary;
+                                                                } ?>
+                                                            </label><br>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="card">
+                                            <div class="card-body">
+                                                <div class="row">
+                                                    <div class="col-6">
+                                                        <h5 style="text-align: left; padding-left: 25px; padding-top: 25px;" class="card-title">
+                                                            ข้อมูลผู้ปกครอง
+                                                        </h5>
+                                                        <div class="col-12" style="text-align: left; padding-left: 25px; padding-bottom: 5px;">
+                                                            <?php
+                                                            $result = $this->db->query('SELECT * FROM CLS_PREFIX WHERE PREFIX_CODE = "' . $STUDENT_DETAIL->GuardianPrefixCode . '"');
+                                                            foreach ($result->result() as $PREFIX) {
+                                                                $PREFIX_NAME = $PREFIX->PREFIX_NAME;
+                                                            }
+                                                            ?>
+                                                            <label style="padding-left: 20px;">ชื่อ-นามสกุล:
+                                                                <?php if ($STUDENT_DETAIL->GuardianNameThai == "") {
+                                                                    echo '-';
+                                                                } else {
+                                                                    echo $PREFIX_NAME . $STUDENT_DETAIL->GuardianNameThai . ' ';
+                                                                }
+
+                                                                if ($STUDENT_DETAIL->FatherLastNameThai != "") {
+                                                                    echo $STUDENT_DETAIL->GuardianLastNameThai;
+                                                                }
+
+                                                                if ($STUDENT_DETAIL->GuardianNameEnglish != "" && $STUDENT_DETAIL->GuardianLastNameEnglish != "") {
+                                                                    echo '(' . $STUDENT_DETAIL->GuardianNameEnglish . ' ' . $STUDENT_DETAIL->GuardianLastNameEnglish . ')';
+                                                                } ?>
+
+                                                            </label><br>
+                                                            <label style="padding-left: 20px;">หมายเลขบัตรประจำตัวประชาชน:
+                                                                <?php if ($STUDENT_DETAIL->GuardianPersonalID == "") {
+                                                                    echo '-';
+                                                                } else {
+                                                                    echo $STUDENT_DETAIL->GuardianPersonalID;
+                                                                } ?>
+                                                            </label><br>
+                                                            <label style="padding-left: 20px;">เลขที่หนังสือเดินทาง:
+                                                                <?php if ($STUDENT_DETAIL->GuardianPassportNumber == "") {
+                                                                    echo '-';
+                                                                } else {
+                                                                    echo $STUDENT_DETAIL->GuardianPassportNumber;
+                                                                } ?>
+                                                            </label><br>
+                                                            <?php
+                                                            $result = $this->db->query('SELECT * FROM CLS_FAMILY_RELATION WHERE FAMILY_RELATION_CODE = "' . $STUDENT_DETAIL->GuardianRelationCode . '"');
+                                                            foreach ($result->result() as $FAMILY_RELATION) {
+                                                                $FAMILY_RELATION_NAME = $FAMILY_RELATION->FAMILY_RELATION_NAME;
+                                                            }
+                                                            ?>
+                                                            <label style="padding-left: 20px;">ความสัมพันธ์กับนักเรียน:
+                                                                <?php if ($STUDENT_DETAIL->GuardianRelationCode == "") {
+                                                                    echo '-';
+                                                                } else {
+                                                                    echo $FAMILY_RELATION_NAME;
+                                                                } ?>
+                                                            </label><br>
+                                                            <label style="padding-left: 20px;">หมายเลขโทรศัพท์:
+                                                                <?php if ($STUDENT_DETAIL->GuardianPhoneNumber == "") {
+                                                                    echo '-';
+                                                                } else {
+                                                                    echo $STUDENT_DETAIL->GuardianPhoneNumber;
+                                                                } ?>
+                                                            </label><br>
+                                                            <?php
+                                                            $result = $this->db->query('SELECT * FROM CLS_OCCUPATION WHERE OCCUPATION_CODE = "' . $STUDENT_DETAIL->GuardianOccupationCode . '"');
+                                                            foreach ($result->result() as $OCCUPATION) {
+                                                                $OCCUPATION_NAME = $OCCUPATION->OCCUPATION_NAME;
+                                                            }
+                                                            ?>
+                                                            <label style="padding-left: 20px;">กลุ่มอาชีพ:
+                                                                <?php if ($STUDENT_DETAIL->GuardianOccupationCode == "") {
+                                                                    echo '-';
+                                                                } else {
+                                                                    echo $OCCUPATION_NAME;
+                                                                } ?>
+                                                            </label>
+                                                            <label style="padding-left: 20px;">รายได้ต่อเดือน:
+                                                                <?php if ($STUDENT_DETAIL->GuardianSalary == "") {
+                                                                    echo '-';
+                                                                } else {
+                                                                    echo $STUDENT_DETAIL->GuardianSalary;
+                                                                } ?>
+                                                            </label><br>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-6">
+                                                        <h5 style="text-align: left; padding-left: 25px; padding-top: 25px;" class="card-title">
+                                                            ข้อมูลครอบครัว
+                                                            <a style="float: right;" href="edit-forms-student-family?SchoolID=<?= $STUDENT_DETAIL->SchoolID; ?>&&StudentReferenceID=<?= $STUDENT_DETAIL->StudentReferenceID ?>&&EducationYear=<?= $STUDENT_DETAIL->EducationYear; ?>&&Semester=<?= $STUDENT_DETAIL->Semester; ?>&&GradeLevelCode=<?= $STUDENT_DETAIL->GradeLevelCode; ?>" class="btn btn-sm btn-warning"><i class="bi bi-pencil-square"></i></a>
+                                                        </h5>
+                                                        <div class="col-12" style="text-align: left; padding-left: 25px; padding-bottom: 5px;">
+                                                            <?php
+                                                            $result = $this->db->query('SELECT * FROM CLS_MARRIAGE_STATUS WHERE MARRIAGE_STATUS_CODE = "' . $STUDENT_DETAIL->ParentMarriageStatusCode . '"');
+                                                            foreach ($result->result() as $MARRIAGE_STATUS) {
+                                                                $MARRIAGE_STATUS_NAME = $MARRIAGE_STATUS->MARRIAGE_STATUS_NAME;
+                                                            }
+                                                            ?>
+                                                            <label style="padding-left: 20px;">สถานะการสมรมระหว่างบิดามารดา:
+                                                                <?php if ($STUDENT_DETAIL->ParentMarriageStatusCode == "") {
+                                                                    echo '-';
+                                                                } else {
+                                                                    echo $MARRIAGE_STATUS_NAME;
+                                                                }
+                                                                ?>
+
+                                                            </label><br>
+                                                            <label style="padding-left: 20px;">นักเรียนเป็นบุตรลำดับที่:
+                                                                <?php if ($STUDENT_DETAIL->StudentBirthOrder == "") {
+                                                                    echo '-';
+                                                                } else {
+                                                                    echo $STUDENT_DETAIL->StudentBirthOrder;
+                                                                } ?>
+                                                            </label><br>
+                                                            <label style="padding-left: 20px;">จำนวนพี่ชาย:
+                                                                <?php if ($STUDENT_DETAIL->StudentBirthOrder == "") {
+                                                                    echo '-';
+                                                                } else {
+                                                                    echo $STUDENT_DETAIL->StudentBirthOrder;
+                                                                } ?>
+                                                            </label><br>
+                                                            <label style="padding-left: 20px;">จำนวนพี่สาว:
+                                                                <?php if ($STUDENT_DETAIL->StudentElderSisterAmount == "") {
+                                                                    echo '-';
+                                                                } else {
+                                                                    echo $STUDENT_DETAIL->StudentElderSisterAmount;
+                                                                } ?>
+                                                            </label><br>
+                                                            <label style="padding-left: 20px;">จำนวนน้องชาย:
+                                                                <?php if ($STUDENT_DETAIL->StudentYoungerBrotherAmount == "") {
+                                                                    echo '-';
+                                                                } else {
+                                                                    echo $STUDENT_DETAIL->StudentYoungerBrotherAmount;
+                                                                } ?>
+                                                            </label><br>
+                                                            <label style="padding-left: 20px;">จำนวนน้องสาว:
+                                                                <?php if ($STUDENT_DETAIL->StudentYoungerSisterAmount == "") {
+                                                                    echo '-';
+                                                                } else {
+                                                                    echo $STUDENT_DETAIL->StudentYoungerSisterAmount;
+                                                                } ?>
+                                                            </label><br>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="card">
+                                            <div class="card-body">
+                                                <div class="row">
+                                                    <div class="col-6">
+                                                        <h5 style="text-align: left; padding-left: 25px; padding-top: 25px;" class="card-title">
+                                                            ข้อมูลการเดินทางไปสถานศึกษา
+                                                        </h5>
+                                                        <div class="col-12" style="text-align: left; padding-left: 25px; padding-bottom: 5px;">
+                                                            <?php
+                                                            $result = $this->db->query('SELECT * FROM CLS_JOURNEY_TYPE WHERE JOURNEY_TYPE_CODE = "' . $STUDENT_DETAIL->JourneyTypeCode . '"');
+                                                            foreach ($result->result() as $JOURNEY_TYPE) {
+                                                                $JOURNEY_TYPE_NAME = $JOURNEY_TYPE->JOURNEY_TYPE_NAME;
+                                                            }
+                                                            ?>
+                                                            <label style="padding-left: 20px;">ประเภทการเดินทาง:
+                                                                <?php if ($STUDENT_DETAIL->JourneyTypeCode == "") {
+                                                                    echo '-';
+                                                                } else {
+                                                                    echo $JOURNEY_TYPE_NAME;
+                                                                }
+                                                                ?>
+
+                                                            </label><br>
+                                                            <label style="padding-left: 20px;">ระยะเวลาการเดินทาง:
+                                                                <?php if ($STUDENT_DETAIL->JourneyTime == "") {
+                                                                    echo '-';
+                                                                } else {
+                                                                    echo $STUDENT_DETAIL->JourneyTime . ' ชม.';
+                                                                } ?>
+                                                            </label><br>
+                                                            <label style="padding-left: 20px;">ระยะทางที่ผ่านถนนลูกรัง:
+                                                                <?php if ($STUDENT_DETAIL->RockJourneyDistance == "") {
+                                                                    echo '-';
+                                                                } else {
+                                                                    echo $STUDENT_DETAIL->RockJourneyDistance . ' กม.';
+                                                                } ?>
+                                                            </label><br>
+                                                            <label style="padding-left: 20px;">ระยะทางที่ผ่านถนนลาดยาง:
+                                                                <?php if ($STUDENT_DETAIL->RubberJourneyDistance == "") {
+                                                                    echo '-';
+                                                                } else {
+                                                                    echo $STUDENT_DETAIL->RubberJourneyDistance . ' กม.';
+                                                                } ?>
+                                                            </label><br>
+                                                            <label style="padding-left: 20px;">ระยะทางที่ผ่านทางน้ำ:
+                                                                <?php if ($STUDENT_DETAIL->WaterJourneyDistance == "") {
+                                                                    echo '-';
+                                                                } else {
+                                                                    echo $STUDENT_DETAIL->WaterJourneyDistance . ' กม.';
+                                                                } ?>
+                                                            </label><br>
+
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-6">
+                                                        <h5 style="text-align: left; padding-left: 25px; padding-top: 25px;" class="card-title">
+                                                            ข้อมูลความพิการ
+                                                            <a style="float: right;" href="" class="btn btn-sm btn-warning"><i class="bi bi-pencil-square"></i></a>
+                                                        </h5>
+                                                        <div class="col-12" style="text-align: left; padding-left: 25px; padding-bottom: 5px;">
+                                                            <?php
+                                                            $result = $this->db->query('SELECT * FROM CLS_DISABILITY WHERE DISABILITY_CODE = "' . $STUDENT_DETAIL->DisabilityCode . '"');
+                                                            foreach ($result->result() as $DISABILITY) {
+                                                                $DISABILITY_NAME = $DISABILITY->DISABILITY_NAME;
+                                                            }
+                                                            ?>
+                                                            <label style="padding-left: 20px;">ความพิการ:
+                                                                <?php if ($STUDENT_DETAIL->DisabilityCode == "") {
+                                                                    echo '-';
+                                                                } else {
+                                                                    echo $DISABILITY_NAME;
+                                                                }
+                                                                ?>
+
+                                                            </label><br>
+                                                            <label style="padding-left: 20px;">รายละเอียด:
+                                                                <?php if ($STUDENT_DETAIL->DisabilityDetail == "") {
+                                                                    echo '-';
+                                                                } else {
+                                                                    echo $STUDENT_DETAIL->DisabilityDetail;
+                                                                } ?>
+                                                            </label><br>
+                                                            <?php
+                                                            $result = $this->db->query('SELECT * FROM CLS_DISABILITY_LEVEL WHERE DISABILITY_LEVEL_CODE = "' . $STUDENT_DETAIL->DisabilityLevelCode . '"');
+                                                            foreach ($result->result() as $DISABILITY_LEVEL) {
+                                                                $DISABILITY_LEVEL_NAME = $DISABILITY_LEVEL->DISABILITY_LEVEL_NAME;
+                                                            }
+                                                            ?>
+                                                            <label style="padding-left: 20px;">ระดับความพิการ:
+                                                                <?php if ($STUDENT_DETAIL->DisabilityLevelCode == "") {
+                                                                    echo '-';
+                                                                } else {
+                                                                    echo $DISABILITY_LEVEL_NAME;
+                                                                } ?>
+                                                            </label><br>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="card">
+                                            <div class="card-body">
+                                                <div class="row">
+                                                    <div class="col-6">
+                                                        <h5 style="text-align: left; padding-left: 25px; padding-top: 25px;" class="card-title">
+                                                            ข้อมูลความด้อยโอกาส
+                                                        </h5>
+                                                        <div class="col-12" style="text-align: left; padding-left: 25px; padding-bottom: 5px;">
+                                                            <?php
+                                                            $result = $this->db->query('SELECT * FROM CLS_DISAVANTAGED WHERE DISAVANTAGED_CODE = "' . $STUDENT_DETAIL->DisadvantagedCode . '"');
+                                                            foreach ($result->result() as $DISAVANTAGED) {
+                                                                $DISAVANTAGED_NAME = $DISAVANTAGED->DISAVANTAGED_NAME;
+                                                            }
+                                                            ?>
+                                                            <label style="padding-left: 20px;">ความด้อยโอกาส:
+                                                                <?php if ($STUDENT_DETAIL->DisadvantagedCode == "") {
+                                                                    echo '-';
+                                                                } else {
+                                                                    echo $DISAVANTAGED_NAME;
+                                                                }
+                                                                ?>
+
+                                                            </label><br>
+                                                            <label style="padding-left: 20px;">ขาดแคลนแบบเรียน:
+                                                                <?php if ($STUDENT_DETAIL->LackingBookFlag == "") {
+                                                                    echo '-';
+                                                                } else {
+                                                                    if ($STUDENT_DETAIL->LackingBookFlag == 0) {
+                                                                        echo 'ไม่ขาดแคลน';
+                                                                    } else {
+                                                                        echo 'ขาดแคลน';
+                                                                    }
+                                                                } ?>
+                                                            </label><br>
+                                                            <label style="padding-left: 20px;">ขาดแคลนอาหารกลางวัน:
+                                                                <?php if ($STUDENT_DETAIL->LackingFoodFlag == "") {
+                                                                    echo '-';
+                                                                } else {
+                                                                    if ($STUDENT_DETAIL->LackingFoodFlag == 0) {
+                                                                        echo 'ไม่ขาดแคลน';
+                                                                    } else {
+                                                                        echo 'ขาดแคลน';
+                                                                    }
+                                                                } ?>
+                                                            </label><br>
+                                                            <label style="padding-left: 20px;">ขาดแคลนเครื่องเขียน:
+                                                                <?php if ($STUDENT_DETAIL->LackingStationeryFlag == "") {
+                                                                    echo '-';
+                                                                } else {
+                                                                    if ($STUDENT_DETAIL->LackingStationeryFlag == 0) {
+                                                                        echo 'ไม่ขาดแคลน';
+                                                                    } else {
+                                                                        echo 'ขาดแคลน';
+                                                                    }
+                                                                } ?>
+                                                            </label><br>
+                                                            <label style="padding-left: 20px;">ขาดแคลนเครื่องแบบ:
+                                                                <?php if ($STUDENT_DETAIL->LackingUniformFlag == "") {
+                                                                    echo '-';
+                                                                } else {
+                                                                    if ($STUDENT_DETAIL->LackingUniformFlag == 0) {
+                                                                        echo 'ไม่ขาดแคลน';
+                                                                    } else {
+                                                                        echo 'ขาดแคลน';
+                                                                    }
+                                                                } ?>
+                                                            </label><br>
+
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-6">
+                                                        <h5 style="text-align: left; padding-left: 25px; padding-top: 25px;" class="card-title">
+                                                            ข้อมูลเกณฑ์ความยากจน
+                                                            <a style="float: right;" href="" class="btn btn-sm btn-warning"><i class="bi bi-pencil-square"></i></a>
+                                                        </h5>
+                                                        <div class="col-12" style="text-align: left; padding-left: 25px; padding-bottom: 5px;">
+
+                                                            <label style="padding-left: 20px;">รายได้ครอบครัวต่อเดือน:
+                                                                <?php if ($STUDENT_DETAIL->FamilyMonthlyIncome == "") {
+                                                                    echo '-';
+                                                                } else {
+                                                                    echo $STUDENT_DETAIL->FamilyMonthlyIncome;
+                                                                }
+                                                                ?>
+
+                                                            </label><br>
+                                                            <?php
+                                                            $result = $this->db->query('SELECT * FROM CLS_FAMILY_STATUS WHERE FAMILY_STATUS_CODE = "' . $STUDENT_DETAIL->FamilyStatusCode . '"');
+                                                            foreach ($result->result() as $FAMILY_STATUS) {
+                                                                $FAMILY_STATUS_NAME = $FAMILY_STATUS->FAMILY_STATUS_NAME;
+                                                            }
+                                                            ?>
+                                                            <label style="padding-left: 20px;">สถานภาพครอบครัว:
+                                                                <?php if ($STUDENT_DETAIL->FamilyStatusCode == "") {
+                                                                    echo '-';
+                                                                } else {
+                                                                    echo $FAMILY_STATUS_NAME;
+                                                                } ?>
+                                                            </label><br>
+                                                            <?php
+                                                            $result = $this->db->query('SELECT * FROM CLS_STUDENT_LIVE_WITH WHERE STUDENT_LIVE_WITH_CODE = "' . $STUDENT_DETAIL->StudentLiveWithCode . '"');
+                                                            foreach ($result->result() as $STUDENT_LIVE_WITH) {
+                                                                $STUDENT_LIVE_WITH_NAME = $STUDENT_LIVE_WITH->STUDENT_LIVE_WITH_NAME;
+                                                            }
+                                                            ?>
+                                                            <label style="padding-left: 20px;">นักเรียนอาศัยอยู่กับ:
+                                                                <?php if ($STUDENT_DETAIL->StudentLiveWithCode == "") {
+                                                                    echo '-';
+                                                                } else {
+                                                                    echo $STUDENT_LIVE_WITH_NAME;
+                                                                } ?>
+                                                            </label><br>
+                                                            <label style="padding-left: 20px;">ได้สวัสดิการแห่งรัฐ:
+                                                                <?php if ($STUDENT_DETAIL->StateWelfareFlag == "") {
+                                                                    echo '-';
+                                                                } else {
+                                                                    if ($STUDENT_DETAIL->StateWelfareFlag == 0) {
+                                                                        echo 'ไม่ได้';
+                                                                    } else {
+                                                                        echo 'ได้';
+                                                                    }
+                                                                } ?>
+                                                            </label><br>
+                                                            <?php
+                                                            $result = $this->db->query('SELECT * FROM CLS_TALENT WHERE TALENT_CODE = "' . $STUDENT_DETAIL->TalentCode . '"');
+                                                            foreach ($result->result() as $TALENT) {
+                                                                $TALENT_NAME = $TALENT->TALENT_NAME;
+                                                            }
+                                                            ?>
+                                                            <label style="padding-left: 20px;">ความสามารถพิเศษ :
+                                                                <?php if ($STUDENT_DETAIL->TalentCode == "") {
+                                                                    echo '-';
+                                                                } else {
+                                                                    echo $TALENT_NAME;
+                                                                } ?>
+                                                            </label><br>
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="card">
+                                            <div class="card-body">
+                                                <div class="row">
+                                                    <div class="col-12">
+                                                        <h5 style="text-align: left; padding-left: 25px; padding-top: 25px;" class="card-title">
+                                                            ข้อมูลความสามาถพิเศษ
+                                                            <a style="float: right;" href="" class="btn btn-sm btn-warning"><i class="bi bi-pencil-square"></i></a>
+                                                        </h5>
+                                                        <div class="col-12" style="text-align: left; padding-left: 25px; padding-bottom: 5px;">
+                                                            <label style="padding-left: 20px;">ความสามารถพิเศษ :
+                                                                <?php if ($STUDENT_DETAIL->TalentCode == "") {
+                                                                    echo '-';
+                                                                } else {
+                                                                    echo $TALENT_NAME;
+                                                                } ?>
+                                                            </label><br>
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+
                                     </div>
                                 </div>
                             </div>
-
-
                         </div>
                     </div>
-            <?php
+
+
+            </div>
+        </div>
+<?php
                                 }
                             }
-            ?>
-            </div>
+?>
+    </div>
 
 
 
-        </div>
+    </div>
     </div><!-- End Recent Sales -->
 
 </main><!-- End #main -->

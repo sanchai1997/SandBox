@@ -122,10 +122,18 @@ $route['forms-student'] = 'forms_student';
 $route['forms-student-select'] = 'forms_student/forms_student_select';
 $route['add-student/(:num)']['post'] = 'forms_student/add_student/$1';
 $route['add-student-select/(:num)/(:num)/(:num)/(:num)']['post'] = 'forms_student/add_student_select/$1/$2/$3/$4';
+$route['edit-forms-student-main'] = 'forms_student/edit_forms_student_main';
+$route['edit-forms-student-person'] = 'forms_student/edit_forms_student_person';
+$route['edit-forms-student-address'] = 'forms_student/edit_forms_student_address';
+$route['edit-forms-student-parents'] = 'forms_student/edit_forms_student_parents';
+$route['edit-forms-student-family'] = 'forms_student/edit_forms_student_family';
 
 
-
-
+$route['update-student-main/(:any)/(:num)/(:num)/(:num)/(:num)']['post'] = 'forms_student/update_student_main/$1/$2/$3/$4/$5';
+$route['update-student-person/(:any)/(:num)/(:num)/(:num)/(:num)']['post'] = 'forms_student/update_student_person/$1/$2/$3/$4/$5';
+$route['update-student-address/(:any)/(:num)/(:num)/(:num)/(:num)']['post'] = 'forms_student/update_student_address/$1/$2/$3/$4/$5';
+$route['update-student-parents/(:any)/(:num)/(:num)/(:num)/(:num)']['post'] = 'forms_student/update_student_parents/$1/$2/$3/$4/$5';
+$route['update-student-family/(:any)/(:num)/(:num)/(:num)/(:num)']['post'] = 'forms_student/update_student_family/$1/$2/$3/$4/$5';
 
 
 $route['delete-student/(:any)/(:num)/(:num)/(:num)/(:num)'] = 'forms_student/delete_student/$1/$2/$3/$4/$5';
