@@ -40,12 +40,12 @@
                             ?>
                                 <div class="dropdown">
                                     <button class="btn btn-dark dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                                        เลือกสถานศึกษา
+                                    <?php echo $SchoolNameThai; ?>
                                     </button>
                                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                                         <?php foreach ($School as $ls) { ?>
                                             <li>
-                                                <a class="dropdown-item" href="list_curriculum_by_school?sid=<?php echo $ls->SchoolID; ?>"><?php echo $ls->SchoolNameThai; ?></a>
+                                                <a class="dropdown-item" href="list_curriculum_by_school?sid=<?php echo $ls->SchoolID; ?>&&sname=<?php echo $ls->SchoolNameThai; ?>"><?php echo $ls->SchoolNameThai; ?></a>
                                             </li>
                                         <?php } ?>
                                     </ul>
@@ -55,7 +55,7 @@
                         </h1>
                     </div>
                     <div class="col">
-                        <h5 style="float: right; padding: 15px;" class="card-title"><a href="forms-curriculum" class="btn btn-success">เพิ่มข้อมูล</a></h5>
+                        <h5 style="float: right; padding: 15px;" class="card-title"><a href="" class="btn btn-success">อัพโหลดไฟล์</a>&nbsp;&nbsp;<a href="forms-curriculum" class="btn btn-success">เพิ่มข้อมูล</a></h5>
                     </div>
                 </div>
                 <table class="table table-borderless datatable">
@@ -181,10 +181,9 @@
 
 
                                             </div>
-
                                             <div class="modal-footer">
                                                 <a href='edit_forms-curriculum?cid=<?php echo $ls->CurriculumID; ?>' class="btn btn-warning"><i class="bi bi-pencil-square"></i></button></a>
-                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ปิด</button>                                            </div>
+                                                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">ปิด</button>                                            </div>
                                         </div>
                                     </div>
                                 </div>

@@ -50,7 +50,7 @@
 
               <!-- End Form ข้อมูลสมรรถนะของหลักสูตร -->
                 <div class="d-flex justify-content-between">
-                <a href="list-curriculum_school_competency?cid=<?php echo $CurriculumID; ?>&&sid=<?php echo $SubjectCode; ?>" class="btn btn-danger">ยกเลิก</a>
+                  <a href="list-curriculum_school_competency?cid=<?php echo $CurriculumID; ?>&&sid=<?php echo $SubjectCode; ?>" class="btn btn-danger">ยกเลิก</a>
                   <button type="button" class="btn btn-primary" onclick="return check(addCurriculumCompetency)">บันทึกข้อมูล</button>
                 </div> 
                <!-- Modal -->

@@ -76,7 +76,7 @@
                             foreach ($result->result() as $SCHOOL) {
                             ?>
                                 <tr>
-                                    <td style="text-align: center;"><img src="image/school/<?= $SCHOOL->ImageSchool; ?>" alt="" width="90px" height="80px"></td>
+                                    <td style="text-align: center;"><img src="./assets/img/school/<?= $SCHOOL->ImageSchool; ?>" alt="" width="90px" height="80px"></td>
                                     <td style="padding-top: 30px;"><?= $SCHOOL->SchoolNameThai; ?></td>
                                     <td style="padding-top: 30px;"><?= $SCHOOL->INNOVATION_AREA_NAME; ?></td>
                                     <td style="padding-top: 30px; text-align: center;"><a href="?SchoolID=<?= $SCHOOL->SchoolID; ?>" class="btn btn-primary"><i class="bi bi-card-list"></i></a>
@@ -128,7 +128,7 @@ WHERE SCHOOL.SchoolID = ' . $_GET['SchoolID'] . '
                             <?php if ($SCHOOL_DETAIL->ImageSchool != '') { ?>
                                 <div class="col-2" style="padding-bottom: 8px; padding-left: 60px; padding-top: 0px;">
                                     <div class="card">
-                                        <img style="text-align: center; padding: 15px;" src="image/school/<?= $SCHOOL_DETAIL->ImageSchool; ?>" alt="" width="100%" height="100%" style="padding-top: 20px;">
+                                        <img style="text-align: center; padding: 15px;" src="./assets/img/school/<?= $SCHOOL_DETAIL->ImageSchool; ?>" alt="" width="100%" height="100%" style="padding-top: 20px;">
                                     </div>
                                 </div>
                             <?php } else { ?>

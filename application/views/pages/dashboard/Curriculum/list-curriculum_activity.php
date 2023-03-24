@@ -3,7 +3,7 @@
     <div class="pagetitle">
         <div class="row">
             <div class="col-6">
-                <h1>ข้อมูลสมรรถนะของหลักสูตร</h1>
+                <h1>ข้อมูลกิจกรรม</h1>
             </div>
 
         </div>
@@ -33,38 +33,41 @@
             <div class="card-body">
                 <div class="row">
                     <div class="col">
-                        <h5 class="card-title"><a href="list-curriculum_subject?cid=<?php echo $CurriculumID; ?>" class="btn btn-secondary" data-mdb-ripple-color="dark">ย้อนกลับ</a></h5>
-                    </div>
+                        <h5 class="card-title"><a href="list-curriculum_plan?sid=<?php echo $SubjectCode; ?>&&cid=<?php echo $CurriculumID; ?>" class="btn btn-secondary" data-mdb-ripple-color="dark">ย้อนกลับ</a></h5>
+                    </div>   
                     <div class="col">
-                        <h5 style="float: right; padding: 15px;" class="card-title"><a href="forms-curriculum_school_competency?sid=<?php echo $SubjectCode; ?>&&cid=<?php echo $CurriculumID; ?>" class="btn btn-success">เพิ่มข้อมูล</a></h5>
+                        <h5 style="float: right; padding: 15px;" class="card-title"><a href="forms-curriculum_activity?pid=<?php echo $PLAN_ID; ?>&&sid=<?php echo $SubjectCode; ?>&&cid=<?php echo $CurriculumID; ?>" class="btn btn-success">เพิ่มข้อมูล</a></h5>
                     </div>
                 </div>
                 <table class="table table-borderless datatable">
                     <thead>
                         <tr>
-                            <th style="text-align: center;" scope="col">รหัสสมรรถนะ</th>
-                            <th style="text-align: center;" scope="col">ชื่อสมรรถนะ</th></th>
+                            <th style="text-align: center;" scope="col">ชื่อกิจกรรม</th>
+                            <th style="text-align: center;" scope="col">ประเมินผลสัมฤทธิ์</th>
                             <th style="text-align: center;" scope="col">ปฎิบัติ</th>
                         </tr>
                     </thead>
-                
                     <tbody>
-                        <?php foreach ($listCurriculumCompetency as $ls) { ?>
+                       <?php foreach($list_curriculum_activity as $lca) { ?>
                             <tr>
-                                <td style="text-align: center;"><?php echo $ls-> COMPETENCY_CODE; ?></td>
-                                <td style="text-align: center;"><?php echo $ls->COMPETENCY_NAME ; ?></td>
-
+                                <th style="text-align: center;" scope="col"><?php echo$lca->ACTIVITY_NAME ?></th>
                                 <td style="text-align: center;">
-                                    <a href='edit_forms-curriculum_school_competency?sid=<?php echo $ls->SubjectCode; ?>&&cid=<?php echo $ls->CurriculumID; ?>&&cpid=<?php echo $ls->CompetencyCode ; ?>'>
-                                        <button type="button" class="btn btn-warning"><i class="bi bi-pencil-square"></i></button> 
-                                    </a>
-                                    <button type="button" class="btn btn-danger"  data-bs-toggle="modal" data-bs-target="#delete<?= $ls->CompetencyCode; ?>">
-                                        <i class=" bi bi-trash"></i>
-                                    </button>  
+                                        <a href='forms-curriculum_assessment?aid=<?php echo$lca->ACTIVITY_ID ?>&&sid=<?php echo $SubjectCode; ?>&&cid=<?php echo $CurriculumID; ?>' class="btn btn-info">
+                                            <i class="bi bi-eye-fill"></i>
+                                        </a>
+                                    </td>
+                                <td style="text-align: center;">
+                                       
+                                        <a href='edit_forms-curriculum_activity?pid=<?php echo$lca->PLAN_ID ?>&&ACTIVITY_ID=<?php echo$lca->ACTIVITY_ID ?>&&sid=<?php echo $SubjectCode; ?>&&cid=<?php echo $CurriculumID; ?>' class="btn btn-warning">
+                                            <i class="bi bi-pencil-square"></i>
+                                        </a>
+                                        <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#delete">
+                                            <i class=" bi bi-trash"></i>
+                                        </button>
                                 </td>
                             </tr>
-                            <!-- Modal -->
-                            <div class="modal fade" id="delete<?= $ls->CompetencyCode; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+                          <!-- Modal delete -->
+                          <div class="modal fade" id="delete" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
                                     <div class="modal-dialog modal-dialog-centered" role="document">
                                         <div class="modal-content">
                                             <div class="modal-header">
@@ -77,13 +80,14 @@
                                                 </h6>
                                             </div>
                                             <div class="modal-footer">
-                                                <a href="<?php echo base_url('delete-curriculum_school_competency/' .$ls->CurriculumID .'/'.$ls->SubjectCode .'/'.$ls->CompetencyCode)  ?>"  class="btn btn-danger">ลบ</a>
-                                                <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#delete">ยกเลิก</button>
+                                                <a href="<?php echo base_url('delete-curriculum_activity/' . $lca->PLAN_ID.'/'.$lca->ACTIVITY_ID ) ?>" class="btn btn-danger">ลบ</a>
+                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ยกเลิก</button>
                                             </div>
                                         </div>
                                     </div>
-                            </div>
+                                </div>
                         <?php } ?>
+
                     </tbody>
                 
                 </table>

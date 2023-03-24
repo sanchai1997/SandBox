@@ -53,18 +53,7 @@ class CurriculumController extends CI_Controller{
         $this->load->view('templates/footer', $data);
 
     }
-    public function forms_curriculum_activity() {
-        
-        if ( ! file_exists(APPPATH.'views/pages/forms/Curriculum/forms-curriculum_activity.php'))
-        {
-            show_404();
-        }
-        $this->load->view('templates/header');
-        $this->load->view('templates/sidebar');
-        $this->load->view('pages/forms/Curriculum/forms-curriculum_activity');
-        $this->load->view('templates/footer');
 
-    }
     
     public function list_curriculum_by_school() {
         
@@ -74,6 +63,7 @@ class CurriculumController extends CI_Controller{
         }
 
         $data['SchoolID'] = $_GET['sid']; 
+        $data['SchoolNameThai'] = $_GET['sname']; 
 
         $data['listCurriculum'] = $this->Curriculum_model->get_Curriculum_by_school($data['SchoolID']);  
         $data['School'] = $this->School_model->get_school_All();
@@ -141,6 +131,7 @@ class CurriculumController extends CI_Controller{
         }else{
             $data['School_id'] = $this->School_model->get_school_top();
             $SchoolID = array_column($data['School_id'],'SchoolID');
+            $data['SchoolNameThai'] = $data['School_id'][0]-> SchoolNameThai;
             $data['listCurriculum'] = $this->Curriculum_model->get_Curriculum_by_school($SchoolID);  
           
         }
@@ -342,7 +333,7 @@ class CurriculumController extends CI_Controller{
             redirect(base_url('list-curriculum_subject?cid='. $CurriculumID));
         }else{
             $this->session->set_flashdata('errors',"เกิดข้อผิดพลาดในการบันทึกข้อมูล");
-            redirect(base_url('forms-curriculum_subject' ));
+            redirect(base_url('forms-curriculum_subject?cid='. $CurriculumID ));
         }
 
     }
@@ -542,9 +533,13 @@ class CurriculumController extends CI_Controller{
             show_404();
         }
 
+        $data['CurriculumID'] = $_GET['cid']; 
+        $data['SubjectCode'] = $_GET['sid']; 
+        $data['listcurriculum_plan'] = $this->Curriculum_model->get_Curriculum_plan_All($data['CurriculumID'], $data['SubjectCode']);
+
         $this->load->view('templates/header');
         $this->load->view('templates/sidebar');
-        $this->load->view('pages/dashboard/Curriculum/list-curriculum_plan');
+        $this->load->view('pages/dashboard/Curriculum/list-curriculum_plan',$data);
         $this->load->view('templates/footer');
 
     }
@@ -555,13 +550,259 @@ class CurriculumController extends CI_Controller{
         {
             show_404();
         }
+        $data['CurriculumID'] = $_GET['cid']; 
+        $data['SubjectCode'] = $_GET['sid']; 
 
         $this->load->view('templates/header');
         $this->load->view('templates/sidebar');
-        $this->load->view('pages/forms/Curriculum/forms-curriculum_plan');
+        $this->load->view('pages/forms/Curriculum/forms-curriculum_plan',$data);
         $this->load->view('templates/footer');
 
     }
+    public function add_curriculum_plan() {
+        $data['CurriculumID'] = $_GET['cid']; 
+        $data['SubjectCode'] = $_GET['sid']; 
+
+        $CurriculumID = $data['CurriculumID'];
+        $SubjectCode = $data['SubjectCode'];
+
+        $curriculum_plan = [
+            'PLAN_NAME' => $this->input->post('PLAN_NAME'),
+            'EDUCATION_YEAR' => $this->input->post('EDUCATION_YEAR'),
+            'SEMESTER' => $this->input->post('SEMESTER'),
+            'PLAN_KEY' => $this->input->post('PLAN_KEY'),
+            'PLAN_OBJECTIVE' => $this->input->post('PLAN_OBJECTIVE'),
+            'PLAN_CHARACTER' => $this->input->post('PLAN_CHARACTER'),
+            'PLAN_DETAILS' => $this->input->post('PLAN_DETAILS'),
+            'PLAN_PROCESS' => $this->input->post('PLAN_PROCESS'),
+            'PLAN_RECOMMEND' => $this->input->post('PLAN_RECOMMEND'),
+            'PLAN_MEMO_TA' => $this->input->post('PLAN_MEMO_TA'),
+            'PLAN_MEMO_SV' => $this->input->post('PLAN_MEMO_SV'),
+            'CurriculumID' => $CurriculumID,
+            'SubjectCode' =>  $SubjectCode,
+        ];
+        $result_curriculum_plan = $this->Curriculum_model->insert_curriculum_plan($curriculum_plan);
+
+      
+        if($result_curriculum_plan == 1 ){
+            $this->session->set_flashdata('success',"บันทึกข้อมูลสำเร็จ");
+            redirect(base_url('list-curriculum_plan?sid='. $SubjectCode.'&&cid='.$CurriculumID));
+        }else{
+            $this->session->set_flashdata('errors',"เกิดข้อผิดพลาดในการบันทึกข้อมูล");
+            redirect(base_url('forms-forms_curriculum_plan?sid='. $SubjectCode.'&&cid='.$CurriculumID));
+        }
+
+    }
+    public function forms_edit_curriculum_plan() {
+        
+             
+        if ( ! file_exists(APPPATH.'views/pages/forms/Curriculum/edit_forms-curriculum_plan.php'))
+        {
+            show_404();
+        }
+        $data['PLAN_ID'] = $_GET['pid']; 
+
+        $data['curriculum_plan'] = $this->Curriculum_model->get_Curriculum_plan($data['PLAN_ID']);
+
+        $this->load->view('templates/header');
+        $this->load->view('templates/sidebar');
+        $this->load->view('pages/forms/Curriculum/edit_forms-curriculum_plan',$data);
+        $this->load->view('templates/footer');
+
+    }
+    public function edit_curriculum_plan() {
+        $data['PLAN_ID'] =  $this->input->post('PLAN_ID');
+        $CurriculumID = $this->input->post('CurriculumID');
+        $SubjectCode = $this->input->post('SubjectCode');
+        
+        $curriculum_plan = [
+            'PLAN_NAME' => $this->input->post('PLAN_NAME'),
+            'EDUCATION_YEAR' => $this->input->post('EDUCATION_YEAR'),
+            'SEMESTER' => $this->input->post('SEMESTER'),
+            'PLAN_KEY' => $this->input->post('PLAN_KEY'),
+            'PLAN_OBJECTIVE' => $this->input->post('PLAN_OBJECTIVE'),
+            'PLAN_CHARACTER' => $this->input->post('PLAN_CHARACTER'),
+            'PLAN_DETAILS' => $this->input->post('PLAN_DETAILS'),
+            'PLAN_PROCESS' => $this->input->post('PLAN_PROCESS'),
+            'PLAN_RECOMMEND' => $this->input->post('PLAN_RECOMMEND'),
+            'PLAN_MEMO_TA' => $this->input->post('PLAN_MEMO_TA'),
+            'PLAN_MEMO_SV' => $this->input->post('PLAN_MEMO_SV'),
+            'CurriculumID' => $CurriculumID,
+            'SubjectCode' =>  $SubjectCode,
+        ];
+        $result_curriculum_plan = $this->Curriculum_model->update_Curriculum_plan($data['PLAN_ID'],$curriculum_plan);
+
+      
+        if($result_curriculum_plan == 1 ){
+            $this->session->set_flashdata('success',"บันทึกข้อมูลสำเร็จ");
+            redirect(base_url('list-curriculum_plan?sid='. $SubjectCode.'&&cid='.$CurriculumID));
+        }else{
+            $this->session->set_flashdata('errors',"เกิดข้อผิดพลาดในการบันทึกข้อมูล");
+            redirect(base_url('forms-forms_curriculum_plan?sid='. $SubjectCode.'&&cid='.$CurriculumID));
+        }
+
+    }
+    public function delete_curriculum_plan($PLAN_ID,$SubjectCode, $CurriculumID){
+
+        $result =$this->Curriculum_model->delete_Curriculum_plan($PLAN_ID);
+
+        if($result == 1 ){
+            $this->session->set_flashdata('success',"ลบข้อมูลสำเร็จ");
+            redirect(base_url('list-curriculum_plan?sid='. $SubjectCode.'&&cid='. $CurriculumID));
+        }else{
+            $this->session->set_flashdata('errors',"เกิดข้อผิดพลาดในการลบข้อมูล");
+            redirect(base_url('list-curriculum_plan?sid='. $SubjectCode.'&&cid='. $CurriculumID));
+        }
+    }
+    ##curriculum_activity
+    public function list_curriculum_activity() {
+            
+        if ( ! file_exists(APPPATH.'views/pages/dashboard/Curriculum/list-curriculum_activity.php'))
+        {
+            show_404();
+        }
+        $data['PLAN_ID'] = $_GET['pid']; 
+        $data['CurriculumID'] = $_GET['cid']; 
+        $data['SubjectCode'] = $_GET['sid']; 
+        $data['list_curriculum_activity'] = $this->Curriculum_model->get_curriculum_activity_All();
+
+        
+        $this->load->view('templates/header');
+        $this->load->view('templates/sidebar');
+        $this->load->view('pages/dashboard/Curriculum/list-curriculum_activity',$data);
+        $this->load->view('templates/footer');
+
+    }
+    public function add_curriculum_activity() {
+
+        $PLAN_ID =  $this->input->post('PLAN_ID');
+        $curriculum_activity = [
+            'ACTIVITY_NAME' => $this->input->post('ACTIVITY_NAME'),
+            'PLAN_ID' =>$PLAN_ID ,
+        ];
+        $result_curriculum_activity = $this->Curriculum_model->insert_curriculum_activity($curriculum_activity);
+
+      
+        if($result_curriculum_activity == 1 ){    
+            $this->session->set_flashdata('success',"บันทึกข้อมูลสำเร็จ");
+            redirect(base_url('list-curriculum_activity?pid='. $PLAN_ID.'&&sid='. $SubjectCode.'&&cid='. $CurriculumID ));
+        }else{
+            $this->session->set_flashdata('errors',"เกิดข้อผิดพลาดในการบันทึกข้อมูล");
+            redirect(base_url('forms-curriculum_activity?pid='. $PLAN_ID.'&&sid='. $SubjectCode.'&&cid='. $CurriculumID));
+        }
+
+    }
+    public function forms_curriculum_activity() {
+        
+        if ( ! file_exists(APPPATH.'views/pages/forms/Curriculum/forms-curriculum_activity.php'))
+        {
+            show_404();
+        }
+        $data['PLAN_ID'] = $_GET['pid']; 
+        $data['CurriculumID'] = $_GET['cid']; 
+        $data['SubjectCode'] = $_GET['sid']; 
+
+        $this->load->view('templates/header');
+        $this->load->view('templates/sidebar');
+        $this->load->view('pages/forms/Curriculum/forms-curriculum_activity',$data);
+        $this->load->view('templates/footer');
+
+    }
+    public function edit_forms_curriculum_activity() {
+        
+        if ( ! file_exists(APPPATH.'views/pages/forms/Curriculum/edit_forms-curriculum_activity.php'))
+        {
+            show_404();
+        }
+        $data['PLAN_ID'] = $_GET['pid']; 
+        $data['ACTIVITY_ID'] = $_GET['ACTIVITY_ID'];
+        $data['CurriculumID'] = $_GET['cid']; 
+        $data['SubjectCode'] = $_GET['sid']; 
+
+        $data['curriculum_activity'] = $this->Curriculum_model->get_curriculum_activity($data['ACTIVITY_ID']);
+
+        $this->load->view('templates/header');
+        $this->load->view('templates/sidebar');
+        $this->load->view('pages/forms/Curriculum/edit_forms-curriculum_activity',$data);
+        $this->load->view('templates/footer');
+
+    }
+
+    public function edit_curriculum_activity() {
+
+        $PLAN_ID =  $this->input->post('PLAN_ID');
+        $ACTIVITY_ID =  $this->input->post('ACTIVITY_ID');
+        $CurriculumID = $this->input->post('CurriculumID');
+        $SubjectCode = $this->input->post('SubjectCode');
+        $curriculum_activity = [
+            'ACTIVITY_NAME' => $this->input->post('ACTIVITY_NAME'),
+            'PLAN_ID' =>$PLAN_ID ,
+        ];
+        $result_curriculum_activity = $this->Curriculum_model->update_curriculum_activity($curriculum_activity,$ACTIVITY_ID );
+
+      
+        if($result_curriculum_activity == 1 ){    
+            $this->session->set_flashdata('success',"บันทึกข้อมูลสำเร็จ");
+            redirect(base_url('list-curriculum_activity?pid='. $PLAN_ID.'&&sid='. $SubjectCode.'&&cid='. $CurriculumID ));
+        }else{
+            $this->session->set_flashdata('errors',"เกิดข้อผิดพลาดในการบันทึกข้อมูล");
+            redirect(base_url('forms-curriculum_activity?pid='. $PLAN_ID.'&&sid='. $SubjectCode.'&&cid='. $CurriculumID));
+        }
+
+    }
+    public function delete_curriculum_activity ($PLAN_ID,$ACTIVITY_ID){
+
+
+        $result =$this->Curriculum_model->delete_curriculum_activity($ACTIVITY_ID);
+
+        if($result == 1 ){
+            $this->session->set_flashdata('success',"ลบข้อมูลสำเร็จ");
+            redirect(base_url('list-curriculum_activity?pid='. $PLAN_ID.'&&sid='. $SubjectCode.'&&cid='. $CurriculumID ));
+        }else{
+            $this->session->set_flashdata('errors',"เกิดข้อผิดพลาดในการลบข้อมูล");
+            redirect(base_url('list-curriculum_activity?pid='. $PLAN_ID.'&&sid='. $SubjectCode.'&&cid='. $CurriculumID ));
+        }
+    }
+
+###curriculum_assessment
+    public function forms_curriculum_assessment() {
+        
+        if ( ! file_exists(APPPATH.'views/pages/forms/Curriculum/forms-curriculum_assessment.php'))
+        {
+            show_404();
+        }
+        $data['ACTIVITY_ID'] = $_GET['aid']; 
+       
+
+        $this->load->view('templates/header');
+        $this->load->view('templates/sidebar');
+        $this->load->view('pages/forms/Curriculum/forms-curriculum_assessment',$data);
+        $this->load->view('templates/footer');
+
+    }
+    public function add_curriculum_assessment() {
+
+        $ACTIVITY_ID =  $this->input->post('ACTIVITY_ID');
+        $curriculum_assessment = [
+            'ASSESSMENT_NAME' => $this->input->post('ASSESSMENT_NAME'),
+            'ASSESSMENT_PEOPLE_ID' => $this->input->post('ASSESSMENT_PEOPLE_ID'),
+            'ASSESSMENT_TOOL_CODE' => $this->input->post('ASSESSMENT_TOOL_CODE'),
+            'ACTIVITY_ID' =>$ACTIVITY_ID ,
+            'DeleteStatus' => 0 
+        ];
+        $result_curriculum_assessment = $this->Curriculum_model->insert_curriculum_assessment($curriculum_assessment);
+
+      
+        if($result_curriculum_assessment == 1 ){    
+            show_error("success");
+           
+        }else{
+            show_error("fail");
+        }
+
+    }
+    
+    
 
     
 

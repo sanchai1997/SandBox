@@ -35,7 +35,7 @@ class School_model extends CI_Model
     {
 
         $config['file_name'] = 'ImageSchool_' . $_POST['JurisdictionCode'] . $_POST['SchoolAddressProvinceCode'];
-        $config['upload_path'] = '/image/school/';
+        $config['upload_path'] = './assets/img/school/';
         $config['allowed_types'] = 'doc|docx|pdf|jpg|png|xls|ppt|zip|xlsx';
 
         $this->load->library('upload', $config);
@@ -45,37 +45,37 @@ class School_model extends CI_Model
         } else {
 
             $data = $this->upload->data();
-
-            $data = [
-
-                'SchoolID ' => $_POST['JurisdictionCode'] . $_POST['SchoolAddressProvinceCode'],
-                'InnovationAreaCode' => $this->input->post('InnovationAreaCode'),
-                'ImageSchool' => $data['file_name'],
-                'SchoolNameThai' => $this->input->post('SchoolNameThai'),
-                'SchoolNameEnglish' => $this->input->post('SchoolNameEnglish'),
-                'SchoolEstablishedDate' => $this->input->post('SchoolEstablishedDate'),
-                'EducationLevelCode' => $this->input->post('EducationLevelCode'),
-                'SchoolTypeCode ' => $this->input->post('SchoolTypeCode'),
-                'SchoolStatusCode' => $this->input->post('SchoolStatusCode'),
-                'MunicipalCode' => $this->input->post('MunicipalCode'),
-                'JurisdictionCode' => $this->input->post('JurisdictionCode'),
-                'SchoolAddressHouseNumber' => $this->input->post('SchoolAddressHouseNumber'),
-                'SchoolAddressMoo' => $this->input->post('SchoolAddressMoo'),
-                'SchoolAddressStreet' => $this->input->post('SchoolAddressStreet'),
-                'SchoolAddressSoi' => $this->input->post('SchoolAddressSoi'),
-                'SchoolAddressTrok' => $this->input->post('SchoolAddressTrok'),
-                'SchoolAddressPostcode' => $this->input->post('SchoolAddressPostcode'),
-                'SchoolAddressProvinceCode' => $this->input->post('SchoolAddressProvinceCode'),
-                'SchoolAddressDistrictCode' => $this->input->post('SchoolAddressDistrictCode'),
-                'SchoolAddressSubdistrictCode' => $this->input->post('SchoolAddressSubdistrictCode'),
-                'SchoolLatitude' => $this->input->post('SchoolLatitude'),
-                'SchoolLongitude' => $this->input->post('SchoolLongitude'),
-                'SchoolMapURL' => $this->input->post('SchoolMapURL')
-            ];
-
-            $result = $this->db->insert('SCHOOL', $data);
-            return $result;
         }
+
+        $data = [
+
+            'SchoolID ' => $_POST['JurisdictionCode'] . $_POST['SchoolAddressProvinceCode'],
+            'InnovationAreaCode' => $this->input->post('InnovationAreaCode'),
+            'ImageSchool' => $data['file_name'],
+            'SchoolNameThai' => $this->input->post('SchoolNameThai'),
+            'SchoolNameEnglish' => $this->input->post('SchoolNameEnglish'),
+            'SchoolEstablishedDate' => $this->input->post('SchoolEstablishedDate'),
+            'EducationLevelCode' => $this->input->post('EducationLevelCode'),
+            'SchoolTypeCode ' => $this->input->post('SchoolTypeCode'),
+            'SchoolStatusCode' => $this->input->post('SchoolStatusCode'),
+            'MunicipalCode' => $this->input->post('MunicipalCode'),
+            'JurisdictionCode' => $this->input->post('JurisdictionCode'),
+            'SchoolAddressHouseNumber' => $this->input->post('SchoolAddressHouseNumber'),
+            'SchoolAddressMoo' => $this->input->post('SchoolAddressMoo'),
+            'SchoolAddressStreet' => $this->input->post('SchoolAddressStreet'),
+            'SchoolAddressSoi' => $this->input->post('SchoolAddressSoi'),
+            'SchoolAddressTrok' => $this->input->post('SchoolAddressTrok'),
+            'SchoolAddressPostcode' => $this->input->post('SchoolAddressPostcode'),
+            'SchoolAddressProvinceCode' => $this->input->post('SchoolAddressProvinceCode'),
+            'SchoolAddressDistrictCode' => $this->input->post('SchoolAddressDistrictCode'),
+            'SchoolAddressSubdistrictCode' => $this->input->post('SchoolAddressSubdistrictCode'),
+            'SchoolLatitude' => $this->input->post('SchoolLatitude'),
+            'SchoolLongitude' => $this->input->post('SchoolLongitude'),
+            'SchoolMapURL' => $this->input->post('SchoolMapURL')
+        ];
+
+        $result = $this->db->insert('SCHOOL', $data);
+        return $result;
     }
 
     //Update Data Form School MAIN
@@ -83,7 +83,7 @@ class School_model extends CI_Model
     {
 
         $config['file_name'] = 'ImageSchool_' . $SchoolID;
-        $config['upload_path'] = '/image/school/';
+        $config['upload_path'] = './assets/img/school/';
         $config['allowed_types'] = 'doc|docx|pdf|jpg|png|xls|ppt|zip|xlsx';
         $config['overwrite'] = TRUE;
 

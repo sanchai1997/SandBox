@@ -119,8 +119,29 @@ $route['delete-building/(:num)/(:any)'] = 'forms_school/delete_building/$1/$2';
 //student
 $route['student'] = 'student/index';
 $route['forms-student'] = 'forms_student';
+$route['forms-student-select'] = 'forms_student/forms_student_select';
 $route['add-student/(:num)']['post'] = 'forms_student/add_student/$1';
+$route['add-student-select/(:num)/(:num)/(:num)/(:num)']['post'] = 'forms_student/add_student_select/$1/$2/$3/$4';
+$route['edit-forms-student-main'] = 'forms_student/edit_forms_student_main';
+$route['edit-forms-student-person'] = 'forms_student/edit_forms_student_person';
+$route['edit-forms-student-address'] = 'forms_student/edit_forms_student_address';
+$route['edit-forms-student-parents'] = 'forms_student/edit_forms_student_parents';
+$route['edit-forms-student-family'] = 'forms_student/edit_forms_student_family';
+$route['edit-forms-student-journey'] = 'forms_student/edit_forms_student_journey';
+$route['edit-forms-student-disadvantaged'] = 'forms_student/edit_forms_student_disadvantaged';
+$route['edit-forms-student-talent'] = 'forms_student/edit_forms_student_talent';
 
+$route['update-student-main/(:any)/(:num)/(:num)/(:num)/(:num)']['post'] = 'forms_student/update_student_main/$1/$2/$3/$4/$5';
+$route['update-student-person/(:any)/(:num)/(:num)/(:num)/(:num)']['post'] = 'forms_student/update_student_person/$1/$2/$3/$4/$5';
+$route['update-student-address/(:any)/(:num)/(:num)/(:num)/(:num)']['post'] = 'forms_student/update_student_address/$1/$2/$3/$4/$5';
+$route['update-student-parents/(:any)/(:num)/(:num)/(:num)/(:num)']['post'] = 'forms_student/update_student_parents/$1/$2/$3/$4/$5';
+$route['update-student-family/(:any)/(:num)/(:num)/(:num)/(:num)']['post'] = 'forms_student/update_student_family/$1/$2/$3/$4/$5';
+$route['update-student-journey/(:any)/(:num)/(:num)/(:num)/(:num)']['post'] = 'forms_student/update_student_journey/$1/$2/$3/$4/$5';
+$route['update-student-disadvantaged/(:any)/(:num)/(:num)/(:num)/(:num)']['post'] = 'forms_student/update_student_disadvantaged/$1/$2/$3/$4/$5';
+$route['update-student-talent/(:any)/(:num)/(:num)/(:num)/(:num)']['post'] = 'forms_student/update_student_talent/$1/$2/$3/$4/$5';
+
+
+$route['delete-student/(:any)/(:num)/(:num)/(:num)/(:num)'] = 'forms_student/delete_student/$1/$2/$3/$4/$5';
 
 ///////////////////// STUDENT - END /////////////////////////
 

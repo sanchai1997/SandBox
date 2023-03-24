@@ -57,9 +57,6 @@ class Curriculum_model  extends CI_Model {
         ;
 
         $query = $this->db->get();
-        
-        //show_error($this->db->last_query());
-        
         return $query->result();
         
     }
@@ -189,6 +186,87 @@ class Curriculum_model  extends CI_Model {
         $result = $this->db->update('CURRICULUM_SCHOOL_COMPETENCY', $data);
         return $result;
     }
+###################### curriculum_plan ################################
+
+    public function insert_curriculum_plan($curriculum_plan) {
+        $result_curriculum_plan = $this->db->insert('PLAN', $curriculum_plan);
+        return $result_curriculum_plan;
+    }
+    public function get_Curriculum_plan_All( $CurriculumID, $SubjectCode) {
+        $this->db->select('*')
+        ->from('PLAN')
+        ->where('DeleteStatus ', 0  ) 
+        ->where('CurriculumID ', $CurriculumID  ) 
+        ->where('SubjectCode ', $SubjectCode  ) ;
+        $query = $this->db->get();
+       
+        return $query->result();
+    }
+    public function get_Curriculum_plan($PLAN_ID) {
+        $this->db->from('PLAN')
+        ->where('PLAN_ID', $PLAN_ID);
+
+        $query = $this->db->get();
+        return $query->result();
+    }
+    public function update_Curriculum_plan($PLAN_ID, $curriculum_plan){
+        $this->db->where('PLAN_ID', $PLAN_ID);
+        $result = $this->db->update('PLAN',  $curriculum_plan);
+        return $result;
+    }
+    public function delete_Curriculum_plan($PLAN_ID){   
+        $data = [
+            'DeleteStatus' => 1
+        ];
+        $this->db->where('PLAN_ID', $PLAN_ID);
+            
+        $result = $this->db->update('PLAN', $data);
+        return $result;
+    }
+###################### curriculum_activity ################################
+
+    public function insert_curriculum_activity($curriculum_activity) {
+        $result_curriculum_activity = $this->db->insert('ACTIVITY', $curriculum_activity);
+        return $result_curriculum_activity;
+    }
+    public function get_curriculum_activity_All() {
+        $this->db->select('*')
+        ->from('ACTIVITY')
+        ->where('DeleteStatus ', 0  ) ;
+        $query = $this->db->get();
+       
+        return $query->result();
+    }
+    public function get_curriculum_activity($ACTIVITY_ID) {
+        $this->db->select('*')
+        ->from('ACTIVITY')
+        ->where('ACTIVITY_ID',$ACTIVITY_ID);
+        $query = $this->db->get();
+       
+        return $query->result();
+    }
+    public function update_curriculum_activity($curriculum_activity,$ACTIVITY_ID){
+        $this->db->where('ACTIVITY_ID', $ACTIVITY_ID);
+        $result = $this->db->update('ACTIVITY',  $curriculum_activity);
+        return $result;
+    }
+    public function delete_curriculum_activity($ACTIVITY_ID){   
+        $data = [
+            'DeleteStatus' => 1
+        ];
+        $this->db->where('ACTIVITY_ID', $ACTIVITY_ID);
+            
+        $result = $this->db->update('ACTIVITY', $data);
+        return $result;
+    }
+###################### curriculum_assessment ################################
+
+public function insert_curriculum_assessment($curriculum_assessment) {
+    $result_curriculum_activity = $this->db->insert('ASSESSMENT', $curriculum_assessment);
+    return $result_curriculum_activity;
+}    
+
+    
 
     
 }

@@ -11,6 +11,13 @@
                 ?>
             <?php } ?>
         </h1>
+        <?php
+        $result = $this->db->query('SELECT * FROM CLS_GRADE_LEVEL WHERE GRADE_LEVEL_CODE = ' . $_GET['GradeLevelCode'] . '');
+        foreach ($result->result() as $GRADE_LEVEL) {
+            $GRADE_NAME = $GRADE_LEVEL->GRADE_LEVEL_NAME;
+        ?>
+            <a class="btn btn-sm btn-light text-dark"><b>ปีการศึกษา: <?= $_GET['EducationYear'] ?>&nbsp; ภาคเรียน: <?= $_GET['Semester'] ?> &nbsp;ระดับชั้นเรียน: <?= $GRADE_NAME ?></b></a>
+        <?php } ?>
     </div><!-- End Page Title -->
 
     <section class="section">
@@ -20,7 +27,7 @@
                 <div class="card">
                     <div class="card-body">
                         <!-- Floating Labels Form -->
-                        <form class="row g-3" action="<?php echo base_url('add-student/' . $_GET['SchoolID']); ?>" method="POST" id="Student" enctype="multipart/form-data">
+                        <form class="row g-3" action="<?php echo base_url('add-student-select/' . $_GET['SchoolID'] . '/' . $_GET['EducationYear'] . '/' . $_GET['Semester'] . '/' . $_GET['GradeLevelCode']); ?>" method="POST" id="Student" enctype="multipart/form-data">
                             <h6 style="padding-left: 15px;" class="card-title">ข้อมูลการศึกษา</h6>
                             <div class="col-md-3">
                                 <div class="form-floating">
@@ -52,36 +59,7 @@
                                     <label for="EducationLevelCode">ระดับการศึกษา <font color="red"> *</font></label>
                                 </div>
                             </div>
-                            <div class="col-md-3">
-                                <div class="form-floating">
-                                    <input type="number" class="form-control" minlength="4" maxlength="4" name="EducationYear" id="EducationYear" value="<?= date('Y') + 543; ?>">
-                                    <label for="EducationYear">ปีการศึกษา <font color="red"> *</font></label>
-                                </div>
-                            </div>
-                            <div class="col-md-3">
-                                <div class="form-floating">
-                                    <input type="number" class="form-control" minlength="2" maxlength="2" name="Semester" id="Semester" value="1">
-                                    <label for="Semester">ภาคเรียน <font color="red"> *</font></label>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-floating">
-                                    <select class="form-select" name="GradeLevelCode" id="GradeLevelCode" aria-label="GradeLevelCode">
-                                        <option value="" selected>เลือก</option>
 
-                                        <?php
-                                        $result = $this->db->query('SELECT * FROM CLS_GRADE_LEVEL ');
-
-                                        foreach ($result->result() as $GRADE_LEVEL) {
-                                        ?>
-                                            <option value="<?= $GRADE_LEVEL->GRADE_LEVEL_CODE; ?>"><?= $GRADE_LEVEL->GRADE_LEVEL_NAME; ?></option>
-                                        <?php
-                                        }
-                                        ?>
-                                    </select>
-                                    <label for="GradeLevelCode">ระดับชั้นเรียน <font color="red"> *</font></label>
-                                </div>
-                            </div>
                             <div class="col-md-12">
                                 <div class="input-group">
                                     <label class="input-group-text" for="inputGroupFile01">รูปภาพนักเรียน <font color="red"> *</font></label>
@@ -301,7 +279,7 @@
 
 
                             <div class="d-flex justify-content-between">
-                                <a href="student?SchoolID=<?= $_GET['SchoolID'] ?>" class="btn btn-danger">ยกเลิก</a>
+                                <a href="student?SchoolID=<?= $_GET['SchoolID'] ?>&&EducationYear=<?= $_GET['EducationYear'] ?>&&Semester=<?= $_GET['Semester'] ?>&&GradeLevelCode=<?= $_GET['GradeLevelCode'] ?>" class="btn btn-danger">ยกเลิก</a>
                                 <button type="button" class="btn btn-primary" onclick="return check(Student)">บันทึกข้อมูล</button>
                             </div>
                             <!-- Modal -->
@@ -360,25 +338,6 @@
 
             if (frm.EducationLevelCode.value == "") {
                 alert("กรุณาเลือกระดับการศึกษา");
-                return false;
-            }
-
-            if (frm.EducationYear.value == "") {
-                alert("กรุณากรอกปีการศึกษา");
-                return false;
-            } else if (!frm.EducationYear.value.match(Year)) {
-                alert("กรุณากรอกปีการศึกษาให้ครบ 4 หลัก");
-                frm.EducationYear.value = "";
-                return false;
-            }
-
-            if (frm.Semester.value == "") {
-                alert("กรุณากรอกภาคเรียน");
-                return false;
-            }
-
-            if (frm.GradeLevelCode.value == "") {
-                alert("กรุณาเลือกระดับชั้นเรียน");
                 return false;
             }
 
