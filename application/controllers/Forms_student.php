@@ -207,6 +207,88 @@
         }
         ////////////////////////////////edit-forms-student-family-END///////////////////////////
 
+        ///////////////////////////////////edit-forms-student-journey/////////////////////////////////
+        //PageForm edit-forms-student-journey
+        public function edit_forms_student_journey()
+        {
+
+            if (!file_exists(APPPATH . 'views/pages/forms/student/edit-forms-student-journey.php')) {
+                //Whoops,wedon'thaveapageforthat!
+                show_404();
+            }
+
+            $data['title'] = 'Forms edit Student journey'; //Capitalizethefirstletter
+
+            $this->load->view('templates/header', $data);
+            $this->load->view('templates/sidebar', $data);
+            $this->load->view('pages/forms/student/edit-forms-student-journey', $data);
+            $this->load->view('templates/footer', $data);
+        }
+
+        //update Data student journey
+        public function update_student_journey($StudentReferenceID, $SchoolID, $EducationYear, $Semester, $GradeLevelCode)
+        {
+            $this->forms_student->update_student_journey($StudentReferenceID);
+            $_SESSION['success'] = "บันทึกข้อมูลเรียบร้อย";
+            redirect(base_url('student?StudentReferenceID=' . $StudentReferenceID . '&&SchoolID=' . $SchoolID . '&&EducationYear=' . $EducationYear . '&&Semester=' . $Semester . '&&GradeLevelCode=' . $GradeLevelCode . '&&ShowDetail='));
+        }
+        ////////////////////////////////edit-forms-student-journey-END///////////////////////////
+
+        ///////////////////////////////////edit-forms-student-disadvantaged/////////////////////////////////
+        //PageForm edit-forms-student-disadvantaged
+        public function edit_forms_student_disadvantaged()
+        {
+
+            if (!file_exists(APPPATH . 'views/pages/forms/student/edit-forms-student-disadvantaged.php')) {
+                //Whoops,wedon'thaveapageforthat!
+                show_404();
+            }
+
+            $data['title'] = 'Forms edit Student disadvantaged'; //Capitalizethefirstletter
+
+            $this->load->view('templates/header', $data);
+            $this->load->view('templates/sidebar', $data);
+            $this->load->view('pages/forms/student/edit-forms-student-disadvantaged', $data);
+            $this->load->view('templates/footer', $data);
+        }
+
+        //update Data student disadvantaged
+        public function update_student_disadvantaged($StudentReferenceID, $SchoolID, $EducationYear, $Semester, $GradeLevelCode)
+        {
+            $this->forms_student->update_student_disadvantaged($StudentReferenceID);
+            $_SESSION['success'] = "บันทึกข้อมูลเรียบร้อย";
+            redirect(base_url('student?StudentReferenceID=' . $StudentReferenceID . '&&SchoolID=' . $SchoolID . '&&EducationYear=' . $EducationYear . '&&Semester=' . $Semester . '&&GradeLevelCode=' . $GradeLevelCode . '&&ShowDetail='));
+        }
+        ////////////////////////////////edit-forms-student-disadvantaged-END///////////////////////////
+
+
+        ///////////////////////////////////edit-forms-student-talent/////////////////////////////////
+        //PageForm edit-forms-student-talent
+        public function edit_forms_student_talent()
+        {
+
+            if (!file_exists(APPPATH . 'views/pages/forms/student/edit-forms-student-talent.php')) {
+                //Whoops,wedon'thaveapageforthat!
+                show_404();
+            }
+
+            $data['title'] = 'Forms edit Student talent'; //Capitalizethefirstletter
+
+            $this->load->view('templates/header', $data);
+            $this->load->view('templates/sidebar', $data);
+            $this->load->view('pages/forms/student/edit-forms-student-talent', $data);
+            $this->load->view('templates/footer', $data);
+        }
+
+        //update Data student talent
+        public function update_student_talent($StudentReferenceID, $SchoolID, $EducationYear, $Semester, $GradeLevelCode)
+        {
+            $this->forms_student->update_student_talent($StudentReferenceID);
+            $_SESSION['success'] = "บันทึกข้อมูลเรียบร้อย";
+            redirect(base_url('student?StudentReferenceID=' . $StudentReferenceID . '&&SchoolID=' . $SchoolID . '&&EducationYear=' . $EducationYear . '&&Semester=' . $Semester . '&&GradeLevelCode=' . $GradeLevelCode . '&&ShowDetail='));
+        }
+        ////////////////////////////////edit-forms-student-talent-END///////////////////////////
+
 
         //Delete Data Form student
         public function delete_student($StudentReferenceID, $SchoolID, $EducationYear, $Semester, $GradeLevelCode)

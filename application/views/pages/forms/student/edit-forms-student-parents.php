@@ -37,8 +37,9 @@
                             <div class="col-md-2">
                                 <div class="form-floating">
                                     <select class="form-select" name="FatherPrefixCode" id="FatherPrefixCode" aria-label="FatherPrefixCode">
-                                        <option value="" selected>เลือก</option>
-                                        <?php
+                                        <?php if ($STUDENT->FatherPrefixCode == '') { ?>
+                                            <option value="" selected>เลือก</option>
+                                        <?php }
                                         $result = $this->db->query('SELECT * FROM CLS_PREFIX');
                                         foreach ($result->result() as $PREFIX) {
                                         ?>
@@ -148,8 +149,9 @@
                             <div class="col-md-2">
                                 <div class="form-floating">
                                     <select class="form-select" name="MotherPrefixCode" id="MotherPrefixCode" aria-label="MotherPrefixCode">
-                                        <option value="" selected>เลือก</option>
-                                        <?php
+                                        <?php if ($STUDENT->MotherPrefixCode == '') { ?>
+                                            <option value="" selected>เลือก</option>
+                                        <?php }
                                         $result = $this->db->query('SELECT * FROM CLS_PREFIX');
                                         foreach ($result->result() as $PREFIX) {
                                         ?>

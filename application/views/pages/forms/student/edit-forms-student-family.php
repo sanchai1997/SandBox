@@ -37,8 +37,9 @@
                             <div class="col-md-2">
                                 <div class="form-floating">
                                     <select class="form-select" name="GuardianPrefixCode" id="GuardianPrefixCode" aria-label="GuardianPrefixCode">
-                                        <option value="" selected>เลือก</option>
-                                        <?php
+                                        <?php if ($STUDENT->GuardianPrefixCode == '') { ?>
+                                            <option value="" selected>เลือก</option>
+                                        <?php }
                                         $result = $this->db->query('SELECT * FROM CLS_PREFIX');
                                         foreach ($result->result() as $PREFIX) {
                                         ?>

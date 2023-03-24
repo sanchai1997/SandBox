@@ -299,6 +299,72 @@ class Student_model extends CI_Model
     }
 
 
+    //Update Student Journey
+    public function update_student_journey($StudentReferenceID)
+    {
+
+        $data = [
+
+            //ข้อมูลการเดินทางไปสถานศึกษา
+            'JourneyTypeCode' => $this->input->post('JourneyTypeCode'),
+            'JourneyTime' => $this->input->post('JourneyTime'),
+            'RockJourneyDistance' => $this->input->post('RockJourneyDistance'),
+            'RubberJourneyDistance' => $this->input->post('RubberJourneyDistance'),
+            'WaterJourneyDistance' => $this->input->post('WaterJourneyDistance'),
+
+            //ข้อมูลความพิการ
+            'DisabilityCode' => $this->input->post('DisabilityCode'),
+            'DisabilityDetail' => $this->input->post('DisabilityDetail'),
+            'DisabilityLevelCode' => $this->input->post('DisabilityLevelCode')
+
+        ];
+
+        $result = $this->db->where('StudentReferenceID', $StudentReferenceID)->update('STUDENT', $data);
+        return $result;
+    }
+
+
+    //Update Student Disadvantaged
+    public function update_student_disadvantaged($StudentReferenceID)
+    {
+
+        $data = [
+
+            //ข้อมูลความด้อยโอกาส
+            'DisadvantagedCode' => $this->input->post('DisadvantagedCode'),
+            'LackingBookFlag' => $this->input->post('LackingBookFlag'),
+            'LackingFoodFlag' => $this->input->post('LackingFoodFlag'),
+            'LackingStationeryFlag' => $this->input->post('LackingStationeryFlag'),
+            'LackingUniformFlag' => $this->input->post('LackingUniformFlag'),
+
+            //ข้อมูลเกณฑ์ความยากจน
+            'FamilyMonthlyIncome' => $this->input->post('FamilyMonthlyIncome'),
+            'FamilyStatusCode' => $this->input->post('FamilyStatusCode'),
+            'StudentLiveWithCode' => $this->input->post('StudentLiveWithCode'),
+            'StateWelfareFlag' => $this->input->post('StateWelfareFlag')
+
+        ];
+
+        $result = $this->db->where('StudentReferenceID', $StudentReferenceID)->update('STUDENT', $data);
+        return $result;
+    }
+
+    //Update Student Talent
+    public function update_student_talent($StudentReferenceID)
+    {
+
+        $data = [
+
+            //ข้อมูลความสามารถพิเศษ
+            'TalentCode' => $this->input->post('TalentCode')
+
+        ];
+
+        $result = $this->db->where('StudentReferenceID', $StudentReferenceID)->update('STUDENT', $data);
+        return $result;
+    }
+
+
     //Delete Data Form Student
     public function delete_student($StudentReferenceID)
     {

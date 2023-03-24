@@ -955,7 +955,7 @@
                                                     <div class="col-6">
                                                         <h5 style="text-align: left; padding-left: 25px; padding-top: 25px;" class="card-title">
                                                             ข้อมูลความพิการ
-                                                            <a style="float: right;" href="" class="btn btn-sm btn-warning"><i class="bi bi-pencil-square"></i></a>
+                                                            <a style="float: right;" href="edit-forms-student-journey?SchoolID=<?= $STUDENT_DETAIL->SchoolID; ?>&&StudentReferenceID=<?= $STUDENT_DETAIL->StudentReferenceID ?>&&EducationYear=<?= $STUDENT_DETAIL->EducationYear; ?>&&Semester=<?= $STUDENT_DETAIL->Semester; ?>&&GradeLevelCode=<?= $STUDENT_DETAIL->GradeLevelCode; ?>" class="btn btn-sm btn-warning"><i class="bi bi-pencil-square"></i></a>
                                                         </h5>
                                                         <div class="col-12" style="text-align: left; padding-left: 25px; padding-bottom: 5px;">
                                                             <?php
@@ -1072,7 +1072,7 @@
                                                     <div class="col-6">
                                                         <h5 style="text-align: left; padding-left: 25px; padding-top: 25px;" class="card-title">
                                                             ข้อมูลเกณฑ์ความยากจน
-                                                            <a style="float: right;" href="" class="btn btn-sm btn-warning"><i class="bi bi-pencil-square"></i></a>
+                                                            <a style="float: right;" href="edit-forms-student-disadvantaged?SchoolID=<?= $STUDENT_DETAIL->SchoolID; ?>&&StudentReferenceID=<?= $STUDENT_DETAIL->StudentReferenceID ?>&&EducationYear=<?= $STUDENT_DETAIL->EducationYear; ?>&&Semester=<?= $STUDENT_DETAIL->Semester; ?>&&GradeLevelCode=<?= $STUDENT_DETAIL->GradeLevelCode; ?>" class="btn btn-sm btn-warning"><i class="bi bi-pencil-square"></i></a>
                                                         </h5>
                                                         <div class="col-12" style="text-align: left; padding-left: 25px; padding-bottom: 5px;">
 
@@ -1122,20 +1122,6 @@
                                                                     }
                                                                 } ?>
                                                             </label><br>
-                                                            <?php
-                                                            $result = $this->db->query('SELECT * FROM CLS_TALENT WHERE TALENT_CODE = "' . $STUDENT_DETAIL->TalentCode . '"');
-                                                            foreach ($result->result() as $TALENT) {
-                                                                $TALENT_NAME = $TALENT->TALENT_NAME;
-                                                            }
-                                                            ?>
-                                                            <label style="padding-left: 20px;">ความสามารถพิเศษ :
-                                                                <?php if ($STUDENT_DETAIL->TalentCode == "") {
-                                                                    echo '-';
-                                                                } else {
-                                                                    echo $TALENT_NAME;
-                                                                } ?>
-                                                            </label><br>
-
                                                         </div>
                                                     </div>
                                                 </div>
@@ -1148,9 +1134,15 @@
                                                     <div class="col-12">
                                                         <h5 style="text-align: left; padding-left: 25px; padding-top: 25px;" class="card-title">
                                                             ข้อมูลความสามาถพิเศษ
-                                                            <a style="float: right;" href="" class="btn btn-sm btn-warning"><i class="bi bi-pencil-square"></i></a>
+                                                            <a style="float: right;" href="edit-forms-student-talent?SchoolID=<?= $STUDENT_DETAIL->SchoolID; ?>&&StudentReferenceID=<?= $STUDENT_DETAIL->StudentReferenceID ?>&&EducationYear=<?= $STUDENT_DETAIL->EducationYear; ?>&&Semester=<?= $STUDENT_DETAIL->Semester; ?>&&GradeLevelCode=<?= $STUDENT_DETAIL->GradeLevelCode; ?>" class="btn btn-sm btn-warning"><i class="bi bi-pencil-square"></i></a>
                                                         </h5>
                                                         <div class="col-12" style="text-align: left; padding-left: 25px; padding-bottom: 5px;">
+                                                            <?php
+                                                            $result = $this->db->query('SELECT * FROM CLS_TALENT WHERE TALENT_CODE = "' . $STUDENT_DETAIL->TalentCode . '"');
+                                                            foreach ($result->result() as $TALENT) {
+                                                                $TALENT_NAME = $TALENT->TALENT_NAME;
+                                                            }
+                                                            ?>
                                                             <label style="padding-left: 20px;">ความสามารถพิเศษ :
                                                                 <?php if ($STUDENT_DETAIL->TalentCode == "") {
                                                                     echo '-';
