@@ -88,7 +88,7 @@
                     <thead>
 
                         <tr>
-                            <th style="text-align: center;" scope="col">รหัสนวัตกรรมการศึกษาศึกษา</th>
+                            <!-- <th style="text-align: center;" scope="col">รหัสนวัตกรรมการศึกษาศึกษา</th> -->
                             <th style="text-align: center;" scope="col">ปีการศึกษา</th>
                             <th style="text-align: center;" scope="col">ชื่อนวัตกรรม</th>
                             <th style="text-align: center;" scope="col">ผู้จัดทำ</th>
@@ -99,29 +99,27 @@
                     </thead>
                     <tbody>
                         <?php
-                      $result = $this->db->query('SELECT * FROM INNOVATION
-                      
-                      ');
+                      $result = $this->db->query('SELECT * FROM INNOVATION where DeleteStatus = 0');
                      foreach ($result->result() as $show) {
                      ?>
 
                         <tr>
-                            <th scope="row " style="text-align: center;"><?php echo $show->InnovationID; ?></th>
+                            <!-- <th scope="row " style="text-align: center;"><?php echo $show->InnovationID; ?></th> -->
                             <th scope="row " style="text-align: center;"><?php echo $show->EducationYear; ?></th>
                             <th scope="row " style="text-align: center;"><?php echo $show->InnovationName; ?></th>
                             <th scope="row " style="text-align: center;"> <a
                                     href="<?php echo site_url('Fm_innovation_das_p1?page=sh1.1') ?>&&key=<?php echo $show->InnovationID ?>&&name=<?php echo $show->InnovationName ?>"
                                     class="btn btn-info"><i class="bi bi-eye"></i></a> </th>
-                            <td style="text-align: center;">  <a href="<?php echo site_url('forms_p1?page=sh11') ?>&&key=<?php echo $show->Id; ?>&&name=<?php echo $show->InnovationName; ?>"
+                            <td style="text-align: center;">  <a href="<?php echo site_url('forms_p1?page=sh11') ?>&&key=<?php echo $show->InnovationID; ?>&&name=<?php echo $show->InnovationName; ?>"
                     class="btn btn-warning"> <i class="bi bi-pencil-square"></i></a> <button type="button" class="btn btn-primary"
-                                    data-bs-toggle="modal" data-bs-target="#das<?php echo $show->Id; ?>"><i
+                                    data-bs-toggle="modal" data-bs-target="#das<?php echo $show->InnovationID; ?>"><i
                                         class="bi bi-card-list"></i></button><?php echo nbs(1); ?> <button type="button"
                                     class="btn btn-danger" data-bs-toggle="modal"
-                                    data-bs-target="#del_ass_ria<?php echo $show->Id; ?>">
+                                    data-bs-target="#del_ass_ria<?php echo $show->InnovationID; ?>">
                                     <i class="bi bi-trash"></i>
                                 </button>
                                 <!-- Modal -->
-                                <div class="modal fade" id="del_ass_ria<?php echo $show->Id; ?>" tabindex="-1"
+                                <div class="modal fade" id="del_ass_ria<?php echo $show->InnovationID; ?>" tabindex="-1"
                                     aria-labelledby="exampleModalLabel" aria-hidden="true">
                                     <div class="modal-dialog">
                                         <div class="modal-content">
@@ -141,7 +139,7 @@
                                                 <button type="button" class="btn btn-secondary"
                                                     data-bs-dismiss="modal">ยกเลิก</button>
                                                 <form method="post" action="<?php echo site_url('del_p1'); ?>">
-                                                    <input type="hidden" name="Id" value="<?php echo $show->Id; ?>">
+                                                    <input type="hidden" name="InnovationID" value="<?php echo $show->InnovationID; ?>">
                                                     <div class="d-flex justify-content-center">
                                                         <button name="Submit" type="submit"
                                                             class="btn btn-primary">ยืนยันก่อนลบ</button>
@@ -183,7 +181,7 @@
                                 </div>
                                 <div class="col">
                                     <h5 style="float: right; padding: 15px;" class="card-title"><a
-                                            href="<?php echo site_url('forms_p2?page=sh2') ?>&&name=<?php echo $name; ?>"
+                                            href="<?php echo site_url('forms_p2?page=sh2') ?>&&name=<?php echo $name; ?>&&key=<?php echo $key; ?>"
                                             class="btn btn-success">เพิ่มข้อมูล
                                         </a></h5>
                                 </div>
@@ -195,7 +193,7 @@
 
                                     <tr>
                                         <th style="text-align: center;" scope="col">หมายเลขบัตรประจำตัวผู้จัดทำ</th>
-                                        <th style="text-align: center;" scope="col">ประเภทบัตรประจำตัวผู้จัดทำ</th>
+                                        <!-- <th style="text-align: center;" scope="col">ภาคเรียน</th> -->
                                         <th style="text-align: center;" scope="col"> ชื่อผู้จัดทำ</th>
                                         <th style="text-align: center;" scope="col">ดูรายละเอียด</th>
 
@@ -214,12 +212,12 @@ foreach ($result->result() as $show) {  ?>
                                     <tr>
                                         <th scope="row " style="text-align: center;">
                                             <?php echo $show->CreatorPersonalID; ?></th>
-                                        <th scope="row " style="text-align: center;">
-                                            <?php echo $show->PERSONAL_ID_TYPE_NAME; ?></th>
+                                        <!-- <th scope="row " style="text-align: center;">
+                                            <?php echo $show->CreatorNameThai; ?></th> -->
                                         <th scope="row " style="text-align: center;">
                                             <?php echo $show->CreatorNameThai; ?><?php echo nbs(2); ?><?php echo $show->CreatorLastNameThai; ?>
                                         </th>
-                                        <td style="text-align: center;"> <a href="<?php echo site_url('forms_p1?page=sh22') ?>&&key=<?php echo $show->Id; ?>&&name=<?php echo $show->CreatorPersonalID; ?>"
+                                        <td style="text-align: center;"> <a href="<?php echo site_url('forms_p1?page=sh22') ?>&&key=<?php echo $show->Id; ?>&&name=<?php echo $name; ?>"
                     class="btn btn-warning"> <i class="bi bi-pencil-square"></i></a> <button type="button" class="btn btn-primary"
                                                 data-bs-toggle="modal"
                                                 data-bs-target="#dasof<?php echo $show->Id; ?>"><i
@@ -414,7 +412,7 @@ foreach ($result->result() as $show) {  ?>
                       ');
                      foreach ($result->result() as $show) {
                      ?>
-<div class="modal fade" id="das<?php echo $show->Id; ?>" tabindex="-1" aria-labelledby="exampleModalLabel"
+<div class="modal fade" id="das<?php echo $show->InnovationID; ?>" tabindex="-1" aria-labelledby="exampleModalLabel"
     aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
@@ -424,21 +422,21 @@ foreach ($result->result() as $show) {  ?>
             </div>
             <div class="modal-body">
                 <?php
-                            $Id= $show->Id;
+                            $InnovationID= $show->InnovationID;
                             $results = $this->db->query("SELECT * FROM INNOVATION 
                             INNER JOIN CLS_INNOVATION_TYPE 
                             ON INNOVATION.InnovationTypeCode = CLS_INNOVATION_TYPE.INNOVATION_TYPE_CODE 
                             INNER JOIN CLS_EDUCATION_LEVEL 
                             ON INNOVATION.TargetEducationLevelCode = CLS_EDUCATION_LEVEL.EDUCATION_LEVEL_CODE 
-                            WHERE Id = $Id
+                            WHERE InnovationID = $InnovationID
                             ");
 
 foreach ($results->result() as $shows) {
                      ?>
                 <div class="row">
                     <div class="col">
-                        <h5 class="fw-bold">รหัสนวัตกรรมการศึกษา</h5>
-                        <p><?php echo $show->InnovationID; ?></p>
+                        <!-- <h5 class="fw-bold">รหัสนวัตกรรมการศึกษา</h5>
+                        <p><?php echo $show->InnovationID; ?></p> -->
                         <h5 class="fw-bold">ปีการศึกษา</h5>
                         <p><?php echo $show->EducationYear; ?></p>
                         <h5 class="fw-bold">ภาคเรียน</h5>
@@ -507,8 +505,8 @@ foreach ($result->result() as $show) {  ?>
             <div class="modal-body">
                 <div class="row">
                     <div class="col">
-                        <h5 class="fw-bold">รหัสนวัตกรรมการศึกษา</h5>
-                        <p><?php echo $show->InnovationID; ?></p>
+                        <!-- <h5 class="fw-bold">รหัสนวัตกรรมการศึกษา</h5>
+                        <p><?php echo $show->InnovationID; ?></p> -->
                         <h5 class="fw-bold">หมายเลขบัตรประจำตัวผู้จัดทำ</h5>
                         <p><?php echo $show->CreatorPersonalID; ?></p>
                         <h5 class="fw-bold">ประเภทบัตรประจำตัวผู้จัดทำ</h5>
@@ -517,20 +515,10 @@ foreach ($result->result() as $show) {  ?>
                         <p><?php echo $show->ParticipantRatio; ?></p>
                     </div>
                     <div class="col">
-                        <h5 class="fw-bold">รหัสคำนำหน้าชื่อผู้จัดทำ</h5>
-                        <p><?php echo $show->PREFIX_NAME; ?></p>
                         <h5 class="fw-bold"> ชื่อผู้จัดทำ (ภาษาไทย)</h5>
-                        <p><?php echo $show->CreatorNameThai; ?></p>
-                        <h5 class="fw-bold">ชื่อผู้จัดทำ (ภาษาอังกฤษ)</h5>
-                        <p><?php echo $show->CreatorNameEnglish; ?></p>
-                        <h5 class="fw-bold">ชื่อกลางผู้จัดทำ (ภาษาไทย)</h5>
-                        <p><?php echo $show->CreatorMiddleNameThai; ?></p>
-                        <h5 class="fw-bold">ชื่อกลางผู้จัดทำ(ภาษาอังกฤษ)</h5>
-                        <p><?php echo $show->CreatorMiddleNameEnglish; ?></p>
-                        <h5 class="fw-bold">นามสกุลผู้จัดทำ (ภาษาไทย)</h5>
-                        <p><?php echo $show->CreatorLastNameThai; ?></p>
-                        <h5 class="fw-bold">นามสกุลผู้จัดทำ(ภาษาอังกฤษ)</h5>
-                        <p><?php echo $show->CreatorLastNameEnglish; ?></p>
+                        <p><?php echo $show->PREFIX_NAME; ?><?php echo nbs(2); ?><?php echo $show->CreatorNameThai; ?>-<?php echo $show->CreatorLastNameThai; ?></p>
+                        <h5 class="fw-bold">ชื่อผู้จัดทำ(ภาษาอังกฤษ)</h5>
+                        <p><?php echo nbs(2); ?><?php echo $show->CreatorNameEnglish; ?>-<?php echo $show->CreatorLastNameEnglish; ?></p>
                     </div>
                 </div>
             </div>
@@ -569,8 +557,8 @@ foreach ($result->result() as $show) {  ?>
             <div class="modal-body">
                 <div class="row">
                     <div class="col">
-                        <h5 class="fw-bold">รหัสนวัตกรรมการศึกษา</h5>
-                        <p><?php echo $show->InnovationID; ?></p>
+                        <!-- <h5 class="fw-bold">รหัสนวัตกรรมการศึกษา</h5>
+                        <p><?php echo $show->InnovationID; ?></p> -->
                         <h5 class="fw-bold">หมายเลขบัตรประจำตัวผู้จัดทำ</h5>
                         <p><?php echo $show->CreatorPersonalID; ?></p>
                         <h5 class="fw-bold">รหัสประเภทบัตรประจำตัวผู้จัดทำ</h5>
@@ -579,20 +567,10 @@ foreach ($result->result() as $show) {  ?>
                         <p><?php echo $show->ParticipantRatio; ?></p>
                     </div>
                     <div class="col">
-                        <h5 class="fw-bold">รหัสคำนำหน้าชื่อผู้จัดทำ</h5>
-                        <p><?php echo $show->PREFIX_NAME; ?></p>
                         <h5 class="fw-bold"> ชื่อผู้จัดทำ (ภาษาไทย)</h5>
-                        <p><?php echo $show->CreatorNameThai; ?></p>
-                        <h5 class="fw-bold">ชื่อผู้จัดทำ (ภาษาอังกฤษ)</h5>
-                        <p><?php echo $show->CreatorNameEnglish; ?></p>
-                        <h5 class="fw-bold">ชื่อกลางผู้จัดทำ (ภาษาไทย)</h5>
-                        <p><?php echo $show->CreatorMiddleNameThai; ?></p>
-                        <h5 class="fw-bold">ชื่อกลางผู้จัดทำ(ภาษาอังกฤษ)</h5>
-                        <p><?php echo $show->CreatorMiddleNameEnglish; ?></p>
-                        <h5 class="fw-bold">นามสกุลผู้จัดทำ (ภาษาไทย)</h5>
-                        <p><?php echo $show->CreatorLastNameThai; ?></p>
-                        <h5 class="fw-bold">นามสกุลผู้จัดทำ(ภาษาอังกฤษ)</h5>
-                        <p><?php echo $show->CreatorLastNameEnglish; ?></p>
+                        <p><?php echo $show->PREFIX_NAME; ?><?php echo nbs(2); ?><?php echo $show->CreatorNameThai; ?>-<?php echo $show->CreatorLastNameThai; ?></p>
+                        <h5 class="fw-bold">ชื่อผู้จัดทำ(ภาษาอังกฤษ)</h5>
+                        <p><?php echo nbs(2); ?><?php echo $show->CreatorNameEnglish; ?>-<?php echo $show->CreatorLastNameEnglish; ?></p>
                     </div>
                 </div>
             </div>

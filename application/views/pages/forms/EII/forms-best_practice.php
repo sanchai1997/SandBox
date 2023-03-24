@@ -1,4 +1,10 @@
 <main id="main" class="main">
+<style>
+    label[for="Y"]:after {
+  content: " *";
+  color: red;
+}
+  </style>
     <?php $page = isset($_GET['page']) ? $_GET['page'] : '';  ?>
     <?php $key = isset($_GET['key']) ? $_GET['key'] : '';  ?>
     <?php $name = isset($_GET['name']) ? $_GET['name'] : '';  ?>
@@ -14,7 +20,7 @@
                  case 'sh2': ?> <h1>ข้อมูลผู้จัดทำวิธีปฏิบัติที่เป็นเลิศในการจัดการศึกษา - <?php echo $name; ?></h1>
                 
                  <?php break;
-                  case 'sh22': ?> <h1>ข้อมูลผู้จัดทำวิธีปฏิบัติที่เป็นเลิศในการจัดการศึกษา - หมายเลข:<?php echo $name; ?></h1>
+                  case 'sh22': ?> <h1>ข้อมูลผู้จัดทำวิธีปฏิบัติที่เป็นเลิศในการจัดการศึกษา - <?php echo $name; ?></h1>
                 
                   <?php break;
             
@@ -60,15 +66,15 @@
                                                 'BP_forms_up_p1'
                                             ); ?>" method="post" enctype="multipart/form-data"
                             onsubmit="return checkSelectedOption()">
-
+<!-- 
                             <div class="row mb-3">
                                 <div class="form-floating">
                                     <input type="text" class="form-control" id="floatingName"
-                                        placeholder="รหัสวิธีปฏิบัติที่เป็นเลิศในการจัดการศึกษา" name="BestPracticeID" required>
+                                        placeholder="วิธีปฏิบัติที่เป็นเลิศในการจัดการศึกษา" name="BestPracticeID" required>
                                     <label for="Y"><?php echo nbs(2); ?>
-                                        รหัสวิธีปฏิบัติที่เป็นเลิศในการจัดการศึกษา </label>
+                                        วิธีปฏิบัติที่เป็นเลิศในการจัดการศึกษา </label>
                                 </div>
-                            </div>
+                            </div> -->
                             <div class="row mb-3">
                                 <div class="col">
                                     <div class="form-floating">
@@ -275,7 +281,7 @@
                         <?php
 
                             $result = $this->db->query("SELECT * FROM BEST_PRACTICE 
-                            WHERE Id = '" . $key . "' 
+                            WHERE BestPracticeID = '" . $key . "' 
                             ");
 
                             foreach ($result->result() as $show) {
@@ -285,16 +291,16 @@
                                                     'BP_edit_p1'
                                                 ); ?>" method="post" enctype="multipart/form-data" id="BP11"
                             name="BP11">
-                            <input type="hidden" name="Id" value="<?php echo $show->Id ?>">
-                            <div class="row mb-3">
+                            <input type="hidden" name="BestPracticeID" value="<?php echo $show->BestPracticeID ?>">
+                            <!-- <div class="row mb-3">
                                 <div class="form-floating">
                                     <input type="text" class="form-control" id="floatingName"
-                                        placeholder="รหัสวิธีปฏิบัติที่เป็นเลิศในการจัดการศึกษา" name="BestPracticeID"
+                                        placeholder="วิธีปฏิบัติที่เป็นเลิศในการจัดการศึกษา" name="BestPracticeID"
                                         value="<?php echo $show->BestPracticeID ?>" required>
                                     <label for="Y"><?php echo nbs(2); ?>
-                                        รหัสวิธีปฏิบัติที่เป็นเลิศในการจัดการศึกษา </label>
+                                        วิธีปฏิบัติที่เป็นเลิศในการจัดการศึกษา </label>
                                 </div>
-                            </div>
+                            </div> -->
                             <div class="row mb-3">
                                 <div class="col">
                                     <div class="form-floating">
@@ -358,7 +364,7 @@
 
                                         </select>
                                         <label
-                                            for="floatingSelect"><?php echo nbs(2); ?>รหัสระดับการศึกษาที่นำไปใช้</label>
+                                            for="floatingSelect"><?php echo nbs(2); ?>ระดับการศึกษาที่นำไปใช้</label>
                                     </div>
                                 </div>
                                 <div class="col">
@@ -376,7 +382,7 @@
                                             <?php } ?>
                                         </select>
                                         <label
-                                            for="floatingSelect"><?php echo nbs(2); ?>รหัสการเผยแพร่ที่ได้รับการยอมรับ</label>
+                                            for="floatingSelect"><?php echo nbs(2); ?>การเผยแพร่ที่ได้รับการยอมรับ</label>
                                     </div>
                                 </div>
                             </div>
@@ -524,16 +530,20 @@
                             onsubmit="return checkSelectedOption()">
 
                             <div class="row mb-3">
-                                <div class="col">
-                                    <div class="form-floating">
-                                        <input type="text" class="form-control" id="floatingName"
-                                            placeholder="รหัสวิธีปฏิบัติที่เป็นเลิศในการจัดการศึกษา"
-                                            name="BestPracticeID" value="" required>
-                                        <label for="Y">
-                                            <?php echo nbs(2); ?> รหัสวิธีปฏิบัติที่เป็นเลิศในการจัดการศึกษา
-                                        </label>
-                                    </div>
-                                </div>
+                                <!-- <div class="col"> -->
+                                    
+                                    <!-- <div class="form-floating"> -->
+                                        <!-- <input type="text" class="form-control" id="floatingName"
+                                            placeholder="วิธีปฏิบัติที่เป็นเลิศในการจัดการศึกษา"
+                                            name="" value="<?php echo $key; ?>" disabled> -->
+                                            <input type="hidden" class="form-control" id="floatingName"
+                                            placeholder="วิธีปฏิบัติที่เป็นเลิศในการจัดการศึกษา"
+                                            name="BestPracticeID" value="<?php echo $key; ?>" >
+                                        <!-- <label for="Y">
+                                            <?php echo nbs(2); ?> วิธีปฏิบัติที่เป็นเลิศในการจัดการศึกษา
+                                        </label> -->
+                                    <!-- </div> -->
+                                <!-- </div> -->
 
                                 <div class="col">
                                     <div class="form-floating">
@@ -727,15 +737,25 @@
                             <input type="hidden" name="Id" value="<?php echo $show->Id ?>">
                             <div class="row mb-3">
                                 <div class="col">
-                                    <div class="form-floating">
-                                        <input type="text" class="form-control" id="floatingName"
-                                            placeholder="รหัสวิธีปฏิบัติที่เป็นเลิศในการจัดการศึกษา"
-                                            name="BestPracticeID" value="<?php echo $show->BestPracticeID ?>" required>
-                                        <label for="Y">
-                                            <?php echo nbs(2); ?> รหัสวิธีปฏิบัติที่เป็นเลิศในการจัดการศึกษา
-                                        </label>
-                                    </div>
+                                <div class="form-floating">
+                                    <select class="form-select" id="BestPracticeID"
+                                        aria-label="Floating label select example" name="BestPracticeID"
+                                        value="<?php echo $show->BestPracticeID ?>">
+
+                                        <?php
+                                                $result = $this->db->query('SELECT * FROM BEST_PRACTICE WHERE DeleteStatus = 0');
+                                                foreach ($result->result() as $cls) {
+                                                ?>
+                                        <option value="<?= $cls->BestPracticeID; ?>">
+                                            <?= $cls->BestPracticeName; ?></option>
+                                        <?php } ?>
+                                    </select>
+                                    <label for="floatingSelect">
+                                        <?php echo nbs(2); ?>วิธีปฏิบัติที่เป็นเลิศในการจัดการศึกษา
+                                    </label>
                                 </div>
+                            </div>
+
 
                                 <div class="col">
                                     <div class="form-floating">
@@ -763,7 +783,7 @@
                                         <?php } ?>
                                     </select>
                                     <label for="floatingSelect">
-                                        <?php echo nbs(2); ?>รหัสประเภทบัตรประจำตัวผู้จัดทำ
+                                        <?php echo nbs(2); ?>ประเภทบัตรประจำตัวผู้จัดทำ
                                     </label>
                                 </div>
                             </div>
@@ -781,7 +801,7 @@
                                         <?php } ?>
                                     </select>
                                     <label for="Y">
-                                        <?php echo nbs(2); ?>รหัสคำนำหน้าชื่อผู้จัดทำ
+                                        <?php echo nbs(2); ?>คำนำหน้าชื่อผู้จัดทำ
                                     </label>
                                 </div>
                             </div>
@@ -914,6 +934,15 @@
                         for (let i = 0; i < size_my_CLS_PREFIX; i++) {
                             if (selectoption_CLS_PREFIX[i].value == my_CLS_PREFIX) {
                                 selectoption_CLS_PREFIX[i].selected = true;
+                            }
+                        }
+                        ///BEST_PRACTICE
+                        var my_BEST_PRACTICE = "<?php echo $show->BestPracticeID ?>";
+                        var selectoption_BEST_PRACTICE = document.querySelector('#BestPracticeID');
+                        var size_my_BEST_PRACTICE = document.getElementById("BestPracticeID").options.length;
+                        for (let i = 0; i < size_my_BEST_PRACTICE; i++) {
+                            if (selectoption_BEST_PRACTICE[i].value == my_BEST_PRACTICE) {
+                                selectoption_BEST_PRACTICE[i].selected = true;
                             }
                         }
                         </script>

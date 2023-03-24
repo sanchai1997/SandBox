@@ -22,7 +22,7 @@ class Best_practice_model extends CI_Model {
 			$data = $this->upload->data();
 			$filename = $data['file_name'];
 			$data = array(
-            'BestPracticeID' => $this->input->post('BestPracticeID'),
+            // 'BestPracticeID' => $this->input->post('BestPracticeID'),
             'EducationYear' => $this->input->post('EducationYear'),
             'Semester' => $this->input->post('Semester'),
             'BestPracticeName' => $this->input->post('BestPracticeName'),
@@ -41,7 +41,7 @@ class Best_practice_model extends CI_Model {
 				}
 			} else {
 				$data = array(
-					'BestPracticeID' => $this->input->post('BestPracticeID'),
+					// 'BestPracticeID' => $this->input->post('BestPracticeID'),
 					'EducationYear' => $this->input->post('EducationYear'),
 					'Semester' => $this->input->post('Semester'),
 					'BestPracticeName' => $this->input->post('BestPracticeName'),
@@ -104,7 +104,7 @@ public function edit_BP()
 				'Source' => $this->input->post('Source'),
 				'PublishDate' => $this->input->post('PublishDate')
 			);
-			$this->db->where('Id', $this->input->post('Id'));
+			$this->db->where('BestPracticeID', $this->input->post('BestPracticeID'));
 			$query=$this->db->update('best_practice',$data);
 			if($query){
 				session_start(); // เริ่มต้น session
@@ -131,7 +131,7 @@ public function edit_BP()
 				'Source' => $this->input->post('Source'),
 				'PublishDate' => $this->input->post('PublishDate')
 			);
-			$this->db->where('Id', $this->input->post('Id'));
+			$this->db->where('BestPracticeID', $this->input->post('BestPracticeID'));
 			$query=$this->db->update('best_practice',$data);
 			if($query){
 				session_start(); // เริ่มต้น session
@@ -153,7 +153,7 @@ public function del_BP(){
 				
 		'DeleteStatus' => $status 
 	);
-	$this->db->where('Id', $this->input->post('Id'));
+	$this->db->where('BestPracticeID', $this->input->post('BestPracticeID'));
 			$query=$this->db->update('best_practice',$data);
 			if($query){
 				session_start(); // เริ่มต้น session

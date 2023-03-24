@@ -1,7 +1,14 @@
-<body onload="chk()">.
+<body>
+    <style>
+    label[for="Y"]:after {
+        content: " *";
+        color: red;
+    }
+    </style>
     <main id="main" class="main">
         <?php $page = isset($_GET['page']) ? $_GET['page'] : '';  ?>
         <?php $name = isset($_GET['name']) ? $_GET['name'] : ''; ?>
+        <?php $key = isset($_GET['key']) ? $_GET['key'] : ''; ?>
         <?php 
 session_start(); // เริ่มต้น session
 if (isset( $_SESSION['success'])) { ?>
@@ -28,10 +35,10 @@ if (isset( $_SESSION['success'])) { ?>
             <?php
                         break;
                         case 'sh11':
-                ?> <h1>นวัตกรรมการศึกษา -หมายเลข<?php echo  $name ; ?></h1>
+                ?> <h1>นวัตกรรมการศึกษา - <?php echo  $name ; ?></h1>
             <?php break;
                     case 'sh22':
-                    ?> <h1>ผู้จัดทำนวัตกรรมการศึกษา - หมายเลข<?php echo  $name ; ?></h1>
+                    ?> <h1>ผู้จัดทำนวัตกรรมการศึกษา - <?php echo  $name ; ?></h1>
             <?php
                         break;
                    
@@ -65,14 +72,14 @@ if (isset( $_SESSION['success'])) { ?>
                                 <form action="<?php echo site_url('forms_up_p1'); ?>" method="post"
                                     enctype="multipart/form-data" onsubmit="return checkSelectedOption()">
 
-                                    <div class="row mb-3">
+                                    <!-- <div class="row mb-3">
                                         <div class="form-floating">
                                             <input type="text" class="form-control" id="floatingName"
                                                 placeholder="รหัสนวัตกรรมการศึกษา" name="InnovationID" required
                                                 aria-label="รหัสนวัตกรรมการศึกษา">
                                             <label for="Y"><?php echo nbs(2); ?> รหัสนวัตกรรมการศึกษา </label>
                                         </div>
-                                    </div>
+                                    </div> -->
                                     <div class="row mb-3">
                                         <div class="col">
                                             <div class="form-floating">
@@ -254,7 +261,7 @@ if (isset( $_SESSION['success'])) { ?>
                             <?php
                             
                             $result = $this->db->query("SELECT * FROM INNOVATION 
-                            WHERE Id = '".$key."' 
+                            WHERE InnovationID = '".$key."' 
                             ");
  
                      foreach ($result->result() as $show) {
@@ -263,18 +270,16 @@ if (isset( $_SESSION['success'])) { ?>
                             <?php  echo br(2); ?>
                             <!-- start Form ข้อมูลนวัตกรรมการศึกษา -->
 
-                            <body >
+                            <body>
                                 <form action="<?php echo site_url('edit_p1'); ?>" method="post"
                                     enctype="multipart/form-data">
 
-                                    <div class="row mb-3">
-                                        <div class="form-floating">
-                                            <input type="text" class="form-control" id="floatingName"
+                                    
+                                            <input type="hidden" class="form-control" id="floatingName"
                                                 placeholder="รหัสนวัตกรรมการศึกษา" name="InnovationID" required max="16"
                                                 value="<?php echo $show->InnovationID; ?>">
-                                            <label for="Y"><?php echo nbs(2); ?> รหัสนวัตกรรมการศึกษา </label>
-                                        </div>
-                                    </div>
+                                            
+                                      
                                     <div class="row mb-3">
                                         <div class="col">
                                             <div class="form-floating">
@@ -434,31 +439,28 @@ if (isset( $_SESSION['success'])) { ?>
                                         </div>
                                     </div>
                                     <script>
-                                   
-
-                                        ///CLS_INNOVATION_TYPE
-                                        var my_CLS_INNOVATION_TYPE = <?php echo $show->InnovationTypeCode; ?>;
-                                        var selectoption_CLS_INNOVATION_TYPE = document.querySelector(
-                                            '#InnovationTypeCode');
-                                        var size_my_CLS_INNOVATION_TYPE = document.getElementById("InnovationTypeCode")
-                                            .options.length;
-                                        for (let i = 0; i < size_my_CLS_INNOVATION_TYPE; i++) {
-                                            if (selectoption_CLS_INNOVATION_TYPE[i].value == my_CLS_INNOVATION_TYPE) {
-                                                selectoption_CLS_INNOVATION_TYPE[i].selected = true;
-                                            }
+                                    ///CLS_INNOVATION_TYPE
+                                    var my_CLS_INNOVATION_TYPE = <?php echo $show->InnovationTypeCode; ?>;
+                                    var selectoption_CLS_INNOVATION_TYPE = document.querySelector(
+                                        '#InnovationTypeCode');
+                                    var size_my_CLS_INNOVATION_TYPE = document.getElementById("InnovationTypeCode")
+                                        .options.length;
+                                    for (let i = 0; i < size_my_CLS_INNOVATION_TYPE; i++) {
+                                        if (selectoption_CLS_INNOVATION_TYPE[i].value == my_CLS_INNOVATION_TYPE) {
+                                            selectoption_CLS_INNOVATION_TYPE[i].selected = true;
                                         }
-                                        ///CLS_EDUCATION_LEVEL
-                                        var my_CLS_EDUCATION_LEVEL = <?php echo $show->TargetEducationLevelCode; ?>;
-                                        var selectoption_CLS_EDUCATION_LEVEL = document.querySelector(
-                                            '#TargetEducationLevelCode');
-                                        var size_my_CLS_EDUCATION_LEVEL = document.getElementById(
-                                            "TargetEducationLevelCode").options.length;
-                                        for (let i = 0; i < size_my_CLS_EDUCATION_LEVEL; i++) {
-                                            if (selectoption_CLS_EDUCATION_LEVEL[i].value == my_CLS_EDUCATION_LEVEL) {
-                                                selectoption_CLS_EDUCATION_LEVEL[i].selected = true;
-                                            }
+                                    }
+                                    ///CLS_EDUCATION_LEVEL
+                                    var my_CLS_EDUCATION_LEVEL = <?php echo $show->TargetEducationLevelCode; ?>;
+                                    var selectoption_CLS_EDUCATION_LEVEL = document.querySelector(
+                                        '#TargetEducationLevelCode');
+                                    var size_my_CLS_EDUCATION_LEVEL = document.getElementById(
+                                        "TargetEducationLevelCode").options.length;
+                                    for (let i = 0; i < size_my_CLS_EDUCATION_LEVEL; i++) {
+                                        if (selectoption_CLS_EDUCATION_LEVEL[i].value == my_CLS_EDUCATION_LEVEL) {
+                                            selectoption_CLS_EDUCATION_LEVEL[i].selected = true;
                                         }
-                                    
+                                    }
                                     </script>
                                 </form><!-- End Form ข้อมูลนวัตกรรมการศึกษา -->
                             </body>
@@ -466,17 +468,20 @@ if (isset( $_SESSION['success'])) { ?>
                         }?>
                             <?php  if ($page=='sh2') {  ?>
                             <!-- <h5 class="card-title">ข้อมูลผู้จัดทำนวัตกรรมการศึกษา</h5> -->
-                             <?php  echo br(2); ?>
+                            <?php  echo br(2); ?>
                             <!-- start Form ข้อมูลนวัตกรรมการศึกษา -->
-                            <form action="<?php echo site_url('forms_up_p2'); ?>" method="post"  onsubmit="return checkSelectedOption()">
+                            <form action="<?php echo site_url('forms_up_p2'); ?>" method="post"
+                                onsubmit="return checkSelectedOption()">
 
-                                <div class="row mb-3">
-                                    <div class="form-floating">
-                                        <input type="text" class="form-control" id="floatingName"
-                                            placeholder="รหัสนวัตกรรมการศึกษา" name="InnovationID" required>
-                                        <label for="Y"><?php echo nbs(2); ?> รหัสนวัตกรรมการศึกษา </label>
-                                    </div>
-                                </div>
+                               
+                                   
+                                        <input type="hidden" class="form-control" id="floatingName"
+                                            placeholder="รหัสนวัตกรรมการศึกษา" name="InnovationID"
+                                            value="<?php echo $key; ?>" required>
+                                       
+                                        
+                                  
+                                
                                 <div class="row mb-3">
                                     <div class="form-floating">
                                         <input type="text" class="form-control" id="CreatorPersonalID"
@@ -538,8 +543,7 @@ if (isset( $_SESSION['success'])) { ?>
                                     <div class="col">
                                         <div class="form-floating">
                                             <input type="text" class="form-control" id="floatingName"
-                                                placeholder="ชื่อผู้จัดทำ (ภาษาอังกฤษ)" name="CreatorNameEnglish"
-                                                >
+                                                placeholder="ชื่อผู้จัดทำ (ภาษาอังกฤษ)" name="CreatorNameEnglish">
                                             <label for="floatingName"><?php echo nbs(2); ?>ชื่อผู้จัดทำ (ภาษาอังกฤษ)
                                             </label>
                                         </div>
@@ -549,8 +553,7 @@ if (isset( $_SESSION['success'])) { ?>
                                     <div class="col">
                                         <div class="form-floating">
                                             <input type="text" class="form-control" id="floatingName"
-                                                placeholder="ชื่อกลางผู้จัดทำ (ภาษาไทย)" name="CreatorMiddleNameThai"
-                                                >
+                                                placeholder="ชื่อกลางผู้จัดทำ (ภาษาไทย)" name="CreatorMiddleNameThai">
                                             <label for=""><?php echo nbs(2); ?>ชื่อกลางผู้จัดทำ (ภาษาไทย) </label>
                                         </div>
                                     </div>
@@ -559,7 +562,7 @@ if (isset( $_SESSION['success'])) { ?>
                                         <div class="form-floating">
                                             <input type="text" class="form-control" id="floatingName"
                                                 placeholder="ชื่อกลางผู้จัดทำ(ภาษาอังกฤษ)"
-                                                name="CreatorMiddleNameEnglish" >
+                                                name="CreatorMiddleNameEnglish">
                                             <label for="floatingName"><?php echo nbs(2); ?>ชื่อกลางผู้จัดทำ(ภาษาอังกฤษ)
                                             </label>
                                         </div>
@@ -578,8 +581,7 @@ if (isset( $_SESSION['success'])) { ?>
                                     <div class="col">
                                         <div class="form-floating">
                                             <input type="text" class="form-control" id="floatingName"
-                                                placeholder="นามสกุลผู้จัดทำ(ภาษาอังกฤษ)" name="CreatorLastNameEnglish"
-                                                >
+                                                placeholder="นามสกุลผู้จัดทำ(ภาษาอังกฤษ)" name="CreatorLastNameEnglish">
                                             <label for="floatingName"><?php echo nbs(2); ?>นามสกุลผู้จัดทำ(ภาษาอังกฤษ)
                                             </label>
                                         </div>
@@ -625,24 +627,24 @@ if (isset( $_SESSION['success'])) { ?>
                                 </div>
                             </form><!-- End Form ข้อมูลนวัตกรรมการศึกษา -->
                             <script>
-                        function checkSelectedOption() {
-                            
-                            const CLS_PERSONAL_ID_TYPE = document.querySelector('#CreatorPersonalIDTypeCode');
-                            const CLS_PERSONAL_ID_TYPE_Value = CLS_PERSONAL_ID_TYPE.value;
+                            function checkSelectedOption() {
 
-                            if (CLS_PERSONAL_ID_TYPE_Value === '-1') {
-                                alert('กรุณาเลือกประเภทบัตรประจำตัวผู้จัดทำ');
-                                return false;
-                            }
-                            const PREFIX_NAME = document.querySelector('#CreatorPrefixCode');
-                            const PREFIX_NAME_Value = PREFIX_NAME.value;
+                                const CLS_PERSONAL_ID_TYPE = document.querySelector('#CreatorPersonalIDTypeCode');
+                                const CLS_PERSONAL_ID_TYPE_Value = CLS_PERSONAL_ID_TYPE.value;
 
-                            if (PREFIX_NAME_Value === '-1') {
-                                alert('กรุณาเลือกคำนำหน้าชื่อผู้จัดทำ');
-                                return false;
+                                if (CLS_PERSONAL_ID_TYPE_Value === '-1') {
+                                    alert('กรุณาเลือกประเภทบัตรประจำตัวผู้จัดทำ');
+                                    return false;
+                                }
+                                const PREFIX_NAME = document.querySelector('#CreatorPrefixCode');
+                                const PREFIX_NAME_Value = PREFIX_NAME.value;
+
+                                if (PREFIX_NAME_Value === '-1') {
+                                    alert('กรุณาเลือกคำนำหน้าชื่อผู้จัดทำ');
+                                    return false;
+                                }
                             }
-                        }
-                        </script>
+                            </script>
                             <?php } ?>
                             <?php  if ($page=='sh22') {  ?>
                             <?php $key = isset($_GET['key']) ? $_GET['key'] : '';  ?>
@@ -654,216 +656,216 @@ if (isset( $_SESSION['success'])) { ?>
  
                      foreach ($result->result() as $show) {
                      ?>
-                             <?php  echo br(2); ?>
+                            <?php  echo br(2); ?>
                             <!-- start Form ข้อมูลนวัตกรรมการศึกษา -->
 
-                            <body >
-                            
+                            <body>
+
                                 <form action="<?php echo site_url('edit_p2'); ?>" method="post">
-                                    <input type="hidden" name="Id" value="<?php echo $show->Id ?>">
+                                    <!-- <input type="hidden" name="Id" value="<?php echo $show->Id ?>"> -->
                                     <div class="row mb-3">
-                                        <div class="form-floating">
-                                            <input type="text" class="form-control" id="floatingName"
-                                                placeholder="รหัสนวัตกรรมการศึกษา" name="InnovationID" required
-                                                value="<?php echo $show->InnovationID ?>">
-                                            <label for="Y"><?php echo nbs(2); ?> รหัสนวัตกรรมการศึกษา </label>
-                                        </div>
-                                    </div>
-                                    <div class="row mb-3">
-                                        <div class="form-floating">
-                                            <input type="text" class="form-control" id="floatingName"
-                                                placeholder="หมายเลขบัตรประจำตัวผู้จัดทำ" name="CreatorPersonalID"
-                                                required value="<?php echo $show->CreatorPersonalID ?>">
-                                            <label for="Y"><?php echo nbs(2); ?> หมายเลขบัตรประจำตัวผู้จัดทำ </label>
-                                        </div>
-                                    </div>
 
 
-                                    <div class="row mb-3">
-                                        <div class="col">
-                                       
-                                            <div class="form-floating">
-                                                <select class="form-select" id="CreatorPersonalIDTypeCode"
-                                                    aria-label="Floating label select example"
-                                                    name="CreatorPersonalIDTypeCode" 
-                                                   >
-                                                    
-                                                    <?php
+                                        <div class="form-floating">
+                                            <select class="form-select" id="InnovationID"
+                                                aria-label="Floating label select example" name="InnovationID">
+
+                                                <?php
+                                            $result = $this->db->query('SELECT * FROM INNOVATION WHERE DeleteStatus = 0');
+                                            foreach ($result->result() as $cls) {
+                                            ?>
+                                                <option value="<?= $cls->InnovationID ; ?>">
+                                                    <?= $cls->InnovationName; ?></option>
+                                                <?php } ?>
+                                            </select>
+                                            <label for="Y"><?php echo nbs(2); ?>นวัตกรรมการศึกษา</label>
+                                        </div>
+                                   
+                        </div>
+                        <div class="row mb-3">
+                            <div class="form-floating">
+                                <input type="text" class="form-control" id="floatingName"
+                                    placeholder="หมายเลขบัตรประจำตัวผู้จัดทำ" name="CreatorPersonalID" required
+                                    value="<?php echo $show->CreatorPersonalID ?>">
+                                <label for="Y"><?php echo nbs(2); ?> หมายเลขบัตรประจำตัวผู้จัดทำ </label>
+                            </div>
+                        </div>
+
+
+                        <div class="row mb-3">
+                            <div class="col">
+
+                                <div class="form-floating">
+                                    <select class="form-select" id="CreatorPersonalIDTypeCode"
+                                        aria-label="Floating label select example" name="CreatorPersonalIDTypeCode">
+
+                                        <?php
                                                 $result = $this->db->query('SELECT * FROM CLS_PERSONAL_ID_TYPE' );
                                                 foreach ($result->result() as $cls) {
                                                 ?>
-                                                    <option value="<?= $cls->PERSONAL_ID_TYPE_CODE ; ?>">
-                                                        <?= $cls->PERSONAL_ID_TYPE_NAME; ?></option>
-                                                    <?php } ?>
+                                        <option value="<?= $cls->PERSONAL_ID_TYPE_CODE ; ?>">
+                                            <?= $cls->PERSONAL_ID_TYPE_NAME; ?></option>
+                                        <?php } ?>
 
-                                                </select>
-                                                <label
-                                                    for="floatingSelect"><?php echo nbs(2); ?>ประเภทบัตรประจำตัวผู้จัดทำ</label>
-                                            </div>
-                                        </div>
+                                    </select>
+                                    <label for="floatingSelect"><?php echo nbs(2); ?>ประเภทบัตรประจำตัวผู้จัดทำ</label>
+                                </div>
+                            </div>
 
-                                        <div class="col">
-                                            <div class="form-floating">
-                                                <select class="form-select" id="CreatorPrefixCode"
-                                                    aria-label="Floating label select example" name="CreatorPrefixCode"
-                                                    required value="<?php echo $show->CreatorPrefixCode ?>">
-                                                  
-                                                    <?php
+                            <div class="col">
+                                <div class="form-floating">
+                                    <select class="form-select" id="CreatorPrefixCode"
+                                        aria-label="Floating label select example" name="CreatorPrefixCode" required
+                                        value="<?php echo $show->CreatorPrefixCode ?>">
+
+                                        <?php
                                                 $result = $this->db->query('SELECT * FROM CLS_PREFIX');
                                                 foreach ($result->result() as $cls) {
                                                 ?>
-                                                    <option value="<?= $cls->PREFIX_CODE ; ?>"><?= $cls->PREFIX_NAME; ?>
-                                                    </option>
-                                                    <?php } ?>
+                                        <option value="<?= $cls->PREFIX_CODE ; ?>"><?= $cls->PREFIX_NAME; ?>
+                                        </option>
+                                        <?php } ?>
 
-                                                </select>
-                                                <label for="Y"><?php echo nbs(2); ?>คำนำหน้าชื่อผู้จัดทำ</label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row mb-3">
-                                        <div class="col">
-                                            <div class="form-floating">
-                                                <input type="text" class="form-control" id="floatingName"
-                                                    placeholder="ชื่อผู้จัดทำ (ภาษาไทย)" name="CreatorNameThai" required
-                                                    value="<?php echo $show->CreatorNameThai ?>">
-                                                <label for="Y"><?php echo nbs(2); ?> ชื่อผู้จัดทำ (ภาษาไทย) </label>
-                                            </div>
-                                        </div>
-
-                                        <div class="col">
-                                            <div class="form-floating">
-                                                <input type="text" class="form-control" id="floatingName"
-                                                    placeholder="ชื่อผู้จัดทำ (ภาษาอังกฤษ)" name="CreatorNameEnglish"
-                                                    value="<?php echo $show->CreatorNameEnglish ?>">
-                                                <label for="floatingName"><?php echo nbs(2); ?>ชื่อผู้จัดทำ (ภาษาอังกฤษ)
-                                                </label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row mb-3">
-                                        <div class="col">
-                                            <div class="form-floating">
-                                                <input type="text" class="form-control" id="floatingName"
-                                                    placeholder="ชื่อกลางผู้จัดทำ (ภาษาไทย)"
-                                                    name="CreatorMiddleNameThai" 
-                                                    value="<?php echo $show->CreatorMiddleNameThai ?>">
-                                                <label for=""><?php echo nbs(2); ?>ชื่อกลางผู้จัดทำ (ภาษาไทย) </label>
-                                            </div>
-                                        </div>
-
-                                        <div class="col">
-                                            <div class="form-floating">
-                                                <input type="text" class="form-control" id="floatingName"
-                                                    placeholder="ชื่อกลางผู้จัดทำ(ภาษาอังกฤษ)"
-                                                    name="CreatorMiddleNameEnglish" 
-                                                    value="<?php echo $show->CreatorMiddleNameEnglish ?>">
-                                                <label
-                                                    for="floatingName"><?php echo nbs(2); ?>ชื่อกลางผู้จัดทำ(ภาษาอังกฤษ)
-                                                </label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row mb-3">
-                                        <div class="col">
-                                            <div class="form-floating">
-                                                <input type="text" class="form-control" id="floatingName"
-                                                    placeholder="นามสกุลผู้จัดทำ (ภาษาไทย)" name="CreatorLastNameThai"
-                                                    required value="<?php echo $show->CreatorLastNameThai ?>">
-                                                <label for="Y"><?php echo nbs(2); ?>นามสกุลผู้จัดทำ (ภาษาไทย) </label>
-                                            </div>
-                                        </div>
-
-                                        <div class="col">
-                                            <div class="form-floating">
-                                                <input type="text" class="form-control" id="floatingName"
-                                                    placeholder="นามสกุลผู้จัดทำ(ภาษาอังกฤษ)"
-                                                    name="CreatorLastNameEnglish" 
-                                                    value="<?php echo $show->CreatorLastNameEnglish ?>">
-                                                <label
-                                                    for="floatingName"><?php echo nbs(2); ?>นามสกุลผู้จัดทำ(ภาษาอังกฤษ)
-                                                </label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row mb-3">
-                                        <div class="form-floating">
-                                            <input type="text" class="form-control" id="floatingName"
-                                                placeholder="สัดส่วนการมีส่วนร่วม" name="ParticipantRatio" required
-                                                value="<?php echo $show->ParticipantRatio ?>">
-                                            <label for="Y"><?php echo nbs(2); ?>สัดส่วนการมีส่วนร่วม </label>
-                                        </div>
-                                    </div>
-
-                                    <div class="text-center">
-                                        <a href="list-teacher_development_activity" class="btn btn-danger"
-                                            style="float: left;">ยกเลิก</a>
-
-                                        <button type="button" class="btn btn-warning" data-bs-toggle="modal"
-                                            data-bs-target="#exampleModal" style="float: right;">แก้ไขข้อมูล</button>
-                                    </div>
-
-                                    <!-- Modal -->
-                                    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
-                                        aria-labelledby="exampleModalLongTitle" aria-hidden="true">
-                                        <div class="modal-dialog modal-dialog-centered" role="document">
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <h5 class="modal-title" id="exampleModalLongTitle">
-                                                        ยืนยันการแก้ไขข้อมูล</h5>
-                                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                        aria-label="Close"></button>
-                                                </div>
-                                                <div class="modal-body">
-                                                    <h6>
-                                                        <center>คุณต้องการแก้ไขข้อมูลใช่หรือไหม ?</center>
-                                                    </h6>
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <button type="submit" class="btn btn-warning">แก้ไขข้อมูล</button>
-                                                    <button type="button" class="btn btn-secondary"
-                                                        data-bs-dismiss="modal">ยกเลิก</button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </form><!-- End Form ข้อมูลนวัตกรรมการศึกษา -->
-                                <script>
-                                
-
-                                    ///CLS_PERSONAL_ID_TYPE
-                                    var my_CLS_PERSONAL_ID_TYPE =  "<?php echo $show->CreatorPersonalIDTypeCode ?>" ;
-                                    var selectoption_CLS_PERSONAL_ID_TYPE = document.querySelector('#CreatorPersonalIDTypeCode');
-                                    var size_my_CLS_PERSONAL_ID_TYPE = document.getElementById("CreatorPersonalIDTypeCode").options
-                                        .length;
-                                    for (let i = 0; i < size_my_CLS_PERSONAL_ID_TYPE; i++) {
-                                        if (selectoption_CLS_PERSONAL_ID_TYPE[i].value == my_CLS_PERSONAL_ID_TYPE) {
-                                            selectoption_CLS_PERSONAL_ID_TYPE[i].selected = true;
-                                        }
-                                    }
-                                    ///CLS_PREFIX
-                                    var my_CLS_PREFIX =  "<?php echo $show->CreatorPrefixCode ?>";
-                                    var selectoption_CLS_PREFIX = document.querySelector('#CreatorPrefixCode');
-                                    var size_my_CLS_PREFIX = document.getElementById("CreatorPrefixCode").options
-                                        .length;
-                                    for (let i = 0; i < size_my_CLS_PREFIX; i++) {
-                                        if (selectoption_CLS_PREFIX[i].value == my_CLS_PREFIX) {
-                                            selectoption_CLS_PREFIX[i].selected = true;
-                                        }
-                                    }
-                                
-                                </script>
-                            </body>
-                            <?php } 
-                        }?>
+                                    </select>
+                                    <label for="Y"><?php echo nbs(2); ?>คำนำหน้าชื่อผู้จัดทำ</label>
+                                </div>
+                            </div>
                         </div>
-                    </div>
+                        <div class="row mb-3">
+                            <div class="col">
+                                <div class="form-floating">
+                                    <input type="text" class="form-control" id="floatingName"
+                                        placeholder="ชื่อผู้จัดทำ (ภาษาไทย)" name="CreatorNameThai" required
+                                        value="<?php echo $show->CreatorNameThai ?>">
+                                    <label for="Y"><?php echo nbs(2); ?> ชื่อผู้จัดทำ (ภาษาไทย) </label>
+                                </div>
+                            </div>
 
-                </div>
+                            <div class="col">
+                                <div class="form-floating">
+                                    <input type="text" class="form-control" id="floatingName"
+                                        placeholder="ชื่อผู้จัดทำ (ภาษาอังกฤษ)" name="CreatorNameEnglish"
+                                        value="<?php echo $show->CreatorNameEnglish ?>">
+                                    <label for="floatingName"><?php echo nbs(2); ?>ชื่อผู้จัดทำ (ภาษาอังกฤษ)
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col">
+                                <div class="form-floating">
+                                    <input type="text" class="form-control" id="floatingName"
+                                        placeholder="ชื่อกลางผู้จัดทำ (ภาษาไทย)" name="CreatorMiddleNameThai"
+                                        value="<?php echo $show->CreatorMiddleNameThai ?>">
+                                    <label for=""><?php echo nbs(2); ?>ชื่อกลางผู้จัดทำ (ภาษาไทย) </label>
+                                </div>
+                            </div>
+
+                            <div class="col">
+                                <div class="form-floating">
+                                    <input type="text" class="form-control" id="floatingName"
+                                        placeholder="ชื่อกลางผู้จัดทำ(ภาษาอังกฤษ)" name="CreatorMiddleNameEnglish"
+                                        value="<?php echo $show->CreatorMiddleNameEnglish ?>">
+                                    <label for="floatingName"><?php echo nbs(2); ?>ชื่อกลางผู้จัดทำ(ภาษาอังกฤษ)
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col">
+                                <div class="form-floating">
+                                    <input type="text" class="form-control" id="floatingName"
+                                        placeholder="นามสกุลผู้จัดทำ (ภาษาไทย)" name="CreatorLastNameThai" required
+                                        value="<?php echo $show->CreatorLastNameThai ?>">
+                                    <label for="Y"><?php echo nbs(2); ?>นามสกุลผู้จัดทำ (ภาษาไทย) </label>
+                                </div>
+                            </div>
+
+                            <div class="col">
+                                <div class="form-floating">
+                                    <input type="text" class="form-control" id="floatingName"
+                                        placeholder="นามสกุลผู้จัดทำ(ภาษาอังกฤษ)" name="CreatorLastNameEnglish"
+                                        value="<?php echo $show->CreatorLastNameEnglish ?>">
+                                    <label for="floatingName"><?php echo nbs(2); ?>นามสกุลผู้จัดทำ(ภาษาอังกฤษ)
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="form-floating">
+                                <input type="text" class="form-control" id="floatingName"
+                                    placeholder="สัดส่วนการมีส่วนร่วม" name="ParticipantRatio" required
+                                    value="<?php echo $show->ParticipantRatio ?>">
+                                <label for="Y"><?php echo nbs(2); ?>สัดส่วนการมีส่วนร่วม </label>
+                            </div>
+                        </div>
+
+                        <div class="text-center">
+                            <a href="list-teacher_development_activity" class="btn btn-danger"
+                                style="float: left;">ยกเลิก</a>
+
+                            <button type="button" class="btn btn-warning" data-bs-toggle="modal"
+                                data-bs-target="#exampleModal" style="float: right;">แก้ไขข้อมูล</button>
+                        </div>
+
+                        <!-- Modal -->
+                        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
+                            aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLongTitle">
+                                            ยืนยันการแก้ไขข้อมูล</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                            aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <h6>
+                                            <center>คุณต้องการแก้ไขข้อมูลใช่หรือไหม ?</center>
+                                        </h6>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="submit" class="btn btn-warning">แก้ไขข้อมูล</button>
+                                        <button type="button" class="btn btn-secondary"
+                                            data-bs-dismiss="modal">ยกเลิก</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        </form><!-- End Form ข้อมูลนวัตกรรมการศึกษา -->
+                        <script>
+                        ///CLS_PERSONAL_ID_TYPE
+                        var my_CLS_PERSONAL_ID_TYPE = "<?php echo $show->CreatorPersonalIDTypeCode ?>";
+                        var selectoption_CLS_PERSONAL_ID_TYPE = document.querySelector('#CreatorPersonalIDTypeCode');
+                        var size_my_CLS_PERSONAL_ID_TYPE = document.getElementById("CreatorPersonalIDTypeCode").options
+                            .length;
+                        for (let i = 0; i < size_my_CLS_PERSONAL_ID_TYPE; i++) {
+                            if (selectoption_CLS_PERSONAL_ID_TYPE[i].value == my_CLS_PERSONAL_ID_TYPE) {
+                                selectoption_CLS_PERSONAL_ID_TYPE[i].selected = true;
+                            }
+                        }
+                        ///CLS_PREFIX
+                        var my_CLS_PREFIX = "<?php echo $show->CreatorPrefixCode ?>";
+                        var selectoption_CLS_PREFIX = document.querySelector('#CreatorPrefixCode');
+                        var size_my_CLS_PREFIX = document.getElementById("CreatorPrefixCode").options
+                            .length;
+                        for (let i = 0; i < size_my_CLS_PREFIX; i++) {
+                            if (selectoption_CLS_PREFIX[i].value == my_CLS_PREFIX) {
+                                selectoption_CLS_PREFIX[i].selected = true;
+                            }
+                        }
+                        </script>
+</body>
+<?php } 
+                        }?>
+</div>
+</div>
+
+</div>
 
 
-            </div>
-        </section>
+</div>
+</section>
 
-    </main><!-- End #main -->
-    </bady>
+</main><!-- End #main -->
+</bady>

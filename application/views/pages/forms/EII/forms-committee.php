@@ -1,7 +1,15 @@
 <main id="main" class="main">
+    <style>
+    label[for="Y"]:after {
+        content: " *";
+        color: red;
+    }
+    </style>
     <?php $page = isset($_GET['page']) ? $_GET['page'] : '';  ?>
     <?php $name = isset($_GET['name']) ? $_GET['name'] : '';  ?>
     <?php $key = isset($_GET['key']) ? $_GET['key'] : '';  ?>
+    <?php $year = isset($_GET['year']) ? $_GET['year'] : '';  ?>
+    <?php $province = isset($_GET['province']) ? $_GET['province'] : '';  ?>
     <div class="pagetitle">
         <div class="row ">
             <?php switch ($page) {
@@ -9,11 +17,12 @@
             ?> <h1>ข้อมูลอำนาจและหน้าที่ของคณะกรรมการขับเคลื่อนพื้นที่นวัตกรรมการศึกษาด้านต่าง</h1>
             <?php break;
                 case 'sh2':
-                ?> <h1>ข้อมูลรายชื่อคณะกรรมการ</h1>
+                ?> <h1>ข้อมูลรายชื่อคณะกรรมการ - เลขคำสั่ง:<?php echo $key; ?></h1>
             <?php
                     break;
                     case 'sh11':
-                    ?> <h1>ข้อมูลอำนาจและหน้าที่ของคณะกรรมการขับเคลื่อนพื้นที่นวัตกรรมการศึกษาด้านต่าง - เลขคำสั่ง:<?php echo $key; ?></h1>
+                    ?> <h1>ข้อมูลอำนาจและหน้าที่ของคณะกรรมการขับเคลื่อนพื้นที่นวัตกรรมการศึกษาด้านต่าง -
+                เลขคำสั่ง:<?php echo $key; ?></h1>
             <?php break;
                         case 'sh22':
                         ?> <h1>ข้อมูลรายชื่อคณะกรรมการ - เลขคำสั่ง:<?php echo $name; ?></h1>
@@ -58,29 +67,32 @@
 
                         <!-- <h5 class="card-title fs-5">
                             ข้อมูลอำนาจและหน้าที่ของคณะกรรมการขับเคลื่อนพื้นที่นวัตกรรมการศึกษาด้านต่าง ๆ</h5> -->
-                             <?php  echo br(2); ?>
+                        <?php  echo br(2); ?>
 
                         <!-- start Form ข้อมูลอำนาจและหน้าที่ของคณะกรรมการขับเคลื่อนพื้นที่นวัตกรรมการศึกษาด้านต่าง ๆ -->
                         <form action="<?php echo site_url('c_forms_up_p1'); ?>" method="post"
                             enctype="multipart/form-data" onsubmit="return checkSelectedOption()">
 
                             <div class="row mb-3">
-                                <div class="form-floating">
-                                    <select class="form-select" id="CommitteeProvinceCode"
-                                        aria-label="Floating label select example" name="CommitteeProvinceCode">
-                                        <option value="-1">เลือก</option>
-                                        <?php
-                                            $result = $this->db->query('SELECT * FROM CLS_PROVINCE');
-                                            foreach ($result->result() as $cls) {
-                                            ?>
-                                        <option value="<?= $cls->PROVINCE_CODE; ?>"><?= $cls->PROVINCE_NAME; ?></option>
-                                        <?php } ?>
-                                    </select>
-                                    <label for="Y"><?php echo nbs(2); ?>จังหวัด</label>
+                                <div class="col">
+                                    <div class="form-floating">
+                                        <select class="form-select" id="CommitteeProvinceCode"
+                                            aria-label="Floating label select example" name="CommitteeProvinceCode">
+                                            <option value="-1">เลือก</option>
+                                            <?php
+                                                $result = $this->db->query('SELECT * FROM CLS_PROVINCE');
+                                                foreach ($result->result() as $cls) {
+                                                ?>
+                                            <option value="<?= $cls->PROVINCE_CODE; ?>"><?= $cls->PROVINCE_NAME; ?>
+                                            </option>
+                                            <?php } ?>
+                                        </select>
+                                        <label for="Y"><?php echo nbs(2); ?>จังหวัด</label>
+                                    </div>
                                 </div>
-                            </div>
 
-                            <div class="row mb-3">
+
+
                                 <div class="col">
                                     <div class="form-floating">
                                         <input type="text" class="form-control" id="floatingName"
@@ -89,29 +101,31 @@
                                     </div>
                                 </div>
 
-                                <div class="col">
+                                <!-- <div class="col">
                                     <div class="form-floating">
                                         <input type="text" class="form-control" id="floatingName"
                                             placeholder="เลขออกคำสั่ง" name="CommitteeAppointmentNumber" required>
                                         <label for="Y"><?php echo nbs(2); ?> เลขออกคำสั่ง </label>
                                     </div>
-                                </div>
-                            </div>
-                            <div class="row mb-3">
-                                <div class="form-floating">
-                                    <select class="form-select" id="CommitteeAppointmentTypeCode"
-                                        aria-label="Floating label select example" name="CommitteeAppointmentTypeCode">
-                                        <option value="-1">เลือก</option>
-                                        <?php
-                                            $result = $this->db->query('SELECT * FROM CLS_APPOINTMENT_TYPE');
-                                            foreach ($result->result() as $cls) {
-                                            ?>
-                                        <option value="<?= $cls->APPOINTMENT_TYPE_CODE ; ?>">
-                                            <?= $cls->APPOINTMENT_TYPE_NAME; ?></option>
-                                        <?php } ?>
+                                </div> -->
 
-                                    </select>
-                                    <label for="Y"><?php echo nbs(2); ?>รหัสประเภทการแต่งตั้ง</label>
+                                <div class="col">
+                                    <div class="form-floating">
+                                        <select class="form-select" id="CommitteeAppointmentTypeCode"
+                                            aria-label="Floating label select example"
+                                            name="CommitteeAppointmentTypeCode">
+                                            <option value="-1">เลือก</option>
+                                            <?php
+                                                $result = $this->db->query('SELECT * FROM CLS_APPOINTMENT_TYPE');
+                                                foreach ($result->result() as $cls) {
+                                                ?>
+                                            <option value="<?= $cls->APPOINTMENT_TYPE_CODE ; ?>">
+                                                <?= $cls->APPOINTMENT_TYPE_NAME; ?></option>
+                                            <?php } ?>
+
+                                        </select>
+                                        <label for="Y"><?php echo nbs(2); ?>ประเภทการแต่งตั้ง</label>
+                                    </div>
                                 </div>
                             </div>
                             <div class="row mb-2">
@@ -182,7 +196,7 @@ if ($page == 'sh11') {
                         <?php
                             
                             $result = $this->db->query("SELECT * FROM COMMITTEE 
-                            WHERE Id = '".$key."' 
+                            WHERE CommitteeAppointmentNumber = '".$key."'  
                             ");
  
                      foreach ($result->result() as $show) {
@@ -190,28 +204,30 @@ if ($page == 'sh11') {
 
                         <!-- <h5 class="card-title fs-5">
                             ข้อมูลอำนาจและหน้าที่ของคณะกรรมการขับเคลื่อนพื้นที่นวัตกรรมการศึกษาด้านต่าง ๆ</h5> -->
-                             <?php  echo br(2); ?>
+                        <?php  echo br(2); ?>
 
                         <!-- start Form ข้อมูลอำนาจและหน้าที่ของคณะกรรมการขับเคลื่อนพื้นที่นวัตกรรมการศึกษาด้านต่าง ๆ -->
                         <form action="<?php echo site_url('c_edit_p1'); ?>" method="post" enctype="multipart/form-data">
-                            <input type="hidden" name="Id" value="<?php echo $show->Id ?>">
+                            <input type="hidden" name="CommitteeAppointmentNumber"
+                                value="<?php echo $show->CommitteeAppointmentNumber ?>">
                             <div class="row mb-3">
-                                <div class="form-floating">
-                                    <select class="form-select" id="CommitteeProvinceCode"
-                                        aria-label="Floating label select example" name="CommitteeProvinceCode">
+                                <div class="col">
+                                    <div class="form-floating">
+                                        <select class="form-select" id="CommitteeProvinceCode"
+                                            aria-label="Floating label select example" name="CommitteeProvinceCode">
 
-                                        <?php
-                                $result = $this->db->query('SELECT * FROM CLS_PROVINCE');
-                                foreach ($result->result() as $cls) {
-                                ?>
-                                        <option value="<?= $cls->PROVINCE_CODE; ?>"><?= $cls->PROVINCE_NAME; ?></option>
-                                        <?php } ?>
-                                    </select>
-                                    <label for="Y"><?php echo nbs(2); ?>จังหวัด</label>
+                                            <?php
+                                    $result = $this->db->query('SELECT * FROM CLS_PROVINCE');
+                                    foreach ($result->result() as $cls) {
+                                    ?>
+                                            <option value="<?= $cls->PROVINCE_CODE; ?>"><?= $cls->PROVINCE_NAME; ?>
+                                            </option>
+                                            <?php } ?>
+                                        </select>
+                                        <label for="Y"><?php echo nbs(2); ?>จังหวัด</label>
+                                    </div>
                                 </div>
-                            </div>
 
-                            <div class="row mb-3">
                                 <div class="col">
                                     <div class="form-floating">
                                         <input type="text" class="form-control" id="floatingName"
@@ -221,30 +237,32 @@ if ($page == 'sh11') {
                                     </div>
                                 </div>
 
-                                <div class="col">
+                                <!-- <div class="col">
                                     <div class="form-floating">
                                         <input type="text" class="form-control" id="floatingName"
                                             placeholder="เลขออกคำสั่ง" name="CommitteeAppointmentNumber"
                                             value="<?php echo $show->CommitteeAppointmentNumber ?>" required>
                                         <label for="Y"><?php echo nbs(2); ?> เลขออกคำสั่ง </label>
                                     </div>
-                                </div>
-                            </div>
-                            <div class="row mb-3">
-                                <div class="form-floating">
-                                    <select class="form-select" id="CommitteeAppointmentTypeCode"
-                                        aria-label="Floating label select example" name="CommitteeAppointmentTypeCode">
+                                </div> -->
 
-                                        <?php
-                                $result = $this->db->query('SELECT * FROM CLS_APPOINTMENT_TYPE');
-                                foreach ($result->result() as $cls) {
-                                ?>
-                                        <option value="<?= $cls->APPOINTMENT_TYPE_CODE ; ?>">
-                                            <?= $cls->APPOINTMENT_TYPE_NAME; ?></option>
-                                        <?php } ?>
+                                <div class="col">
+                                    <div class="form-floating">
+                                        <select class="form-select" id="CommitteeAppointmentTypeCode"
+                                            aria-label="Floating label select example"
+                                            name="CommitteeAppointmentTypeCode">
 
-                                    </select>
-                                    <label for="Y"><?php echo nbs(2); ?>รหัสประเภทการแต่งตั้ง</label>
+                                            <?php
+                                    $result = $this->db->query('SELECT * FROM CLS_APPOINTMENT_TYPE');
+                                    foreach ($result->result() as $cls) {
+                                    ?>
+                                            <option value="<?= $cls->APPOINTMENT_TYPE_CODE ; ?>">
+                                                <?= $cls->APPOINTMENT_TYPE_NAME; ?></option>
+                                            <?php } ?>
+
+                                        </select>
+                                        <label for="Y"><?php echo nbs(2); ?>ประเภทการแต่งตั้ง</label>
+                                    </div>
                                 </div>
                             </div>
                             <div class="row mb-2">
@@ -287,29 +305,26 @@ if ($page == 'sh11') {
                             </div>
                         </form>
                         <script>
-                      
-
-                            ///CLS_PROVINCE
-                            var my_CLS_PROVINCE = "<?php echo $show->CommitteeProvinceCode ?>";
-                            var selectoption_CLS_PROVINCE = document.querySelector('#CommitteeProvinceCode');
-                            var size_my_CLS_PROVINCE = document.getElementById("CommitteeProvinceCode").options.length;
-                            for (let i = 0; i < size_my_CLS_PROVINCE; i++) {
-                                if (selectoption_CLS_PROVINCE[i].value == my_CLS_PROVINCE) {
-                                    selectoption_CLS_PROVINCE[i].selected = true;
-                                }
+                        ///CLS_PROVINCE
+                        var my_CLS_PROVINCE = "<?php echo $show->CommitteeProvinceCode ?>";
+                        var selectoption_CLS_PROVINCE = document.querySelector('#CommitteeProvinceCode');
+                        var size_my_CLS_PROVINCE = document.getElementById("CommitteeProvinceCode").options.length;
+                        for (let i = 0; i < size_my_CLS_PROVINCE; i++) {
+                            if (selectoption_CLS_PROVINCE[i].value == my_CLS_PROVINCE) {
+                                selectoption_CLS_PROVINCE[i].selected = true;
                             }
-                            ///CLS_APPOINTMENT_TYPE
-                            var my_CLS_APPOINTMENT_TYPE = "<?php echo $show->CommitteeAppointmentTypeCode ?>";
-                            var selectoption_CLS_APPOINTMENT_TYPE = document.querySelector(
-                                '#CommitteeAppointmentTypeCode');
-                            var size_my_CLS_APPOINTMENT_TYPE = document.getElementById("CommitteeAppointmentTypeCode")
-                                .options.length;
-                            for (let i = 0; i < size_my_CLS_APPOINTMENT_TYPE; i++) {
-                                if (selectoption_CLS_APPOINTMENT_TYPE[i].value == my_CLS_APPOINTMENT_TYPE) {
-                                    selectoption_CLS_APPOINTMENT_TYPE[i].selected = true;
-                                }
+                        }
+                        ///CLS_APPOINTMENT_TYPE
+                        var my_CLS_APPOINTMENT_TYPE = "<?php echo $show->CommitteeAppointmentTypeCode ?>";
+                        var selectoption_CLS_APPOINTMENT_TYPE = document.querySelector(
+                            '#CommitteeAppointmentTypeCode');
+                        var size_my_CLS_APPOINTMENT_TYPE = document.getElementById("CommitteeAppointmentTypeCode")
+                            .options.length;
+                        for (let i = 0; i < size_my_CLS_APPOINTMENT_TYPE; i++) {
+                            if (selectoption_CLS_APPOINTMENT_TYPE[i].value == my_CLS_APPOINTMENT_TYPE) {
+                                selectoption_CLS_APPOINTMENT_TYPE[i].selected = true;
                             }
-                       
+                        }
                         </script>
                         <!-- end Form ข้อมูลอำนาจและหน้าที่ของคณะกรรมการขับเคลื่อนพื้นที่นวัตกรรมการศึกษาด้านต่าง ๆ -->
                         <?php
@@ -321,13 +336,13 @@ if ($page == 'sh11') {
                         <!-- start Form ข้อมูลรายชื่อคณะกรรมการ -->
                         <form action="<?php echo site_url('cm_forms_up_p2'); ?>" method="post"
                             onsubmit="return checkSelectedOption()">
+                            <?php echo br(2); ?>
 
-                            <h5 class="card-title ">ข้อมูลรายชื่อคณะกรรมการ</h5>
                             <div class="row mb-3">
                                 <div class="form-floating">
                                     <select class="form-select" id="CommitteeProvinceCode"
                                         aria-label="Floating label select example" name="CommitteeProvinceCode">
-                                        <option value="-1" selected>เลือก</option>
+                                        <option value="-1">เลือก</option>
                                         <?php
                                 $result = $this->db->query('SELECT * FROM CLS_PROVINCE');
                                 foreach ($result->result() as $cls) {
@@ -344,14 +359,20 @@ if ($page == 'sh11') {
                                 <div class="col">
                                     <div class="form-floating">
                                         <input type="text" class="form-control" id="floatingName"
-                                            placeholder="ปีที่ออกคำสั่ง" name="CommitteeYear">
+                                            placeholder="ปีที่ออกคำสั่ง" name="" value="<?php echo $year;  ?>" disabled>
                                         <label for="Y"><?php echo nbs(2); ?> ปีที่ออกคำสั่ง </label>
+                                        <input type="hidden" class="form-control" id="floatingName"
+                                            placeholder="ปีที่ออกคำสั่ง" name="CommitteeYear"
+                                            value="<?php echo $year;  ?>">
                                     </div>
                                 </div>
                                 <div class="col">
                                     <div class="form-floating">
                                         <input type="text" class="form-control" id="floatingName"
-                                            placeholder="เลขที่คำสั่ง" name="CommitteeAppointmentNumber">
+                                            placeholder="เลขที่คำสั่ง" name="" value="<?php echo $key;  ?>" disabled>
+                                        <input type="hidden" class="form-control" id="floatingName"
+                                            placeholder="เลขที่คำสั่ง" name="CommitteeAppointmentNumber"
+                                            value="<?php echo $key;  ?>">
                                         <label for="Y"><?php echo nbs(2); ?> เลขที่คำสั่ง </label>
                                     </div>
                                 </div>
@@ -451,8 +472,7 @@ if ($page == 'sh11') {
                                             <?= $cls->COMMITEE_POSITION_NAME; ?></option>
                                         <?php } ?>
                                     </select>
-                                    <label
-                                        for="Y"><?php echo nbs(2); ?>ตำแหน่งกรรมการและอนุกรรมการ</label>
+                                    <label for="Y"><?php echo nbs(2); ?>ตำแหน่งกรรมการและอนุกรรมการ</label>
                                 </div>
                             </div>
                             <div class="row mb-3">
@@ -539,11 +559,22 @@ if ($page == 'sh11') {
                             if (CLS_COMMITEE_POSITIONValue === '-1') {
                                 alert(
                                     'กรุณาเลือกตำแหน่งกรรมการและอนุกรรมการ'
-                                    );
+                                );
                                 return false;
                             }
                         }
+                        ///CLS_PROVINCE
+                        var my_CLS_PROVINCE = "<?php echo $province; ?>";
+                        var selectoption_CLS_PROVINCE = document.querySelector('#CommitteeProvinceCode');
+                        var size_my_CLS_PROVINCE = document.getElementById("CommitteeProvinceCode").options.length;
+                        for (let i = 0; i < size_my_CLS_PROVINCE; i++) {
+                            if (selectoption_CLS_PROVINCE[i].value == my_CLS_PROVINCE) {
+                                selectoption_CLS_PROVINCE[i].selected = true;
+                            }
+                        }
+                        ///select_to_select
                         </script>
+
 
 
                         <?php
@@ -565,37 +596,63 @@ if ($page == 'sh22') { ?>
                             <input type="hidden" name="Id" value="<?php echo $show->Id ?>">
                             <h5 class="card-title ">ข้อมูลรายชื่อคณะกรรมการ</h5>
                             <div class="row mb-3">
-                                <div class="form-floating">
-                                    <select class="form-select" id="CommitteeProvinceCode"
-                                        aria-label="Floating label select example" name="CommitteeProvinceCode">
+                                <div class="col">
+                                    <div class="form-floating">
+                                        <select class="form-select" id="CommitteeAppointmentNumber"
+                                            aria-label="Floating label select example"
+                                            name="CommitteeAppointmentNumber">
 
-                                        <?php
-                                $result = $this->db->query('SELECT * FROM CLS_PROVINCE');
-                                foreach ($result->result() as $cls) {
-                                ?>
-                                        <option value="<?= $cls->PROVINCE_CODE  ; ?>">
-                                            <?= $cls->PROVINCE_NAME; ?></option>
-                                        <?php } ?>
+                                            <?php
+                                   $result = $this->db->query('SELECT * FROM COMMITTEE
+                                   ');
+                                   foreach ($result->result() as $cls) {
+                                       ?>
+                                            <option value="<?= $cls->CommitteeAppointmentNumber  ; ?>">
+                                                <?= $cls->CommitteeAppointmentNumber; ?></option>
+                                            <?php } ?>
 
-                                    </select>
-                                    <label for="Y"><?php echo nbs(2); ?>จังหวัด</label>
+                                        </select>
+                                        <label for="Y"><?php echo nbs(2); ?>เลขที่คำสั่ง</label>
+                                    </div>
                                 </div>
                             </div>
                             <div class="row mb-3">
                                 <div class="col">
                                     <div class="form-floating">
-                                        <input type="text" class="form-control" id="floatingName"
-                                            placeholder="ปีที่ออกคำสั่ง" name="CommitteeYear"
-                                            value="<?php echo $show->CommitteeYear ?>">
-                                        <label for="Y"><?php echo nbs(2); ?> ปีที่ออกคำสั่ง </label>
+                                        <select class="form-select" id="CommitteeProvinceCode"
+                                            aria-label="Floating label select example" name="CommitteeProvinceCode">
+
+                                            <?php
+                                     $result = $this->db->query('SELECT * FROM COMMITTEE
+                                     INNER JOIN CLS_PROVINCE
+                                     ON  CLS_PROVINCE.PROVINCE_CODE = COMMITTEE.CommitteeProvinceCode
+                                     ');
+                                     foreach ($result->result() as $cls) {
+                                     ?>
+                                            <option value="<?= $cls->PROVINCE_CODE  ; ?>">
+                                                <?= $cls->PROVINCE_NAME; ?></option>
+                                            <?php } ?>
+
+                                        </select>
+                                        <label for="Y"><?php echo nbs(2); ?>จังหวัด</label>
                                     </div>
                                 </div>
                                 <div class="col">
                                     <div class="form-floating">
-                                        <input type="text" class="form-control" id="floatingName"
-                                            placeholder="เลขที่คำสั่ง" name="CommitteeAppointmentNumber"
-                                            value="<?php echo $show->CommitteeAppointmentNumber ?>">
-                                        <label for="Y"><?php echo nbs(2); ?> เลขที่คำสั่ง </label>
+                                        <select class="form-select" id="CommitteeYear"
+                                            aria-label="Floating label select example" name="CommitteeYear">
+
+                                            <?php
+                                    $result = $this->db->query('SELECT * FROM COMMITTEE
+                                    ');
+                                    foreach ($result->result() as $cls) {
+                                    ?>
+                                            <option value="<?= $cls->CommitteeYear  ; ?>">
+                                                <?= $cls->CommitteeYear; ?></option>
+                                            <?php } ?>
+
+                                        </select>
+                                        <label for="Y"><?php echo nbs(2); ?>ปีที่ออกคำสั่ง</label>
                                     </div>
                                 </div>
                             </div>
@@ -691,7 +748,7 @@ if ($page == 'sh22') { ?>
                                 <div class="form-floating">
                                     <select class="form-select" id="CommitteeMemberPositionCode"
                                         aria-label="Floating label select example" name="CommitteeMemberPositionCode">
-                                       
+
                                         <?php
                                 $result = $this->db->query('SELECT * FROM CLS_COMMITEE_POSITION');
                                 foreach ($result->result() as $cls) {
@@ -700,8 +757,7 @@ if ($page == 'sh22') { ?>
                                             <?= $cls->COMMITEE_POSITION_NAME; ?></option>
                                         <?php } ?>
                                     </select>
-                                    <label
-                                        for="floatingSelect"><?php echo nbs(2); ?>รหัสตำแหน่งกรรมการและอนุกรรมการ</label>
+                                    <label for="floatingSelect"><?php echo nbs(2); ?>ตำแหน่งกรรมการและอนุกรรมการ</label>
                                 </div>
                             </div>
                             <div class="row mb-3">
@@ -771,36 +827,53 @@ if ($page == 'sh22') { ?>
                         </form><!-- end Form ข้อมูลรายชื่อคณะกรรมการ -->
 
                         <script>
-                       
+                        ///CLS_PROVINCE
+                        var my_CLS_PROVINCE = "<?php echo $show->CommitteeProvinceCode ?>";
+                        var selectoption_CLS_PROVINCE = document.querySelector('#CommitteeProvinceCode');
+                        var size_my_CLS_PROVINCE = document.getElementById("CommitteeProvinceCode").options.length;
+                        for (let i = 0; i < size_my_CLS_PROVINCE; i++) {
+                            if (selectoption_CLS_PROVINCE[i].value == my_CLS_PROVINCE) {
+                                selectoption_CLS_PROVINCE[i].selected = true;
+                            }
+                        }
+                        ///CLS_PREFIX
+                        var my_CLS_PREFIX = "<?php echo $show->CommitteeMemberPrefixCode ?>";
+                        var selectoption_CLS_PREFIX = document.querySelector('#CommitteeMemberPrefixCode');
+                        var size_my_CLS_PREFIX = document.getElementById("CommitteeMemberPrefixCode").options.length;
+                        for (let i = 0; i < size_my_CLS_PREFIX; i++) {
+                            if (selectoption_CLS_PREFIX[i].value == my_CLS_PREFIX) {
+                                selectoption_CLS_PREFIX[i].selected = true;
+                            }
+                        }
+                        ///CLS_COMMITEE_POSITION
+                        var my_CLS_COMMITEE_POSITION = "<?= $cls->COMMITEE_POSITION_CODE  ; ?>";
+                        var selectoption_CLS_COMMITEE_POSITION = document.querySelector('#CommitteeMemberPositionCode');
+                        var size_my_CLS_COMMITEE_POSITION = document.getElementById("CommitteeMemberPositionCode")
+                            .options.length;
+                        for (let i = 0; i < size_my_CLS_COMMITEE_POSITION; i++) {
+                            if (selectoption_CLS_COMMITEE_POSITION[i].value == my_CLS_COMMITEE_POSITION) {
+                                selectoption_CLS_COMMITEE_POSITION[i].selected = true;
+                            }
+                        }
+                        ///select_x_select
+                        var select1 = document.getElementById("CommitteeAppointmentNumber");
+                        var select2 = document.getElementById("CommitteeYear");
+                        var select3 = document.getElementById("CommitteeProvinceCode");
+                        <?php
+                                   $result = $this->db->query('SELECT * FROM COMMITTEE');
+                                   foreach ($result->result() as $cls) { ?>
+                        select1.addEventListener("change", function() {
+        if (select1.value == <?php echo $cls->CommitteeAppointmentNumber ?>) {
+            select2.selectedIndex  = <?php echo $cls->CommitteeYear ?>;
+            select2.options[select2.selectedIndex].value = '<?php echo $cls->CommitteeYear ?>';
+            select2.options[select2.selectedIndex].text = '<?php echo $cls->CommitteeYear ?>';
 
-                            ///CLS_PROVINCE
-                            var my_CLS_PROVINCE = "<?php echo $show->CommitteeProvinceCode ?>";
-                            var selectoption_CLS_PROVINCE = document.querySelector('#CommitteeProvinceCode');
-                            var size_my_CLS_PROVINCE = document.getElementById("CommitteeProvinceCode").options.length;
-                            for (let i = 0; i < size_my_CLS_PROVINCE; i++) {
-                                if (selectoption_CLS_PROVINCE[i].value == my_CLS_PROVINCE) {
-                                    selectoption_CLS_PROVINCE[i].selected = true;
-                                }
-                            }
-                            ///CLS_PREFIX
-                            var my_CLS_PREFIX = "<?php echo $show->CommitteeMemberPrefixCode ?>";
-                            var selectoption_CLS_PREFIX = document.querySelector('#CommitteeMemberPrefixCode');
-                            var size_my_CLS_PREFIX = document.getElementById("CommitteeMemberPrefixCode").options.length;
-                            for (let i = 0; i < size_my_CLS_PREFIX; i++) {
-                                if (selectoption_CLS_PREFIX[i].value == my_CLS_PREFIX) {
-                                    selectoption_CLS_PREFIX[i].selected = true;
-                                }
-                            }
-                             ///CLS_COMMITEE_POSITION
-                             var my_CLS_COMMITEE_POSITION = "<?= $cls->COMMITEE_POSITION_CODE  ; ?>";
-                            var selectoption_CLS_COMMITEE_POSITION = document.querySelector('#CommitteeMemberPositionCode');
-                            var size_my_CLS_COMMITEE_POSITION = document.getElementById("CommitteeMemberPositionCode").options.length;
-                            for (let i = 0; i < size_my_CLS_COMMITEE_POSITION; i++) {
-                                if (selectoption_CLS_COMMITEE_POSITION[i].value == my_CLS_COMMITEE_POSITION) {
-                                    selectoption_CLS_COMMITEE_POSITION[i].selected = true;
-                                }
-                            }
-                        
+            select3.selectedIndex  = <?php echo $cls->CommitteeProvinceCode ?>;
+            select3.options[select3.selectedIndex].value = '<?php echo $cls->CommitteeProvinceCode ?>';
+            select3.options[select3.selectedIndex].text = '<?php echo $cls->CommitteeProvinceCode ?>';
+        }
+    });
+                        <?php } ?>
                         </script>
 
                         <?php

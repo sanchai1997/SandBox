@@ -24,7 +24,7 @@
                 case 'sh1':
             ?> <h1>เทคโนโลยีและสื่อการเรียนรู้ </h1>
                 <?php break;
-                case 'sh2':
+                case 'sh1.1':
                 ?> <h1>ผู้จัดทำเทคโนโลยีและสื่อการเรียนรู้ - <?php echo $name; ?></h1>
                 <?php
 
@@ -96,7 +96,7 @@
                         <thead>
 
                             <tr>
-                                <th style="text-align: center;" scope="col">รหัสข้อมูลเทคโนโลยีและสื่อการเรียนรู้</th>
+                                <!-- <th style="text-align: center;" scope="col">ข้อมูลเทคโนโลยีและสื่อการเรียนรู้</th> -->
                                 <th style="text-align: center;" scope="col">ภาคเรียน</th>
                                 <th style="text-align: center;" scope="col">ชื่อเทคโนโลยีและสื่อการเรียนรู้</th>
                                 <th style="text-align: center;" scope="col">ประเภทเทคโนโลยีและสื่อการเรียนรู้</th>
@@ -110,7 +110,7 @@
                                 # code...
                             ?>
                                 <?php
-                                $Id = $show->Id;
+                                $MediaID = $show->MediaID;
                                 $results = $this->db->query("SELECT * FROM LEARNING_TECHNOLOGY_MEDIA 
                             INNER JOIN CLS_MEDIA_TYPE 
                             ON CLS_MEDIA_TYPE.MEDIA_TYPE_CODE = LEARNING_TECHNOLOGY_MEDIA.MediaTypeCode 
@@ -120,30 +120,30 @@
                             ON CLS_EDUCATION_LEVEL.EDUCATION_LEVEL_CODE = LEARNING_TECHNOLOGY_MEDIA.TargetEducationLevelCode 
                             -- TargetEducationLevelCode
                             -- EDUCATION_LEVEL_NAME
-                            WHERE Id = $Id
+                            WHERE MediaID = $MediaID
                             ");
 
                                 foreach ($results->result() as $shows) {
                                 ?>
                                     <tr>
-                                        <th scope="row " style="text-align: center;"><?php echo $show->MediaID; ?></th>
+                                        <!-- <th scope="row " style="text-align: center;"><?php echo $show->MediaID; ?></th> -->
                                         <td style="text-align: center;"><?php echo $show->Semester; ?></td>
                                         <td style="text-align: center;"><?php echo $show->MediaName; ?></td>
                                         <td style="text-align: center;"><?php echo $shows->MEDIA_TYPE_NAME; ?></td>
                                         <th scope="row " style="text-align: center;"> <a href="<?php echo site_url('Fm_lear_tech_media_das_p1?page=sh1.1') ?>&&key=<?php echo $show->MediaID ?>&&name=<?php echo $show->MediaName ?>" class="btn btn-info"><i class="bi bi-eye"></i></a> </th>
                                         <td style="text-align: center;">
-                                        <a href="<?php echo site_url('LTM_forms_p1?page=sh11') ?>&&key=<?php echo $show->Id; ?>&&name=<?php echo $show->MediaName; ?>" class="btn btn-warning"> <i class="bi bi-pencil-square"></i></a>
-                                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#look<?php echo $show->Id; ?>"><i class="bi bi-card-list"></i></button>
-                                            <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#del_LTM<?php echo $show->Id; ?>">
+                                        <a href="<?php echo site_url('LTM_forms_p1?page=sh11') ?>&&key=<?php echo $show->MediaID; ?>&&name=<?php echo $show->MediaName; ?>" class="btn btn-warning"> <i class="bi bi-pencil-square"></i></a>
+                                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#look<?php echo $show->MediaID; ?>"><i class="bi bi-card-list"></i></button>
+                                            <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#del_LTM<?php echo $show->MediaID; ?>">
                                                 <i class="bi bi-trash"></i>
                                             </button>
                                             <!-- Modal -->
-                                            <div class="modal fade" id="del_LTM<?php echo $show->Id; ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                            <div class="modal fade" id="del_LTM<?php echo $show->MediaID; ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                                 <div class="modal-dialog">
                                                     <div class="modal-content">
                                                         <div class="modal-header">
                                                             <h5 class="modal-title" id="exampleModalLabel">
-                                                                ยืนยันการลบข้อมูลรหัส<?php echo nbs(2); ?><?php echo $show->MediaID; ?>
+                                                                ยืนยันการลบข้อมูล<?php echo nbs(2); ?><?php echo $show->MediaID; ?>
                                                             </h5>
 
                                                         </div>
@@ -156,7 +156,7 @@
                                                         <div class="modal-footer">
                                                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ยกเลิก</button>
                                                             <form method="post" action="<?php echo site_url('LTM_del_p1'); ?>">
-                                                                <input type="hidden" name="Id" value="<?php echo $show->Id; ?>">
+                                                                <input type="hidden" name="MediaID" value="<?php echo $show->MediaID; ?>">
                                                                 <div class="d-flex justify-content-center">
                                                                     <button name="Submit" type="submit" class="btn btn-primary">ยืนยันก่อนลบ</button>
                                                                 </div>
@@ -202,7 +202,7 @@
                         </h5>
                         </div>
                         <div class="col">
-                            <h5 style="float: right; padding: 15px;" class="card-title"><a href="<?php echo site_url('LTM_forms_p1?page=sh2') ?>&&name=<?php echo $name; ?>" class="btn btn-success">เพิ่มข้อมูล
+                            <h5 style="float: right; padding: 15px;" class="card-title"><a href="<?php echo site_url('LTM_forms_p1?page=sh2') ?>&&name=<?php echo $name; ?>&&key=<?php echo $key; ?>" class="btn btn-success">เพิ่มข้อมูล
                                 </a></h5>
                         </div>
                     </div>
@@ -213,7 +213,7 @@
 
                             <tr>
                                 <th style="text-align: center;" scope="col">หมายเลขบัตรประจำตัวผู้จัดทำ</th>
-                                <th style="text-align: center;" scope="col">รหัสประเภทบัตรประจำตัวผู้จัดทำ</th>
+                                <th style="text-align: center;" scope="col">ประเภทบัตรประจำตัวผู้จัดทำ</th>
                                 <th style="text-align: center;" scope="col"> ชื่อผู้จัดทำ</th>
                                 <th style="text-align: center;" scope="col">ดูรายละเอียด</th>
 
@@ -247,7 +247,7 @@
                                             <?php echo $shows->CreatorNameThai; ?><?php echo nbs(2); ?><?php echo $shows->CreatorLastNameThai; ?>
                                         </th>
                                         <td style="text-align: center;">
-                                        <a href="<?php echo site_url('LTMC_forms_p2?page=sh22') ?>&&key=<?php echo $shows->Id; ?>&&num=<?php echo $shows->CreatorPersonalID; ?>" class="btn btn-warning"> <i class="bi bi-pencil-square"></i></a>
+                                        <a href="<?php echo site_url('LTMC_forms_p2?page=sh22') ?>&&key=<?php echo $shows->Id; ?>&&name=<?php echo $name; ?>" class="btn btn-warning"> <i class="bi bi-pencil-square"></i></a>
                                         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#LTM<?php echo $shows->Id; ?>"><i class="bi bi-card-list"></i></button> <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#del_1st<?php echo $shows->Id; ?>">
                                                 <i class="bi bi-trash"></i>
                                             </button>
@@ -257,7 +257,7 @@
                                                     <div class="modal-content">
                                                         <div class="modal-header">
                                                             <h5 class="modal-title" id="exampleModalLabel">
-                                                                ยืนยันการลบข้อมูลรหัส<?php echo nbs(2); ?><?php echo $shows->CreatorPersonalID; ?>
+                                                                ยืนยันการลบข้อมูล<?php echo nbs(2); ?><?php echo $shows->CreatorPersonalID; ?>
                                                             </h5>
 
                                                         </div>
@@ -351,7 +351,7 @@
                                                             <div class="modal-content">
                                                                 <div class="modal-header">
                                                                     <h5 class="modal-title" id="exampleModalLabel">
-                                                                        ยืนยันการลบข้อมูลรหัส<?php echo nbs(2); ?><?php echo $show->CreatorPersonalID; ?>
+                                                                        ยืนยันการลบข้อมูล<?php echo nbs(2); ?><?php echo $show->CreatorPersonalID; ?>
                                                                     </h5>
 
                                                                 </div>
@@ -407,7 +407,7 @@
                       ');
     foreach ($result->result() as $show) {
     ?>
-        <div class="modal fade" id="look<?php echo $show->Id; ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal fade" id="look<?php echo $show->MediaID; ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-lg">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -416,7 +416,7 @@
                     </div>
                     <div class="modal-body">
                         <?php
-                        $Id = $show->Id;
+                        $MediaID = $show->MediaID;
                         $results = $this->db->query("SELECT * FROM LEARNING_TECHNOLOGY_MEDIA 
                             INNER JOIN CLS_MEDIA_TYPE 
                             ON CLS_MEDIA_TYPE.MEDIA_TYPE_CODE = LEARNING_TECHNOLOGY_MEDIA.MediaTypeCode 
@@ -426,24 +426,24 @@
                             ON CLS_EDUCATION_LEVEL.EDUCATION_LEVEL_CODE = LEARNING_TECHNOLOGY_MEDIA.TargetEducationLevelCode 
                             -- TargetEducationLevelCode
                             -- EDUCATION_LEVEL_NAME
-                            WHERE Id = $Id
+                            WHERE MediaID = $MediaID
                             ");
 
                         foreach ($results->result() as $shows) {
                         ?>
                             <div class="row">
                                 <div class="col">
-                                    <h5 class="fw-bold">รหัสข้อมูลเทคโนโลยีและสื่อการเรียนรู้</h5>
-                                    <p><?php echo $show->MediaID; ?></p>
+                                    <!-- <h5 class="fw-bold">ข้อมูลเทคโนโลยีและสื่อการเรียนรู้</h5>
+                                    <p><?php echo $show->MediaID; ?></p> -->
                                     <h5 class="fw-bold">ปีการศึกษา</h5>
                                     <p><?php echo $show->EducationYear; ?></p>
                                     <h5 class="fw-bold">ภาคเรียน</h5>
                                     <p><?php echo $show->Semester; ?></p>
                                     <h5 class="fw-bold">ชื่อเทคโนโลยีและสื่อการเรียนรู้</h5>
                                     <p><?php echo $show->MediaName; ?></p>
-                                    <h5 class="fw-bold">รหัสประเภทเทคโนโลยีและสื่อการเรียนรู้</h5>
+                                    <h5 class="fw-bold">ประเภทเทคโนโลยีและสื่อการเรียนรู้</h5>
                                     <p><?php echo $shows->MEDIA_TYPE_NAME; ?></p>
-                                    <h5 class="fw-bold">รหัสระดับการศึกษาที่นำไปใช้</h5>
+                                    <h5 class="fw-bold">ระดับการศึกษาที่นำไปใช้</h5>
                                     <p><?php echo $shows->EDUCATION_LEVEL_NAME; ?></p>
                                 </div>
 
@@ -509,30 +509,22 @@
                         foreach ($results->result() as $shows) { ?>
                             <div class="row">
                                 <div class="col">
-                                    <h6 class="fw-bold">รหัสข้อมูลเทคโนโลยีและสื่อการเรียนรู้</h6>
-                                    <p><?php echo $show->MediaID; ?></p>
+                                    <!-- <h6 class="fw-bold">ข้อมูลเทคโนโลยีและสื่อการเรียนรู้</h6>
+                                    <p><?php echo $show->MediaID; ?></p> -->
                                     <h6 class="fw-bold">หมายเลขบัตรประจำตัวผู้จัดทำ</h6>
                                     <p><?php echo $show->CreatorPersonalID; ?></p>
-                                    <h6 class="fw-bold">รหัสประเภทบัตรประจำตัวผู้จัดทำ</h6>
+                                    <h6 class="fw-bold">ประเภทบัตรประจำตัวผู้จัดทำ</h6>
                                     <p><?php echo $shows->PERSONAL_ID_TYPE_NAME; ?></p>
-                                    <h6 class="fw-bold">สัดส่วนการมีส่วนร่วม</h6>
-                                    <p><?php echo $show->ParticipantRatio; ?></p>
                                 </div>
                                 <div class="col">
-                                    <h6 class="fw-bold">รหัสคำนำหน้าชื่อผู้จัดทำ</h6>
-                                    <p><?php echo $shows->PREFIX_NAME; ?></p>
-                                    <h6 class="fw-bold"> ชื่อผู้จัดทำ (ภาษาไทย)</h6>
-                                    <p><?php echo $show->CreatorNameThai; ?></p>
-                                    <h6 class="fw-bold">ชื่อผู้จัดทำ (ภาษาอังกฤษ)</h6>
-                                    <p><?php echo $show->CreatorNameEnglish; ?></p>
-                                    <h6 class="fw-bold">ชื่อกลางผู้จัดทำ (ภาษาไทย)</h6>
-                                    <p><?php echo $show->CreatorMiddleNameThai; ?></p>
-                                    <h6 class="fw-bold">ชื่อกลางผู้จัดทำ(ภาษาอังกฤษ)</h6>
-                                    <p><?php echo $show->CreatorMiddleNameEnglish; ?></p>
-                                    <h6 class="fw-bold">นามสกุลผู้จัดทำ (ภาษาไทย)</h6>
-                                    <p><?php echo $show->CreatorLastNameThai; ?></p>
-                                    <h6 class="fw-bold">นามสกุลผู้จัดทำ(ภาษาอังกฤษ)</h6>
-                                    <p><?php echo $show->CreatorLastNameEnglish; ?></p>
+                                    <h6 class="fw-bold">ชื่อ-สกุล(ภาษาไทย)</h6>
+                                    <p><?php echo $shows->PREFIX_NAME; ?><?php echo nbs(2); ?><?php echo $show->CreatorNameThai; ?>-<?php echo $show->CreatorLastNameThai; ?></p>
+                                    <h6 class="fw-bold">ชื่อ-สกุล(ภาษาอังกฤษ)</h6>
+                                    <p><?php echo $show->CreatorNameEnglish; ?>-<?php echo $show->CreatorLastNameEnglish; ?></p>
+                                </div>
+                                <div class="col">
+                                    <h6 class="fw-bold">สัดส่วนการมีส่วนร่วม</h6>
+                                    <p><?php echo $show->ParticipantRatio; ?></p>
                                 </div>
                             </div>
                         <?php } ?>
@@ -540,7 +532,6 @@
                     <div class="modal-footer">
                         <!-- <a href="<?php echo site_url('LTMC_forms_p2?page=sh22') ?>&&key=<?php echo $show->Id; ?>&&num=<?php echo $show->CreatorPersonalID; ?>" class="btn btn-warning"> <i class="bi bi-pencil-square"></i></a> -->
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ปิด</button>
-
                     </div>
                 </div>
             </div>
@@ -567,19 +558,19 @@
                     <div class="modal-body">
                         <div class="row">
                             <div class="col">
-                                <h5 class="fw-bold">รหัสข้อมูลเทคโนโลยีและสื่อการเรียนรู้</h5>
-                                <p><?php echo $show->MediaID; ?></p>
+                                <!-- <h5 class="fw-bold">ข้อมูลเทคโนโลยีและสื่อการเรียนรู้</h5>
+                                <p><?php echo $show->MediaID; ?></p> -->
                                 <h5 class="fw-bold">หมายเลขบัตรประจำตัวผู้จัดทำ</h5>
                                 <p><?php echo $show->CreatorPersonalID; ?></p>
-                                <h5 class="fw-bold">รหัสประเภทบัตรประจำตัวผู้จัดทำ</h5>
+                                <h5 class="fw-bold">ประเภทบัตรประจำตัวผู้จัดทำ</h5>
                                 <p><?php echo $show->CreatorPersonalIDTypeCode; ?></p>
-                                <h5 class="fw-bold">รหัสคำนำหน้าชื่อผู้จัดทำ</h5>
+                                <h5 class="fw-bold">คำนำหน้าชื่อผู้จัดทำ</h5>
                                 <p><?php echo $show->CreatorPrefixCode; ?></p>
                                 <h5 class="fw-bold">สัดส่วนการมีส่วนร่วม</h5>
                                 <p><?php echo $show->ParticipantRatio; ?></p>
                             </div>
                             <div class="col">
-                                <h5 class="fw-bold">รหัสคำนำหน้าชื่อผู้จัดทำ</h5>
+                                <h5 class="fw-bold">คำนำหน้าชื่อผู้จัดทำ</h5>
                                 <p><?php echo $show->CreatorPrefixCode; ?></p>
                                 <h5 class="fw-bold"> ชื่อผู้จัดทำ (ภาษาไทย)</h5>
                                 <p><?php echo $show->CreatorNameThai; ?></p>
