@@ -174,7 +174,7 @@ class Innovation_model extends CI_Model
 			'ParticipantRatio' => $this->input->post('ParticipantRatio')
 
 		);
-		$query = $this->db->insert('innovation_creator', $data);
+		$query = $this->db->insert('INNOVATION_CREATOR', $data);
 		if ($query) {
 			session_start(); // เริ่มต้น session
 			$_SESSION['success'] = "เพิ่มข้อมูลนวัตกรรมการศึกษาสำเร็จ !"; // กำหนดค่า success ใน session เป็น true
@@ -207,7 +207,7 @@ class Innovation_model extends CI_Model
 
 		);
 		$this->db->where('Id', $this->input->post('Id'));
-		$query = $this->db->update('innovation_creator', $data);
+		$query = $this->db->update('INNOVATION_CREATOR', $data);
 		if ($query) {
 			session_start(); // เริ่มต้น session
 			$_SESSION['success'] = "แก้ไขสำเร็จ !"; // กำหนดค่า success ใน session เป็น true
@@ -232,7 +232,7 @@ class Innovation_model extends CI_Model
 
 		);
 		$this->db->where('Id', $this->input->post('Id'));
-		$query = $this->db->update('innovation_creator', $data);
+		$query = $this->db->update('INNOVATION_CREATOR', $data);
 		if ($query) {
 			session_start(); // เริ่มต้น session
 			$_SESSION['success'] = "ลบข้อมูลสำเร็จ !"; // กำหนดค่า success ใน session เป็น true
