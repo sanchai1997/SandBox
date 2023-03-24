@@ -10,7 +10,7 @@ class Teacher extends CI_Controller
         // Your own constructor code
         $this->load->library('form_validation');
         $this->load->library('session');
-        $this->load->model('School_model', 'school');
+        $this->load->model('Teacher_model', 'teacher');
     }
 
     public function index()

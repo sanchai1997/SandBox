@@ -145,16 +145,21 @@ $route['delete-student/(:any)/(:num)/(:num)/(:num)/(:num)'] = 'forms_student/del
 
 ///////////////////// STUDENT - END /////////////////////////
 
+
+
 ////////////////////// ROUTE TEACHER ////////////////////////
 //TEACHER
-$route['teacher'] = 'teacher';
+$route['teacher'] = 'teacher/index';
 $route['forms-teacher'] = 'forms_teacher';
-$route['forms-teacher-P2'] = 'forms_teacher/teacher_P2';
-$route['add-teacher']['post'] = 'forms_teacher/add_teacher';
-$route['edit-forms-teacher'] = 'forms_teacher/edit_teacher';
-$route['update-teacher/(:any)'] = 'forms_teacher/update_teacher/$1';
-$route['delete-teacher/(:any)'] = 'forms_teacher/delete_teacher/$1';
+$route['forms-teacher-select'] = 'forms_teacher/forms_teacher_select';
+$route['add-teacher/(:num)']['post'] = 'forms_teacher/add_teacher/$1';
+$route['add-teacher-select/(:num)']['post'] = 'forms_teacher/add_teacher_select/$1';
+
+
+$route['delete-teacher/(:any)/(:num)/(:num)/(:num)/(:num)/(:num)'] = 'forms_teacher/delete_teacher/$1/$2/$3/$4/$5/$6';
 ///////////////////// TEACHER - END /////////////////////////
+
+
 
 ////////////////////// ROUTE GRADUATED ////////////////////////
 //GRADUATED 

@@ -146,7 +146,7 @@
                             <?php
                             $result = $this->db->query('SELECT * FROM STUDENT 
                             INNER JOIN CLS_GRADE_LEVEL  ON STUDENT.GradeLevelCode = CLS_GRADE_LEVEL.GRADE_LEVEL_CODE
-                            WHERE DeleteStatus = 0
+                            WHERE DeleteStatus = 0 AND SchoolID = ' . $_GET['SchoolID'] . '
                             GROUP BY EducationYear, Semester, GradeLevelCode
                             ');
                             foreach ($result->result() as $STUDENT) {
@@ -379,11 +379,11 @@
                                                         <label style="padding-left: 25px;"> ภาษาอื่น: &nbsp;<?php if ($STUDENT_DETAIL->StudentOtherLanguageCode == NULL) {
                                                                                                                 echo '-';
                                                                                                             } else echo $SUB; ?></label>
-
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
+                                        
                                         <div class="card">
                                             <div class="card-body">
                                                 <div class="row">

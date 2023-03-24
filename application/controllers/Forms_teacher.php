@@ -31,68 +31,48 @@ class Forms_teacher extends CI_Controller
         $this->load->view('templates/footer', $data);
     }
 
-    //PageForm teacher
-    public function teacher_P2()
+    //Add Data Form teacher
+    public function add_teacher($SchoolID)
+    {
+        $this->forms_teacher->add_teacher($SchoolID);
+        $_SESSION['success'] = "บันทึกข้อมูลเรียบร้อย";
+        redirect(base_url('teacher?SchoolID=' . $SchoolID));
+    }
+    ////////////////////////////// forms-teacher-END/////////////////////////////////
+
+    ///////////////////////////////////forms-teacher-select/////////////////////////////////
+    //Pageforms-teacher-select
+    public function forms_teacher_select()
     {
 
-        if (!file_exists(APPPATH . 'views/pages/forms/teacher/forms-teacher-P2.php')) {
+        if (!file_exists(APPPATH . 'views/pages/forms/teacher/forms-teacher-select.php')) {
             //Whoops,wedon'thaveapageforthat!
             show_404();
         }
 
-        $data['title'] = 'Forms Teacher-P2'; //Capitalizethefirstletter
+        $data['title'] = 'Forms Teacher-select'; //Capitalizethefirstletter
 
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
-        $this->load->view('pages/forms/teacher/forms-teacher-P2', $data);
+        $this->load->view('pages/forms/teacher/forms-teacher-select', $data);
         $this->load->view('templates/footer', $data);
     }
-    ////////////////////////////////forms-teacher-P2-END///////////////////////////
-
-    ////////////////////////////////edit-forms-teacher///////////////////////////////////
-    //edit-forms-teacher
-    public function edit_teacher()
-    {
-
-        if (!file_exists(APPPATH . 'views/pages/forms/teacher/edit-forms-teacher.php')) {
-            //Whoops,wedon'thaveapageforthat!
-            show_404();
-        }
-
-        $data['title'] = 'Forms edit-forms-teacher'; //Capitalizethefirstletter
-
-        $this->load->view('templates/header', $data);
-        $this->load->view('templates/sidebar', $data);
-        $this->load->view('pages/forms/teacher/edit-forms-teacher', $data);
-        $this->load->view('templates/footer', $data);
-    }
-    /////////////////////////edit-forms-teacher-END////////////////////////////////////
-
 
     //Add Data Form teacher
-    public function add_teacher()
+    public function add_teacher_select($SchoolID, $EducationYear, $Semester, $EntryMajorCode, $EntryProgramCode)
     {
-        $this->forms_teacher->add_teacher();
+        $this->forms_teacher->add_teacher_select($SchoolID, $EducationYear, $Semester, $EntryMajorCode, $EntryProgramCode);
         $_SESSION['success'] = "บันทึกข้อมูลเรียบร้อย";
-        redirect(base_url('teacher'));
+        redirect(base_url('teacher?SchoolID=' . $SchoolID . '&&EducationYear=' . $EducationYear . '&&Semester=' . $Semester . '&&EntryMajorCode=' . $EntryMajorCode . '&&EntryProgramCode=' . $EntryProgramCode));
     }
-
-    //Update Data teacher
-    public function update_teacher($TeacherID)
-    {
-
-        $this->forms_teacher->update_teacher($TeacherID);
-        $_SESSION['success'] = "แก้ไขข้อมูลเรียบร้อย";
-        redirect(base_url('teacher'));
-    }
+    ////////////////////////////// forms-teacher-END/////////////////////////////////
 
 
-    //Delete Data teacher
-    public function delete_teacher($TeacherID)
+    //Delete Data Form teacher
+    public function delete_teacher($TeacherID, $SchoolID, $EducationYear, $Semester, $EntryMajorCode, $EntryProgramCode)
     {
         $this->forms_teacher->delete_teacher($TeacherID);
         $_SESSION['success'] = "ลบข้อมูลเรียบร้อย";
-        redirect(base_url('teacher'));
+        redirect(base_url('teacher?SchoolID=' . $SchoolID . '&&EducationYear=' . $EducationYear . '&&Semester=' . $Semester . '&&EntryMajorCode=' . $EntryMajorCode . '&&EntryProgramCode=' . $EntryProgramCode));
     }
-    ///////////////////////////////////SCHOOL-END/////////////////////////////////////////
 }
