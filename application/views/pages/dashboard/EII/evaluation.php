@@ -1,4 +1,6 @@
 <?php $page = isset($_GET['page']) ? $_GET['page'] : ''; ?>
+<?php $name = isset($_GET['name']) ? $_GET['name'] : ''; ?>
+<?php $key = isset($_GET['key']) ? $_GET['key'] : ''; ?>
 <main id="main" class="main">
     <?php
     session_start(); // เริ่มต้น session
@@ -23,11 +25,11 @@
         <div class="row ">
             <?php switch (
                 $page
-            ) { case 'sh1': ?> <h1>การประกันคุณภาพด้วยตัวชี้วัดของพื้นที่</h1>
-            <?php break;case 'sh2': ?> <h1>ข้อมูลระดับตัวชี้วัด</h1>
-            <?php break;case 'sh3': ?> <h1>ข้อมูลองค์ประกอบตัวชี้วัด</h1>
-            <?php break;case 'sh4': ?> <h1>ข้อมูลคำอธิบายระดับของแต่ละองค์ประกอบ</h1>
-            <?php break;case 'sh5': ?> <h1>ข้อมูลการประเมินผลสถานศึกษา</h1>
+            ) { case 'sh1': ?> <h1>ตัวชี้วัด</h1>
+            <?php break;case 'sh2': ?> <h1>ข้อมูลระดับตัวชี้วัด - <?php echo $name; ?></h1>
+            <?php break;case 'sh3': ?> <h1>ข้อมูลองค์ประกอบตัวชี้วัด - <?php echo $name; ?></h1>
+            <?php break;case 'sh4': ?> <h1>ข้อมูลคำอธิบายระดับของแต่ละองค์ประกอบ - <?php echo $name; ?></h1>
+            <?php break;case 'sh5': ?> <h1>ข้อมูลการประเมินผลสถานศึกษา - <?php echo $name; ?></h1>
             <?php break;case 'sh6': ?> <h1>ข้อมูลการประเมินตามตัวชี้วัด</h1>
             <?php break;case 'sh7': ?> <h1>ระดับตัวชี้วัดที่ได้ในแต่ละองค์ประกอบ</h1>
             <?php break;case 'sh8': ?> <h1>ข้อมูลการประเมินสถานศึกษา</h1>
@@ -158,25 +160,27 @@
                                 <?php echo $show->CriteriaID; ?></th>
                             <th scope="row" style="text-align: center;"><?php echo $show->CriteriaName; ?></th>
                             <td style="text-align: center;"><a
-                                    href="<?php echo site_url('Fm_evaluation_das_p2?page=sh2') ?>&&key=<?php echo $show->CriteriaID ?>"
+                                    href="<?php echo site_url('Fm_evaluation_das_p2?page=sh2') ?>&&key=<?php echo $show->CriteriaID ?>&&name=<?php echo $show->CriteriaName ?>"
                                     class="btn btn-info"><i class="bi bi-eye"></i></a></td>
                             <td style="text-align: center;"><a
-                                    href="<?php echo site_url('Fm_evaluation_das_p3?page=sh3') ?>&&key=<?php echo $show->CriteriaID ?>"
+                                    href="<?php echo site_url('Fm_evaluation_das_p3?page=sh3') ?>&&key=<?php echo $show->CriteriaID ?>&&name=<?php echo $show->CriteriaName ?>"
                                     class="btn btn-info"><i class="bi bi-eye"></i></a></td>
                                     <td style="text-align: center;"><a
-                                    href="<?php echo site_url('Fm_evaluation_das_p4?page=sh4') ?>&&key=<?php echo $show->CriteriaID ?>"
+                                    href="<?php echo site_url('Fm_evaluation_das_p4?page=sh4') ?>&&key=<?php echo $show->CriteriaID ?>&&name=<?php echo $show->CriteriaName ?>"
                                     class="btn btn-info"><i class="bi bi-eye"></i></a></td>
                             <!-- แก้ไขลบ -->
                             <td style="text-align: center;">
+                            <a href="<?php echo site_url('ass_ria_forms_p1?page=sh11') ?>&&key=<?php echo $show->CriteriaID; ?>"
+                    class="btn btn-warning"> <i class="bi bi-pencil-square"></i></a>
                                 <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                                    data-bs-target="#look1<?php echo $show->Id; ?>"><i
+                                    data-bs-target="#look1<?php echo $show->CriteriaID; ?>"><i
                                         class="bi bi-card-list"></i></button>
                                 <button type="button" class="btn btn-danger" data-bs-toggle="modal"
-                                    data-bs-target="#look1<?php echo $show->Id; ?>">
+                                    data-bs-target="#look1<?php echo $show->CriteriaID; ?>">
                                     <i class="bi bi-trash"></i>
                                 </button>
                                 <!-- Modal -->
-                                <div class="modal fade" id="del_ass_ria<?php echo $show->Id; ?>" tabindex="-1"
+                                <div class="modal fade" id="del_ass_ria<?php echo $show->CriteriaID; ?>" tabindex="-1"
                                     aria-labelledby="exampleModalLabel" aria-hidden="true">
                                     <div class="modal-dialog">
                                         <div class="modal-content">
@@ -251,7 +255,7 @@
                     <div class="col">
                         <h5 style="float: right; padding: 15px;" class="card-title"><a href="<?php echo site_url(
                                 'ass_ria_lvl_forms_p2?page=sh2'
-                            ); ?>" class="btn btn-success">เพิ่มข้อมูล</a></h5>
+                            ); ?>&&name=<?php echo $name; ?>&&key=<?php echo $key; ?>" class="btn btn-success">เพิ่มข้อมูล</a></h5>
                     </div>
                 </div>
                 
@@ -1079,7 +1083,7 @@
                       ');
                      foreach ($result->result() as $show) {
                      ?>
-<div class="modal fade" id="look1<?php echo $show->Id; ?>" tabindex="-1" aria-labelledby="exampleModalLabel"
+<div class="modal fade" id="look1<?php echo $show->CriteriaID; ?>" tabindex="-1" aria-labelledby="exampleModalLabel"
     aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
@@ -1090,8 +1094,8 @@
             <div class="modal-body">
                 <div class="row">
                     <div class="col">
-                        <h5 class="fw-bold">รหัสตัวชี้วัด</h5>
-                        <p><?php echo $show->CriteriaID; ?></p>
+                        <!-- <h5 class="fw-bold">รหัสตัวชี้วัด</h5>
+                        <p><?php echo $show->CriteriaID; ?></p> -->
                         <h5 class="fw-bold">ชื่อเกณฑ์</h5>
                         <p><?php echo $show->CriteriaName; ?></p>
                         <h5 class="fw-bold">คำฮธิบายเกณฑ์</h5>
@@ -1110,8 +1114,7 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <a href="<?php echo site_url('par_forms_p1?page=sh11') ?>&&key=<?php echo $show->Id; ?>"
-                    class="btn btn-warning"> <i class="bi bi-pencil-square"></i></a>
+                
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ปิด</button>
 
             </div>

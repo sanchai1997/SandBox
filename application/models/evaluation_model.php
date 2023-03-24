@@ -10,7 +10,7 @@ class Evaluation_model extends CI_Model
 		// echo'</pre>';
 		// exit;
 		$data = array(
-			'CriteriaID' => $this->input->post('CriteriaID'),
+			// 'CriteriaID' => $this->input->post('CriteriaID'),
 			'CriteriaName' => $this->input->post('CriteriaName'),
 			'CriteriaDescription' => $this->input->post('CriteriaDescription'),
 			'CriteriaLevelAmount' => $this->input->post('CriteriaLevelAmount'),
@@ -37,7 +37,7 @@ class Evaluation_model extends CI_Model
 		// echo'</pre>';
 		// exit;
 		$data = array(
-			'CriteriaID' => $this->input->post('CriteriaID'),
+			// 'CriteriaID' => $this->input->post('CriteriaID'),
 			'CriteriaName' => $this->input->post('CriteriaName'),
 			'CriteriaDescription' => $this->input->post('CriteriaDescription'),
 			'CriteriaLevelAmount' => $this->input->post('CriteriaLevelAmount'),
@@ -45,7 +45,7 @@ class Evaluation_model extends CI_Model
 			'CriteriaPassingScorePercentage' => $this->input->post('CriteriaPassingScorePercentage')
 
 		);
-		$this->db->where('Id', $this->input->post('Id'));
+		$this->db->where('CriteriaID', $this->input->post('CriteriaID'));
 		$query = $this->db->update('ASSESSMENT_CRITERIA', $data);
 		if ($query) {
 			session_start(); // เริ่มต้น session
@@ -69,7 +69,7 @@ class Evaluation_model extends CI_Model
 				
 		'DeleteStatus' => $status 
 	);
-		$this->db->where('Id', $this->input->post('Id'));
+		$this->db->where('CriteriaID', $this->input->post('CriteriaID'));
 		$query = $this->db->update('ASSESSMENT_CRITERIA', $data);
 		if ($query) {
 			session_start(); // เริ่มต้น session
@@ -99,7 +99,7 @@ class Evaluation_model extends CI_Model
 		if ($query) {
 			session_start(); // เริ่มต้น session
 			$_SESSION['success'] = "เพิ่มข้อมูลสำเร็จ!"; // กำหนดค่า success ใน session เป็น true
-			header("Location: " . site_url('Fm_evaluation_das_p2?page=sh2'));
+			header("Location: " . site_url('Fm_evaluation_das_p1?page=sh1'));
 			// ไปยังหน้าก่อนหน้านี้
 
 		} else {
@@ -125,7 +125,7 @@ class Evaluation_model extends CI_Model
 		if ($query) {
 			session_start(); // เริ่มต้น session
 			$_SESSION['success'] = "แก้ไขสำเร็จ!"; // กำหนดค่า success ใน session เป็น true
-			header("Location: " . site_url('Fm_evaluation_das_p2?page=sh2'));
+			header("Location: " . site_url('Fm_evaluation_das_p1?page=sh1'));
 			// ไปยังหน้าก่อนหน้านี้
 
 		} else {
@@ -149,7 +149,7 @@ class Evaluation_model extends CI_Model
 		if ($query) {
 			session_start(); // เริ่มต้น session
 			$_SESSION['success'] = "ลบสำเร็จ!"; // กำหนดค่า success ใน session เป็น true
-			header("Location: " . site_url('Fm_evaluation_das_p2?page=sh2'));
+			header("Location: " . site_url('Fm_evaluation_das_p1?page=sh1'));
 			// ไปยังหน้าก่อนหน้านี้
 
 		} else {
@@ -176,7 +176,7 @@ class Evaluation_model extends CI_Model
 		if ($query) {
 			session_start(); // เริ่มต้น session
 			$_SESSION['success'] = "เพิ่มข้อมูลเรียบร้อย!"; // กำหนดค่า success ใน session เป็น true
-			header("Location: " . site_url('Fm_evaluation_das_p3?page=sh3'));
+			header("Location: " . site_url('Fm_evaluation_das_p1?page=sh1'));
 			// ไปยังหน้าก่อนหน้านี้
 
 		} else {
@@ -204,7 +204,7 @@ class Evaluation_model extends CI_Model
 		if ($query) {
 			session_start(); // เริ่มต้น session
 			$_SESSION['success'] = "แก้ไขสำเร็จ!"; // กำหนดค่า success ใน session เป็น true
-			header("Location: " . site_url('Fm_evaluation_das_p3?page=sh3'));
+			header("Location: " . site_url('Fm_evaluation_das_p1?page=sh1'));
 			// ไปยังหน้าก่อนหน้านี้
 
 		} else {
@@ -228,7 +228,7 @@ class Evaluation_model extends CI_Model
 		if ($query) {
 			session_start(); // เริ่มต้น session
 			$_SESSION['success'] = "ลบสำเร็จ!"; // กำหนดค่า success ใน session เป็น true
-			header("Location: " . site_url('Fm_evaluation_das_p3?page=sh3'));
+			header("Location: " . site_url('Fm_evaluation_das_p1?page=sh1'));
 			// ไปยังหน้าก่อนหน้านี้
 
 		} else {
@@ -254,7 +254,7 @@ class Evaluation_model extends CI_Model
 		if ($query) {
 			session_start(); // เริ่มต้น session
 			$_SESSION['success'] = "เพิ่มข้อมูสำเร็จ!"; // กำหนดค่า success ใน session เป็น true
-			header("Location: " . site_url('Fm_evaluation_das_p4?page=sh4'));
+			header("Location: " . site_url('Fm_evaluation_das_p1?page=sh1'));
 			// ไปยังหน้าก่อนหน้านี้
 
 		} else {
@@ -281,7 +281,7 @@ class Evaluation_model extends CI_Model
 		if ($query) {
 			session_start(); // เริ่มต้น session
 			$_SESSION['success'] = "แก้ไขสำเร็จ!"; // กำหนดค่า success ใน session เป็น true
-			header("Location: " . site_url('Fm_evaluation_das_p4?page=sh4'));
+			header("Location: " . site_url('Fm_evaluation_das_p1?page=sh1'));
 			// ไปยังหน้าก่อนหน้านี้
 
 		} else {
@@ -305,7 +305,7 @@ class Evaluation_model extends CI_Model
 		if ($query) {
 			session_start(); // เริ่มต้น session
 			$_SESSION['success'] = "ลบข้อมูลสำเร็จ!"; // กำหนดค่า success ใน session เป็น true
-			header("Location: " . site_url('Fm_evaluation_das_p4?page=sh4'));
+			header("Location: " . site_url('Fm_evaluation_das_p1?page=sh1'));
 			// ไปยังหน้าก่อนหน้านี้
 
 		} else {
@@ -332,7 +332,7 @@ class Evaluation_model extends CI_Model
 		if ($query) {
 			session_start(); // เริ่มต้น session
 			$_SESSION['success'] = "เพิ่มข้อมูลเรียบร้อย!"; // กำหนดค่า success ใน session เป็น true
-			header("Location: " . site_url('Fm_evaluation_das_p5?page=sh5'));
+			header("Location: " . site_url('Fm_evaluation_das_p1?page=sh1'));
 			// ไปยังหน้าก่อนหน้านี้
 
 		} else {
@@ -360,7 +360,7 @@ class Evaluation_model extends CI_Model
 		if ($query) {
 			session_start(); // เริ่มต้น session
 			$_SESSION['success'] = "แก้ไขสำเร็จ!"; // กำหนดค่า success ใน session เป็น true
-			header("Location: " . site_url('Fm_evaluation_das_p5?page=sh5'));
+			header("Location: " . site_url('Fm_evaluation_das_p1?page=sh1'));
 			// ไปยังหน้าก่อนหน้านี้
 
 		} else {
@@ -384,7 +384,7 @@ class Evaluation_model extends CI_Model
 		if ($query) {
 			session_start(); // เริ่มต้น session
 			$_SESSION['success'] = "ลบสำเร็จ!"; // กำหนดค่า success ใน session เป็น true
-			header("Location: " . site_url('Fm_evaluation_das_p5?page=sh5'));
+			header("Location: " . site_url('Fm_evaluation_das_p1?page=sh1'));
 			// ไปยังหน้าก่อนหน้านี้
 
 		} else {
@@ -443,7 +443,7 @@ class Evaluation_model extends CI_Model
 		if ($query) {
 			session_start(); // เริ่มต้น session
 			$_SESSION['success'] = "เพิ่มข้อมูลเรียบร้อย!"; // กำหนดค่า success ใน session เป็น true
-			header("Location: " . site_url('Fm_evaluation_das_p6?page=sh6'));
+			header("Location: " . site_url('Fm_evaluation_das_p1?page=sh1'));
 			// ไปยังหน้าก่อนหน้านี้
 
 		} else {
@@ -505,7 +505,7 @@ public function edit_sc_ass_ria() //sh6
 		if ($query) {
 			session_start(); // เริ่มต้น session
 			$_SESSION['success'] = "แก้ไขข้อมูลสำเร็จ!"; // กำหนดค่า success ใน session เป็น true
-			header("Location: " . site_url('Fm_evaluation_das_p6?page=sh6'));
+			header("Location: " . site_url('Fm_evaluation_das_p1?page=sh1'));
 			// ไปยังหน้าก่อนหน้านี้
 
 		} else {
@@ -524,7 +524,7 @@ public function del_sc_ass_ria(){
 		if ($query) {
 			session_start(); // เริ่มต้น session
 			$_SESSION['success'] = "ลบข้อมูลสำเร็จ!"; // กำหนดค่า success ใน session เป็น true
-			header("Location: " . site_url('Fm_evaluation_das_p6?page=sh6'));
+			header("Location: " . site_url('Fm_evaluation_das_p1?page=sh1'));
 			// ไปยังหน้าก่อนหน้านี้
 
 		} else {
@@ -552,7 +552,7 @@ public function del_sc_ass_ria(){
 		if ($query) {
 			session_start(); // เริ่มต้น session
 			$_SESSION['success'] = "เพิ่มข้อมูลเรียบร้อย!"; // กำหนดค่า success ใน session เป็น true
-			header("Location: " . site_url('Fm_evaluation_das_p7?page=sh7'));
+			header("Location: " . site_url('Fm_evaluation_das_p1?page=sh1'));
 			// ไปยังหน้าก่อนหน้านี้
 
 		} else {
@@ -581,7 +581,7 @@ public function del_sc_ass_ria(){
 		if ($query) {
 			session_start(); // เริ่มต้น session
 			$_SESSION['success'] = "แก้ไขสำเร็จ!"; // กำหนดค่า success ใน session เป็น true
-			header("Location: " . site_url('Fm_evaluation_das_p7?page=sh7'));
+			header("Location: " . site_url('Fm_evaluation_das_p1?page=sh1'));
 			// ไปยังหน้าก่อนหน้านี้
 
 		} else {
@@ -605,7 +605,7 @@ public function del_sc_ass_ria(){
 		if ($query) {
 			session_start(); // เริ่มต้น session
 			$_SESSION['success'] = "ลบข้อมูลสำเร็จ!"; // กำหนดค่า success ใน session เป็น true
-			header("Location: " . site_url('Fm_evaluation_das_p7?page=sh7'));
+			header("Location: " . site_url('Fm_evaluation_das_p1?page=sh1'));
 			// ไปยังหน้าก่อนหน้านี้
 
 		} else {
@@ -645,7 +645,7 @@ public function del_sc_ass_ria(){
 		if($query){
 			session_start(); // เริ่มต้น session
 			$_SESSION['success'] = "เพิ่มข้อมูลเรียบร้อย !"; // กำหนดค่า success ใน session เป็น true
-			header("Location:".site_url('Fm_evaluation_das_p8?page=sh8')); // ไปยังหน้าก่อนหน้านี้
+			header("Location:".site_url('Fm_evaluation_das_p1?page=sh1')); // ไปยังหน้าก่อนหน้านี้
 			
 		} else {
 			echo 'false';
@@ -696,7 +696,7 @@ public function edit_achie_ass() //sh8
 		if ($query) {
 			session_start(); // เริ่มต้น session
 			$_SESSION['success'] = "แก้ไขสำเร็จ!"; // กำหนดค่า success ใน session เป็น true
-			header("Location: " . site_url('Fm_evaluation_das_p8?page=sh8'));
+			header("Location: " . site_url('Fm_evaluation_das_p1?page=sh1'));
 			// ไปยังหน้าก่อนหน้านี้
 
 		} else {
@@ -715,7 +715,7 @@ public function edit_achie_ass() //sh8
 		if ($query) {
 			session_start(); // เริ่มต้น session
 			$_SESSION['success'] = "ลบข้อมูลสำเร็จ!"; // กำหนดค่า success ใน session เป็น true
-			header("Location: " . site_url('Fm_evaluation_das_p8?page=sh8'));
+			header("Location: " . site_url('Fm_evaluation_das_p1?page=sh1'));
 			// ไปยังหน้าก่อนหน้านี้
 
 		} else {

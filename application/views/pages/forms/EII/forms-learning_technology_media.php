@@ -1,7 +1,13 @@
 <main id="main" class="main">
+<style>
+    label[for="Y"]:after {
+  content: " *";
+  color: red;
+}
+  </style>
     <?php $page = isset($_GET['page']) ? $_GET['page'] : '';  ?>
     <?php $name = isset($_GET['name']) ? $_GET['name'] : ''; ?>
-    <?php $num = isset($_GET['num']) ? $_GET['num'] : ''; ?>
+    <?php $key = isset($_GET['key']) ? $_GET['key'] : ''; ?>
     <div class="pagetitle">
         <?php switch ($page) {
                 case 'sh1':
@@ -15,7 +21,7 @@
             ?> <h1>เทคโนโลยีและสื่อการเรียนรู้ - <?php echo  $name ; ?></h1>
         <?php break;
                 case 'sh22':
-                ?> <h1>ผู้จัดทำเทคโนโลยีและสื่อการเรียนรู้ - หมายเลข: <?php echo  $num ; ?></h1>
+                ?> <h1>ผู้จัดทำเทคโนโลยีและสื่อการเรียนรู้ -  <?php echo  $name ; ?></h1>
         <?php
                     break;
                                default:
@@ -67,14 +73,14 @@
                         <!-- start Form ข้อมูลเทคโนโลยี และสื่อการเรียนรู้ -->
                         <form action="<?php echo site_url('LTM_forms_up_p1'); ?>" method="post"
                             enctype="multipart/form-data" onsubmit="return checkSelectedOption()">
-                            <div class="row mb-3">
+                            <!-- <div class="row mb-3">
                                 <div class="form-floating">
                                     <input type="text" class="form-control" id="floatingName"
                                         placeholder="รหัสข้อมูลเทคโนโลยีและสื่อการเรียนรู้" name="MediaID">
                                     <label for="Y"><?php echo nbs(2); ?>
                                         รหัสข้อมูลเทคโนโลยีและสื่อการเรียนรู้ </label>
                                 </div>
-                            </div>
+                            </div> -->
                             <div class="row mb-3">
                                 <div class="col">
                                     <div class="form-floating">
@@ -241,11 +247,11 @@
                         <?php  } ?>
                         <?php if($page=='sh11'){  ?>
 
-                        <?php $key = isset($_GET['key']) ? $_GET['key'] : '';  ?>
+                       
                         <?php
                             
                             $result = $this->db->query("SELECT * FROM LEARNING_TECHNOLOGY_MEDIA 
-                            WHERE Id = '".$key."' 
+                            WHERE MediaID = '".$key."' 
                             ");
  
                      foreach ($result->result() as $show) {
@@ -253,8 +259,8 @@
                         <!-- start Form ข้อมูลเทคโนโลยี และสื่อการเรียนรู้ -->
                         <form action="<?php echo site_url('LTM_edit_p1'); ?>" method="post"
                             enctype="multipart/form-data">
-                            <input type="hidden" name="Id" value="<?php echo $show->Id ?>">
-                            <div class="row mb-3">
+                            <input type="hidden" name="MediaID" value="<?php echo $show->MediaID ?>">
+                            <!-- <div class="row mb-3">
                                 <div class="form-floating">
                                     <input type="text" class="form-control" id="floatingName"
                                         placeholder="รหัสข้อมูลเทคโนโลยีและสื่อการเรียนรู้" name="MediaID"
@@ -262,7 +268,7 @@
                                     <label for="Y"><?php echo nbs(2); ?>
                                         รหัสข้อมูลเทคโนโลยีและสื่อการเรียนรู้ </label>
                                 </div>
-                            </div>
+                            </div> -->
 
                             <div class="row mb-3">
                                 <div class="col">
@@ -444,10 +450,8 @@
                             enctype="multipart/form-data" onsubmit="return checkSelectedOption()">
                             <div class="row mb-3">
                                 <div class="form-floating">
-                                    <input type="text" class="form-control" id="floatingName"
-                                        placeholder="รหัสข้อมูลเทคโนโลยีและสื่อการเรียนรู้" name="MediaID">
-                                    <label for="Y"><?php echo nbs(2); ?>
-                                        รหัสข้อมูลเทคโนโลยีและสื่อการเรียนรู้ </label>
+                                <input type="hidden" class="form-control" id="floatingName"
+                                        placeholder="รหัสข้อมูลเทคโนโลยีและสื่อการเรียนรู้" name="MediaID" value="<?php echo $key; ?>">
                                 </div>
                             </div>
                             <div class="row mb-3">
@@ -491,7 +495,7 @@
                                             <?php } ?>
 
                                         </select>
-                                        <label for="Y"><?php echo nbs(2); ?>รหัสคำนำหน้าชื่อผู้จัดทำ</label>
+                                        <label for="Y"><?php echo nbs(2); ?>คำนำหน้าชื่อผู้จัดทำ</label>
                                     </div>
                                 </div>
                             </div>
@@ -625,14 +629,35 @@
                             enctype="multipart/form-data">
                             <input type="hidden" name="Id" value="<?php echo $show->Id ?>">
                             <div class="row mb-3">
-                                <div class="form-floating">
-                                    <input type="text" class="form-control" id="floatingName"
-                                        placeholder="รหัสข้อมูลเทคโนโลยีและสื่อการเรียนรู้" name="MediaID"
-                                        value="<?php echo $show->MediaID ?>">
-                                    <label for="Y"><?php echo nbs(2); ?>
-                                        รหัสข้อมูลเทคโนโลยีและสื่อการเรียนรู้ </label>
+                                <!-- <div class="col">
+                                    <div class="form-floating">
+                                        <input type="text" class="form-control" id="floatingName"
+                                            placeholder="รหัสข้อมูลเทคโนโลยีและสื่อการเรียนรู้" name="MediaID"
+                                            value="<?php echo $show->MediaID ?>">
+                                        <label for="Y"><?php echo nbs(2); ?>
+                                            รหัสข้อมูลเทคโนโลยีและสื่อการเรียนรู้ </label>
+                                    </div> -->
+                                    <div class="col">
+                                    <div class="form-floating">
+                                        <select class="form-select" id="MediaID"
+                                            aria-label="Floating label select example" name="MediaID">
+
+                                            <?php
+                                            $result = $this->db->query('SELECT * FROM LEARNING_TECHNOLOGY_MEDIA WHERE DeleteStatus = 0');
+                                            foreach ($result->result() as $cls) {
+                                            ?>
+                                            <option value="<?= $cls->MediaID ; ?>">
+                                                <?= $cls->MediaName; ?></option>
+                                            <?php } ?>
+
+                                        </select>
+                                        <label
+                                            for="floatingSelect"><?php echo nbs(2); ?>รหัสข้อมูลเทคโนโลยีและสื่อการเรียนรู้</label>
+                                    </div>
                                 </div>
-                            </div>
+                                </div>
+                            
+
                             <div class="row mb-3">
                                 <div class="form-floating">
                                     <input type="text" class="form-control" id="floatingName"
@@ -802,6 +827,15 @@
                         for (let i = 0; i < size_my_CLS_PREFIX; i++) {
                             if (selectoption_CLS_PREFIX[i].value == my_CLS_PREFIX) {
                                 selectoption_CLS_PREFIX[i].selected = true;
+                            }
+                        }
+                        ///LEARNING_TECHNOLOGY_MEDIA
+                        var my_LEARNING_TECHNOLOGY_MEDIA = '<?php echo $show->MediaID; ?>';
+                        var selectoption_LEARNING_TECHNOLOGY_MEDIA = document.querySelector('#MediaID');
+                        var size_my_LEARNING_TECHNOLOGY_MEDIA = document.getElementById("MediaID").options.length;
+                        for (let i = 0; i < size_my_LEARNING_TECHNOLOGY_MEDIA; i++) {
+                            if (selectoption_LEARNING_TECHNOLOGY_MEDIA[i].value == my_LEARNING_TECHNOLOGY_MEDIA) {
+                                selectoption_LEARNING_TECHNOLOGY_MEDIA[i].selected = true;
                             }
                         }
                         </script>

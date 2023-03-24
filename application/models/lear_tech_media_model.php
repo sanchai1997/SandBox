@@ -23,7 +23,7 @@ class Lear_tech_media_model extends CI_Model
 					$data = $this->upload->data();
 					$filename = $data['file_name'];
 					$data = array(
-						'MediaID' => $this->input->post('MediaID'),
+						// 'MediaID' => $this->input->post('MediaID'),
 						'EducationYear' => $this->input->post('EducationYear'),
 						'Semester' => $this->input->post('Semester'),
 						'MediaName' => $this->input->post('MediaName'),
@@ -41,7 +41,7 @@ class Lear_tech_media_model extends CI_Model
 
 
 				$data = array(
-					'MediaID' => $this->input->post('MediaID'),
+					// 'MediaID' => $this->input->post('MediaID'),
 					'EducationYear' => $this->input->post('EducationYear'),
 					'Semester' => $this->input->post('Semester'),
 					'MediaName' => $this->input->post('MediaName'),
@@ -86,7 +86,7 @@ class Lear_tech_media_model extends CI_Model
 					$data = $this->upload->data();
 					$filename = $data['file_name'];
 					$data = array(
-						'MediaID' => $this->input->post('MediaID'),
+						// 'MediaID' => $this->input->post('MediaID'),
 						'EducationYear' => $this->input->post('EducationYear'),
 						'Semester' => $this->input->post('Semester'),
 						'MediaName' => $this->input->post('MediaName'),
@@ -102,7 +102,7 @@ class Lear_tech_media_model extends CI_Model
 				}
 			} else {
 				$data = array(
-					'MediaID' => $this->input->post('MediaID'),
+					// 'MediaID' => $this->input->post('MediaID'),
 					'EducationYear' => $this->input->post('EducationYear'),
 					'Semester' => $this->input->post('Semester'),
 					'MediaName' => $this->input->post('MediaName'),
@@ -111,13 +111,12 @@ class Lear_tech_media_model extends CI_Model
 					'MediaBenefit' => $this->input->post('MediaBenefit'),
 					'Abstract' => $this->input->post('Abstract'),
 					'SearchKeyword' => $this->input->post('SearchKeyword'),
-
 					'Source' => $this->input->post('Source'),
 					'PublishDate' => $this->input->post('PublishDate')
 				);
 			}
 		}
-		$this->db->where('Id', $this->input->post('Id'));
+		$this->db->where('MediaID', $this->input->post('MediaID'));
 		$query = $this->db->update('LEARNING_TECHNOLOGY_MEDIA', $data);
 		if ($query) {
 			session_start(); // เริ่มต้น session
@@ -141,7 +140,7 @@ class Lear_tech_media_model extends CI_Model
 			'DeleteStatus' => $value
 		);
 
-		$this->db->where('Id', $this->input->post('Id'));
+		$this->db->where('MediaID', $this->input->post('MediaID'));
 		$query = $this->db->update('LEARNING_TECHNOLOGY_MEDIA', $data);
 		if ($query) {
 			session_start(); // เริ่มต้น session

@@ -1,4 +1,10 @@
 <main id="main" class="main">
+    <style>
+    label[for="Y"]:after {
+        content: " *";
+        color: red;
+    }
+    </style>
     <?php $page = isset($_GET['page']) ? $_GET['page'] : ''; ?>
     <?php $name = isset($_GET['name']) ? $_GET['name'] : ''; ?>
     <?php $key = isset($_GET['key']) ? $_GET['key'] : ''; ?>
@@ -54,17 +60,17 @@
 
 
                             <div class="row mb-3">
-                                <div class="col">
+                                <!-- <div class="col">
                                     <div class="form-floating">
                                         <input type="text" class="form-control" id="floatingName"
-                                            placeholder="รหัสภาครัฐหรือภาคเอกชนที่เข้ามาขับเคลื่อนพื้นที่นวัตกรรมการศึกษา"
+                                            placeholder="ภาครัฐหรือภาคเอกชนที่เข้ามาขับเคลื่อนพื้นที่นวัตกรรมการศึกษา"
                                             name="ParticipantID">
                                         <label for="Y"><?php echo nbs(
                                             2
                                         ); ?>
-                                            รหัสภาครัฐหรือภาคเอกชนที่เข้ามาขับเคลื่อนพื้นที่นวัตกรรมการศึกษา </label>
+                                            ภาครัฐหรือภาคเอกชนที่เข้ามาขับเคลื่อนพื้นที่นวัตกรรมการศึกษา </label>
                                     </div>
-                                </div>
+                                </div> -->
 
                                 <div class="col">
                                     <div class="form-floating">
@@ -160,12 +166,12 @@
                                 <div class="col">
                                     <div class="form-floating">
                                         <input type="text" class="form-control" id="floatingName"
-                                            placeholder="รหัสภาครัฐหรือภาคเอกชนที่เข้ามาขับเคลื่อนพื้นที่นวัตกรรมการศึกษา"
+                                            placeholder="ภาครัฐหรือภาคเอกชนที่เข้ามาขับเคลื่อนพื้นที่นวัตกรรมการศึกษา"
                                             name="ParticipantID" value="<?php echo $show->ParticipantID ?>">
                                         <label for="Y"><?php echo nbs(
                                             2
                                         ); ?>
-                                            รหัสภาครัฐหรือภาคเอกชนที่เข้ามาขับเคลื่อนพื้นที่นวัตกรรมการศึกษา </label>
+                                            ภาครัฐหรือภาคเอกชนที่เข้ามาขับเคลื่อนพื้นที่นวัตกรรมการศึกษา </label>
                                     </div>
                                 </div>
 
@@ -235,7 +241,8 @@
                         ///CLS_PARTICIPANT_TYPE
                         var my_CLS_PARTICIPANT_TYPE = '<?php echo $show->ParticipantTypeCode ?>';
                         var selectoption_CLS_PARTICIPANT_TYPE = document.querySelector('#ParticipantTypeCode');
-                        var size_my_CLS_PARTICIPANT_TYPE = document.getElementById("ParticipantTypeCode").options.length;
+                        var size_my_CLS_PARTICIPANT_TYPE = document.getElementById("ParticipantTypeCode").options
+                        .length;
                         for (let i = 0; i < size_my_CLS_PARTICIPANT_TYPE; i++) {
                             if (selectoption_CLS_PARTICIPANT_TYPE[i].value == my_CLS_PARTICIPANT_TYPE) {
                                 selectoption_CLS_PARTICIPANT_TYPE[i].selected = true;
@@ -249,18 +256,21 @@
                             'pc_forms_up_p2'
                         ); ?>" method="post" enctype="multipart/form-data">
 
-
+                            <!-- 
                             <div class="row mb-3">
                                 <div class="form-floating">
                                     <input type="text" class="form-control" id="floatingName"
-                                        placeholder="รหัสภาครัฐหรือภาคเอกชนที่เข้ามาขับเคลื่อนพื้นที่นวัตกรรมการศึกษา"
-                                        name="ParticipantID">
-                                    <label for="Y"><?php echo nbs(
+                                        placeholder="ภาครัฐหรือภาคเอกชนที่เข้ามาขับเคลื่อนพื้นที่นวัตกรรมการศึกษา"
+                                        name="" value="<?php echo $key ?>" disabled> -->
+                            <input type="hidden" class="form-control" id="floatingName"
+                                placeholder="ภาครัฐหรือภาคเอกชนที่เข้ามาขับเคลื่อนพื้นที่นวัตกรรมการศึกษา"
+                                name="ParticipantID" value="<?php echo $key ?>">
+                            <!-- <label for="Y"><?php echo nbs(
                                         2
                                     ); ?>
-                                        รหัสภาครัฐหรือภาคเอกชนที่เข้ามาขับเคลื่อนพื้นที่นวัตกรรมการศึกษา </label>
+                                        ภาครัฐหรือภาคเอกชนที่เข้ามาขับเคลื่อนพื้นที่นวัตกรรมการศึกษา </label>
                                 </div>
-                            </div>
+                            </div> -->
                             <div class="row mb-3">
                                 <div class="form-floating">
                                     <input type="text" class="form-control" id="floatingName"
@@ -365,14 +375,24 @@
 
                             <input type="hidden" name="Id" value="<?php echo $show->Id ?>">
                             <div class="row mb-3">
-                                <div class="form-floating">
-                                    <input type="text" class="form-control" id="floatingName"
-                                        placeholder="รหัสภาครัฐหรือภาคเอกชนที่เข้ามาขับเคลื่อนพื้นที่นวัตกรรมการศึกษา"
-                                        name="ParticipantID" value="<?php echo $show->ParticipantID ?>">
-                                    <label for="Y"><?php echo nbs(
-                                        2
-                                    ); ?>
-                                        รหัสภาครัฐหรือภาคเอกชนที่เข้ามาขับเคลื่อนพื้นที่นวัตกรรมการศึกษา </label>
+
+                                <div class="col">
+                                    <div class="form-floating">
+                                        <select class="form-select" id="ParticipantID"
+                                            aria-label="Floating label select example" name="ParticipantID">
+
+                                            <?php
+                                            $result = $this->db->query('SELECT * FROM PARTICIPANT WHERE DeleteStatus = 0');
+                                            foreach ($result->result() as $cls) {
+                                            ?>
+                                            <option value="<?= $cls->ParticipantID ; ?>">
+                                                <?= $cls->ParticipantName; ?></option>
+                                            <?php } ?>
+
+                                        </select>
+                                        <label
+                                            for="floatingSelect"><?php echo nbs(2); ?>ภาครัฐหรือภาคเอกชนที่เข้ามาขับเคลื่อนพื้นที่นวัตกรรมการศึกษา</label>
+                                    </div>
                                 </div>
                             </div>
                             <div class="row mb-3">
@@ -466,6 +486,17 @@
                                 </div>
                             </div>
                         </form><!-- end Form ข้อมูลการติดต่อของผู้มีส่วนร่วมในพื้นที่ -->
+                        <script>
+                        ///PARTICIPANT
+                        var my_PARTICIPANT = '<?php echo $show->ParticipantID; ?>';
+                        var selectoption_PARTICIPANT = document.querySelector('#ParticipantID');
+                        var size_my_PARTICIPANT = document.getElementById("ParticipantID").options.length;
+                        for (let i = 0; i < size_my_PARTICIPANT; i++) {
+                            if (selectoption_PARTICIPANT[i].value == my_PARTICIPANT) {
+                                selectoption_PARTICIPANT[i].selected = true;
+                            }
+                        }
+                        </script>
                         <?php } }?>
                         <?php if ($page == 'sh3') { ?>
                         <!-- start Form ข้อมูลการมีส่วนร่วมของผู้เข้ามามีส่วนร่วมในพื้นที่ -->
@@ -473,17 +504,18 @@
                             'pcp_forms_up_p3'
                         ); ?>" method="post" enctype="multipart/form-data" onsubmit="return checkSelectedOption()">
 
-                            <div class="row mb-3">
+                            <!-- <div class="row mb-3">
                                 <div class="form-floating">
                                     <input type="text" class="form-control" id="floatingName"
-                                        placeholder="รหัสภาครัฐหรือภาคเอกชนที่เข้ามาขับเคลื่อนพื้นที่นวัตกรรมการศึกษา"
+                                        placeholder="ภาครัฐหรือภาคเอกชนที่เข้ามาขับเคลื่อนพื้นที่นวัตกรรมการศึกษา"
                                         name="ParticipantID">
                                     <label for="Y"><?php echo nbs(
                                         2
                                     ); ?>
-                                        รหัสภาครัฐหรือภาคเอกชนที่เข้ามาขับเคลื่อนพื้นที่นวัตกรรมการศึกษา </label>
+                                        ภาครัฐหรือภาคเอกชนที่เข้ามาขับเคลื่อนพื้นที่นวัตกรรมการศึกษา </label>
                                 </div>
-                            </div>
+                            </div> -->
+                            <input type="hidden" name="ParticipantID" value="<?php echo $key; ?>">
 
                             <div class="row mb-3">
                                 <div class="col">
@@ -552,7 +584,7 @@
                                     </select>
                                     <label for="Y"><?php echo nbs(
                                         2
-                                    ); ?>รหัสระดับการมีส่วนร่วม</label>
+                                    ); ?>ระดับการมีส่วนร่วม</label>
                                 </div>
                             </div>
                             <div class="row mb-3">
@@ -570,7 +602,7 @@
                                     </select>
                                     <label for="floatingSelect"><?php echo nbs(
                                         2
-                                    ); ?>รหัสสถานศึกษาที่เข้าไปมีส่วนร่วม</label>
+                                    ); ?>สถานศึกษาที่เข้าไปมีส่วนร่วม</label>
                                 </div>
                             </div>
                             <div class="row mb-3">
@@ -656,13 +688,20 @@
                             <input type="hidden" name="Id" value="<?php echo $show->Id ?>">
                             <div class="row mb-3">
                                 <div class="form-floating">
-                                    <input type="text" class="form-control" id="floatingName"
-                                        placeholder="รหัสภาครัฐหรือภาคเอกชนที่เข้ามาขับเคลื่อนพื้นที่นวัตกรรมการศึกษา"
-                                        name="ParticipantID" value="<?php echo $show->ParticipantID ?>">
+                                    <select class="form-select" id="ParticipantID"
+                                        aria-label="Floating label select example" name="ParticipantID">
+
+                                        <?php
+                                            $result = $this->db->query('SELECT * FROM PARTICIPANT WHERE DeleteStatus = 0');
+                                            foreach ($result->result() as $cls) {
+                                            ?>
+                                        <option value="<?= $cls->ParticipantID ; ?>">
+                                            <?= $cls->ParticipantName; ?></option>
+                                        <?php } ?>
+                                    </select>
                                     <label for="Y"><?php echo nbs(
                                         2
-                                    ); ?>
-                                        รหัสภาครัฐหรือภาคเอกชนที่เข้ามาขับเคลื่อนพื้นที่นวัตกรรมการศึกษา </label>
+                                    ); ?>ภาครัฐหรือภาคเอกชนที่เข้ามาขับเคลื่อนพื้นที่นวัตกรรมการศึกษา</label>
                                 </div>
                             </div>
 
@@ -724,7 +763,7 @@
                                 <div class="form-floating">
                                     <select class="form-select" id="CooperationLevelCode"
                                         aria-label="Floating label select example" name="CooperationLevelCode">
-                                       
+
                                         <?php
                                             $result = $this->db->query('SELECT * FROM CLS_COOPERATION_LEVEL');
                                             foreach ($result->result() as $cls) {
@@ -742,7 +781,7 @@
                                 <div class="form-floating">
                                     <select class="form-select" id="CooperationSchoolID"
                                         aria-label="Floating label select example" name="CooperationSchoolID">
-                                      
+
                                         <?php
                                             $result = $this->db->query('SELECT * FROM SCHOOL');
                                             foreach ($result->result() as $cls) {
@@ -753,7 +792,7 @@
                                     </select>
                                     <label for="floatingSelect"><?php echo nbs(
                                         2
-                                    ); ?>รหัสสถานศึกษาที่เข้าไปมีส่วนร่วม</label>
+                                    ); ?>สถานศึกษาที่เข้าไปมีส่วนร่วม</label>
                                 </div>
                             </div>
                             <div class="row mb-3">
@@ -805,22 +844,32 @@
                                 selectoption_SubjectGroupCode[i].selected = true;
                             }
                         }
-                         ///CLS_COOPERATION_LEVEL
-                         var my_CLS_COOPERATION_LEVEL = '<?php echo $show->CooperationLevelCode; ?>';
+                        ///CLS_COOPERATION_LEVEL
+                        var my_CLS_COOPERATION_LEVEL = '<?php echo $show->CooperationLevelCode; ?>';
                         var selectoption_CLS_COOPERATION_LEVEL = document.querySelector('#CooperationLevelCode');
-                        var size_my_CLS_COOPERATION_LEVEL = document.getElementById("CooperationLevelCode").options.length;
+                        var size_my_CLS_COOPERATION_LEVEL = document.getElementById("CooperationLevelCode").options
+                            .length;
                         for (let i = 0; i < size_my_CLS_COOPERATION_LEVEL; i++) {
                             if (selectoption_CLS_COOPERATION_LEVEL[i].value == my_CLS_COOPERATION_LEVEL) {
                                 selectoption_CLS_COOPERATION_LEVEL[i].selected = true;
                             }
                         }
-                         ///SCHOOL
-                         var my_SCHOOL = '<?php echo $show->CooperationSchoolID; ?>';
+                        ///SCHOOL
+                        var my_SCHOOL = '<?php echo $show->CooperationSchoolID; ?>';
                         var selectoption_SCHOOL = document.querySelector('#CooperationSchoolID');
                         var size_my_SCHOOL = document.getElementById("CooperationSchoolID").options.length;
                         for (let i = 0; i < size_my_SCHOOL; i++) {
                             if (selectoption_SCHOOL[i].value == my_SCHOOL) {
                                 selectoption_SCHOOL[i].selected = true;
+                            }
+                        }
+                        ///PARTICIPANT_COOPERATION
+                        var my_PARTICIPANT_COOPERATION = '<?php echo $show->ParticipantID; ?>';
+                        var selectoption_PARTICIPANT_COOPERATION = document.querySelector('#ParticipantID');
+                        var size_my_PARTICIPANT_COOPERATION = document.getElementById("ParticipantID").options.length;
+                        for (let i = 0; i < size_my_PARTICIPANT_COOPERATION; i++) {
+                            if (selectoption_PARTICIPANT_COOPERATION[i].value == my_PARTICIPANT_COOPERATION) {
+                                selectoption_PARTICIPANT_COOPERATION[i].selected = true;
                             }
                         }
                         </script>
@@ -831,18 +880,21 @@
                         <form action="<?php echo site_url(
                             'pn_forms_up_p4'
                         ); ?>" method="post" enctype="multipart/form-data">
-
-                            <div class="row mb-3">
+                            <input type="hidden" name="ParticipantID" value="<?php echo $key ?>">
+                            <!-- <div class="row mb-3">
                                 <div class="form-floating">
                                     <input type="text" class="form-control" id="floatingName"
-                                        placeholder="รหัสภาครัฐหรือภาคเอกชนที่เข้ามาขับเคลื่อนพื้นที่นวัตกรรมการศึกษา"
-                                        name="ParticipantID">
+                                        placeholder="ภาครัฐหรือภาคเอกชนที่เข้ามาขับเคลื่อนพื้นที่นวัตกรรมการศึกษา"
+                                        name="" value="<?php echo $key; ?>" disabled>
+                                    <input type="hidden" class="form-control" id="floatingName"
+                                        placeholder="ภาครัฐหรือภาคเอกชนที่เข้ามาขับเคลื่อนพื้นที่นวัตกรรมการศึกษา"
+                                        name="ParticipantID" value="<?php echo $key; ?>">
                                     <label for="Y"><?php echo nbs(
                                         2
                                     ); ?>
-                                        รหัสภาครัฐหรือภาคเอกชนที่เข้ามาขับเคลื่อนพื้นที่นวัตกรรมการศึกษา </label>
+                                        ภาครัฐหรือภาคเอกชนที่เข้ามาขับเคลื่อนพื้นที่นวัตกรรมการศึกษา </label>
                                 </div>
-                            </div>
+                            </div> -->
                             <div class="row mb-3">
                                 <div class="form-floating">
                                     <textarea class="form-control" placeholder="Leave a comment here"
@@ -945,13 +997,21 @@
                             <input type="hidden" name="Id" value="<?php echo $show->Id ?>">
                             <div class="row mb-3">
                                 <div class="form-floating">
-                                    <input type="text" class="form-control" id="floatingName"
-                                        placeholder="รหัสภาครัฐหรือภาคเอกชนที่เข้ามาขับเคลื่อนพื้นที่นวัตกรรมการศึกษา"
-                                        name="ParticipantID" value="<?php echo $show->ParticipantID ?>">
+                                    <select class="form-select" id="ParticipantID"
+                                        aria-label="Floating label select example" name="ParticipantID">
+
+                                        <?php
+                                            $result = $this->db->query('SELECT * FROM PARTICIPANT WHERE DeleteStatus = 0');
+                                            foreach ($result->result() as $cls) {
+                                            ?>
+                                        <option value="<?= $cls->ParticipantID ; ?>">
+                                            <?= $cls->ParticipantName; ?></option>
+                                            
+                                        <?php } ?>
+                                    </select>
                                     <label for="Y"><?php echo nbs(
                                         2
-                                    ); ?>
-                                        รหัสภาครัฐหรือภาคเอกชนที่เข้ามาขับเคลื่อนพื้นที่นวัตกรรมการศึกษา </label>
+                                    ); ?>ภาครัฐหรือภาคเอกชนที่เข้ามาขับเคลื่อนพื้นที่นวัตกรรมการศึกษา</label>
                                 </div>
                             </div>
                             <div class="row mb-3">
@@ -1043,6 +1103,18 @@
                                 </div>
                             </div>
                         </form><!-- end Form ข้อมูลความคิดเห็นต่อผู้เข้ามามีส่วนร่วมในพื้นที่ -->
+                       <script>
+                         ///PARTICIPANT_COOPERATION
+                         var my_PARTICIPANT_COOPERATION = '<?php echo $show->ParticipantID; ?>';
+                        var selectoption_PARTICIPANT_COOPERATION = document.querySelector('#ParticipantID');
+                        var size_my_PARTICIPANT_COOPERATION = document.getElementById("ParticipantID").options.length;
+                        for (let i = 0; i < size_my_PARTICIPANT_COOPERATION; i++) {
+                            if (selectoption_PARTICIPANT_COOPERATION[i].value == my_PARTICIPANT_COOPERATION) {
+                                selectoption_PARTICIPANT_COOPERATION[i].selected = true;
+                            }
+                        }
+
+                       </script>
                         <?php }
                         } ?>
 

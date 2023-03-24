@@ -104,7 +104,7 @@
                     <thead>
 
                         <tr>
-                            <th style="text-align: center;" scope="col">รหัสหน่วยงาน</th>
+                            <th style="text-align: center;" scope="col">หน่วยงาน</th>
                             <th style="text-align: center;" scope="col">ชื่อหน่วยงาน</th>
                             <th style="text-align: center;" scope="col">ติดต่อผู้มีส่วนร่วม</th>
                             <th style="text-align: center;" scope="col">การมีส่วนร่วม</th>
@@ -143,23 +143,23 @@
                                     class="btn btn-info"><i class="bi bi-eye"></i></a></td>
                             <!-- แก้ไข+ลบ -->
                             <td style="text-align: center;">
-                            <a href="<?php echo site_url('par_forms_p1?page=sh11') ?>&&key=<?php echo $show->Id; ?>&&name=<?php echo $name; ?>"
+                            <a href="<?php echo site_url('par_forms_p1?page=sh11') ?>&&key=<?php echo $show->ParticipantID; ?>&&name=<?php echo $name; ?>"
                     class="btn btn-warning"> <i class="bi bi-pencil-square"></i></a>
                                 <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                                    data-bs-target="#look1<?php echo $show->Id; ?>"><i
+                                    data-bs-target="#look1<?php echo $show->ParticipantID; ?>"><i
                                         class="bi bi-card-list"></i></button>
                                 <button type="button" class="btn btn-danger" data-bs-toggle="modal"
-                                    data-bs-target="#del_par<?php echo $show->Id; ?>">
+                                    data-bs-target="#del_par<?php echo $show->ParticipantID; ?>">
                                     <i class="bi bi-trash"></i>
                                 </button>
                                 <!-- Modal -->
-                                <div class="modal fade" id="del_par<?php echo $show->Id; ?>" tabindex="-1"
+                                <div class="modal fade" id="del_par<?php echo $show->ParticipantID; ?>" tabindex="-1"
                                     aria-labelledby="exampleModalLabel" aria-hidden="true">
                                     <div class="modal-dialog">
                                         <div class="modal-content">
                                             <div class="modal-header">
                                                 <h5 class="modal-title" id="exampleModalLabel">
-                                                    ยืนยันการลบข้อมูลรหัส<?php echo nbs(2); ?><?php echo $show->ParticipantID; ?>
+                                                    ยืนยันการลบข้อมูล<?php echo nbs(2); ?><?php echo $show->ParticipantID; ?>
                                                 </h5>
 
                                             </div>
@@ -173,7 +173,7 @@
                                                 <button type="button" class="btn btn-secondary"
                                                     data-bs-dismiss="modal">ยกเลิก</button>
                                                 <form method="post" action="<?php echo site_url('par_del_p1'); ?>">
-                                                    <input type="hidden" name="Id" value="<?php echo $show->Id; ?>">
+                                                    <input type="hidden" name="Id" value="<?php echo $show->ParticipantID; ?>">
                                                     <div class="d-flex justify-content-center">
                                                         <button name="Submit" type="submit"
                                                             class="btn btn-primary">ยืนยันก่อนลบ</button>
@@ -223,7 +223,7 @@
                     </div>
                     <div class="col">
                         <h5 style="float: right; padding: 15px;" class="card-title"><a
-                                href="<?php echo site_url('pc_forms_p2?page=sh2') ?>&&name=<?php echo $name; ?>"
+                                href="<?php echo site_url('pc_forms_p2?page=sh2') ?>&&name=<?php echo $name; ?>&&key=<?php echo $key; ?>"
                                 class="btn btn-success">เพิ่มข้อมูล</a></h5>
                     </div>
                 </div>
@@ -271,7 +271,7 @@
                                         <div class="modal-content">
                                             <div class="modal-header">
                                                 <h5 class="modal-title" id="exampleModalLabel">
-                                                    ยืนยันการลบข้อมูลรหัส<?php echo nbs(2); ?><?php echo $show->ParticipantID; ?>
+                                                    ยืนยันการลบข้อมูล<?php echo nbs(2); ?><?php echo $show->ParticipantID; ?>
                                                 </h5>
 
                                             </div>
@@ -333,7 +333,7 @@
                     </div>
                     <div class="col">
                         <h5 style="float: right; padding: 15px;" class="card-title"><a
-                                href="<?php echo site_url('pcp_forms_p3?page=sh3') ?>&&name=<?php echo $name; ?>"
+                                href="<?php echo site_url('pcp_forms_p3?page=sh3') ?>&&name=<?php echo $name; ?>&&key=<?php echo $key; ?>"
                                 class="btn btn-success">เพิ่มข้อมูล</a></h5>
                     </div>
                 </div>
@@ -344,7 +344,7 @@
                         <tr>
                             <th style="text-align: center;" scope="col">วันที่เริ่มการมีส่วนร่วม</th>
                             <th style="text-align: center;" scope="col">วันที่สิ้นสุดการมีส่วนร่วม</th>
-                            <th style="text-align: center;" scope="col">รหัสสถานะการมีส่วนร่วม</th>
+                            <th style="text-align: center;" scope="col">สถานะการมีส่วนร่วม</th>
                             <th style="text-align: center;" scope="col">ปฎิบัติ</th>
                         </tr>
 
@@ -397,7 +397,7 @@ foreach ($results->result() as $shows) {
                                         <div class="modal-content">
                                             <div class="modal-header">
                                                 <h5 class="modal-title" id="exampleModalLabel">
-                                                    ยืนยันการลบข้อมูลรหัส<?php echo nbs(2); ?><?php echo $show->ParticipantID; ?>
+                                                    ยืนยันการลบข้อมูล<?php echo nbs(2); ?><?php echo $show->ParticipantID; ?>
                                                 </h5>
 
                                             </div>
@@ -461,7 +461,7 @@ foreach ($results->result() as $shows) {
                     </div>
                     <div class="col">
                         <h5 style="float: right; padding: 15px;" class="card-title"><a
-                                href="<?php echo site_url('pn_forms_p4?page=sh4') ?>&&name=<?php echo $name; ?>"
+                                href="<?php echo site_url('pn_forms_p4?page=sh4') ?>&&name=<?php echo $name; ?>&&key=<?php echo $key; ?>"
                                 class="btn btn-success">เพิ่มข้อมูล</a></h5>
                     </div>
                 </div>
@@ -506,7 +506,7 @@ foreach ($results->result() as $shows) {
                                         <div class="modal-content">
                                             <div class="modal-header">
                                                 <h5 class="modal-title" id="exampleModalLabel">
-                                                    ยืนยันการลบข้อมูลรหัส<?php echo nbs(2); ?><?php echo $show->ParticipantID; ?>
+                                                    ยืนยันการลบข้อมูล<?php echo nbs(2); ?><?php echo $show->ParticipantID; ?>
                                                 </h5>
 
                                             </div>
@@ -563,7 +563,7 @@ foreach ($results->result() as $shows) {
                       ');
                      foreach ($result->result() as $show) {
                      ?>
-<div class="modal fade" id="look1<?php echo $show->Id; ?>" tabindex="-1" aria-labelledby="exampleModalLabel"
+<div class="modal fade" id="look1<?php echo $show->ParticipantID; ?>" tabindex="-1" aria-labelledby="exampleModalLabel"
     aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
@@ -573,25 +573,27 @@ foreach ($results->result() as $shows) {
             </div>
             <div class="modal-body">
                 <?php
-                           $Id= $show->Id;
+                           $ParticipantID= $show->ParticipantID;
                             $results = $this->db->query("SELECT * FROM PARTICIPANT 
                             INNER JOIN CLS_PARTICIPANT_TYPE 
                             ON CLS_PARTICIPANT_TYPE.PARTICIPANT_TYPE_CODE = PARTICIPANT.ParticipantTypeCode 
                             
-                            WHERE Id = $Id
+                            WHERE ParticipantID = $ParticipantID
                             ");
 
 foreach ($results->result() as $shows) {
                      ?>
                 <div class="row">
                     <div class="col">
-                        <h5 class="fw-bold">รหัสภาครัฐหรือภาคเอกชนที่เข้ามาขับเคลื่อนพื้นที่นวัตกรรมการศึกษา</h5>
-                        <p><?php echo $show->ParticipantID; ?></p>
+                        <!-- <h5 class="fw-bold">ภาครัฐหรือภาคเอกชนที่เข้ามาขับเคลื่อนพื้นที่นวัตกรรมการศึกษา</h5>
+                        <p><?php echo $show->ParticipantID; ?></p> -->
                         <h5 class="fw-bold">ชื่อภาครัฐหรือภาคเอกชนที่เข้ามาขับเคลื่อนพื้นที่นวัตกรรมการศึกษา</h5>
                         <p><?php echo $show->ParticipantName; ?></p>
+                        
+                    </div>
+                    <div class="col">
                         <h5 class="fw-bold">ประเภทผู้เข้ามามีส่วนร่วม</h5>
                         <p><?php echo $shows->PARTICIPANT_TYPE_NAME; ?></p>
-
                     </div>
                 </div>
                 <?php } ?>
@@ -628,14 +630,17 @@ foreach ($results->result() as $shows) {
             <div class="modal-body">
                 <div class="row">
                     <div class="col">
-                        <h5 class="fw-bold">รหัสภาครัฐหรือภาคเอกชนที่เข้ามาขับเคลื่อนพื้นที่นวัตกรรมการศึกษา</h5>
-                        <p><?php echo $show->ParticipantID; ?></p>
+                        <!-- <h5 class="fw-bold">ภาครัฐหรือภาคเอกชนที่เข้ามาขับเคลื่อนพื้นที่นวัตกรรมการศึกษา</h5>
+                        <p><?php echo $show->ParticipantID; ?></p> -->
                         <h5 class="fw-bold">ชื่อของผู้ติดต่อ</h5>
                         <p><?php echo $show->ContactName; ?></p>
                         <h5 class="fw-bold">หมายเลขโทรศัพท์ของผู้ติดต่อ</h5>
                         <p><?php echo $show->ContactPhone; ?></p>
                         <h5 class="fw-bold">หมายเลขโทรศัพท์มือถือของผู้ติดต่อ</h5>
                         <p><?php echo $show->ContactMobilePhone; ?></p>
+                    </div>
+                    <div class="col">
+                        
                         <h5 class="fw-bold">อีเมลของผู้ติดต่อ</h5>
                         <p><?php echo $show->ContactEmail; ?></p>
                         <h5 class="fw-bold">ตำแหน่งในองคnกร (ของผู้ติดต่อ)</h5>
@@ -695,28 +700,28 @@ foreach ($results->result() as $shows) {
                      ?>
                 <div class="row">
                     <div class="col">
-                        <h5 class="fw-bold">รหัสภาครัฐหรือภาคเอกชนที่เข้ามาขับเคลื่อนพื้นที่นวัตกรรมการศึกษา</h5>
-                        <p><?php echo $show->ParticipantID; ?></p>
+                        <!-- <h5 class="fw-bold">ภาครัฐหรือภาคเอกชนที่เข้ามาขับเคลื่อนพื้นที่นวัตกรรมการศึกษา</h5>
+                        <p><?php echo $show->ParticipantID; ?></p> -->
                         <h5 class="fw-bold">วันที่เริ่มการมีส่วนร่วม</h5>
                         <p><?php echo $show->CooperationStartDate; ?></p>
                         <h5 class="fw-bold">วันที่สิ้นสุดการมีส่วนร่วม</h5>
                         <p><?php echo $show->CooperationEndDate; ?></p>
-                        <h5 class="fw-bold">รหัสระดับการมีส่วนร่วม</h5>
-                        <p><?php echo $shows->COOPERATION_STATUS_NAME; ?></p>
-                        <h5 class="fw-bold">กิจกรรมที่มีส่วนร่วม</h5>
-                        <p><?php echo $show->CooperationActivity; ?></p>
-                        <h5 class="fw-bold">รหัสระดับการมีส่วนร่วม</h5>
-                        <p><?php echo $shows->COOPERATION_LEVEL_NAME; ?></p>
-                    </div>
-
-
-                    <div class="col">
-                        <h5 class="fw-bold">รหัสสถานศึกษาที่เข้าไปมีส่วนร่วม</h5>
-                        <p><?php echo $shows->SchoolNameThai; ?></p>
-
                         <h5 class="fw-bold">เอกสารแนบ</h5>
                         <p><a href="<?php echo base_url('document') ?>/<?php echo $show->CooperationAttachmentURL; ?>"
                                 target="_blank"><i class="bi bi-file-text"></i></a></p>
+                    </div>
+                    
+                    
+                    <div class="col">
+                        <h5 class="fw-bold">สถานศึกษาที่เข้าไปมีส่วนร่วม</h5>
+                        <p><?php echo $shows->SchoolNameThai; ?></p>
+                        <h5 class="fw-bold">กิจกรรมที่มีส่วนร่วม</h5>
+                        <p><?php echo $shows->COOPERATION_STATUS_NAME; ?></p>
+                        <h5 class="fw-bold">กิจกรรมที่มีส่วนร่วม</h5>
+                        <p><?php echo $show->CooperationActivity; ?></p>
+                        <h5 class="fw-bold">ระดับการมีส่วนร่วม</h5>
+                        <p><?php echo $shows->COOPERATION_LEVEL_NAME; ?></p>
+
 
                     </div>
                 </div>
@@ -754,20 +759,22 @@ foreach ($results->result() as $shows) {
             <div class="modal-body">
                 <div class="row">
                     <div class="col">
-                        <h5 class="fw-bold">รหัสภาครัฐหรือภาคเอกชนที่เข้ามาขับเคลื่อนพื้นที่นวัตกรรมการศึกษา</h5>
-                        <p><?php echo $show->ParticipantID; ?></p>
+                        <!-- <h5 class="fw-bold">ภาครัฐหรือภาคเอกชนที่เข้ามาขับเคลื่อนพื้นที่นวัตกรรมการศึกษา</h5>
+                        <p><?php echo $show->ParticipantID; ?></p> -->
                         <h5 class="fw-bold">บันทึกเพิ่มเติม</h5>
                         <p><?php echo $show->Note; ?></p>
                         <h5 class="fw-bold">ชื่อผู้บันทึกเพิ่มเติม</h5>
                         <p><?php echo $show->NoteReporterName; ?></p>
-                        <h5 class="fw-bold">หมายเลขโทรศัพท์ของผู้บันทึกเพิ่มเติม</h5>
-                        <p><?php echo $show->NoteReporterPhone; ?></p>
-                        <h5 class="fw-bold">หมายเลขโทรศัพท์มือถือของผู้บันทึกเพิ่มเติม</h5>
-                        <p><?php echo $show->NoteReporterMobilePhone; ?></p>
-                        <h5 class="fw-bold">อีเมลของผู้บันทึกเพิ่มเติม</h5>
-                        <p><?php echo $show->NoteReporterEmail; ?></p>
                     </div>
+                    <div class="col">
+    <h5 class="fw-bold">หมายเลขโทรศัพท์ของผู้บันทึกเพิ่มเติม</h5>
+    <p><?php echo $show->NoteReporterPhone; ?></p>
+    <h5 class="fw-bold">หมายเลขโทรศัพท์มือถือของผู้บันทึกเพิ่มเติม</h5>
+    <p><?php echo $show->NoteReporterMobilePhone; ?></p>
+    <h5 class="fw-bold">อีเมลของผู้บันทึกเพิ่มเติม</h5>
+    <p><?php echo $show->NoteReporterEmail; ?></p>
 
+</div>
 
                 </div>
             </div>

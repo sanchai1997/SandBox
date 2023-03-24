@@ -78,19 +78,19 @@
                 <div class="row">
                     <div class="col">
                         <h5 class="card-title">
-                        <div class="dropdown">
-                    <button class="btn btn-white dropdown-toggle" type="button" id="dropdownMenuButton1"
-                        data-bs-toggle="dropdown" aria-expanded="false">
-                        ประเภทข้อมูล
-                    </button>
-                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                        <li><a class="dropdown-item"
-                                href="<?php echo site_url('Fm_best_practice_das_p1?page=sh1') ?>">แนวปฏิบัติที่เป็นเลิศในการจัดการศึกษา</a>
-                        </li>
+                            <div class="dropdown">
+                                <button class="btn btn-white dropdown-toggle" type="button" id="dropdownMenuButton1"
+                                    data-bs-toggle="dropdown" aria-expanded="false">
+                                    ประเภทข้อมูล
+                                </button>
+                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                    <li><a class="dropdown-item"
+                                            href="<?php echo site_url('Fm_best_practice_das_p1?page=sh1') ?>">แนวปฏิบัติที่เป็นเลิศในการจัดการศึกษา</a>
+                                    </li>
 
-                    </ul>
-                </div>        
-                    </h5>
+                                </ul>
+                            </div>
+                        </h5>
                     </div>
                     <div class="col">
                         <h5 style="float: right; padding: 15px;" class="card-title"><a
@@ -103,7 +103,7 @@
                     <thead>
 
                         <tr>
-                            <th style="text-align: center;" scope="col">รหัสวิธีปฏิบัติที่เป็นเลิศในการจัดการศึกษา</th>
+                            <!-- <th style="text-align: center;" scope="col">วิธีปฏิบัติที่เป็นเลิศในการจัดการศึกษา</th> -->
                             <th style="text-align: center;" scope="col">ชื่อวิธีปฏิบัติ</th>
                             <th style="text-align: center;" scope="col">ประเภทวิธีปฏิบัติ</th>
                             <th style="text-align: center;" scope="col">ระดับการศึกษาที่นำไปใช้</th>
@@ -117,21 +117,21 @@
                                 # code...
                             ?>
                         <?php
-                                $Id = $show->Id;
+                                $BestPracticeID = $show->BestPracticeID;
                                 $results = $this->db->query("SELECT * FROM BEST_PRACTICE 
                             INNER JOIN CLS_BEST_PRACTICE_TYPE 
                             ON CLS_BEST_PRACTICE_TYPE.BEST_PRACTICE_TYPE_CODE = BEST_PRACTICE.BestPracticeTypeCode 
                             INNER JOIN CLS_EDUCATION_LEVEL 
                             ON CLS_EDUCATION_LEVEL.EDUCATION_LEVEL_CODE = BEST_PRACTICE.TargetEducationLevelCode 
-                            WHERE Id = $Id
+                            WHERE BestPracticeID = $BestPracticeID
                             ");
 
                                 foreach ($results->result() as $shows) {
                                 ?>
                         <tr>
-                            <th scope="row " style="text-align: center;">
+                            <!-- <th scope="row " style="text-align: center;">
                                 <?php echo $show->BestPracticeID; ?>
-                            </th>
+                            </th> -->
 
                             <td style="text-align: center;">
                                 <?php echo $show->BestPracticeName; ?>
@@ -148,23 +148,23 @@
 
 
                             <td style="text-align: center;">
-                            <a href="<?php echo site_url('BP_forms_p1?page=sh11') ?>&&key=<?php echo $show->Id; ?>&&name=<?php echo $show->BestPracticeName; ?>"
-                    class="btn btn-warning"> <i class="bi bi-pencil-square"></i></a>
+                                <a href="<?php echo site_url('BP_forms_p1?page=sh11') ?>&&key=<?php echo $show->BestPracticeID; ?>&&name=<?php echo $show->BestPracticeName; ?>"
+                                    class="btn btn-warning"> <i class="bi bi-pencil-square"></i></a>
                                 <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                                    data-bs-target="#look<?php echo $show->Id; ?>"><i
+                                    data-bs-target="#look<?php echo $show->BestPracticeID; ?>"><i
                                         class="bi bi-card-list"></i></button>
                                 <button type="button" class="btn btn-danger" data-bs-toggle="modal"
-                                    data-bs-target="#del_BP<?php echo $show->Id; ?>">
+                                    data-bs-target="#del_BP<?php echo $show->BestPracticeID; ?>">
                                     <i class="bi bi-trash"></i>
                                 </button>
                                 <!-- Modal -->
-                                <div class="modal fade" id="del_BP<?php echo $show->Id; ?>" tabindex="-1"
+                                <div class="modal fade" id="del_BP<?php echo $show->BestPracticeID; ?>" tabindex="-1"
                                     aria-labelledby="exampleModalLabel" aria-hidden="true">
                                     <div class="modal-dialog">
                                         <div class="modal-content">
                                             <div class="modal-header">
                                                 <h5 class="modal-title" id="exampleModalLabel">
-                                                    ยืนยันการลบข้อมูลรหัส<?php echo nbs(2); ?><?php echo $show->BestPracticeID; ?>
+                                                    ยืนยันการลบข้อมูล<?php echo nbs(2); ?><?php echo $show->BestPracticeID; ?>
                                                 </h5>
 
                                             </div>
@@ -178,7 +178,8 @@
                                                 <button type="button" class="btn btn-secondary"
                                                     data-bs-dismiss="modal">ยกเลิก</button>
                                                 <form method="post" action="<?php echo site_url('BP_del_p1'); ?>">
-                                                    <input type="hidden" name="Id" value="<?php echo $show->Id; ?>">
+                                                    <input type="hidden" name="Id"
+                                                        value="<?php echo $show->BestPracticeID; ?>">
                                                     <div class="d-flex justify-content-center">
                                                         <button name="Submit" type="submit"
                                                             class="btn btn-primary">ยืนยันก่อนลบ</button>
@@ -212,29 +213,29 @@
             <div class="card-body">
                 <div class="row">
                     <div class="col">
-                        <h5 class="card-title"> 
-                        <div class="dropdown">
-                    <button class="btn btn-white dropdown-toggle" type="button" id="dropdownMenuButton1"
-                        data-bs-toggle="dropdown" aria-expanded="false">
-                        ประเภทข้อมูล
-                    </button>
-                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                        <li><a class="dropdown-item"
-                                href="<?php echo site_url('Fm_best_practice_das_p1?page=sh1') ?>">แนวปฏิบัติที่เป็นเลิศในการจัดการศึกษา</a>
-                        </li>
+                        <h5 class="card-title">
+                            <div class="dropdown">
+                                <button class="btn btn-white dropdown-toggle" type="button" id="dropdownMenuButton1"
+                                    data-bs-toggle="dropdown" aria-expanded="false">
+                                    ประเภทข้อมูล
+                                </button>
+                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                    <li><a class="dropdown-item"
+                                            href="<?php echo site_url('Fm_best_practice_das_p1?page=sh1') ?>">แนวปฏิบัติที่เป็นเลิศในการจัดการศึกษา</a>
+                                    </li>
 
-                    </ul>
-                </div>
+                                </ul>
+                            </div>
                         </h5>
                     </div>
                     <div class="col">
                         <h5 style="float: right; padding: 15px;" class="card-title"><a
-                                href="<?php echo site_url('BPC_forms_p2?page=sh2') ?>"
+                                href="<?php echo site_url('BPC_forms_p2?page=sh2') ?>&&name=<?php echo $name;  ?>&&key=<?php echo $key;  ?>"
                                 class="btn btn-success">เพิ่มข้อมูล</a>
                         </h5>
                     </div>
                 </div>
-                
+
                 <table class="table table-borderless datatable">
                     <thead>
 
@@ -272,8 +273,8 @@
 
 
                             <td style="text-align: center;" scope="row">
-                            <a href="<?php echo site_url('BPC_forms_p2?page=sh22') ?>&&key=<?php echo $show->Id; ?>&&name=<?php echo $show->CreatorPersonalID; ?>"
-                    class="btn btn-warning"> <i class="bi bi-pencil-square"></i></a>
+                                <a href="<?php echo site_url('BPC_forms_p2?page=sh22') ?>&&key=<?php echo $show->Id; ?>&&name=<?php echo $name; ?>"
+                                    class="btn btn-warning"> <i class="bi bi-pencil-square"></i></a>
                                 <button type="button" class="btn btn-primary" data-bs-toggle="modal"
                                     data-bs-target="#las2<?php echo $show->Id; ?>"><i
                                         class="bi bi-card-list"></i></button>
@@ -288,7 +289,7 @@
                                         <div class="modal-content">
                                             <div class="modal-header">
                                                 <h5 class="modal-title" id="exampleModalLabel">
-                                                    ยืนยันการลบข้อมูลรหัส<?php echo nbs(2); ?><?php echo $show->BestPracticeID; ?>
+                                                    ยืนยันการลบข้อมูล<?php echo nbs(2); ?><?php echo $show->BestPracticeID; ?>
                                                 </h5>
 
                                             </div>
@@ -334,19 +335,19 @@
             <div class="card-body">
                 <div class="row">
                     <div class="col">
-                        <h5 class="card-title"> 
-                        <div class="dropdown">
-                    <button class="btn btn-white dropdown-toggle" type="button" id="dropdownMenuButton1"
-                        data-bs-toggle="dropdown" aria-expanded="false">
-                        ประเภทข้อมูล
-                    </button>
-                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                        <li><a class="dropdown-item"
-                                href="<?php echo site_url('Fm_best_practice_das_p1?page=sh1') ?>">แนวปฏิบัติที่เป็นเลิศในการจัดการศึกษา</a>
-                        </li>
+                        <h5 class="card-title">
+                            <div class="dropdown">
+                                <button class="btn btn-white dropdown-toggle" type="button" id="dropdownMenuButton1"
+                                    data-bs-toggle="dropdown" aria-expanded="false">
+                                    ประเภทข้อมูล
+                                </button>
+                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                    <li><a class="dropdown-item"
+                                            href="<?php echo site_url('Fm_best_practice_das_p1?page=sh1') ?>">แนวปฏิบัติที่เป็นเลิศในการจัดการศึกษา</a>
+                                    </li>
 
-                    </ul>
-                </div>
+                                </ul>
+                            </div>
                         </h5>
                     </div>
                     <div class="col">
@@ -356,13 +357,13 @@
                         </h5>
                     </div>
                 </div>
-                
+
                 <table class="table table-borderless datatable">
                     <thead>
 
                         <tr>
                             <th style="text-align: center;" scope="col">หมายเลขบัตรประจำตัวผู้จัดทำ</th>
-                            <th style="text-align: center;" scope="col">รหัสประเภทบัตรประจำตัวผู้จัดทำ</th>
+                            <th style="text-align: center;" scope="col">ประเภทบัตรประจำตัวผู้จัดทำ</th>
                             <th style="text-align: center;" scope="col">ชื่อผู้จัดทำ (ภาษาไทย)</th>
                             <th style="text-align: center;" scope="col">ปฎิบัติ</th>
                         </tr>
@@ -401,7 +402,7 @@
                                         <div class="modal-content">
                                             <div class="modal-header">
                                                 <h5 class="modal-title" id="exampleModalLabel">
-                                                    ยืนยันการลบข้อมูลรหัส<?php echo nbs(2); ?><?php echo $show->BestPracticeID; ?>
+                                                    ยืนยันการลบข้อมูล<?php echo nbs(2); ?><?php echo $show->BestPracticeID; ?>
                                                 </h5>
 
                                             </div>
@@ -454,7 +455,7 @@
                       ');
     foreach ($result->result() as $show) {
     ?>
-<div class="modal fade" id="look<?php echo $show->Id; ?>" tabindex="-1" aria-labelledby="exampleModalLabel"
+<div class="modal fade" id="look<?php echo $show->BestPracticeID; ?>" tabindex="-1" aria-labelledby="exampleModalLabel"
     aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
@@ -464,7 +465,7 @@
             </div>
             <div class="modal-body">
                 <?php
-                        $Id = $show->Id;
+                        $BestPracticeID = $show->BestPracticeID;
                         $results = $this->db->query("SELECT * FROM BEST_PRACTICE 
                             INNER JOIN CLS_BEST_PRACTICE_TYPE 
                             ON CLS_BEST_PRACTICE_TYPE.BEST_PRACTICE_TYPE_CODE = BEST_PRACTICE.BestPracticeTypeCode 
@@ -472,30 +473,30 @@
                             ON CLS_EDUCATION_LEVEL.EDUCATION_LEVEL_CODE = BEST_PRACTICE.TargetEducationLevelCode 
                             INNER JOIN CLS_RECOGNIZED_BY 
                             ON CLS_RECOGNIZED_BY.RECOGNIZED_BY_CODE = BEST_PRACTICE.RecognizedCode 
-                            WHERE Id = $Id
+                            WHERE BestPracticeID = $BestPracticeID
                             ");
 
                         foreach ($results->result() as $shows) {
                         ?>
                 <div class="row">
                     <div class="col">
-                        <h5 class="fw-bold">รหัสวิธีปฏิบัติที่เป็นเลิศในการจัดการศึกษา</h5>
-                        <p><?php echo $show->BestPracticeID; ?></p>
+                        <!-- <h5 class="fw-bold">วิธีปฏิบัติที่เป็นเลิศในการจัดการศึกษา</h5>
+                        <p><?php echo $show->BestPracticeID; ?></p> -->
                         <h5 class="fw-bold">ปีการศึกษา</h5>
                         <p><?php echo $show->EducationYear; ?></p>
                         <h5 class="fw-bold">ภาคเรียน</h5>
                         <p><?php echo $show->Semester; ?></p>
                         <h5 class="fw-bold">ชื่อวิธีปฏิบัติ</h5>
                         <p><?php echo $show->BestPracticeName; ?></p>
-                        <h5 class="fw-bold">รหัสประเภทวิธีปฏิบัติ</h5>
+                        <h5 class="fw-bold">ประเภทวิธีปฏิบัติ</h5>
                         <p><?php echo $shows->BEST_PRACTICE_TYPE_NAME; ?></p>
-                        <h5 class="fw-bold">รหัสระดับการศึกษาที่นำไปใช้</h5>
+                        <h5 class="fw-bold">ระดับการศึกษาที่นำไปใช้</h5>
                         <p><?php echo $shows->EDUCATION_LEVEL_NAME; ?></p>
                     </div>
 
 
                     <div class="col">
-                        <h5 class="fw-bold">รหัสการเผยแพร่ที่ได้รับการยอมรับ</h5>
+                        <h5 class="fw-bold">การเผยแพร่ที่ได้รับการยอมรับ</h5>
                         <p><?php echo $shows->RECOGNIZED_BY_NAME; ?></p>
                         <h5 class="fw-bold">ประโยชน์ที่ได้รับ</h5>
                         <p><?php echo $show->Benefit; ?></p>
@@ -506,6 +507,8 @@
                         <h5 class="fw-bold">เอกสารแนบ</h5>
                         <p><a href="<?php echo base_url('document') ?>/<?php echo $show->AttachmentURL; ?>"
                                 target="_blank"><i class="bi bi-file-text"></i></a></p>
+                    </div>
+                    <div class="col">
                         <h5 class="fw-bold">วิธีการปฏิบัติ</h5>
                         <p><?php echo $show->PracticeProcess; ?></p>
                         <h5 class="fw-bold">แหล่งที่มา</h5>
@@ -556,30 +559,22 @@
             <div class="modal-body">
                 <div class="row">
                     <div class="col">
-                        <h5 class="fw-bold">รหัสวิธีปฏิบัติที่เป็นเลิศในการจัดการศึกษา</h5>
-                        <p><?php echo $show->BestPracticeID; ?></p>
+                        <!-- <h5 class="fw-bold">วิธีปฏิบัติที่เป็นเลิศในการจัดการศึกษา</h5>
+                        <p><?php echo $show->BestPracticeID; ?></p> -->
                         <h5 class="fw-bold">หมายเลขบัตรประจำตัวผู้จัดทำ</h5>
                         <p><?php echo $show->CreatorPersonalID; ?></p>
-                        <h5 class="fw-bold">รหัสประเภทบัตรประจำตัวผู้จัดทำ</h5>
+                        <h5 class="fw-bold">ประเภทบัตรประจำตัวผู้จัดทำ</h5>
                         <p><?php echo $show->PERSONAL_ID_TYPE_NAME; ?></p>
                         <h5 class="fw-bold">สัดส่วนการมีส่วนร่วม</h5>
                         <p><?php echo $show->ParticipantRatio; ?></p>
                     </div>
                     <div class="col">
-                        <h5 class="fw-bold">รหัสคำนำหน้าชื่อผู้จัดทำ</h5>
-                        <p><?php echo $show->PREFIX_NAME; ?></p>
                         <h5 class="fw-bold"> ชื่อผู้จัดทำ (ภาษาไทย)</h5>
-                        <p><?php echo $show->CreatorNameThai; ?></p>
-                        <h5 class="fw-bold">ชื่อผู้จัดทำ (ภาษาอังกฤษ)</h5>
-                        <p><?php echo $show->CreatorNameEnglish; ?></p>
-                        <h5 class="fw-bold">ชื่อกลางผู้จัดทำ (ภาษาไทย)</h5>
-                        <p><?php echo $show->CreatorMiddleNameThai; ?></p>
-                        <h5 class="fw-bold">ชื่อกลางผู้จัดทำ(ภาษาอังกฤษ)</h5>
-                        <p><?php echo $show->CreatorMiddleNameEnglish; ?></p>
-                        <h5 class="fw-bold">นามสกุลผู้จัดทำ (ภาษาไทย)</h5>
-                        <p><?php echo $show->CreatorLastNameThai; ?></p>
-                        <h5 class="fw-bold">นามสกุลผู้จัดทำ(ภาษาอังกฤษ)</h5>
-                        <p><?php echo $show->CreatorLastNameEnglish; ?></p>
+                        <p><?php echo $show->PREFIX_NAME; ?><?php echo nbs(2); ?><?php echo $show->CreatorNameThai; ?>-<?php echo $show->CreatorLastNameThai; ?>
+                        </p>
+                        <h5 class="fw-bold">ชื่อผู้จัดทำ(ภาษาอังกฤษ)</h5>
+                        <p><?php echo nbs(2); ?><?php echo $show->CreatorNameEnglish; ?>-<?php echo $show->CreatorLastNameEnglish; ?>
+                        </p>
                     </div>
                 </div>
             </div>
@@ -615,32 +610,24 @@
             <div class="modal-body">
                 <div class="row">
                     <div class="col">
-                        <h5 class="fw-bold">รหัสวิธีปฏิบัติที่เป็นเลิศในการจัดการศึกษา</h5>
+                        <h5 class="fw-bold">วิธีปฏิบัติที่เป็นเลิศในการจัดการศึกษา</h5>
                         <p><?php echo $show->BestPracticeID; ?></p>
                         <h5 class="fw-bold">หมายเลขบัตรประจำตัวผู้จัดทำ</h5>
                         <p><?php echo $show->CreatorPersonalID; ?></p>
-                        <h5 class="fw-bold">รหัสประเภทบัตรประจำตัวผู้จัดทำ</h5>
+                        <h5 class="fw-bold">ประเภทบัตรประจำตัวผู้จัดทำ</h5>
                         <p><?php echo $show->CreatorPersonalIDTypeCode; ?></p>
-                        <h5 class="fw-bold">รหัสคำนำหน้าชื่อผู้จัดทำ</h5>
+                        <h5 class="fw-bold">คำนำหน้าชื่อผู้จัดทำ</h5>
                         <p><?php echo $show->CreatorPrefixCode; ?></p>
                         <h5 class="fw-bold">สัดส่วนการมีส่วนร่วม</h5>
                         <p><?php echo $show->ParticipantRatio; ?></p>
                     </div>
                     <div class="col">
-                        <h5 class="fw-bold">รหัสคำนำหน้าชื่อผู้จัดทำ</h5>
-                        <p><?php echo $show->CreatorPrefixCode; ?></p>
                         <h5 class="fw-bold"> ชื่อผู้จัดทำ (ภาษาไทย)</h5>
-                        <p><?php echo $show->CreatorNameThai; ?></p>
-                        <h5 class="fw-bold">ชื่อผู้จัดทำ (ภาษาอังกฤษ)</h5>
-                        <p><?php echo $show->CreatorNameEnglish; ?></p>
-                        <h5 class="fw-bold">ชื่อกลางผู้จัดทำ (ภาษาไทย)</h5>
-                        <p><?php echo $show->CreatorMiddleNameThai; ?></p>
-                        <h5 class="fw-bold">ชื่อกลางผู้จัดทำ(ภาษาอังกฤษ)</h5>
-                        <p><?php echo $show->CreatorMiddleNameEnglish; ?></p>
-                        <h5 class="fw-bold">นามสกุลผู้จัดทำ (ภาษาไทย)</h5>
-                        <p><?php echo $show->CreatorLastNameThai; ?></p>
-                        <h5 class="fw-bold">นามสกุลผู้จัดทำ(ภาษาอังกฤษ)</h5>
-                        <p><?php echo $show->CreatorLastNameEnglish; ?></p>
+                        <p><?php echo $show->PREFIX_NAME; ?><?php echo nbs(2); ?><?php echo $show->CreatorNameThai; ?>-<?php echo $show->CreatorLastNameThai; ?>
+                        </p>
+                        <h5 class="fw-bold">ชื่อผู้จัดทำ(ภาษาอังกฤษ)</h5>
+                        <p><?php echo nbs(2); ?><?php echo $show->CreatorNameEnglish; ?>-<?php echo $show->CreatorLastNameEnglish; ?>
+                        </p>
                     </div>
                 </div>
             </div>

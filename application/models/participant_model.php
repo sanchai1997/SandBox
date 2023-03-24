@@ -9,7 +9,7 @@ class Participant_model extends CI_Model {
 		// echo'</pre>';
 		// exit;
         $data = array(
-            'ParticipantID' => $this->input->post('ParticipantID'),
+            // 'ParticipantID' => $this->input->post('ParticipantID'),
             'ParticipantName' => $this->input->post('ParticipantName'),
             'ParticipantTypeCode' => $this->input->post('ParticipantTypeCode')
         );
@@ -31,7 +31,7 @@ class Participant_model extends CI_Model {
 		// echo'</pre>';
 		// exit;
         $data = array(
-            'ParticipantID' => $this->input->post('ParticipantID'),
+            // 'ParticipantID' => $this->input->post('ParticipantID'),
             'ParticipantName' => $this->input->post('ParticipantName'),
             'ParticipantTypeCode' => $this->input->post('ParticipantTypeCode')
         );
@@ -58,7 +58,7 @@ class Participant_model extends CI_Model {
             
             'DeleteStatus' => $value 
         );
-		$this->db->where('Id',$this->input->post('Id'));
+		$this->db->where('ParticipantID',$this->input->post('ParticipantID'));
 		$query=$this->db->update('PARTICIPANT',$data);
 		if($query){
 			session_start(); // เริ่มต้น session

@@ -23,7 +23,7 @@ class Innovation_model extends CI_Model
 					$data = $this->upload->data();
 					$filename = $data['file_name'];
 					$data = array(
-						'InnovationID' => $this->input->post('InnovationID'),
+						// 'InnovationID' => $this->input->post('InnovationID'),
 						'EducationYear' => $this->input->post('EducationYear'),
 						'Semester' => $this->input->post('Semester'),
 						'InnovationName' => $this->input->post('InnovationName'),
@@ -40,7 +40,7 @@ class Innovation_model extends CI_Model
 				}
 			} else {
 				$data = array(
-					'InnovationID' => $this->input->post('InnovationID'),
+					// 'InnovationID' => $this->input->post('InnovationID'),
 					'EducationYear' => $this->input->post('EducationYear'),
 					'Semester' => $this->input->post('Semester'),
 					'InnovationName' => $this->input->post('InnovationName'),
@@ -87,7 +87,7 @@ class Innovation_model extends CI_Model
 					$data = $this->upload->data();
 					$filename = $data['file_name'];
 					$data = array(
-						'InnovationID' => $this->input->post('InnovationID'),
+						// 'InnovationID' => $this->input->post('InnovationID'),
 						'EducationYear' => $this->input->post('EducationYear'),
 						'Semester' => $this->input->post('Semester'),
 						'InnovationName' => $this->input->post('InnovationName'),
@@ -104,7 +104,7 @@ class Innovation_model extends CI_Model
 				}
 			} else {
 				$data = array(
-					'InnovationID' => $this->input->post('InnovationID'),
+					// 'InnovationID' => $this->input->post('InnovationID'),
 					'EducationYear' => $this->input->post('EducationYear'),
 					'Semester' => $this->input->post('Semester'),
 					'InnovationName' => $this->input->post('InnovationName'),
@@ -120,7 +120,7 @@ class Innovation_model extends CI_Model
 				);
 			}
 		}
-		$this->db->where('Id', $this->input->post('Id'));
+		$this->db->where('InnovationID', $this->input->post('InnovationID'));
 		$query = $this->db->update('INNOVATION', $data);
 		if ($query) {
 			session_start(); // เริ่มต้น session
@@ -133,6 +133,7 @@ class Innovation_model extends CI_Model
 	}
 	public function del_in_model()
 	{
+		
 		$velue = "1";
 		$data = array(
 
@@ -140,7 +141,7 @@ class Innovation_model extends CI_Model
 			'DeleteStatus' => $velue
 
 		);
-		$this->db->where('Id', $this->input->post('Id'));
+		$this->db->where('InnovationID', $this->input->post('InnovationID'));
 		$query = $this->db->update('INNOVATION', $data);
 		if ($query) {
 			session_start(); // เริ่มต้น session
@@ -173,7 +174,7 @@ class Innovation_model extends CI_Model
 			'ParticipantRatio' => $this->input->post('ParticipantRatio')
 
 		);
-		$query = $this->db->insert('innovation_creator', $data);
+		$query = $this->db->insert('INNOVATION_CREATOR', $data);
 		if ($query) {
 			session_start(); // เริ่มต้น session
 			$_SESSION['success'] = "เพิ่มข้อมูลนวัตกรรมการศึกษาสำเร็จ !"; // กำหนดค่า success ใน session เป็น true
@@ -192,7 +193,7 @@ class Innovation_model extends CI_Model
 		// exit;
 
 		$data = array(
-
+			'InnovationID' => $this->input->post('InnovationID'),
 			'CreatorPersonalID' => $this->input->post('CreatorPersonalID'),
 			'CreatorPersonalIDTypeCode' => $this->input->post('CreatorPersonalIDTypeCode'),
 			'CreatorPrefixCode' => $this->input->post('CreatorPrefixCode'),
@@ -206,7 +207,7 @@ class Innovation_model extends CI_Model
 
 		);
 		$this->db->where('Id', $this->input->post('Id'));
-		$query = $this->db->update('innovation_creator', $data);
+		$query = $this->db->update('INNOVATION_CREATOR', $data);
 		if ($query) {
 			session_start(); // เริ่มต้น session
 			$_SESSION['success'] = "แก้ไขสำเร็จ !"; // กำหนดค่า success ใน session เป็น true
@@ -231,7 +232,7 @@ class Innovation_model extends CI_Model
 
 		);
 		$this->db->where('Id', $this->input->post('Id'));
-		$query = $this->db->update('innovation_creator', $data);
+		$query = $this->db->update('INNOVATION_CREATOR', $data);
 		if ($query) {
 			session_start(); // เริ่มต้น session
 			$_SESSION['success'] = "ลบข้อมูลสำเร็จ !"; // กำหนดค่า success ใน session เป็น true
