@@ -8,18 +8,18 @@
                 foreach ($result->result() as $SCHOOL) {
                     echo $SCHOOL->SchoolNameThai;
                 }
-                $result = $this->db->query('SELECT * FROM CLS_MAJOR WHERE MAJOR_CODE = ' . $_GET['EntryMajorCode'] . '');
-                foreach ($result->result() as $MAJOR) {
-                    $MAJOR_NAME = $MAJOR->MAJOR_NAME;
+                $result = $this->db->query('SELECT * FROM CLS_PERSONNEL_TYPE WHERE PERSONNEL_TYPE_CODE = ' . $_GET['PersonnelTypeCode'] . '');
+                foreach ($result->result() as $PERSONNEL_TYPE) {
+                    $PERSONNEL_TYPE_NAME = $PERSONNEL_TYPE->PERSONNEL_TYPE_NAME;
                 }
-                $result = $this->db->query('SELECT * FROM CLS_PROGRAM WHERE PROGRAM_CODE = ' . $_GET['EntryProgramCode'] . '');
-                foreach ($result->result() as $PROGRAM) {
-                    $PROGRAM_NAME = $PROGRAM->PROGRAM_NAME;
+                $result = $this->db->query('SELECT * FROM CLS_POSITION WHERE POSITION_CODE = ' . $_GET['PositionCode'] . '');
+                foreach ($result->result() as $POSITION) {
+                    $POSITION_NAME = $POSITION->POSITION_NAME;
                 }
                 ?>
             <?php } ?>
         </h1>
-        <a class="btn btn-sm btn-light text-dark"><b> ปีการศึกษา: <?= $_GET['EducationYear'] ?>&nbsp; ภาคเรียน: <?= $_GET['Semester'] ?> &nbsp;กลุ่มวิชาเอกที่บรรจุ: <?= $MAJOR_NAME ?> &nbsp;สาขาวิชา: <?= $PROGRAM_NAME ?></b></a>
+        <a class="btn btn-sm btn-light text-dark"><b> ปีการศึกษา: <?= $_GET['EducationYear'] ?>&nbsp; ภาคเรียน: <?= $_GET['Semester'] ?> &nbsp;ประเภทบุคลากร: <?= $PERSONNEL_TYPE_NAME ?> &nbsp;ตำแหน่ง: <?= $POSITION_NAME ?></b></a>
     </div><!-- End Page Title -->
 
     <section class="section">
@@ -29,7 +29,7 @@
                 <div class="card">
                     <div class="card-body">
                         <!-- Floating Labels Form -->
-                        <form class="row g-3" action="<?php echo base_url('add-teacher-select/' . $_GET['SchoolID'] . '/' . $_GET['EducationYear'] . '/' . $_GET['Semester'] . '/' . $_GET['EntryMajorCode'] . '/' . $_GET['EntryProgramCode']); ?>" method="POST" id="Teacher" enctype="multipart/form-data">
+                        <form class="row g-3" action="<?php echo base_url('add-teacher-select/' . $_GET['SchoolID'] . '/' . $_GET['EducationYear'] . '/' . $_GET['Semester'] . '/' . $_GET['PersonnelTypeCode'] . '/' . $_GET['PositionCode']); ?>" method="POST" id="Teacher" enctype="multipart/form-data">
                             <h6 style="padding-left: 15px;" class="card-title">ข้อมูลตำแหน่งและปฎิบัติราชการ</h6>
                             <div class="col-md-6">
                                 <div class="form-floating">
@@ -85,6 +85,42 @@
                                     <label for="EducationLevelCode">วุฒิการศึกษาที่บรรจุ<font color="red"> *</font></label>
                                 </div>
                             </div>
+                            <div class="col-md-6">
+                                <div class="form-floating">
+                                    <select class="form-select" name="EntryMajorCode" id="EntryMajorCode" aria-label="EntryMajorCode">
+                                        <option value="" selected>เลือก</option>
+
+                                        <?php
+                                        $result = $this->db->query('SELECT * FROM CLS_MAJOR ORDER BY MAJOR_NAME ASC');
+
+                                        foreach ($result->result() as $MAJOR) {
+                                        ?>
+                                            <option value="<?= $MAJOR->MAJOR_CODE; ?>"><?= $MAJOR->MAJOR_NAME; ?></option>
+                                        <?php
+                                        }
+                                        ?>
+                                    </select>
+                                    <label for="EntryMajorCode">วิชาเอกที่บรรจุ<font color="red"> *</font></label>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-floating">
+                                    <select class="form-select" name="EntryProgramCode" id="EntryProgramCode" aria-label="EntryProgramCode">
+                                        <option value="" selected>เลือก</option>
+
+                                        <?php
+                                        $result = $this->db->query('SELECT * FROM CLS_PROGRAM ORDER BY PROGRAM_NAME ASC');
+
+                                        foreach ($result->result() as $PROGRAM) {
+                                        ?>
+                                            <option value="<?= $PROGRAM->PROGRAM_CODE; ?>"><?= $PROGRAM->PROGRAM_NAME; ?></option>
+                                        <?php
+                                        }
+                                        ?>
+                                    </select>
+                                    <label for="EducationLevelCode">สาขาวิชาที่บรรจุ<font color="red"> *</font></label>
+                                </div>
+                            </div>
                             <div class="col-md-3">
                                 <div class="form-floating">
                                     <input type="date" class="form-control" name="PersonnelStartDate" id="PersonnelStartDate">
@@ -99,15 +135,15 @@
                             </div>
                             <div class="col-md-6">
                                 <div class="form-floating">
-                                    <select class="form-select" name="PersonnelTypeCode" id="PersonnelTypeCode" aria-label="PersonnelTypeCode">
-                                        <option value="" selected>เลือก</option>
-
+                                    <select class="form-select" name="PersonnelTypeCode" id="PersonnelTypeCode" aria-label="PersonnelTypeCode" disabled>
                                         <?php
                                         $result = $this->db->query('SELECT * FROM CLS_PERSONNEL_TYPE ORDER BY PERSONNEL_TYPE_NAME ASC');
 
                                         foreach ($result->result() as $PERSONNEL_TYPE) {
                                         ?>
-                                            <option value="<?= $PERSONNEL_TYPE->PERSONNEL_TYPE_CODE; ?>"><?= $PERSONNEL_TYPE->PERSONNEL_TYPE_NAME; ?></option>
+                                            <option <?php if ($PERSONNEL_TYPE->PERSONNEL_TYPE_CODE == $_GET['PersonnelTypeCode']) {
+                                                        echo 'selected';
+                                                    } ?> value="<?= $PERSONNEL_TYPE->PERSONNEL_TYPE_CODE; ?>"><?= $PERSONNEL_TYPE->PERSONNEL_TYPE_NAME; ?></option>
                                         <?php
                                         }
                                         ?>
@@ -117,15 +153,15 @@
                             </div>
                             <div class="col-md-6">
                                 <div class="form-floating">
-                                    <select class="form-select" name="PositionCode" id="PositionCode" aria-label="PositionCode">
-                                        <option value="" selected>เลือก</option>
-
+                                    <select class="form-select" name="PositionCode" id="PositionCode" aria-label="PositionCode" disabled>
                                         <?php
                                         $result = $this->db->query('SELECT * FROM CLS_POSITION ORDER BY POSITION_NAME ASC');
 
                                         foreach ($result->result() as $POSITION) {
                                         ?>
-                                            <option value="<?= $POSITION->POSITION_CODE; ?>"><?= $POSITION->POSITION_NAME; ?></option>
+                                            <option <?php if ($POSITION->POSITION_CODE == $_GET['PositionCode']) {
+                                                        echo 'selected';
+                                                    } ?> value="<?= $POSITION->POSITION_CODE; ?>"><?= $POSITION->POSITION_NAME; ?></option>
                                         <?php
                                         }
                                         ?>
@@ -311,7 +347,7 @@
 
 
                             <div class="d-flex justify-content-between">
-                                <a href="teacher?SchoolID=<?= $_GET['SchoolID'] ?>&&EducationYear=<?= $_GET['EducationYear'] ?>&&Semester=<?= $_GET['Semester'] ?>&&EntryMajorCode=<?= $_GET['EntryMajorCode'] ?>&&EntryProgramCode=<?= $_GET['EntryProgramCode'] ?>" class="btn btn-danger">ยกเลิก</a>
+                                <a href="teacher?SchoolID=<?= $_GET['SchoolID'] ?>&&EducationYear=<?= $_GET['EducationYear'] ?>&&Semester=<?= $_GET['Semester'] ?>&&PersonnelTypeCode=<?= $_GET['PersonnelTypeCode'] ?>&&PositionCode=<?= $_GET['PositionCode'] ?>" class="btn btn-danger">ยกเลิก</a>
                                 <button type="button" class="btn btn-primary" onclick="return check(Teacher)">บันทึกข้อมูล</button>
                             </div>
                             <!-- Modal -->
@@ -363,18 +399,18 @@
                 return false;
             }
 
+            if (frm.EntryMajorCode.value == "") {
+                alert("กรุณาเลือกวิชาเอกที่บรรจุ");
+                return false;
+            }
+
+            if (frm.EntryProgramCode.value == "") {
+                alert("กรุณาเลือกสาขาวิชาที่บรรจุ");
+                return false;
+            }
+
             if (frm.PersonnelStartDate.value == "") {
                 alert("กรุณากรอกวันที่บรรจุ");
-                return false;
-            }
-
-            if (frm.PersonnelTypeCode.value == "") {
-                alert("กรุณาเลือกประเภทบุคลากร");
-                return false;
-            }
-
-            if (frm.PositionCode.value == "") {
-                alert("กรุณาเลือกตำแหน่ง");
                 return false;
             }
 

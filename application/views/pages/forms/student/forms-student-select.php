@@ -59,7 +59,37 @@
                                     <label for="EducationLevelCode">ระดับการศึกษา <font color="red"> *</font></label>
                                 </div>
                             </div>
+                            <div class="col-md-3">
+                                <div class="form-floating">
+                                    <input type="number" class="form-control" minlength="4" maxlength="4" name="EducationYear" id="EducationYear" value="<?= $_GET['EducationYear'] ?>" disabled>
+                                    <label for="EducationYear">ปีการศึกษา <font color="red"> *</font></label>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-floating">
+                                    <input type="number" class="form-control" minlength="2" maxlength="2" name="Semester" id="Semester" value="<?= $_GET['Semester'] ?>" disabled>
+                                    <label for="Semester">ภาคเรียน <font color="red"> *</font></label>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-floating">
+                                    <select class="form-select" name="GradeLevelCode" id="GradeLevelCode" aria-label="GradeLevelCode" disabled>
 
+                                        <?php
+                                        $result = $this->db->query('SELECT * FROM CLS_GRADE_LEVEL ');
+
+                                        foreach ($result->result() as $GRADE_LEVEL) {
+                                        ?>
+                                            <option <?php if ($GRADE_LEVEL->GRADE_LEVEL_CODE == $_GET['GradeLevelCode']) {
+                                                        echo 'selected';
+                                                    } ?> value="<?= $GRADE_LEVEL->GRADE_LEVEL_CODE; ?>"><?= $GRADE_LEVEL->GRADE_LEVEL_NAME; ?></option>
+                                        <?php
+                                        }
+                                        ?>
+                                    </select>
+                                    <label for="GradeLevelCode">ระดับชั้นเรียน <font color="red"> *</font></label>
+                                </div>
+                            </div>
                             <div class="col-md-12">
                                 <div class="input-group">
                                     <label class="input-group-text" for="inputGroupFile01">รูปภาพนักเรียน <font color="red"> *</font></label>

@@ -67,12 +67,542 @@ class Forms_teacher extends CI_Controller
     }
     ////////////////////////////// forms-teacher-END/////////////////////////////////
 
+    ///////////////////////////////edit_forms_teacher_main/////////////////////////////////
+    //PageEdit MAIN
+    public function edit_forms_teacher_main()
+    {
+
+        if (!file_exists(APPPATH . 'views/pages/forms/teacher/edit-forms-teacher-main.php')) {
+            //Whoops,wedon'thaveapageforthat!
+            show_404();
+        }
+
+        $data['title'] = 'Forms Teacher-select'; //Capitalizethefirstletter
+
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/sidebar', $data);
+        $this->load->view('pages/forms/teacher/edit-forms-teacher-main', $data);
+        $this->load->view('templates/footer', $data);
+    }
+
+    //update_teacher_main
+    public function update_teacher_main($TeacherID, $SchoolID, $EducationYear, $Semester, $PersonnelTypeCode, $PositionCode)
+    {
+        $this->forms_teacher->update_teacher_main($TeacherID, $SchoolID, $EducationYear, $Semester, $PersonnelTypeCode, $PositionCode);
+        $_SESSION['success'] = "บันทึกข้อมูลเรียบร้อย";
+        redirect(base_url('teacher?SchoolID=' . $SchoolID . '&&TeacherID=' . $TeacherID . '&&EducationYear=' . $EducationYear . '&&Semester=' . $Semester . '&&PersonnelTypeCode=' . $PersonnelTypeCode . '&&PositionCode=' . $PositionCode . '&&ShowDetail='));
+    }
+    //////////////////////////// edit_forms_teacher_main-END//////////////////////////////
+
+    ///////////////////////////////edit_forms_teacher_person/////////////////////////////////
+    //PageEdit person
+    public function edit_forms_teacher_person()
+    {
+
+        if (!file_exists(APPPATH . 'views/pages/forms/teacher/edit-forms-teacher-person.php')) {
+            //Whoops,wedon'thaveapageforthat!
+            show_404();
+        }
+
+        $data['title'] = 'Forms Teacher-select'; //Capitalizethefirstletter
+
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/sidebar', $data);
+        $this->load->view('pages/forms/teacher/edit-forms-teacher-person', $data);
+        $this->load->view('templates/footer', $data);
+    }
+
+    //update_teacher_person
+    public function update_teacher_person($TeacherID, $SchoolID, $EducationYear, $Semester, $PersonnelTypeCode, $PositionCode)
+    {
+        $this->forms_teacher->update_teacher_person($TeacherID, $SchoolID, $EducationYear, $Semester, $PersonnelTypeCode, $PositionCode);
+        $_SESSION['success'] = "บันทึกข้อมูลเรียบร้อย";
+        redirect(base_url('teacher?SchoolID=' . $SchoolID . '&&TeacherID=' . $TeacherID . '&&EducationYear=' . $EducationYear . '&&Semester=' . $Semester . '&&PersonnelTypeCode=' . $PersonnelTypeCode . '&&PositionCode=' . $PositionCode . '&&ShowDetail='));
+    }
+    //////////////////////////// edit_forms_teacher_person-END//////////////////////////////
+
+    ///////////////////////////////edit_forms_teacher_marriage/////////////////////////////////
+    //PageEdit marriage
+    public function edit_forms_teacher_marriage()
+    {
+
+        if (!file_exists(APPPATH . 'views/pages/forms/teacher/edit-forms-teacher-marriage.php')) {
+            //Whoops,wedon'thaveapageforthat!
+            show_404();
+        }
+
+        $data['title'] = 'Forms Teacher-select'; //Capitalizethefirstletter
+
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/sidebar', $data);
+        $this->load->view('pages/forms/teacher/edit-forms-teacher-marriage', $data);
+        $this->load->view('templates/footer', $data);
+    }
+
+    //update_teacher_marriage
+    public function update_teacher_marriage($TeacherID, $SchoolID, $EducationYear, $Semester, $PersonnelTypeCode, $PositionCode)
+    {
+        $this->forms_teacher->update_teacher_marriage($TeacherID, $SchoolID, $EducationYear, $Semester, $PersonnelTypeCode, $PositionCode);
+        $_SESSION['success'] = "บันทึกข้อมูลเรียบร้อย";
+        redirect(base_url('teacher?SchoolID=' . $SchoolID . '&&TeacherID=' . $TeacherID . '&&EducationYear=' . $EducationYear . '&&Semester=' . $Semester . '&&PersonnelTypeCode=' . $PersonnelTypeCode . '&&PositionCode=' . $PositionCode . '&&ShowDetail='));
+    }
+    //////////////////////////// edit_forms_teacher_marriage-END//////////////////////////////
+
+
+    ///////////////////////////////edit_forms_teacher_address/////////////////////////////////
+    //PageEdit address
+    public function edit_forms_teacher_address()
+    {
+
+        if (!file_exists(APPPATH . 'views/pages/forms/teacher/edit-forms-teacher-address.php')) {
+            //Whoops,wedon'thaveapageforthat!
+            show_404();
+        }
+
+        $data['title'] = 'Forms Teacher-select'; //Capitalizethefirstletter
+
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/sidebar', $data);
+        $this->load->view('pages/forms/teacher/edit-forms-teacher-address', $data);
+        $this->load->view('templates/footer', $data);
+    }
+
+    //update_teacher_address
+    public function update_teacher_address($TeacherID, $SchoolID, $EducationYear, $Semester, $PersonnelTypeCode, $PositionCode)
+    {
+        $this->forms_teacher->update_teacher_address($TeacherID, $SchoolID, $EducationYear, $Semester, $PersonnelTypeCode, $PositionCode);
+        $_SESSION['success'] = "บันทึกข้อมูลเรียบร้อย";
+        redirect(base_url('teacher?SchoolID=' . $SchoolID . '&&TeacherID=' . $TeacherID . '&&EducationYear=' . $EducationYear . '&&Semester=' . $Semester . '&&PersonnelTypeCode=' . $PersonnelTypeCode . '&&PositionCode=' . $PositionCode . '&&ShowDetail='));
+    }
+    //////////////////////////// edit_forms_teacher_address-END//////////////////////////////
+
+
+    ///////////////////////////////edit_forms_teacher_contract/////////////////////////////////
+    //PageEdit contract
+    public function edit_forms_teacher_contract()
+    {
+
+        if (!file_exists(APPPATH . 'views/pages/forms/teacher/edit-forms-teacher-contract.php')) {
+            //Whoops,wedon'thaveapageforthat!
+            show_404();
+        }
+
+        $data['title'] = 'Forms Teacher-select'; //Capitalizethefirstletter
+
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/sidebar', $data);
+        $this->load->view('pages/forms/teacher/edit-forms-teacher-contract', $data);
+        $this->load->view('templates/footer', $data);
+    }
+
+    //update_teacher_contract
+    public function update_teacher_contract($TeacherID, $SchoolID, $EducationYear, $Semester, $PersonnelTypeCode, $PositionCode)
+    {
+        $this->forms_teacher->update_teacher_contract($TeacherID, $SchoolID, $EducationYear, $Semester, $PersonnelTypeCode, $PositionCode);
+        $_SESSION['success'] = "บันทึกข้อมูลเรียบร้อย";
+        redirect(base_url('teacher?SchoolID=' . $SchoolID . '&&TeacherID=' . $TeacherID . '&&EducationYear=' . $EducationYear . '&&Semester=' . $Semester . '&&PersonnelTypeCode=' . $PersonnelTypeCode . '&&PositionCode=' . $PositionCode . '&&ShowDetail='));
+    }
+    //////////////////////////// edit_forms_teacher_contract-END//////////////////////////////
+
+    ///////////////////////////////edit_forms_teacher_talent/////////////////////////////////
+    //PageEdit talent
+    public function edit_forms_teacher_talent()
+    {
+
+        if (!file_exists(APPPATH . 'views/pages/forms/teacher/edit-forms-teacher-talent.php')) {
+            //Whoops,wedon'thaveapageforthat!
+            show_404();
+        }
+
+        $data['title'] = 'Forms Teacher-select'; //Capitalizethefirstletter
+
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/sidebar', $data);
+        $this->load->view('pages/forms/teacher/edit-forms-teacher-talent', $data);
+        $this->load->view('templates/footer', $data);
+    }
+
+    //update_teacher_talent
+    public function update_teacher_talent($TeacherID, $SchoolID, $EducationYear, $Semester, $PersonnelTypeCode, $PositionCode)
+    {
+        $this->forms_teacher->update_teacher_talent($TeacherID, $SchoolID, $EducationYear, $Semester, $PersonnelTypeCode, $PositionCode);
+        $_SESSION['success'] = "บันทึกข้อมูลเรียบร้อย";
+        redirect(base_url('teacher?SchoolID=' . $SchoolID . '&&TeacherID=' . $TeacherID . '&&EducationYear=' . $EducationYear . '&&Semester=' . $Semester . '&&PersonnelTypeCode=' . $PersonnelTypeCode . '&&PositionCode=' . $PositionCode . '&&ShowDetail='));
+    }
+    //////////////////////////// edit_forms_teacher_contract-END//////////////////////////////
 
     //Delete Data Form teacher
-    public function delete_teacher($TeacherID, $SchoolID, $EducationYear, $Semester, $EntryMajorCode, $EntryProgramCode)
+    public function delete_teacher($TeacherID, $SchoolID, $EducationYear, $Semester, $PersonnelTypeCode, $PositionCode)
     {
         $this->forms_teacher->delete_teacher($TeacherID);
         $_SESSION['success'] = "ลบข้อมูลเรียบร้อย";
-        redirect(base_url('teacher?SchoolID=' . $SchoolID . '&&EducationYear=' . $EducationYear . '&&Semester=' . $Semester . '&&EntryMajorCode=' . $EntryMajorCode . '&&EntryProgramCode=' . $EntryProgramCode));
+        redirect(base_url('teacher?SchoolID=' . $SchoolID . '&&EducationYear=' . $EducationYear . '&&Semester=' . $Semester . '&&PersonnelTypeCode=' . $PersonnelTypeCode . '&&PositionCode=' . $PositionCode));
     }
+
+
+
+    ///////////////////////////////teacher certificate/////////////////////////////////
+    //PageEdit talent
+    public function forms_teacher_certificate()
+    {
+
+        if (!file_exists(APPPATH . 'views/pages/forms/teacher/forms-teacher-certificate.php')) {
+            //Whoops,wedon'thaveapageforthat!
+            show_404();
+        }
+
+        $data['title'] = 'Forms Teacher-select'; //Capitalizethefirstletter
+
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/sidebar', $data);
+        $this->load->view('pages/forms/teacher/forms-teacher-certificate', $data);
+        $this->load->view('templates/footer', $data);
+    }
+
+    public function edit_teacher_certificate()
+    {
+
+        if (!file_exists(APPPATH . 'views/pages/forms/teacher/edit-forms-teacher-certificate.php')) {
+            //Whoops,wedon'thaveapageforthat!
+            show_404();
+        }
+
+        $data['title'] = 'Forms Teacher-select'; //Capitalizethefirstletter
+
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/sidebar', $data);
+        $this->load->view('pages/forms/teacher/edit-forms-teacher-certificate', $data);
+        $this->load->view('templates/footer', $data);
+    }
+
+    //Add_teacher_talent
+    public function add_teacher_certificate($TeacherID, $SchoolID, $EducationYear, $Semester, $PersonnelTypeCode, $PositionCode)
+    {
+        $this->forms_teacher->add_teacher_certificate($TeacherID, $SchoolID);
+        $_SESSION['success'] = "บันทึกข้อมูลเรียบร้อย";
+        redirect(base_url('teacher-certificate?SchoolID=' . $SchoolID . '&&TeacherID=' . $TeacherID . '&&EducationYear=' . $EducationYear . '&&Semester=' . $Semester . '&&PersonnelTypeCode=' . $PersonnelTypeCode . '&&PositionCode=' . $PositionCode . '&&ShowDetail='));
+    }
+
+    //update_teacherr_certificate
+    public function update_teacher_certificate($TeacherID, $SchoolID, $EducationYear, $Semester, $PersonnelTypeCode, $PositionCode, $CertificateCode)
+    {
+        $this->forms_teacher->update_teacher_certificate($TeacherID, $SchoolID, $CertificateCode);
+        $_SESSION['success'] = "บันทึกข้อมูลเรียบร้อย";
+        redirect(base_url('teacher-certificate?SchoolID=' . $SchoolID . '&&TeacherID=' . $TeacherID . '&&EducationYear=' . $EducationYear . '&&Semester=' . $Semester . '&&PersonnelTypeCode=' . $PersonnelTypeCode . '&&PositionCode=' . $PositionCode . '&&ShowDetail='));
+    }
+
+    //Delete Data Form teacher_certificate
+    public function delete_teacher_certificate($TeacherID, $SchoolID, $EducationYear, $Semester, $PersonnelTypeCode, $PositionCode, $CertificateCode)
+    {
+        $this->forms_teacher->delete_teacher_certificate($TeacherID, $SchoolID, $CertificateCode);
+        $_SESSION['success'] = "ลบข้อมูลเรียบร้อย";
+        redirect(base_url('teacher-certificate?SchoolID=' . $SchoolID . '&&TeacherID=' . $TeacherID . '&&EducationYear=' . $EducationYear . '&&Semester=' . $Semester . '&&PersonnelTypeCode=' . $PersonnelTypeCode . '&&PositionCode=' . $PositionCode));
+    }
+
+    ////////////////////////////teacher_certificate-END//////////////////////////////
+
+
+
+    ///////////////////////////////teacher position/////////////////////////////////
+    //PageEdit position
+    public function forms_teacher_position()
+    {
+
+        if (!file_exists(APPPATH . 'views/pages/forms/teacher/forms-teacher-position.php')) {
+            //Whoops,wedon'thaveapageforthat!
+            show_404();
+        }
+
+        $data['title'] = 'Forms Teacher-select'; //Capitalizethefirstletter
+
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/sidebar', $data);
+        $this->load->view('pages/forms/teacher/forms-teacher-position', $data);
+        $this->load->view('templates/footer', $data);
+    }
+
+    public function edit_teacher_position()
+    {
+
+        if (!file_exists(APPPATH . 'views/pages/forms/teacher/edit-forms-teacher-position.php')) {
+            //Whoops,wedon'thaveapageforthat!
+            show_404();
+        }
+
+        $data['title'] = 'Forms Teacher-select'; //Capitalizethefirstletter
+
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/sidebar', $data);
+        $this->load->view('pages/forms/teacher/edit-forms-teacher-position', $data);
+        $this->load->view('templates/footer', $data);
+    }
+
+    //Add_teacher_position
+    public function add_teacher_position($TeacherID, $SchoolID, $EducationYear, $Semester, $PersonnelTypeCode, $PositionCode)
+    {
+        $this->forms_teacher->add_teacher_position($TeacherID, $SchoolID);
+        $_SESSION['success'] = "บันทึกข้อมูลเรียบร้อย";
+        redirect(base_url('teacher-position?SchoolID=' . $SchoolID . '&&TeacherID=' . $TeacherID . '&&EducationYear=' . $EducationYear . '&&Semester=' . $Semester . '&&PersonnelTypeCode=' . $PersonnelTypeCode . '&&PositionCode=' . $PositionCode . '&&ShowDetail='));
+    }
+
+    //update_teacherr_position
+    public function update_teacher_position($TeacherID, $SchoolID, $EducationYear, $Semester, $PersonnelTypeCode, $PositionCode, $AdditionalDepartmentCode)
+    {
+        $this->forms_teacher->update_teacher_position($TeacherID, $SchoolID, $AdditionalDepartmentCode);
+        $_SESSION['success'] = "บันทึกข้อมูลเรียบร้อย";
+        redirect(base_url('teacher-position?SchoolID=' . $SchoolID . '&&TeacherID=' . $TeacherID . '&&EducationYear=' . $EducationYear . '&&Semester=' . $Semester . '&&PersonnelTypeCode=' . $PersonnelTypeCode . '&&PositionCode=' . $PositionCode . '&&ShowDetail='));
+    }
+
+    //Delete Data Form teacher_position
+    public function delete_teacher_position($TeacherID, $SchoolID, $EducationYear, $Semester, $PersonnelTypeCode, $PositionCode, $AdditionalDepartmentCode)
+    {
+        $this->forms_teacher->delete_teacher_position($TeacherID, $SchoolID, $AdditionalDepartmentCode);
+        $_SESSION['success'] = "ลบข้อมูลเรียบร้อย";
+        redirect(base_url('teacher-position?SchoolID=' . $SchoolID . '&&TeacherID=' . $TeacherID . '&&EducationYear=' . $EducationYear . '&&Semester=' . $Semester . '&&PersonnelTypeCode=' . $PersonnelTypeCode . '&&PositionCode=' . $PositionCode));
+    }
+
+    ////////////////////////////teacher_position-END//////////////////////////////
+
+
+    ///////////////////////////////teacher Assistance/////////////////////////////////
+    //PageEdit assistance
+    public function forms_teacher_assistance()
+    {
+
+        if (!file_exists(APPPATH . 'views/pages/forms/teacher/forms-teacher-assistance.php')) {
+            //Whoops,wedon'thaveapageforthat!
+            show_404();
+        }
+
+        $data['title'] = 'Forms Teacher-select'; //Capitalizethefirstletter
+
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/sidebar', $data);
+        $this->load->view('pages/forms/teacher/forms-teacher-assistance', $data);
+        $this->load->view('templates/footer', $data);
+    }
+
+    public function edit_teacher_assistance()
+    {
+
+        if (!file_exists(APPPATH . 'views/pages/forms/teacher/edit-forms-teacher-assistance.php')) {
+            //Whoops,wedon'thaveapageforthat!
+            show_404();
+        }
+
+        $data['title'] = 'Forms Teacher-select'; //Capitalizethefirstletter
+
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/sidebar', $data);
+        $this->load->view('pages/forms/teacher/edit-forms-teacher-assistance', $data);
+        $this->load->view('templates/footer', $data);
+    }
+
+    //Add_teacher_assistance
+    public function add_teacher_assistance($TeacherID, $SchoolID, $EducationYear, $Semester, $PersonnelTypeCode, $PositionCode)
+    {
+        $this->forms_teacher->add_teacher_assistance($TeacherID, $SchoolID);
+        $_SESSION['success'] = "บันทึกข้อมูลเรียบร้อย";
+        redirect(base_url('teacher-assistance?SchoolID=' . $SchoolID . '&&TeacherID=' . $TeacherID . '&&EducationYear=' . $EducationYear . '&&Semester=' . $Semester . '&&PersonnelTypeCode=' . $PersonnelTypeCode . '&&PositionCode=' . $PositionCode . '&&ShowDetail='));
+    }
+
+    //update_teacherr_assistance
+    public function update_teacher_assistance($TeacherID, $SchoolID, $EducationYear, $Semester, $PersonnelTypeCode, $PositionCode, $AssistanceTypeCode)
+    {
+        $this->forms_teacher->update_teacher_assistance($TeacherID, $SchoolID, $AssistanceTypeCode);
+        $_SESSION['success'] = "บันทึกข้อมูลเรียบร้อย";
+        redirect(base_url('teacher-assistance?SchoolID=' . $SchoolID . '&&TeacherID=' . $TeacherID . '&&EducationYear=' . $EducationYear . '&&Semester=' . $Semester . '&&PersonnelTypeCode=' . $PersonnelTypeCode . '&&PositionCode=' . $PositionCode . '&&ShowDetail='));
+    }
+
+    //Delete Data Form teacher_assistance
+    public function delete_teacher_assistance($TeacherID, $SchoolID, $EducationYear, $Semester, $PersonnelTypeCode, $PositionCode, $AssistanceTypeCode)
+    {
+        $this->forms_teacher->delete_teacher_assistance($TeacherID, $SchoolID, $AssistanceTypeCode);
+        $_SESSION['success'] = "ลบข้อมูลเรียบร้อย";
+        redirect(base_url('teacher-assistance?SchoolID=' . $SchoolID . '&&TeacherID=' . $TeacherID . '&&EducationYear=' . $EducationYear . '&&Semester=' . $Semester . '&&PersonnelTypeCode=' . $PersonnelTypeCode . '&&PositionCode=' . $PositionCode));
+    }
+
+    ////////////////////////////teacher_assistance-END//////////////////////////////
+
+    ///////////////////////////////teacher Academic/////////////////////////////////
+    //PageEdit assistance
+    public function forms_teacher_academic()
+    {
+
+        if (!file_exists(APPPATH . 'views/pages/forms/teacher/forms-teacher-academic.php')) {
+            //Whoops,wedon'thaveapageforthat!
+            show_404();
+        }
+
+        $data['title'] = 'Forms Teacher-academic'; //Capitalizethefirstletter
+
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/sidebar', $data);
+        $this->load->view('pages/forms/teacher/forms-teacher-academic', $data);
+        $this->load->view('templates/footer', $data);
+    }
+
+    public function edit_teacher_academic()
+    {
+
+        if (!file_exists(APPPATH . 'views/pages/forms/teacher/edit-forms-teacher-academic.php')) {
+            //Whoops,wedon'thaveapageforthat!
+            show_404();
+        }
+
+        $data['title'] = 'Forms Teacher-select'; //Capitalizethefirstletter
+
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/sidebar', $data);
+        $this->load->view('pages/forms/teacher/edit-forms-teacher-academic', $data);
+        $this->load->view('templates/footer', $data);
+    }
+
+    //Add_teacher_academic
+    public function add_teacher_academic($TeacherID, $SchoolID, $EducationYear, $Semester, $PersonnelTypeCode, $PositionCode)
+    {
+        $this->forms_teacher->add_teacher_academic($TeacherID, $SchoolID);
+        $_SESSION['success'] = "บันทึกข้อมูลเรียบร้อย";
+        redirect(base_url('teacher-academic?SchoolID=' . $SchoolID . '&&TeacherID=' . $TeacherID . '&&EducationYear=' . $EducationYear . '&&Semester=' . $Semester . '&&PersonnelTypeCode=' . $PersonnelTypeCode . '&&PositionCode=' . $PositionCode . '&&ShowDetail='));
+    }
+
+    //update_teacherr_academic
+    public function update_teacher_academic($TeacherID, $SchoolID, $EducationYear, $Semester, $PersonnelTypeCode, $PositionCode, $AcademicStandingCode)
+    {
+        $this->forms_teacher->update_teacher_academic($TeacherID, $SchoolID, $AcademicStandingCode);
+        $_SESSION['success'] = "บันทึกข้อมูลเรียบร้อย";
+        redirect(base_url('teacher-academic?SchoolID=' . $SchoolID . '&&TeacherID=' . $TeacherID . '&&EducationYear=' . $EducationYear . '&&Semester=' . $Semester . '&&PersonnelTypeCode=' . $PersonnelTypeCode . '&&PositionCode=' . $PositionCode . '&&ShowDetail='));
+    }
+
+    //Delete Data Form teacher_academic
+    public function delete_teacher_academic($TeacherID, $SchoolID, $EducationYear, $Semester, $PersonnelTypeCode, $PositionCode, $AcademicStandingCode)
+    {
+        $this->forms_teacher->delete_teacher_academic($TeacherID, $SchoolID, $AcademicStandingCode);
+        $_SESSION['success'] = "ลบข้อมูลเรียบร้อย";
+        redirect(base_url('teacher-academic?SchoolID=' . $SchoolID . '&&TeacherID=' . $TeacherID . '&&EducationYear=' . $EducationYear . '&&Semester=' . $Semester . '&&PersonnelTypeCode=' . $PersonnelTypeCode . '&&PositionCode=' . $PositionCode));
+    }
+
+    ////////////////////////////teacher_Academic-END//////////////////////////////
+
+    ///////////////////////////////teacher Education/////////////////////////////////
+    //PageEdit education
+    public function forms_teacher_education()
+    {
+
+        if (!file_exists(APPPATH . 'views/pages/forms/teacher/forms-teacher-education.php')) {
+            //Whoops,wedon'thaveapageforthat!
+            show_404();
+        }
+
+        $data['title'] = 'Forms Teacher-academic'; //Capitalizethefirstletter
+
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/sidebar', $data);
+        $this->load->view('pages/forms/teacher/forms-teacher-education', $data);
+        $this->load->view('templates/footer', $data);
+    }
+
+    public function edit_teacher_education()
+    {
+
+        if (!file_exists(APPPATH . 'views/pages/forms/teacher/edit-forms-teacher-education.php')) {
+            //Whoops,wedon'thaveapageforthat!
+            show_404();
+        }
+
+        $data['title'] = 'Forms Teacher-select'; //Capitalizethefirstletter
+
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/sidebar', $data);
+        $this->load->view('pages/forms/teacher/edit-forms-teacher-education', $data);
+        $this->load->view('templates/footer', $data);
+    }
+
+    //Add_teacher_education
+    public function add_teacher_education($TeacherID, $SchoolID, $EducationYear, $Semester, $PersonnelTypeCode, $PositionCode)
+    {
+        $this->forms_teacher->add_teacher_education($TeacherID, $SchoolID);
+        $_SESSION['success'] = "บันทึกข้อมูลเรียบร้อย";
+        redirect(base_url('teacher-education?SchoolID=' . $SchoolID . '&&TeacherID=' . $TeacherID . '&&EducationYear=' . $EducationYear . '&&Semester=' . $Semester . '&&PersonnelTypeCode=' . $PersonnelTypeCode . '&&PositionCode=' . $PositionCode . '&&ShowDetail='));
+    }
+
+    //update_teacher_education
+    public function update_teacher_education($TeacherID, $SchoolID, $EducationYear, $Semester, $PersonnelTypeCode, $PositionCode, $EducationDegreeCode)
+    {
+        $this->forms_teacher->update_teacher_education($TeacherID, $SchoolID, $EducationDegreeCode);
+        $_SESSION['success'] = "บันทึกข้อมูลเรียบร้อย";
+        redirect(base_url('teacher-education?SchoolID=' . $SchoolID . '&&TeacherID=' . $TeacherID . '&&EducationYear=' . $EducationYear . '&&Semester=' . $Semester . '&&PersonnelTypeCode=' . $PersonnelTypeCode . '&&PositionCode=' . $PositionCode . '&&ShowDetail='));
+    }
+
+    //Delete Data Form teacher_education
+    public function delete_teacher_education($TeacherID, $SchoolID, $EducationYear, $Semester, $PersonnelTypeCode, $PositionCode, $EducationDegreeCode)
+    {
+        $this->forms_teacher->delete_teacher_education($TeacherID, $SchoolID, $EducationDegreeCode);
+        $_SESSION['success'] = "ลบข้อมูลเรียบร้อย";
+        redirect(base_url('teacher-education?SchoolID=' . $SchoolID . '&&TeacherID=' . $TeacherID . '&&EducationYear=' . $EducationYear . '&&Semester=' . $Semester . '&&PersonnelTypeCode=' . $PersonnelTypeCode . '&&PositionCode=' . $PositionCode));
+    }
+
+    ////////////////////////////teacher_education-END//////////////////////////////
+
+    ///////////////////////////////teacher teaching/////////////////////////////////
+    //PageEdit teaching
+    public function forms_teacher_teaching()
+    {
+
+        if (!file_exists(APPPATH . 'views/pages/forms/teacher/forms-teacher-teaching.php')) {
+            //Whoops,wedon'thaveapageforthat!
+            show_404();
+        }
+
+        $data['title'] = 'Forms Teacher-academic'; //Capitalizethefirstletter
+
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/sidebar', $data);
+        $this->load->view('pages/forms/teacher/forms-teacher-teaching', $data);
+        $this->load->view('templates/footer', $data);
+    }
+
+    public function edit_teacher_teaching()
+    {
+
+        if (!file_exists(APPPATH . 'views/pages/forms/teacher/edit-forms-teacher-teaching.php')) {
+            //Whoops,wedon'thaveapageforthat!
+            show_404();
+        }
+
+        $data['title'] = 'Forms Teacher-select'; //Capitalizethefirstletter
+
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/sidebar', $data);
+        $this->load->view('pages/forms/teacher/edit-forms-teacher-teaching', $data);
+        $this->load->view('templates/footer', $data);
+    }
+
+    //Add_teacher_teaching
+    public function add_teacher_teaching($TeacherID, $SchoolID, $EducationYear, $Semester, $PersonnelTypeCode, $PositionCode)
+    {
+        $this->forms_teacher->add_teacher_teaching($TeacherID, $SchoolID);
+        $_SESSION['success'] = "บันทึกข้อมูลเรียบร้อย";
+        redirect(base_url('teacher-teaching?SchoolID=' . $SchoolID . '&&TeacherID=' . $TeacherID . '&&EducationYear=' . $EducationYear . '&&Semester=' . $Semester . '&&PersonnelTypeCode=' . $PersonnelTypeCode . '&&PositionCode=' . $PositionCode . '&&ShowDetail='));
+    }
+
+    //update_teacher_teaching
+    public function update_teacher_teaching($TeacherID, $SchoolID, $EducationYear, $Semester, $PersonnelTypeCode, $PositionCode, $TeachingEducationYear, $TeachingSemester, $TeachingSubjectCode)
+    {
+        $this->forms_teacher->update_teacher_teaching($TeacherID, $SchoolID, $TeachingEducationYear, $TeachingSemester, $TeachingSubjectCode);
+        $_SESSION['success'] = "บันทึกข้อมูลเรียบร้อย";
+        redirect(base_url('teacher-teaching?SchoolID=' . $SchoolID . '&&TeacherID=' . $TeacherID . '&&EducationYear=' . $EducationYear . '&&Semester=' . $Semester . '&&PersonnelTypeCode=' . $PersonnelTypeCode . '&&PositionCode=' . $PositionCode . '&&ShowDetail='));
+    }
+
+    //Delete Data Form teacher_teaching
+    public function delete_teacher_teaching($TeacherID, $SchoolID, $EducationYear, $Semester, $PersonnelTypeCode, $PositionCode, $TeachingEducationYear, $TeachingSemester, $TeachingSubjectCode)
+    {
+        $this->forms_teacher->delete_teacher_teaching($TeacherID, $SchoolID, $TeachingEducationYear, $TeachingSemester, $TeachingSubjectCode);
+        $_SESSION['success'] = "ลบข้อมูลเรียบร้อย";
+        redirect(base_url('teacher-teaching?SchoolID=' . $SchoolID . '&&TeacherID=' . $TeacherID . '&&EducationYear=' . $EducationYear . '&&Semester=' . $Semester . '&&PersonnelTypeCode=' . $PersonnelTypeCode . '&&PositionCode=' . $PositionCode));
+    }
+
+    ////////////////////////////teacher_teaching-END//////////////////////////////
+
+
 }

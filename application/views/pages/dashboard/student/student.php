@@ -83,7 +83,7 @@
                                 <th style="text-align: center;">ตราสัญลักษณ์</th>
                                 <th scope="col">ชื่อสถานศึกษา</th>
                                 <th scope="col">พื้นที่นวัตกรรม</th>
-                                <th style="text-align: center;" scope="col">ปฎิบัติ</th>
+                                <th style="text-align: center;" scope="col">รายละเอียด</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -129,7 +129,7 @@
                         <div class="col">
                             <?php if (isset($_GET['SchoolID'])) {
                             ?>
-                                <h5 style="float: right; padding: 15px;" class="card-title"><a href="forms-student?SchoolID=<?= $_GET['SchoolID'] ?>" class="btn btn-success">เพิ่มข้อมูล</a></h5>
+                                <h5 style="float: right; padding: 15px;" class="card-title"><a href="forms-student?SchoolID=<?= $_GET['SchoolID'] ?>" class="btn btn-success"> เพิ่มข้อมูล</a></h5>
                             <?php } ?>
                         </div>
                     </div>
@@ -181,7 +181,7 @@
                         <div class="col">
                             <?php if (isset($_GET['SchoolID'])) {
                             ?>
-                                <h5 style="float: right; padding: 15px;" class="card-title"><a href="forms-student-select?SchoolID=<?= $_GET['SchoolID'] ?>&&EducationYear=<?= $_GET['EducationYear'] ?>&&Semester=<?= $_GET['Semester'] ?>&&GradeLevelCode=<?= $_GET['GradeLevelCode'] ?>" class="btn btn-success">เพิ่มข้อมูล</a></h5>
+                                <h5 style="float: right; padding: 15px;" class="card-title"><a href="forms-student-select?SchoolID=<?= $_GET['SchoolID'] ?>&&EducationYear=<?= $_GET['EducationYear'] ?>&&Semester=<?= $_GET['Semester'] ?>&&GradeLevelCode=<?= $_GET['GradeLevelCode'] ?>" class="btn btn-success"><i class="bi bi-person-add"></i> เพิ่มข้อมูล</a></h5>
                             <?php } ?>
                         </div>
                     </div>
@@ -195,6 +195,7 @@
                                 <th scope="col">นามสกุล</th>
                                 <th scope="col">สถานภาพ</th>
                                 <th style="text-align: center;" scope="col">รายละเอียด</th>
+                                <th style="text-align: center;" scope="col">ปฎิบัติ</th>
                             </tr>
                         </thead>
 
@@ -216,7 +217,9 @@
                                     <td style="padding-top: 35px;"><?= $STUDENT->STUDENT_STATUS_NAME; ?></td>
                                     <td style="padding-top: 35px; text-align: center;">
                                         <a href="?SchoolID=<?= $STUDENT->SchoolID; ?>&&StudentReferenceID=<?= $STUDENT->StudentReferenceID ?>&&EducationYear=<?= $STUDENT->EducationYear; ?>&&Semester=<?= $STUDENT->Semester; ?>&&GradeLevelCode=<?= $STUDENT->GradeLevelCode; ?>&&ShowDetail=" class="btn btn-primary"><i class="bi bi-card-list"></i></a>
-                                        &nbsp;&nbsp;<button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#Delete<?= $STUDENT->StudentReferenceID; ?>"><i class=" bi bi-trash"></i></button>
+                                    </td>
+                                    <td style="padding-top: 35px; text-align: center;">
+                                        <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#Delete<?= $STUDENT->StudentReferenceID; ?>"><i class=" bi bi-trash"></i></button>
                                     </td>
                                 </tr>
                             <?php } ?>
@@ -232,7 +235,7 @@
                             <div class="row">
                                 <div class="col">
                                     <h3 class="card-title" style="padding-left: 25px;">
-                                        <i class="bi bi-card-list"></i> รายละเอียดข้อมูลนักเรียน &nbsp;&nbsp;
+                                        <i class="bi bi-card-list"></i> รายละเอียดข้อมูล &nbsp;&nbsp;
                                         <?php if (isset($_GET['SchoolID'])) { ?>
                                             <a href="?SchoolID=<?= $_GET['SchoolID'] ?>&&EducationYear=<?= $_GET['EducationYear'] ?>&&Semester=<?= $_GET['Semester'] ?>&&GradeLevelCode=<?= $_GET['GradeLevelCode'] ?>" class="btn btn-secondary btn-sm" data-mdb-ripple-color="dark">ย้อนกลับ</a>&nbsp;
                                         <?php } ?>
@@ -383,7 +386,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        
+
                                         <div class="card">
                                             <div class="card-body">
                                                 <div class="row">

@@ -120,7 +120,7 @@ class Student_model extends CI_Model
 
 
     //Update Student Main
-    public function update_student_main($StudentReferenceID)
+    public function update_student_main($StudentReferenceID, $SchoolID)
     {
 
         $config['file_name'] = 'ImageStudent_' . $_POST['StudentPersonalID'];
@@ -157,13 +157,13 @@ class Student_model extends CI_Model
 
         ];
 
-        $result = $this->db->where('StudentReferenceID', $StudentReferenceID)->update('STUDENT', $data);
+        $result = $this->db->where('StudentReferenceID', $StudentReferenceID)->where('SchoolID', $SchoolID)->update('STUDENT', $data);
         return $result;
     }
 
 
     //Update Student Person
-    public function update_student_person($StudentReferenceID)
+    public function update_student_person($StudentReferenceID, $SchoolID)
     {
 
         $data = [
@@ -184,13 +184,13 @@ class Student_model extends CI_Model
 
         ];
 
-        $result = $this->db->where('StudentReferenceID', $StudentReferenceID)->update('STUDENT', $data);
+        $result = $this->db->where('StudentReferenceID', $StudentReferenceID)->where('SchoolID', $SchoolID)->update('STUDENT', $data);
         return $result;
     }
 
 
     //Update Student Address
-    public function update_student_address($StudentReferenceID)
+    public function update_student_address($StudentReferenceID, $SchoolID)
     {
 
         $data = [
@@ -221,13 +221,13 @@ class Student_model extends CI_Model
 
         ];
 
-        $result = $this->db->where('StudentReferenceID', $StudentReferenceID)->update('STUDENT', $data);
+        $result = $this->db->where('StudentReferenceID', $StudentReferenceID)->where('SchoolID', $SchoolID)->update('STUDENT', $data);
         return $result;
     }
 
 
     //Update Student Parents
-    public function update_student_parents($StudentReferenceID)
+    public function update_student_parents($StudentReferenceID, $SchoolID)
     {
 
         $data = [
@@ -260,13 +260,13 @@ class Student_model extends CI_Model
 
         ];
 
-        $result = $this->db->where('StudentReferenceID', $StudentReferenceID)->update('STUDENT', $data);
+        $result = $this->db->where('StudentReferenceID', $StudentReferenceID)->where('SchoolID', $SchoolID)->update('STUDENT', $data);
         return $result;
     }
 
 
     //Update Student Family
-    public function update_student_family($StudentReferenceID)
+    public function update_student_family($StudentReferenceID, $SchoolID)
     {
 
         $data = [
@@ -294,13 +294,13 @@ class Student_model extends CI_Model
 
         ];
 
-        $result = $this->db->where('StudentReferenceID', $StudentReferenceID)->update('STUDENT', $data);
+        $result = $this->db->where('StudentReferenceID', $StudentReferenceID)->where('SchoolID', $SchoolID)->update('STUDENT', $data);
         return $result;
     }
 
 
     //Update Student Journey
-    public function update_student_journey($StudentReferenceID)
+    public function update_student_journey($StudentReferenceID, $SchoolID)
     {
 
         $data = [
@@ -319,13 +319,13 @@ class Student_model extends CI_Model
 
         ];
 
-        $result = $this->db->where('StudentReferenceID', $StudentReferenceID)->update('STUDENT', $data);
+        $result = $this->db->where('StudentReferenceID', $StudentReferenceID)->where('SchoolID', $SchoolID)->update('STUDENT', $data);
         return $result;
     }
 
 
     //Update Student Disadvantaged
-    public function update_student_disadvantaged($StudentReferenceID)
+    public function update_student_disadvantaged($StudentReferenceID, $SchoolID)
     {
 
         $data = [
@@ -345,12 +345,12 @@ class Student_model extends CI_Model
 
         ];
 
-        $result = $this->db->where('StudentReferenceID', $StudentReferenceID)->update('STUDENT', $data);
+        $result = $this->db->where('StudentReferenceID', $StudentReferenceID)->where('SchoolID', $SchoolID)->update('STUDENT', $data);
         return $result;
     }
 
     //Update Student Talent
-    public function update_student_talent($StudentReferenceID)
+    public function update_student_talent($StudentReferenceID, $SchoolID)
     {
 
         $data = [
@@ -360,7 +360,7 @@ class Student_model extends CI_Model
 
         ];
 
-        $result = $this->db->where('StudentReferenceID', $StudentReferenceID)->update('STUDENT', $data);
+        $result = $this->db->where('StudentReferenceID', $StudentReferenceID)->where('SchoolID', $SchoolID)->update('STUDENT', $data);
         return $result;
     }
 

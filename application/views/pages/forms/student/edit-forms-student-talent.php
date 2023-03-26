@@ -2,15 +2,23 @@
     <div class="pagetitle">
         <h1>แก้ไขข้อมูลรหัสนักเรียน
             <?php if (isset($_GET['StudentReferenceID'])) { ?>
-                -
                 <?php
-                $result = $this->db->query('SELECT *  FROM STUDENT WHERE StudentReferenceID = "' . $_GET['StudentReferenceID'] . '"');
+                $result = $this->db->query('SELECT *  FROM STUDENT 
+                INNER JOIN CLS_PREFIX ON STUDENT.StudentPrefixCode = CLS_PREFIX.PREFIX_CODE
+                WHERE StudentReferenceID = "' . $_GET['StudentReferenceID'] . '" AND SchoolID = ' . $_GET['SchoolID'] . '');
                 foreach ($result->result() as $STUDENT) {
-                    echo $STUDENT->StudentID;
-                }
+
+
+                    $result = $this->db->query('SELECT *  FROM SCHOOL WHERE SchoolID = ' . $_GET['SchoolID'] . '');
+                    foreach ($result->result() as $SCHOOL) {
+                        $SchoolName = $SCHOOL->SchoolNameThai;
+                    }
                 ?>
-            <?php } ?>
+
         </h1>
+        <a class="btn btn-light text-dark"><b><?= $SchoolName . ' - ' . $STUDENT->PREFIX_NAME . $STUDENT->StudentNameThai . ' ' . $STUDENT->StudentLastNameThai ?></b></a>
+<?php }
+            } ?>
     </div><!-- End Page Title -->
 
     <section class="section">
@@ -45,23 +53,23 @@
 
                             <div class="d-flex justify-content-between">
                                 <a href="student?SchoolID=<?= $STUDENT->SchoolID; ?>&&StudentReferenceID=<?= $STUDENT->StudentReferenceID ?>&&EducationYear=<?= $STUDENT->EducationYear; ?>&&Semester=<?= $STUDENT->Semester; ?>&&GradeLevelCode=<?= $STUDENT->GradeLevelCode; ?>&&ShowDetail=" class="btn btn-danger">ยกเลิก</a>
-                                <button type="button" class="btn btn-primary" onclick="return check(Student)">บันทึกข้อมูล</button>
+                                <button type="button" class="btn btn-warning" onclick="return check(Student)">แก้ไขข้อมูล</button>
                             </div>
                             <!-- Modal -->
                             <div class="modal fade" id="Modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
                                 <div class="modal-dialog modal-dialog-centered" role="document">
                                     <div class="modal-content">
                                         <div class="modal-header">
-                                            <h5 class="modal-title" id="exampleModalLongTitle">ยืนยันบันทึกข้อมูล</h5>
+                                            <h5 class="modal-title" id="exampleModalLongTitle">ยืนยันแก้ไขข้อมูล</h5>
                                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                         </div>
                                         <div class="modal-body">
                                             <h6>
-                                                <center>คุณต้องการบันทึกข้อมูลใช่หรือไหม ?</center>
+                                                <center>คุณต้องการแก้ไขข้อมูลใช่หรือไหม ?</center>
                                             </h6>
                                         </div>
                                         <div class="modal-footer">
-                                            <button type="submit" class="btn btn-primary">ยืนยัน</button>
+                                            <button type="submit" class="btn btn-warning">ยืนยัน</button>
                                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ยกเลิก</button>
                                         </div>
                                     </div>

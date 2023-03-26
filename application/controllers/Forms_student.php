@@ -91,7 +91,7 @@
         //update Data student Main
         public function update_student_main($StudentReferenceID, $SchoolID, $EducationYear, $Semester, $GradeLevelCode)
         {
-            $this->forms_student->update_student_main($StudentReferenceID);
+            $this->forms_student->update_student_main($StudentReferenceID, $SchoolID);
             $_SESSION['success'] = "บันทึกข้อมูลเรียบร้อย";
             redirect(base_url('student?StudentReferenceID=' . $StudentReferenceID . '&&SchoolID=' . $SchoolID . '&&EducationYear=' . $EducationYear . '&&Semester=' . $Semester . '&&GradeLevelCode=' . $GradeLevelCode . '&&ShowDetail='));
         }
@@ -119,7 +119,7 @@
         //update Data student person
         public function update_student_person($StudentReferenceID, $SchoolID, $EducationYear, $Semester, $GradeLevelCode)
         {
-            $this->forms_student->update_student_person($StudentReferenceID);
+            $this->forms_student->update_student_person($StudentReferenceID, $SchoolID);
             $_SESSION['success'] = "บันทึกข้อมูลเรียบร้อย";
             redirect(base_url('student?StudentReferenceID=' . $StudentReferenceID . '&&SchoolID=' . $SchoolID . '&&EducationYear=' . $EducationYear . '&&Semester=' . $Semester . '&&GradeLevelCode=' . $GradeLevelCode . '&&ShowDetail='));
         }
@@ -146,7 +146,7 @@
         //update Data student address
         public function update_student_address($StudentReferenceID, $SchoolID, $EducationYear, $Semester, $GradeLevelCode)
         {
-            $this->forms_student->update_student_address($StudentReferenceID);
+            $this->forms_student->update_student_address($StudentReferenceID, $SchoolID);
             $_SESSION['success'] = "บันทึกข้อมูลเรียบร้อย";
             redirect(base_url('student?StudentReferenceID=' . $StudentReferenceID . '&&SchoolID=' . $SchoolID . '&&EducationYear=' . $EducationYear . '&&Semester=' . $Semester . '&&GradeLevelCode=' . $GradeLevelCode . '&&ShowDetail='));
         }
@@ -173,7 +173,7 @@
         //update Data student parents
         public function update_student_parents($StudentReferenceID, $SchoolID, $EducationYear, $Semester, $GradeLevelCode)
         {
-            $this->forms_student->update_student_parents($StudentReferenceID);
+            $this->forms_student->update_student_parents($StudentReferenceID, $SchoolID);
             $_SESSION['success'] = "บันทึกข้อมูลเรียบร้อย";
             redirect(base_url('student?StudentReferenceID=' . $StudentReferenceID . '&&SchoolID=' . $SchoolID . '&&EducationYear=' . $EducationYear . '&&Semester=' . $Semester . '&&GradeLevelCode=' . $GradeLevelCode . '&&ShowDetail='));
         }
@@ -201,7 +201,7 @@
         //update Data student family
         public function update_student_family($StudentReferenceID, $SchoolID, $EducationYear, $Semester, $GradeLevelCode)
         {
-            $this->forms_student->update_student_family($StudentReferenceID);
+            $this->forms_student->update_student_family($StudentReferenceID, $SchoolID);
             $_SESSION['success'] = "บันทึกข้อมูลเรียบร้อย";
             redirect(base_url('student?StudentReferenceID=' . $StudentReferenceID . '&&SchoolID=' . $SchoolID . '&&EducationYear=' . $EducationYear . '&&Semester=' . $Semester . '&&GradeLevelCode=' . $GradeLevelCode . '&&ShowDetail='));
         }
@@ -228,7 +228,7 @@
         //update Data student journey
         public function update_student_journey($StudentReferenceID, $SchoolID, $EducationYear, $Semester, $GradeLevelCode)
         {
-            $this->forms_student->update_student_journey($StudentReferenceID);
+            $this->forms_student->update_student_journey($StudentReferenceID, $SchoolID);
             $_SESSION['success'] = "บันทึกข้อมูลเรียบร้อย";
             redirect(base_url('student?StudentReferenceID=' . $StudentReferenceID . '&&SchoolID=' . $SchoolID . '&&EducationYear=' . $EducationYear . '&&Semester=' . $Semester . '&&GradeLevelCode=' . $GradeLevelCode . '&&ShowDetail='));
         }
@@ -255,7 +255,7 @@
         //update Data student disadvantaged
         public function update_student_disadvantaged($StudentReferenceID, $SchoolID, $EducationYear, $Semester, $GradeLevelCode)
         {
-            $this->forms_student->update_student_disadvantaged($StudentReferenceID);
+            $this->forms_student->update_student_disadvantaged($StudentReferenceID, $SchoolID);
             $_SESSION['success'] = "บันทึกข้อมูลเรียบร้อย";
             redirect(base_url('student?StudentReferenceID=' . $StudentReferenceID . '&&SchoolID=' . $SchoolID . '&&EducationYear=' . $EducationYear . '&&Semester=' . $Semester . '&&GradeLevelCode=' . $GradeLevelCode . '&&ShowDetail='));
         }
@@ -283,7 +283,7 @@
         //update Data student talent
         public function update_student_talent($StudentReferenceID, $SchoolID, $EducationYear, $Semester, $GradeLevelCode)
         {
-            $this->forms_student->update_student_talent($StudentReferenceID);
+            $this->forms_student->update_student_talent($StudentReferenceID, $SchoolID);
             $_SESSION['success'] = "บันทึกข้อมูลเรียบร้อย";
             redirect(base_url('student?StudentReferenceID=' . $StudentReferenceID . '&&SchoolID=' . $SchoolID . '&&EducationYear=' . $EducationYear . '&&Semester=' . $Semester . '&&GradeLevelCode=' . $GradeLevelCode . '&&ShowDetail='));
         }
