@@ -51,7 +51,7 @@
                         <div class="col">
                             <h1 class="card-title">
                                 <div class="dropdown">
-                                    <button class="btn btn-light dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <button class="btn btn-dark dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
                                         เลือกสถานศึกษา
                                     </button>
                                     <?php if (isset($_GET['SchoolID'])) { ?>
@@ -107,7 +107,7 @@
                         <div class="col">
                             <h1 class="card-title">
                                 <div class="dropdown">
-                                    <button class="btn btn-light dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <button class="btn btn-dark dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
                                         เลือกสถานศึกษา
                                     </button>
                                     <?php if (isset($_GET['SchoolID'])) { ?>
