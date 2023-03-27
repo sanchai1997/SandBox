@@ -813,22 +813,6 @@ class CurriculumController extends CI_Controller{
                 redirect(base_url('forms-curriculum_activity?pid='. $PLAN_ID.'&&sid='. $SubjectCode.'&&cid='. $CurriculumID));
             }
            
-    
-           
-        
-
-        
-
-        
-       
-
-        
-
-        
-    
-
-      
-
     }
     public function delete_curriculum_activity ($PLAN_ID,$ACTIVITY_ID){
 
@@ -959,8 +943,20 @@ class CurriculumController extends CI_Controller{
     }
     
     
-
     
+    public function forms_eportfolio() {
+        
+        if ( ! file_exists(APPPATH.'views/pages/forms/Curriculum/forms-eportfolio.php'))
+        {
+            show_404();
+        }
+      
+        $this->load->view('templates/header');
+        $this->load->view('templates/sidebar');
+        $this->load->view('pages/forms/Curriculum/forms-eportfolio');
+        $this->load->view('templates/footer');
+
+    }
 
 
 }

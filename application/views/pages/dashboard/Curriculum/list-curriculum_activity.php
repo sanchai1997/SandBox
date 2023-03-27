@@ -38,6 +38,9 @@
                     <div class="col">
                         <h5 style="float: right; padding: 15px;" class="card-title"><a href="forms-curriculum_activity?pid=<?php echo $PLAN_ID; ?>&&sid=<?php echo $SubjectCode; ?>&&cid=<?php echo $CurriculumID; ?>" class="btn btn-success">เพิ่มข้อมูล</a></h5>
                     </div>
+                    <div class="col">
+                        <h5 style="float: right; padding: 15px;" class="card-title"><a href="forms_eportfolio" class="btn btn-success">เพิ่มข้อมูล post</a></h5>
+                    </div>
                 </div>
                 <table class="table table-borderless datatable">
                     <thead>
