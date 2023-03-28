@@ -377,4 +377,13 @@ class Student_model extends CI_Model
         $result = $this->db->where('StudentReferenceID ', $StudentReferenceID)->update('STUDENT', $data);
         return $result;
     }
+    public function get_STUDENT_All()
+    {
+        $this->db->from('STUDENT')
+            ->where('DeleteStatus', 0);
+        $query = $this->db->get();
+        return $query->result();
+    }
+
+    
 }

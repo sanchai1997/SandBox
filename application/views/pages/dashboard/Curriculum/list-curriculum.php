@@ -64,7 +64,7 @@
                             <th style="text-align: center;" scope="col">ปีการศึกษา</th>
                             <th style="text-align: center;" scope="col">ภาคเรียน</th>
                             <th style="text-align: center;" scope="col">ชื่อหลักสูตร</th>
-                            <th style="text-align: center;" scope="col">รายวิชา</th>
+                            <th style="text-align: center;" scope="col">รายละเอียด</th>
                             <th style="text-align: center;" scope="col">ปฎิบัติ</th>
 
 

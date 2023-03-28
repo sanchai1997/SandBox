@@ -46,7 +46,7 @@
                             <th style="text-align: center;" scope="col">ปีการศึกษา</th>
                             <th style="text-align: center;" scope="col">ภาคเรียน</th>
                             <th style="text-align: center;" scope="col">เรื่อง</th>
-                            <th style="text-align: center;" scope="col">กิจกกรม</th>
+                            <th style="text-align: center;" scope="col">รายละเอียด</th>
                             <th style="text-align: center;" scope="col">ปฎิบัติ</th>
                         </tr>
                     </thead>
@@ -54,7 +54,14 @@
                         <?php foreach($listcurriculum_plan as $lcp){ ?>
                             <tr>
                                 <th style="text-align: center;" scope="col"><?php echo $lcp->EDUCATION_YEAR  ?></th>
-                                <th style="text-align: center;" scope="col"><?php echo $lcp->SEMESTER?></th>
+                                <th style="text-align: center;" scope="col">
+                                    <?php
+                                        $Semester_code = $lcp->SEMESTER;
+                                        if ($Semester_code == 0) echo "ตลอดปีการศึกษา";
+                                        else if ($Semester_code == 1) echo "ภาคเรียนที่ 1";
+                                        else if ($Semester_code == 2) echo "ภาคเรียนที่ 2";
+                                    ?>
+                                </th>
                                 <th style="text-align: center;" scope="col"><?php echo $lcp->PLAN_NAME?></th>
                                 <td style="text-align: center;">
                                     <a href='list-curriculum_activity?pid=<?php echo $lcp->PLAN_ID; ?>&&sid=<?php echo $SubjectCode; ?>&&cid=<?php echo $CurriculumID; ?>'>

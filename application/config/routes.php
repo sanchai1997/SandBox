@@ -19,6 +19,7 @@ $route['add_curriculum']['post'] = 'CurriculumController/add_curriculum';
 $route['edit_forms-curriculum'] = 'CurriculumController/forms_edit_curriculum';
 $route['edit_curriculum']['post'] = 'CurriculumController/edit_curriculum';
 $route['delete-curriculum/(:num)'] = 'CurriculumController/delete_curriculum/$1';
+$route['list_curriculum_by_school'] = 'CurriculumController/list_curriculum_by_school';
 //Curriculum_subject
 $route['list-curriculum_subject'] = 'CurriculumController/list_curriculum_subject';
 $route['forms-curriculum_subject'] = 'CurriculumController/forms_curriculum_subject';
@@ -40,6 +41,35 @@ $route['forms-curriculum_plan'] = 'CurriculumController/forms_curriculum_plan';
 $route['list_curriculum_by_school'] = 'CurriculumController/list_curriculum_by_school';
 //Curriculum_by_school
 $route['forms-curriculum_activity'] = 'CurriculumController/forms_curriculum_activity';
+$route['add_curriculum_plan']['post'] = 'CurriculumController/add_curriculum_plan';
+$route['edit_forms_curriculum_plan'] = 'CurriculumController/forms_edit_curriculum_plan';
+$route['edit_curriculum_plan']['post'] = 'CurriculumController/edit_curriculum_plan';
+$route['delete-curriculum_plan/(:num)/(:num)/(:num)'] = 'CurriculumController/delete_curriculum_plan/$1/$2/$3';
+//Curriculum_activity
+$route['list-curriculum_activity'] = 'CurriculumController/list_curriculum_activity';
+$route['forms-curriculum_activity'] = 'CurriculumController/forms_curriculum_activity';
+$route['add_curriculum_activity']['post'] = 'CurriculumController/add_curriculum_activity';
+$route['edit_forms-curriculum_activity'] = 'CurriculumController/edit_forms_curriculum_activity';
+$route['edit_curriculum_activity']['post'] = 'CurriculumController/edit_curriculum_activity';
+$route['delete-curriculum_activity/(:num)/(:num)'] = 'CurriculumController/delete_curriculum_activity/$1/$2';
+//curriculum_assessment
+$route['forms-curriculum_assessment'] = 'CurriculumController/forms_curriculum_assessment';
+$route['add_curriculum_assessment']['post'] = 'CurriculumController/add_curriculum_assessment';
+$route['list_curriculum_assignment'] = 'CurriculumController/list_curriculum_assignment';
+$route['edit_forms-curriculum_assessment'] = 'CurriculumController/edit_forms_curriculum_assessment';
+//eportfolio
+$route['list-eportfolio'] = 'CurriculumController/list_eportfolio';
+$route['forms_eportfolio'] = 'CurriculumController/forms_eportfolio';
+$route['add_eportfolio'] = 'CurriculumController/add_eportfolio';
+$route['edit_forms_eportfolio'] = 'CurriculumController/edit_forms_eportfolio';
+$route['edit_eportfolio']['post'] = 'CurriculumController/edit_eportfolio';
+$route['delete-eportfolio/(:num)'] = 'CurriculumController/delete_eportfolio/$1';
+
+
+
+
+
+
 //teacher_developmant_activity
 $route['list-teacher_development_activity'] = 'Teacher_development_activity_controller/list_teacher_development_activity';
 $route['forms-teacher_development_activity'] = 'Teacher_development_activity_controller/forms';
