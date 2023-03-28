@@ -34,7 +34,7 @@
                 <div class="col-md-16">
                   <div class="form-floating">
                     <input type="text" class="form-control"name="DevelopmentActivityEducationYear"id="DevelopmentActivityEducationYear" placeholder="ปีการศึกษา" maxlength="4">
-                    <label >ปีการศึกษา</label>
+                    <label >ปีการศึกษา<font color="red"> *</font></label>
                   </div>
                 </div>
 
@@ -46,7 +46,7 @@
                       <option value="1">ภาคเรียนที่ 1</option>
                       <option value="2">ภาคเรียนที่ 2</option>
                     </select>
-                    <label>ภาคเรียนที่ทำกิจกรรม</label>
+                    <label>ภาคเรียนที่ทำกิจกรรม<font color="red"> *</font></label>
                   </div>
                 </div>
                 
@@ -59,7 +59,7 @@
                           <option value="<?php echo $lt->TeacherID; ?>"><?php echo " (" . $lt->TeacherID . ") " . $lt->TeacherNameThai; ?></option>
                         <?php } ?>
                     </select>
-                    <label>ครูและบุคลากรทางการศึกษา</label>
+                    <label>ครูและบุคลากรทางการศึกษา<font color="red"> *</font></label>
                   </div>
                 </div>
 
@@ -71,55 +71,55 @@
                         <option value="<?php echo $lAT->TEACHER_DEVELOPMENT_ACTIVITY_TYPE_CODE; ?>"><?php echo $lAT->TEACHER_DEVELOPMENT_ACTIVITY_TYPE_NAME; ?></option>
                         <?php } ?>
                     </select>
-                    <label>ประเภทกิจกรรม</label>
+                    <label>ประเภทกิจกรรม<font color="red"> *</font></label>
                   </div>
                 </div>
 
                 <div class="col-md-16">
                   <div class="form-floating">
                     <input type="text" class="form-control"name="DevelopmentActivityName"id="DevelopmentActivityName" placeholder="ชื่อกิจกรรม">
-                    <label >ชื่อกิจกรรม</label>
+                    <label >ชื่อกิจกรรม<font color="red"> *</font></label>
                   </div>
                 </div>
 
                 <div class="col-md-16">
                   <div class="form-floating">
                     <input type="text" class="form-control"name="DevelopmentActivityHour"id="DevelopmentActivityHour" placeholder="จำนวนชั่วโมง" maxlength="3">
-                    <label >จำนวนชั่วโมง</label>
+                    <label >จำนวนชั่วโมง<font color="red"> *</font></label>
                   </div>
                 </div>
                 
                 <div class="col-md-16">
                   <div class="form-floating">
                     <input type="text" class="form-control"id="DevelopmentActivityPlace" name="DevelopmentActivityPlace" placeholder="สถานที่จัดกิจกรรม">
-                    <label >สถานที่จัดกิจกรรม</label>
+                    <label >สถานที่จัดกิจกรรม<font color="red"> *</font></label>
                   </div>
                 </div>
 
                 <div class="col-md-16">
                   <div class="form-floating">
                   <input type="text" class="form-control" name="Organizer"id="Organizer"placeholder="หน่วยงานที่จัดกิจกรรม">
-                    <label >หน่วยงานที่จัดกิจกรรม</label>
+                    <label >หน่วยงานที่จัดกิจกรรม<font color="red"> *</font></label>
                   </div>
                 </div>
 
                 <div class="col-md-6">
                   <div class="form-floating">
                     <input type="date" class="form-control" name="DevelopmentActivityStartDate"id="DevelopmentActivityStartDate">
-                    <label >วันที่เริ่มกิจกรรม</label>
+                    <label >วันที่เริ่มกิจกรรม<font color="red"> *</font></label>
                   </div>
                 </div>
 
                 <div class="col-md-6">
                   <div class="form-floating">
                     <input type="date" class="form-control"name="DevelopmentActivityEndDate"id="DevelopmentActivityEndDate">
-                    <label >วันที่สิ้นสุดกิจกรรม</label>
+                    <label >วันที่สิ้นสุดกิจกรรม<font color="red"> *</font></label>
                   </div>
                 </div>
 
                 <div class="col-md-16">
                     <div class="input-group">
-                        <label class="input-group-text" for="inputGroupFile01">เอกสารแนบ/เกียรติบัตร</label>
+                        <label class="input-group-text" for="inputGroupFile01">เอกสารแนบ/เกียรติบัตร<font color="red"> *</font></label>
                         <input type="file" class="form-control" name="DevelopmentDocument" id="DevelopmentDocument" placeholder="เอกสารแนบ/เกียรติบัตร">
                     </div>
                 </div>
