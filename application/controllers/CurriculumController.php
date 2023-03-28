@@ -764,7 +764,7 @@ class CurriculumController extends CI_Controller{
             $SCORE_TEACHER = $this->input->post('SCORE_TEACHER');
             $SCORE_PARENT  = $this->input->post('SCORE_PARENT');
             $SCORE_OTHER = $this->input->post('SCORE_OTHER');
-            $SCORE_SUM_TOTAL = (($SCORE_TEACHER+$SCORE_PARENT+$SCORE_OTHER)/100);
+            $SCORE_SUM_TOTAL = ($SCORE_TEACHER+$SCORE_PARENT+$SCORE_OTHER);
     
             $SCORE = [
                 'SCORE_TEACHER' =>  $SCORE_TEACHER,
@@ -912,7 +912,7 @@ class CurriculumController extends CI_Controller{
         $SCORE_TEACHER = $this->input->post('SCORE_TEACHER');
         $SCORE_PARENT  = $this->input->post('SCORE_PARENT');
         $SCORE_OTHER = $this->input->post('SCORE_OTHER');
-        $SCORE_SUM_TOTAL = (($SCORE_TEACHER+$SCORE_PARENT+$SCORE_OTHER)/100);
+        $SCORE_SUM_TOTAL = ($SCORE_TEACHER+$SCORE_PARENT+$SCORE_OTHER);
 
         $SCORE = [
             'SCORE_TEACHER' =>  $SCORE_TEACHER,
