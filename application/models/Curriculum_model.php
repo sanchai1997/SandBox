@@ -307,6 +307,11 @@ public function get_score($SCORE_ID) {
     $query = $this->db->get();
     return $query->result();
 }
+#######################eportfolio
+        public function insert_eportfolio($eportfolio) {
+        $result_eportfolio = $this->db->insert('EPORTFOLIO', $eportfolio);
+        return $result_eportfolio;
+    }
 
  
     

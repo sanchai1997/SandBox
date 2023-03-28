@@ -55,6 +55,9 @@ $route['list_curriculum_assignment'] = 'CurriculumController/list_curriculum_ass
 $route['edit_forms-curriculum_assessment'] = 'CurriculumController/edit_forms_curriculum_assessment';
 //eportfolio
 $route['forms_eportfolio'] = 'CurriculumController/forms_eportfolio';
+$route['add_eportfolio'] = 'CurriculumController/add_eportfolio';
+
+
 
 
 //teacher_developmant_activity

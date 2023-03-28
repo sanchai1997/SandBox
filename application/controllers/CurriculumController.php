@@ -10,6 +10,7 @@ class CurriculumController extends CI_Controller{
         $this->load->model('Curriculum_model');
         $this->load->model('School_model');
         $this->load->model('Code_model');
+        $this->load->model('Student_model');
     }
     public function do_upload($fileName , $field_name ) {
         $config['upload_path'] = APPPATH."documents/";  // โฟลเดอร์ ตำแหน่งเดียวกับ root ของโปรเจ็ค
@@ -950,14 +951,42 @@ class CurriculumController extends CI_Controller{
         {
             show_404();
         }
-      
+
+        $data['STUDENT'] = $this->Student_model->get_STUDENT_All();
+       
         $this->load->view('templates/header');
         $this->load->view('templates/sidebar');
-        $this->load->view('pages/forms/Curriculum/forms-eportfolio');
+        $this->load->view('pages/forms/Curriculum/forms-eportfolio',$data);
         $this->load->view('templates/footer');
 
     }
 
+    public function add_eportfolio() {
+
+        $eportfolio = [
+            'STUDENT_LIKE' => $this->input->post('STUDENT_LIKE'),
+            'STUDENT_NO' => $this->input->post('STUDENT_NO'),
+            'STUDENT_DREAM' => $this->input->post('STUDENT_DREAM'),
+            'STUDENT_HOPE' => $this->input->post('STUDENT_HOPE'),
+            'STUDENT_TARGET' => $this->input->post('STUDENT_TARGET'),
+            'STUDENT_LEARNING' => $this->input->post('STUDENT_LEARNING'),
+            'STUDENT_PROJECT' => $this->input->post('STUDENT_PROJECT'),
+            'STUDENT_GOODNESS' => $this->input->post('STUDENT_GOODNESS'),
+            'STUDENT_USEFULNESS' => $this->input->post('STUDENT_USEFULNESS'),
+            'STUDENT_PRIDE' => $this->input->post('STUDENT_PRIDE'),
+            'STUDENT_SUMMARY' => $this->input->post('STUDENT_SUMMARY'),
+        ];
+        $result_eportfolio = $this->Curriculum_model->insert_eportfolio($eportfolio);
+
+        if($result_eportfolio == 1 ){    
+            $this->session->set_flashdata('success',"บันทึกข้อมูลสำเร็จ");
+            show_error("success");
+        }else{
+            show_error("error");
+            
+        }
+
+    }
 
 }
 

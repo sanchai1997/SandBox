@@ -29,12 +29,24 @@
               <h5 class="card-title"></h5>
 
               <!-- start Form ข้อมูลกิจกรรม  -->
-              <form class="row g-3" action="<?php echo base_url('add_curriculum_activity');?>" method="POST" name="ACTIVITY" id="ACTIVITY" enctype="multipart/form-data"> 
+              <form class="row g-3" action="<?php echo base_url('add_eportfolio');?>" method="POST" name="ACTIVITY" id="ACTIVITY" enctype="multipart/form-data"> 
               
                 <div class="col-md-16">
                   <div class="form-floating">
                     <input type="text" class="form-control" name="STUDENT_LIKE" id="STUDENT_LIKE" placeholder="ความชอบ" maxlength="100">
                     <label >ความชอบ<font color="red"> *</font></label>
+                  </div>
+                </div>
+
+                <div class="col-md-16">
+                  <div class="form-floating">
+                    <select class="form-select" aria-label="Default select example" name="STUDENT_NO" id="STUDENT_NO">
+                      <option selected value="-1">เลือกหมายเลขประจำตัวนักเรียน</option>
+                      <?php foreach($STUDENT as $stu) { ?>
+                        <option value="<?php echo $stu->StudentReferenceID; ?>"><?php echo $stu->StudentReferenceID; ?></option>
+                      <?php } ?>
+                    </select>
+                    <label >หมายเลขประจำตัวนักเรียน<font color="red"> *</font></label>
                   </div>
                 </div>
 
@@ -142,10 +154,15 @@
       alert("กรุณากรอกความชอบ")
       return false;
    }
+   if(frm.STUDENT_NO.value==-1){
+      alert("กรุณาเลือกหมายเลขประจำตัวนักเรียน")
+      return false;
+   }
    if(frm.STUDENT_DREAM.value==""){
       alert("กรุณากรอกความฝัน")
       return false;
    }
+  
    if(frm.STUDENT_HOPE.value==""){
       alert("กรุณากรอกความหวัง")
       return false;
