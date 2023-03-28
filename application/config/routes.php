@@ -145,16 +145,80 @@ $route['delete-student/(:any)/(:num)/(:num)/(:num)/(:num)'] = 'forms_student/del
 
 ///////////////////// STUDENT - END /////////////////////////
 
+
+
 ////////////////////// ROUTE TEACHER ////////////////////////
 //TEACHER
-$route['teacher'] = 'teacher';
+$route['teacher'] = 'teacher/index';
 $route['forms-teacher'] = 'forms_teacher';
-$route['forms-teacher-P2'] = 'forms_teacher/teacher_P2';
-$route['add-teacher']['post'] = 'forms_teacher/add_teacher';
-$route['edit-forms-teacher'] = 'forms_teacher/edit_teacher';
-$route['update-teacher/(:any)'] = 'forms_teacher/update_teacher/$1';
-$route['delete-teacher/(:any)'] = 'forms_teacher/delete_teacher/$1';
+$route['forms-teacher-select'] = 'forms_teacher/forms_teacher_select';
+$route['add-teacher/(:num)']['post'] = 'forms_teacher/add_teacher/$1';
+$route['add-teacher-select/(:num)']['post'] = 'forms_teacher/add_teacher_select/$1';
+$route['edit-forms-teacher-main'] = 'forms_teacher/edit_forms_teacher_main';
+$route['edit-forms-teacher-person'] = 'forms_teacher/edit_forms_teacher_person';
+$route['edit-forms-teacher-marriage'] = 'forms_teacher/edit_forms_teacher_marriage';
+$route['edit-forms-teacher-address'] = 'forms_teacher/edit_forms_teacher_address';
+$route['edit-forms-teacher-contract'] = 'forms_teacher/edit_forms_teacher_contract';
+$route['edit-forms-teacher-talent'] = 'forms_teacher/edit_forms_teacher_talent';
+$route['update-teacher-main/(:any)/(:num)/(:num)/(:num)/(:num)/(:num)']['post'] = 'forms_teacher/update_teacher_main/$1/$2/$3/$4/$5/$6';
+$route['update-teacher-person/(:any)/(:num)/(:num)/(:num)/(:num)/(:num)']['post'] = 'forms_teacher/update_teacher_person/$1/$2/$3/$4/$5/$6';
+$route['update-teacher-marriage/(:any)/(:num)/(:num)/(:num)/(:num)/(:num)']['post'] = 'forms_teacher/update_teacher_marriage/$1/$2/$3/$4/$5/$6';
+$route['update-teacher-address/(:any)/(:num)/(:num)/(:num)/(:num)/(:num)']['post'] = 'forms_teacher/update_teacher_address/$1/$2/$3/$4/$5/$6';
+$route['update-teacher-contract/(:any)/(:num)/(:num)/(:num)/(:num)/(:num)']['post'] = 'forms_teacher/update_teacher_contract/$1/$2/$3/$4/$5/$6';
+$route['update-teacher-talent/(:any)/(:num)/(:num)/(:num)/(:num)/(:num)']['post'] = 'forms_teacher/update_teacher_talent/$1/$2/$3/$4/$5/$6';
+$route['delete-teacher/(:any)/(:num)/(:num)/(:num)/(:num)/(:num)'] = 'forms_teacher/delete_teacher/$1/$2/$3/$4/$5/$6';
+
+
+//Certificate
+$route['teacher-certificate'] = 'teacher/teacher_certificate';
+$route['forms-teacher-certificate'] = 'forms_teacher/forms_teacher_certificate';
+$route['edit-forms-teacher-certificate'] = 'forms_teacher/edit_teacher_certificate';
+$route['add-teacher-certificate/(:any)/(:num)/(:num)/(:num)/(:num)/(:num)']['post'] = 'forms_teacher/add_teacher_certificate/$1/$2/$3/$4/$5/$6';
+$route['update-teacher-certificate/(:any)/(:num)/(:num)/(:num)/(:num)/(:num)/(:num)'] = 'forms_teacher/update_teacher_certificate/$1/$2/$3/$4/$5/$6/$7';
+$route['delete-teacher-certificate/(:any)/(:num)/(:num)/(:num)/(:num)/(:num)/(:num)'] = 'forms_teacher/delete_teacher_certificate/$1/$2/$3/$4/$5/$6/$7';
+
+//Position
+$route['teacher-position'] = 'teacher/teacher_position';
+$route['forms-teacher-position'] = 'forms_teacher/forms_teacher_position';
+$route['edit-forms-teacher-position'] = 'forms_teacher/edit_teacher_position';
+$route['add-teacher-position/(:any)/(:num)/(:num)/(:num)/(:num)/(:num)']['post'] = 'forms_teacher/add_teacher_position/$1/$2/$3/$4/$5/$6';
+$route['update-teacher-position/(:any)/(:num)/(:num)/(:num)/(:num)/(:num)/(:num)'] = 'forms_teacher/update_teacher_position/$1/$2/$3/$4/$5/$6/$7';
+$route['delete-teacher-position/(:any)/(:num)/(:num)/(:num)/(:num)/(:num)/(:num)'] = 'forms_teacher/delete_teacher_position/$1/$2/$3/$4/$5/$6/$7';
+
+//Assistance
+$route['teacher-assistance'] = 'teacher/teacher_assistance';
+$route['forms-teacher-assistance'] = 'forms_teacher/forms_teacher_assistance';
+$route['edit-forms-teacher-assistance'] = 'forms_teacher/edit_teacher_assistance';
+$route['add-teacher-assistance/(:any)/(:num)/(:num)/(:num)/(:num)/(:num)']['post'] = 'forms_teacher/add_teacher_assistance/$1/$2/$3/$4/$5/$6';
+$route['update-teacher-assistance/(:any)/(:num)/(:num)/(:num)/(:num)/(:num)/(:num)'] = 'forms_teacher/update_teacher_assistance/$1/$2/$3/$4/$5/$6/$7';
+$route['delete-teacher-assistance/(:any)/(:num)/(:num)/(:num)/(:num)/(:num)/(:num)'] = 'forms_teacher/delete_teacher_assistance/$1/$2/$3/$4/$5/$6/$7';
+
+//Academic
+$route['teacher-academic'] = 'teacher/teacher_academic';
+$route['forms-teacher-academic'] = 'forms_teacher/forms_teacher_academic';
+$route['edit-forms-teacher-academic'] = 'forms_teacher/edit_teacher_academic';
+$route['add-teacher-academic/(:any)/(:num)/(:num)/(:num)/(:num)/(:num)']['post'] = 'forms_teacher/add_teacher_academic/$1/$2/$3/$4/$5/$6';
+$route['update-teacher-academic/(:any)/(:num)/(:num)/(:num)/(:num)/(:num)/(:num)'] = 'forms_teacher/update_teacher_academic/$1/$2/$3/$4/$5/$6/$7';
+$route['delete-teacher-academic/(:any)/(:num)/(:num)/(:num)/(:num)/(:num)/(:num)'] = 'forms_teacher/delete_teacher_academic/$1/$2/$3/$4/$5/$6/$7';
+
+//Education
+$route['teacher-education'] = 'teacher/teacher_education';
+$route['forms-teacher-education'] = 'forms_teacher/forms_teacher_education';
+$route['edit-forms-teacher-education'] = 'forms_teacher/edit_teacher_education';
+$route['add-teacher-education/(:any)/(:num)/(:num)/(:num)/(:num)/(:num)']['post'] = 'forms_teacher/add_teacher_education/$1/$2/$3/$4/$5/$6';
+$route['update-teacher-education/(:any)/(:num)/(:num)/(:num)/(:num)/(:num)/(:num)'] = 'forms_teacher/update_teacher_education/$1/$2/$3/$4/$5/$6/$7';
+$route['delete-teacher-education/(:any)/(:num)/(:num)/(:num)/(:num)/(:num)/(:num)'] = 'forms_teacher/delete_teacher_education/$1/$2/$3/$4/$5/$6/$7';
+
+//Teaching
+$route['teacher-teaching'] = 'teacher/teacher_teaching';
+$route['forms-teacher-teaching'] = 'forms_teacher/forms_teacher_teaching';
+$route['edit-forms-teacher-teaching'] = 'forms_teacher/edit_teacher_teaching';
+$route['add-teacher-teaching/(:any)/(:num)/(:num)/(:num)/(:num)/(:num)']['post'] = 'forms_teacher/add_teacher_teaching/$1/$2/$3/$4/$5/$6';
+$route['update-teacher-teaching/(:any)/(:num)/(:num)/(:num)/(:num)/(:num)/(:num)/(:num)/(:num)'] = 'forms_teacher/update_teacher_teaching/$1/$2/$3/$4/$5/$6/$7/$8/$9';
+$route['delete-teacher-teaching/(:any)/(:num)/(:num)/(:num)/(:num)/(:num)/(:num)/(:num)/(:num)'] = 'forms_teacher/delete_teacher_teaching/$1/$2/$3/$4/$5/$6/$7/$8/$9';
 ///////////////////// TEACHER - END /////////////////////////
+
+
 
 ////////////////////// ROUTE GRADUATED ////////////////////////
 //GRADUATED 

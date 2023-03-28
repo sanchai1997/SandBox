@@ -41,7 +41,7 @@
                         <div class="col">
                             <h1 class="card-title">
                                 <div class="dropdown">
-                                    <button class="btn btn-light dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <button class="btn btn-dark dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
                                         เลือกสถานศึกษา
                                     </button>
                                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
@@ -67,6 +67,7 @@
                                 <th style="text-align: center;">ตราสัญลักษณ์</th>
                                 <th scope="col">ชื่อสถานศึกษา</th>
                                 <th scope="col">พื้นที่นวัตกรรม</th>
+                                <th style="text-align: center;" scope="col">รายละเอียด</th>
                                 <th style="text-align: center;" scope="col">ปฎิบัติ</th>
                             </tr>
                         </thead>
@@ -79,9 +80,13 @@
                                     <td style="text-align: center;"><img src="./assets/img/school/<?= $SCHOOL->ImageSchool; ?>" alt="" width="90px" height="80px"></td>
                                     <td style="padding-top: 30px;"><?= $SCHOOL->SchoolNameThai; ?></td>
                                     <td style="padding-top: 30px;"><?= $SCHOOL->INNOVATION_AREA_NAME; ?></td>
-                                    <td style="padding-top: 30px; text-align: center;"><a href="?SchoolID=<?= $SCHOOL->SchoolID; ?>" class="btn btn-primary"><i class="bi bi-card-list"></i></a>
-                                        &nbsp;&nbsp;<button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#Delete<?= $SCHOOL->SchoolID; ?>"><i class=" bi bi-trash"></i></button>
+                                    <td style="padding-top: 30px; text-align: center;">
+                                        <a href="?SchoolID=<?= $SCHOOL->SchoolID; ?>" class="btn btn-primary"><i class="bi bi-card-list"></i></a>
                                     </td>
+                                    <td style="padding-top: 30px; text-align: center;">
+                                        <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#Delete<?= $SCHOOL->SchoolID; ?>"><i class=" bi bi-trash"></i></button>
+                                    </td>
+
                                 </tr>
                             <?php } ?>
 
@@ -477,30 +482,41 @@ WHERE SCHOOL.SchoolID = ' . $_GET['SchoolID'] . '
                                 <div class=" card">
                                     <div class="card-body">
                                         <h5 class="card-title">ข้อมูลรางวัล
-                                            <a style="float: right;" href="school-award?SchoolID=<?= $SCHOOL_DETAIL->SchoolID; ?>" class="btn btn-sm btn-warning"><i class="bi bi-pencil-square"></i></a>
+                                            <a style="float: right;" href="school-award?SchoolID=<?= $SCHOOL_DETAIL->SchoolID; ?>" class="btn btn-sm btn-info"><i class="bi bi-eye-fill"></i></a>
                                         </h5>
                                         <table class="table">
+                                            <thead>
+                                                <tr>
+                                                    <td class="col-2" scope="col">ปีที่ได้รับรางวัล</td>
+                                                    <td class="col-4" scope="col">ชื่อ</td>
+                                                    <td class="col-4" scope="col">แหล่งที่มา</td>
+                                                    <td scope="col">ระดับ</td>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
 
-                                            <?php
-                                            $result = $this->db->query('SELECT * 
+                                                <?php
+                                                $result = $this->db->query('SELECT * 
                                         FROM SCHOOL_AWARD 
                                         INNER JOIN SCHOOL ON SCHOOL_AWARD.SchoolID = SCHOOL.SchoolID
                                         INNER JOIN CLS_AWARD_LEVEL ON SCHOOL_AWARD.AwardLevelCode = CLS_AWARD_LEVEL.AWARD_LEVEL_CODE
                                         WHERE SCHOOL_AWARD.DeleteStatus = 0 AND SCHOOL_AWARD.SchoolID = ' . $SCHOOL_DETAIL->SchoolID . '
                                         ');
-                                            $Count = 0;
-                                            foreach ($result->result() as $AWARD) {
-                                                $Count += 1;
-                                                if ($Count == 0) {
-                                                    echo '- ไม่พบข้อมูล -';
-                                                } else {
-                                            ?>
-                                                    <label style="padding-left: 20px;">ปีที่ได้รับรางวัล : <?= $AWARD->AwardYear; ?></label>
-                                                    <label style="padding-left: 10px;">ชื่อ : <?= $AWARD->AwardName; ?></label>
-                                                    <label style="padding-left: 10px;">แหล่งที่มา : <?= $AWARD->AwardSource; ?></label>
-                                                    <label style="padding-left: 10px;"><?= $AWARD->AWARD_LEVEL_NAME; ?></label><br>
-                                            <?php }
-                                            } ?>
+                                                $Count = 0;
+                                                foreach ($result->result() as $AWARD) {
+                                                    $Count += 1;
+                                                    if ($Count == 0) {
+                                                        echo '- ไม่พบข้อมูล -';
+                                                    } else {
+                                                ?>
+                                                        <tr>
+                                                            <td><?= $AWARD->AwardYear; ?></td>
+                                                            <td><?= $AWARD->AwardName; ?></td>
+                                                            <td><?= $AWARD->AwardSource; ?></td>
+                                                            <td><?= $AWARD->AWARD_LEVEL_NAME; ?></td>
+                                                        </tr>
+                                                <?php }
+                                                } ?>
                                             </tbody>
                                         </table>
                                     </div>
@@ -513,28 +529,37 @@ WHERE SCHOOL.SchoolID = ' . $_GET['SchoolID'] . '
                                 <div class=" card">
                                     <div class="card-body">
                                         <h5 class="card-title">ข้อมูลห้องเรียน
-                                            <a style="float: right;" href="school-classroom?SchoolID=<?= $SCHOOL_DETAIL->SchoolID; ?>" class="btn btn-sm btn-warning"><i class="bi bi-pencil-square"></i></a>
+                                            <a style="float: right;" href="school-classroom?SchoolID=<?= $SCHOOL_DETAIL->SchoolID; ?>" class="btn btn-sm btn-info"><i class="bi bi-eye-fill"></i></a>
                                         </h5>
                                         <table class="table">
+                                            <thead>
+                                                <tr>
+                                                    <td scope="col">ชื่อระดับชั้น</td>
+                                                    <td scope="col">จำนวนห้อง</td>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
 
-                                            <?php
-                                            $result = $this->db->query('SELECT * 
+                                                <?php
+                                                $result = $this->db->query('SELECT * 
                                         FROM SCHOOL_CLASSROOM 
                                         INNER JOIN SCHOOL ON SCHOOL_CLASSROOM.SchoolID = SCHOOL.SchoolID 
                                         INNER JOIN CLS_GRADE_LEVEL ON SCHOOL_CLASSROOM.ClassroomGradeLevelCode  = CLS_GRADE_LEVEL.GRADE_LEVEL_CODE 
                                         WHERE SCHOOL_CLASSROOM.DeleteStatus = 0 AND SCHOOL_CLASSROOM.SchoolID = ' . $SCHOOL_DETAIL->SchoolID . '
                                         ');
-                                            $Count = 0;
-                                            foreach ($result->result() as $CLASSROOM) {
-                                                $Count += 1;
-                                                if ($Count == 0) {
-                                                    echo '- ไม่พบข้อมูล -';
-                                                } else {
-                                            ?>
-                                                    <label style="padding-left: 20px;">ชื่อระดับชั้น : <?= $CLASSROOM->GRADE_LEVEL_NAME; ?></label>
-                                                    <label style="padding-left: 10px;">จำนวน <?= $CLASSROOM->ClassroomAmount; ?> ห้อง</label><br>
-                                            <?php }
-                                            } ?>
+                                                $Count = 0;
+                                                foreach ($result->result() as $CLASSROOM) {
+                                                    $Count += 1;
+                                                    if ($Count == 0) {
+                                                        echo '- ไม่พบข้อมูล -';
+                                                    } else {
+                                                ?>
+                                                        <tr>
+                                                            <td><?= $CLASSROOM->GRADE_LEVEL_NAME; ?></td>
+                                                            <td><?= $CLASSROOM->ClassroomAmount; ?></td>
+                                                        </tr>
+                                                <?php }
+                                                } ?>
                                             </tbody>
                                         </table>
                                     </div>
@@ -547,32 +572,39 @@ WHERE SCHOOL.SchoolID = ' . $_GET['SchoolID'] . '
                                 <div class=" card">
                                     <div class="card-body">
                                         <h5 class="card-title">ข้อมูลอาคาร
-                                            <a style="float: right;" href="school-building?SchoolID=<?= $SCHOOL_DETAIL->SchoolID; ?>" class="btn btn-sm btn-warning"><i class="bi bi-pencil-square"></i></a>
+                                            <a style="float: right;" href="school-building?SchoolID=<?= $SCHOOL_DETAIL->SchoolID; ?>" class="btn btn-sm btn-info"><i class="bi bi-eye-fill"></i></a>
                                         </h5>
                                         <table class="table">
-
-                                            <?php
-                                            $result = $this->db->query('SELECT * 
+                                            <thead>
+                                                <tr>
+                                                    <td class="col-4" scope="col">ชื่ออาคาร</td>
+                                                    <td class="col-4" scope="col">ประเภท</td>
+                                                    <td class="col-4" scope="col">วันที่เริ่มก่อสร้าง</td>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <?php
+                                                $result = $this->db->query('SELECT * 
                                         FROM SCHOOL_BUILDING 
                                         INNER JOIN SCHOOL ON SCHOOL_BUILDING.SchoolID = SCHOOL.SchoolID 
                                         INNER JOIN CLS_BUILDING_TYPE ON SCHOOL_BUILDING.BuildingTypeCode  = CLS_BUILDING_TYPE.BUILDING_TYPE_CODE 
                                         INNER JOIN CLS_BUILDING_DESIGN ON SCHOOL_BUILDING.BuildingDesignCode  = CLS_BUILDING_DESIGN.BUILDING_DESIGN_CODE 
                                         WHERE SCHOOL_BUILDING.DeleteStatus = 0 AND SCHOOL_BUILDING.SchoolID = ' . $SCHOOL_DETAIL->SchoolID . '
                                         ');
-                                            $Count = 0;
-                                            foreach ($result->result() as $SCHOOL_BUILDING) {
-                                                $Count += 1;
-                                                if ($Count == 0) {
-                                                    echo '- ไม่พบข้อมูล -';
-                                                } else {
-                                            ?>
-                                                    <label style="padding-left: 20px;">ชื่ออาคาร : <?= $SCHOOL_BUILDING->BuildingName; ?></label>
-                                                    <label style="padding-left: 10px;">ประเภท : <?= $SCHOOL_BUILDING->BUILDING_TYPE_NAME; ?></label>
-                                                    <label style="padding-left: 10px;">แบบ : <?= $SCHOOL_BUILDING->BUILDING_DESIGN_NAME; ?></label>
-                                                    <label style="padding-left: 10px;">มีจำนวนห้อง : <?= $SCHOOL_BUILDING->BuildingRoom; ?> ห้อง</label>
-                                                    <label style="padding-left: 10px;">วันที่เริ่มก่อสร้าง : <?= DateThai($SCHOOL_BUILDING->BuildingConstructionDate); ?></label>
-                                            <?php }
-                                            } ?>
+                                                $Count = 0;
+                                                foreach ($result->result() as $SCHOOL_BUILDING) {
+                                                    $Count += 1;
+                                                    if ($Count == 0) {
+                                                        echo '- ไม่พบข้อมูล -';
+                                                    } else {
+                                                ?>
+                                                        <tr>
+                                                            <td><?= $SCHOOL_BUILDING->BuildingName; ?></td>
+                                                            <td><?= $SCHOOL_BUILDING->BUILDING_TYPE_NAME; ?></td>
+                                                            <td><?= DateThai($SCHOOL_BUILDING->BuildingConstructionDate); ?></td>
+                                                        </tr>
+                                                <?php }
+                                                } ?>
                                             </tbody>
                                         </table>
                                     </div>
