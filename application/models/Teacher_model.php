@@ -14,18 +14,24 @@ class Teacher_model extends CI_Model
     public function add_teacher($SchoolID)
     {
 
-        $config['file_name'] = 'ImageTeacher_' . $_POST['TeacherPersonalID'];
-        $config['upload_path'] = './assets/img/teacher/';
-        $config['allowed_types'] = 'doc|docx|pdf|jpg|png|xls|ppt|zip|xlsx';
+        $config['upload_path']          = 'assets/teacher/img/';
+        $config['allowed_types']        = 'gif|jpg|png';
+        $config['max_size']             = 50000;
+        $config['max_width']            = 3402;
+        $config['max_height']           = 1417;
+        $config['file_name']            = 'ImageTeacher_' . $_POST['TeacherPersonalID'];
 
         $this->load->library('upload', $config);
 
         if (!$this->upload->do_upload('ImageTeacher')) {
-            echo $this->upload->display_errors();
+            copy($config['upload_path'] . 'logoold.jpg', $config['upload_path'] . $config['file_name']);
+            echo str_replace("</p>", "", str_replace("<p>", "", $this->upload->display_errors()));
         } else {
-
-            $data = $this->upload->data();
+            echo 'อัพโหลดไฟล์เรียบร้อยแล้ว';
         }
+
+        $type = substr($_FILES['ImageTeacher']['name'], -4);
+        $new_name = 'ImageTeacher_' . $_POST['TeacherPersonalID'] . $type;
 
         $data = [
 
@@ -44,7 +50,7 @@ class Teacher_model extends CI_Model
             'PositionStartDate' => $this->input->post('PositionStartDate'),
             'PositionCode' => $this->input->post('PositionCode'),
             'PositionLevelCode' => $this->input->post('PositionLevelCode'),
-            'ImageTeacher' => $data['file_name'],
+            'ImageTeacher' => $new_name,
             'TeacherPersonalIDTypeCode' => $this->input->post('TeacherPersonalIDTypeCode'),
             'TeacherPersonalID' => $this->input->post('TeacherPersonalID'),
             'TeacherPassportNumber' => $this->input->post('TeacherPassportNumber'),
@@ -69,18 +75,24 @@ class Teacher_model extends CI_Model
     public function add_teacher_select($SchoolID, $EducationYear, $Semester, $PersonnelTypeCode, $PositionCode)
     {
 
-        $config['file_name'] = 'ImageTeacher_' . $_POST['TeacherPersonalID'];
-        $config['upload_path'] = './assets/img/teacher/';
-        $config['allowed_types'] = 'doc|docx|pdf|jpg|png|xls|ppt|zip|xlsx';
+        $config['upload_path']          = 'assets/teacher/img/';
+        $config['allowed_types']        = 'gif|jpg|png';
+        $config['max_size']             = 50000;
+        $config['max_width']            = 3402;
+        $config['max_height']           = 1417;
+        $config['file_name']            = 'ImageTeacher_' . $_POST['TeacherPersonalID'];
 
         $this->load->library('upload', $config);
 
         if (!$this->upload->do_upload('ImageTeacher')) {
-            echo $this->upload->display_errors();
+            copy($config['upload_path'] . 'logoold.jpg', $config['upload_path'] . $config['file_name']);
+            echo str_replace("</p>", "", str_replace("<p>", "", $this->upload->display_errors()));
         } else {
-
-            $data = $this->upload->data();
+            echo 'อัพโหลดไฟล์เรียบร้อยแล้ว';
         }
+
+        $type = substr($_FILES['ImageTeacher']['name'], -4);
+        $new_name = 'ImageTeacher_' . $_POST['TeacherPersonalID'] . $type;
 
         $data = [
 
@@ -99,7 +111,7 @@ class Teacher_model extends CI_Model
             'PositionStartDate' => $this->input->post('PositionStartDate'),
             'PositionCode' => $PositionCode,
             'PositionLevelCode' => $this->input->post('PositionLevelCode'),
-            'ImageTeacher' => $data['file_name'],
+            'ImageTeacher' => $new_name,
             'TeacherPersonalIDTypeCode' => $this->input->post('TeacherPersonalIDTypeCode'),
             'TeacherPersonalID' => $this->input->post('TeacherPersonalID'),
             'TeacherPassportNumber' => $this->input->post('TeacherPassportNumber'),
@@ -121,21 +133,27 @@ class Teacher_model extends CI_Model
 
 
     //Update Data Teacher MAIN
-    public function update_teacher_main($TeacherID, $SchoolID)
+    public function update_teacher_main($TeacherID, $SchoolID, $EducationYear, $Semester, $ImageTeacher)
     {
 
-        $config['file_name'] = 'ImageTeacher_' . $_POST['TeacherPersonalID'];
-        $config['upload_path'] = './assets/img/teacher/';
-        $config['allowed_types'] = 'doc|docx|pdf|jpg|png|xls|ppt|zip|xlsx';
-        $config['overwrite'] = TRUE;
+        $config['upload_path']          = 'assets/teacher/img/';
+        $config['allowed_types']        = 'gif|jpg|png';
+        $config['max_size']             = 50000;
+        $config['max_width']            = 3402;
+        $config['max_height']           = 1417;
+        $config['file_name']            = $ImageTeacher;
+
+        copy($config['upload_path'] . $config['file_name'], $config['upload_path'] . 'logoold.jpg');
+        unlink($config['upload_path'] . $config['file_name']);
 
         $this->load->library('upload', $config);
 
         if (!$this->upload->do_upload('ImageTeacher')) {
-            echo $this->upload->display_errors();
+            copy($config['upload_path'] . 'logoold.jpg', $config['upload_path'] . $config['file_name']);
+            echo str_replace("</p>", "", str_replace("<p>", "", $this->upload->display_errors()));
         } else {
-
-            $data = $this->upload->data();
+            unlink($config['upload_path'] . 'logoold.jpg');
+            echo 'อัพโหลดไฟล์เรียบร้อยแล้ว';
         }
 
         $data = [
@@ -161,12 +179,12 @@ class Teacher_model extends CI_Model
 
         ];
 
-        $result = $this->db->where('TeacherID', $TeacherID)->where('SchoolID', $SchoolID)->update('TEACHER', $data);
+        $result = $this->db->where('TeacherID', $TeacherID)->where('SchoolID', $SchoolID)->where('EducationYear', $EducationYear)->where('Semester', $Semester)->update('TEACHER', $data);
         return $result;
     }
 
     //Update Data Teacher Person
-    public function update_teacher_person($TeacherID, $SchoolID)
+    public function update_teacher_person($TeacherID, $SchoolID, $EducationYear, $Semester)
     {
         $data = [
 
@@ -180,12 +198,12 @@ class Teacher_model extends CI_Model
             'TeacherBloodCode' => $this->input->post('TeacherBloodCode')
         ];
 
-        $result = $this->db->where('TeacherID', $TeacherID)->where('SchoolID', $SchoolID)->update('TEACHER', $data);
+        $result = $this->db->where('TeacherID', $TeacherID)->where('SchoolID', $SchoolID)->where('EducationYear', $EducationYear)->where('Semester', $Semester)->update('TEACHER', $data);
         return $result;
     }
 
     //Update Data Teacher marriage
-    public function update_teacher_marriage($TeacherID, $SchoolID)
+    public function update_teacher_marriage($TeacherID, $SchoolID, $EducationYear, $Semester)
     {
         $data = [
 
@@ -199,13 +217,13 @@ class Teacher_model extends CI_Model
 
         ];
 
-        $result = $this->db->where('TeacherID', $TeacherID)->where('SchoolID', $SchoolID)->update('TEACHER', $data);
+        $result = $this->db->where('TeacherID', $TeacherID)->where('SchoolID', $SchoolID)->where('EducationYear', $EducationYear)->where('Semester', $Semester)->update('TEACHER', $data);
         return $result;
     }
 
 
     //Update Data Teacher Address
-    public function update_teacher_address($TeacherID, $SchoolID)
+    public function update_teacher_address($TeacherID, $SchoolID, $EducationYear, $Semester)
     {
         $data = [
 
@@ -238,12 +256,12 @@ class Teacher_model extends CI_Model
 
         ];
 
-        $result = $this->db->where('TeacherID', $TeacherID)->where('SchoolID', $SchoolID)->update('TEACHER', $data);
+        $result = $this->db->where('TeacherID', $TeacherID)->where('SchoolID', $SchoolID)->where('EducationYear', $EducationYear)->where('Semester', $Semester)->update('TEACHER', $data);
         return $result;
     }
 
     //Update Data Teacher Contract
-    public function update_teacher_contract($TeacherID, $SchoolID)
+    public function update_teacher_contract($TeacherID, $SchoolID, $EducationYear, $Semester)
     {
         $data = [
 
@@ -264,13 +282,13 @@ class Teacher_model extends CI_Model
 
         ];
 
-        $result = $this->db->where('TeacherID', $TeacherID)->where('SchoolID', $SchoolID)->update('TEACHER', $data);
+        $result = $this->db->where('TeacherID', $TeacherID)->where('SchoolID', $SchoolID)->where('EducationYear', $EducationYear)->where('Semester', $Semester)->update('TEACHER', $data);
         return $result;
     }
 
 
     //Update Data Teacher Talent
-    public function update_teacher_talent($TeacherID, $SchoolID)
+    public function update_teacher_talent($TeacherID, $SchoolID, $EducationYear, $Semester)
     {
         $data = [
 
@@ -279,12 +297,12 @@ class Teacher_model extends CI_Model
 
         ];
 
-        $result = $this->db->where('TeacherID', $TeacherID)->where('SchoolID', $SchoolID)->update('TEACHER', $data);
+        $result = $this->db->where('TeacherID', $TeacherID)->where('SchoolID', $SchoolID)->where('EducationYear', $EducationYear)->where('Semester', $Semester)->update('TEACHER', $data);
         return $result;
     }
 
     //Delete Data Form Teacher
-    public function delete_teacher($TeacherID)
+    public function delete_teacher($TeacherID, $SchoolID, $EducationYear, $Semester)
     {
         $data = [
 
@@ -292,7 +310,7 @@ class Teacher_model extends CI_Model
 
         ];
 
-        $result = $this->db->where('TeacherID ', $TeacherID)->update('TEACHER', $data);
+        $result = $this->db->where('TeacherID ', $TeacherID)->where('SchoolID', $SchoolID)->where('EducationYear', $EducationYear)->where('Semester', $Semester)->update('TEACHER', $data);
         return $result;
     }
 
@@ -316,7 +334,7 @@ class Teacher_model extends CI_Model
     }
 
     //Update Data Teacher Certificate
-    public function update_teacher_certificate($TeacherID, $SchoolID, $CertificateCode)
+    public function update_teacher_certificate($TeacherID, $SchoolID, $CertificateCode, $CertificateLicenseNumber)
     {
         $data = [
 
@@ -326,13 +344,13 @@ class Teacher_model extends CI_Model
 
         ];
 
-        $result = $this->db->where('TeacherID', $TeacherID)->where('SchoolID', $SchoolID)->where('CertificateCode', $CertificateCode)->update('TEACHER_CERTIFICATE', $data);
+        $result = $this->db->where('TeacherID', $TeacherID)->where('SchoolID', $SchoolID)->where('CertificateCode', $CertificateCode)->where('CertificateLicenseNumber ', $CertificateLicenseNumber)->update('TEACHER_CERTIFICATE', $data);
         return $result;
     }
 
 
     //Delete Data Form Teacher Certificate
-    public function delete_teacher_certificate($TeacherID, $SchoolID, $CertificateCode)
+    public function delete_teacher_certificate($TeacherID, $SchoolID, $CertificateCode, $CertificateLicenseNumber)
     {
         $data = [
 
@@ -340,7 +358,7 @@ class Teacher_model extends CI_Model
 
         ];
 
-        $result = $this->db->where('TeacherID ', $TeacherID)->where('SchoolID ', $SchoolID)->where('CertificateCode ', $CertificateCode)->update('TEACHER_CERTIFICATE', $data);
+        $result = $this->db->where('TeacherID ', $TeacherID)->where('SchoolID ', $SchoolID)->where('CertificateCode ', $CertificateCode)->where('CertificateLicenseNumber ', $CertificateLicenseNumber)->update('TEACHER_CERTIFICATE', $data);
         return $result;
     }
 
@@ -348,42 +366,139 @@ class Teacher_model extends CI_Model
     //ADD Data Teacher Position
     public function add_teacher_position($TeacherID, $SchoolID)
     {
-        $data = [
+        if ($_FILES['AdditionalDocumentURL']['name'] != "") {
 
-            'SchoolID' => $SchoolID,
-            'TeacherID' => $TeacherID,
-            'AdditionalPosition' => $this->input->post('AdditionalPosition'),
-            'AdditionalDepartmentCode' => $this->input->post('AdditionalDepartmentCode'),
-            'AdditionalDutyDate' => $this->input->post('AdditionalDutyDate'),
-            'AdditionalCommand' => $this->input->post('AdditionalCommand'),
-            'AdditionalComment' => $this->input->post('AdditionalComment'),
-            'AdditionalDocumentURL' => $this->input->post('AdditionalDocumentURL')
+            $config['upload_path']          = 'assets/teacher/document/';
+            $config['allowed_types']        = 'doc|pdf';
+            $config['max_size']             = 50000;
+            $config['file_name']            = 'Document_' . $SchoolID . $TeacherID . $_POST['AdditionalDepartmentCode'] . $_POST['AdditionalDutyDate'];
 
-        ];
+            $this->load->library('upload', $config);
 
-        $result = $this->db->insert('TEACHER_ADDITIONAL_POSITION', $data);
-        return $result;
+            if (!$this->upload->do_upload('AdditionalDocumentURL')) {
+                echo str_replace("</p>", "", str_replace("<p>", "", $this->upload->display_errors()));
+            } else {
+                echo 'อัพโหลดไฟล์เรียบร้อยแล้ว';
+            }
+
+            $type = substr($_FILES['AdditionalDocumentURL']['name'], -4);
+            $new_name = 'Document_' . $SchoolID . $TeacherID . $_POST['AdditionalDepartmentCode'] . $_POST['AdditionalDutyDate'] . $type;
+
+            $data = [
+
+                'SchoolID' => $SchoolID,
+                'TeacherID' => $TeacherID,
+                'AdditionalPosition' => $this->input->post('AdditionalPosition'),
+                'AdditionalDepartmentCode' => $this->input->post('AdditionalDepartmentCode'),
+                'AdditionalDutyDate' => $this->input->post('AdditionalDutyDate'),
+                'AdditionalCommand' => $this->input->post('AdditionalCommand'),
+                'AdditionalComment' => $this->input->post('AdditionalComment'),
+                'AdditionalDocumentURL' => $new_name
+
+            ];
+
+            $result = $this->db->insert('TEACHER_ADDITIONAL_POSITION', $data);
+            return $result;
+        } else {
+
+            $data = [
+
+                'SchoolID' => $SchoolID,
+                'TeacherID' => $TeacherID,
+                'AdditionalPosition' => $this->input->post('AdditionalPosition'),
+                'AdditionalDepartmentCode' => $this->input->post('AdditionalDepartmentCode'),
+                'AdditionalDutyDate' => $this->input->post('AdditionalDutyDate'),
+                'AdditionalCommand' => $this->input->post('AdditionalCommand'),
+                'AdditionalComment' => $this->input->post('AdditionalComment'),
+
+            ];
+
+            $result = $this->db->insert('TEACHER_ADDITIONAL_POSITION', $data);
+            return $result;
+        }
     }
 
     //Update Data Teacher Position
-    public function update_teacher_position($TeacherID, $SchoolID, $AdditionalDepartmentCode)
+    public function update_teacher_position($TeacherID, $SchoolID, $AdditionalDepartmentCode, $AdditionalDutyDate, $AdditionalDocumentURL)
     {
-        $data = [
+        if ($AdditionalDocumentURL == 0) {
+            if ($_FILES['AdditionalDocumentURL']['name'] != "") {
 
-            'AdditionalPosition' => $this->input->post('AdditionalPosition'),
-            'AdditionalDutyDate' => $this->input->post('AdditionalDutyDate'),
-            'AdditionalCommand' => $this->input->post('AdditionalCommand'),
-            'AdditionalComment' => $this->input->post('AdditionalComment'),
-            'AdditionalDocumentURL' => $this->input->post('AdditionalDocumentURL')
+                $config['upload_path']          = 'assets/teacher/document/';
+                $config['allowed_types']        = 'doc|pdf';
+                $config['max_size']             = 50000;
+                $config['file_name']            = 'Document_' . $SchoolID . $TeacherID . $AdditionalDepartmentCode . $AdditionalDutyDate;
 
-        ];
+                $this->load->library('upload', $config);
 
-        $result = $this->db->where('TeacherID ', $TeacherID)->where('SchoolID ', $SchoolID)->where('AdditionalDepartmentCode ', $AdditionalDepartmentCode)->update('TEACHER_ADDITIONAL_POSITION', $data);
-        return $result;
+                if (!$this->upload->do_upload('AdditionalDocumentURL')) {
+                    echo str_replace("</p>", "", str_replace("<p>", "", $this->upload->display_errors()));
+                } else {
+                    echo 'อัพโหลดไฟล์เรียบร้อยแล้ว';
+                }
+
+                $type = substr($_FILES['AdditionalDocumentURL']['name'], -4);
+                $new_name = 'Document_' . $SchoolID . $TeacherID . $AdditionalDepartmentCode . $AdditionalDutyDate . $type;
+
+                $data = [
+
+                    'AdditionalPosition' => $this->input->post('AdditionalPosition'),
+                    'AdditionalCommand' => $this->input->post('AdditionalCommand'),
+                    'AdditionalComment' => $this->input->post('AdditionalComment'),
+                    'AdditionalDocumentURL' => $new_name
+
+                ];
+
+                $result = $this->db->where('TeacherID ', $TeacherID)->where('SchoolID ', $SchoolID)->where('AdditionalDepartmentCode ', $AdditionalDepartmentCode)->where('AdditionalDutyDate ', $AdditionalDutyDate)->update('TEACHER_ADDITIONAL_POSITION', $data);
+                return $result;
+            } else {
+
+                $data = [
+
+                    'AdditionalPosition' => $this->input->post('AdditionalPosition'),
+                    'AdditionalCommand' => $this->input->post('AdditionalCommand'),
+                    'AdditionalComment' => $this->input->post('AdditionalComment')
+
+                ];
+
+                $result = $this->db->where('TeacherID ', $TeacherID)->where('SchoolID ', $SchoolID)->where('AdditionalDepartmentCode ', $AdditionalDepartmentCode)->where('AdditionalDutyDate ', $AdditionalDutyDate)->update('TEACHER_ADDITIONAL_POSITION', $data);
+                return $result;
+            }
+        } else {
+
+            $config['upload_path']          = 'assets/teacher/document/';
+            $config['allowed_types']        = 'doc|pdf';
+            $config['max_size']             = 50000;
+            $config['file_name']            = $AdditionalDocumentURL;
+
+            copy($config['upload_path'] . $config['file_name'], $config['upload_path'] . 'logoold.pdf');
+            unlink($config['upload_path'] . $config['file_name']);
+
+            $this->load->library('upload', $config);
+
+            if (!$this->upload->do_upload('AdditionalDocumentURL')) {
+                copy($config['upload_path'] . 'logoold.pdf', $config['upload_path'] . $config['file_name']);
+                echo str_replace("</p>", "", str_replace("<p>", "", $this->upload->display_errors()));
+            } else {
+                unlink($config['upload_path'] . 'logoold.pdf');
+                echo 'อัพโหลดไฟล์เรียบร้อยแล้ว';
+            }
+
+            $data = [
+
+                'AdditionalPosition' => $this->input->post('AdditionalPosition'),
+                'AdditionalCommand' => $this->input->post('AdditionalCommand'),
+                'AdditionalComment' => $this->input->post('AdditionalComment')
+
+            ];
+
+            $result = $this->db->where('TeacherID ', $TeacherID)->where('SchoolID ', $SchoolID)->where('AdditionalDepartmentCode ', $AdditionalDepartmentCode)->where('AdditionalDutyDate ', $AdditionalDutyDate)->update('TEACHER_ADDITIONAL_POSITION', $data);
+            return $result;
+        }
     }
 
     //Delete Data Form Teacher Position
-    public function delete_teacher_position($TeacherID, $SchoolID, $AdditionalDepartmentCode)
+    public function delete_teacher_position($TeacherID, $SchoolID, $AdditionalDepartmentCode, $AdditionalDutyDate)
     {
         $data = [
 
@@ -391,7 +506,7 @@ class Teacher_model extends CI_Model
 
         ];
 
-        $result = $this->db->where('TeacherID ', $TeacherID)->where('SchoolID ', $SchoolID)->where('AdditionalDepartmentCode ', $AdditionalDepartmentCode)->update('TEACHER_ADDITIONAL_POSITION', $data);
+        $result = $this->db->where('TeacherID ', $TeacherID)->where('SchoolID ', $SchoolID)->where('AdditionalDepartmentCode ', $AdditionalDepartmentCode)->where('AdditionalDutyDate ', $AdditionalDutyDate)->update('TEACHER_ADDITIONAL_POSITION', $data);
         return $result;
     }
 
@@ -399,44 +514,144 @@ class Teacher_model extends CI_Model
     //ADD Data Teacher Assistance
     public function add_teacher_assistance($TeacherID, $SchoolID)
     {
-        $data = [
+        if ($_FILES['AssistanceDocumentURL']['name'] != "") {
 
-            'SchoolID' => $SchoolID,
-            'TeacherID' => $TeacherID,
-            'AssistanceTypeCode' => $this->input->post('AssistanceTypeCode'),
-            'AssistanceOrganizationName' => $this->input->post('AssistanceOrganizationName'),
-            'AssistanceStartDate' => $this->input->post('AssistanceStartDate'),
-            'AssistanceEndDate' => $this->input->post('AssistanceEndDate'),
-            'AssistanceCommand' => $this->input->post('AssistanceCommand'),
-            'AssistanceReason' => $this->input->post('AssistanceReason'),
-            'AssistanceDocumentURL' => $this->input->post('AssistanceDocumentURL')
+            $config['upload_path']          = 'assets/teacher/document/';
+            $config['allowed_types']        = 'doc|pdf';
+            $config['max_size']             = 50000;
+            $config['file_name']            = 'Document_' . $SchoolID . $TeacherID . $_POST['AssistanceTypeCode'] . $_POST['AssistanceStartDate'];
 
-        ];
+            $this->load->library('upload', $config);
 
-        $result = $this->db->insert('TEACHER_ASSISTANCE', $data);
-        return $result;
+            if (!$this->upload->do_upload('AssistanceDocumentURL')) {
+                echo str_replace("</p>", "", str_replace("<p>", "", $this->upload->display_errors()));
+            } else {
+                echo 'อัพโหลดไฟล์เรียบร้อยแล้ว';
+            }
+
+            $type = substr($_FILES['AssistanceDocumentURL']['name'], -4);
+            $new_name = 'Document_' . $SchoolID . $TeacherID . $_POST['AssistanceTypeCode'] . $_POST['AssistanceStartDate'] . $type;
+
+            $data = [
+
+                'SchoolID' => $SchoolID,
+                'TeacherID' => $TeacherID,
+                'AssistanceTypeCode' => $this->input->post('AssistanceTypeCode'),
+                'AssistanceOrganizationName' => $this->input->post('AssistanceOrganizationName'),
+                'AssistanceStartDate' => $this->input->post('AssistanceStartDate'),
+                'AssistanceEndDate' => $this->input->post('AssistanceEndDate'),
+                'AssistanceCommand' => $this->input->post('AssistanceCommand'),
+                'AssistanceReason' => $this->input->post('AssistanceReason'),
+                'AssistanceDocumentURL' => $new_name
+
+            ];
+
+            $result = $this->db->insert('TEACHER_ASSISTANCE', $data);
+            return $result;
+        } else {
+
+            $data = [
+
+                'SchoolID' => $SchoolID,
+                'TeacherID' => $TeacherID,
+                'AssistanceTypeCode' => $this->input->post('AssistanceTypeCode'),
+                'AssistanceOrganizationName' => $this->input->post('AssistanceOrganizationName'),
+                'AssistanceStartDate' => $this->input->post('AssistanceStartDate'),
+                'AssistanceEndDate' => $this->input->post('AssistanceEndDate'),
+                'AssistanceCommand' => $this->input->post('AssistanceCommand'),
+                'AssistanceReason' => $this->input->post('AssistanceReason'),
+
+            ];
+
+            $result = $this->db->insert('TEACHER_ASSISTANCE', $data);
+            return $result;
+        }
     }
 
     //Update Data Teacher assistance
-    public function update_teacher_assistance($TeacherID, $SchoolID, $AssistanceTypeCode)
+    public function update_teacher_assistance($TeacherID, $SchoolID, $AssistanceTypeCode, $AssistanceStartDate, $AssistanceDocumentURL)
     {
-        $data = [
+        if ($AssistanceDocumentURL == 0) {
+            if ($_FILES['AssistanceDocumentURL']['name'] != "") {
+                $config['upload_path']          = 'assets/teacher/document/';
+                $config['allowed_types']        = 'doc|pdf';
+                $config['max_size']             = 50000;
+                $config['file_name']            = 'Document_' . $SchoolID . $TeacherID . $AssistanceTypeCode . $AssistanceStartDate;
 
-            'AssistanceOrganizationName' => $this->input->post('AssistanceOrganizationName'),
-            'AssistanceStartDate' => $this->input->post('AssistanceStartDate'),
-            'AssistanceEndDate' => $this->input->post('AssistanceEndDate'),
-            'AssistanceCommand' => $this->input->post('AssistanceCommand'),
-            'AssistanceReason' => $this->input->post('AssistanceReason'),
-            'AssistanceDocumentURL' => $this->input->post('AssistanceDocumentURL')
+                $this->load->library('upload', $config);
 
-        ];
+                if (!$this->upload->do_upload('AssistanceDocumentURL')) {
+                    echo str_replace("</p>", "", str_replace("<p>", "", $this->upload->display_errors()));
+                } else {
+                    echo 'อัพโหลดไฟล์เรียบร้อยแล้ว';
+                }
 
-        $result = $this->db->where('TeacherID ', $TeacherID)->where('SchoolID ', $SchoolID)->where('AssistanceTypeCode ', $AssistanceTypeCode)->update('TEACHER_ASSISTANCE', $data);
-        return $result;
+
+                $type = substr($_FILES['AssistanceDocumentURL']['name'], -4);
+                $new_name = 'Document_' . $SchoolID . $TeacherID . $AssistanceTypeCode . $AssistanceStartDate . $type;
+
+                $data = [
+
+                    'AssistanceOrganizationName' => $this->input->post('AssistanceOrganizationName'),
+                    'AssistanceEndDate' => $this->input->post('AssistanceEndDate'),
+                    'AssistanceCommand' => $this->input->post('AssistanceCommand'),
+                    'AssistanceReason' => $this->input->post('AssistanceReason'),
+                    'AssistanceDocumentURL' => $new_name
+
+                ];
+
+                $result = $this->db->where('TeacherID ', $TeacherID)->where('SchoolID ', $SchoolID)->where('AssistanceTypeCode ', $AssistanceTypeCode)->where('AssistanceStartDate ', $AssistanceStartDate)->update('TEACHER_ASSISTANCE', $data);
+                return $result;
+            } else {
+
+                $data = [
+
+                    'AssistanceOrganizationName' => $this->input->post('AssistanceOrganizationName'),
+                    'AssistanceEndDate' => $this->input->post('AssistanceEndDate'),
+                    'AssistanceCommand' => $this->input->post('AssistanceCommand'),
+                    'AssistanceReason' => $this->input->post('AssistanceReason')
+
+                ];
+
+                $result = $this->db->where('TeacherID ', $TeacherID)->where('SchoolID ', $SchoolID)->where('AssistanceTypeCode ', $AssistanceTypeCode)->where('AssistanceStartDate ', $AssistanceStartDate)->update('TEACHER_ASSISTANCE', $data);
+                return $result;
+            }
+        } else {
+
+            $config['upload_path']          = 'assets/teacher/document/';
+            $config['allowed_types']        = 'doc|pdf';
+            $config['max_size']             = 50000;
+            $config['file_name']            = $AssistanceDocumentURL;
+
+            copy($config['upload_path'] . $config['file_name'], $config['upload_path'] . 'logoold.pdf');
+            unlink($config['upload_path'] . $config['file_name']);
+
+            $this->load->library('upload', $config);
+
+            if (!$this->upload->do_upload('AssistanceDocumentURL')) {
+                copy($config['upload_path'] . 'logoold.pdf', $config['upload_path'] . $config['file_name']);
+                echo str_replace("</p>", "", str_replace("<p>", "", $this->upload->display_errors()));
+            } else {
+                unlink($config['upload_path'] . 'logoold.pdf');
+                echo 'อัพโหลดไฟล์เรียบร้อยแล้ว';
+            }
+
+            $data = [
+
+                'AssistanceOrganizationName' => $this->input->post('AssistanceOrganizationName'),
+                'AssistanceEndDate' => $this->input->post('AssistanceEndDate'),
+                'AssistanceCommand' => $this->input->post('AssistanceCommand'),
+                'AssistanceReason' => $this->input->post('AssistanceReason'),
+
+            ];
+
+            $result = $this->db->where('TeacherID ', $TeacherID)->where('SchoolID ', $SchoolID)->where('AssistanceTypeCode ', $AssistanceTypeCode)->where('AssistanceStartDate ', $AssistanceStartDate)->update('TEACHER_ASSISTANCE', $data);
+            return $result;
+        }
     }
 
     //Delete Data Form Teacher assistance
-    public function delete_teacher_assistance($TeacherID, $SchoolID, $AssistanceTypeCode)
+    public function delete_teacher_assistance($TeacherID, $SchoolID, $AssistanceTypeCode, $AssistanceStartDate)
     {
         $data = [
 
@@ -444,7 +659,7 @@ class Teacher_model extends CI_Model
 
         ];
 
-        $result = $this->db->where('TeacherID ', $TeacherID)->where('SchoolID ', $SchoolID)->where('AssistanceTypeCode ', $AssistanceTypeCode)->update('TEACHER_ASSISTANCE', $data);
+        $result = $this->db->where('TeacherID ', $TeacherID)->where('SchoolID ', $SchoolID)->where('AssistanceTypeCode ', $AssistanceTypeCode)->where('AssistanceStartDate ', $AssistanceStartDate)->update('TEACHER_ASSISTANCE', $data);
         return $result;
     }
 
@@ -513,7 +728,7 @@ class Teacher_model extends CI_Model
     }
 
     //Update Data Teacher Education
-    public function update_teacher_education($TeacherID, $SchoolID, $EducationDegreeCode)
+    public function update_teacher_education($TeacherID, $SchoolID, $EducationLevelCode, $EducationMajorCode, $EducationDegreeCode)
     {
         $data = [
 
@@ -521,12 +736,16 @@ class Teacher_model extends CI_Model
 
         ];
 
-        $result = $this->db->where('TeacherID ', $TeacherID)->where('SchoolID ', $SchoolID)->where('EducationDegreeCode ', $EducationDegreeCode)->update('TEACHER_EDUCATION_DEGREE', $data);
+        $result = $this->db->where('TeacherID', $TeacherID)->where('SchoolID', $SchoolID)
+            ->where('EducationLevelCode', $EducationLevelCode)
+            ->where('EducationMajorCode', $EducationMajorCode)
+            ->where('EducationDegreeCode', $EducationDegreeCode)
+            ->update('TEACHER_EDUCATION_DEGREE', $data);
         return $result;
     }
 
     //Delete Data Form Teacher Education
-    public function delete_teacher_education($TeacherID, $SchoolID, $EducationDegreeCode)
+    public function delete_teacher_education($TeacherID, $SchoolID, $EducationLevelCode, $EducationMajorCode, $EducationDegreeCode)
     {
         $data = [
 
@@ -534,7 +753,12 @@ class Teacher_model extends CI_Model
 
         ];
 
-        $result = $this->db->where('TeacherID ', $TeacherID)->where('SchoolID ', $SchoolID)->where('EducationDegreeCode ', $EducationDegreeCode)->update('TEACHER_EDUCATION_DEGREE', $data);
+        $result = $this->db->where('TeacherID', $TeacherID)
+            ->where('SchoolID ', $SchoolID)
+            ->where('EducationLevelCode', $EducationLevelCode)
+            ->where('EducationMajorCode', $EducationMajorCode)
+            ->where('EducationDegreeCode', $EducationDegreeCode)
+            ->update('TEACHER_EDUCATION_DEGREE', $data);
         return $result;
     }
 

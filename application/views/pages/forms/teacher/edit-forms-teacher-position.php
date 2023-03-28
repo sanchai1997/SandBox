@@ -11,6 +11,12 @@
                     foreach ($result->result() as $SCHOOL) {
                         $SchoolName = $SCHOOL->SchoolNameThai;
                     }
+
+                    if ($_GET['AdditionalDocumentURL'] == NULL) {
+                        $AddOrUpdate = 0;
+                    } else {
+                        $AddOrUpdate = $_GET['AdditionalDocumentURL'];
+                    }
             ?>
 
         </h1>
@@ -24,7 +30,7 @@
                 <div class="card">
                     <div class="card-body">
                         <!-- Floating Labels Form -->
-                        <form class="row g-3" action="<?php echo base_url('update-teacher-position/' . $_GET['TeacherID'] . '/' . $_GET['SchoolID'] . '/' . $_GET['EducationYear'] . '/' . $_GET['Semester'] . '/' . $_GET['PersonnelTypeCode'] . '/' . $_GET['PositionCode'] . '/' . $_GET['AdditionalDepartmentCode']); ?>" method="POST" id="Teacher" enctype="multipart/form-data">
+                        <form class="row g-3" action="<?php echo base_url('update-teacher-position/' . $_GET['TeacherID'] . '/' . $_GET['SchoolID'] . '/' . $_GET['EducationYear'] . '/' . $_GET['Semester'] . '/' . $_GET['PersonnelTypeCode'] . '/' . $_GET['PositionCode'] . '/' . $_GET['AdditionalDepartmentCode'] . '/' . $_GET['AdditionalDutyDate'] . '/' . $AddOrUpdate); ?>" method="POST" id="Teacher" enctype="multipart/form-data">
                             <h6 style="padding-left: 15px;" class="card-title"></h6>
                             <?php
                             $result = $this->db->query('SELECT *
@@ -34,6 +40,7 @@
                                             AND TEACHER_ADDITIONAL_POSITION.SchoolID = ' . $_GET['SchoolID'] . ' 
                                             AND TEACHER_ADDITIONAL_POSITION.TeacherID = "' . $_GET['TeacherID'] . '"
                                             AND TEACHER_ADDITIONAL_POSITION.AdditionalDepartmentCode = ' . $_GET['AdditionalDepartmentCode'] . '
+                                            AND TEACHER_ADDITIONAL_POSITION.AdditionalDutyDate = "' . $_GET['AdditionalDutyDate'] . '"
                                             ');
 
                             foreach ($result->result() as $TEACHER_ADDITIONAL_POSITION) {
@@ -63,7 +70,7 @@
                                 </div>
                                 <div class="col-md-4">
                                     <div class="form-floating">
-                                        <input type="date" class="form-control" name="AdditionalDutyDate" id="AdditionalDutyDate" value="<?= $TEACHER_ADDITIONAL_POSITION->AdditionalDutyDate ?>">
+                                        <input type="date" class="form-control" name="AdditionalDutyDate" id="AdditionalDutyDate" value="<?= $TEACHER_ADDITIONAL_POSITION->AdditionalDutyDate ?>" disabled>
                                         <label for="AdditionalDutyDate">วันที่ปฎิบัติหน้าที่</label>
                                     </div>
                                 </div>

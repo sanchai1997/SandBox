@@ -16,7 +16,24 @@
         </h1>
         <a class="btn btn-light text-dark"><b><?= $SchoolName . ' - ' . $TEACHER->PREFIX_NAME . $TEACHER->TeacherNameThai . ' ' . $TEACHER->TeacherLastNameThai ?></b></a>
     </div><!-- End Page Title -->
+    <?php if (!empty($_SESSION['danger'])) { ?>
+        <script>
+            setTimeout(function() {
+                document.getElementById('myAlert').remove();
+            }, 4000); // นับถอยหลังให้แสดง 5 วินาที (5000 มิลลิวินาที)
+        </script>
+        <div style="position: relative;">
+            <div class="alert alert-danger" id="myAlert" style="position: absolute; top: 0; left: 0; right: 0; z-index: 1;">
+                <strong>
+                    <?php
+                        echo '<i class="bi bi-clipboard2-x"></i> ' . $_SESSION['danger'];
+                        unset($_SESSION['danger']);
+                    ?>
+                </strong>
 
+            </div>
+        </div>
+    <?php } ?>
     <section class="section">
         <div class="row">
             <div class="col-lg-9">
@@ -51,7 +68,7 @@
                             <div class="col-md-6">
                                 <div class="form-floating">
                                     <input type="date" class="form-control" name="AssistanceStartDate" id="AssistanceStartDate">
-                                    <label for="AssistanceStartDate">วันที่เริ่ม</label>
+                                    <label for="AssistanceStartDate">วันที่เริ่ม <font color="red"> *</font></label>
                                 </div>
                             </div>
                             <div class="col-md-6">
@@ -119,6 +136,16 @@
     </section>
     <script type="text/javascript">
         function check(frm) {
+
+            if (frm.AssistanceTypeCode.value == "") {
+                alert("กรุณาเลือกประเภทช่วยราชการ");
+                return false;
+            }
+            if (frm.AssistanceStartDate.value == "") {
+                alert("กรุณาเลือกวันที่เริ่มช่วยราชการ");
+                return false;
+            }
+
             $('#Modal').modal('show');
         }
     </script>

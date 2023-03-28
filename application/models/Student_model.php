@@ -14,18 +14,24 @@ class Student_model extends CI_Model
     public function add_student($SchoolID)
     {
 
-        $config['file_name'] = 'ImageStudent_' . $_POST['StudentPersonalID'];
-        $config['upload_path'] = './assets/img/student/';
-        $config['allowed_types'] = 'doc|docx|pdf|jpg|png|xls|ppt|zip|xlsx';
+        $config['upload_path']          = 'assets/student/img/';
+        $config['allowed_types']        = 'gif|jpg|png';
+        $config['max_size']             = 50000;
+        $config['max_width']            = 3402;
+        $config['max_height']           = 1417;
+        $config['file_name']            = 'ImageStudent_' . $_POST['StudentPersonalID'];
 
         $this->load->library('upload', $config);
 
         if (!$this->upload->do_upload('ImageStudent')) {
-            echo $this->upload->display_errors();
+            copy($config['upload_path'] . 'logoold.jpg', $config['upload_path'] . $config['file_name']);
+            echo str_replace("</p>", "", str_replace("<p>", "", $this->upload->display_errors()));
         } else {
-
-            $data = $this->upload->data();
+            echo 'อัพโหลดไฟล์เรียบร้อยแล้ว';
         }
+
+        $type = substr($_FILES['ImageStudent']['name'], -4);
+        $new_name = 'ImageStudent_' . $_POST['StudentPersonalID'] . $type;
 
         $data = [
 
@@ -37,9 +43,8 @@ class Student_model extends CI_Model
             'EducationYear' => $this->input->post('EducationYear'),
             'Semester' => $this->input->post('Semester'),
             'GradeLevelCode' => $this->input->post('GradeLevelCode'),
-            'ImageStudent' => $this->input->post('ImageStudent'),
             'StudentID' => $this->input->post('StudentID'),
-            'ImageStudent' => $data['file_name'],
+            'ImageStudent' => $new_name,
             'StudentStatusCode' => $this->input->post('StudentStatusCode'),
             'StudentPersonalIDTypeCode' => $this->input->post('StudentPersonalIDTypeCode'),
             'StudentPersonalID' => $this->input->post('StudentPersonalID'),
@@ -68,18 +73,24 @@ class Student_model extends CI_Model
     public function add_student_select($SchoolID, $EducationYear, $Semester, $GradeLevelCode)
     {
 
-        $config['file_name'] = 'ImageStudent_' . $_POST['StudentPersonalID'];
-        $config['upload_path'] = './assets/img/student/';
-        $config['allowed_types'] = 'doc|docx|pdf|jpg|png|xls|ppt|zip|xlsx';
+        $config['upload_path']          = 'assets/student/img/';
+        $config['allowed_types']        = 'gif|jpg|png';
+        $config['max_size']             = 50000;
+        $config['max_width']            = 3402;
+        $config['max_height']           = 1417;
+        $config['file_name']            = 'ImageStudent_' . $_POST['StudentPersonalID'];
 
         $this->load->library('upload', $config);
 
         if (!$this->upload->do_upload('ImageStudent')) {
-            echo $this->upload->display_errors();
+            copy($config['upload_path'] . 'logoold.jpg', $config['upload_path'] . $config['file_name']);
+            echo str_replace("</p>", "", str_replace("<p>", "", $this->upload->display_errors()));
         } else {
-
-            $data = $this->upload->data();
+            echo 'อัพโหลดไฟล์เรียบร้อยแล้ว';
         }
+
+        $type = substr($_FILES['ImageStudent']['name'], -4);
+        $new_name = 'ImageStudent_' . $_POST['StudentPersonalID'] . $type;
 
         $data = [
 
@@ -91,9 +102,8 @@ class Student_model extends CI_Model
             'EducationYear' => $EducationYear,
             'Semester' => $Semester,
             'GradeLevelCode' => $GradeLevelCode,
-            'ImageStudent' => $this->input->post('ImageStudent'),
             'StudentID' => $this->input->post('StudentID'),
-            'ImageStudent' => $data['file_name'],
+            'ImageStudent' => $new_name,
             'StudentStatusCode' => $this->input->post('StudentStatusCode'),
             'StudentPersonalIDTypeCode' => $this->input->post('StudentPersonalIDTypeCode'),
             'StudentPersonalID' => $this->input->post('StudentPersonalID'),
@@ -120,21 +130,28 @@ class Student_model extends CI_Model
 
 
     //Update Student Main
-    public function update_student_main($StudentReferenceID, $SchoolID)
+    public function update_student_main($StudentReferenceID, $SchoolID, $ImageStudent)
     {
 
-        $config['file_name'] = 'ImageStudent_' . $_POST['StudentPersonalID'];
-        $config['upload_path'] = './assets/img/student/';
-        $config['allowed_types'] = 'doc|docx|pdf|jpg|png|xls|ppt|zip|xlsx';
-        $config['overwrite'] = TRUE;
+
+        $config['upload_path']          = 'assets/student/img/';
+        $config['allowed_types']        = 'gif|jpg|png';
+        $config['max_size']             = 50000;
+        $config['max_width']            = 3402;
+        $config['max_height']           = 1417;
+        $config['file_name']            = $ImageStudent;
+
+        copy($config['upload_path'] . $config['file_name'], $config['upload_path'] . 'logoold.jpg');
+        unlink($config['upload_path'] . $config['file_name']);
 
         $this->load->library('upload', $config);
 
         if (!$this->upload->do_upload('ImageStudent')) {
-            echo $this->upload->display_errors();
+            copy($config['upload_path'] . 'logoold.jpg', $config['upload_path'] . $config['file_name']);
+            echo str_replace("</p>", "", str_replace("<p>", "", $this->upload->display_errors()));
         } else {
-
-            $data = $this->upload->data();
+            unlink($config['upload_path'] . 'logoold.jpg');
+            echo 'อัพโหลดไฟล์เรียบร้อยแล้ว';
         }
 
         $data = [

@@ -67,20 +67,33 @@
                         $result = $this->db->query('SELECT *
                                     FROM TEACHER_ACADEMIC 
                                     INNER JOIN CLS_ACADEMIC_STANDING ON TEACHER_ACADEMIC.AcademicStandingCode = CLS_ACADEMIC_STANDING.ACADEMIC_STANDING_CODE
-                                    INNER JOIN CLS_PROGRAM ON TEACHER_ACADEMIC.AcademicProgramCode = CLS_PROGRAM.PROGRAM_CODE
                                     WHERE TEACHER_ACADEMIC.DeleteStatus = 0 AND TEACHER_ACADEMIC.SchoolID = ' . $_GET['SchoolID'] . ' AND TEACHER_ACADEMIC.TeacherID = "' . $_GET['TeacherID'] . '"
                                     ');
-
+                        $Count = 0;
                         foreach ($result->result() as $TEACHER_ACADEMIC) {
+                            $Count++;
+
                         ?>
+
                             <tr>
                                 <td><?= $TEACHER_ACADEMIC->ACADEMIC_STANDING_NAME; ?></td>
-                                <td><?= $TEACHER_ACADEMIC->PROGRAM_NAME; ?></td>
+                                <td>
+                                    <?php if ($TEACHER_ACADEMIC->AcademicProgramCode != NULL) {
+
+                                        $result_fix = $this->db->query('SELECT *FROM CLS_PROGRAM 
+                                        WHERE PROGRAM_CODE = ' . $TEACHER_ACADEMIC->AcademicProgramCode . '
+                                        ');
+
+                                        foreach ($result_fix->result() as $PROGRAM) {
+                                            echo $PROGRAM->PROGRAM_NAME;
+                                        }
+                                    } else echo '-'; ?>
+                                </td>
                                 <td><?php if ($TEACHER_ACADEMIC->AcademicDate != "0000-00-00") {
                                         echo DateThai($TEACHER_ACADEMIC->AcademicDate);
                                     } else echo '-'; ?></td>
                                 <td style="text-align: center;"><a href="edit-forms-teacher-academic?SchoolID=<?= $_GET['SchoolID'] ?>&&TeacherID=<?= $_GET['TeacherID'] ?>&&EducationYear=<?= $_GET['EducationYear'] ?>&&Semester=<?= $_GET['Semester'] ?>&&PersonnelTypeCode=<?= $_GET['PersonnelTypeCode'] ?>&&PositionCode=<?= $_GET['PositionCode'] ?>&&AcademicStandingCode=<?= $TEACHER_ACADEMIC->AcademicStandingCode ?>" class="btn btn-warning"><i class="bi bi-pencil-square"></i></a>
-                                    &nbsp; <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#Delete<?= $TEACHER_ACADEMIC->TeacherID . $TEACHER_ACADEMIC->AcademicStandingCode; ?>"><i class=" bi bi-trash"></i></button>
+                                    &nbsp; <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#Delete<?= $Count ?>"><i class=" bi bi-trash"></i></button>
                                 </td>
                             </tr>
                         <?php } ?>
@@ -99,12 +112,13 @@
 $result = $this->db->query('SELECT *
  FROM TEACHER_ACADEMIC 
  INNER JOIN CLS_ACADEMIC_STANDING ON TEACHER_ACADEMIC.AcademicStandingCode = CLS_ACADEMIC_STANDING.ACADEMIC_STANDING_CODE
- INNER JOIN CLS_PROGRAM ON TEACHER_ACADEMIC.AcademicProgramCode = CLS_PROGRAM.PROGRAM_CODE
  WHERE TEACHER_ACADEMIC.DeleteStatus = 0 AND TEACHER_ACADEMIC.SchoolID = ' . $_GET['SchoolID'] . ' AND TEACHER_ACADEMIC.TeacherID = "' . $_GET['TeacherID'] . '"
  ');
+$CountI = 0;
 foreach ($result->result() as $TEACHER_ACADEMIC) {
+    $CountI++;
 ?>
-    <div class="modal fade" id="Delete<?= $TEACHER_ACADEMIC->TeacherID . $TEACHER_ACADEMIC->AcademicStandingCode; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+    <div class="modal fade" id="Delete<?= $CountI ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header">

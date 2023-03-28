@@ -18,6 +18,24 @@
 <?php }
             } ?>
     </div><!-- End Page Title -->
+    <?php if (!empty($_SESSION['danger'])) { ?>
+        <script>
+            setTimeout(function() {
+                document.getElementById('myAlert').remove();
+            }, 4000); // นับถอยหลังให้แสดง 5 วินาที (5000 มิลลิวินาที)
+        </script>
+        <div style="position: relative;">
+            <div class="alert alert-danger" id="myAlert" style="position: absolute; top: 0; left: 0; right: 0; z-index: 1;">
+                <strong>
+                    <?php
+                    echo '<i class="bi bi-clipboard2-x"></i> ' . $_SESSION['danger'];
+                    unset($_SESSION['danger']);
+                    ?>
+                </strong>
+
+            </div>
+        </div>
+    <?php } ?>
     <section class="section">
         <div class="row">
             <div class="col-lg-9">
@@ -53,7 +71,7 @@
                                         }
                                         ?>
                                     </select>
-                                    <label for="TeachingEducationLevelCode">ระดับการศึกษา</label>
+                                    <label for="TeachingEducationLevelCode">ระดับการศึกษา<font color="red"> *</font></label>
                                 </div>
                             </div>
                             <div class="col-md-6">
@@ -87,7 +105,7 @@
                                         }
                                         ?>
                                     </select>
-                                    <label for="TeachingSubjectCode">วิชา</label>
+                                    <label for="TeachingSubjectCode">วิชา<font color="red"> *</font></label>
                                 </div>
                             </div>
 
@@ -128,6 +146,21 @@
     </section>
     <script type="text/javascript">
         function check(frm) {
+
+            if (frm.TeachingEducationYear.value == "") {
+                alert("กรุณากรอกปีการศึกษา");
+                return false;
+            }
+
+            if (frm.TeachingSemester.value == "") {
+                alert("กรุณากรอกภาคเรียน");
+                return false;
+            }
+
+            if (frm.TeachingSubjectCode.value == "") {
+                alert("กรุณาเลือกวิชาที่สอน");
+                return false;
+            }
 
             $('#Modal').modal('show');
         }

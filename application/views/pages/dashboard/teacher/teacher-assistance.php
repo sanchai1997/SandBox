@@ -40,6 +40,7 @@
             </div>
         </div>
     <?php } ?>
+
     <!-- Recent Sales -->
     <div class="col-12">
         <div class="card recent-sales overflow-auto">
@@ -72,8 +73,9 @@
                                     INNER JOIN CLS_ASSISTANCE_TYPE ON TEACHER_ASSISTANCE.AssistanceTypeCode = CLS_ASSISTANCE_TYPE.ASSISTANCE_TYPE_CODE
                                     WHERE TEACHER_ASSISTANCE.DeleteStatus = 0 AND TEACHER_ASSISTANCE.SchoolID = ' . $_GET['SchoolID'] . ' AND TEACHER_ASSISTANCE.TeacherID = "' . $_GET['TeacherID'] . '"
                                     ');
-
+                        $CountI = 0;
                         foreach ($result->result() as $TEACHER_ASSISTANCE) {
+                            $CountI++;
                         ?>
                             <tr>
                                 <td><?= $TEACHER_ASSISTANCE->ASSISTANCE_TYPE_NAME; ?></td>
@@ -88,19 +90,19 @@
                                 </td>
                                 <td style="text-align: center;">
                                     <?php if ($TEACHER_ASSISTANCE->AssistanceDocumentURL != NULL) { ?>
-                                        <a class="btn btn-primary" href="<?= $TEACHER_ASSISTANCE->AssistanceDocumentURL; ?>"><i class="bi bi-file-earmark-pdf"></i></a>
+                                        <a class="btn btn-info" href="assets/teacher/document/<?= $TEACHER_ASSISTANCE->AssistanceDocumentURL; ?>" target="_blank"><i class="bi bi-file-earmark-pdf"></i></a>
                                     <?php } else echo '-'; ?>
                                 </td>
                                 <td style="text-align: center;">
-                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#Model<?= $TEACHER_ASSISTANCE->TeacherID . $TEACHER_ASSISTANCE->AssistanceTypeCode; ?>"><i class=" bi bi-card-list"></i></button>
+                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#Model<?= $CountI; ?>"><i class=" bi bi-card-list"></i></button>
                                 </td>
                                 <td style="text-align: center;">
-                                    <a href="edit-forms-teacher-assistance?SchoolID=<?= $_GET['SchoolID'] ?>&&TeacherID=<?= $_GET['TeacherID'] ?>&&EducationYear=<?= $_GET['EducationYear'] ?>&&Semester=<?= $_GET['Semester'] ?>&&PersonnelTypeCode=<?= $_GET['PersonnelTypeCode'] ?>&&PositionCode=<?= $_GET['PositionCode'] ?>&&AssistanceTypeCode=<?= $TEACHER_ASSISTANCE->AssistanceTypeCode ?>" class="btn btn-warning"><i class="bi bi-pencil-square"></i></a>
-                                    &nbsp; <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#Delete<?= $TEACHER_ASSISTANCE->TeacherID . $TEACHER_ASSISTANCE->AssistanceTypeCode; ?>"><i class=" bi bi-trash"></i></button>
+                                    <a href="edit-forms-teacher-assistance?SchoolID=<?= $_GET['SchoolID'] ?>&&TeacherID=<?= $_GET['TeacherID'] ?>&&EducationYear=<?= $_GET['EducationYear'] ?>&&Semester=<?= $_GET['Semester'] ?>&&PersonnelTypeCode=<?= $_GET['PersonnelTypeCode'] ?>&&PositionCode=<?= $_GET['PositionCode'] ?>&&AssistanceTypeCode=<?= $TEACHER_ASSISTANCE->AssistanceTypeCode ?>&&AssistanceStartDate=<?= $TEACHER_ASSISTANCE->AssistanceStartDate ?>" class="btn btn-warning"><i class="bi bi-pencil-square"></i></a>
+                                    &nbsp; <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#Delete<?= $CountI; ?>"><i class=" bi bi-trash"></i></button>
                                 </td>
                             </tr>
 
-                            <div class="modal fade" id="Model<?= $TEACHER_ASSISTANCE->TeacherID . $TEACHER_ASSISTANCE->AssistanceTypeCode; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+                            <div class="modal fade" id="Model<?= $CountI; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
                                 <div class="modal-dialog modal-dialog-centered" role="document">
                                     <div class="modal-content">
                                         <div class="modal-header">
@@ -143,12 +145,13 @@
 <?php
 $result = $this->db->query('SELECT *
 FROM TEACHER_ASSISTANCE 
-INNER JOIN CLS_ASSISTANCE_TYPE ON TEACHER_ASSISTANCE.AssistanceTypeCode = CLS_ASSISTANCE_TYPE.ASSISTANCE_TYPE_CODE
 WHERE TEACHER_ASSISTANCE.DeleteStatus = 0 AND TEACHER_ASSISTANCE.SchoolID = ' . $_GET['SchoolID'] . ' AND TEACHER_ASSISTANCE.TeacherID = "' . $_GET['TeacherID'] . '"
 ');
+$Count = 0;
 foreach ($result->result() as $TEACHER_ASSISTANCE) {
+    $Count++;
 ?>
-    <div class="modal fade" id="Delete<?= $TEACHER_ASSISTANCE->TeacherID . $TEACHER_ASSISTANCE->AssistanceTypeCode; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+    <div class="modal fade" id="Delete<?= $Count; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -161,7 +164,7 @@ foreach ($result->result() as $TEACHER_ASSISTANCE) {
                     </h6>
                 </div>
                 <div class="modal-footer">
-                    <a href="<?php echo base_url('delete-teacher-assistance/'  . $_GET['TeacherID'] . '/' .  $_GET['SchoolID'] . '/' .  $_GET['EducationYear'] . '/' .  $_GET['Semester'] . '/' .  $_GET['PersonnelTypeCode'] . '/' .  $_GET['PositionCode'] . '/' . $TEACHER_ASSISTANCE->AssistanceTypeCode);
+                    <a href="<?php echo base_url('delete-teacher-assistance/'  . $_GET['TeacherID'] . '/' .  $_GET['SchoolID'] . '/' .  $_GET['EducationYear'] . '/' .  $_GET['Semester'] . '/' .  $_GET['PersonnelTypeCode'] . '/' .  $_GET['PositionCode'] . '/' . $TEACHER_ASSISTANCE->AssistanceTypeCode . '/' . $TEACHER_ASSISTANCE->AssistanceStartDate);
                                 ?>" class="btn btn-danger">ลบ</a>
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ยกเลิก</button>
                 </div>

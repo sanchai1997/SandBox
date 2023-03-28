@@ -105,7 +105,7 @@
                                             }
                                             ?>
                                         </select>
-                                        <label for="TeachingSubjectCode">วิชา</label>
+                                        <label for="TeachingSubjectCode">วิชา<font color="red"> *</font></label>
                                     </div>
                                 </div>
                             <?php } ?>

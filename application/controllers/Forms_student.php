@@ -89,9 +89,9 @@
         }
 
         //update Data student Main
-        public function update_student_main($StudentReferenceID, $SchoolID, $EducationYear, $Semester, $GradeLevelCode)
+        public function update_student_main($StudentReferenceID, $SchoolID, $EducationYear, $Semester, $GradeLevelCode, $ImageStudent)
         {
-            $this->forms_student->update_student_main($StudentReferenceID, $SchoolID);
+            $this->forms_student->update_student_main($StudentReferenceID, $SchoolID, $ImageStudent);
             $_SESSION['success'] = "บันทึกข้อมูลเรียบร้อย";
             redirect(base_url('student?StudentReferenceID=' . $StudentReferenceID . '&&SchoolID=' . $SchoolID . '&&EducationYear=' . $EducationYear . '&&Semester=' . $Semester . '&&GradeLevelCode=' . $GradeLevelCode . '&&ShowDetail='));
         }

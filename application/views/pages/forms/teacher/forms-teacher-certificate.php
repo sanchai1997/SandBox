@@ -16,7 +16,24 @@
         </h1>
         <a class="btn btn-light text-dark"><b><?= $SchoolName . ' - ' . $TEACHER->PREFIX_NAME . $TEACHER->TeacherNameThai . ' ' . $TEACHER->TeacherLastNameThai ?></b></a>
     </div><!-- End Page Title -->
+    <?php if (!empty($_SESSION['danger'])) { ?>
+        <script>
+            setTimeout(function() {
+                document.getElementById('myAlert').remove();
+            }, 4000); // นับถอยหลังให้แสดง 5 วินาที (5000 มิลลิวินาที)
+        </script>
+        <div style="position: relative;">
+            <div class="alert alert-danger" id="myAlert" style="position: absolute; top: 0; left: 0; right: 0; z-index: 1;">
+                <strong>
+                    <?php
+                        echo '<i class="bi bi-clipboard2-x"></i> ' . $_SESSION['danger'];
+                        unset($_SESSION['danger']);
+                    ?>
+                </strong>
 
+            </div>
+        </div>
+    <?php } ?>
     <section class="section">
         <div class="row">
             <div class="col-lg-9">
@@ -31,18 +48,12 @@
                                     <select class="form-select" name="CertificateCode" id="CertificateCode" aria-label="CertificateCode">
                                         <option value="" selected>เลือก</option>
                                         <?php
-                                        $result_refix = $this->db->query('SELECT * FROM TEACHER_CERTIFICATE WHERE SchoolID = ' . $_GET['SchoolID'] . ' AND TeacherID = "' . $_GET['TeacherID'] . '"');
-                                        foreach ($result_refix->result() as $TEACHER) {
-
-                                            $result = $this->db->query('SELECT * FROM CLS_TEACHER_CERTIFICATE');
-                                            foreach ($result->result() as $TEACHER_CERTIFICATE) {
-                                                if ($TEACHER->CertificateCode != $TEACHER_CERTIFICATE->TEACHER_CERTIFICATE_CODE) {
+                                        $result = $this->db->query('SELECT * FROM CLS_TEACHER_CERTIFICATE');
+                                        foreach ($result->result() as $TEACHER_CERTIFICATE) {
                                         ?>
-
-                                                    <option value="<?= $TEACHER_CERTIFICATE->TEACHER_CERTIFICATE_CODE; ?>"><?= $TEACHER_CERTIFICATE->TEACHER_CERTIFICATE_NAME; ?></option>
+                                            <option value="<?= $TEACHER_CERTIFICATE->TEACHER_CERTIFICATE_CODE; ?>"><?= $TEACHER_CERTIFICATE->TEACHER_CERTIFICATE_NAME; ?></option>
                                         <?php
-                                                }
-                                            }
+
                                         }
                                         ?>
                                     </select>
@@ -109,7 +120,16 @@
     </section>
     <script type="text/javascript">
         function check(frm) {
-            
+
+            if (frm.CertificateCode.value == "") {
+                alert("กรุณาเลือกประเภทใบอนุญาติ");
+                return false;
+            }
+            if (frm.CertificateLicenseNumber.value == "") {
+                alert("กรุณากรอกเลขที่ใบอนุญาติ");
+                return false;
+            }
+
             $('#Modal').modal('show');
         }
     </script>

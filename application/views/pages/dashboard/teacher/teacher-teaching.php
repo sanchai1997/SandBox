@@ -104,8 +104,6 @@
 $result = $this->db->query('SELECT *
                                     FROM TEACHER_TEACHING 
                                     INNER JOIN CLS_EDUCATION_LEVEL ON TEACHER_TEACHING.TeachingEducationLevelCode = CLS_EDUCATION_LEVEL.EDUCATION_LEVEL_CODE
-                                    INNER JOIN CLS_SUBJECT_TYPE ON TEACHER_TEACHING.TeachingSubjectGroupCode = CLS_SUBJECT_TYPE.SUBJECT_TYPE_CODE
-                                    INNER JOIN CLS_SUBJECT_GROUP ON TEACHER_TEACHING.TeachingSubjectCode = CLS_SUBJECT_GROUP.SUBJECT_GROUP_CODE
                                     WHERE TEACHER_TEACHING.DeleteStatus = 0 AND TEACHER_TEACHING.SchoolID = ' . $_GET['SchoolID'] . ' AND TEACHER_TEACHING.TeacherID = "' . $_GET['TeacherID'] . '"
                                     ');
 $i = 0;
