@@ -54,8 +54,14 @@ $route['add_curriculum_assessment']['post'] = 'CurriculumController/add_curricul
 $route['list_curriculum_assignment'] = 'CurriculumController/list_curriculum_assignment';
 $route['edit_forms-curriculum_assessment'] = 'CurriculumController/edit_forms_curriculum_assessment';
 //eportfolio
+$route['list-eportfolio'] = 'CurriculumController/list_eportfolio';
 $route['forms_eportfolio'] = 'CurriculumController/forms_eportfolio';
 $route['add_eportfolio'] = 'CurriculumController/add_eportfolio';
+$route['edit_forms_eportfolio'] = 'CurriculumController/edit_forms_eportfolio';
+$route['edit_eportfolio']['post'] = 'CurriculumController/edit_eportfolio';
+$route['delete-eportfolio/(:num)'] = 'CurriculumController/delete_eportfolio/$1';
+
+
 
 
 
