@@ -269,7 +269,7 @@ $this->db->where('Id',$this->input->post('Id'));
 	// print_r($_POST);
 	// echo'</pre>';
 	// exit;
-	$value ="0";
+	$value ="1";
 			$data = array(
 				
 				'DeleteStatus' => $value
