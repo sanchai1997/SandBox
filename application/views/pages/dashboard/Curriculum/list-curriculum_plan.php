@@ -46,7 +46,7 @@
                             <th style="text-align: center;" scope="col">ปีการศึกษา</th>
                             <th style="text-align: center;" scope="col">ภาคเรียน</th>
                             <th style="text-align: center;" scope="col">เรื่อง</th>
-                            <th style="text-align: center;" scope="col">กิจกกรม</th>
+                            <th style="text-align: center;" scope="col">รายละเอียด</th>
                             <th style="text-align: center;" scope="col">ปฎิบัติ</th>
                         </tr>
                     </thead>

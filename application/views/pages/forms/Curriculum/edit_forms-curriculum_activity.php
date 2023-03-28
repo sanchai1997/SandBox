@@ -92,7 +92,6 @@
               </div>
               <?php foreach ($score as $s) {?>
                 <input type="hidden" class="form-control" name="SCORE_ID" id="SCORE_ID" placeholder="ชื่อการวัดและประเมินผล" maxlength="255" value="<?php echo $s->SCORE_ID  ?>">
-                    <label >สัดส่วนการประเมินโดยผู้สอน<font color="red"> *</font></label>
                 <div class="col-md-16">
                   <div class="form-floating">
                     <input type="text" class="form-control" name="SCORE_TEACHER" id="SCORE_TEACHER" placeholder="ชื่อการวัดและประเมินผล" maxlength="255" value="<?php echo $s->SCORE_TEACHER  ?>">
