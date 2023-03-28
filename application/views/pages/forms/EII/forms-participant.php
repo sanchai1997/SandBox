@@ -14,11 +14,12 @@
             $page
         ) { case 'sh1': ?> <h1>ผู้เข้ามามีส่วนร่วม</h1>
         <?php break;case 'sh2': ?> <h1>การติดต่อของผู้มีส่วนร่วม - <?php echo $name; ?></h1>
-        <?php break;case 'sh22': ?> <h1>การติดต่อของผู้มีส่วนร่วม - <?php echo $name; ?></h1>
+        <?php break;case 'sh22': ?> <h1>ข้อมูลการติดต่อของผู้มีส่วนร่วม - <?php echo $name; ?></h1>
         <?php break;case 'sh3': ?> <h1>การมีส่วนร่วม - <?php echo $name; ?></h1>
-        <?php break;case 'sh33': ?> <h1>การมีส่วนร่วม - <?php echo $name; ?></h1>
+        <?php break;case 'sh33': ?> <h1>ข้อมูลการมีส่วนร่วม - <?php echo $name; ?></h1>
         <?php break;case 'sh4': ?> <h1>ข้อมูลบันทึกเพิ่มเติม - <?php echo $name; ?></h1>
         <?php break;case 'sh44': ?> <h1>ข้อมูลบันทึกเพิ่มเติม - <?php echo $name; ?></h1>
+        <?php break;case 'sh11': ?> <h1>ข้อมูลผู้เข้ามามีส่วนร่วม - <?php echo $name; ?></h1>
         <?php break;default: ?>
         <?php break;} ?>
 
@@ -103,7 +104,7 @@
                                 </div>
                             </div>
                             <div class="text-center">
-                                <a href="list-teacher_development_activity" class="btn btn-danger"
+                                <a href="Fm_participant_das_p1?page=sh1" class="btn btn-danger"
                                     style="float: left;">ยกเลิก</a>
 
                                 <button type="button" class="btn btn-primary" data-bs-toggle="modal"
@@ -152,7 +153,7 @@
                         <?php
                             
                             $result = $this->db->query("SELECT * FROM PARTICIPANT 
-                            WHERE Id = '".$key."' 
+                            WHERE ParticipantID = '".$key."' 
                             ");
  
                      foreach ($result->result() as $show) {
@@ -161,7 +162,7 @@
                             'par_edit_p1'
                         ); ?>" method="post" enctype="multipart/form-data">
 
-                            <input type="hidden" name="Id" value="<?php echo $show->Id ?>">
+                            <input type="hidden" name="ParticipantID" value="<?php echo $show->ParticipantID ?>">
                             <div class="row mb-3">
                                 <div class="col">
                                     <div class="form-floating">
@@ -206,7 +207,7 @@
                                 </div>
                             </div>
                             <div class="text-center">
-                                <a href="list-teacher_development_activity" class="btn btn-danger"
+                                <a href="Fm_participant_das_p1?page=sh1" class="btn btn-danger"
                                     style="float: left;">ยกเลิก</a>
 
                                 <button type="button" class="btn btn-warning" data-bs-toggle="modal"
@@ -326,7 +327,7 @@
                                 </div>
                             </div>
                             <div class="text-center">
-                                <a href="list-teacher_development_activity" class="btn btn-danger"
+                                <a href="Fm_participant_das_p1?page=sh1" class="btn btn-danger"
                                     style="float: left;">ยกเลิก</a>
 
                                 <button type="button" class="btn btn-primary" data-bs-toggle="modal"
@@ -455,9 +456,12 @@
                                 </div>
                             </div>
                             <div class="text-center">
-                                <a href="list-teacher_development_activity" class="btn btn-danger"
+                                <a href="Fm_participant_das_p1?page=sh1" class="btn btn-danger"
                                     style="float: left;">ยกเลิก</a>
-
+                                    <button type="button" class="btn btn-danger" data-bs-toggle="modal"
+                                    data-bs-target="#del_par_com<?php echo $show->Id; ?>">
+                                    <i class="bi bi-trash"></i>
+                                </button>
                                 <button type="button" class="btn btn-warning" data-bs-toggle="modal"
                                     data-bs-target="#exampleModal" style="float: right;">แก้ไขข้อมูล</button>
                             </div>
@@ -486,6 +490,37 @@
                                 </div>
                             </div>
                         </form><!-- end Form ข้อมูลการติดต่อของผู้มีส่วนร่วมในพื้นที่ -->
+                        <!-- Modal -->
+                        <div class="modal fade" id="del_par_com<?php echo $show->Id; ?>" tabindex="-1"
+                                    aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog modal-dialog-centered">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="exampleModalLabel">
+                                                    ยืนยันการลบข้อมูล<?php echo nbs(2); ?><?php echo $show->ContactName; ?>
+                                                </h5>
+
+                                            </div>
+                                            <div class="modal-body">
+                                              <p class="text-center">  คุณต้องการลบข้อมูลใช่หรือไหม</p>
+
+                                            </div>
+
+
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary"
+                                                    data-bs-dismiss="modal">ยกเลิก</button>
+                                                <form method="post" action="<?php echo site_url('pc_del_p2'); ?>">
+                                                    <input type="hidden" name="Id" value="<?php echo $show->Id; ?>">
+                                                    <div class="d-flex justify-content-center">
+                                                        <button name="Submit" type="submit"
+                                                            class="btn btn-danger">ยืนยันก่อนลบ</button>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div> <!-- Modal -->
                         <script>
                         ///PARTICIPANT
                         var my_PARTICIPANT = '<?php echo $show->ParticipantID; ?>';
@@ -555,7 +590,7 @@
                                     </select>
                                     <label for="Y"><?php echo nbs(
                                         2
-                                    ); ?>ระดับการมีส่วนร่วม</label>
+                                    ); ?>สถานะการมีส่วนร่วม</label>
                                 </div>
                             </div>
                             <div class="row mb-3">
@@ -613,7 +648,7 @@
                                 </div>
                             </div>
                             <div class="text-center">
-                                <a href="list-teacher_development_activity" class="btn btn-danger"
+                                <a href="Fm_participant_das_p1?page=sh1" class="btn btn-danger"
                                     style="float: left;">ยกเลิก</a>
 
                                 <button type="button" class="btn btn-primary" data-bs-toggle="modal"
@@ -745,7 +780,7 @@
                                     </select>
                                     <label for="Y"><?php echo nbs(
                                         2
-                                    ); ?>ระดับการมีส่วนร่วม</label>
+                                    ); ?>สถานะการมีส่วนร่วม</label>
                                 </div>
                             </div>
                             <div class="row mb-3">
@@ -803,9 +838,12 @@
                                 </div>
                             </div>
                             <div class="text-center">
-                                <a href="list-teacher_development_activity" class="btn btn-danger"
+                                <a href="Fm_participant_das_p1?page=sh1" class="btn btn-danger"
                                     style="float: left;">ยกเลิก</a>
-
+                                    <button type="button" class="btn btn-danger" data-bs-toggle="modal"
+                                    data-bs-target="#del_par_coop<?php echo $show->Id; ?>">
+                                    <i class="bi bi-trash"></i>
+                                </button>
                                 <button type="button" class="btn btn-warning" data-bs-toggle="modal"
                                     data-bs-target="#exampleModal" style="float: right;">แก้ไขข้อมูล</button>
                             </div>
@@ -834,6 +872,37 @@
                                 </div>
                             </div>
                         </form><!-- end Form ข้อมูลการมีส่วนร่วมของผู้เข้ามามีส่วนร่วมในพื้นที่ -->
+                        <!-- Modal -->
+                        <div class="modal fade" id="del_par_coop<?php echo $show->Id; ?>" tabindex="-1"
+                                    aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog modal-dialog-centered">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="exampleModalLabel">
+                                                    ยืนยันการลบข้อมูล<?php echo nbs(2); ?>
+                                                </h5>
+
+                                            </div>
+                                            <div class="modal-body">
+                                               <p class="text-center"> คุณต้องการลบข้อมูลใช่หรือไหม</p>
+
+                                            </div>
+
+
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary"
+                                                    data-bs-dismiss="modal">ยกเลิก</button>
+                                                <form method="post" action="<?php echo site_url('pcp_del_p3'); ?>">
+                                                    <input type="hidden" name="Id" value="<?php echo $show->Id; ?>">
+                                                    <div class="d-flex justify-content-center">
+                                                        <button name="Submit" type="submit"
+                                                            class="btn btn-danger">ยืนยันก่อนลบ</button>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div> <!-- Modal -->
                         <script>
                         ///SubjectGroupCode
                         var my_SubjectGroupCode = '<?php echo $show->CooperationStatusCode; ?>';
@@ -948,7 +1017,7 @@
                                 </div>
                             </div>
                             <div class="text-center">
-                                <a href="list-teacher_development_activity" class="btn btn-danger"
+                                <a href="Fm_participant_das_p1?page=sh1" class="btn btn-danger"
                                     style="float: left;">ยกเลิก</a>
 
                                 <button type="button" class="btn btn-primary" data-bs-toggle="modal"
@@ -1072,9 +1141,12 @@
                                 </div>
                             </div>
                             <div class="text-center">
-                                <a href="list-teacher_development_activity" class="btn btn-danger"
+                                <a href="Fm_participant_das_p1?page=sh1" class="btn btn-danger"
                                     style="float: left;">ยกเลิก</a>
-
+                                    <button type="button" class="btn btn-danger" data-bs-toggle="modal"
+                                    data-bs-target="#del_par_note<?php echo $show->Id; ?>">
+                                    <i class="bi bi-trash"></i>
+                                </button>
                                 <button type="button" class="btn btn-warning" data-bs-toggle="modal"
                                     data-bs-target="#exampleModal" style="float: right;">แก้ไขข้อมูล</button>
                             </div>
@@ -1103,6 +1175,37 @@
                                 </div>
                             </div>
                         </form><!-- end Form ข้อมูลความคิดเห็นต่อผู้เข้ามามีส่วนร่วมในพื้นที่ -->
+                          <!-- Modal -->
+                          <div class="modal fade" id="del_par_note<?php echo $show->Id; ?>" tabindex="-1"
+                                    aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog modal-dialog-centered">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="exampleModalLabel">
+                                                    ยืนยันการลบข้อมูล<?php echo nbs(2); ?>
+                                                </h5>
+
+                                            </div>
+                                            <div class="modal-body">
+                                              <p class="text-center">  คุณต้องการลบข้อมูลใช่หรือไหม</p>
+
+                                            </div>
+
+
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary"
+                                                    data-bs-dismiss="modal">ยกเลิก</button>
+                                                <form method="post" action="<?php echo site_url('pn_del_p4'); ?>">
+                                                    <input type="hidden" name="Id" value="<?php echo $show->Id; ?>">
+                                                    <div class="d-flex justify-content-center">
+                                                        <button name="Submit" type="submit"
+                                                            class="btn btn-danger">ยืนยันก่อนลบ</button>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div> <!-- Modal -->
                        <script>
                          ///PARTICIPANT_COOPERATION
                          var my_PARTICIPANT_COOPERATION = '<?php echo $show->ParticipantID; ?>';

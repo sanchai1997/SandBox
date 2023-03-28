@@ -148,8 +148,6 @@ class Curriculum_model  extends CI_Model {
         ->where('SubjectCode ', $SubjectCode  ) 
         ->where('cs.DeleteStatus', 0);
 
-       // $this->db->from('CURRICULUM_SCHOOL_COMPETENCY');
-      //  $this->db->where('SubjectCode ', $SubjectCode  );
         $query = $this->db->get();
     
         return $query->result();
@@ -265,9 +263,86 @@ public function insert_curriculum_assessment($curriculum_assessment) {
     $result_curriculum_activity = $this->db->insert('ASSESSMENT', $curriculum_assessment);
     return $result_curriculum_activity;
 }    
+public function get_assessment($ACTIVITY_ID) {
+    $this->db->select('*')
+    ->from('assessment')
+    ->where('ACTIVITY_ID',$ACTIVITY_ID);
+    $query = $this->db->get();
+    return $query->result();
+}
+public function get_CLS_FUNDAMENTAL_SUBJECT_PASSING() {
+    $this->db->select('*')
+    ->from('CLS_FUNDAMENTAL_SUBJECT_PASSING');
+    $query = $this->db->get();
+   
+    return $query->result();
+}
+
+public function update_assessment($SCORE_ID,$curriculum_assessment){
+    $this->db->where('SCORE_ID', $SCORE_ID);
+    $result = $this->db->update('assessment',$curriculum_assessment);
 
     
+    return $result;
+}
+#############################score################
+public function insert_score($SCORE) {
+    $result_SCORE = $this->db->insert('score', $SCORE);
+    if($result_SCORE == 1){
+        $result_score_id = $this->db->insert_id();
+        return $result_score_id;
+    }else{
+        return -1;
+    }
+}
+    public function update_score($SCORE_ID,$SCORE){
+        $this->db->where('SCORE_ID', $SCORE_ID);
+        $result = $this->db->update('SCORE',$SCORE);
+        return $result;
+    }
+public function get_score($SCORE_ID) {
+    $this->db->select('*')
+    ->from('score')
+    ->where('SCORE_ID',$SCORE_ID);
+    $query = $this->db->get();
+    return $query->result();
+}
+#######################eportfolio
+     public function insert_eportfolio($eportfolio) {
+     $result_eportfolio = $this->db->insert('EPORTFOLIO', $eportfolio);
+     return $result_eportfolio;
+    }
+      public function get_EPORTFOLIO_ALL() {
+        $this->db->select('*')
+        ->where('DeleteStatus ', 0  ) 
+        ->from('EPORTFOLIO');
+        $query = $this->db->get();
+        return $query->result();
+    }
+    public function get_EPORTFOLIO($EPORTFOLIO_ID) {
+        $this->db->select('*')
+        ->from('EPORTFOLIO')
+        ->where('EPORTFOLIO_ID',$EPORTFOLIO_ID);
+        $query = $this->db->get();
+        return $query->result();
+    }
+    public function update_EPORTFOLIO($EPORTFOLIO_ID,$eportfolio){
+        $this->db->where('EPORTFOLIO_ID ', $EPORTFOLIO_ID);
+        $result = $this->db->update('eportfolio',$eportfolio);
+        return $result;
+    }
+    public function delete_eportfolio($EPORTFOLIO_ID){   
+        $data = [
+            'DeleteStatus' => 1
+        ];
+        $this->db->where('EPORTFOLIO_ID', $EPORTFOLIO_ID);
+            
+        $result = $this->db->update('eportfolio', $data);
+        show_error($this->db->last_query());
 
+        return $result;
+    }
+    
     
 }
 

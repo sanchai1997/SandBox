@@ -1,8 +1,9 @@
 
 <main id="main" class="main">
+<?php foreach($assignment as $as) {?> 
 
     <div class="pagetitle">
-      <h1>ข้อมูลการวัดและประเมินผล</h1>
+      <h1>แก้ไขข้อมูลการวัดและประเมินผล</h1>
     </div><!-- End Page Title -->
 
     <section class="section">
@@ -32,12 +33,12 @@
               <!-- start Form การวัดและประเมินผล  -->
               <form class="row g-3" action="<?php echo base_url('add_curriculum_assessment');?>" method="POST" name="assessment" id="assessment" enctype="multipart/form-data"> 
                 
-
+              <input type="hidden" class="form-control" name="ASSESSMENT_ID " id="ASSESSMENT_ID " value="<?php echo $ASSESSMENT_ID ?>">
               <input type="hidden" class="form-control" name="ACTIVITY_ID" id="ACTIVITY_ID"value="<?php echo $ACTIVITY_ID?>">
 
                 <div class="col-md-16">
                   <div class="form-floating">
-                    <input type="text" class="form-control" name="ASSESSMENT_NAME" id="ASSESSMENT_NAME" placeholder="ชื่อการวัดและประเมินผล" maxlength="255">
+                    <input type="text" class="form-control" name="ASSESSMENT_NAME" id="ASSESSMENT_NAME" placeholder="ชื่อการวัดและประเมินผล" maxlength="255" value=" <?php echo $as->ASSESSMENT_NAME?>">
                     <label >ชื่อการวัดและประเมินผล<font color="red"> *</font></label>
                   </div>
                 </div>
@@ -171,4 +172,5 @@
   }
 
 </script>    
+<?php }?>
 </main><!-- End #main -->

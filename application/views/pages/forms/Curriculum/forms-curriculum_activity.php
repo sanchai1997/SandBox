@@ -1,3 +1,4 @@
+@@ -1,95 +0,0 @@
 
 <main id="main" class="main">
 
@@ -37,7 +38,7 @@
                 <div class="col-md-16">
                   <div class="form-floating">
                     <input type="text" class="form-control" name="ACTIVITY_NAME" id="ACTIVITY_NAME" placeholder="ชื่อกิจกรรม" maxlength="100">
-                    <label >ชื่อกิจกรรม</label>
+                    <label >ชื่อกิจกรรม<font color="red"> *</font></label>
                   </div>
                 </div>
 
