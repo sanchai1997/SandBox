@@ -295,11 +295,11 @@ public function insert_score($SCORE) {
         return -1;
     }
 }
-public function update_score($SCORE_ID,$SCORE){
-    $this->db->where('SCORE_ID', $SCORE_ID);
-    $result = $this->db->update('SCORE',$SCORE);
-    return $result;
-}
+    public function update_score($SCORE_ID,$SCORE){
+        $this->db->where('SCORE_ID', $SCORE_ID);
+        $result = $this->db->update('SCORE',$SCORE);
+        return $result;
+    }
 public function get_score($SCORE_ID) {
     $this->db->select('*')
     ->from('score')
@@ -307,6 +307,43 @@ public function get_score($SCORE_ID) {
     $query = $this->db->get();
     return $query->result();
 }
+#######################eportfolio
+     public function insert_eportfolio($eportfolio) {
+     $result_eportfolio = $this->db->insert('EPORTFOLIO', $eportfolio);
+     return $result_eportfolio;
+    }
+      public function get_EPORTFOLIO_ALL() {
+        $this->db->select('*')
+        ->where('DeleteStatus ', 0  ) 
+        ->from('EPORTFOLIO');
+        $query = $this->db->get();
+        return $query->result();
+    }
+    public function get_EPORTFOLIO($EPORTFOLIO_ID) {
+        $this->db->select('*')
+        ->from('EPORTFOLIO')
+        ->where('EPORTFOLIO_ID',$EPORTFOLIO_ID);
+        $query = $this->db->get();
+        return $query->result();
+    }
+    public function update_EPORTFOLIO($EPORTFOLIO_ID,$eportfolio){
+        $this->db->where('EPORTFOLIO_ID ', $EPORTFOLIO_ID);
+        $result = $this->db->update('eportfolio',$eportfolio);
+        return $result;
+    }
+    public function delete_eportfolio($EPORTFOLIO_ID){   
+        $data = [
+            'DeleteStatus' => 1
+        ];
+        $this->db->where('EPORTFOLIO_ID', $EPORTFOLIO_ID);
+            
+        $result = $this->db->update('eportfolio', $data);
+        show_error($this->db->last_query());
+
+        return $result;
+    }
+
+    
 
  
     
