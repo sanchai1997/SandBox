@@ -10,6 +10,36 @@
     <?php $key = isset($_GET['key']) ? $_GET['key'] : ''; ?>
     <?php $year = isset($_GET['year']) ? $_GET['year'] : ''; ?>
     <?php $Province = isset($_GET['Province']) ? $_GET['Province'] : ''; ?>
+    <?php 
+session_start(); // เริ่มต้น session
+if (isset( $_SESSION['success'])) { ?>
+        <div style="position: relative;">
+            <div class="alert alert-success" id="myAlert"
+                style="position: absolute; top: 0; left: 0; right: 0; z-index: 1;">
+                <strong>
+                    <?php
+                        echo $_SESSION['success'];
+                        unset($_SESSION['success']);
+                        ?>
+                </strong>
+
+            </div>
+        </div>
+        <?php  }
+        if (isset( $_SESSION['false'])) { ?>
+        <div style="position: relative;">
+            <div class="alert alert-danger" id="myAlert"
+                style="position: absolute; top: 0; left: 0; right: 0; z-index: 1;">
+                <strong>
+                    <?php
+                        echo $_SESSION['false'];
+                        unset($_SESSION['false']);
+                        ?>
+                </strong>
+
+            </div>
+        </div>
+        <?php  } ?>
     <div class="pagetitle">
         <div class="row ">
             <?php switch ($page) {
@@ -1018,5 +1048,9 @@ foreach ($resulta->result() as $showa) { ?>
 
         </div>
     </section>
-
+    <script>
+    setTimeout(function() {
+        document.getElementById('myAlert').remove();
+    }, 2000); // นับถอยหลังให้แสดง 5 วินาที (5000 มิลลิวินาที)
+    </script>
 </main><!-- End #main -->
