@@ -1,4 +1,13 @@
 <main id="main" class="main">
+    <style>
+        .my-link {
+  color: black;
+}
+
+.my-link:hover {
+  color: blue;
+}
+    </style>
     <?php $page = isset($_GET['page']) ? $_GET['page'] : ''; ?>
     <?php $key = isset($_GET['key']) ? $_GET['key'] : ''; ?>
     <?php $name = isset($_GET['name']) ? $_GET['name'] : ''; ?>
@@ -114,16 +123,16 @@
 
                                 <tr>
                                     <!-- <th scope="row " style="text-align: center;"><?php echo $InnovationID = $show->InnovationID; ?></th> -->
-                                    <th scope="row " style="">
+                                    <td scope="row " style="">
                                         <?php echo $show->EducationYear; ?>
-                                    </th>
-                                    <th scope="row " style="">
+                                    </td>
+                                    <td scope="row " style="">
                                         <?php echo $show->Semester; ?>
-                                    </th>
-                                    <th scope="row " style="">
+                                    </td>
+                                    <td scope="row " style="">
                                         <?php echo $show->InnovationName; ?>
-                                    </th>
-                                    <th scope="row " style="text-align: left;">
+                                    </td>
+                                    <td scope="row " style="text-align: left;">
                                         <?php $resultc = $this->db->query("SELECT * FROM INNOVATION_CREATOR JOIN CLS_PERSONAL_ID_TYPE ON INNOVATION_CREATOR.CreatorPersonalIDTypeCode = CLS_PERSONAL_ID_TYPE.PERSONAL_ID_TYPE_CODE 
                             JOIN CLS_PREFIX ON INNOVATION_CREATOR.CreatorPrefixCode = CLS_PREFIX.PREFIX_CODE  
                             WHERE InnovationID='" . $InnovationID . "' AND DeleteStatus = 0"); ?>
@@ -133,7 +142,7 @@
                                                 <div class="col">
                                                     <p>
 
-                                                        <a href="<?php echo site_url('forms_p1?page=sh22') ?>&&key=<?php echo $showc->Id; ?>&&name=<?php echo $show->InnovationName; ?>">
+                                                        <a href="<?php echo site_url('forms_p1?page=sh22') ?>&&key=<?php echo $showc->Id; ?>&&name=<?php echo $show->InnovationName; ?>" class="my-link">
                                                             <?php echo $showc->PREFIX_NAME; ?>            <?php echo nbs(2); ?>
                                                             <?php echo $showc->CreatorNameThai; ?>-
                                                             <?php echo $showc->CreatorLastNameThai; ?></a>
@@ -142,10 +151,12 @@
 
                                             </div>
                                         <?php } ?>
-                                        <a href="<?php echo site_url('forms_p2?page=sh2') ?>&&name=<?php echo $show->InnovationName; ?>&&key=<?php echo $show->InnovationID; ?>"
-                                            >>>เพิ่มผู้จัดทำ>>
-                                        </a>
-                                    </th>
+                                       
+                                            <a href="<?php echo site_url('forms_p2?page=sh2') ?>&&name=<?php echo $show->InnovationName; ?>&&key=<?php echo $show->InnovationID; ?>" class="fw-bold my-link">
+                                            >>เพิ่มผู้จัดทำ>>
+                                            </a>
+                                       
+                                    </td>
                                     <td style="text-align: center;">
                                         <button type="button" class="btn btn-primary" data-bs-toggle="modal"
                                             data-bs-target="#das<?php echo $show->InnovationID; ?>"><i

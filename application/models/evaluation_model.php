@@ -619,6 +619,10 @@ public function del_sc_ass_ria(){
 		// print_r($_POST);
 		// echo'</pre>';
 		// exit;
+		if (isset($_FILES['AchievementAssessmentAttachmentURL'])) {
+			$file = $_FILES['AchievementAssessmentAttachmentURL']['tmp_name'];
+			if (file_exists($file)) {
+				$config['upload_path'] = './document/';
 		$config['upload_path'] = './document/';
         $config['allowed_types'] = 'doc|docx|pdf|jpg|png|xls|ppt|zip|xlsx';
         $config['encrypt_name'] = TRUE;
@@ -641,17 +645,29 @@ public function del_sc_ass_ria(){
             'AchievementAssessmentAttachmentURL' => $filename
           
         );
+	}
+}else {
+	$data = array(
+		'AchievementAssessmentYear' => $this->input->post('AchievementAssessmentYear'),
+		'SchoolID' => $this->input->post('SchoolID'),
+		'SchoolAssessmentName' => $this->input->post('SchoolAssessmentName'),
+		'SchoolAssessmentDescription' => $this->input->post('SchoolAssessmentDescription'),
+		'AssessmentorName' => $this->input->post('AssessmentorName'),
+		'AchievementAssessmentPassingFlag' => $this->input->post('AchievementAssessmentPassingFlag')
+	);
+}
+}
 		$query=$this->db->insert('ACHIEVEMENT_ASSESSMENT',$data);
 		if($query){
 			session_start(); // เริ่มต้น session
 			$_SESSION['success'] = "เพิ่มข้อมูลเรียบร้อย !"; // กำหนดค่า success ใน session เป็น true
-			header("Location:".site_url('Fm_evaluation_das_p1?page=sh1')); // ไปยังหน้าก่อนหน้านี้
+			header("Location:".site_url('Fm_evaluation_das_p8?page=sh8')); // ไปยังหน้าก่อนหน้านี้
 			
 		} else {
 			echo 'false';
 		}
     }
-}
+
 public function edit_achie_ass() //sh8
 	{
 		if (isset($_FILES['AchievementAssessmentAttachmentURL'])) {
@@ -696,7 +712,7 @@ public function edit_achie_ass() //sh8
 		if ($query) {
 			session_start(); // เริ่มต้น session
 			$_SESSION['success'] = "แก้ไขสำเร็จ!"; // กำหนดค่า success ใน session เป็น true
-			header("Location: " . site_url('Fm_evaluation_das_p1?page=sh1'));
+			header("Location: " . site_url('Fm_evaluation_das_p8?page=sh8'));
 			// ไปยังหน้าก่อนหน้านี้
 
 		} else {
@@ -715,7 +731,7 @@ public function edit_achie_ass() //sh8
 		if ($query) {
 			session_start(); // เริ่มต้น session
 			$_SESSION['success'] = "ลบข้อมูลสำเร็จ!"; // กำหนดค่า success ใน session เป็น true
-			header("Location: " . site_url('Fm_evaluation_das_p1?page=sh1'));
+			header("Location: " . site_url('Fm_evaluation_das_p8?page=sh8'));
 			// ไปยังหน้าก่อนหน้านี้
 
 		} else {
@@ -725,7 +741,7 @@ public function edit_achie_ass() //sh8
 	public function show_ass_ria()
 	{
 		$this->db->select('*');
-		$this->db->from('ASSESSMENT_CRITERIA as ass_ria');
+		$this->db->from('ASSESSMENT_CRITERIA ');
 		$this->db->where('DeleteStatus = 0');
 		$query = $this->db->get();
 		return $query->result();

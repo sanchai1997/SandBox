@@ -2,6 +2,15 @@
     <?php $page = isset($_GET['page']) ? $_GET['page'] : '';  ?>
     <?php $key = isset($_GET['key']) ? $_GET['key'] : '';  ?>
     <?php $name = isset($_GET['name']) ? $_GET['name'] : '';  ?>
+    <style>
+        .my-link {
+  color: black;
+}
+
+.my-link:hover {
+  color: blue;
+}
+    </style>
     <?php
     session_start(); // เริ่มต้น session
     if (isset($_SESSION['success'])) { ?>
@@ -137,13 +146,13 @@
                             <td style="">
                                 <?php echo $show->BestPracticeName; ?>
                             </td>
-                            <th style="">
+                            <td style="">
                                 <?php echo $shows->BEST_PRACTICE_TYPE_NAME; ?>
-                            </th>
+                            </td>
                             <td style="">
                                 <?php echo $shows->EDUCATION_LEVEL_NAME; ?>
                             </td>
-                            <th scope="row " style=""> <?php $resultc = $this->db->query("SELECT * FROM BEST_PRACTICE_CREATOR JOIN CLS_PERSONAL_ID_TYPE ON BEST_PRACTICE_CREATOR.CreatorPersonalIDTypeCode = CLS_PERSONAL_ID_TYPE.PERSONAL_ID_TYPE_CODE 
+                            <td scope="row " style=""> <?php $resultc = $this->db->query("SELECT * FROM BEST_PRACTICE_CREATOR JOIN CLS_PERSONAL_ID_TYPE ON BEST_PRACTICE_CREATOR.CreatorPersonalIDTypeCode = CLS_PERSONAL_ID_TYPE.PERSONAL_ID_TYPE_CODE 
                             JOIN CLS_PREFIX ON BEST_PRACTICE_CREATOR.CreatorPrefixCode = CLS_PREFIX.PREFIX_CODE  
                             WHERE BestPracticeID='" . $BestPracticeID . "' AND DeleteStatus = 0"); ?>
 
@@ -152,7 +161,7 @@
                                                 <div class="col">
                                                     <p>
 
-                                                        <a href="<?php echo site_url('BPC_forms_p2?page=sh22') ?>&&key=<?php echo $showc->Id; ?>&&name=<?php echo $show->BestPracticeName; ?>">
+                                                        <a href="<?php echo site_url('BPC_forms_p2?page=sh22') ?>&&key=<?php echo $showc->Id; ?>&&name=<?php echo $show->BestPracticeName; ?>" class="my-link">
                                                             <?php echo $showc->PREFIX_NAME; ?>            <?php echo nbs(2); ?>
                                                             <?php echo $showc->CreatorNameThai; ?>-
                                                             <?php echo $showc->CreatorLastNameThai; ?></a>
@@ -161,9 +170,9 @@
 
                                             </div>
                                         <?php } ?>
-                                        <a href="<?php echo site_url('BPC_forms_p2?page=sh2') ?>&&name=<?php echo $show->BestPracticeName; ?>&&key=<?php echo $show->BestPracticeID; ?>"
+                                        <a href="<?php echo site_url('BPC_forms_p2?page=sh2') ?>&&name=<?php echo $show->BestPracticeName; ?>&&key=<?php echo $show->BestPracticeID; ?>" class="my-link fw-bold"
                                             >>>เพิ่มผู้จัดทำ>>
-                                        </a> </th>
+                                        </a> </td>
 
                                     <td style="text-align: center;">
                                         

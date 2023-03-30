@@ -865,7 +865,7 @@ if (isset( $_SESSION['success'])) { ?>
 
                                                 </div>
                                                 <div class="modal-body">
-                                                    คุณต้องการลบข้อมูลใช่หรือไหม
+                                                    <p class="text-center">คุณต้องการลบข้อมูลใช่หรือไหม</p>
 
                                                 </div>
 
@@ -875,7 +875,7 @@ if (isset( $_SESSION['success'])) { ?>
                                                     <form method="post" action="<?php echo site_url('del_p2'); ?>">
                                                         <input type="hidden" name="Id" value="<?php echo $show->Id; ?>">
                                                         <div class="d-flex justify-content-center">
-                                                            <button name="Submit" type="submit" class="btn btn-primary">ยืนยันก่อนลบ</button>
+                                                            <button name="Submit" type="submit" class="btn btn-danger">ยืนยันก่อนลบ</button>
                                                         </div>
                                                     </form>
                                                 </div>

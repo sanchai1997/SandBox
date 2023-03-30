@@ -26,7 +26,7 @@ class Committee_model extends CI_Model {
         $data = array(
             'CommitteeProvinceCode' => $this->input->post('CommitteeProvinceCode'),
             'CommitteeYear' => $this->input->post('CommitteeYear'),
-            // 'CommitteeAppointmentNumber' => $this->input->post('CommitteeAppointmentNumber'),
+            'CommitteeAppointmentNumber' => $this->input->post('CommitteeAppointmentNumber'),
             'CommitteeAppointmentTypeCode' => $this->input->post('CommitteeAppointmentTypeCode'),
             'CommitteeAppointmentAttachmentURL' => $filename
           
@@ -36,7 +36,7 @@ class Committee_model extends CI_Model {
 	$data = array(
 		'CommitteeProvinceCode' => $this->input->post('CommitteeProvinceCode'),
 		'CommitteeYear' => $this->input->post('CommitteeYear'),
-		// 'CommitteeAppointmentNumber' => $this->input->post('CommitteeAppointmentNumber'),
+		'CommitteeAppointmentNumber' => $this->input->post('CommitteeAppointmentNumber'),
 		'CommitteeAppointmentTypeCode' => $this->input->post('CommitteeAppointmentTypeCode'),
 
 	  
@@ -77,7 +77,7 @@ public function edit_committee()
         $data = array(
             'CommitteeProvinceCode' => $this->input->post('CommitteeProvinceCode'),
             'CommitteeYear' => $this->input->post('CommitteeYear'),
-            // 'CommitteeAppointmentNumber' => $this->input->post('CommitteeAppointmentNumber'),
+            'CommitteeAppointmentNumber' => $this->input->post('CommitteeAppointmentNumber'),
             'CommitteeAppointmentTypeCode' => $this->input->post('CommitteeAppointmentTypeCode'),
             'CommitteeAppointmentAttachmentURL' => $filename
 			);
@@ -96,11 +96,11 @@ public function edit_committee()
             $data = array(
                 'CommitteeProvinceCode' => $this->input->post('CommitteeProvinceCode'),
                 'CommitteeYear' => $this->input->post('CommitteeYear'),
-                // 'CommitteeAppointmentNumber' => $this->input->post('CommitteeAppointmentNumber'),
+                'CommitteeAppointmentNumber' => $this->input->post('CommitteeAppointmentNumber'),
                 'CommitteeAppointmentTypeCode' => $this->input->post('CommitteeAppointmentTypeCode')
               
 			);
-			$this->db->where('CommitteeAppointmentNumber', $this->input->post('CommitteeAppointmentNumber'));
+			$this->db->where('Id', $this->input->post('Id'));
             $query=$this->db->update('COMMITTEE',$data);
 			if($query){
 				session_start(); // เริ่มต้น session
@@ -126,7 +126,7 @@ public function del_committee(){
 				
 		'DeleteStatus' => $status 
 	);
-	$this->db->where('CommitteeAppointmentNumber', $this->input->post('CommitteeAppointmentNumber'));
+	$this->db->where('Id', $this->input->post('Id'));
 			$query=$this->db->update('COMMITTEE',$data);
 			if($query){
 				session_start(); // เริ่มต้น session
