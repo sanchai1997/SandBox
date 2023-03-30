@@ -29,7 +29,7 @@ foreach ($result->result() as $AWARD) {
                             <h5 class="card-title"></h5>
 
                             <!-- General Form Elements -->
-                            <form action="<?php echo base_url('update-award/' . $AWARD->SchoolID . '/' . $AWARD->AwardYear); ?>" method="POST" id="Award">
+                            <form action="<?php echo base_url('update-award/' . $AWARD->ID . '/' . $AWARD->SchoolID . '/' . $AWARD->AwardYear); ?>" method="POST" id="Award">
 
                                 <div class="row mb-3">
                                     <label for="inputText" class="col-sm-2 col-form-label">ปีที่ได้รับรางวัล<font color="red"> *</font></label>
@@ -41,19 +41,19 @@ foreach ($result->result() as $AWARD) {
                                 <div class="row mb-3">
                                     <label for="inputText" class="col-sm-2 col-form-label">ชื่อรางวัล<font color="red"> *</font></label>
                                     <div class="col-sm-10">
-                                        <input type="text" class="form-control" name="AwardName" id="AwardName" value="<?= $AWARD->AwardName; ?>">
+                                        <input type="text" class="form-control" name="AwardName" id="AwardName" value="<?= $AWARD->AwardName; ?>" disabled>
                                     </div>
                                 </div>
 
                                 <div class="row mb-3">
-                                    <label for="inputText" class="col-sm-2 col-form-label">แหล่งที่มาของรางวัล<font color="red"> *</font></label>
+                                    <label for="inputText" class="col-sm-2 col-form-label">แหล่งที่มาของรางวัล</label>
                                     <div class="col-sm-10">
                                         <input type="text" class="form-control" name="AwardSource" id="AwardSource" value="<?= $AWARD->AwardSource; ?>">
                                     </div>
                                 </div>
 
                                 <div class="row mb-3">
-                                    <label class="col-sm-2 col-form-label">ระดับของรางวัลที่ได้รับ<font color="red"> *</font></label>
+                                    <label class="col-sm-2 col-form-label">ระดับของรางวัลที่ได้รับ</label>
                                     <div class="col-sm-10">
                                         <select class="form-select" aria-label="Default select example" name="AwardLevelCode" id="AwardLevelCode">
                                             <?php foreach ($this->db->query('SELECT *FROM CLS_AWARD_LEVEL')->result() as $AWARD_LEVEL) { ?>

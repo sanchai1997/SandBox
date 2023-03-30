@@ -227,11 +227,13 @@ class Curriculum_model  extends CI_Model {
         $result_curriculum_activity = $this->db->insert('ACTIVITY', $curriculum_activity);
         return $result_curriculum_activity;
     }
-    public function get_curriculum_activity_All() {
+    public function get_curriculum_activity_All($PLAN_ID) {
         $this->db->select('*')
         ->from('ACTIVITY')
+        ->where('PLAN_ID ', $PLAN_ID  ) 
         ->where('DeleteStatus ', 0  ) ;
         $query = $this->db->get();
+
        
         return $query->result();
     }

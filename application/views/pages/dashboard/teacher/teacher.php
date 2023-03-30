@@ -787,10 +787,10 @@
                                                     <div class="col-12">
                                                         <h5 style="text-align: left; padding-left: 25px; padding-top: 25px;" class="card-title">
                                                             ข้อมูลการสอน
-                                                            <a style="float: right;" href="teacher-teaching?SchoolID=<?= $TEACHER_DETAIL->SchoolID; ?>&&TeacherID=<?= $TEACHER_DETAIL->TeacherID ?>&&EducationYear=<?= $TEACHER_DETAIL->EducationYear; ?>&&Semester=<?= $TEACHER_DETAIL->Semester; ?>&&PersonnelTypeCode=<?= $TEACHER_DETAIL->PersonnelTypeCode; ?>&&PositionCode=<?= $TEACHER_DETAIL->PositionCode; ?>" class="btn btn-sm btn-info"><i class="bi bi-eye-fill"></i></a>
+                                                            <a style="float: right;" href="teacher-teaching?SchoolID=<?= $TEACHER_DETAIL->SchoolID; ?>&&TeacherID=<?= $TEACHER_DETAIL->TeacherID ?>&&EducationYear=<?= $TEACHER_DETAIL->EducationYear; ?>&&Semester=<?= $TEACHER_DETAIL->Semester; ?>&&PersonnelTypeCode=<?= $TEACHER_DETAIL->PersonnelTypeCode; ?>&&PositionCode=<?= $TEACHER_DETAIL->PositionCode; ?>" class="btn btn-sm btn-warning"><i class="bi bi-pencil-square"></i></a>
                                                         </h5>
                                                         <div class="col-12" style="text-align: left; padding-left: 25px; padding-bottom: 5px;">
-                                                            <table class="table">
+                                                            <table class="table table-bordered">
                                                                 <thead>
                                                                     <tr>
                                                                         <td class="col-2" scope="col">ปีการศึกษา</td>
@@ -873,10 +873,10 @@
                                                     <div class="col-12">
                                                         <h5 style="text-align: left; padding-left: 25px; padding-top: 25px;" class="card-title">
                                                             ข้อมูลวุฒิการศึกษา
-                                                            <a style="float: right;" href="teacher-education?SchoolID=<?= $TEACHER_DETAIL->SchoolID; ?>&&TeacherID=<?= $TEACHER_DETAIL->TeacherID ?>&&EducationYear=<?= $TEACHER_DETAIL->EducationYear; ?>&&Semester=<?= $TEACHER_DETAIL->Semester; ?>&&PersonnelTypeCode=<?= $TEACHER_DETAIL->PersonnelTypeCode; ?>&&PositionCode=<?= $TEACHER_DETAIL->PositionCode; ?>" class="btn btn-sm btn-info"><i class="bi bi-eye-fill"></i></a>
+                                                            <a style="float: right;" href="teacher-education?SchoolID=<?= $TEACHER_DETAIL->SchoolID; ?>&&TeacherID=<?= $TEACHER_DETAIL->TeacherID ?>&&EducationYear=<?= $TEACHER_DETAIL->EducationYear; ?>&&Semester=<?= $TEACHER_DETAIL->Semester; ?>&&PersonnelTypeCode=<?= $TEACHER_DETAIL->PersonnelTypeCode; ?>&&PositionCode=<?= $TEACHER_DETAIL->PositionCode; ?>" class="btn btn-sm btn-warning"><i class="bi bi-pencil-square"></i></a>
                                                         </h5>
                                                         <div class="col-12" style="text-align: left; padding-left: 25px; padding-bottom: 5px;">
-                                                            <table class="table">
+                                                            <table class="table table-bordered">
                                                                 <thead>
                                                                     <tr>
                                                                         <td class="col-4" scope="col">ระดับการศึกษา</td>
@@ -944,10 +944,10 @@
                                                     <div class="col-12">
                                                         <h5 style="text-align: left; padding-left: 25px; padding-top: 25px;" class="card-title">
                                                             ข้อมูลใบประกอบวิชาชีพ
-                                                            <a style="float: right;" href="teacher-certificate?SchoolID=<?= $TEACHER_DETAIL->SchoolID; ?>&&TeacherID=<?= $TEACHER_DETAIL->TeacherID ?>&&EducationYear=<?= $TEACHER_DETAIL->EducationYear; ?>&&Semester=<?= $TEACHER_DETAIL->Semester; ?>&&PersonnelTypeCode=<?= $TEACHER_DETAIL->PersonnelTypeCode; ?>&&PositionCode=<?= $TEACHER_DETAIL->PositionCode; ?>" class="btn btn-sm btn-info"><i class="bi bi-eye-fill"></i></a>
+                                                            <a style="float: right;" href="teacher-certificate?SchoolID=<?= $TEACHER_DETAIL->SchoolID; ?>&&TeacherID=<?= $TEACHER_DETAIL->TeacherID ?>&&EducationYear=<?= $TEACHER_DETAIL->EducationYear; ?>&&Semester=<?= $TEACHER_DETAIL->Semester; ?>&&PersonnelTypeCode=<?= $TEACHER_DETAIL->PersonnelTypeCode; ?>&&PositionCode=<?= $TEACHER_DETAIL->PositionCode; ?>" class="btn btn-sm btn-warning"><i class="bi bi-pencil-square"></i></a>
                                                         </h5>
                                                         <div class="col-12" style="text-align: left; padding-left: 25px; padding-bottom: 5px;">
-                                                            <table class="table">
+                                                            <table class="table table-bordered">
                                                                 <thead>
                                                                     <tr>
                                                                         <td class="col-4" scope="col">ประเภท</td>
@@ -1020,10 +1020,10 @@
                                                     <div class="col-12">
                                                         <h5 style="text-align: left; padding-left: 25px; padding-top: 25px;" class="card-title">
                                                             ข้อมูลหน้าที่เพิ่มเติม
-                                                            <a style="float: right;" href="teacher-position?SchoolID=<?= $TEACHER_DETAIL->SchoolID; ?>&&TeacherID=<?= $TEACHER_DETAIL->TeacherID ?>&&EducationYear=<?= $TEACHER_DETAIL->EducationYear; ?>&&Semester=<?= $TEACHER_DETAIL->Semester; ?>&&PersonnelTypeCode=<?= $TEACHER_DETAIL->PersonnelTypeCode; ?>&&PositionCode=<?= $TEACHER_DETAIL->PositionCode; ?>" class="btn btn-sm btn-info"><i class="bi bi-eye-fill"></i></a>
+                                                            <a style="float: right;" href="teacher-position?SchoolID=<?= $TEACHER_DETAIL->SchoolID; ?>&&TeacherID=<?= $TEACHER_DETAIL->TeacherID ?>&&EducationYear=<?= $TEACHER_DETAIL->EducationYear; ?>&&Semester=<?= $TEACHER_DETAIL->Semester; ?>&&PersonnelTypeCode=<?= $TEACHER_DETAIL->PersonnelTypeCode; ?>&&PositionCode=<?= $TEACHER_DETAIL->PositionCode; ?>" class="btn btn-sm btn-warning"><i class="bi bi-pencil-square"></i></a>
                                                         </h5>
                                                         <div class="col-12" style="text-align: left; padding-left: 25px; padding-bottom: 5px;">
-                                                            <table class="table">
+                                                            <table class="table table-bordered">
                                                                 <thead>
                                                                     <tr>
                                                                         <td class="col-4" scope="col">ตำแหน่งเพิ่มเติม</td>
@@ -1091,10 +1091,10 @@
                                                     <div class="col-12">
                                                         <h5 style="text-align: left; padding-left: 25px; padding-top: 25px;" class="card-title">
                                                             ข้อมูลการช่วยราชการ
-                                                            <a style="float: right;" href="teacher-assistance?SchoolID=<?= $TEACHER_DETAIL->SchoolID; ?>&&TeacherID=<?= $TEACHER_DETAIL->TeacherID ?>&&EducationYear=<?= $TEACHER_DETAIL->EducationYear; ?>&&Semester=<?= $TEACHER_DETAIL->Semester; ?>&&PersonnelTypeCode=<?= $TEACHER_DETAIL->PersonnelTypeCode; ?>&&PositionCode=<?= $TEACHER_DETAIL->PositionCode; ?>" class="btn btn-sm btn-info"><i class="bi bi-eye-fill"></i></a>
+                                                            <a style="float: right;" href="teacher-assistance?SchoolID=<?= $TEACHER_DETAIL->SchoolID; ?>&&TeacherID=<?= $TEACHER_DETAIL->TeacherID ?>&&EducationYear=<?= $TEACHER_DETAIL->EducationYear; ?>&&Semester=<?= $TEACHER_DETAIL->Semester; ?>&&PersonnelTypeCode=<?= $TEACHER_DETAIL->PersonnelTypeCode; ?>&&PositionCode=<?= $TEACHER_DETAIL->PositionCode; ?>" class="btn btn-sm btn-warning"><i class="bi bi-pencil-square"></i></a>
                                                         </h5>
                                                         <div class="col-12" style="text-align: left; padding-left: 25px; padding-bottom: 5px;">
-                                                            <table class="table">
+                                                            <table class="table table-bordered">
                                                                 <thead>
                                                                     <tr>
                                                                         <td class="col-4" scope="col">ประเภทการช่วยราชการ</td>
@@ -1168,10 +1168,10 @@
                                                     <div class="col-12">
                                                         <h5 style="text-align: left; padding-left: 25px; padding-top: 25px;" class="card-title">
                                                             ข้อมูลวิทยฐานะ
-                                                            <a style="float: right;" href="teacher-academic?SchoolID=<?= $TEACHER_DETAIL->SchoolID; ?>&&TeacherID=<?= $TEACHER_DETAIL->TeacherID ?>&&EducationYear=<?= $TEACHER_DETAIL->EducationYear; ?>&&Semester=<?= $TEACHER_DETAIL->Semester; ?>&&PersonnelTypeCode=<?= $TEACHER_DETAIL->PersonnelTypeCode; ?>&&PositionCode=<?= $TEACHER_DETAIL->PositionCode; ?>" class="btn btn-sm btn-info"><i class="bi bi-eye-fill"></i></a>
+                                                            <a style="float: right;" href="teacher-academic?SchoolID=<?= $TEACHER_DETAIL->SchoolID; ?>&&TeacherID=<?= $TEACHER_DETAIL->TeacherID ?>&&EducationYear=<?= $TEACHER_DETAIL->EducationYear; ?>&&Semester=<?= $TEACHER_DETAIL->Semester; ?>&&PersonnelTypeCode=<?= $TEACHER_DETAIL->PersonnelTypeCode; ?>&&PositionCode=<?= $TEACHER_DETAIL->PositionCode; ?>" class="btn btn-sm btn-warning"><i class="bi bi-pencil-square"></i></a>
                                                         </h5>
                                                         <div class="col-12" style="text-align: left; padding-left: 25px; padding-bottom: 5px;">
-                                                            <table class="table">
+                                                            <table class="table ">
                                                                 <thead>
                                                                     <tr>
                                                                         <td class="col-4" scope="col">วิทยาฐานะและตำแหน่งวิชาการ</td>

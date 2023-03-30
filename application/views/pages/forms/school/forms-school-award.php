@@ -10,7 +10,24 @@
             ?>
         </h1>
     </div><!-- End Page Title -->
+    <?php if (!empty($_SESSION['danger'])) { ?>
+        <script>
+            setTimeout(function() {
+                document.getElementById('myAlert').remove();
+            }, 4000); // นับถอยหลังให้แสดง 5 วินาที (5000 มิลลิวินาที)
+        </script>
+        <div style="position: relative;">
+            <div class="alert alert-danger" id="myAlert" style="position: absolute; top: 0; left: 0; right: 0; z-index: 1;">
+                <strong>
+                    <?php
+                    echo '<i class="bi bi-clipboard2-x"></i> ' . $_SESSION['danger'];
+                    unset($_SESSION['danger']);
+                    ?>
+                </strong>
 
+            </div>
+        </div>
+    <?php } ?>
     <section class="section">
         <div class="row">
             <div class="col-lg-9">
@@ -39,14 +56,14 @@
                             </div>
 
                             <div class="row mb-3">
-                                <label for="inputText" class="col-sm-2 col-form-label">แหล่งที่มาของรางวัล <font color="red"> *</font></label>
+                                <label for="inputText" class="col-sm-2 col-form-label">แหล่งที่มาของรางวัล </label>
                                 <div class="col-sm-10">
-                                    <input type="text" class="form-control" name="AwardSource" id="AwardSource">
+                                    <input type="text" class="form-control" name="AwardSource" id="AwardSource" value="">
                                 </div>
                             </div>
 
                             <div class="row mb-3">
-                                <label class="col-sm-2 col-form-label">ระดับของรางวัลที่ได้รับ <font color="red"> *</font></label>
+                                <label class="col-sm-2 col-form-label">ระดับของรางวัลที่ได้รับ </label>
                                 <div class="col-sm-10">
                                     <select class="form-select" aria-label="Default select example" name="AwardLevelCode" id="AwardLevelCode">
                                         <option value="" selected>เลือก</option>
@@ -80,7 +97,7 @@
                                     </div>
                                 </div>
                             </div>
-                            
+
                         </form><!-- End floating Labels Form -->
 
                     </div>
@@ -115,20 +132,6 @@
                 return false;
             }
 
-            if (frm.AwardSource.value == "") {
-                alert("กรุณากรอกแหล่งที่มารางวัล)");
-                frm.AwardSource.value = "";
-                return false;
-            } else if (!frm.AwardSource.value.match(NameAward)) {
-                alert("กรุณากรอกแหล่งที่มารางวัลให้น้อยกว่า 255 อักษร");
-                frm.AwardSource.value = "";
-                return false;
-            }
-
-            if (frm.AwardLevelCode.value == "") {
-                alert("กรุณาเลือกระดับรางวัลที่ได้รับ");
-                return false;
-            }
             $('#Modal').modal('show');
 
         }

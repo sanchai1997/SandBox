@@ -1,6 +1,6 @@
 <main id="main" class="main">
     <div class="pagetitle">
-        <h1 style="padding-bottom: 5px;">เพิ่มข้อมูลรายวิชา: ใบแสดงผลการศึกษาชุดที่
+        <h1 style="padding-bottom: 5px;">เพิ่มข้อมูลผลการประเมินความสามารถด้านการอ่าน : ใบแสดงผลการศึกษาชุดที่
             <?php if (isset($_GET['TranscriptSeriesNumber'])) {
                 echo $_GET['TranscriptSeriesNumber'] . ' - ' . $_GET['TranscriptNumber'];
             }
@@ -37,88 +37,67 @@
                 <div class="card">
                     <div class="card-body">
                         <!-- Floating Labels Form -->
-                        <form class="row g-3" action="<?php echo base_url('add-transcript-subject/' . $_GET['SchoolID'] . '/' . $_GET['StudentReferenceID'] . '/' . $_GET['EducationYear'] . '/' . $_GET['Semester'] . '/' . $_GET['GradeLevelCode'] . '/' . $_GET['StudentID'] . '/' . $_GET['TranscriptSeriesNumber'] . '/' . $_GET['TranscriptNumber']); ?>" method="POST" id="Transcript" enctype="multipart/form-data">
+                        <form class="row g-3" action="<?php echo base_url('add-transcript-rt/' . $_GET['SchoolID'] . '/' . $_GET['StudentReferenceID'] . '/' . $_GET['EducationYear'] . '/' . $_GET['Semester'] . '/' . $_GET['GradeLevelCode'] . '/' . $_GET['StudentID'] . '/' . $_GET['TranscriptSeriesNumber'] . '/' . $_GET['TranscriptNumber']); ?>" method="POST" id="Transcript" enctype="multipart/form-data">
                             <h6 style="padding-left: 15px;" class="card-title"></h6>
-                            <div class="col-md-6">
+                            <div class="col-md-3">
                                 <div class="form-floating">
-                                    <input type="number" class="form-control" maxlength="4" name="SubjectEducationYear" id="SubjectEducationYear" value="<?php echo date('Y') + 543; ?>">
-                                    <label for="SubjectEducationYear">ปีการศึกษา<font color="red"> *</font></label>
+                                    <input type="number" class="form-control" maxlength="4" name="RTEducationYear" id="RTEducationYear" value="<?php echo date('Y') + 543; ?>">
+                                    <label for="RTEducationYear">ปีการศึกษา<font color="red"> *</font></label>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-floating">
+                                    <input type="number" class="form-control" maxlength="1" name="RTSemester" id="RTSemester" value="1">
+                                    <label for="RTSemester">ภาคเรียน<font color="red"> *</font></label>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-floating">
-                                    <input type="number" class="form-control" maxlength="1" name="SubjectSemester" id="SubjectSemester" value="1">
-                                    <label for="SubjectSemester">ภาคเรียน<font color="red"> *</font></label>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-floating">
-                                    <input type="text" class="form-control" maxlength="10" name="SubjectCode" id="SubjectCode">
-                                    <label for="SubjectCode">รหัสวิชา<font color="red"> *</font></label>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-floating">
-                                    <input type="text" class="form-control" name="SubjectName" id="SubjectName">
-                                    <label for="SubjectName">ชื่อวิชา<font color="red"> *</font></label>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-floating">
-                                    <select class="form-select" name="SubjectTypeCode" id="SubjectTypeCode" aria-label="SubjectTypeCode">
+                                    <select class="form-select" name="RTEducationLevelCode" id="RTEducationLevelCode" aria-label="RTEducationLevelCode">
                                         <option value="" selected>เลือก</option>
                                         <?php
-                                        $result = $this->db->query('SELECT * FROM CLS_SUBJECT_TYPE');
-                                        foreach ($result->result() as $SUBJECT_TYPE) {
+                                        $result = $this->db->query('SELECT * FROM CLS_EDUCATION_LEVEL');
+                                        foreach ($result->result() as $EDUCATION_LEVEL) {
                                         ?>
-                                            <option value="<?= $SUBJECT_TYPE->SUBJECT_TYPE_CODE; ?>"><?= $SUBJECT_TYPE->SUBJECT_TYPE_NAME; ?></option>
+                                            <option value="<?= $EDUCATION_LEVEL->EDUCATION_LEVEL_CODE; ?>"><?= $EDUCATION_LEVEL->EDUCATION_LEVEL_NAME; ?></option>
                                         <?php
                                         }
                                         ?>
                                     </select>
-                                    <label for="SubjectTypeCode">ประเภทรายวิชา<font color="red"> *</font> </label>
+                                    <label for="RTEducationLevelCode">ระดับการศึกษา<font color="red"> *</font> </label>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-floating">
-                                    <select class="form-select" name="SubjectGroupCode" id="SubjectGroupCode" aria-label="SubjectGroupCode">
+                                    <select class="form-select" name="RTGradeLevelCode" id="RTGradeLevelCode" aria-label="RTGradeLevelCode">
                                         <option value="" selected>เลือก</option>
                                         <?php
-                                        $result = $this->db->query('SELECT * FROM CLS_SUBJECT_GROUP');
-                                        foreach ($result->result() as $SUBJECT_GROUP) {
+                                        $result = $this->db->query('SELECT * FROM CLS_GRADE_LEVEL');
+                                        foreach ($result->result() as $GRADE_LEVEL) {
                                         ?>
-                                            <option value="<?= $SUBJECT_GROUP->SUBJECT_GROUP_CODE; ?>"><?= $SUBJECT_GROUP->SUBJECT_GROUP_NAME; ?></option>
+                                            <option value="<?= $GRADE_LEVEL->GRADE_LEVEL_CODE; ?>"><?= $GRADE_LEVEL->GRADE_LEVEL_NAME; ?></option>
                                         <?php
                                         }
                                         ?>
                                     </select>
-                                    <label for="SubjectGroupCode">กลุ่มสาระการเรียนรู้<font color="red"> *</font> </label>
+                                    <label for="RTGradeLevelCode">ระดับชั้นปี<font color="red"> *</font> </label>
                                 </div>
                             </div>
-                            <div class="col-md-6">
+                            <div class="col-md-3">
                                 <div class="form-floating">
-                                    <input type="number" step="0.1" class="form-control" name="SubjectCredit" id="SubjectCredit">
-                                    <label for="SubjectCredit">หน่วยกิต<font color="red"> *</font></label>
+                                    <input type="number" class="form-control" step="0.01" name="RTPronounceScore" id="RTPronounceScore">
+                                    <label for="RTPronounceScore">คะแนนการอ่านออกเสียง<font color="red"> *</font></label>
                                 </div>
                             </div>
-                            <div class="col-md-6">
+                            <div class="col-md-3">
                                 <div class="form-floating">
-                                    <select class="form-select" name="SubjectGradeCode" id="SubjectGradeCode" aria-label="SubjectGradeCode">
-                                        <option value="" selected>เลือก</option>
-                                        <?php
-                                        $result = $this->db->query('SELECT * FROM CLS_GRADE');
-                                        foreach ($result->result() as $GRADE) {
-                                        ?>
-                                            <option value="<?= $GRADE->GRADE_CODE; ?>"><?= $GRADE->GRADE_NAME; ?></option>
-                                        <?php
-                                        }
-                                        ?>
-                                    </select>
-                                    <label for="SubjectGradeCode">ผลการเรียน<font color="red"> *</font> </label>
+                                    <input type="number" class="form-control" step="0.01" name="RTUnderstandingScore" id="RTUnderstandingScore">
+                                    <label for="RTUnderstandingScore">คะแนนการอ่านรู้เรื่อง<font color="red"> *</font></label>
                                 </div>
                             </div>
+
                             <div class="d-flex justify-content-between">
-                                <a href="transcript-subject?SchoolID=<?= $_GET['SchoolID']; ?>&&StudentReferenceID=<?= $_GET['StudentReferenceID']; ?>&&EducationYear=<?= $_GET['EducationYear']; ?>&&Semester=<?= $_GET['Semester']; ?>&&GradeLevelCode=<?= $_GET['GradeLevelCode']; ?>&&StudentID=<?= $_GET['StudentID']; ?>&&TranscriptSeriesNumber=<?= $_GET['TranscriptSeriesNumber']; ?>&&TranscriptNumber=<?= $_GET['TranscriptNumber']; ?>" class="btn btn-danger">ยกเลิก</a>
+                                <a href="transcript-rt?SchoolID=<?= $_GET['SchoolID']; ?>&&StudentReferenceID=<?= $_GET['StudentReferenceID']; ?>&&EducationYear=<?= $_GET['EducationYear']; ?>&&Semester=<?= $_GET['Semester']; ?>&&GradeLevelCode=<?= $_GET['GradeLevelCode']; ?>&&StudentID=<?= $_GET['StudentID']; ?>&&TranscriptSeriesNumber=<?= $_GET['TranscriptSeriesNumber']; ?>&&TranscriptNumber=<?= $_GET['TranscriptNumber']; ?>" class="btn btn-danger">ยกเลิก</a>
                                 <button type="button" class="btn btn-primary" onclick="return check(Transcript)">บันทึกข้อมูล</button>
                             </div>
                             <!-- Modal -->
@@ -154,53 +133,46 @@
     </section>
     <script type="text/javascript">
         function check(frm) {
+
             var Year = /^[0-9]{4,4}$/;
             var Semester = /^[0-9]{1,1}$/;
-            if (frm.SubjectEducationYear.value == "") {
+
+            if (frm.RTEducationYear.value == "") {
                 alert("กรุณากรอกข้อมูลปีการศึกษา");
                 return false;
-            } else if (!frm.SubjectEducationYear.value.match(Year)) {
+            } else if (!frm.RTEducationYear.value.match(Year)) {
                 alert("กรุณากรอกข้อมูลปีการศึกษาให้ครบ 4 หลัก");
-                frm.SubjectEducationYear.value = "";
+                frm.RTEducationYear.value = "";
                 return false;
             }
 
-            if (frm.SubjectSemester.value == "") {
+            if (frm.RTSemester.value == "") {
                 alert("กรุณากรอกข้อมูลภาคเรียน");
                 return false;
-            } else if (!frm.SubjectSemester.value.match(Semester)) {
+            } else if (!frm.RTSemester.value.match(Semester)) {
                 alert("กรุณากรอกข้อมูลภาคเรียนไม่เกิน 1 หลัก");
-                frm.SubjectSemester.value = "";
+                frm.RTSemester.value = "";
                 return false;
             }
 
-            var Code = /^[ก-๙][0-9]{1,10}$/;
-            if (frm.SubjectCode.value == "") {
-                alert("กรุณากรอกข้อมูลรหัสวิชา)");
-                return false;
-            } else if (!frm.SubjectCode.value.match(Code)) {
-                alert("กรุณากรอกข้อมูลรหัสวิชาและไม่เกิน 10 ตัวอักษร");
-                frm.SubjectCode.value = "";
+            if (frm.RTEducationLevelCode.value == "") {
+                alert("กรุณาเลือกระดับการศึกษา");
                 return false;
             }
 
-            if (frm.SubjectTypeCode.value == "") {
-                alert("กรุณาเลือกประเภทวิชารายวิชา");
+            if (frm.RTGradeLevelCode.value == "") {
+                alert("กรุณาเลือกระดับชั้นปี");
                 return false;
             }
 
-            if (frm.SubjectGroupCode.value == "") {
-                alert("กรุณาเลือกกลุ่มสาระการเรียนรู้");
+
+            if (frm.RTPronounceScore.value == "") {
+                alert("กรุณากรอกคะแนนการอ่านออกเสียง");
                 return false;
             }
 
-            if (frm.SubjectCredit.value == "") {
-                alert("กรุณากรอกหน่วยกิตรายวิชา");
-                return false;
-            }
-
-            if (frm.SubjectGradeCode.value == "") {
-                alert("กรุณาเลือกผลการเรียนรายวิชา");
+            if (frm.RTUnderstandingScore.value == "") {
+                alert("กรุณากรอกคะแนนการอ่านรู้เรื่อง");
                 return false;
             }
 
