@@ -61,19 +61,32 @@
                         $result = $this->db->query('SELECT *
                                     FROM SCHOOL_AWARD 
                                     INNER JOIN SCHOOL ON SCHOOL_AWARD.SchoolID = SCHOOL.SchoolID
-                                    INNER JOIN CLS_AWARD_LEVEL ON SCHOOL_AWARD.AwardLevelCode = CLS_AWARD_LEVEL.AWARD_LEVEL_CODE
                                     WHERE SCHOOL_AWARD.DeleteStatus = 0 AND SCHOOL_AWARD.SchoolID = ' . $_GET['SchoolID'] . '
                                     ');
-
+                        $Count = 0;
                         foreach ($result->result() as $AWARD) {
+                            $Count++;
                         ?>
                             <tr>
                                 <td><?= $AWARD->AwardYear; ?></td>
                                 <td><?= $AWARD->AwardName; ?></td>
-                                <td><?= $AWARD->AwardSource; ?></td>
-                                <td><?= $AWARD->AWARD_LEVEL_NAME; ?></td>
+                                <td>
+                                    <?php if ($AWARD->AwardSource != NULL) {
+                                        echo $AWARD->AwardSource;
+                                    } else echo '-'; ?>
+                                </td>
+                                <td>
+                                    <?php if ($AWARD->AwardLevelCode != NULL) {
+                                        $result_fix = $this->db->query('SELECT *FROM CLS_AWARD_LEVEL 
+                                        WHERE AWARD_LEVEL_CODE = ' . $AWARD->AwardLevelCode . '
+                                        ');
+                                        foreach ($result_fix->result() as $AWARD_LEVEL) {
+                                            echo $AWARD_LEVEL->AWARD_LEVEL_NAME;
+                                        }
+                                    } else echo '-'; ?>
+                                </td>
                                 <td style="text-align: center;"><a href="edit-forms-award?SchoolID=<?= $AWARD->SchoolID; ?>&&AwardYear=<?= $AWARD->AwardYear; ?>&&AwardName=<?= $AWARD->AwardName; ?>" class="btn btn-warning"><i class="bi bi-pencil-square"></i></a>
-                                    &nbsp; <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#Delete<?= $AWARD->SchoolID; ?><?= $AWARD->AwardYear; ?><?= $AWARD->AwardName; ?>"><i class=" bi bi-trash"></i></button>
+                                    &nbsp; <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#Delete<?= $Count; ?>"><i class=" bi bi-trash"></i></button>
                                 </td>
                             </tr>
                         <?php } ?>
@@ -91,13 +104,13 @@
 $result = $this->db->query('SELECT *
  FROM SCHOOL_AWARD 
  INNER JOIN SCHOOL ON SCHOOL_AWARD.SchoolID = SCHOOL.SchoolID
- INNER JOIN CLS_AWARD_LEVEL ON SCHOOL_AWARD.AwardLevelCode = CLS_AWARD_LEVEL.AWARD_LEVEL_CODE
  WHERE SCHOOL_AWARD.DeleteStatus = 0 AND SCHOOL_AWARD.SchoolID = ' . $_GET['SchoolID'] . '
  ');
-
+$CountI = 0;
 foreach ($result->result() as $AWARD) {
+    $CountI++;
 ?>
-    <div class="modal fade" id="Delete<?= $AWARD->SchoolID; ?><?= $AWARD->AwardYear; ?><?= $AWARD->AwardName; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+    <div class="modal fade" id="Delete<?= $CountI; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -110,7 +123,7 @@ foreach ($result->result() as $AWARD) {
                     </h6>
                 </div>
                 <div class="modal-footer">
-                    <a href="<?php echo base_url('delete-award/'  . $AWARD->SchoolID . '/' . $AWARD->AwardYear);
+                    <a href="<?php echo base_url('delete-award/'  . $AWARD->ID . '/' . $AWARD->SchoolID . '/' . $AWARD->AwardYear);
                                 ?>" class="btn btn-danger">ลบ</a>
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ยกเลิก</button>
                 </div>

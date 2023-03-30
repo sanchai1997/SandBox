@@ -131,8 +131,8 @@ $route['school-award'] = 'school/award';
 $route['forms-school-award'] = 'forms_school/award';
 $route['add-award/(:num)']['post'] = 'forms_school/add_award/$1';
 $route['edit-forms-award'] = 'forms_school/edit_award';
-$route['update-award/(:num)/(:num)'] = 'forms_school/update_award/$1/$2';
-$route['delete-award/(:num)/(:num)'] = 'forms_school/delete_award/$1/$2';
+$route['update-award/(:num)/(:num)/(:any)'] = 'forms_school/update_award/$1/$2/$3';
+$route['delete-award/(:num)/(:num)/(:any)'] = 'forms_school/delete_award/$1/$2/$3';
 
 //building
 $route['school-building'] = 'school/building';
@@ -253,20 +253,28 @@ $route['delete-teacher-teaching/(:any)/(:num)/(:num)/(:num)/(:num)/(:num)/(:num)
 ////////////////////// ROUTE GRADUATED ////////////////////////
 //GRADUATED 
 $route['graduated'] = 'graduated';
-$route['graduated-P2'] = 'graduated/P2';
-$route['forms-graduated'] = 'forms_graduated';
-$route['add-graduated']['post'] = 'forms_graduated/add_graduated';
-$route['edit-forms-graduated'] = 'forms_graduated/edit_graduated';
-$route['update-graduated/(:any)/(:any)/(:any)/(:any)'] = 'forms_graduated/update_graduated/$1/$2/$3/$4';
-$route['delete-graduated/(:any)/(:any)/(:any)/(:any)'] = 'forms_graduated/delete_graduated/$1/$2/$3/$4';
 ///////////////////// GRADUATED - END /////////////////////////
 
 ////////////////////// ROUTE Transcript ////////////////////////
 //Transcript
 $route['transcript'] = 'transcript';
-$route['transcript-P2'] = 'transcript/P2';
-$route['transcript-P3'] = 'transcript/P3';
 $route['forms-transcript'] = 'forms_transcript';
+$route['add-transcript/(:num)/(:any)/(:num)/(:num)/(:num)/(:num)']['post'] = 'forms_transcript/add_transcript/$1/$2/$3/$4/$5/$6';
+$route['edit-forms-transcript-main'] = 'forms_transcript/edit_transcript_main';
+$route['edit-forms-transcript-evaluation'] = 'forms_transcript/edit_transcript_evaluation';
+$route['update-transcript-main/(:num)/(:any)/(:num)/(:num)/(:num)/(:num)/(:num)/(:num)']['post'] = 'forms_transcript/update_transcript_main/$1/$2/$3/$4/$5/$6/$7/$8';
+$route['update-transcript-evaluation/(:num)/(:any)/(:num)/(:num)/(:num)/(:num)/(:num)/(:num)']['post'] = 'forms_transcript/update_transcript_evaluation/$1/$2/$3/$4/$5/$6/$7/$8';
+$route['delete-transcript/(:num)/(:any)/(:num)/(:num)/(:num)/(:num)/(:num)/(:num)'] = 'forms_transcript/delete_transcript/$1/$2/$3/$4/$5/$6/$7/$8';
+
+//Subject
+$route['transcript-subject'] = 'transcript/transcript_subject';
+$route['forms-transcript-subject'] = 'forms_transcript/forms_transcript_subject';
+$route['edit-forms-transcript-subject'] = 'forms_transcript/edit_forms_transcript_subject';
+$route['add-transcript-subject/(:num)/(:any)/(:num)/(:num)/(:num)/(:num)/(:num)/(:num)']['post'] = 'forms_transcript/add_transcript_subject/$1/$2/$3/$4/$5/$6/$7/$8';
+$route['delete-transcript-subject/(:num)/(:any)/(:num)/(:num)/(:num)/(:num)/(:num)/(:num)/(:num)/(:num)'] = 'forms_transcript/delete_transcript_subject/$1/$2/$3/$4/$5/$6/$7/$8/$9/$10';
+$route['update-transcript-subject/(:num)/(:any)/(:num)/(:num)/(:num)/(:num)/(:num)/(:num)/(:num)/(:num)']['post'] = 'forms_transcript/update_transcript_subject/$1/$2/$3/$4/$5/$6/$7/$8/$9/$10';
+
+
 ///////////////////// Transcript - END /////////////////////////
 
 ////////////////////// ROUTE PERSONNEL ////////////////////////

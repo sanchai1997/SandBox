@@ -34,9 +34,20 @@
         //Add Data Form student
         public function add_student($SchoolID)
         {
-            $this->forms_student->add_student($SchoolID);
-            $_SESSION['success'] = "บันทึกข้อมูลเรียบร้อย";
-            redirect(base_url('student?SchoolID=' . $SchoolID));
+            $result = $this->db->query('SELECT * 
+            FROM STUDENT 
+            WHERE DeleteStatus = 0
+            AND SchoolID = ' . $SchoolID . ' 
+            AND StudentReferenceID = "' . $_POST['StudentPersonalIDTypeCode'] . $_POST['StudentPersonalID'] . '" 
+            ')->result();
+            if ($result != TRUE) {
+                $this->forms_student->add_student($SchoolID);
+                $_SESSION['success'] = "บันทึกข้อมูลเรียบร้อย";
+                redirect(base_url('student?SchoolID=' . $SchoolID));
+            } else {
+                $_SESSION['danger'] = "ไม่สามารถบันทึกข้อมูลได้ โปรดตรวจสอบข้อมูลนักเรียนนี้อาจจะซ้ำในระบบ";
+                redirect(base_url('forms-student?SchoolID=' . $SchoolID));
+            }
         }
 
         ////////////////////////////////forms-student- END///////////////////////////
@@ -62,9 +73,21 @@
         //Add Data Form student Select SchoolID , EducationYear , Semester , GradeLevelCode
         public function add_student_select($SchoolID, $EducationYear, $Semester, $GradeLevelCode)
         {
-            $this->forms_student->add_student_select($SchoolID, $EducationYear, $Semester, $GradeLevelCode);
-            $_SESSION['success'] = "บันทึกข้อมูลเรียบร้อย";
-            redirect(base_url('student?SchoolID=' . $SchoolID . '&&EducationYear=' . $EducationYear . '&&Semester=' . $Semester . '&&GradeLevelCode=' . $GradeLevelCode));
+
+            $result = $this->db->query('SELECT * 
+            FROM STUDENT 
+            WHERE DeleteStatus = 0
+            AND SchoolID = ' . $SchoolID . ' 
+            AND StudentReferenceID = "' . $_POST['StudentPersonalIDTypeCode'] . $_POST['StudentPersonalID'] . '" 
+            ')->result();
+            if ($result != TRUE) {
+                $this->forms_student->add_student_select($SchoolID, $EducationYear, $Semester, $GradeLevelCode);
+                $_SESSION['success'] = "บันทึกข้อมูลเรียบร้อย";
+                redirect(base_url('student?SchoolID=' . $SchoolID . '&&EducationYear=' . $EducationYear . '&&Semester=' . $Semester . '&&GradeLevelCode=' . $GradeLevelCode));
+            } else {
+                $_SESSION['danger'] = "ไม่สามารถบันทึกข้อมูลได้ โปรดตรวจสอบข้อมูลนักเรียนนี้อาจจะซ้ำในระบบ";
+                redirect(base_url('forms-student?SchoolID=' . $SchoolID));
+            }
         }
 
         ////////////////////////////////forms-student-select-END///////////////////////////

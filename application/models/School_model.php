@@ -243,12 +243,12 @@ class School_model extends CI_Model
 
     ///////////////////////////////////CLASSROOM /////////////////////////////////////////
     //Add Data Form ClassRoom
-    public function add_classroom()
+    public function add_classroom($SchoolID)
     {
         $data = [
 
             //Page forms-school-classrooom
-            'SchoolID' => $this->input->post('SchoolID'),
+            'SchoolID' => $SchoolID,
             'ClassroomGradeLevelCode' => $this->input->post('ClassroomGradeLevelCode'),
             'ClassroomAmount' => $this->input->post('ClassroomAmount')
 
@@ -287,12 +287,12 @@ class School_model extends CI_Model
 
     /////////////////////////////////// AWARD /////////////////////////////////////////
     //Add Data Form Award
-    public function add_award()
+    public function add_award($SchoolID)
     {
         $data = [
 
             //Page forms-school-award
-            'SchoolID' => $this->input->post('SchoolID'),
+            'SchoolID' => $SchoolID,
             'AwardYear' => $this->input->post('AwardYear'),
             'AwardName' => $this->input->post('AwardName'),
             'AwardSource' => $this->input->post('AwardSource'),
@@ -305,22 +305,21 @@ class School_model extends CI_Model
     }
 
     //Update Data Form Award
-    public function update_award($SchoolID, $Year)
+    public function update_award($ID, $SchoolID, $AwardYear)
     {
         $data = [
 
-            'AwardName' => $this->input->post('AwardName'),
             'AwardSource' => $this->input->post('AwardSource'),
             'AwardLevelCode' => $this->input->post('AwardLevelCode')
 
         ];
 
-        $result = $this->db->where('SchoolID', $SchoolID)->where('AwardYear', $Year)->update('SCHOOL_AWARD', $data);
+        $result = $this->db->where('ID', $ID)->where('SchoolID', $SchoolID)->where('AwardYear', $AwardYear)->update('SCHOOL_AWARD', $data);
         return $result;
     }
 
     //Delete Data Form Award
-    public function delete_award($SchoolID, $Year)
+    public function delete_award($ID, $SchoolID, $AwardYear)
     {
         $data = [
 
@@ -328,7 +327,7 @@ class School_model extends CI_Model
 
         ];
 
-        $result = $this->db->where('SchoolID', $SchoolID)->where('AwardYear', $Year)->update('SCHOOL_AWARD', $data);
+        $result = $this->db->where('ID', $ID)->where('SchoolID', $SchoolID)->where('AwardYear', $AwardYear)->update('SCHOOL_AWARD', $data);
         return $result;
     }
     ///////////////////////////////////AWARD- END /////////////////////////////////////////
@@ -355,7 +354,7 @@ class School_model extends CI_Model
     }
 
     //Update Data Form Building 
-    public function update_building($Id)
+    public function update_building($ID)
     {
         $data = [
 
@@ -368,12 +367,12 @@ class School_model extends CI_Model
 
         ];
 
-        $result = $this->db->where('Id', $Id)->update('SCHOOL_BUILDING', $data);
+        $result = $this->db->where('ID', $ID)->update('SCHOOL_BUILDING', $data);
         return $result;
     }
 
     //Delete Data Form Building 
-    public function delete_building($Id)
+    public function delete_building($ID)
     {
         $data = [
 
@@ -381,7 +380,7 @@ class School_model extends CI_Model
 
         ];
 
-        $result = $this->db->where('Id', $Id)->update('SCHOOL_BUILDING', $data);
+        $result = $this->db->where('ID', $ID)->update('SCHOOL_BUILDING', $data);
         return $result;
     }
     ///////////////////////////////////Building- END /////////////////////////////////////////

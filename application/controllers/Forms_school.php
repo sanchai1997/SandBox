@@ -33,9 +33,19 @@ class Forms_school extends CI_Controller
     //Add Data Form School
     public function add_school()
     {
-        $this->forms_school->add_school();
-        $_SESSION['success'] = "บันทึกข้อมูลเรียบร้อย";
-        redirect(base_url('school'));
+        $result = $this->db->query('SELECT * 
+        FROM SCHOOL 
+        WHERE DeleteStatus = 0
+        AND SchoolID = ' . $_POST['JurisdictionCode'] . $_POST['SchoolAddressProvinceCode'] . ' 
+        ')->result();
+        if ($result != TRUE) {
+            $this->forms_school->add_school();
+            $_SESSION['success'] = "บันทึกข้อมูลเรียบร้อย";
+            redirect(base_url('school'));
+        } else {
+            $_SESSION['danger'] = "ไม่สามารถบันทึกข้อมูลได้ โปรดตรวจสอบข้อมูลสถานศึกษานี้อาจจะซ้ำในระบบ";
+            redirect(base_url('forms-school'));
+        }
     }
 
     //Edit Data Form School MAIN
@@ -236,9 +246,21 @@ class Forms_school extends CI_Controller
     //Add Data Classroom
     public function add_classroom($SchoolID)
     {
-        $this->forms_school->add_classroom();
-        $_SESSION['success'] = "บันทึกข้อมูลเรียบร้อย";
-        redirect(base_url('school-classroom?SchoolID=' . $SchoolID));
+        $result = $this->db->query('SELECT * 
+        FROM SCHOOL_CLASSROOM 
+        WHERE DeleteStatus = 0
+        AND SchoolID = ' . $SchoolID . ' 
+        AND ClassroomGradeLevelCode  = ' . $_POST['ClassroomGradeLevelCode'] . '
+        ')->result();
+
+        if ($result != TRUE) {
+            $this->forms_school->add_classroom($SchoolID);
+            $_SESSION['success'] = "บันทึกข้อมูลเรียบร้อย";
+            redirect(base_url('school-classroom?SchoolID=' . $SchoolID));
+        } else {
+            $_SESSION['danger'] = "ไม่สามารถบันทึกข้อมูลได้ โปรดตรวจสอบข้อมูลชั้นเรียนอาจจะซ้ำกันในระบบ";
+            redirect(base_url('forms-school-classroom?SchoolID=' . $SchoolID));
+        }
     }
 
     //Edit Data Form ClassRoom
@@ -290,9 +312,22 @@ class Forms_school extends CI_Controller
     //Add Data AWARD
     public function add_award($SchoolID)
     {
-        $this->forms_school->add_award();
-        $_SESSION['success'] = "บันทึกข้อมูลเรียบร้อย";
-        redirect(base_url('school-award?SchoolID=' . $SchoolID));
+        $result = $this->db->query('SELECT * 
+        FROM SCHOOL_AWARD 
+        WHERE DeleteStatus = 0
+        AND SchoolID = ' . $SchoolID . ' 
+        AND AwardYear  = ' . $_POST['AwardYear'] . '
+        AND AwardName   = "' . $_POST['AwardName'] . '"
+        ')->result();
+
+        if ($result != TRUE) {
+            $this->forms_school->add_award($SchoolID);
+            $_SESSION['success'] = "บันทึกข้อมูลเรียบร้อย";
+            redirect(base_url('school-award?SchoolID=' . $SchoolID));
+        } else {
+            $_SESSION['danger'] = "ไม่สามารถบันทึกข้อมูลได้ โปรดตรวจสอบข้อมูลรางวัลอาจจะซ้ำกันในระบบ";
+            redirect(base_url('forms-school-award?SchoolID=' . $SchoolID));
+        }
     }
 
     //Edit Data Form ClassRoom
@@ -306,18 +341,19 @@ class Forms_school extends CI_Controller
     }
 
     //Add Data Form Award
-    public function update_award($SchoolID, $Year)
+    public function update_award($ID, $SchoolID, $AwardYear)
     {
 
-        $this->forms_school->update_award($SchoolID, $Year);
+        $this->forms_school->update_award($ID, $SchoolID, $AwardYear);
         $_SESSION['success'] = "แก้ไขข้อมูลเรียบร้อย";
         redirect(base_url('school-award?SchoolID=' . $SchoolID));
     }
 
     //Delete Data Form Award
-    public function delete_award($SchoolID, $Year)
+    public function delete_award($ID, $SchoolID, $AwardYear)
     {
-        $this->forms_school->delete_award($SchoolID, $Year);
+
+        $this->forms_school->delete_award($ID, $SchoolID, $AwardYear);
         $_SESSION['success'] = "ลบข้อมูลเรียบร้อย";
         redirect(base_url('school-award?SchoolID=' . $SchoolID));
     }
@@ -345,9 +381,20 @@ class Forms_school extends CI_Controller
     //Add Data AWARD
     public function add_building($SchoolID)
     {
-        $this->forms_school->add_building();
-        $_SESSION['success'] = "บันทึกข้อมูลเรียบร้อย";
-        redirect(base_url('school-building?SchoolID=' . $SchoolID));
+        $result = $this->db->query('SELECT * 
+        FROM SCHOOL_BUILDING 
+        WHERE DeleteStatus = 0
+        AND SchoolID = ' . $SchoolID . ' 
+        AND BuildingName   = "' . $_POST['BuildingName '] . '"
+        ')->result();
+        if ($result != TRUE) {
+            $this->forms_school->add_building();
+            $_SESSION['success'] = "บันทึกข้อมูลเรียบร้อย";
+            redirect(base_url('school-building?SchoolID=' . $SchoolID));
+        } else {
+            $_SESSION['danger'] = "ไม่สามารถบันทึกข้อมูลได้ โปรดตรวจสอบข้อมูลชื่ออาคารอาจจะซ้ำกันในระบบ";
+            redirect(base_url('forms-school-building?SchoolID=' . $SchoolID));
+        }
     }
 
 
@@ -362,18 +409,18 @@ class Forms_school extends CI_Controller
     }
 
     //Add Data Form building
-    public function update_building($SchoolID, $Id)
+    public function update_building($SchoolID, $ID)
     {
 
-        $this->forms_school->update_building($Id);
+        $this->forms_school->update_building($ID);
         $_SESSION['success'] = "แก้ไขข้อมูลเรียบร้อย";
         redirect(base_url('school-building?SchoolID=' . $SchoolID));
     }
 
     //Delete Data Form building
-    public function delete_building($SchoolID, $Id)
+    public function delete_building($SchoolID, $ID)
     {
-        $this->forms_school->delete_building($Id);
+        $this->forms_school->delete_building($ID);
         $_SESSION['success'] = "ลบข้อมูลเรียบร้อย";
         redirect(base_url('school-building?SchoolID=' . $SchoolID));
     }

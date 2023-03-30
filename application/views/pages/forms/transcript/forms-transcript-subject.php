@@ -1,683 +1,211 @@
 <main id="main" class="main">
-
     <div class="pagetitle">
-        <h1>ข้อมูลผลสัมฤทธิ์ทางการศึกษา</h1>
-        <nav>
-            <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-                <li class="breadcrumb-item">Form</li>
-                <li class="breadcrumb-item active">Student</li>
-            </ol>
-        </nav>
+        <h1 style="padding-bottom: 5px;">เพิ่มข้อมูลรายวิชา: ใบแสดงผลการศึกษาชุดที่
+            <?php if (isset($_GET['TranscriptSeriesNumber'])) {
+                echo $_GET['TranscriptSeriesNumber'] . ' - ' . $_GET['TranscriptNumber'];
+            }
+            $result = $this->db->query('SELECT * FROM CLS_GRADE_LEVEL WHERE GRADE_LEVEL_CODE = ' . $_GET['GradeLevelCode'] . '');
+            foreach ($result->result() as $GRADE_LEVEL) {
+                $GRADE_NAME = $GRADE_LEVEL->GRADE_LEVEL_NAME;
+            }
+            ?>
+        </h1>
+        <a class="btn btn-sm btn-light text-dark"><b> ปีการศึกษา: <?= $_GET['EducationYear'] ?>&nbsp; ภาคเรียน: <?= $_GET['Semester'] ?> &nbsp;ระดับชั้นเรียน: <?= $GRADE_NAME ?> &nbsp;รหัสนักเรียน: <?= $_GET['StudentID'] ?></b></a>
     </div><!-- End Page Title -->
+    <?php if (!empty($_SESSION['danger'])) { ?>
+        <script>
+            setTimeout(function() {
+                document.getElementById('myAlert').remove();
+            }, 4000); // นับถอยหลังให้แสดง 5 วินาที (5000 มิลลิวินาที)
+        </script>
+        <div style="position: relative;">
+            <div class="alert alert-danger" id="myAlert" style="position: absolute; top: 0; left: 0; right: 0; z-index: 1;">
+                <strong>
+                    <?php
+                    echo '<i class="bi bi-clipboard2-x"></i> ' . $_SESSION['danger'];
+                    unset($_SESSION['danger']);
+                    ?>
+                </strong>
 
+            </div>
+        </div>
+    <?php } ?>
     <section class="section">
         <div class="row">
             <div class="col-lg-9">
 
                 <div class="card">
                     <div class="card-body">
-                        <h5 class="card-title">ข้อมูลผลสัมฤทธิ์ทางการศึกษา</h5>
-
-                        <!-- start Form ข้อมูลผลสัมฤทธิ์ทางการศึกษา -->
-                        <form>
-                            <h5 class="card-title">ข้อมูลผลสัมฤทธิ์ทางการศึกษา</h5>
-
-                            <div class="row mb-3">
-                                <label for="inputText" class="col-sm-2 col-form-label">ชุดที่</label>
-                                <div class="col-sm-10">
-                                    <input type="text" class="form-control">
+                        <!-- Floating Labels Form -->
+                        <form class="row g-3" action="<?php echo base_url('add-transcript-subject/' . $_GET['SchoolID'] . '/' . $_GET['StudentReferenceID'] . '/' . $_GET['EducationYear'] . '/' . $_GET['Semester'] . '/' . $_GET['GradeLevelCode'] . '/' . $_GET['StudentID'] . '/' . $_GET['TranscriptSeriesNumber'] . '/' . $_GET['TranscriptNumber']); ?>" method="POST" id="Transcript" enctype="multipart/form-data">
+                            <h6 style="padding-left: 15px;" class="card-title"></h6>
+                            <div class="col-md-6">
+                                <div class="form-floating">
+                                    <input type="number" class="form-control" maxlength="4" name="SubjectEducationYear" id="SubjectEducationYear" value="<?php echo date('Y') + 543; ?>">
+                                    <label for="SubjectEducationYear">ปีการศึกษา<font color="red"> *</font></label>
                                 </div>
                             </div>
-
-                            <div class="row mb-3">
-                                <label for="inputText" class="col-sm-2 col-form-label">เลขที่</label>
-                                <div class="col-sm-10">
-                                    <input type="text" class="form-control">
+                            <div class="col-md-6">
+                                <div class="form-floating">
+                                    <input type="number" class="form-control" maxlength="1" name="SubjectSemester" id="SubjectSemester" value="1">
+                                    <label for="SubjectSemester">ภาคเรียน<font color="red"> *</font></label>
                                 </div>
                             </div>
-
-                            <div class="row mb-3">
-                                <label for="inputText" class="col-sm-2 col-form-label">รหัสสถานศึกษา</label>
-                                <div class="col-sm-10">
-                                    <input type="text" class="form-control">
+                            <div class="col-md-6">
+                                <div class="form-floating">
+                                    <input type="text" class="form-control" maxlength="10" name="SubjectCode" id="SubjectCode">
+                                    <label for="SubjectCode">รหัสวิชา<font color="red"> *</font></label>
                                 </div>
                             </div>
-
-                            <div class="row mb-3">
-                                <label for="inputDate" class="col-sm-2 col-form-label">วันที่เริ่มเข้าเรียน</label>
-                                <div class="col-sm-10">
-                                    <input type="date" class="form-control">
+                            <div class="col-md-6">
+                                <div class="form-floating">
+                                    <input type="text" class="form-control" name="SubjectName" id="SubjectName">
+                                    <label for="SubjectName">ชื่อวิชา<font color="red"> *</font></label>
                                 </div>
                             </div>
-
-                            <div class="row mb-3">
-                                <label for="inputText" class="col-sm-2 col-form-label">รหัสสถานศึกษาเดิม</label>
-                                <div class="col-sm-10">
-                                    <input type="text" class="form-control">
-                                </div>
-                            </div>
-
-                            <div class="row mb-3">
-                                <label class="col-sm-2 col-form-label">ชั้นปีสุดท้ายจากสถานศึกษาเดิม</label>
-                                <div class="col-sm-10">
-                                    <select class="form-select" aria-label="Default select example">
-                                        <option selected>เลือก</option>
-                                        <option value="100">เตรียมอนุบาล</option>
-                                        <option value="111">อนุบาล 1(หลักสูตร 3 ปีของ สช.)/อนุบาล 3 ขวบ</option>
-                                        <option value="112">อนุบาล 2(หลักสูตร 3 ปีของ สช.)/อนุบาล 1</option>
-                                        <option value="113">อนุบาล 3(หลักสูตร 3 ปีของ สช.)/อนุบาล 2</option>
-                                        <option value="114">เด็กเล็ก</option>
-                                        <option value="211">ประถมศึกษาปีที่ 1/เกรด 1</option>
-                                        <option value="212">ประถมศึกษาปีที่ 2/เกรด 2</option>
-                                        <option value="213">ประถมศึกษาปีที่ 3/เกรด 3</option>
-                                        <option value="214">ประถมศึกษาปีที่ 4/เกรด 4</option>
-                                        <option value="215">ประถมศึกษาปีที่ 5/เกรด 5</option>
-                                        <option value="216">ประถมศึกษาปีที่ 6/เกรด 6</option>
-                                        <option value="217">กศน.ประถมศึกษา (ป.6)</option>
-                                        <option value="311">มัธยมศึกษาปีที่ 1 /เกรด 7/ นาฎศิลป์ชั้นที่ 1</option>
-                                        <option value="312">มัธยมศึกษาปีที่ 2 /เกรด 8/ นาฎศิลป์ชั้นที่ 2</option>
-                                        <option value="313">มัธยมศึกษาปีที่ 3 /เกรด 9/ นาฎศิลป์ชั้นที่ 3</option>
-                                        <option value="414">กศน.มัธยมศึกษาตอนต้น (ม.3)</option>
-                                        <option value="411">มัธยมศึกษาปีที่ 4/เกรด10/เตรียมทหารชั้นปีที่ 1</option>
-                                        <option value="412">มัธยมศึกษาปีที่ 5/เกรด11/เตรียมทหารชั้นปีที่ 2</option>
-                                        <option value="413">มัธยมศึกษาปีที่ 6/เกรด12/เตรียมทหารชั้นปีที่ 3</option>
-                                        <option value="314">กศน.มัธยมศึกษาตอนปลาย (ม.6)</option>
+                            <div class="col-md-6">
+                                <div class="form-floating">
+                                    <select class="form-select" name="SubjectTypeCode" id="SubjectTypeCode" aria-label="SubjectTypeCode">
+                                        <option value="" selected>เลือก</option>
+                                        <?php
+                                        $result = $this->db->query('SELECT * FROM CLS_SUBJECT_TYPE');
+                                        foreach ($result->result() as $SUBJECT_TYPE) {
+                                        ?>
+                                            <option value="<?= $SUBJECT_TYPE->SUBJECT_TYPE_CODE; ?>"><?= $SUBJECT_TYPE->SUBJECT_TYPE_NAME; ?></option>
+                                        <?php
+                                        }
+                                        ?>
                                     </select>
+                                    <label for="SubjectTypeCode">ประเภทรายวิชา<font color="red"> *</font> </label>
                                 </div>
                             </div>
-
-                            <div class="row mb-3">
-                                <label for="inputText" class="col-sm-2 col-form-label">รหัสข้อมูลนักเรียน</label>
-                                <div class="col-sm-10">
-                                    <input type="text" class="form-control">
-                                </div>
-                            </div>
-
-                            <div class="row mb-3">
-                                <label for="inputText" class="col-sm-2 col-form-label">หมายเลขประจำตัวนักเรียน</label>
-                                <div class="col-sm-10">
-                                    <input type="text" class="form-control">
-                                </div>
-                            </div>
-
-                            <div class="row mb-3">
-                                <label class="col-sm-2 col-form-label">ผลการประเมินรายวิชาพื้นฐาน</label>
-                                <div class="col-sm-10">
-                                    <select class="form-select" aria-label="Default select example">
-                                        <option selected>เลือก</option>
-                                        <option value="000">ต่ำกว่าเกณฑ์</option>
-                                        <option value="001">ผ่านเกณฑ์ขั้นต่ำ</option>
-                                        <option value="002">พอใช้</option>
-                                        <option value="003">ปานกลาง</option>
-                                        <option value="004">ค่าข้างดี</option>
-                                        <option value="005">ดี</option>
-                                        <option value="006">ดีมาก</option>
-                                        <option value="007">ดีเยี่ยม</option>
-                                        <option value="910">ไม่ผ่าน</option>
-                                        <option value="911">ผ่าน</option>
-                                        <option value="914">รอการตัดสินผลการเรียน</option>
+                            <div class="col-md-6">
+                                <div class="form-floating">
+                                    <select class="form-select" name="SubjectGroupCode" id="SubjectGroupCode" aria-label="SubjectGroupCode">
+                                        <option value="" selected>เลือก</option>
+                                        <?php
+                                        $result = $this->db->query('SELECT * FROM CLS_SUBJECT_GROUP');
+                                        foreach ($result->result() as $SUBJECT_GROUP) {
+                                        ?>
+                                            <option value="<?= $SUBJECT_GROUP->SUBJECT_GROUP_CODE; ?>"><?= $SUBJECT_GROUP->SUBJECT_GROUP_NAME; ?></option>
+                                        <?php
+                                        }
+                                        ?>
                                     </select>
+                                    <label for="SubjectGroupCode">กลุ่มสาระการเรียนรู้<font color="red"> *</font> </label>
                                 </div>
                             </div>
-
-                            <div class="row mb-3">
-                                <label class="col-sm-2 col-form-label">ผลการประเมินการอ่านวิเคราะห์และเขียน</label>
-                                <div class="col-sm-10">
-                                    <select class="form-select" aria-label="Default select example">
-                                        <option selected>เลือก</option>
-                                        <option value="000">ต่ำกว่าเกณฑ์</option>
-                                        <option value="001">ผ่านเกณฑ์ขั้นต่ำ</option>
-                                        <option value="002">พอใช้</option>
-                                        <option value="003">ปานกลาง</option>
-                                        <option value="004">ค่าข้างดี</option>
-                                        <option value="005">ดี</option>
-                                        <option value="006">ดีมาก</option>
-                                        <option value="007">ดีเยี่ยม</option>
-                                        <option value="910">ไม่ผ่าน</option>
-                                        <option value="911">ผ่าน</option>
-                                        <option value="914">รอการตัดสินผลการเรียน</option>
+                            <div class="col-md-6">
+                                <div class="form-floating">
+                                    <input type="number" step="0.1" class="form-control" name="SubjectCredit" id="SubjectCredit">
+                                    <label for="SubjectCredit">หน่วยกิต<font color="red"> *</font></label>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-floating">
+                                    <select class="form-select" name="SubjectGradeCode" id="SubjectGradeCode" aria-label="SubjectGradeCode">
+                                        <option value="" selected>เลือก</option>
+                                        <?php
+                                        $result = $this->db->query('SELECT * FROM CLS_GRADE');
+                                        foreach ($result->result() as $GRADE) {
+                                        ?>
+                                            <option value="<?= $GRADE->GRADE_CODE; ?>"><?= $GRADE->GRADE_NAME; ?></option>
+                                        <?php
+                                        }
+                                        ?>
                                     </select>
+                                    <label for="SubjectGradeCode">ผลการเรียน<font color="red"> *</font> </label>
+                                </div>
+                            </div>
+                            <div class="d-flex justify-content-between">
+                                <a href="transcript-subject?SchoolID=<?= $_GET['SchoolID']; ?>&&StudentReferenceID=<?= $_GET['StudentReferenceID']; ?>&&EducationYear=<?= $_GET['EducationYear']; ?>&&Semester=<?= $_GET['Semester']; ?>&&GradeLevelCode=<?= $_GET['GradeLevelCode']; ?>&&StudentID=<?= $_GET['StudentID']; ?>&&TranscriptSeriesNumber=<?= $_GET['TranscriptSeriesNumber']; ?>&&TranscriptNumber=<?= $_GET['TranscriptNumber']; ?>" class="btn btn-danger">ยกเลิก</a>
+                                <button type="button" class="btn btn-primary" onclick="return check(Transcript)">บันทึกข้อมูล</button>
+                            </div>
+                            <!-- Modal -->
+                            <div class="modal fade" id="Modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLongTitle">ยืนยันบันทึกข้อมูล</h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <h6>
+                                                <center>คุณต้องการบันทึกข้อมูลใช่หรือไหม ?</center>
+                                            </h6>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="submit" class="btn btn-primary">ยืนยัน</button>
+                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ยกเลิก</button>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
 
-                            <div class="row mb-3">
-                                <label class="col-sm-2 col-form-label">ผลการประเมินคุณลักษณะอันพึ่งประสงค์</label>
-                                <div class="col-sm-10">
-                                    <select class="form-select" aria-label="Default select example">
-                                        <option selected>เลือก</option>
-                                        <option value="000">ต่ำกว่าเกณฑ์</option>
-                                        <option value="001">ผ่านเกณฑ์ขั้นต่ำ</option>
-                                        <option value="002">พอใช้</option>
-                                        <option value="003">ปานกลาง</option>
-                                        <option value="004">ค่าข้างดี</option>
-                                        <option value="005">ดี</option>
-                                        <option value="006">ดีมาก</option>
-                                        <option value="007">ดีเยี่ยม</option>
-                                        <option value="910">ไม่ผ่าน</option>
-                                        <option value="911">ผ่าน</option>
-                                        <option value="914">รอการตัดสินผลการเรียน</option>
-                                    </select>
-                                </div>
-                            </div>
 
-                            <div class="row mb-3">
-                                <label class="col-sm-2 col-form-label">ผลการประเมินกิจกรรมพัฒนาผู้เรียน</label>
-                                <div class="col-sm-10">
-                                    <select class="form-select" aria-label="Default select example">
-                                        <option selected>เลือก</option>
-                                        <option value="000">ต่ำกว่าเกณฑ์</option>
-                                        <option value="001">ผ่านเกณฑ์ขั้นต่ำ</option>
-                                        <option value="002">พอใช้</option>
-                                        <option value="003">ปานกลาง</option>
-                                        <option value="004">ค่าข้างดี</option>
-                                        <option value="005">ดี</option>
-                                        <option value="006">ดีมาก</option>
-                                        <option value="007">ดีเยี่ยม</option>
-                                        <option value="910">ไม่ผ่าน</option>
-                                        <option value="911">ผ่าน</option>
-                                        <option value="914">รอการตัดสินผลการเรียน</option>
-                                    </select>
-                                </div>
-                            </div>
-
-                            <div class="row mb-3">
-                                <label class="col-sm-2 col-form-label">ผลการตัดสินรายวิชาพื้นฐาน</label>
-                                <div class="col-sm-10">
-                                    <select class="form-select" aria-label="Default select example">
-                                        <option selected>เลือก</option>
-                                        <option value="0">ไม่ผ่าน</option>
-                                        <option value="1">ผ่าน</option>
-                                    </select>
-                                </div>
-                            </div>
-
-                            <div class="row mb-3">
-                                <label class="col-sm-2 col-form-label">ผลการตัดสินการอ่านวิเคราะห์และเขียน</label>
-                                <div class="col-sm-10">
-                                    <select class="form-select" aria-label="Default select example">
-                                        <option selected>เลือก</option>
-                                        <option value="0">ไม่ผ่าน</option>
-                                        <option value="1">ผ่าน</option>
-                                    </select>
-                                </div>
-                            </div>
-
-                            <div class="row mb-3">
-                                <label class="col-sm-2 col-form-label">ผลการตัดสินคุณลักษณะอันพึ่งประสงค์</label>
-                                <div class="col-sm-10">
-                                    <select class="form-select" aria-label="Default select example">
-                                        <option selected>เลือก</option>
-                                        <option value="0">ไม่ผ่าน</option>
-                                        <option value="1">ผ่าน</option>
-                                    </select>
-                                </div>
-                            </div>
-
-                            <div class="row mb-3">
-                                <label class="col-sm-2 col-form-label">ผลการตัดสินกิจกรรมพัฒนาผู้เรียน</label>
-                                <div class="col-sm-10">
-                                    <select class="form-select" aria-label="Default select example">
-                                        <option selected>เลือก</option>
-                                        <option value="0">ไม่ผ่าน</option>
-                                        <option value="1">ผ่าน</option>
-                                    </select>
-                                </div>
-                            </div>
-
-                        </form><!-- End Form ข้อมูลผลสัมฤทธิ์ทางการศึกษา -->
-
-                        <!-- start Form ข้อมูลผลการศึกษา -->
-                        <form>
-                            <h5 class="card-title">ข้อมูลผลการศึกษา</h5>
-
-                            <div class="row mb-3">
-                                <label for="inputText" class="col-sm-2 col-form-label">คีย์อ้างอิงข้อมูลผลการศึกษา</label>
-                                <div class="col-sm-10">
-                                    <input type="text" class="form-control">
-                                </div>
-                            </div>
-
-                            <div class="row mb-3">
-                                <label for="inputText" class="col-sm-2 col-form-label">ปีการศึกษา</label>
-                                <div class="col-sm-10">
-                                    <input type="text" class="form-control">
-                                </div>
-                            </div>
-
-                            <div class="row mb-3">
-                                <label for="inputText" class="col-sm-2 col-form-label">ภาคเรียน</label>
-                                <div class="col-sm-10">
-                                    <input type="text" class="form-control">
-                                </div>
-                            </div>
-
-                            <div class="row mb-3">
-                                <label for="inputText" class="col-sm-2 col-form-label">รหัสวิชา</label>
-                                <div class="col-sm-10">
-                                    <input type="text" class="form-control">
-                                </div>
-                            </div>
-
-                            <div class="row mb-3">
-                                <label for="inputText" class="col-sm-2 col-form-label">ชื่อวิชา</label>
-                                <div class="col-sm-10">
-                                    <input type="text" class="form-control">
-                                </div>
-                            </div>
-
-                            <div class="row mb-3">
-                                <label class="col-sm-2 col-form-label">ประเภทวิชา</label>
-                                <div class="col-sm-10">
-                                    <select class="form-select" aria-label="Default select example">
-                                        <option selected>เลือก</option>
-                                        <option value="01">พื้นฐาน</option>
-                                        <option value="02">เพิ่มเติม</option>
-                                        <option value="03">กลุ่มทักษะวิชาชีพพื้นฐาน</option>
-                                        <option value="04">กลุ่มทักษะวิชาชีพเฉพาะ</option>
-                                        <option value="05">กลุ่มทักษะวิชาชีพเลือก</option>
-                                        <option value="06">ฝึกประสบการณ์ทักษะวิชาชีพ</option>
-                                        <option value="07">โครงการพัฒนาทักษะวิชาชีพ</option>
-                                        <option value="08">กิจกรรมพัฒนาผู้เรียน</option>
-
-                                    </select>
-                                </div>
-                            </div>
-
-                            <div class="row mb-3">
-                                <label class="col-sm-2 col-form-label">กลุ่มสาระวิชา</label>
-                                <div class="col-sm-10">
-                                    <select class="form-select" aria-label="Default select example">
-                                        <option selected>เลือก</option>
-                                        <option value="01">ภาษาไทย</option>
-                                        <option value="02">คณิตศาสตร์</option>
-                                        <option value="03">วิทยาศาสตร์ และเทคโนโลยี</option>
-                                        <option value="04">สังคมศึกษา ศาสนาและวัฒนธรรม</option>
-                                        <option value="05">สุขศึกษา และ พละศึกษา</option>
-                                        <option value="06">ศิลปะ</option>
-                                        <option value="07">การงานอาชีพ</option>
-                                        <option value="08">ภาษาต่างประเทศ</option>
-                                        <option value="09">กิจกรรมพัฒนาผู้เรียน</option>
-                                        <option value="10">IS</option>
-
-                                    </select>
-                                </div>
-                            </div>
-
-                            <div class="row mb-3">
-                                <label for="inputText" class="col-sm-2 col-form-label">หน่วยกิต</label>
-                                <div class="col-sm-10">
-                                    <input type="text" class="form-control">
-                                </div>
-                            </div>
-
-                            <div class="row mb-3">
-                                <label class="col-sm-2 col-form-label">ผลการเรียน</label>
-                                <div class="col-sm-10">
-                                    <select class="form-select" aria-label="Default select example">
-                                        <option selected>เลือก</option>
-                                        <option value="000">0.0</option>
-                                        <option value="001">1.0</option>
-                                        <option value="002">1.5</option>
-                                        <option value="003">2.0</option>
-                                        <option value="004">2.5</option>
-                                        <option value="005">3.0</option>
-                                        <option value="006">3.5</option>
-                                        <option value="007">4.0</option>
-                                        <option value="910">ม.ผ</option>
-                                        <option value="914">ร</option>
-                                        <option value="915">ลก</option>
-
-                                    </select>
-                                </div>
-                            </div>
-
-                        </form><!-- End Form ข้อมูลผลการศึกษา -->
-
-                        <!-- start Form ข้อมูลกิจกรรมพัฒนาผู้เรียน -->
-                        <form>
-                            <h5 class="card-title">ข้อมูลกิจกรรมพัฒนาผู้เรียน</h5>
-
-                            <div class="row mb-3">
-                                <label for="inputText" class="col-sm-2 col-form-label">คีย์อ้างอิงข้อมูลผลการศึกษา</label>
-                                <div class="col-sm-10">
-                                    <input type="text" class="form-control">
-                                </div>
-                            </div>
-
-                            <div class="row mb-3">
-                                <label for="inputText" class="col-sm-2 col-form-label">ปีการศึกษา (กิจกรรมพัฒนาผู้เรียน)</label>
-                                <div class="col-sm-10">
-                                    <input type="text" class="form-control">
-                                </div>
-                            </div>
-
-                            <div class="row mb-3">
-                                <label for="inputText" class="col-sm-2 col-form-label">ภาคเรียน (กิจกรรมพัฒนาผู้เรียน)</label>
-                                <div class="col-sm-10">
-                                    <input type="text" class="form-control">
-                                </div>
-                            </div>
-
-                            <div class="row mb-3">
-                                <label for="inputText" class="col-sm-2 col-form-label">ชื่อกิจกรรม</label>
-                                <div class="col-sm-10">
-                                    <input type="text" class="form-control">
-                                </div>
-                            </div>
-
-                            <div class="row mb-3">
-                                <label for="inputText" class="col-sm-2 col-form-label">จำนวนชั่วโมง</label>
-                                <div class="col-sm-10">
-                                    <input type="text" class="form-control">
-                                </div>
-                            </div>
-
-                            <div class="row mb-3">
-                                <label class="col-sm-2 col-form-label">ผลการประเมินกิจกรรม</label>
-                                <div class="col-sm-10">
-                                    <select class="form-select" aria-label="Default select example">
-                                        <option selected>เลือก</option>
-                                        <option value="1">ไม่ผ่าน</option>
-                                        <option value="2">ผ่าน</option>
-                                    </select>
-                                </div>
-                            </div>
-
-                        </form><!-- End Form ข้อมูลกิจกรรมพัฒนาผู้เรียน -->
-
-                        <!-- start Form ข้อมูลผลการทดสอบระดับชาติ (O NET) -->
-                        <form>
-                            <h5 class="card-title">ข้อมูลผลการทดสอบระดับชาติ (O NET)</h5>
-
-                            <div class="row mb-3">
-                                <label for="inputText" class="col-sm-2 col-form-label">คีย์อ้างอิงข้อมูลผลการศึกษา</label>
-                                <div class="col-sm-10">
-                                    <input type="text" class="form-control">
-                                </div>
-                            </div>
-
-                            <div class="row mb-3">
-                                <label class="col-sm-2 col-form-label">กลุ่มสาระวิชา</label>
-                                <div class="col-sm-10">
-                                    <select class="form-select" aria-label="Default select example">
-                                        <option selected>เลือก</option>
-                                        <option value="01">ภาษาไทย</option>
-                                        <option value="02">คณิตศาสตร์</option>
-                                        <option value="03">วิทยาศาสตร์ และเทคโนโลยี</option>
-                                        <option value="04">สังคมศึกษา ศาสนาและวัฒนธรรม</option>
-                                        <option value="05">สุขศึกษา และ พละศึกษา</option>
-                                        <option value="06">ศิลปะ</option>
-                                        <option value="07">การงานอาชีพ</option>
-                                        <option value="08">ภาษาต่างประเทศ</option>
-                                        <option value="09">กิจกรรมพัฒนาผู้เรียน</option>
-                                        <option value="10">IS</option>
-
-                                    </select>
-                                </div>
-                            </div>
-
-                            <div class="row mb-3">
-                                <label class="col-sm-2 col-form-label">ผลการเรียน</label>
-                                <div class="col-sm-10">
-                                    <select class="form-select" aria-label="Default select example">
-                                        <option selected>เลือก</option>
-                                        <option value="000">0.0</option>
-                                        <option value="001">1.0</option>
-                                        <option value="002">1.5</option>
-                                        <option value="003">2.0</option>
-                                        <option value="004">2.5</option>
-                                        <option value="005">3.0</option>
-                                        <option value="006">3.5</option>
-                                        <option value="007">4.0</option>
-                                        <option value="910">ม.ผ</option>
-                                        <option value="914">ร</option>
-                                        <option value="915">ลก</option>
-
-                                    </select>
-                                </div>
-                            </div>
-
-                        </form><!-- End Form ข้อมูลผลการทดสอบระดับชาติ (O NET) -->
-
-                        <!-- start Form ข้อมูลผลการทดสอบความสามารถพื้นฐานของผู้เรียนระดับชาติ (NT) -->
-                        <form>
-                            <h5 class="card-title">ข้อมูลผลการทดสอบความสามารถพื้นฐานของผู้เรียนระดับชาติ (NT)</h5>
-
-                            <div class="row mb-3">
-                                <label for="inputText" class="col-sm-2 col-form-label">คีย์อ้างอิงข้อมูลผลการศึกษา</label>
-                                <div class="col-sm-10">
-                                    <input type="text" class="form-control">
-                                </div>
-                            </div>
-
-                            <div class="row mb-3">
-                                <label for="inputText" class="col-sm-2 col-form-label">ปีการศึกษา</label>
-                                <div class="col-sm-10">
-                                    <input type="text" class="form-control">
-                                </div>
-                            </div>
-
-                            <div class="row mb-3">
-                                <label for="inputText" class="col-sm-2 col-form-label">ภาคเรียน</label>
-                                <div class="col-sm-10">
-                                    <input type="text" class="form-control">
-                                </div>
-                            </div>
-
-                            <div class="row mb-3">
-                                <label for="inputText" class="col-sm-2 col-form-label">รหัสวิชา</label>
-                                <div class="col-sm-10">
-                                    <input type="text" class="form-control">
-                                </div>
-                            </div>
-
-                            <div class="row mb-3">
-                                <label for="inputText" class="col-sm-2 col-form-label">ชื่อวิชา</label>
-                                <div class="col-sm-10">
-                                    <input type="text" class="form-control">
-                                </div>
-                            </div>
-
-                            <div class="row mb-3">
-                                <label class="col-sm-2 col-form-label">ประเภทวิชา</label>
-                                <div class="col-sm-10">
-                                    <select class="form-select" aria-label="Default select example">
-                                        <option selected>เลือก</option>
-                                        <option value="01">พื้นฐาน</option>
-                                        <option value="02">เพิ่มเติม</option>
-                                        <option value="03">กลุ่มทักษะวิชาชีพพื้นฐาน</option>
-                                        <option value="04">กลุ่มทักษะวิชาชีพเฉพาะ</option>
-                                        <option value="05">กลุ่มทักษะวิชาชีพเลือก</option>
-                                        <option value="06">ฝึกประสบการณ์ทักษะวิชาชีพ</option>
-                                        <option value="07">โครงการพัฒนาทักษะวิชาชีพ</option>
-                                        <option value="08">กิจกรรมพัฒนาผู้เรียน</option>
-
-                                    </select>
-                                </div>
-                            </div>
-
-                            <div class="row mb-3">
-                                <label class="col-sm-2 col-form-label">กลุ่มสาระวิชา</label>
-                                <div class="col-sm-10">
-                                    <select class="form-select" aria-label="Default select example">
-                                        <option selected>เลือก</option>
-                                        <option value="01">ภาษาไทย</option>
-                                        <option value="02">คณิตศาสตร์</option>
-                                        <option value="03">วิทยาศาสตร์ และเทคโนโลยี</option>
-                                        <option value="04">สังคมศึกษา ศาสนาและวัฒนธรรม</option>
-                                        <option value="05">สุขศึกษา และ พละศึกษา</option>
-                                        <option value="06">ศิลปะ</option>
-                                        <option value="07">การงานอาชีพ</option>
-                                        <option value="08">ภาษาต่างประเทศ</option>
-                                        <option value="09">กิจกรรมพัฒนาผู้เรียน</option>
-                                        <option value="10">IS</option>
-
-                                    </select>
-                                </div>
-                            </div>
-
-                            <div class="row mb-3">
-                                <label for="inputText" class="col-sm-2 col-form-label">คะแนน</label>
-                                <div class="col-sm-10">
-                                    <input type="text" class="form-control">
-                                </div>
-                            </div>
-
-                        </form><!-- End Form ข้อมูลผลการทดสอบความสามารถพื้นฐานของผู้เรียนระดับชาติ (NT) -->
-
-                        <!-- start Form ข้อมูลผลการทดสอบเพื่อประเมินความสามารถในการอ่าน (RT) -->
-                        <form>
-                            <h5 class="card-title">ข้อมูลผลการทดสอบเพื่อประเมินความสามารถในการอ่าน (RT)</h5>
-
-                            <div class="row mb-3">
-                                <label for="inputText" class="col-sm-2 col-form-label">คีย์อ้างอิงข้อมูลผลการศึกษา</label>
-                                <div class="col-sm-10">
-                                    <input type="text" class="form-control">
-                                </div>
-                            </div>
-
-                            <div class="row mb-3">
-                                <label for="inputText" class="col-sm-2 col-form-label">ปีการศึกษา</label>
-                                <div class="col-sm-10">
-                                    <input type="text" class="form-control">
-                                </div>
-                            </div>
-
-                            <div class="row mb-3">
-                                <label for="inputText" class="col-sm-2 col-form-label">ภาคเรียน</label>
-                                <div class="col-sm-10">
-                                    <input type="text" class="form-control">
-                                </div>
-                            </div>
-
-                            <div class="row mb-3">
-                                <label class="col-sm-2 col-form-label">ระดับการศึกษา</label>
-                                <div class="col-sm-10">
-                                    <select class="form-select" aria-label="Default select example">
-                                        <option selected>เลือก</option>
-                                        <option value="01">เตรียมอนุบาล</option>
-                                        <option value="02">ก่อนประถมศึกษา</option>
-                                        <option value="03">ประถมศึกษา</option>
-                                        <option value="04">มัธยมศึกษาตอนต้น</option>
-                                        <option value="05">มัธยมศึกษาตอนปลาย</option>
-                                    </select>
-                                </div>
-                            </div>
-
-                            <div class="row mb-3">
-                                <label class="col-sm-2 col-form-label">ระดับชั้นปี</label>
-                                <div class="col-sm-10">
-                                    <select class="form-select" aria-label="Default select example">
-                                        <option selected>เลือก</option>
-                                        <option value="100">เตรียมอนุบาล</option>
-                                        <option value="111">อนุบาล 1(หลักสูตร 3 ปีของ สช.)/อนุบาล 3 ขวบ</option>
-                                        <option value="112">อนุบาล 2(หลักสูตร 3 ปีของ สช.)/อนุบาล 1</option>
-                                        <option value="113">อนุบาล 3(หลักสูตร 3 ปีของ สช.)/อนุบาล 2</option>
-                                        <option value="114">เด็กเล็ก</option>
-                                        <option value="211">ประถมศึกษาปีที่ 1/เกรด 1</option>
-                                        <option value="212">ประถมศึกษาปีที่ 2/เกรด 2</option>
-                                        <option value="213">ประถมศึกษาปีที่ 3/เกรด 3</option>
-                                        <option value="214">ประถมศึกษาปีที่ 4/เกรด 4</option>
-                                        <option value="215">ประถมศึกษาปีที่ 5/เกรด 5</option>
-                                        <option value="216">ประถมศึกษาปีที่ 6/เกรด 6</option>
-                                        <option value="217">กศน.ประถมศึกษา (ป.6)</option>
-                                        <option value="311">มัธยมศึกษาปีที่ 1 /เกรด 7/ นาฎศิลป์ชั้นที่ 1</option>
-                                        <option value="312">มัธยมศึกษาปีที่ 2 /เกรด 8/ นาฎศิลป์ชั้นที่ 2</option>
-                                        <option value="313">มัธยมศึกษาปีที่ 3 /เกรด 9/ นาฎศิลป์ชั้นที่ 3</option>
-                                        <option value="414">กศน.มัธยมศึกษาตอนต้น (ม.3)</option>
-                                        <option value="411">มัธยมศึกษาปีที่ 4/เกรด10/เตรียมทหารชั้นปีที่ 1</option>
-                                        <option value="412">มัธยมศึกษาปีที่ 5/เกรด11/เตรียมทหารชั้นปีที่ 2</option>
-                                        <option value="413">มัธยมศึกษาปีที่ 6/เกรด12/เตรียมทหารชั้นปีที่ 3</option>
-                                        <option value="314">กศน.มัธยมศึกษาตอนปลาย (ม.6)</option>
-                                    </select>
-                                </div>
-                            </div>
-
-                            <div class="row mb-3">
-                                <label for="inputText" class="col-sm-2 col-form-label">คะแนนการอ่านออกเสียง</label>
-                                <div class="col-sm-10">
-                                    <input type="text" class="form-control">
-                                </div>
-                            </div>
-
-                            <div class="row mb-3">
-                                <label for="inputText" class="col-sm-2 col-form-label">คะแนนรวมทั้งสองด้าน</label>
-                                <div class="col-sm-10">
-                                    <input type="text" class="form-control">
-                                </div>
-                            </div>
-
-                        </form><!-- End Form ข้อมูลผลการทดสอบเพื่อประเมินความสามารถในการอ่าน (RT) -->
-
-                        <!-- start Form ข้อมูลคุณภาพผู้เรียนตามสมรรถนะ -->
-                        <form>
-                            <h5 class="card-title">ข้อมูลคุณภาพผู้เรียนตามสมรรถนะ</h5>
-
-                            <div class="row mb-3">
-                                <label for="inputText" class="col-sm-2 col-form-label">คีย์อ้างอิงข้อมูลผลการศึกษา</label>
-                                <div class="col-sm-10">
-                                    <input type="text" class="form-control">
-                                </div>
-                            </div>
-
-                            <div class="row mb-3">
-                                <label for="inputText" class="col-sm-2 col-form-label">ปีการศึกษา (ผลสมรรถนะ)</label>
-                                <div class="col-sm-10">
-                                    <input type="text" class="form-control">
-                                </div>
-                            </div>
-
-                            <div class="row mb-3">
-                                <label for="inputText" class="col-sm-2 col-form-label">ภาคเรียน (ผลสมรรถนะ)</label>
-                                <div class="col-sm-10">
-                                    <input type="text" class="form-control">
-                                </div>
-                            </div>
-
-                            <div class="row mb-3">
-                                <label class="col-sm-2 col-form-label">สมรรถนะ</label>
-                                <div class="col-sm-10">
-                                    <select class="form-select" aria-label="Default select example">
-                                        <option selected>เลือก</option>
-                                        <option value="101">ความสามารถในการสื่อสาร</option>
-                                        <option value="102">ความสามารถในการคิด</option>
-                                        <option value="103">ความสามารถในการแก้ปัญหา</option>
-                                        <option value="104">ความสามารถในการใช้ทักษะชีวิต</option>
-                                        <option value="105">ความสามารถในการใช้เทคโนโลยี</option>
-                                    </select>
-                                </div>
-                            </div>
-
-                            <div class="row mb-3">
-                                <label for="inputText" class="col-sm-2 col-form-label">คะแนนสมรรถนะ</label>
-                                <div class="col-sm-10">
-                                    <input type="text" class="form-control">
-                                </div>
-                            </div>
-
-                            <div class="row mb-3">
-                                <label class="col-sm-2 col-form-label">ผลการประเมินสมรรถนะ</label>
-                                <div class="col-sm-10">
-                                    <select class="form-select" aria-label="Default select example">
-                                        <option selected>เลือก</option>
-                                        <option value="101">เริ่มต้น</option>
-                                        <option value="102">กำลังพัฒนา</option>
-                                        <option value="103">สามารถ</option>
-                                        <option value="104">เหนือความคากหมาย</option>
-                                    </select>
-                                </div>
-                            </div>
-
-                        </form><!-- End Form ข้อมูลคุณภาพผู้เรียนตามสมรรถนะ -->
+                        </form><!-- End Form ข้อมูลการพัฒนาบุคลากรครู -->
 
                     </div>
                 </div>
 
             </div>
 
-
         </div>
     </section>
+    <script type="text/javascript">
+        function check(frm) {
+            var Year = /^[0-9]{4,4}$/;
+            var Semester = /^[0-9]{1,1}$/;
+            if (frm.SubjectEducationYear.value == "") {
+                alert("กรุณากรอกข้อมูลปีการศึกษา");
+                return false;
+            } else if (!frm.SubjectEducationYear.value.match(Year)) {
+                alert("กรุณากรอกข้อมูลปีการศึกษาให้ครบ 4 หลัก");
+                frm.SubjectEducationYear.value = "";
+                return false;
+            }
+
+            if (frm.SubjectSemester.value == "") {
+                alert("กรุณากรอกข้อมูลภาคเรียน");
+                return false;
+            } else if (!frm.SubjectSemester.value.match(Semester)) {
+                alert("กรุณากรอกข้อมูลภาคเรียนไม่เกิน 1 หลัก");
+                frm.SubjectSemester.value = "";
+                return false;
+            }
+
+            var Code = /^[ก-๙][0-9]{1,10}$/;
+            if (frm.SubjectCode.value == "") {
+                alert("กรุณากรอกข้อมูลรหัสวิชา)");
+                return false;
+            } else if (!frm.SubjectCode.value.match(Code)) {
+                alert("กรุณากรอกข้อมูลรหัสวิชาและไม่เกิน 10 ตัวอักษร");
+                frm.SubjectCode.value = "";
+                return false;
+            }
+
+            if (frm.SubjectTypeCode.value == "") {
+                alert("กรุณาเลือกประเภทวิชารายวิชา");
+                return false;
+            }
+
+            if (frm.SubjectGroupCode.value == "") {
+                alert("กรุณาเลือกกลุ่มสาระการเรียนรู้");
+                return false;
+            }
+
+            if (frm.SubjectCredit.value == "") {
+                alert("กรุณากรอกหน่วยกิตรายวิชา");
+                return false;
+            }
+
+            if (frm.SubjectGradeCode.value == "") {
+                alert("กรุณาเลือกผลการเรียนรายวิชา");
+                return false;
+            }
+
+            $('#Modal').modal('show');
+        }
+    </script>
 
 </main><!-- End #main -->

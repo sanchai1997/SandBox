@@ -19,7 +19,24 @@
             <a class="btn btn-sm btn-light text-dark"><b>ปีการศึกษา: <?= $_GET['EducationYear'] ?>&nbsp; ภาคเรียน: <?= $_GET['Semester'] ?> &nbsp;ระดับชั้นเรียน: <?= $GRADE_NAME ?></b></a>
         <?php } ?>
     </div><!-- End Page Title -->
+    <?php if (!empty($_SESSION['danger'])) { ?>
+        <script>
+            setTimeout(function() {
+                document.getElementById('myAlert').remove();
+            }, 4000); // นับถอยหลังให้แสดง 5 วินาที (5000 มิลลิวินาที)
+        </script>
+        <div style="position: relative;">
+            <div class="alert alert-danger" id="myAlert" style="position: absolute; top: 0; left: 0; right: 0; z-index: 1;">
+                <strong>
+                    <?php
+                    echo '<i class="bi bi-clipboard2-x"></i> ' . $_SESSION['danger'];
+                    unset($_SESSION['danger']);
+                    ?>
+                </strong>
 
+            </div>
+        </div>
+    <?php } ?>
     <section class="section">
         <div class="row">
             <div class="col-lg-9">

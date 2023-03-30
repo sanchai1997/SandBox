@@ -10,7 +10,24 @@
             ?>
         </h1>
     </div><!-- End Page Title -->
+    <?php if (!empty($_SESSION['danger'])) { ?>
+        <script>
+            setTimeout(function() {
+                document.getElementById('myAlert').remove();
+            }, 4000); // นับถอยหลังให้แสดง 5 วินาที (5000 มิลลิวินาที)
+        </script>
+        <div style="position: relative;">
+            <div class="alert alert-danger" id="myAlert" style="position: absolute; top: 0; left: 0; right: 0; z-index: 1;">
+                <strong>
+                    <?php
+                    echo '<i class="bi bi-clipboard2-x"></i> ' . $_SESSION['danger'];
+                    unset($_SESSION['danger']);
+                    ?>
+                </strong>
 
+            </div>
+        </div>
+    <?php } ?>
     <section class="section">
         <div class="row">
             <div class="col-lg-9">
@@ -39,7 +56,7 @@
                             </div>
 
                             <div class="row mb-3">
-                                <label for="inputText" class="col-sm-2 col-form-label">จำนวนห้องเรียน <font color="red"> *</font></label>
+                                <label for="inputText" class="col-sm-2 col-form-label">จำนวนห้องเรียน </label>
                                 <div class="col-sm-10">
                                     <input type="number" class="form-control" name="ClassroomAmount" id="ClassroomAmount">
                                 </div>
@@ -86,16 +103,6 @@
 
             if (frm.ClassroomGradeLevelCode.value == "") {
                 alert("กรุณาเลือกระดับชั้นปี");
-                return false;
-            }
-
-            var Amount = /^[1-9]{1,4}$/;
-            if (frm.ClassroomAmount.value == "") {
-                alert("กรุณากรอกจำนวนห้องเรียน");
-                return false;
-            } else if (!frm.ClassroomAmount.value.match(Amount)) {
-                alert("กรุณากรอกจำนวนห้องเป็น(ตัวเลข) และไม่เกิน 4 หลัก");
-                frm.ClassroomAmount.value = "";
                 return false;
             }
 
