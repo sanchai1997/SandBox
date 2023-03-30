@@ -54,8 +54,8 @@
                 <?php foreach ($assignment as $as) {?>
 
                 <input type="hidden" class="form-control" name="ASSESSMENT_ID" id="ASSESSMENT_ID"  value="<?php echo $as->ASSESSMENT_ID  ?>">
-                <div class="pagetitle">
-                  <h5 class="card-title">การวัดและประเมินผล</h5>
+                <div class="mt-4">
+                  <h5 style="color: #012970">การวัดและประเมินผล</h5>
                 </div>
                 <div class="col-md-16">
                   <div class="form-floating">
@@ -87,9 +87,9 @@
                     <label>เครื่องมือการประเมิน<font color="red"> *</font></label>
                   </div>
                 </div>
-                <div class="pagetitle">
-                <h5 class="card-title">การวัดผลมาตรฐานกลาง</h5>
-              </div>
+                <div class="mt-4">
+                  <h5 style="color: #012970">การวัดผลมาตรฐานกลาง</h5>
+                </div>
               <?php foreach ($score as $s) {?>
                 <input type="hidden" class="form-control" name="SCORE_ID" id="SCORE_ID" placeholder="ชื่อการวัดและประเมินผล" maxlength="255" value="<?php echo $s->SCORE_ID  ?>">
                 <div class="col-md-16">
@@ -232,9 +232,6 @@ function onloadpage(){
 
     $('#Modal').modal('show');
     
-
-    $('#Modal').modal('show');
-    
   }
 
 </script>  
@@ -359,7 +356,7 @@ function onloadpage(){
                   <button type="button" class="btn btn-warning" onclick="return check(ACTIVITY)">แก้ไขข้อมูล</button>
                 </div> 
                <!-- Modal -->
-               <div class="modal fade" id="Modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+               <div class="modal fade" id="Modal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
                   <div class="modal-dialog modal-dialog-centered" role="document">
                       <div class="modal-content">
                           <div class="modal-header">
@@ -428,7 +425,7 @@ function onloadpage(){
       return false;
     }
 
-    $('#Modal').modal('show');
+    $('#Modal2').modal('show');
     
   }
 

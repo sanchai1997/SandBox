@@ -58,13 +58,13 @@
                                 <a href='edit_forms_eportfolio?ep=<?php echo$ef->EPORTFOLIO_ID ?>' class="btn btn-warning">
                                             <i class="bi bi-pencil-square"></i>
                                         </a>
-                                        <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#delete">
+                                        <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#delete<?php echo$ef->EPORTFOLIO_ID ?>">
                                             <i class=" bi bi-trash"></i>
                                         </button>
                                 </td>
                             </tr>
                           <!-- Modal delete -->
-                          <div class="modal fade" id="delete" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+                          <div class="modal fade" id="delete<?php echo$ef->EPORTFOLIO_ID ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
                                     <div class="modal-dialog modal-dialog-centered" role="document">
                                         <div class="modal-content">
                                             <div class="modal-header">

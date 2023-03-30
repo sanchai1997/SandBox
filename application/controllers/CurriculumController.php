@@ -665,7 +665,7 @@ class CurriculumController extends CI_Controller{
         $data['PLAN_ID'] = $_GET['pid']; 
         $data['CurriculumID'] = $_GET['cid']; 
         $data['SubjectCode'] = $_GET['sid']; 
-        $data['list_curriculum_activity'] = $this->Curriculum_model->get_curriculum_activity_All();
+        $data['list_curriculum_activity'] = $this->Curriculum_model->get_curriculum_activity_All($data['PLAN_ID']);
 
         
         $this->load->view('templates/header');
