@@ -4,7 +4,13 @@
             <?php if (isset($_GET['TeacherID'])) {
                 $result = $this->db->query('SELECT *  FROM TEACHER 
                 INNER JOIN CLS_PREFIX ON TEACHER.TeacherPrefixCode = CLS_PREFIX.PREFIX_CODE
-                WHERE TeacherID = "' . $_GET['TeacherID'] . '" AND SchoolID = ' . $_GET['SchoolID'] . '');
+                WHERE TeacherID = "' . $_GET['TeacherID'] . '" 
+                AND SchoolID = ' . $_GET['SchoolID'] . '
+                AND EducationYear = ' . $_GET['EducationYear'] . '
+                AND Semester = ' . $_GET['Semester'] . '
+                AND PersonnelTypeCode = ' . $_GET['PersonnelTypeCode'] . '
+                AND PositionCode = ' . $_GET['PositionCode'] . '
+                ');
                 foreach ($result->result() as $TEACHER) {
 
                     $result = $this->db->query('SELECT *  FROM SCHOOL WHERE SchoolID = ' . $_GET['SchoolID'] . '');
@@ -24,7 +30,7 @@
                 <div class="card">
                     <div class="card-body">
                         <!-- Floating Labels Form -->
-                        <form class="row g-3" action="<?php echo base_url('update-teacher-main/' . $_GET['TeacherID'] . '/' . $_GET['SchoolID'] . '/' . $_GET['EducationYear'] . '/' . $_GET['Semester'] . '/' . $_GET['PersonnelTypeCode'] . '/' . $_GET['PositionCode']); ?>" method="POST" id="Teacher" enctype="multipart/form-data">
+                        <form class="row g-3" action="<?php echo base_url('update-teacher-main/' . $_GET['TeacherID'] . '/' . $_GET['SchoolID'] . '/' . $_GET['EducationYear'] . '/' . $_GET['Semester'] . '/' . $_GET['PersonnelTypeCode'] . '/' . $_GET['PositionCode'] . '/' . $TEACHER->ImageTeacher); ?>" method="POST" id="Teacher" enctype="multipart/form-data">
                             <h6 style="padding-left: 15px;" class="card-title">ข้อมูลตำแหน่งและปฎิบัติราชการ</h6>
                             <div class="col-md-3">
                                 <div class="form-floating">

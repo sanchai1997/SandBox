@@ -1,3 +1,14 @@
+<style>
+    .page-content img {
+        max-width: 90px;
+        height: 100px;
+    }
+
+    .page-detail img {
+        max-width: 170px;
+        height: 190px;
+    }
+</style>
 <main id="main" class="main">
 
     <div class="pagetitle">
@@ -58,7 +69,10 @@
                             </h1>
                         </div>
                         <div class="col">
-                            <h5 style="float: right; padding: 15px;" class="card-title"><a href="" class="btn btn-success">อัพโหลดไฟล์</a>&nbsp;&nbsp;<a href="forms-school" class="btn btn-success">เพิ่มข้อมูล</a></h5>
+                            <h5 style="float: right; padding: 15px;" class="card-title">
+                                <a href="" class="btn btn-success">อัพโหลดไฟล์</a>&nbsp;&nbsp;
+                                <a href="forms-school" class="btn btn-success"><i class="bi bi-file-earmark-plus"></i> เพิ่มข้อมูล</a>
+                            </h5>
                         </div>
                     </div>
                     <table class="table table-borderless datatable">
@@ -77,13 +91,13 @@
                             foreach ($result->result() as $SCHOOL) {
                             ?>
                                 <tr>
-                                    <td style="text-align: center;"><img src="./assets/img/school/<?= $SCHOOL->ImageSchool; ?>" alt="" width="90px" height="80px"></td>
-                                    <td style="padding-top: 30px;"><?= $SCHOOL->SchoolNameThai; ?></td>
-                                    <td style="padding-top: 30px;"><?= $SCHOOL->INNOVATION_AREA_NAME; ?></td>
-                                    <td style="padding-top: 30px; text-align: center;">
+                                    <td class="page-content" style="text-align: center;"><img src="assets/school/img/<?= $SCHOOL->ImageSchool; ?>" alt="" width="100%" height="100%"></td>
+                                    <td style="padding-top: 40px;"><?= $SCHOOL->SchoolNameThai; ?></td>
+                                    <td style="padding-top: 40px;"><?= $SCHOOL->INNOVATION_AREA_NAME; ?></td>
+                                    <td style="padding-top: 35px; text-align: center;">
                                         <a href="?SchoolID=<?= $SCHOOL->SchoolID; ?>" class="btn btn-primary"><i class="bi bi-card-list"></i></a>
                                     </td>
-                                    <td style="padding-top: 30px; text-align: center;">
+                                    <td style="padding-top: 35px; text-align: center;">
                                         <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#Delete<?= $SCHOOL->SchoolID; ?>"><i class=" bi bi-trash"></i></button>
                                     </td>
 
@@ -131,9 +145,9 @@ WHERE SCHOOL.SchoolID = ' . $_GET['SchoolID'] . '
                         </div>
                         <div class="row">
                             <?php if ($SCHOOL_DETAIL->ImageSchool != '') { ?>
-                                <div class="col-2" style="padding-bottom: 8px; padding-left: 60px; padding-top: 0px;">
-                                    <div class="card">
-                                        <img style="text-align: center; padding: 15px;" src="./assets/img/school/<?= $SCHOOL_DETAIL->ImageSchool; ?>" alt="" width="100%" height="100%" style="padding-top: 20px;">
+                                <div class="col-2" style="padding-bottom: 8px; padding-left: 70px; padding-top: 0px;">
+                                    <div class="card page-detail">
+                                        <img style=" text-align: center; padding: 15px;" src="assets/school/img/<?= $SCHOOL_DETAIL->ImageSchool; ?>" alt="" width="100%" height="100%" style="padding-top: 20px;">
                                     </div>
                                 </div>
                             <?php } else { ?>
@@ -251,7 +265,7 @@ WHERE SCHOOL.SchoolID = ' . $_GET['SchoolID'] . '
                                                 echo '-';
                                             } else {
                                             ?>
-                                                <a href="<?= $SCHOOL_DETAIL->SchoolMapURL ?>" class="btn btn-sm btn-light"><?= $SCHOOL_DETAIL->SchoolMapURL ?></a>
+                                                <a href="<?= $SCHOOL_DETAIL->SchoolMapURL ?>" target="_blank" class="btn btn-sm btn-light"><?= $SCHOOL_DETAIL->SchoolMapURL ?></a>
                                             <?php
                                             } ?>
                                         </label><br>
@@ -308,7 +322,7 @@ WHERE SCHOOL.SchoolID = ' . $_GET['SchoolID'] . '
                                                         echo '-';
                                                     } else {
                                                     ?>
-                                                        <a href="<?= $SCHOOL_DETAIL->SchoolWebsiteURL ?>" class="btn btn-sm btn-light"><?= $SCHOOL_DETAIL->SchoolWebsiteURL ?></a>
+                                                        <a href="<?= $SCHOOL_DETAIL->SchoolWebsiteURL ?>" target="_blank" class="btn btn-sm btn-light"><?= $SCHOOL_DETAIL->SchoolWebsiteURL ?></a>
                                                     <?php
                                                     } ?>
                                                 </label>

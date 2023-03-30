@@ -32,13 +32,18 @@
                 <div class="card">
                     <div class="card-body">
                         <!-- Floating Labels Form -->
-                        <form class="row g-3" action="<?php echo base_url('update-teacher-certificate/' . $_GET['TeacherID'] . '/' . $_GET['SchoolID'] . '/' . $_GET['EducationYear'] . '/' . $_GET['Semester'] . '/' . $_GET['PersonnelTypeCode'] . '/' . $_GET['PositionCode'] . '/' . $_GET['CertificateCode']); ?>" method="POST" id="Teacher" enctype="multipart/form-data">
+                        <form class="row g-3" action="<?php echo base_url('update-teacher-certificate/' . $_GET['TeacherID'] . '/' . $_GET['SchoolID'] . '/' . $_GET['EducationYear'] . '/' . $_GET['Semester'] . '/' . $_GET['PersonnelTypeCode'] . '/' . $_GET['PositionCode'] . '/' . $_GET['CertificateCode'] . '/' . $_GET['CertificateLicenseNumber']); ?>" method="POST" id="Teacher" enctype="multipart/form-data">
                             <h6 style="padding-left: 15px;" class="card-title"></h6>
                             <div class="col-md-6">
                                 <div class="form-floating">
                                     <select class="form-select" name="CertificateCode" id="CertificateCode" aria-label="CertificateCode" disabled>
                                         <?php
-                                        $result_refix = $this->db->query('SELECT * FROM TEACHER_CERTIFICATE WHERE SchoolID = ' . $_GET['SchoolID'] . ' AND TeacherID = "' . $_GET['TeacherID'] . '"');
+                                        $result_refix = $this->db->query('SELECT * FROM TEACHER_CERTIFICATE WHERE SchoolID = ' . $_GET['SchoolID'] . ' 
+                                        AND TeacherID = "' . $_GET['TeacherID'] . '"
+                                        AND CertificateCode = ' . $_GET['CertificateCode'] . '
+                                        AND CertificateLicenseNumber = ' . $_GET['CertificateLicenseNumber'] . '
+
+                                        ');
                                         foreach ($result_refix->result() as $TEACHER) {
 
                                             $result = $this->db->query('SELECT * FROM CLS_TEACHER_CERTIFICATE');
@@ -115,6 +120,16 @@
     </section>
     <script type="text/javascript">
         function check(frm) {
+
+            if (frm.CertificateCode.value == "") {
+                alert("กรุณาเลือกประเภทใบอนุญาติ");
+                return false;
+            }
+            if (frm.CertificateLicenseNumber.value == "") {
+                alert("กรุณากรอกเลขที่ใบอนุญาติ");
+                return false;
+            }
+
             $('#Modal').modal('show');
         }
     </script>

@@ -56,7 +56,7 @@
                 <table class="table table-borderless datatable">
                     <thead>
                         <tr>
-                            <th scope="col">ตำแหน่ง</th>
+                            <th scope="col">ชื่อตำแหน่ง</th>
                             <th scope="col">กลุ่ม/หมวด</th>
                             <th scope="col">วันที่เริ่มปฏิบัติ</th>
                             <th style="text-align: center;" scope="col">เอกสารแนบ</th>
@@ -71,30 +71,35 @@
                                     INNER JOIN CLS_DEPARTMENT ON TEACHER_ADDITIONAL_POSITION.AdditionalDepartmentCode = CLS_DEPARTMENT.DEPARTMENT_CODE
                                     WHERE TEACHER_ADDITIONAL_POSITION.DeleteStatus = 0 AND TEACHER_ADDITIONAL_POSITION.SchoolID = ' . $_GET['SchoolID'] . ' AND TEACHER_ADDITIONAL_POSITION.TeacherID = "' . $_GET['TeacherID'] . '"
                                     ');
-
+                        $Count = 0;
                         foreach ($result->result() as $TEACHER_ADDITIONAL_POSITION) {
+                            $Count++;
                         ?>
                             <tr>
-                                <td><?= $TEACHER_ADDITIONAL_POSITION->AdditionalPosition; ?></td>
+                                <td>
+                                    <?php if ($TEACHER_ADDITIONAL_POSITION->AdditionalPosition != NULL) {
+                                        echo $TEACHER_ADDITIONAL_POSITION->AdditionalPosition;
+                                    } else echo '-'; ?>
+                                </td>
                                 <td><?= $TEACHER_ADDITIONAL_POSITION->DEPARTMENT_NAME; ?></td>
                                 <td><?php if ($TEACHER_ADDITIONAL_POSITION->AdditionalDutyDate != "0000-00-00") {
                                         echo DateThai($TEACHER_ADDITIONAL_POSITION->AdditionalDutyDate);
                                     } else echo '-'; ?></td>
                                 <td style="text-align: center;">
                                     <?php if ($TEACHER_ADDITIONAL_POSITION->AdditionalDocumentURL != NULL) { ?>
-                                        <a class="btn btn-primary" href="<?= $TEACHER_ADDITIONAL_POSITION->AdditionalDocumentURL; ?>"><i class="bi bi-file-earmark-pdf"></i></a>
+                                        <a class="btn btn-info" href="assets/teacher/document/<?= $TEACHER_ADDITIONAL_POSITION->AdditionalDocumentURL; ?>" target="_blank"><i class="bi bi-file-earmark-pdf"></i></a>
                                     <?php } else echo '-'; ?>
                                 </td>
                                 <td style="text-align: center;">
-                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#Model<?= $TEACHER_ADDITIONAL_POSITION->TeacherID . $TEACHER_ADDITIONAL_POSITION->AdditionalDepartmentCode; ?>"><i class=" bi bi-card-list"></i></button>
+                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#Model<?= $Count; ?>"><i class=" bi bi-card-list"></i></button>
                                 </td>
                                 <td style="text-align: center;">
-                                    <a href="edit-forms-teacher-position?SchoolID=<?= $_GET['SchoolID'] ?>&&TeacherID=<?= $_GET['TeacherID'] ?>&&EducationYear=<?= $_GET['EducationYear'] ?>&&Semester=<?= $_GET['Semester'] ?>&&PersonnelTypeCode=<?= $_GET['PersonnelTypeCode'] ?>&&PositionCode=<?= $_GET['PositionCode'] ?>&&AdditionalDepartmentCode=<?= $TEACHER_ADDITIONAL_POSITION->AdditionalDepartmentCode ?>" class="btn btn-warning"><i class="bi bi-pencil-square"></i></a>
-                                    &nbsp; <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#Delete<?= $TEACHER_ADDITIONAL_POSITION->TeacherID . $TEACHER_ADDITIONAL_POSITION->AdditionalDepartmentCode; ?>"><i class=" bi bi-trash"></i></button>
+                                    <a href="edit-forms-teacher-position?SchoolID=<?= $_GET['SchoolID'] ?>&&TeacherID=<?= $_GET['TeacherID'] ?>&&EducationYear=<?= $_GET['EducationYear'] ?>&&Semester=<?= $_GET['Semester'] ?>&&PersonnelTypeCode=<?= $_GET['PersonnelTypeCode'] ?>&&PositionCode=<?= $_GET['PositionCode'] ?>&&AdditionalDepartmentCode=<?= $TEACHER_ADDITIONAL_POSITION->AdditionalDepartmentCode ?>&&AdditionalDutyDate=<?= $TEACHER_ADDITIONAL_POSITION->AdditionalDutyDate ?>&&AdditionalDocumentURL=<?= $TEACHER_ADDITIONAL_POSITION->AdditionalDocumentURL ?>" class="btn btn-warning"><i class="bi bi-pencil-square"></i></a>
+                                    &nbsp; <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#Delete<?= $Count; ?>"><i class=" bi bi-trash"></i></button>
                                 </td>
                             </tr>
 
-                            <div class="modal fade" id="Model<?= $TEACHER_ADDITIONAL_POSITION->TeacherID . $TEACHER_ADDITIONAL_POSITION->AdditionalDepartmentCode; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+                            <div class="modal fade" id="Model<?= $Count ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
                                 <div class="modal-dialog modal-dialog-centered" role="document">
                                     <div class="modal-content">
                                         <div class="modal-header">
@@ -140,9 +145,11 @@ FROM TEACHER_ADDITIONAL_POSITION
 INNER JOIN CLS_DEPARTMENT ON TEACHER_ADDITIONAL_POSITION.AdditionalDepartmentCode = CLS_DEPARTMENT.DEPARTMENT_CODE
 WHERE TEACHER_ADDITIONAL_POSITION.DeleteStatus = 0 AND TEACHER_ADDITIONAL_POSITION.SchoolID = ' . $_GET['SchoolID'] . ' AND TEACHER_ADDITIONAL_POSITION.TeacherID = "' . $_GET['TeacherID'] . '"
 ');
+$CountI = 0;
 foreach ($result->result() as $TEACHER_ADDITIONAL_POSITION) {
+    $CountI++;
 ?>
-    <div class="modal fade" id="Delete<?= $TEACHER_ADDITIONAL_POSITION->TeacherID . $TEACHER_ADDITIONAL_POSITION->AdditionalDepartmentCode; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+    <div class="modal fade" id="Delete<?= $CountI ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -155,7 +162,7 @@ foreach ($result->result() as $TEACHER_ADDITIONAL_POSITION) {
                     </h6>
                 </div>
                 <div class="modal-footer">
-                    <a href="<?php echo base_url('delete-teacher-position/'  . $_GET['TeacherID'] . '/' .  $_GET['SchoolID'] . '/' .  $_GET['EducationYear'] . '/' .  $_GET['Semester'] . '/' .  $_GET['PersonnelTypeCode'] . '/' .  $_GET['PositionCode'] . '/' . $TEACHER_ADDITIONAL_POSITION->AdditionalDepartmentCode);
+                    <a href="<?php echo base_url('delete-teacher-position/'  . $_GET['TeacherID'] . '/' .  $_GET['SchoolID'] . '/' .  $_GET['EducationYear'] . '/' .  $_GET['Semester'] . '/' .  $_GET['PersonnelTypeCode'] . '/' .  $_GET['PositionCode'] . '/' . $TEACHER_ADDITIONAL_POSITION->AdditionalDepartmentCode . '/' . $TEACHER_ADDITIONAL_POSITION->AdditionalDutyDate);
                                 ?>" class="btn btn-danger">ลบ</a>
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ยกเลิก</button>
                 </div>

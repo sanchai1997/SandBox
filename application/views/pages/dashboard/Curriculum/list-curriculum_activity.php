@@ -38,12 +38,15 @@
                     <div class="col">
                         <h5 style="float: right; padding: 15px;" class="card-title"><a href="forms-curriculum_activity?pid=<?php echo $PLAN_ID; ?>&&sid=<?php echo $SubjectCode; ?>&&cid=<?php echo $CurriculumID; ?>" class="btn btn-success">เพิ่มข้อมูล</a></h5>
                     </div>
+                    <div class="col">
+                        <h5 style="float: right; padding: 15px;" class="card-title"><a href="list-eportfolio" class="btn btn-success">เพิ่มข้อมูล post</a></h5>
+                    </div>
                 </div>
                 <table class="table table-borderless datatable">
                     <thead>
                         <tr>
                             <th style="text-align: center;" scope="col">ชื่อกิจกรรม</th>
-                            <th style="text-align: center;" scope="col">ประเมินผลสัมฤทธิ์</th>
+                           
                             <th style="text-align: center;" scope="col">ปฎิบัติ</th>
                         </tr>
                     </thead>
@@ -51,11 +54,7 @@
                        <?php foreach($list_curriculum_activity as $lca) { ?>
                             <tr>
                                 <th style="text-align: center;" scope="col"><?php echo$lca->ACTIVITY_NAME ?></th>
-                                <td style="text-align: center;">
-                                        <a href='forms-curriculum_assessment?aid=<?php echo$lca->ACTIVITY_ID ?>&&sid=<?php echo $SubjectCode; ?>&&cid=<?php echo $CurriculumID; ?>' class="btn btn-info">
-                                            <i class="bi bi-eye-fill"></i>
-                                        </a>
-                                    </td>
+                                
                                 <td style="text-align: center;">
                                        
                                         <a href='edit_forms-curriculum_activity?pid=<?php echo$lca->PLAN_ID ?>&&ACTIVITY_ID=<?php echo$lca->ACTIVITY_ID ?>&&sid=<?php echo $SubjectCode; ?>&&cid=<?php echo $CurriculumID; ?>' class="btn btn-warning">

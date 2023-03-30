@@ -38,14 +38,14 @@
                 <div class="col-md-16">
                   <div class="form-floating">
                     <input type="text" class="form-control" name="PLAN_NAME" id="PLAN_NAME" placeholder="ชื่อเรื่องของแผนการจัดการเรียนรู้/กิจกรรม" maxlength="100" value="<?php echo  $cp->PLAN_NAME?>">
-                    <label >ชื่อเรื่องของแผนการจัดการเรียนรู้/กิจกรรม</label>
+                    <label >ชื่อเรื่องของแผนการจัดการเรียนรู้/กิจกรรม<font color="red"> *</font></label>
                   </div>
                 </div>
 
                 <div class="col-md-6">
                   <div class="form-floating">
                     <input type="text" class="form-control" name="EDUCATION_YEAR" id="EDUCATION_YEAR" placeholder="ปีการศึกษา (พ.ศ.)" maxlength="4" value="<?php echo  $cp->EDUCATION_YEAR?>">
-                    <label >ปีการศึกษา</label>
+                    <label >ปีการศึกษา<font color="red"> *</font></label>
                   </div>
                 </div>
             
@@ -57,63 +57,63 @@
                         <option value="1">ภาคเรียนที่ 1</option>
                         <option value="2">ภาคเรียนที่ 2</option>
                       </select>
-                    <label >ภาคเรียน</label>
+                    <label >ภาคเรียน<font color="red"> *</font></label>
                   </div>
                 </div>
 
                 <div class="col-md-16">
                   <div class="form-floating">
                     <input type="text" class="form-control" name="PLAN_KEY" id="PLAN_KEY" placeholder="สาระสำคัญ" maxlength="100" value="<?php echo  $cp->PLAN_KEY?>">
-                    <label >สาระสำคัญของแผนการจัดการเรียนรู้/กิจกรรม</label>
+                    <label >สาระสำคัญของแผนการจัดการเรียนรู้/กิจกรรม<font color="red"> *</font></label>
                   </div>
                 </div>
 
                 <div class="col-md-16">
                   <div class="form-floating">
                     <input type="text" class="form-control" name="PLAN_OBJECTIVE" id="PLAN_OBJECTIVE" placeholder="จุดประสงค์" maxlength="100" value="<?php echo  $cp->PLAN_OBJECTIVE?>">
-                    <label >จุดประสงค์การเรียนรู้ของแผน</label>
+                    <label >จุดประสงค์การเรียนรู้ของแผน<font color="red"> *</font></label>
                   </div>
                 </div>
 
                 <div class="col-md-16">
                   <div class="form-floating">
                     <input type="text" class="form-control" name="PLAN_CHARACTER" id="PLAN_CHARACTER" placeholder="คุณลักษณะอันพึงประสงค์" maxlength="100" value="<?php echo  $cp->PLAN_CHARACTER?>">
-                    <label >คุณลักษณะอันพึงประสงค์</label>
+                    <label >คุณลักษณะอันพึงประสงค์<font color="red"> *</font></label>
                   </div>
                 </div>
 
                 <div class="col-md-16">
                   <div class="form-floating">
                     <input type="text" class="form-control" name="PLAN_DETAILS" id="PLAN_DETAILS" placeholder="สาระการเรียนรู้" maxlength="100" value="<?php echo  $cp->PLAN_DETAILS?>">
-                    <label >สาระการเรียนรู้</label>
+                    <label >สาระการเรียนรู้<font color="red"> *</font></label>
                   </div>
                 </div>
 
                 <div class="col-md-16">
                   <div class="form-floating">
                     <input type="text" class="form-control" name="PLAN_PROCESS" id="PLAN_PROCESS" placeholder="กระบวนการจัดการเรียนรู้" maxlength="100" value="<?php echo  $cp->PLAN_PROCESS?>">
-                    <label >กระบวนการจัดการเรียนรู้</label>
+                    <label >กระบวนการจัดการเรียนรู้<font color="red"> *</font></label>
                   </div>
                 </div>
 
                 <div class="col-md-16">
                   <div class="form-floating">
                     <input type="text" class="form-control" name="PLAN_RECOMMEND" id="PLAN_RECOMMEND" placeholder="กิจกรรมเสนอแนะ" maxlength="100" value="<?php echo  $cp->PLAN_RECOMMEND?>">
-                    <label >กิจกรรมเสนอแนะ</label>
+                    <label >กิจกรรมเสนอแนะ<font color="red"> *</font></label>
                   </div>
                 </div>
 
                 <div class="col-md-16">
                   <div class="form-floating">
                     <input type="text" class="form-control" name="PLAN_MEMO_TA" id="PLAN_MEMO_TA" placeholder="บันทึกข้อเสนอแนะจากผู้สอน" maxlength="100" value="<?php echo  $cp->PLAN_MEMO_TA?>">
-                    <label >บันทึกข้อเสนอแนะจากผู้สอน</label>
+                    <label >บันทึกข้อเสนอแนะจากผู้สอน<font color="red"> *</font></label>
                   </div>
                 </div>
 
                 <div class="col-md-16">
                   <div class="form-floating">
                     <input type="text" class="form-control" name="PLAN_MEMO_SV" id="PLAN_MEMO_SV" placeholder="บันทึกข้อเสนอแนะจากศึกษานิเทศก์" maxlength="100" value="<?php echo  $cp->PLAN_MEMO_SV?>">
-                    <label >บันทึกข้อเสนอแนะจากศึกษานิเทศก์</label>
+                    <label >บันทึกข้อเสนอแนะจากศึกษานิเทศก์<font color="red"> *</font></label>
                   </div>
                 </div>
 

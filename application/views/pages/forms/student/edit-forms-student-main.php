@@ -5,7 +5,12 @@
                 <?php
                 $result = $this->db->query('SELECT *  FROM STUDENT 
                 INNER JOIN CLS_PREFIX ON STUDENT.StudentPrefixCode = CLS_PREFIX.PREFIX_CODE
-                WHERE StudentReferenceID = "' . $_GET['StudentReferenceID'] . '" AND SchoolID = ' . $_GET['SchoolID'] . '');
+                WHERE StudentReferenceID = "' . $_GET['StudentReferenceID'] . '" 
+                AND SchoolID = ' . $_GET['SchoolID'] . '
+                AND EducationYear = ' . $_GET['EducationYear'] . '
+                AND Semester = ' . $_GET['Semester'] . '
+                AND GradeLevelCode = ' . $_GET['GradeLevelCode'] . '
+                ');
                 foreach ($result->result() as $STUDENT) {
 
 
@@ -28,7 +33,7 @@
                 <div class="card">
                     <div class="card-body">
                         <!-- Floating Labels Form -->
-                        <form class="row g-3" action="<?php echo base_url('update-student-main/' . $_GET['StudentReferenceID'] . '/' . $_GET['SchoolID'] . '/' . $_GET['EducationYear'] . '/' . $_GET['Semester'] . '/' . $_GET['GradeLevelCode']); ?>" method="POST" id="Student" enctype="multipart/form-data">
+                        <form class="row g-3" action="<?php echo base_url('update-student-main/' . $_GET['StudentReferenceID'] . '/' . $_GET['SchoolID'] . '/' . $_GET['EducationYear'] . '/' . $_GET['Semester'] . '/' . $_GET['GradeLevelCode'] . '/' . $STUDENT->ImageStudent); ?>" method="POST" id="Student" enctype="multipart/form-data">
                             <h6 style="padding-left: 15px;" class="card-title">ข้อมูลการศึกษา</h6>
                             <div class="col-md-3">
                                 <div class="form-floating">

@@ -8,6 +8,14 @@ class TeacherDevelopmentActivity_model extends CI_Model {
         $this->load->helper('url');
     }
 
+    
+    public function get_teacher_All() {
+        $this->db->from('TEACHER')
+        ->where('DeleteStatus', 0);
+         $query = $this->db->get();
+        return $query->result();
+    }
+
     public function insert_TeacherDevelopmentActivity($teacher_development_activity) {          
         $result = $this->db->insert('TEACHER_DEVELOPMENT_ACTIVITY', $teacher_development_activity);
         return $result;

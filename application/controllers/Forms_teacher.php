@@ -86,9 +86,9 @@ class Forms_teacher extends CI_Controller
     }
 
     //update_teacher_main
-    public function update_teacher_main($TeacherID, $SchoolID, $EducationYear, $Semester, $PersonnelTypeCode, $PositionCode)
+    public function update_teacher_main($TeacherID, $SchoolID, $EducationYear, $Semester, $PersonnelTypeCode, $PositionCode, $ImageTeacher)
     {
-        $this->forms_teacher->update_teacher_main($TeacherID, $SchoolID, $EducationYear, $Semester, $PersonnelTypeCode, $PositionCode);
+        $this->forms_teacher->update_teacher_main($TeacherID, $SchoolID, $EducationYear, $Semester, $ImageTeacher);
         $_SESSION['success'] = "บันทึกข้อมูลเรียบร้อย";
         redirect(base_url('teacher?SchoolID=' . $SchoolID . '&&TeacherID=' . $TeacherID . '&&EducationYear=' . $EducationYear . '&&Semester=' . $Semester . '&&PersonnelTypeCode=' . $PersonnelTypeCode . '&&PositionCode=' . $PositionCode . '&&ShowDetail='));
     }
@@ -170,7 +170,7 @@ class Forms_teacher extends CI_Controller
     //update_teacher_address
     public function update_teacher_address($TeacherID, $SchoolID, $EducationYear, $Semester, $PersonnelTypeCode, $PositionCode)
     {
-        $this->forms_teacher->update_teacher_address($TeacherID, $SchoolID, $EducationYear, $Semester, $PersonnelTypeCode, $PositionCode);
+        $this->forms_teacher->update_teacher_address($TeacherID, $SchoolID, $EducationYear, $Semester);
         $_SESSION['success'] = "บันทึกข้อมูลเรียบร้อย";
         redirect(base_url('teacher?SchoolID=' . $SchoolID . '&&TeacherID=' . $TeacherID . '&&EducationYear=' . $EducationYear . '&&Semester=' . $Semester . '&&PersonnelTypeCode=' . $PersonnelTypeCode . '&&PositionCode=' . $PositionCode . '&&ShowDetail='));
     }
@@ -198,7 +198,7 @@ class Forms_teacher extends CI_Controller
     //update_teacher_contract
     public function update_teacher_contract($TeacherID, $SchoolID, $EducationYear, $Semester, $PersonnelTypeCode, $PositionCode)
     {
-        $this->forms_teacher->update_teacher_contract($TeacherID, $SchoolID, $EducationYear, $Semester, $PersonnelTypeCode, $PositionCode);
+        $this->forms_teacher->update_teacher_contract($TeacherID, $SchoolID, $EducationYear, $Semester);
         $_SESSION['success'] = "บันทึกข้อมูลเรียบร้อย";
         redirect(base_url('teacher?SchoolID=' . $SchoolID . '&&TeacherID=' . $TeacherID . '&&EducationYear=' . $EducationYear . '&&Semester=' . $Semester . '&&PersonnelTypeCode=' . $PersonnelTypeCode . '&&PositionCode=' . $PositionCode . '&&ShowDetail='));
     }
@@ -225,7 +225,7 @@ class Forms_teacher extends CI_Controller
     //update_teacher_talent
     public function update_teacher_talent($TeacherID, $SchoolID, $EducationYear, $Semester, $PersonnelTypeCode, $PositionCode)
     {
-        $this->forms_teacher->update_teacher_talent($TeacherID, $SchoolID, $EducationYear, $Semester, $PersonnelTypeCode, $PositionCode);
+        $this->forms_teacher->update_teacher_talent($TeacherID, $SchoolID, $EducationYear, $Semester);
         $_SESSION['success'] = "บันทึกข้อมูลเรียบร้อย";
         redirect(base_url('teacher?SchoolID=' . $SchoolID . '&&TeacherID=' . $TeacherID . '&&EducationYear=' . $EducationYear . '&&Semester=' . $Semester . '&&PersonnelTypeCode=' . $PersonnelTypeCode . '&&PositionCode=' . $PositionCode . '&&ShowDetail='));
     }
@@ -234,7 +234,7 @@ class Forms_teacher extends CI_Controller
     //Delete Data Form teacher
     public function delete_teacher($TeacherID, $SchoolID, $EducationYear, $Semester, $PersonnelTypeCode, $PositionCode)
     {
-        $this->forms_teacher->delete_teacher($TeacherID);
+        $this->forms_teacher->delete_teacher($TeacherID, $SchoolID, $EducationYear, $Semester);
         $_SESSION['success'] = "ลบข้อมูลเรียบร้อย";
         redirect(base_url('teacher?SchoolID=' . $SchoolID . '&&EducationYear=' . $EducationYear . '&&Semester=' . $Semester . '&&PersonnelTypeCode=' . $PersonnelTypeCode . '&&PositionCode=' . $PositionCode));
     }
@@ -278,23 +278,36 @@ class Forms_teacher extends CI_Controller
     //Add_teacher_talent
     public function add_teacher_certificate($TeacherID, $SchoolID, $EducationYear, $Semester, $PersonnelTypeCode, $PositionCode)
     {
-        $this->forms_teacher->add_teacher_certificate($TeacherID, $SchoolID);
-        $_SESSION['success'] = "บันทึกข้อมูลเรียบร้อย";
-        redirect(base_url('teacher-certificate?SchoolID=' . $SchoolID . '&&TeacherID=' . $TeacherID . '&&EducationYear=' . $EducationYear . '&&Semester=' . $Semester . '&&PersonnelTypeCode=' . $PersonnelTypeCode . '&&PositionCode=' . $PositionCode . '&&ShowDetail='));
+        $result = $this->db->query('SELECT * 
+        FROM TEACHER_CERTIFICATE 
+        WHERE DeleteStatus = 0 AND SchoolID = ' . $SchoolID . ' 
+        AND TeacherID = "' . $TeacherID . '"
+        AND CertificateCode = ' . $_POST['CertificateCode'] . '
+        AND CertificateLicenseNumber = ' . $_POST['CertificateLicenseNumber'] . '
+        ')->result();
+
+        if ($result != TRUE) {
+            $this->forms_teacher->add_teacher_certificate($TeacherID, $SchoolID);
+            $_SESSION['success'] = "บันทึกข้อมูลเรียบร้อย";
+            redirect(base_url('teacher-certificate?SchoolID=' . $SchoolID . '&&TeacherID=' . $TeacherID . '&&EducationYear=' . $EducationYear . '&&Semester=' . $Semester . '&&PersonnelTypeCode=' . $PersonnelTypeCode . '&&PositionCode=' . $PositionCode . '&&ShowDetail='));
+        } else {
+            $_SESSION['danger'] = "ไม่สามารถบันทึกข้อมูลได้ โปรดตรวจสอบข้อมูลประเภทและเลขที่อาจจะซ้ำกันในระบบ";
+            redirect(base_url('forms-teacher-certificate?SchoolID=' . $SchoolID . '&&TeacherID=' . $TeacherID . '&&EducationYear=' . $EducationYear . '&&Semester=' . $Semester . '&&PersonnelTypeCode=' . $PersonnelTypeCode . '&&PositionCode=' . $PositionCode . '&&ShowDetail='));
+        }
     }
 
     //update_teacherr_certificate
-    public function update_teacher_certificate($TeacherID, $SchoolID, $EducationYear, $Semester, $PersonnelTypeCode, $PositionCode, $CertificateCode)
+    public function update_teacher_certificate($TeacherID, $SchoolID, $EducationYear, $Semester, $PersonnelTypeCode, $PositionCode, $CertificateCode, $CertificateLicenseNumber)
     {
-        $this->forms_teacher->update_teacher_certificate($TeacherID, $SchoolID, $CertificateCode);
+        $this->forms_teacher->update_teacher_certificate($TeacherID, $SchoolID, $CertificateCode, $CertificateLicenseNumber);
         $_SESSION['success'] = "บันทึกข้อมูลเรียบร้อย";
         redirect(base_url('teacher-certificate?SchoolID=' . $SchoolID . '&&TeacherID=' . $TeacherID . '&&EducationYear=' . $EducationYear . '&&Semester=' . $Semester . '&&PersonnelTypeCode=' . $PersonnelTypeCode . '&&PositionCode=' . $PositionCode . '&&ShowDetail='));
     }
 
     //Delete Data Form teacher_certificate
-    public function delete_teacher_certificate($TeacherID, $SchoolID, $EducationYear, $Semester, $PersonnelTypeCode, $PositionCode, $CertificateCode)
+    public function delete_teacher_certificate($TeacherID, $SchoolID, $EducationYear, $Semester, $PersonnelTypeCode, $PositionCode, $CertificateCode, $CertificateLicenseNumber)
     {
-        $this->forms_teacher->delete_teacher_certificate($TeacherID, $SchoolID, $CertificateCode);
+        $this->forms_teacher->delete_teacher_certificate($TeacherID, $SchoolID, $CertificateCode, $CertificateLicenseNumber);
         $_SESSION['success'] = "ลบข้อมูลเรียบร้อย";
         redirect(base_url('teacher-certificate?SchoolID=' . $SchoolID . '&&TeacherID=' . $TeacherID . '&&EducationYear=' . $EducationYear . '&&Semester=' . $Semester . '&&PersonnelTypeCode=' . $PersonnelTypeCode . '&&PositionCode=' . $PositionCode));
     }
@@ -340,23 +353,37 @@ class Forms_teacher extends CI_Controller
     //Add_teacher_position
     public function add_teacher_position($TeacherID, $SchoolID, $EducationYear, $Semester, $PersonnelTypeCode, $PositionCode)
     {
-        $this->forms_teacher->add_teacher_position($TeacherID, $SchoolID);
-        $_SESSION['success'] = "บันทึกข้อมูลเรียบร้อย";
-        redirect(base_url('teacher-position?SchoolID=' . $SchoolID . '&&TeacherID=' . $TeacherID . '&&EducationYear=' . $EducationYear . '&&Semester=' . $Semester . '&&PersonnelTypeCode=' . $PersonnelTypeCode . '&&PositionCode=' . $PositionCode . '&&ShowDetail='));
+        $result = $this->db->query('SELECT * 
+        FROM TEACHER_ADDITIONAL_POSITION 
+        WHERE DeleteStatus = 0
+        AND SchoolID = ' . $SchoolID . ' 
+        AND TeacherID = "' . $TeacherID . '"
+        AND AdditionalDepartmentCode = ' . $_POST['AdditionalDepartmentCode'] . '
+        AND AdditionalDutyDate = "' . $_POST['AdditionalDutyDate'] . '"
+        ')->result();
+
+        if ($result != TRUE) {
+            $this->forms_teacher->add_teacher_position($TeacherID, $SchoolID);
+            $_SESSION['success'] = "บันทึกข้อมูลเรียบร้อย";
+            redirect(base_url('teacher-position?SchoolID=' . $SchoolID . '&&TeacherID=' . $TeacherID . '&&EducationYear=' . $EducationYear . '&&Semester=' . $Semester . '&&PersonnelTypeCode=' . $PersonnelTypeCode . '&&PositionCode=' . $PositionCode . '&&ShowDetail='));
+        } else {
+            $_SESSION['danger'] = "ไม่สามารถบันทึกข้อมูลได้ โปรดตรวจสอบข้อมูลกลุ่มและวันที่เริ่มปฎิบัติอาจจะซ้ำกันในระบบ";
+            redirect(base_url('forms-teacher-position?SchoolID=' . $SchoolID . '&&TeacherID=' . $TeacherID . '&&EducationYear=' . $EducationYear . '&&Semester=' . $Semester . '&&PersonnelTypeCode=' . $PersonnelTypeCode . '&&PositionCode=' . $PositionCode . '&&ShowDetail='));
+        }
     }
 
     //update_teacherr_position
-    public function update_teacher_position($TeacherID, $SchoolID, $EducationYear, $Semester, $PersonnelTypeCode, $PositionCode, $AdditionalDepartmentCode)
+    public function update_teacher_position($TeacherID, $SchoolID, $EducationYear, $Semester, $PersonnelTypeCode, $PositionCode, $AdditionalDepartmentCode, $AdditionalDutyDate, $AdditionalDocumentURL)
     {
-        $this->forms_teacher->update_teacher_position($TeacherID, $SchoolID, $AdditionalDepartmentCode);
+        $this->forms_teacher->update_teacher_position($TeacherID, $SchoolID, $AdditionalDepartmentCode, $AdditionalDutyDate, $AdditionalDocumentURL);
         $_SESSION['success'] = "บันทึกข้อมูลเรียบร้อย";
         redirect(base_url('teacher-position?SchoolID=' . $SchoolID . '&&TeacherID=' . $TeacherID . '&&EducationYear=' . $EducationYear . '&&Semester=' . $Semester . '&&PersonnelTypeCode=' . $PersonnelTypeCode . '&&PositionCode=' . $PositionCode . '&&ShowDetail='));
     }
 
     //Delete Data Form teacher_position
-    public function delete_teacher_position($TeacherID, $SchoolID, $EducationYear, $Semester, $PersonnelTypeCode, $PositionCode, $AdditionalDepartmentCode)
+    public function delete_teacher_position($TeacherID, $SchoolID, $EducationYear, $Semester, $PersonnelTypeCode, $PositionCode, $AdditionalDepartmentCode, $AdditionalDutyDate)
     {
-        $this->forms_teacher->delete_teacher_position($TeacherID, $SchoolID, $AdditionalDepartmentCode);
+        $this->forms_teacher->delete_teacher_position($TeacherID, $SchoolID, $AdditionalDepartmentCode, $AdditionalDutyDate);
         $_SESSION['success'] = "ลบข้อมูลเรียบร้อย";
         redirect(base_url('teacher-position?SchoolID=' . $SchoolID . '&&TeacherID=' . $TeacherID . '&&EducationYear=' . $EducationYear . '&&Semester=' . $Semester . '&&PersonnelTypeCode=' . $PersonnelTypeCode . '&&PositionCode=' . $PositionCode));
     }
@@ -401,23 +428,35 @@ class Forms_teacher extends CI_Controller
     //Add_teacher_assistance
     public function add_teacher_assistance($TeacherID, $SchoolID, $EducationYear, $Semester, $PersonnelTypeCode, $PositionCode)
     {
-        $this->forms_teacher->add_teacher_assistance($TeacherID, $SchoolID);
-        $_SESSION['success'] = "บันทึกข้อมูลเรียบร้อย";
-        redirect(base_url('teacher-assistance?SchoolID=' . $SchoolID . '&&TeacherID=' . $TeacherID . '&&EducationYear=' . $EducationYear . '&&Semester=' . $Semester . '&&PersonnelTypeCode=' . $PersonnelTypeCode . '&&PositionCode=' . $PositionCode . '&&ShowDetail='));
+        $result = $this->db->query('SELECT * 
+        FROM TEACHER_ASSISTANCE 
+        WHERE TEACHER_ASSISTANCE.DeleteStatus = 0 AND SchoolID = ' . $SchoolID . ' AND TeacherID = "' . $TeacherID . '"
+        AND AssistanceTypeCode = ' . $_POST['AssistanceTypeCode'] . '
+        AND AssistanceStartDate = "' . $_POST['AssistanceStartDate'] . '"
+        ')->result();
+
+        if ($result != TRUE) {
+            $this->forms_teacher->add_teacher_assistance($TeacherID, $SchoolID);
+            $_SESSION['success'] = "บันทึกข้อมูลเรียบร้อย";
+            redirect(base_url('teacher-assistance?SchoolID=' . $SchoolID . '&&TeacherID=' . $TeacherID . '&&EducationYear=' . $EducationYear . '&&Semester=' . $Semester . '&&PersonnelTypeCode=' . $PersonnelTypeCode . '&&PositionCode=' . $PositionCode . '&&ShowDetail='));
+        } else {
+            $_SESSION['danger'] = "ไม่สามารถบันทึกข้อมูลได้ โปรดตรวจสอบข้อมูลประเภทและวันที่อาจจะซ้ำกันในระบบ";
+            redirect(base_url('forms-teacher-assistance?SchoolID=' . $SchoolID . '&&TeacherID=' . $TeacherID . '&&EducationYear=' . $EducationYear . '&&Semester=' . $Semester . '&&PersonnelTypeCode=' . $PersonnelTypeCode . '&&PositionCode=' . $PositionCode . '&&ShowDetail='));
+        }
     }
 
     //update_teacherr_assistance
-    public function update_teacher_assistance($TeacherID, $SchoolID, $EducationYear, $Semester, $PersonnelTypeCode, $PositionCode, $AssistanceTypeCode)
+    public function update_teacher_assistance($TeacherID, $SchoolID, $EducationYear, $Semester, $PersonnelTypeCode, $PositionCode, $AssistanceTypeCode, $AssistanceStartDate, $AssistanceDocumentURL)
     {
-        $this->forms_teacher->update_teacher_assistance($TeacherID, $SchoolID, $AssistanceTypeCode);
+        $this->forms_teacher->update_teacher_assistance($TeacherID, $SchoolID, $AssistanceTypeCode, $AssistanceStartDate, $AssistanceDocumentURL);
         $_SESSION['success'] = "บันทึกข้อมูลเรียบร้อย";
         redirect(base_url('teacher-assistance?SchoolID=' . $SchoolID . '&&TeacherID=' . $TeacherID . '&&EducationYear=' . $EducationYear . '&&Semester=' . $Semester . '&&PersonnelTypeCode=' . $PersonnelTypeCode . '&&PositionCode=' . $PositionCode . '&&ShowDetail='));
     }
 
     //Delete Data Form teacher_assistance
-    public function delete_teacher_assistance($TeacherID, $SchoolID, $EducationYear, $Semester, $PersonnelTypeCode, $PositionCode, $AssistanceTypeCode)
+    public function delete_teacher_assistance($TeacherID, $SchoolID, $EducationYear, $Semester, $PersonnelTypeCode, $PositionCode, $AssistanceTypeCode, $AssistanceStartDate)
     {
-        $this->forms_teacher->delete_teacher_assistance($TeacherID, $SchoolID, $AssistanceTypeCode);
+        $this->forms_teacher->delete_teacher_assistance($TeacherID, $SchoolID, $AssistanceTypeCode, $AssistanceStartDate);
         $_SESSION['success'] = "ลบข้อมูลเรียบร้อย";
         redirect(base_url('teacher-assistance?SchoolID=' . $SchoolID . '&&TeacherID=' . $TeacherID . '&&EducationYear=' . $EducationYear . '&&Semester=' . $Semester . '&&PersonnelTypeCode=' . $PersonnelTypeCode . '&&PositionCode=' . $PositionCode));
     }
@@ -461,9 +500,22 @@ class Forms_teacher extends CI_Controller
     //Add_teacher_academic
     public function add_teacher_academic($TeacherID, $SchoolID, $EducationYear, $Semester, $PersonnelTypeCode, $PositionCode)
     {
-        $this->forms_teacher->add_teacher_academic($TeacherID, $SchoolID);
-        $_SESSION['success'] = "บันทึกข้อมูลเรียบร้อย";
-        redirect(base_url('teacher-academic?SchoolID=' . $SchoolID . '&&TeacherID=' . $TeacherID . '&&EducationYear=' . $EducationYear . '&&Semester=' . $Semester . '&&PersonnelTypeCode=' . $PersonnelTypeCode . '&&PositionCode=' . $PositionCode . '&&ShowDetail='));
+        $result = $this->db->query('SELECT * 
+        FROM TEACHER_ACADEMIC 
+        WHERE DeleteStatus = 0
+        AND SchoolID = ' . $SchoolID . ' 
+        AND TeacherID = "' . $TeacherID . '"
+        AND AcademicStandingCode = ' . $_POST['AcademicStandingCode'] . '
+        ')->result();
+
+        if ($result != TRUE) {
+            $this->forms_teacher->add_teacher_academic($TeacherID, $SchoolID);
+            $_SESSION['success'] = "บันทึกข้อมูลเรียบร้อย";
+            redirect(base_url('teacher-academic?SchoolID=' . $SchoolID . '&&TeacherID=' . $TeacherID . '&&EducationYear=' . $EducationYear . '&&Semester=' . $Semester . '&&PersonnelTypeCode=' . $PersonnelTypeCode . '&&PositionCode=' . $PositionCode . '&&ShowDetail='));
+        } else {
+            $_SESSION['danger'] = "ไม่สามารถบันทึกข้อมูลได้ โปรดตรวจสอบข้อมูลวิทยาฐานะและตำแหน่งอาจจะซ้ำกันในระบบ";
+            redirect(base_url('forms-teacher-academic?SchoolID=' . $SchoolID . '&&TeacherID=' . $TeacherID . '&&EducationYear=' . $EducationYear . '&&Semester=' . $Semester . '&&PersonnelTypeCode=' . $PersonnelTypeCode . '&&PositionCode=' . $PositionCode . '&&ShowDetail='));
+        }
     }
 
     //update_teacherr_academic
@@ -521,23 +573,39 @@ class Forms_teacher extends CI_Controller
     //Add_teacher_education
     public function add_teacher_education($TeacherID, $SchoolID, $EducationYear, $Semester, $PersonnelTypeCode, $PositionCode)
     {
-        $this->forms_teacher->add_teacher_education($TeacherID, $SchoolID);
-        $_SESSION['success'] = "บันทึกข้อมูลเรียบร้อย";
-        redirect(base_url('teacher-education?SchoolID=' . $SchoolID . '&&TeacherID=' . $TeacherID . '&&EducationYear=' . $EducationYear . '&&Semester=' . $Semester . '&&PersonnelTypeCode=' . $PersonnelTypeCode . '&&PositionCode=' . $PositionCode . '&&ShowDetail='));
+
+        $result = $this->db->query('SELECT * 
+        FROM TEACHER_EDUCATION_DEGREE 
+        WHERE DeleteStatus = 0
+        AND SchoolID = ' . $SchoolID . ' 
+        AND TeacherID = "' . $TeacherID . '"
+        AND EducationLevelCode  = ' . $_POST['EducationLevelCode'] . '
+        AND EducationMajorCode   = ' . $_POST['EducationMajorCode'] . '
+        AND EducationDegreeCode    = ' . $_POST['EducationDegreeCode'] . '
+        ')->result();
+
+        if ($result != TRUE) {
+            $this->forms_teacher->add_teacher_education($TeacherID, $SchoolID);
+            $_SESSION['success'] = "บันทึกข้อมูลเรียบร้อย";
+            redirect(base_url('teacher-education?SchoolID=' . $SchoolID . '&&TeacherID=' . $TeacherID . '&&EducationYear=' . $EducationYear . '&&Semester=' . $Semester . '&&PersonnelTypeCode=' . $PersonnelTypeCode . '&&PositionCode=' . $PositionCode . '&&ShowDetail='));
+        } else {
+            $_SESSION['danger'] = "ไม่สามารถบันทึกข้อมูลได้ โปรดตรวจสอบข้อมูลอาจจะซ้ำกันในระบบ";
+            redirect(base_url('forms-teacher-education?SchoolID=' . $SchoolID . '&&TeacherID=' . $TeacherID . '&&EducationYear=' . $EducationYear . '&&Semester=' . $Semester . '&&PersonnelTypeCode=' . $PersonnelTypeCode . '&&PositionCode=' . $PositionCode . '&&ShowDetail='));
+        }
     }
 
     //update_teacher_education
-    public function update_teacher_education($TeacherID, $SchoolID, $EducationYear, $Semester, $PersonnelTypeCode, $PositionCode, $EducationDegreeCode)
+    public function update_teacher_education($TeacherID, $SchoolID, $EducationYear, $Semester, $PersonnelTypeCode, $PositionCode, $EducationLevelCode, $EducationMajorCode, $EducationDegreeCode)
     {
-        $this->forms_teacher->update_teacher_education($TeacherID, $SchoolID, $EducationDegreeCode);
+        $this->forms_teacher->update_teacher_education($TeacherID, $SchoolID, $EducationLevelCode, $EducationMajorCode, $EducationDegreeCode);
         $_SESSION['success'] = "บันทึกข้อมูลเรียบร้อย";
         redirect(base_url('teacher-education?SchoolID=' . $SchoolID . '&&TeacherID=' . $TeacherID . '&&EducationYear=' . $EducationYear . '&&Semester=' . $Semester . '&&PersonnelTypeCode=' . $PersonnelTypeCode . '&&PositionCode=' . $PositionCode . '&&ShowDetail='));
     }
 
     //Delete Data Form teacher_education
-    public function delete_teacher_education($TeacherID, $SchoolID, $EducationYear, $Semester, $PersonnelTypeCode, $PositionCode, $EducationDegreeCode)
+    public function delete_teacher_education($TeacherID, $SchoolID, $EducationYear, $Semester, $PersonnelTypeCode, $PositionCode, $EducationLevelCode, $EducationMajorCode, $EducationDegreeCode)
     {
-        $this->forms_teacher->delete_teacher_education($TeacherID, $SchoolID, $EducationDegreeCode);
+        $this->forms_teacher->delete_teacher_education($TeacherID, $SchoolID, $EducationLevelCode, $EducationMajorCode, $EducationDegreeCode);
         $_SESSION['success'] = "ลบข้อมูลเรียบร้อย";
         redirect(base_url('teacher-education?SchoolID=' . $SchoolID . '&&TeacherID=' . $TeacherID . '&&EducationYear=' . $EducationYear . '&&Semester=' . $Semester . '&&PersonnelTypeCode=' . $PersonnelTypeCode . '&&PositionCode=' . $PositionCode));
     }
@@ -581,9 +649,24 @@ class Forms_teacher extends CI_Controller
     //Add_teacher_teaching
     public function add_teacher_teaching($TeacherID, $SchoolID, $EducationYear, $Semester, $PersonnelTypeCode, $PositionCode)
     {
-        $this->forms_teacher->add_teacher_teaching($TeacherID, $SchoolID);
-        $_SESSION['success'] = "บันทึกข้อมูลเรียบร้อย";
-        redirect(base_url('teacher-teaching?SchoolID=' . $SchoolID . '&&TeacherID=' . $TeacherID . '&&EducationYear=' . $EducationYear . '&&Semester=' . $Semester . '&&PersonnelTypeCode=' . $PersonnelTypeCode . '&&PositionCode=' . $PositionCode . '&&ShowDetail='));
+        $result = $this->db->query('SELECT * 
+        FROM TEACHER_TEACHING 
+        WHERE DeleteStatus = 0
+        AND SchoolID = ' . $SchoolID . ' 
+        AND TeacherID = "' . $TeacherID . '"
+        AND TeachingEducationYear  = ' . $_POST['TeachingEducationYear'] . '
+        AND TeachingSemester   = ' . $_POST['TeachingSemester'] . '
+        AND EducationDegreeCode    = ' . $_POST['EducationDegreeCode'] . '
+        ')->result();
+
+        if ($result != TRUE) {
+            $this->forms_teacher->add_teacher_teaching($TeacherID, $SchoolID);
+            $_SESSION['success'] = "บันทึกข้อมูลเรียบร้อย";
+            redirect(base_url('teacher-teaching?SchoolID=' . $SchoolID . '&&TeacherID=' . $TeacherID . '&&EducationYear=' . $EducationYear . '&&Semester=' . $Semester . '&&PersonnelTypeCode=' . $PersonnelTypeCode . '&&PositionCode=' . $PositionCode . '&&ShowDetail='));
+        } else {
+            $_SESSION['danger'] = "ไม่สามารถบันทึกข้อมูลได้ โปรดตรวจสอบข้อมูลอาจจะซ้ำกันในระบบ";
+            redirect(base_url('form-teacher-teaching?SchoolID=' . $SchoolID . '&&TeacherID=' . $TeacherID . '&&EducationYear=' . $EducationYear . '&&Semester=' . $Semester . '&&PersonnelTypeCode=' . $PersonnelTypeCode . '&&PositionCode=' . $PositionCode . '&&ShowDetail='));
+        }
     }
 
     //update_teacher_teaching

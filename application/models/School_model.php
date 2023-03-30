@@ -34,24 +34,30 @@ class School_model extends CI_Model
     public function add_school()
     {
 
-        $config['file_name'] = 'ImageSchool_' . $_POST['JurisdictionCode'] . $_POST['SchoolAddressProvinceCode'];
-        $config['upload_path'] = './assets/img/school/';
-        $config['allowed_types'] = 'doc|docx|pdf|jpg|png|xls|ppt|zip|xlsx';
+        $config['upload_path']          = 'assets/school/img/';
+        $config['allowed_types']        = 'gif|jpg|png';
+        $config['max_size']             = 50000;
+        $config['max_width']            = 3402;
+        $config['max_height']           = 1417;
+        $config['file_name']            = 'ImageSchool_' . $_POST['JurisdictionCode'] . $_POST['SchoolAddressProvinceCode'];
 
         $this->load->library('upload', $config);
 
         if (!$this->upload->do_upload('ImageSchool')) {
-            echo $this->upload->display_errors();
+            copy($config['upload_path'] . 'logoold.jpg', $config['upload_path'] . $config['file_name']);
+            echo str_replace("</p>", "", str_replace("<p>", "", $this->upload->display_errors()));
         } else {
-
-            $data = $this->upload->data();
+            echo 'อัพโหลดไฟล์เรียบร้อยแล้ว';
         }
+
+        $type = substr($_FILES['ImageSchool']['name'], -4);
+        $new_name = 'ImageSchool_' . $_POST['JurisdictionCode'] . $_POST['SchoolAddressProvinceCode'] . $type;
 
         $data = [
 
             'SchoolID ' => $_POST['JurisdictionCode'] . $_POST['SchoolAddressProvinceCode'],
             'InnovationAreaCode' => $this->input->post('InnovationAreaCode'),
-            'ImageSchool' => $data['file_name'],
+            'ImageSchool' => $new_name,
             'SchoolNameThai' => $this->input->post('SchoolNameThai'),
             'SchoolNameEnglish' => $this->input->post('SchoolNameEnglish'),
             'SchoolEstablishedDate' => $this->input->post('SchoolEstablishedDate'),
@@ -79,22 +85,27 @@ class School_model extends CI_Model
     }
 
     //Update Data Form School MAIN
-    public function update_school_main($SchoolID)
+    public function update_school_main($SchoolID, $ImageSchool)
     {
 
-        $config['file_name'] = 'ImageSchool_' . $SchoolID;
-        $config['upload_path'] = './assets/img/school/';
-        $config['allowed_types'] = 'doc|docx|pdf|jpg|png|xls|ppt|zip|xlsx';
-        $config['overwrite'] = TRUE;
+        $config['upload_path']          = 'assets/school/img/';
+        $config['allowed_types']        = 'gif|jpg|png';
+        $config['max_size']             = 50000;
+        $config['max_width']            = 3402;
+        $config['max_height']           = 1417;
+        $config['file_name']            = $ImageSchool;
 
+        copy($config['upload_path'] . $config['file_name'], $config['upload_path'] . 'logoold.jpg');
+        unlink($config['upload_path'] . $config['file_name']);
 
         $this->load->library('upload', $config);
 
         if (!$this->upload->do_upload('ImageSchool')) {
-            echo $this->upload->display_errors();
+            copy($config['upload_path'] . 'logoold.jpg', $config['upload_path'] . $config['file_name']);
+            echo str_replace("</p>", "", str_replace("<p>", "", $this->upload->display_errors()));
         } else {
-
-            $data = $this->upload->data();
+            unlink($config['upload_path'] . 'logoold.jpg');
+            echo 'อัพโหลดไฟล์เรียบร้อยแล้ว';
         }
 
         $data = [

@@ -21,7 +21,7 @@ class Teacher_development_activity_controller extends CI_Controller{
         }
 
         $data['title'] = 'Forms Teacher Developmant Activity'; // Capitalize the first letter
-        $data['listTeacher'] = $this->Teacher_model->get_teacher_All();
+        $data['listTeacher'] = $this->TeacherDevelopmentActivity_model->get_teacher_All();
         $data['listDevelopmentActivityType'] = $this->Code_model->get_DevelopmentActivityType_All();
 
         $this->load->view('templates/header', $data);
@@ -112,7 +112,7 @@ class Teacher_development_activity_controller extends CI_Controller{
         $DevelopmentActivityStartDate  = $_GET['sdate'];
 
         $data['TeacherDevelopmentActivity'] = $this->TeacherDevelopmentActivity_model->get_TeacherDevelopmentActivity($TeacherID, $DevelopmentActivityName, $DevelopmentActivityStartDate );
-        $data['listTeacher'] = $this->Teacher_model->get_teacher_All();
+        $data['listTeacher'] = $this->TeacherDevelopmentActivity_model->get_teacher_All();
         $data['listDevelopmentActivityType'] = $this->Code_model->get_DevelopmentActivityType_All();
         $this->load->view('templates/header');
         $this->load->view('templates/sidebar');

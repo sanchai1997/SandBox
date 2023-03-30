@@ -1,3 +1,14 @@
+<style>
+    .page-content img {
+        max-width: 90px;
+        height: 100px;
+    }
+
+    .page-detail img {
+        max-width: 170px;
+        height: 200px;
+    }
+</style>
 <main id="main" class="main">
 
     <div class="pagetitle">
@@ -73,7 +84,7 @@
                         <div class="col">
                             <?php if (isset($_GET['SchoolID'])) {
                             ?>
-                                <h5 style="float: right; padding: 15px;" class="card-title"><a href="forms-Teacher?SchoolID=<?= $_GET['SchoolID'] ?>" class="btn btn-success">เพิ่มข้อมูล</a></h5>
+                                <h5 style="float: right; padding: 15px;" class="card-title"><a href="forms-Teacher?SchoolID=<?= $_GET['SchoolID'] ?>" class="btn btn-success"><i class="bi bi-person-plus"></i> เพิ่มข้อมูล</a></h5>
                             <?php } ?>
                         </div>
                     </div>
@@ -92,10 +103,10 @@
                             foreach ($result->result() as $SCHOOL) {
                             ?>
                                 <tr>
-                                    <td style="text-align: center;"><img src="./assets/img/school/<?= $SCHOOL->ImageSchool; ?>" alt="" width="90px" height="80px"></td>
-                                    <td style="padding-top: 30px;"><?= $SCHOOL->SchoolNameThai; ?></td>
-                                    <td style="padding-top: 30px;"><?= $SCHOOL->INNOVATION_AREA_NAME; ?></td>
-                                    <td style="padding-top: 30px; text-align: center;"><a href="?SchoolID=<?= $SCHOOL->SchoolID; ?>" class="btn btn-primary"><i class="bi bi-card-list"></i></a>
+                                    <td class="page-content" style="text-align: center;"><img src="assets/school/img/<?= $SCHOOL->ImageSchool; ?>" alt="" width="100%" height="100%"></td>
+                                    <td style="padding-top: 40px;"><?= $SCHOOL->SchoolNameThai; ?></td>
+                                    <td style="padding-top: 40px;"><?= $SCHOOL->INNOVATION_AREA_NAME; ?></td>
+                                    <td style="padding-top: 35px; text-align: center;"><a href="?SchoolID=<?= $SCHOOL->SchoolID; ?>" class="btn btn-primary"><i class="bi bi-card-list"></i></a>
                                     </td>
                                 </tr>
                             <?php } ?>
@@ -129,7 +140,7 @@
                         <div class="col">
                             <?php if (isset($_GET['SchoolID'])) {
                             ?>
-                                <h5 style="float: right; padding: 15px;" class="card-title"><a href="forms-teacher?SchoolID=<?= $_GET['SchoolID'] ?>" class="btn btn-success">เพิ่มข้อมูล</a></h5>
+                                <h5 style="float: right; padding: 15px;" class="card-title"><a href="forms-teacher?SchoolID=<?= $_GET['SchoolID'] ?>" class="btn btn-success"><i class="bi bi-person-plus"></i> เพิ่มข้อมูล</a></h5>
                             <?php } ?>
                         </div>
                     </div>
@@ -188,7 +199,7 @@
                         <div class="col">
                             <?php if (isset($_GET['SchoolID'])) {
                             ?>
-                                <h5 style="float: right; padding: 15px;" class="card-title"><a href="forms-teacher-select?SchoolID=<?= $_GET['SchoolID'] ?>&&EducationYear=<?= $_GET['EducationYear'] ?>&&Semester=<?= $_GET['Semester'] ?>&&PersonnelTypeCode=<?= $_GET['PersonnelTypeCode'] ?>&&PositionCode=<?= $_GET['PositionCode'] ?>" class="btn btn-success">เพิ่มข้อมูล</a></h5>
+                                <h5 style="float: right; padding: 15px;" class="card-title"><a href="forms-teacher-select?SchoolID=<?= $_GET['SchoolID'] ?>&&EducationYear=<?= $_GET['EducationYear'] ?>&&Semester=<?= $_GET['Semester'] ?>&&PersonnelTypeCode=<?= $_GET['PersonnelTypeCode'] ?>&&PositionCode=<?= $_GET['PositionCode'] ?>" class="btn btn-success"><i class="bi bi-person-plus"></i> เพิ่มข้อมูล</a></h5>
                             <?php } ?>
                         </div>
                     </div>
@@ -218,13 +229,13 @@
                             foreach ($result->result() as $TEACHER) {
                             ?>
                                 <tr>
-                                    <td style="text-align: center;"><img src="./assets/img/teacher/<?= $TEACHER->ImageTeacher; ?>" alt="" width="80" height="90"></td>
-                                    <td style="padding-top: 35px;"><?= $TEACHER->PREFIX_NAME; ?></td>
-                                    <td style="padding-top: 35px;"><?= $TEACHER->TeacherNameThai; ?></td>
-                                    <td style="padding-top: 35px;"><?= $TEACHER->TeacherLastNameThai; ?></td>
-                                    <td style="padding-top: 35px;"><?= $TEACHER->MAJOR_NAME; ?></td>
-                                    <td style="padding-top: 35px;"><?= $TEACHER->PROGRAM_NAME; ?></td>
-                                    <td style="padding-top: 35px;"><?= $TEACHER->PERSONNEL_STATUS_NAME; ?></td>
+                                    <td class="page-content" style="text-align: center;"><img src="assets/teacher/img/<?= $TEACHER->ImageTeacher; ?>" alt="" width="100%" height="100%"></td>
+                                    <td style="padding-top: 40px;"><?= $TEACHER->PREFIX_NAME; ?></td>
+                                    <td style="padding-top: 40px;"><?= $TEACHER->TeacherNameThai; ?></td>
+                                    <td style="padding-top: 40px;"><?= $TEACHER->TeacherLastNameThai; ?></td>
+                                    <td style="padding-top: 40px;"><?= $TEACHER->MAJOR_NAME; ?></td>
+                                    <td style="padding-top: 40px;"><?= $TEACHER->PROGRAM_NAME; ?></td>
+                                    <td style="padding-top: 40px;"><?= $TEACHER->PERSONNEL_STATUS_NAME; ?></td>
                                     <td style="padding-top: 35px; text-align: center;">
                                         <a href="?SchoolID=<?= $TEACHER->SchoolID; ?>&&TeacherID=<?= $TEACHER->TeacherID ?>&&EducationYear=<?= $TEACHER->EducationYear; ?>&&Semester=<?= $TEACHER->Semester; ?>&&PersonnelTypeCode=<?= $TEACHER->PersonnelTypeCode; ?>&&PositionCode=<?= $TEACHER->PositionCode; ?>&&ShowDetail=" class="btn btn-primary"><i class="bi bi-card-list"></i></a>
                                     </td>
@@ -276,11 +287,21 @@
                                     </div>
                             </div>
                             <div class="row">
-                                <div class="col-2" style="padding-bottom: 8px; padding-left: 60px; padding-top: 0px; ">
-                                    <div class="card">
-                                        <img style="text-align: center; padding-bottom: 15px; padding-left: 20px; padding-top: 15px;" src="./assets/img/teacher/<?= $TEACHER_DETAIL->ImageTeacher ?>" alt="" width="90%" height="90%">
+                                <?php if ($TEACHER_DETAIL->ImageTeacher != '') { ?>
+                                    <div class="col-2" style="padding-bottom: 8px; padding-left: 70px; padding-top: 15px;">
+                                        <div class="card page-detail">
+                                            <img style=" text-align: center; padding: 15px;" src="assets/teacher/img/<?= $TEACHER_DETAIL->ImageTeacher; ?>" alt="" width="100%" height="100%" style="padding-top: 20px;">
+                                        </div>
                                     </div>
-                                </div>
+                                <?php } else { ?>
+                                    <div class="col-2" style="padding-bottom: 8px; padding-left: 60px; padding-top: 60px;">
+                                        <div class="card">
+                                            <h6 style="text-align: center; padding: 15px;">
+                                                - ไม่พบรูปภาพ -
+                                            </h6>
+                                        </div>
+                                    </div>
+                                <?php } ?>
                                 <div class=" col-10" style="padding-top: 0px; padding-left: 40px; padding-right: 60px;">
                                     <div class="card">
                                         <div class="card-body">
@@ -308,7 +329,7 @@
                                                     <label style="padding-left: 25px;"> วุฒิการศึกษาที่บรรจุ: &nbsp;<?= $TEACHER_DETAIL->DEGREE_NAME; ?></label><br>
                                                     <label style="padding-left: 25px;"> สาขาวิชาที่บรรจุ: &nbsp;<?= $TEACHER_DETAIL->PROGRAM_NAME; ?></label><br>
                                                     <label style="padding-left: 25px;"> สถานนะปฎิบัติราชการ: &nbsp;<?= $TEACHER_DETAIL->PERSONNEL_STATUS_NAME; ?></label><br>
-                                                    <label style="padding-left: 25px;"> วันเกษียณ: &nbsp;<?php if ($TEACHER_DETAIL->PersonnelRetireDate == '') {
+                                                    <label style="padding-left: 25px;"> วันเกษียณ: &nbsp;<?php if ($TEACHER_DETAIL->PersonnelRetireDate == '0000-00-00') {
                                                                                                                 echo '-';
                                                                                                             } else {
                                                                                                                 echo DateThai($TEACHER_DETAIL->PersonnelRetireDate);
@@ -860,7 +881,7 @@
                                                                     <tr>
                                                                         <td class="col-4" scope="col">ระดับการศึกษา</td>
                                                                         <td class="col-4" scope="col">กลุ่มวิชาเอก</td>
-                                                                        <td class="col-4" scope="col">สาขาวิชา</td>
+                                                                        <td class="col-4" scope="col">วุฒิการศึกษา</td>
                                                                     </tr>
                                                                 </thead>
                                                                 <tbody>
@@ -869,7 +890,7 @@
                                                                 FROM TEACHER_EDUCATION_DEGREE 
                                                                 INNER JOIN CLS_EDUCATION_LEVEL ON TEACHER_EDUCATION_DEGREE.EducationLevelCode  = CLS_EDUCATION_LEVEL.EDUCATION_LEVEL_CODE 
                                                                 INNER JOIN CLS_MAJOR ON TEACHER_EDUCATION_DEGREE.EducationMajorCode  = CLS_MAJOR.MAJOR_CODE 
-                                                                INNER JOIN CLS_PROGRAM ON TEACHER_EDUCATION_DEGREE.EducationProgramCode  = CLS_PROGRAM.PROGRAM_CODE 
+                                                                INNER JOIN CLS_DEGREE ON TEACHER_EDUCATION_DEGREE.EducationDegreeCode  = CLS_DEGREE.DEGREE_CODE 
                                                                 WHERE DeleteStatus = 0 AND SchoolID = ' . $TEACHER_DETAIL->SchoolID . ' AND TeacherID = "' . $TEACHER_DETAIL->TeacherID . '"
                                                                 ');
                                                                     foreach ($result->result() as $TEACHER_EDUCATION_DEGREE) {
@@ -897,10 +918,10 @@
                                                                                     } ?>
                                                                                 </td>
                                                                                 <td>
-                                                                                    <?php if ($TEACHER_EDUCATION_DEGREE->EducationProgramCode == "") {
+                                                                                    <?php if ($TEACHER_EDUCATION_DEGREE->EducationDegreeCode == "") {
                                                                                         echo '-';
                                                                                     } else {
-                                                                                        echo $TEACHER_EDUCATION_DEGREE->PROGRAM_NAME;
+                                                                                        echo $TEACHER_EDUCATION_DEGREE->DEGREE_NAME;
                                                                                     } ?>
                                                                                 </td>
                                                                             </tr>
@@ -930,8 +951,9 @@
                                                                 <thead>
                                                                     <tr>
                                                                         <td class="col-4" scope="col">ประเภท</td>
-                                                                        <td class="col-4" scope="col">วันที่ใบอนุญาติหมดอายุ</td>
-                                                                        <td class="col-4" scope="col">วันที่ใบอนุญาติหมดอายุ</td>
+                                                                        <td class="col-4" scope="col">เลขที่</td>
+                                                                        <td class="col-2" scope="col">วันที่ใบอนุญาติหมดอายุ</td>
+                                                                        <td class="col-2" scope="col">วันที่ใบอนุญาติหมดอายุ</td>
                                                                     </tr>
                                                                 </thead>
                                                                 <tbody>
@@ -956,6 +978,13 @@
                                                                                         echo '-';
                                                                                     } else {
                                                                                         echo $TEACHER_CERTIFICATE->TEACHER_CERTIFICATE_NAME;
+                                                                                    } ?>
+                                                                                </td>
+                                                                                <td>
+                                                                                    <?php if ($TEACHER_CERTIFICATE->CertificateLicenseNumber == "") {
+                                                                                        echo '-';
+                                                                                    } else {
+                                                                                        echo $TEACHER_CERTIFICATE->CertificateLicenseNumber;
                                                                                     } ?>
                                                                                 </td>
                                                                                 <td>
@@ -1070,7 +1099,8 @@
                                                                     <tr>
                                                                         <td class="col-4" scope="col">ประเภทการช่วยราชการ</td>
                                                                         <td class="col-4" scope="col">หน่วยงาน</td>
-                                                                        <td class="col-4" scope="col">วันที่เริ่ม</td>
+                                                                        <td class="col-2" scope="col">วันที่เริ่ม</td>
+                                                                        <td class="col-2" scope="col">วันที่สิ้นสุด</td>
                                                                     </tr>
                                                                 </thead>
                                                                 <tbody>
@@ -1084,7 +1114,7 @@
                                                                         if ($TEACHER_ASSISTANCE->Count == 0) {
                                                                     ?>
                                                                             <tr>
-                                                                                <td style="text-align: center;" colspan="3">- ไม่พบข้อมูล -</td>
+                                                                                <td style="text-align: center;" colspan="4">- ไม่พบข้อมูล -</td>
                                                                             </tr>
                                                                         <?php
                                                                         } else {
@@ -1105,10 +1135,17 @@
                                                                                     } ?>
                                                                                 </td>
                                                                                 <td>
-                                                                                    <?php if ($TEACHER_ASSISTANCE->AssistanceStartDate == "") {
+                                                                                    <?php if ($TEACHER_ASSISTANCE->AssistanceStartDate == "0000-00-00") {
                                                                                         echo '-';
                                                                                     } else {
                                                                                         echo DateThai($TEACHER_ASSISTANCE->AssistanceStartDate);
+                                                                                    } ?>
+                                                                                </td>
+                                                                                <td>
+                                                                                    <?php if ($TEACHER_ASSISTANCE->AssistanceEndDate == "0000-00-00") {
+                                                                                        echo '-';
+                                                                                    } else {
+                                                                                        echo DateThai($TEACHER_ASSISTANCE->AssistanceEndDate);
                                                                                     } ?>
                                                                                 </td>
                                                                             </tr>

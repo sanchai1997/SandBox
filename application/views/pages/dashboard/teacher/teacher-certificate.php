@@ -70,8 +70,9 @@
                                     INNER JOIN CLS_TEACHER_CERTIFICATE ON TEACHER_CERTIFICATE.CertificateCode = CLS_TEACHER_CERTIFICATE.TEACHER_CERTIFICATE_CODE
                                     WHERE TEACHER_CERTIFICATE.DeleteStatus = 0 AND TEACHER_CERTIFICATE.SchoolID = ' . $_GET['SchoolID'] . ' AND TEACHER_CERTIFICATE.TeacherID = "' . $_GET['TeacherID'] . '"
                                     ');
-
+                        $Count = 0;
                         foreach ($result->result() as $TEACHER_CERTIFICATE) {
+                            $Count++;
                         ?>
                             <tr>
                                 <td><?= $TEACHER_CERTIFICATE->TEACHER_CERTIFICATE_NAME; ?></td>
@@ -82,8 +83,8 @@
                                 <td><?php if ($TEACHER_CERTIFICATE->CertificateLicenseExpiredDate != "0000-00-00") {
                                         echo DateThai($TEACHER_CERTIFICATE->CertificateLicenseExpiredDate);
                                     } else echo '-'; ?></td>
-                                <td style="text-align: center;"><a href="edit-forms-teacher-certificate?SchoolID=<?= $_GET['SchoolID'] ?>&&TeacherID=<?= $_GET['TeacherID'] ?>&&EducationYear=<?= $_GET['EducationYear'] ?>&&Semester=<?= $_GET['Semester'] ?>&&PersonnelTypeCode=<?= $_GET['PersonnelTypeCode'] ?>&&PositionCode=<?= $_GET['PositionCode'] ?>&&CertificateCode=<?= $TEACHER_CERTIFICATE->CertificateCode ?>" class="btn btn-warning"><i class="bi bi-pencil-square"></i></a>
-                                    &nbsp; <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#Delete<?= $TEACHER_CERTIFICATE->TeacherID . $TEACHER_CERTIFICATE->CertificateCode; ?>"><i class=" bi bi-trash"></i></button>
+                                <td style="text-align: center;"><a href="edit-forms-teacher-certificate?SchoolID=<?= $_GET['SchoolID'] ?>&&TeacherID=<?= $_GET['TeacherID'] ?>&&EducationYear=<?= $_GET['EducationYear'] ?>&&Semester=<?= $_GET['Semester'] ?>&&PersonnelTypeCode=<?= $_GET['PersonnelTypeCode'] ?>&&PositionCode=<?= $_GET['PositionCode'] ?>&&CertificateCode=<?= $TEACHER_CERTIFICATE->CertificateCode ?>&&CertificateLicenseNumber=<?= $TEACHER_CERTIFICATE->CertificateLicenseNumber ?>" class="btn btn-warning"><i class="bi bi-pencil-square"></i></a>
+                                    &nbsp; <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#Delete<?= $Count ?>"><i class=" bi bi-trash"></i></button>
                                 </td>
                             </tr>
                         <?php } ?>
@@ -104,9 +105,11 @@ $result = $this->db->query('SELECT *
         INNER JOIN CLS_TEACHER_CERTIFICATE ON TEACHER_CERTIFICATE.CertificateCode = CLS_TEACHER_CERTIFICATE.TEACHER_CERTIFICATE_CODE
         WHERE TEACHER_CERTIFICATE.DeleteStatus = 0 AND TEACHER_CERTIFICATE.SchoolID = ' . $_GET['SchoolID'] . ' AND TEACHER_CERTIFICATE.TeacherID = "' . $_GET['TeacherID'] . '"
         ');
+$CountI = 0;
 foreach ($result->result() as $TEACHER_CERTIFICATE) {
+    $CountI++;
 ?>
-    <div class="modal fade" id="Delete<?= $TEACHER_CERTIFICATE->TeacherID . $TEACHER_CERTIFICATE->CertificateCode; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+    <div class="modal fade" id="Delete<?= $CountI ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -119,7 +122,7 @@ foreach ($result->result() as $TEACHER_CERTIFICATE) {
                     </h6>
                 </div>
                 <div class="modal-footer">
-                    <a href="<?php echo base_url('delete-teacher-certificate/'  . $_GET['TeacherID'] . '/' .  $_GET['SchoolID'] . '/' .  $_GET['EducationYear'] . '/' .  $_GET['Semester'] . '/' .  $_GET['PersonnelTypeCode'] . '/' .  $_GET['PositionCode'] . '/' . $TEACHER_CERTIFICATE->CertificateCode);
+                    <a href="<?php echo base_url('delete-teacher-certificate/'  . $_GET['TeacherID'] . '/' .  $_GET['SchoolID'] . '/' .  $_GET['EducationYear'] . '/' .  $_GET['Semester'] . '/' .  $_GET['PersonnelTypeCode'] . '/' .  $_GET['PositionCode'] . '/' . $TEACHER_CERTIFICATE->CertificateCode . '/' . $TEACHER_CERTIFICATE->CertificateLicenseNumber);
                                 ?>" class="btn btn-danger">ลบ</a>
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ยกเลิก</button>
                 </div>

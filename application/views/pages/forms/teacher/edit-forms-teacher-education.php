@@ -25,16 +25,15 @@
                 <div class="card">
                     <div class="card-body">
                         <!-- Floating Labels Form -->
-                        <form class="row g-3" action="<?php echo base_url('update-teacher-education/' . $_GET['TeacherID'] . '/' . $_GET['SchoolID'] . '/' . $_GET['EducationYear'] . '/' . $_GET['Semester'] . '/' . $_GET['PersonnelTypeCode'] . '/' . $_GET['PositionCode'] . '/' . $_GET['EducationDegreeCode']); ?>" method="POST" id="Teacher" enctype="multipart/form-data">
+                        <form class="row g-3" action="<?php echo base_url('update-teacher-education/' . $_GET['TeacherID'] . '/' . $_GET['SchoolID'] . '/' . $_GET['EducationYear'] . '/' . $_GET['Semester'] . '/' . $_GET['PersonnelTypeCode'] . '/' . $_GET['PositionCode'] . '/' . $_GET['EducationLevelCode'] . '/' . $_GET['EducationMajorCode'] . '/' . $_GET['EducationDegreeCode']); ?>" method="POST" id="Teacher" enctype="multipart/form-data">
                             <h6 style="padding-left: 15px;" class="card-title"></h6>
                             <?php
                             $result = $this->db->query('SELECT * 
                                     FROM TEACHER_EDUCATION_DEGREE 
-                                    INNER JOIN CLS_EDUCATION_LEVEL ON TEACHER_EDUCATION_DEGREE.EducationLevelCode  = CLS_EDUCATION_LEVEL.EDUCATION_LEVEL_CODE 
-                                    INNER JOIN CLS_MAJOR ON TEACHER_EDUCATION_DEGREE.EducationMajorCode  = CLS_MAJOR.MAJOR_CODE 
-                                    INNER JOIN CLS_PROGRAM ON TEACHER_EDUCATION_DEGREE.EducationProgramCode  = CLS_PROGRAM.PROGRAM_CODE 
-                                    INNER JOIN CLS_DEGREE ON TEACHER_EDUCATION_DEGREE.EducationDegreeCode  = CLS_DEGREE.DEGREE_CODE 
-                                    WHERE DeleteStatus = 0 AND SchoolID = ' . $_GET['SchoolID'] . ' AND TeacherID = "' . $_GET['TeacherID'] . '" AND EducationDegreeCode = ' . $_GET['EducationDegreeCode'] . '
+                                    WHERE DeleteStatus = 0 AND SchoolID = ' . $_GET['SchoolID'] . ' AND TeacherID = "' . $_GET['TeacherID'] . '" 
+                                    AND EducationLevelCode = ' . $_GET['EducationLevelCode'] . '
+                                    AND EducationMajorCode = ' . $_GET['EducationMajorCode'] . '
+                                    AND EducationDegreeCode = ' . $_GET['EducationDegreeCode'] . '
                                     ');
                             foreach ($result->result() as $TEACHER_EDUCATION_DEGREE) {
                             ?>

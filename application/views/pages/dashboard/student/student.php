@@ -1,5 +1,15 @@
-<main id="main" class="main">
+<style>
+    .page-content img {
+        max-width: 90px;
+        height: 100px;
+    }
 
+    .page-detail img {
+        max-width: 170px;
+        height: 200px;
+    }
+</style>
+<main id="main" class="main">
     <div class="pagetitle">
         <div class="row">
             <div class="col-6">
@@ -73,7 +83,7 @@
                         <div class="col">
                             <?php if (isset($_GET['SchoolID'])) {
                             ?>
-                                <h5 style="float: right; padding: 15px;" class="card-title"><a href="forms-student?SchoolID=<?= $_GET['SchoolID'] ?>" class="btn btn-success">เพิ่มข้อมูล</a></h5>
+                                <h5 style="float: right; padding: 15px;" class="card-title"><a href="forms-student?SchoolID=<?= $_GET['SchoolID'] ?>" class="btn btn-success"><i class="bi bi-person-plus"></i>เพิ่มข้อมูล</a></h5>
                             <?php } ?>
                         </div>
                     </div>
@@ -92,10 +102,10 @@
                             foreach ($result->result() as $SCHOOL) {
                             ?>
                                 <tr>
-                                    <td style="text-align: center;"><img src="./assets/img/school/<?= $SCHOOL->ImageSchool; ?>" alt="" width="90px" height="80px"></td>
-                                    <td style="padding-top: 30px;"><?= $SCHOOL->SchoolNameThai; ?></td>
-                                    <td style="padding-top: 30px;"><?= $SCHOOL->INNOVATION_AREA_NAME; ?></td>
-                                    <td style="padding-top: 30px; text-align: center;"><a href="?SchoolID=<?= $SCHOOL->SchoolID; ?>" class="btn btn-primary"><i class="bi bi-card-list"></i></a>
+                                    <td class="page-content" style="text-align: center;"><img src="assets/school/img/<?= $SCHOOL->ImageSchool; ?>" alt="" width="90px" height="80px"></td>
+                                    <td style="padding-top: 40px;"><?= $SCHOOL->SchoolNameThai; ?></td>
+                                    <td style="padding-top: 40px;"><?= $SCHOOL->INNOVATION_AREA_NAME; ?></td>
+                                    <td style="padding-top: 35px; text-align: center;"><a href="?SchoolID=<?= $SCHOOL->SchoolID; ?>" class="btn btn-primary"><i class="bi bi-card-list"></i></a>
                                     </td>
                                 </tr>
                             <?php } ?>
@@ -129,7 +139,7 @@
                         <div class="col">
                             <?php if (isset($_GET['SchoolID'])) {
                             ?>
-                                <h5 style="float: right; padding: 15px;" class="card-title"><a href="forms-student?SchoolID=<?= $_GET['SchoolID'] ?>" class="btn btn-success"> เพิ่มข้อมูล</a></h5>
+                                <h5 style="float: right; padding: 15px;" class="card-title"><a href="forms-student?SchoolID=<?= $_GET['SchoolID'] ?>" class="btn btn-success"><i class="bi bi-person-plus"></i> เพิ่มข้อมูล</a></h5>
                             <?php } ?>
                         </div>
                     </div>
@@ -181,7 +191,7 @@
                         <div class="col">
                             <?php if (isset($_GET['SchoolID'])) {
                             ?>
-                                <h5 style="float: right; padding: 15px;" class="card-title"><a href="forms-student-select?SchoolID=<?= $_GET['SchoolID'] ?>&&EducationYear=<?= $_GET['EducationYear'] ?>&&Semester=<?= $_GET['Semester'] ?>&&GradeLevelCode=<?= $_GET['GradeLevelCode'] ?>" class="btn btn-success"><i class="bi bi-person-add"></i> เพิ่มข้อมูล</a></h5>
+                                <h5 style="float: right; padding: 15px;" class="card-title"><a href="forms-student-select?SchoolID=<?= $_GET['SchoolID'] ?>&&EducationYear=<?= $_GET['EducationYear'] ?>&&Semester=<?= $_GET['Semester'] ?>&&GradeLevelCode=<?= $_GET['GradeLevelCode'] ?>" class="btn btn-success"><i class="bi bi-person-plus"></i> เพิ่มข้อมูล</a></h5>
                             <?php } ?>
                         </div>
                     </div>
@@ -209,12 +219,12 @@
                             foreach ($result->result() as $STUDENT) {
                             ?>
                                 <tr>
-                                    <td style="text-align: center;"><img src="./assets/img/student/<?= $STUDENT->ImageStudent; ?>" alt="" width="80" height="90"></td>
-                                    <td style="padding-top: 35px;"><?= $STUDENT->StudentID; ?></td>
-                                    <td style="padding-top: 35px;"><?= $STUDENT->PREFIX_NAME; ?></td>
-                                    <td style="padding-top: 35px;"><?= $STUDENT->StudentNameThai; ?></td>
-                                    <td style="padding-top: 35px;"><?= $STUDENT->StudentLastNameThai; ?></td>
-                                    <td style="padding-top: 35px;"><?= $STUDENT->STUDENT_STATUS_NAME; ?></td>
+                                    <td class="page-content" style="text-align: center;"><img src="assets/student/img/<?= $STUDENT->ImageStudent; ?>" alt="" width="100%" height="100%"></td>
+                                    <td style="padding-top: 40px;"><?= $STUDENT->StudentID; ?></td>
+                                    <td style="padding-top: 40px;"><?= $STUDENT->PREFIX_NAME; ?></td>
+                                    <td style="padding-top: 40px;"><?= $STUDENT->StudentNameThai; ?></td>
+                                    <td style="padding-top: 40px;"><?= $STUDENT->StudentLastNameThai; ?></td>
+                                    <td style="padding-top: 40px;"><?= $STUDENT->STUDENT_STATUS_NAME; ?></td>
                                     <td style="padding-top: 35px; text-align: center;">
                                         <a href="?SchoolID=<?= $STUDENT->SchoolID; ?>&&StudentReferenceID=<?= $STUDENT->StudentReferenceID ?>&&EducationYear=<?= $STUDENT->EducationYear; ?>&&Semester=<?= $STUDENT->Semester; ?>&&GradeLevelCode=<?= $STUDENT->GradeLevelCode; ?>&&ShowDetail=" class="btn btn-primary"><i class="bi bi-card-list"></i></a>
                                     </td>
@@ -262,11 +272,21 @@
                                     </div>
                             </div>
                             <div class="row">
-                                <div class="col-2" style="padding-bottom: 8px; padding-left: 60px; padding-top: 0px; ">
-                                    <div class="card">
-                                        <img style="text-align: center; padding-bottom: 15px; padding-left: 20px; padding-top: 15px;" src="./assets/img/student/<?= $STUDENT_DETAIL->ImageStudent ?>" alt="" width="90%" height="90%">
+                                <?php if ($STUDENT_DETAIL->ImageStudent != '') { ?>
+                                    <div class="col-2" style="padding-bottom: 8px; padding-left: 70px; padding-top: 0px;">
+                                        <div class="card page-detail">
+                                            <img style=" text-align: center; padding: 15px;" src="assets/student/img/<?= $STUDENT_DETAIL->ImageStudent; ?>" alt="" width="100%" height="100%" style="padding-top: 20px;">
+                                        </div>
                                     </div>
-                                </div>
+                                <?php } else { ?>
+                                    <div class="col-2" style="padding-bottom: 8px; padding-left: 60px; padding-top: 60px;">
+                                        <div class="card">
+                                            <h6 style="text-align: center; padding: 15px;">
+                                                - ไม่พบรูปภาพ -
+                                            </h6>
+                                        </div>
+                                    </div>
+                                <?php } ?>
                                 <div class=" col-10" style="padding-top: 0px; padding-left: 40px; padding-right: 60px;">
                                     <div class="card">
                                         <div class="card-body">

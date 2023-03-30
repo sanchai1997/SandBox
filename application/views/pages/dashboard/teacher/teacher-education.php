@@ -69,22 +69,28 @@
                        FROM TEACHER_EDUCATION_DEGREE 
                        INNER JOIN CLS_EDUCATION_LEVEL ON TEACHER_EDUCATION_DEGREE.EducationLevelCode  = CLS_EDUCATION_LEVEL.EDUCATION_LEVEL_CODE 
                        INNER JOIN CLS_MAJOR ON TEACHER_EDUCATION_DEGREE.EducationMajorCode  = CLS_MAJOR.MAJOR_CODE 
-                       INNER JOIN CLS_PROGRAM ON TEACHER_EDUCATION_DEGREE.EducationProgramCode  = CLS_PROGRAM.PROGRAM_CODE 
                        INNER JOIN CLS_DEGREE ON TEACHER_EDUCATION_DEGREE.EducationDegreeCode  = CLS_DEGREE.DEGREE_CODE 
                        WHERE DeleteStatus = 0 AND SchoolID = ' . $_GET['SchoolID'] . ' AND TeacherID = "' . $_GET['TeacherID'] . '"
                        ');
-
+                        $Count = 0;
                         foreach ($result->result() as $TEACHER_EDUCATION_DEGREE) {
+                            $Count++;
                         ?>
                             <tr>
                                 <td><?= $TEACHER_EDUCATION_DEGREE->EDUCATION_LEVEL_NAME; ?></td>
                                 <td><?= $TEACHER_EDUCATION_DEGREE->MAJOR_NAME; ?></td>
                                 <td><?php if ($TEACHER_EDUCATION_DEGREE->EducationProgramCode != NULL) {
-                                        echo $TEACHER_EDUCATION_DEGREE->PROGRAM_NAME;
+                                        $result_fix = $this->db->query('SELECT *FROM CLS_PROGRAM 
+                                        WHERE PROGRAM_CODE = ' . $TEACHER_EDUCATION_DEGREE->EducationProgramCode . '
+                                        ');
+                                        foreach ($result_fix->result() as $PROGRAM) {
+                                            echo $PROGRAM->PROGRAM_NAME;
+                                        }
                                     } else echo '-'; ?></td>
                                 <td><?= $TEACHER_EDUCATION_DEGREE->DEGREE_NAME; ?></td>
-                                <td style="text-align: center;"><a href="edit-forms-teacher-education?SchoolID=<?= $_GET['SchoolID'] ?>&&TeacherID=<?= $_GET['TeacherID'] ?>&&EducationYear=<?= $_GET['EducationYear'] ?>&&Semester=<?= $_GET['Semester'] ?>&&PersonnelTypeCode=<?= $_GET['PersonnelTypeCode'] ?>&&PositionCode=<?= $_GET['PositionCode'] ?>&&EducationDegreeCode=<?= $TEACHER_EDUCATION_DEGREE->EducationDegreeCode ?>" class="btn btn-warning"><i class="bi bi-pencil-square"></i></a>
-                                    &nbsp; <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#Delete<?= $TEACHER_EDUCATION_DEGREE->TeacherID . $TEACHER_EDUCATION_DEGREE->EducationDegreeCode; ?>"><i class=" bi bi-trash"></i></button>
+                                <td style="text-align: center;">
+                                    <a href="edit-forms-teacher-education?SchoolID=<?= $_GET['SchoolID'] ?>&&TeacherID=<?= $_GET['TeacherID'] ?>&&EducationYear=<?= $_GET['EducationYear'] ?>&&Semester=<?= $_GET['Semester'] ?>&&PersonnelTypeCode=<?= $_GET['PersonnelTypeCode'] ?>&&PositionCode=<?= $_GET['PositionCode'] ?>&&EducationLevelCode=<?= $TEACHER_EDUCATION_DEGREE->EducationLevelCode ?>&&EducationMajorCode=<?= $TEACHER_EDUCATION_DEGREE->EducationMajorCode ?>&&EducationDegreeCode=<?= $TEACHER_EDUCATION_DEGREE->EducationDegreeCode ?>" class="btn btn-warning"><i class="bi bi-pencil-square"></i></a>
+                                    &nbsp; <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#Delete<?= $Count ?>"><i class=" bi bi-trash"></i></button>
                                 </td>
                             </tr>
                         <?php } ?>
@@ -102,15 +108,13 @@
 <?php
 $result = $this->db->query('SELECT * 
   FROM TEACHER_EDUCATION_DEGREE 
-  INNER JOIN CLS_EDUCATION_LEVEL ON TEACHER_EDUCATION_DEGREE.EducationLevelCode  = CLS_EDUCATION_LEVEL.EDUCATION_LEVEL_CODE 
-  INNER JOIN CLS_MAJOR ON TEACHER_EDUCATION_DEGREE.EducationMajorCode  = CLS_MAJOR.MAJOR_CODE 
-  INNER JOIN CLS_PROGRAM ON TEACHER_EDUCATION_DEGREE.EducationProgramCode  = CLS_PROGRAM.PROGRAM_CODE 
-  INNER JOIN CLS_DEGREE ON TEACHER_EDUCATION_DEGREE.EducationDegreeCode  = CLS_DEGREE.DEGREE_CODE 
   WHERE DeleteStatus = 0 AND SchoolID = ' . $_GET['SchoolID'] . ' AND TeacherID = "' . $_GET['TeacherID'] . '"
   ');
+$CountI = 0;
 foreach ($result->result() as $TEACHER_EDUCATION_DEGREE) {
+    $CountI++;
 ?>
-    <div class="modal fade" id="Delete<?= $TEACHER_EDUCATION_DEGREE->TeacherID . $TEACHER_EDUCATION_DEGREE->EducationDegreeCode; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+    <div class="modal fade" id="Delete<?= $CountI ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -123,7 +127,7 @@ foreach ($result->result() as $TEACHER_EDUCATION_DEGREE) {
                     </h6>
                 </div>
                 <div class="modal-footer">
-                    <a href="<?php echo base_url('delete-teacher-education/'  . $_GET['TeacherID'] . '/' .  $_GET['SchoolID'] . '/' .  $_GET['EducationYear'] . '/' .  $_GET['Semester'] . '/' .  $_GET['PersonnelTypeCode'] . '/' .  $_GET['PositionCode'] . '/' . $TEACHER_EDUCATION_DEGREE->EducationDegreeCode);
+                    <a href="<?php echo base_url('delete-teacher-education/'  . $_GET['TeacherID'] . '/' .  $_GET['SchoolID'] . '/' .  $_GET['EducationYear'] . '/' .  $_GET['Semester'] . '/' .  $_GET['PersonnelTypeCode'] . '/' .  $_GET['PositionCode'] . '/' . $TEACHER_EDUCATION_DEGREE->EducationLevelCode . '/' . $TEACHER_EDUCATION_DEGREE->EducationMajorCode . '/' . $TEACHER_EDUCATION_DEGREE->EducationDegreeCode);
                                 ?>" class="btn btn-danger">ลบ</a>
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ยกเลิก</button>
                 </div>

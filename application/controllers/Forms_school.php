@@ -150,9 +150,9 @@ class Forms_school extends CI_Controller
     }
 
     //Update Data Form School MAIN
-    public function update_school_main($SchoolID)
+    public function update_school_main($SchoolID, $ImageSchool)
     {
-        $this->forms_school->update_school_main($SchoolID);
+        $this->forms_school->update_school_main($SchoolID, $ImageSchool);
         $_SESSION['success'] = "แก้ไขข้อมูลเรียบร้อย";
         redirect(base_url('school?SchoolID=' . $SchoolID));
     }

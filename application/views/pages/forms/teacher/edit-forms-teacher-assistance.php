@@ -25,21 +25,28 @@
 
                 <div class="card">
                     <div class="card-body">
-                        <!-- Floating Labels Form -->
-                        <form class="row g-3" action="<?php echo base_url('update-teacher-assistance/' . $_GET['TeacherID'] . '/' . $_GET['SchoolID'] . '/' . $_GET['EducationYear'] . '/' . $_GET['Semester'] . '/' . $_GET['PersonnelTypeCode'] . '/' . $_GET['PositionCode'] . '/' . $_GET['AssistanceTypeCode']); ?>" method="POST" id="Teacher" enctype="multipart/form-data">
-                            <h6 style="padding-left: 15px;" class="card-title"></h6>
-                            <?php
-                            $result = $this->db->query('SELECT *
+                        <?php
+                        $result = $this->db->query('SELECT *
                                     FROM TEACHER_ASSISTANCE 
                                     INNER JOIN CLS_ASSISTANCE_TYPE ON TEACHER_ASSISTANCE.AssistanceTypeCode = CLS_ASSISTANCE_TYPE.ASSISTANCE_TYPE_CODE
-                                    WHERE TEACHER_ASSISTANCE.DeleteStatus = 0 
+                                    WHERE TEACHER_ASSISTANCE.DeleteStatus = 0
                                     AND TEACHER_ASSISTANCE.SchoolID = ' . $_GET['SchoolID'] . ' 
                                     AND TEACHER_ASSISTANCE.TeacherID = "' . $_GET['TeacherID'] . '"
                                     AND TEACHER_ASSISTANCE.AssistanceTypeCode = ' . $_GET['AssistanceTypeCode'] . '
+                                    AND TEACHER_ASSISTANCE.AssistanceStartDate = "' . $_GET['AssistanceStartDate'] . '"
                                     ');
 
-                            foreach ($result->result() as $TEACHER_ASSISTANCE) {
-                            ?>
+                        foreach ($result->result() as $TEACHER_ASSISTANCE) {
+                            if ($TEACHER_ASSISTANCE->AssistanceDocumentURL == NULL) {
+                                $AddOrUpdate = 0;
+                            } else {
+                                $AddOrUpdate = $TEACHER_ASSISTANCE->AssistanceDocumentURL;
+                            }
+                        ?>
+                            <!-- Floating Labels Form -->
+                            <form class="row g-3" action="<?php echo base_url('update-teacher-assistance/' . $_GET['TeacherID'] . '/' . $_GET['SchoolID'] . '/' . $_GET['EducationYear'] . '/' . $_GET['Semester'] . '/' . $_GET['PersonnelTypeCode'] . '/' . $_GET['PositionCode'] . '/' . $_GET['AssistanceTypeCode'] . '/' . $_GET['AssistanceStartDate'] . '/' . $AddOrUpdate); ?>" method="POST" id="Teacher" enctype="multipart/form-data">
+                                <h6 style="padding-left: 15px;" class="card-title"></h6>
+
                                 <div class="col-md-6">
                                     <div class="form-floating">
                                         <select class="form-select" name="AssistanceTypeCode" id="AssistanceTypeCode" aria-label="AssistanceTypeCode" disabled>
@@ -54,7 +61,7 @@
                                             }
                                             ?>
                                         </select>
-                                        <label for="AssistanceTypeCode">ประเภท<font color="red"> *</font></label>
+                                        <label for="AssistanceTypeCode">ประเภท <font color="red"> *</font></label>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
@@ -65,8 +72,8 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-floating">
-                                        <input type="date" class="form-control" name="AssistanceStartDate" id="AssistanceStartDate" value="<?= $TEACHER_ASSISTANCE->AssistanceStartDate ?>">
-                                        <label for="AssistanceStartDate">วันที่เริ่ม</label>
+                                        <input type="date" class="form-control" name="AssistanceStartDate" id="AssistanceStartDate" value="<?= $TEACHER_ASSISTANCE->AssistanceStartDate ?>" disabled>
+                                        <label for="AssistanceStartDate">วันที่เริ่ม <font color="red"> *</font></label>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
@@ -123,7 +130,7 @@
                             </div>
 
 
-                        </form><!-- End Form ข้อมูลการพัฒนาบุคลากรครู -->
+                            </form><!-- End Form ข้อมูลการพัฒนาบุคลากรครู -->
 
                     </div>
                 </div>
