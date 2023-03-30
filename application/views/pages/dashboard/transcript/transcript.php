@@ -251,6 +251,8 @@
                             <tr>
                                 <th>ใบแสดงผลการศึกษาชุดที่</th>
                                 <th scope="col">ใบแสดงผลการศึกษาเลขที่</th>
+                                <th style="text-align: center;" scope="col">ดาวน์โหลดใบแสดงผลการศึกษา</th>
+                                <th style="text-align: center;" scope="col">พิมพ์ใบแสดงผลการศึกษา</th>
                                 <th style="text-align: center;" scope="col">รายละเอียด</th>
                                 <th style="text-align: center;" scope="col">ปฎิบัติ</th>
                             </tr>
@@ -266,6 +268,8 @@
                                 <tr>
                                     <td><?= $TRANSCRIPT->TranscriptSeriesNumber; ?></td>
                                     <td><?= $TRANSCRIPT->TranscriptNumber; ?></td>
+                                    <td style="text-align: center;"><a class="btn btn-light"><i class="bi bi-download"></i></a></td>
+                                    <td style="text-align: center;"><a class="btn btn-light"><i class="bi bi-printer"></i></a></td>
                                     <td style="text-align: center;">
                                         <a href="?SchoolID=<?= $_GET['SchoolID'] ?>&&StudentReferenceID=<?= $_GET['StudentReferenceID'] ?>&&EducationYear=<?= $_GET['EducationYear'] ?>&&Semester=<?= $_GET['Semester'] ?>&&GradeLevelCode=<?= $_GET['GradeLevelCode'] ?>&&StudentID=<?= $_GET['StudentID'] ?>&&TranscriptSeriesNumber=<?= $TRANSCRIPT->TranscriptSeriesNumber; ?>&&TranscriptNumber=<?= $TRANSCRIPT->TranscriptNumber; ?>" class="btn btn-primary"><i class="bi bi-card-list"></i></a>
                                     </td>
@@ -308,7 +312,7 @@
                         <div class="card">
                             <div class="card-body">
                                 <div class="row">
-                                    <div class="col-12" style="padding-left: 40px; padding-right: 40px;">
+                                    <div class="col-12">
                                         <h5 style="text-align: left; padding-left: 25px; padding-top: 20px;" class="card-title">
                                             <b>ใบแสดงผลการศึกษาชุดที่: <?= $_GET['TranscriptSeriesNumber']; ?> &nbsp;เลขที่: <?= $_GET['TranscriptNumber']; ?></b>
                                             <a style="float: right;" href="edit-forms-transcript-main?SchoolID=<?= $_GET['SchoolID'] ?>&&StudentReferenceID=<?= $_GET['StudentReferenceID'] ?>&&EducationYear=<?= $_GET['EducationYear'] ?>&&Semester=<?= $_GET['Semester'] ?>&&GradeLevelCode=<?= $_GET['GradeLevelCode'] ?>&&StudentID=<?= $_GET['StudentID'] ?>&&TranscriptSeriesNumber=<?= $TRANSCRIPT->TranscriptSeriesNumber; ?>&&TranscriptNumber=<?= $TRANSCRIPT->TranscriptNumber; ?>" class="btn btn-sm btn-warning"><i class="bi bi-pencil-square"></i></a>
@@ -336,7 +340,7 @@
                                                     }  ?>
                                                 </label><br>
                                             </div>
-                                            <div class="col-6" style="text-align: left; padding-left: 10px; padding-bottom: 5px;">
+                                            <div class="col-6" style="text-align: left;  padding-bottom: 5px;">
                                                 <label style="padding-left: 40px;"><b>ข้อมูลสถานศึกษาเดิม</b></label><br>
                                                 <label style="padding-left: 60px; padding-top: 10px;">สถานศึกษา :&nbsp;
                                                     <?php if ($TRANSCRIPT->OldSchoolID != '') {
@@ -371,113 +375,126 @@
                         <div class="card">
                             <div class="card-body">
                                 <div class="row">
-                                    <div class="col-12" style="padding-left: 10px; padding-right: 40px;">
+                                    <div class="col-12">
                                         <h5 style="text-align: left; padding-left: 25px; padding-top: 20px;" class="card-title">
                                             <a style="float: right;" href="edit-forms-transcript-evaluation?SchoolID=<?= $_GET['SchoolID'] ?>&&StudentReferenceID=<?= $_GET['StudentReferenceID'] ?>&&EducationYear=<?= $_GET['EducationYear'] ?>&&Semester=<?= $_GET['Semester'] ?>&&GradeLevelCode=<?= $_GET['GradeLevelCode'] ?>&&StudentID=<?= $_GET['StudentID'] ?>&&TranscriptSeriesNumber=<?= $TRANSCRIPT->TranscriptSeriesNumber; ?>&&TranscriptNumber=<?= $TRANSCRIPT->TranscriptNumber; ?>" class="btn btn-sm btn-warning"><i class="bi bi-pencil-square"></i></a>
                                         </h5>
                                         <div class="row">
-                                            <div class="col-6" style="text-align: left; padding-left: 40px; padding-bottom: 5px;">
+                                            <div class="col-6">
+
                                                 <label style="padding-left: 30px;"><b>ข้อมูลผลการประเมิน</b>
                                                 </label><br>
-                                                <label style="padding-left: 50px; padding-top: 10px;">รายวิชาพื้นฐาน :&nbsp;
-                                                    <?php if ($TRANSCRIPT->FundamentalEvaluationCode != '') {
-                                                        $result = $this->db->query('SELECT * FROM CLS_FUNDAMENTAL_SUBJECT_EVALUATION 
+                                                <div class="row">
+                                                    <div class="col-6">
+                                                        <label style="padding-left: 50px; padding-top: 10px;">รายวิชาพื้นฐาน :&nbsp;
+                                                            <?php if ($TRANSCRIPT->FundamentalEvaluationCode != '') {
+                                                                $result = $this->db->query('SELECT * FROM CLS_FUNDAMENTAL_SUBJECT_EVALUATION 
                                                          WHERE FUNDAMENTAL_SUBJECT_EVALUATION_CODE = ' . $TRANSCRIPT->FundamentalEvaluationCode . '
                                                          ');
-                                                        foreach ($result->result() as $FUNDAMENTAL_SUBJECT_EVALUATION) {
-                                                            echo $FUNDAMENTAL_SUBJECT_EVALUATION->FUNDAMENTAL_SUBJECT_EVALUATION_NAME;
-                                                        }
-                                                    } else {
-                                                        echo '-';
-                                                    }  ?>
-                                                </label><br>
-                                                <label style="padding-left: 50px; padding-top: 10px;">การอ่าน วิเคราะห์ และเขียน :&nbsp;
-                                                    <?php if ($TRANSCRIPT->LiteracyEvaluationCode != '') {
-                                                        $result = $this->db->query('SELECT * FROM CLS_LITERACY_EVALUATION 
+                                                                foreach ($result->result() as $FUNDAMENTAL_SUBJECT_EVALUATION) {
+                                                                    echo $FUNDAMENTAL_SUBJECT_EVALUATION->FUNDAMENTAL_SUBJECT_EVALUATION_NAME;
+                                                                }
+                                                            } else {
+                                                                echo '-';
+                                                            }  ?>
+                                                        </label><br>
+                                                        <label style="padding-left: 50px; padding-top: 10px;">การอ่าน วิเคราะห์ และเขียน :&nbsp;
+                                                            <?php if ($TRANSCRIPT->LiteracyEvaluationCode != '') {
+                                                                $result = $this->db->query('SELECT * FROM CLS_LITERACY_EVALUATION 
                                                          WHERE LITERACY_EVALUATION_CODE = ' . $TRANSCRIPT->LiteracyEvaluationCode . '
                                                          ');
-                                                        foreach ($result->result() as $LITERACY_EVALUATION) {
-                                                            echo $LITERACY_EVALUATION->LITERACY_EVALUATION_NAME;
-                                                        }
-                                                    } else {
-                                                        echo '-';
-                                                    }  ?>
-                                                </label><br>
-                                                <label style="padding-left: 50px; padding-top: 10px;">คุณลักษณะอันพึงประสงค์ :&nbsp;
-                                                    <?php if ($TRANSCRIPT->AttributeEvaluationCode != '') {
-                                                        $result = $this->db->query('SELECT * FROM CLS_ATTRIBUTE_EVALUATION 
+                                                                foreach ($result->result() as $LITERACY_EVALUATION) {
+                                                                    echo $LITERACY_EVALUATION->LITERACY_EVALUATION_NAME;
+                                                                }
+                                                            } else {
+                                                                echo '-';
+                                                            }  ?>
+                                                        </label><br>
+                                                    </div>
+                                                    <div class="col-6">
+                                                        <label style="padding-left: 10px; padding-top: 10px;">คุณลักษณะอันพึงประสงค์ :&nbsp;
+                                                            <?php if ($TRANSCRIPT->AttributeEvaluationCode != '') {
+                                                                $result = $this->db->query('SELECT * FROM CLS_ATTRIBUTE_EVALUATION 
                                                          WHERE ATTRIBUTE_EVALUATION_CODE = ' . $TRANSCRIPT->AttributeEvaluationCode . '
                                                          ');
-                                                        foreach ($result->result() as $ATTRIBUTE_EVALUATION) {
-                                                            echo $ATTRIBUTE_EVALUATION->ATTRIBUTE_EVALUATION_NAME;
-                                                        }
-                                                    } else {
-                                                        echo '-';
-                                                    }  ?>
-                                                </label><br>
-                                                <label style="padding-left: 50px; padding-top: 10px;">กิจกรรมพัฒนาผู้เรียน :&nbsp;
-                                                    <?php if ($TRANSCRIPT->AttributeEvaluationCode != '') {
-                                                        $result = $this->db->query('SELECT * FROM CLS_EXTRACURRICULAR_EVALUATION 
+                                                                foreach ($result->result() as $ATTRIBUTE_EVALUATION) {
+                                                                    echo $ATTRIBUTE_EVALUATION->ATTRIBUTE_EVALUATION_NAME;
+                                                                }
+                                                            } else {
+                                                                echo '-';
+                                                            }  ?>
+                                                        </label><br>
+                                                        <label style="padding-left: 10px; padding-top: 10px;">กิจกรรมพัฒนาผู้เรียน :&nbsp;
+                                                            <?php if ($TRANSCRIPT->AttributeEvaluationCode != '') {
+                                                                $result = $this->db->query('SELECT * FROM CLS_EXTRACURRICULAR_EVALUATION 
                                                          WHERE EXTRACURRICULAR_EVALUATION_CODE = ' . $TRANSCRIPT->AttributeEvaluationCode . '
                                                          ');
-                                                        foreach ($result->result() as $EXTRACURRICULAR_EVALUATION) {
-                                                            echo $EXTRACURRICULAR_EVALUATION->EXTRACURRICULAR_EVALUATION_NAME;
-                                                        }
-                                                    } else {
-                                                        echo '-';
-                                                    }  ?>
-                                                </label><br>
+                                                                foreach ($result->result() as $EXTRACURRICULAR_EVALUATION) {
+                                                                    echo $EXTRACURRICULAR_EVALUATION->EXTRACURRICULAR_EVALUATION_NAME;
+                                                                }
+                                                            } else {
+                                                                echo '-';
+                                                            }  ?>
+                                                        </label><br>
+                                                    </div>
+                                                </div>
                                             </div>
                                             <div class="col-6" style="text-align: left; padding-left: 40px; padding-bottom: 5px;">
-                                                <label style="padding-left: 40px;"><b>ข้อมูลผลการตัดสิน</b></label><br>
-                                                <label style="padding-left: 60px; padding-top: 10px;">รายวิชาพื้นฐาน:&nbsp;
-                                                    <?php if ($TRANSCRIPT->FundamentalSubjectPassingCode != '') {
-                                                        $result = $this->db->query('SELECT * FROM CLS_FUNDAMENTAL_SUBJECT_PASSING 
+                                                <label style="padding-left: 30px;"><b>ข้อมูลผลการตัดสิน</b></label><br>
+                                                <div class="row">
+                                                    <div class="col-6">
+                                                        <label style="padding-left: 50px; padding-top: 10px;">รายวิชาพื้นฐาน:&nbsp;
+                                                            <?php if ($TRANSCRIPT->FundamentalSubjectPassingCode != '') {
+                                                                $result = $this->db->query('SELECT * FROM CLS_FUNDAMENTAL_SUBJECT_PASSING 
                                                          WHERE FUNDAMENTAL_SUBJECT_PASSING_CODE = ' . $TRANSCRIPT->FundamentalSubjectPassingCode . '
                                                          ');
-                                                        foreach ($result->result() as $FUNDAMENTAL_SUBJECT_PASSING) {
-                                                            echo $FUNDAMENTAL_SUBJECT_PASSING->FUNDAMENTAL_SUBJECT_PASSING_NAME;
-                                                        }
-                                                    } else {
-                                                        echo '-';
-                                                    }  ?>
-                                                </label><br>
-                                                <label style="padding-left: 60px; padding-top: 10px;">การอ่าน วิเคราะห์ และเขียน :&nbsp;
-                                                    <?php if ($TRANSCRIPT->LiteracyPassingCode != '') {
-                                                        $result = $this->db->query('SELECT * FROM CLS_LITERACY_PASSING 
+                                                                foreach ($result->result() as $FUNDAMENTAL_SUBJECT_PASSING) {
+                                                                    echo $FUNDAMENTAL_SUBJECT_PASSING->FUNDAMENTAL_SUBJECT_PASSING_NAME;
+                                                                }
+                                                            } else {
+                                                                echo '-';
+                                                            }  ?>
+                                                        </label><br>
+                                                        <label style="padding-left: 50px; padding-top: 10px;">การอ่าน วิเคราะห์ และเขียน :&nbsp;
+                                                            <?php if ($TRANSCRIPT->LiteracyPassingCode != '') {
+                                                                $result = $this->db->query('SELECT * FROM CLS_LITERACY_PASSING 
                                                          WHERE LITERACY_PASSING_CODE = ' . $TRANSCRIPT->LiteracyPassingCode . '
                                                          ');
-                                                        foreach ($result->result() as $LITERACY_PASSING) {
-                                                            echo $LITERACY_PASSING->LITERACY_PASSING_NAME;
-                                                        }
-                                                    } else {
-                                                        echo '-';
-                                                    }  ?>
-                                                </label><br>
-                                                <label style="padding-left: 60px; padding-top: 10px;">คุณลักษณะอันพึงประสงค์ :&nbsp;
-                                                    <?php if ($TRANSCRIPT->AttributePassingCode != '') {
-                                                        $result = $this->db->query('SELECT * FROM CLS_ATTRIBUTE_PASSING 
+                                                                foreach ($result->result() as $LITERACY_PASSING) {
+                                                                    echo $LITERACY_PASSING->LITERACY_PASSING_NAME;
+                                                                }
+                                                            } else {
+                                                                echo '-';
+                                                            }  ?>
+                                                        </label><br>
+                                                    </div>
+                                                    <div class="col-6">
+                                                        <label style="padding-left: 20px; padding-top: 10px;">คุณลักษณะอันพึงประสงค์ :&nbsp;
+                                                            <?php if ($TRANSCRIPT->AttributePassingCode != '') {
+                                                                $result = $this->db->query('SELECT * FROM CLS_ATTRIBUTE_PASSING 
                                                          WHERE ATTRIBUTE_PASSING_CODE = ' . $TRANSCRIPT->AttributePassingCode . '
                                                          ');
-                                                        foreach ($result->result() as $ATTRIBUTE_PASSING) {
-                                                            echo $ATTRIBUTE_PASSING->ATTRIBUTE_PASSING_NAME;
-                                                        }
-                                                    } else {
-                                                        echo '-';
-                                                    }  ?>
-                                                </label><br>
-                                                <label style="padding-left: 60px; padding-top: 10px;">กิจกรรมพัฒนาผู้เรียน :&nbsp;
-                                                    <?php if ($TRANSCRIPT->ExtracurricularPassingCode != '') {
-                                                        $result = $this->db->query('SELECT * FROM CLS_EXTRACURRICULAR_PASSING 
+                                                                foreach ($result->result() as $ATTRIBUTE_PASSING) {
+                                                                    echo $ATTRIBUTE_PASSING->ATTRIBUTE_PASSING_NAME;
+                                                                }
+                                                            } else {
+                                                                echo '-';
+                                                            }  ?>
+                                                        </label><br>
+                                                        <label style="padding-left: 20px; padding-top: 10px;">กิจกรรมพัฒนาผู้เรียน :&nbsp;
+                                                            <?php if ($TRANSCRIPT->ExtracurricularPassingCode != '') {
+                                                                $result = $this->db->query('SELECT * FROM CLS_EXTRACURRICULAR_PASSING 
                                                          WHERE EXTRACURRICULAR_PASSING_CODE = ' . $TRANSCRIPT->ExtracurricularPassingCode . '
                                                          ');
-                                                        foreach ($result->result() as $EXTRACURRICULAR_PASSING) {
-                                                            echo $EXTRACURRICULAR_PASSING->EXTRACURRICULAR_PASSING_NAME;
-                                                        }
-                                                    } else {
-                                                        echo '-';
-                                                    }  ?>
-                                                </label><br>
+                                                                foreach ($result->result() as $EXTRACURRICULAR_PASSING) {
+                                                                    echo $EXTRACURRICULAR_PASSING->EXTRACURRICULAR_PASSING_NAME;
+                                                                }
+                                                            } else {
+                                                                echo '-';
+                                                            }  ?>
+                                                        </label><br>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -488,37 +505,40 @@
                         <div class="card">
                             <div class="card-body">
                                 <div class="row">
-                                    <div class="col-12" style="padding-left: 40px; padding-right: 40px;">
+                                    <div class="col-12">
                                         <h5 style="text-align: left; padding-top: 25px;" class="card-title">
                                             <b>ผลการเรียนรายวิชา</b>
-                                            <a style="float: right;" href="transcript-subject?SchoolID=<?= $_GET['SchoolID'] ?>&&StudentReferenceID=<?= $_GET['StudentReferenceID'] ?>&&EducationYear=<?= $_GET['EducationYear'] ?>&&Semester=<?= $_GET['Semester'] ?>&&GradeLevelCode=<?= $_GET['GradeLevelCode'] ?>&&StudentID=<?= $_GET['StudentID'] ?>&&TranscriptSeriesNumber=<?= $TRANSCRIPT->TranscriptSeriesNumber; ?>&&TranscriptNumber=<?= $TRANSCRIPT->TranscriptNumber; ?>" class="btn btn-sm btn-info"><i class="bi bi-eye-fill"></i></a>
+                                            <a style="float: right;" href="transcript-subject?SchoolID=<?= $_GET['SchoolID'] ?>&&StudentReferenceID=<?= $_GET['StudentReferenceID'] ?>&&EducationYear=<?= $_GET['EducationYear'] ?>&&Semester=<?= $_GET['Semester'] ?>&&GradeLevelCode=<?= $_GET['GradeLevelCode'] ?>&&StudentID=<?= $_GET['StudentID'] ?>&&TranscriptSeriesNumber=<?= $TRANSCRIPT->TranscriptSeriesNumber; ?>&&TranscriptNumber=<?= $TRANSCRIPT->TranscriptNumber; ?>" class="btn btn-sm btn-warning"><i class="bi bi-pencil-square"></i></a>
                                         </h5>
-                                        <table class="table">
+                                        <table class="table table-bordered">
                                             <thead>
                                                 <tr>
-                                                    <th scope="col">รหัสวิชา</th>
-                                                    <th scope="col">ชื่อวิชา</th>
-                                                    <th scope="col">ประเภทรายวิชา</th>
-                                                    <th scope="col">กลุ่มสาระการเรียนรู้</th>
-                                                    <th style="text-align: center;" scope="col">หน่วยกิต</th>
-                                                    <th style="text-align: center;" scope="col">ผลการเรียน</th>
+                                                    <td style="width: 10%; text-align: center;" scope="col">ปีการศึกษา</td>
+                                                    <td style="width: 10%; text-align: center;" scope="col">ภาคเรียน</td>
+                                                    <td scope="col">รหัสวิชา</td>
+                                                    <td scope="col">ชื่อวิชา</td>
+                                                    <td scope="col">ประเภทรายวิชา</td>
+                                                    <td scope="col">กลุ่มสาระการเรียนรู้</td>
+                                                    <td style="text-align: center;" scope="col">หน่วยกิต</td>
+                                                    <td style="text-align: center;" scope="col">ผลการเรียน</td>
                                                 </tr>
                                             </thead>
                                             <tbody>
                                                 <?php
-                                                $result = $this->db->query('SELECT * FROM TRANSCRIPT_SUBJECT 
+                                                $result = $this->db->query('SELECT * ,COUNT(TranscriptSeriesNumber) As Count FROM TRANSCRIPT_SUBJECT 
                                                     INNER JOIN CLS_SUBJECT_TYPE ON TRANSCRIPT_SUBJECT.SubjectTypeCode = CLS_SUBJECT_TYPE.SUBJECT_TYPE_CODE
                                                     INNER JOIN CLS_SUBJECT_GROUP ON TRANSCRIPT_SUBJECT.SubjectGroupCode = CLS_SUBJECT_GROUP.SUBJECT_GROUP_CODE
                                                     INNER JOIN CLS_GRADE ON TRANSCRIPT_SUBJECT.SubjectGradeCode = CLS_GRADE.GRADE_CODE
-                                                    WHERE TranscriptSeriesNumber = "' . $TRANSCRIPT->TranscriptSeriesNumber . '"
+                                                    WHERE DeleteStatus = 0
+                                                    AND TranscriptSeriesNumber = "' . $TRANSCRIPT->TranscriptSeriesNumber . '"
                                                     AND TranscriptNumber = "' . $TRANSCRIPT->TranscriptNumber . '"
                                                      ');
-                                                $CountSubject = 0;
                                                 foreach ($result->result() as $TRANSCRIPT_SUBJECT) {
-                                                    $CountSubject++;
-                                                    if ($CountSubject != 0) {
+                                                    if ($TRANSCRIPT_SUBJECT->Count != 0) {
                                                 ?>
                                                         <tr>
+                                                            <td style="text-align: center;"><?= $TRANSCRIPT_SUBJECT->SubjectEducationYear ?></td>
+                                                            <td style="text-align: center;"><?= $TRANSCRIPT_SUBJECT->SubjectSemester ?></td>
                                                             <td><?= $TRANSCRIPT_SUBJECT->SubjectCode ?></td>
                                                             <td><?= $TRANSCRIPT_SUBJECT->SubjectName ?></td>
                                                             <td><?= $TRANSCRIPT_SUBJECT->SUBJECT_TYPE_NAME ?></td>
@@ -544,26 +564,47 @@
                         <div class="card">
                             <div class="card-body">
                                 <div class="row">
-                                    <div class="col-12" style="padding-left: 40px; padding-right: 40px;">
+                                    <div class="col-12">
                                         <h5 style="text-align: left; padding-top: 25px;" class="card-title">
                                             <b>กิจกรรมพัฒนาผู้เรียน</b>
-                                            <a style="float: right;" href="transcript-subject?SchoolID=<?= $_GET['SchoolID'] ?>&&StudentReferenceID=<?= $_GET['StudentReferenceID'] ?>&&EducationYear=<?= $_GET['EducationYear'] ?>&&Semester=<?= $_GET['Semester'] ?>&&GradeLevelCode=<?= $_GET['GradeLevelCode'] ?>&&StudentID=<?= $_GET['StudentID'] ?>&&TranscriptSeriesNumber=<?= $TRANSCRIPT->TranscriptSeriesNumber; ?>&&TranscriptNumber=<?= $TRANSCRIPT->TranscriptNumber; ?>" class="btn btn-sm btn-info"><i class="bi bi-eye-fill"></i></a>
+                                            <a style="float: right;" href="transcript-activity?SchoolID=<?= $_GET['SchoolID'] ?>&&StudentReferenceID=<?= $_GET['StudentReferenceID'] ?>&&EducationYear=<?= $_GET['EducationYear'] ?>&&Semester=<?= $_GET['Semester'] ?>&&GradeLevelCode=<?= $_GET['GradeLevelCode'] ?>&&StudentID=<?= $_GET['StudentID'] ?>&&TranscriptSeriesNumber=<?= $TRANSCRIPT->TranscriptSeriesNumber; ?>&&TranscriptNumber=<?= $TRANSCRIPT->TranscriptNumber; ?>" class="btn btn-sm btn-warning"><i class="bi bi-pencil-square"></i></a>
                                         </h5>
-                                        <table class="table">
+                                        <table class="table table-bordered">
                                             <thead>
                                                 <tr>
-                                                    <th scope="col">ปีการศึกษา</th>
-                                                    <th scope="col">ภาคเรียน</th>
-                                                    <th scope="col">ชื่อกิจกรรม</th>
-                                                    <th scope="col">จำนวนชั่วโมง</th>
-                                                    <th scope="col">ผลการประเมิน</th>
+                                                    <td style="width: 10%; text-align: center;" scope="col">ปีการศึกษา</td>
+                                                    <td style="width: 10%; text-align: center;" scope="col">ภาคเรียน</td>
+                                                    <td scope="col">ชื่อกิจกรรม</td>
+                                                    <td style="text-align: center;" scope="col">จำนวนชั่วโมง</td>
+                                                    <td style="text-align: center;" scope="col">ผลการประเมิน</td>
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <tr>
-                                                    <td style="text-align: center;" colspan="6"> - ไม่พบข้อมูล - </td>
-                                                </tr>
-
+                                                <?php
+                                                $result = $this->db->query('SELECT * ,COUNT(TranscriptSeriesNumber) As Count FROM TRANSCRIPT_EXTRACURRICULAR_ACTIVITY 
+                                                    INNER JOIN CLS_ACTIVITY_PASSING ON TRANSCRIPT_EXTRACURRICULAR_ACTIVITY.ActivityPassingCode = CLS_ACTIVITY_PASSING.ACTIVITY_PASSING_CODE
+                                                    WHERE DeleteStatus = 0
+                                                    AND TranscriptSeriesNumber = ' . $TRANSCRIPT->TranscriptSeriesNumber . '
+                                                    AND TranscriptNumber = ' . $TRANSCRIPT->TranscriptNumber . '
+                                                     ');
+                                                foreach ($result->result() as $TRANSCRIPT_EXTRACURRICULAR_ACTIVITY) {
+                                                    if ($TRANSCRIPT_EXTRACURRICULAR_ACTIVITY->Count != 0) {
+                                                ?>
+                                                        <tr>
+                                                            <td style="text-align: center;"><?= $TRANSCRIPT_EXTRACURRICULAR_ACTIVITY->ActivityEducationYear ?></td>
+                                                            <td style="text-align: center;"><?= $TRANSCRIPT_EXTRACURRICULAR_ACTIVITY->ActivitySemester ?></td>
+                                                            <td><?= $TRANSCRIPT_EXTRACURRICULAR_ACTIVITY->ActivityName ?></td>
+                                                            <td style="text-align: center;"><?= $TRANSCRIPT_EXTRACURRICULAR_ACTIVITY->ActivityHour ?></td>
+                                                            <td style="text-align: center;"><?= $TRANSCRIPT_EXTRACURRICULAR_ACTIVITY->ACTIVITY_PASSING_NAME ?></td>
+                                                        </tr>
+                                                    <?php } else {
+                                                    ?>
+                                                        <tr>
+                                                            <td style="text-align: center;" colspan="6"> - ไม่พบข้อมูล - </td>
+                                                        </tr>
+                                                <?php
+                                                    }
+                                                } ?>
                                             </tbody>
                                         </table>
                                     </div>
@@ -573,25 +614,48 @@
                         <div class="card">
                             <div class="card-body">
                                 <div class="row">
-                                    <div class="col-12" style="padding-left: 40px; padding-right: 40px;">
+                                    <div class="col-12">
                                         <h5 style="text-align: left; padding-top: 25px;" class="card-title">
-                                            <b>กิจกรรมพัฒนาผู้เรียน</b>
-                                            <a style="float: right;" href="transcript-subject?SchoolID=<?= $_GET['SchoolID'] ?>&&StudentReferenceID=<?= $_GET['StudentReferenceID'] ?>&&EducationYear=<?= $_GET['EducationYear'] ?>&&Semester=<?= $_GET['Semester'] ?>&&GradeLevelCode=<?= $_GET['GradeLevelCode'] ?>&&StudentID=<?= $_GET['StudentID'] ?>&&TranscriptSeriesNumber=<?= $TRANSCRIPT->TranscriptSeriesNumber; ?>&&TranscriptNumber=<?= $TRANSCRIPT->TranscriptNumber; ?>" class="btn btn-sm btn-info"><i class="bi bi-eye-fill"></i></a>
+                                            <b>ผลการการทดสอบระดับขั้นพื้นฐาน O-NET</b>
+                                            <a style="float: right;" href="transcript-onet?SchoolID=<?= $_GET['SchoolID'] ?>&&StudentReferenceID=<?= $_GET['StudentReferenceID'] ?>&&EducationYear=<?= $_GET['EducationYear'] ?>&&Semester=<?= $_GET['Semester'] ?>&&GradeLevelCode=<?= $_GET['GradeLevelCode'] ?>&&StudentID=<?= $_GET['StudentID'] ?>&&TranscriptSeriesNumber=<?= $TRANSCRIPT->TranscriptSeriesNumber; ?>&&TranscriptNumber=<?= $TRANSCRIPT->TranscriptNumber; ?>" class="btn btn-sm btn-warning"><i class="bi bi-pencil-square"></i></a>
                                         </h5>
-                                        <table class="table">
+                                        <table class="table table-bordered">
                                             <thead>
                                                 <tr>
-                                                    <th scope="col">ปีการศึกษา</th>
-                                                    <th scope="col">ภาคเรียน</th>
-                                                    <th scope="col">ชื่อกิจกรรม</th>
-                                                    <th scope="col">จำนวนชั่วโมง</th>
+                                                    <td style="width: 10%; text-align: center;" scope="col">ปีการศึกษา</td>
+                                                    <td scope="col">ชั้นปีการทดสอบ</td>
+                                                    <td scope="col">กลุ่มสาระวิชา</td>
+                                                    <td style="text-align: center;" scope="col">ผลการทดสอบ</td>
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <tr>
-                                                    <td style="text-align: center;" colspan="6"> - ไม่พบข้อมูล - </td>
-                                                </tr>
-
+                                                <?php
+                                                $result = $this->db->query('SELECT * ,COUNT(TranscriptSeriesNumber) As Count  FROM TRANSCRIPT_ONET 
+                                                    INNER JOIN CLS_GRADE_LEVEL ON TRANSCRIPT_ONET.ONETGradeLevelCode = CLS_GRADE_LEVEL.GRADE_LEVEL_CODE
+                                                    INNER JOIN CLS_SUBJECT_GROUP ON TRANSCRIPT_ONET.ONETSubjectGroupCode = CLS_SUBJECT_GROUP.SUBJECT_GROUP_CODE
+                                                    INNER JOIN CLS_GRADE ON TRANSCRIPT_ONET.ONETSubjectGradeCode = CLS_GRADE.GRADE_CODE
+                                                    WHERE DeleteStatus = 0
+                                                    AND TranscriptSeriesNumber = ' . $TRANSCRIPT->TranscriptSeriesNumber . '
+                                                    AND TranscriptNumber = ' . $TRANSCRIPT->TranscriptNumber . '
+                                                     ');
+                                                foreach ($result->result() as $TRANSCRIPT_ONET) {
+                                                    if ($TRANSCRIPT_ONET->Count != 0) {
+                                                ?>
+                                                        <tr>
+                                                            <td style="text-align: center;"><?= $TRANSCRIPT_ONET->ONETEducationYear ?></td>
+                                                            <td><?= $TRANSCRIPT_ONET->GRADE_LEVEL_NAME ?></td>
+                                                            <td><?= $TRANSCRIPT_ONET->SUBJECT_GROUP_NAME ?></td>
+                                                            <td style="text-align: center;"><?= $TRANSCRIPT_ONET->GRADE_NAME ?></td>
+                                                        </tr>
+                                                    <?php } else {
+                                                    ?>
+                                                        <tr>
+                                                            <td style="text-align: center;" colspan="6"> - ไม่พบข้อมูล - </td>
+                                                        </tr>
+                                                <?php
+                                                    }
+                                                }
+                                                ?>
                                             </tbody>
                                         </table>
                                     </div>
@@ -601,24 +665,50 @@
                         <div class="card">
                             <div class="card-body">
                                 <div class="row">
-                                    <div class="col-12" style="padding-left: 40px; padding-right: 40px;">
+                                    <div class="col-12">
                                         <h5 style="text-align: left; padding-top: 25px;" class="card-title">
-                                            <b>ผลการการทดสอบทางการศึกษาระดับขั้นพื้นฐาน O-NET</b>
-                                            <a style="float: right;" href="transcript-subject?SchoolID=<?= $_GET['SchoolID'] ?>&&StudentReferenceID=<?= $_GET['StudentReferenceID'] ?>&&EducationYear=<?= $_GET['EducationYear'] ?>&&Semester=<?= $_GET['Semester'] ?>&&GradeLevelCode=<?= $_GET['GradeLevelCode'] ?>&&StudentID=<?= $_GET['StudentID'] ?>&&TranscriptSeriesNumber=<?= $TRANSCRIPT->TranscriptSeriesNumber; ?>&&TranscriptNumber=<?= $TRANSCRIPT->TranscriptNumber; ?>" class="btn btn-sm btn-info"><i class="bi bi-eye-fill"></i></a>
+                                            <b>ผลประเมินคุณภาพผู้เรียน</b>
+                                            <a style="float: right;" href="transcript-nt?SchoolID=<?= $_GET['SchoolID'] ?>&&StudentReferenceID=<?= $_GET['StudentReferenceID'] ?>&&EducationYear=<?= $_GET['EducationYear'] ?>&&Semester=<?= $_GET['Semester'] ?>&&GradeLevelCode=<?= $_GET['GradeLevelCode'] ?>&&StudentID=<?= $_GET['StudentID'] ?>&&TranscriptSeriesNumber=<?= $TRANSCRIPT->TranscriptSeriesNumber; ?>&&TranscriptNumber=<?= $TRANSCRIPT->TranscriptNumber; ?>" class="btn btn-sm btn-warning"><i class="bi bi-pencil-square"></i></a>
                                         </h5>
-                                        <table class="table">
+                                        <table class="table table-bordered">
                                             <thead>
                                                 <tr>
-                                                    <th scope="col">ปีการศึกษา</th>
-                                                    <th scope="col">ชั้นปีการทดสอบ</th>
-                                                    <th scope="col">กลุ่มสาระวิชา</th>
-                                                    <th scope="col">ผลการทดสอบ</th>
+                                                    <td style="width: 10%; text-align: center;" scope="col">ปีการศึกษา</td>
+                                                    <td style="width: 10%; text-align: center;" scope="col">ภาคเรียน</td>
+                                                    <td scope="col">ชั้นปีการประเมิน</td>
+                                                    <td style="text-align: center;" scope="col">คณิตศาสตร์</td>
+                                                    <td style="text-align: center;" scope="col">ภาษาไทย</td>
+                                                    <td style="text-align: center;" scope="col">คะแนนเฉลี่ย</td>
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <tr>
-                                                    <td style="text-align: center;" colspan="4"> - ไม่พบข้อมูล - </td>
-                                                </tr>
+                                                <?php
+                                                $result = $this->db->query('SELECT * ,COUNT(TranscriptSeriesNumber) As Count  FROM TRANSCRIPT_NT 
+                                                    INNER JOIN CLS_GRADE_LEVEL ON TRANSCRIPT_NT.NTGradeLevelCode = CLS_GRADE_LEVEL.GRADE_LEVEL_CODE
+                                                    WHERE DeleteStatus = 0
+                                                    AND TranscriptSeriesNumber = ' . $TRANSCRIPT->TranscriptSeriesNumber . '
+                                                    AND TranscriptNumber = ' . $TRANSCRIPT->TranscriptNumber . '
+                                                     ');
+                                                foreach ($result->result() as $TRANSCRIPT_NT) {
+                                                    if ($TRANSCRIPT_NT->Count != 0) {
+                                                ?>
+                                                        <tr>
+                                                            <td style="text-align: center;"><?= $TRANSCRIPT_NT->NTEducationYear ?></td>
+                                                            <td style="text-align: center;"><?= $TRANSCRIPT_NT->NTSemester ?></td>
+                                                            <td><?= $TRANSCRIPT_NT->GRADE_LEVEL_NAME ?></td>
+                                                            <td style="text-align: center;"><?= $TRANSCRIPT_NT->NTMathScore ?></td>
+                                                            <td style="text-align: center;"><?= $TRANSCRIPT_NT->NTThaiLanguageScore ?></td>
+                                                            <td style="text-align: center;"><?= $TRANSCRIPT_NT->NTMeanScore ?></td>
+                                                        </tr>
+                                                    <?php } else {
+                                                    ?>
+                                                        <tr>
+                                                            <td style="text-align: center;" colspan="6"> - ไม่พบข้อมูล - </td>
+                                                        </tr>
+                                                <?php
+                                                    }
+                                                }
+                                                ?>
 
                                             </tbody>
                                         </table>
@@ -629,26 +719,53 @@
                         <div class="card">
                             <div class="card-body">
                                 <div class="row">
-                                    <div class="col-12" style="padding-left: 40px; padding-right: 40px;">
+                                    <div class="col-12">
                                         <h5 style="text-align: left; padding-top: 25px;" class="card-title">
-                                            <b>ผลประเมินคุณภาพผู้เรียน NT</b>
-                                            <a style="float: right;" href="transcript-subject?SchoolID=<?= $_GET['SchoolID'] ?>&&StudentReferenceID=<?= $_GET['StudentReferenceID'] ?>&&EducationYear=<?= $_GET['EducationYear'] ?>&&Semester=<?= $_GET['Semester'] ?>&&GradeLevelCode=<?= $_GET['GradeLevelCode'] ?>&&StudentID=<?= $_GET['StudentID'] ?>&&TranscriptSeriesNumber=<?= $TRANSCRIPT->TranscriptSeriesNumber; ?>&&TranscriptNumber=<?= $TRANSCRIPT->TranscriptNumber; ?>" class="btn btn-sm btn-info"><i class="bi bi-eye-fill"></i></a>
+                                            <b>ผลการประเมินความสามารถด้านการอ่าน</b>
+                                            <a style="float: right;" href="transcript-rt?SchoolID=<?= $_GET['SchoolID'] ?>&&StudentReferenceID=<?= $_GET['StudentReferenceID'] ?>&&EducationYear=<?= $_GET['EducationYear'] ?>&&Semester=<?= $_GET['Semester'] ?>&&GradeLevelCode=<?= $_GET['GradeLevelCode'] ?>&&StudentID=<?= $_GET['StudentID'] ?>&&TranscriptSeriesNumber=<?= $TRANSCRIPT->TranscriptSeriesNumber; ?>&&TranscriptNumber=<?= $TRANSCRIPT->TranscriptNumber; ?>" class="btn btn-sm btn-warning"><i class="bi bi-pencil-square"></i></a>
                                         </h5>
-                                        <table class="table">
+                                        <table class="table table-bordered table-fixed">
                                             <thead>
                                                 <tr>
-                                                    <th scope="col">ปีการศึกษา</th>
-                                                    <th scope="col">ภาคเรียน</th>
-                                                    <th scope="col">ชั้นปี</th>
-                                                    <th scope="col">คณิตศาสตร์</th>
-                                                    <th scope="col">ภาษาไทย</th>
-                                                    <th scope="col">คะแนนเฉลี่ย</th>
+                                                    <td style="width: 10%; text-align: center;" scope="col">ปีการศึกษา</td>
+                                                    <td style="width: 10%; text-align: center;" scope="col">ภาคเรียน</td>
+                                                    <td scope="col">ระดับการศึกษา</td>
+                                                    <td scope="col">ระดับชั้นปี</td>
+                                                    <td style="text-align: center;" scope="col">อ่านออกเสียง</td>
+                                                    <td style="text-align: center;" scope="col">อ่านรู้เรื่อง</td>
+                                                    <td style="text-align: center;" scope="col">คะแนนเฉลี่ย</td>
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <tr>
-                                                    <td style="text-align: center;" colspan="6"> - ไม่พบข้อมูล - </td>
-                                                </tr>
+                                                <?php
+                                                $result = $this->db->query('SELECT * ,COUNT(TranscriptSeriesNumber) As Count  FROM TRANSCRIPT_RT 
+                                                    INNER JOIN CLS_EDUCATION_LEVEL ON TRANSCRIPT_RT.RTEducationLevelCode = CLS_EDUCATION_LEVEL.EDUCATION_LEVEL_CODE
+                                                    INNER JOIN CLS_GRADE_LEVEL ON TRANSCRIPT_RT.RTGradeLevelCode = CLS_GRADE_LEVEL.GRADE_LEVEL_CODE
+                                                    WHERE DeleteStatus = 0
+                                                    AND TranscriptSeriesNumber = ' . $TRANSCRIPT->TranscriptSeriesNumber . '
+                                                    AND TranscriptNumber = ' . $TRANSCRIPT->TranscriptNumber . '
+                                                     ');
+                                                foreach ($result->result() as $TRANSCRIPT_RT) {
+                                                    if ($TRANSCRIPT_RT->Count != 0) {
+                                                ?>
+                                                        <tr>
+                                                            <td style="text-align: center;"><?= $TRANSCRIPT_RT->RTEducationYear ?></td>
+                                                            <td style="text-align: center;"><?= $TRANSCRIPT_RT->RTSemester ?></td>
+                                                            <td><?= $TRANSCRIPT_RT->EDUCATION_LEVEL_NAME ?></td>
+                                                            <td><?= $TRANSCRIPT_RT->GRADE_LEVEL_NAME ?></td>
+                                                            <td style="text-align: center;"><?= $TRANSCRIPT_RT->RTPronounceScore ?></td>
+                                                            <td style="text-align: center;"><?= $TRANSCRIPT_RT->RTUnderstandingScore ?></td>
+                                                            <td style="text-align: center;"><?= $TRANSCRIPT_RT->RTMeanScore ?></td>
+                                                        </tr>
+                                                    <?php } else {
+                                                    ?>
+                                                        <tr>
+                                                            <td style="text-align: center;" colspan="7"> - ไม่พบข้อมูล - </td>
+                                                        </tr>
+                                                <?php
+                                                    }
+                                                }
+                                                ?>
 
                                             </tbody>
                                         </table>
@@ -659,57 +776,49 @@
                         <div class="card">
                             <div class="card-body">
                                 <div class="row">
-                                    <div class="col-12" style="padding-left: 40px; padding-right: 40px;">
-                                        <h5 style="text-align: left; padding-top: 25px;" class="card-title">
-                                            <b>ผลการประเมินความสามารถด้านการอ่าน RT</b>
-                                            <a style="float: right;" href="transcript-subject?SchoolID=<?= $_GET['SchoolID'] ?>&&StudentReferenceID=<?= $_GET['StudentReferenceID'] ?>&&EducationYear=<?= $_GET['EducationYear'] ?>&&Semester=<?= $_GET['Semester'] ?>&&GradeLevelCode=<?= $_GET['GradeLevelCode'] ?>&&StudentID=<?= $_GET['StudentID'] ?>&&TranscriptSeriesNumber=<?= $TRANSCRIPT->TranscriptSeriesNumber; ?>&&TranscriptNumber=<?= $TRANSCRIPT->TranscriptNumber; ?>" class="btn btn-sm btn-info"><i class="bi bi-eye-fill"></i></a>
-                                        </h5>
-                                        <table class="table">
-                                            <thead>
-                                                <tr>
-                                                    <th scope="col">ปีการศึกษา</th>
-                                                    <th scope="col">ภาคเรียน</th>
-                                                    <th scope="col">ระดับการศึกษา</th>
-                                                    <th scope="col">ชั้นปี</th>
-                                                    <th scope="col">อ่านออกเสียง</th>
-                                                    <th scope="col">อ่านรู้เรื่อง</th>
-                                                    <th scope="col">คะแนนเฉลี่ย</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr>
-                                                    <td style="text-align: center;" colspan="7"> - ไม่พบข้อมูล - </td>
-                                                </tr>
-
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card">
-                            <div class="card-body">
-                                <div class="row">
-                                    <div class="col-12" style="padding-left: 40px; padding-right: 40px;">
+                                    <div class="col-12">
                                         <h5 style="text-align: left; padding-top: 25px;" class="card-title">
                                             <b>คุณภาพผู้เรียนตามสมรรถนะ</b>
-                                            <a style="float: right;" href="transcript-subject?SchoolID=<?= $_GET['SchoolID'] ?>&&StudentReferenceID=<?= $_GET['StudentReferenceID'] ?>&&EducationYear=<?= $_GET['EducationYear'] ?>&&Semester=<?= $_GET['Semester'] ?>&&GradeLevelCode=<?= $_GET['GradeLevelCode'] ?>&&StudentID=<?= $_GET['StudentID'] ?>&&TranscriptSeriesNumber=<?= $TRANSCRIPT->TranscriptSeriesNumber; ?>&&TranscriptNumber=<?= $TRANSCRIPT->TranscriptNumber; ?>" class="btn btn-sm btn-info"><i class="bi bi-eye-fill"></i></a>
+                                            <a style="float: right;" href="transcript-competency?SchoolID=<?= $_GET['SchoolID'] ?>&&StudentReferenceID=<?= $_GET['StudentReferenceID'] ?>&&EducationYear=<?= $_GET['EducationYear'] ?>&&Semester=<?= $_GET['Semester'] ?>&&GradeLevelCode=<?= $_GET['GradeLevelCode'] ?>&&StudentID=<?= $_GET['StudentID'] ?>&&TranscriptSeriesNumber=<?= $TRANSCRIPT->TranscriptSeriesNumber; ?>&&TranscriptNumber=<?= $TRANSCRIPT->TranscriptNumber; ?>" class="btn btn-sm btn-warning"><i class="bi bi-pencil-square"></i></a>
                                         </h5>
-                                        <table class="table">
+                                        <table class="table table-bordered">
                                             <thead>
                                                 <tr>
-                                                    <th scope="col">ปีการศึกษา</th>
-                                                    <th scope="col">ภาคเรียน</th>
-                                                    <th scope="col">สมรรถนะ</th>
-                                                    <th scope="col">คะแนน</th>
-                                                    <th scope="col">ผลการประเมิณ</th>
+                                                    <td style="width: 10%; text-align: center;" scope="col">ปีการศึกษา</td>
+                                                    <td style="width: 10%; text-align: center;" scope="col">ภาคเรียน</td>
+                                                    <td scope="col">สมรรถนะ</td>
+                                                    <td style="text-align: center;" scope="col">คะแนน</td>
+                                                    <td style="text-align: center;" scope="col">ผลการประเมิณ</td>
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <tr>
-                                                    <td style="text-align: center;" colspan="5"> - ไม่พบข้อมูล - </td>
-                                                </tr>
-
+                                                <?php
+                                                $result = $this->db->query('SELECT * ,COUNT(TranscriptSeriesNumber) As Count  FROM TRANSCRIPT_COMPETENCY 
+                                                    INNER JOIN CLS_COMPETENCY ON TRANSCRIPT_COMPETENCY.CompetencyCode = CLS_COMPETENCY.COMPETENCY_CODE
+                                                    INNER JOIN CLS_COMPETENCY_EVAULATION ON TRANSCRIPT_COMPETENCY.CompetencyEvaluationCode = CLS_COMPETENCY_EVAULATION.COMPETENCY_EVAULATION_CODE
+                                                    WHERE DeleteStatus = 0
+                                                    AND TranscriptSeriesNumber = ' . $TRANSCRIPT->TranscriptSeriesNumber . '
+                                                    AND TranscriptNumber = ' . $TRANSCRIPT->TranscriptNumber . '
+                                                     ');
+                                                foreach ($result->result() as $TRANSCRIPT_COMPETENCY) {
+                                                    if ($TRANSCRIPT_COMPETENCY->Count != 0) {
+                                                ?>
+                                                        <tr>
+                                                            <td style="text-align: center;"><?= $TRANSCRIPT_COMPETENCY->CompetencyEducationYear ?></td>
+                                                            <td style="text-align: center;"><?= $TRANSCRIPT_COMPETENCY->CompetencySemester ?></td>
+                                                            <td><?= $TRANSCRIPT_COMPETENCY->COMPETENCY_NAME ?></td>
+                                                            <td style="text-align: center;"><?= $TRANSCRIPT_COMPETENCY->CompetencyScore ?></td>
+                                                            <td style="text-align: center;"><?= $TRANSCRIPT_COMPETENCY->COMPETENCY_EVAULATION_NAME ?></td>
+                                                        </tr>
+                                                    <?php } else {
+                                                    ?>
+                                                        <tr>
+                                                            <td style="text-align: center;" colspan="7"> - ไม่พบข้อมูล - </td>
+                                                        </tr>
+                                                <?php
+                                                    }
+                                                }
+                                                ?>
                                             </tbody>
                                         </table>
                                     </div>
