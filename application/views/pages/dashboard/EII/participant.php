@@ -1,12 +1,12 @@
 <main id="main" class="main">
-    <style>
-    .link {
-        color: black;
-    }
+<style>
+        .my-link {
+  color: black;
+}
 
-    .link:hover {
-        color: black;
-    }
+.my-link:hover {
+  color: blue;
+}
     </style>
     <?php $page = isset($_GET['page']) ? $_GET['page'] : ''; ?>
     <?php $name = isset($_GET['name']) ? $_GET['name'] : ''; ?>
@@ -134,7 +134,7 @@
 
                             <!-- <td style=""><?php echo $show->ParticipantID; ?></td> -->
                             <td style=""><?php echo $show->ParticipantName; ?></td>
-                            <th scope="row " style="text-align: left; ">
+                            <td scope="row " style="text-align: left; ">
                                 <?php
                           $ParticipantID = $show->ParticipantID;
                           $result = $this->db->query("SELECT * FROM PARTICIPANT_CONTACT 
@@ -148,8 +148,8 @@ foreach ($result->result() as $shows) { ?>
                                     <div class="col">
                                         <p class="">
 
-                                            <a class="link"
-                                                href="<?php echo site_url('pc_forms_p2?page=sh22') ?>&&key=<?php echo $shows->Id; ?>&&name=<?php echo $show->ParticipantName; ?>">
+                                            <a 
+                                                href="<?php echo site_url('pc_forms_p2?page=sh22') ?>&&key=<?php echo $shows->Id; ?>&&name=<?php echo $show->ParticipantName; ?>" class="my-link">
                                                 <?php echo $shows->ContactName; ?>
 
                                         </p>
@@ -158,11 +158,11 @@ foreach ($result->result() as $shows) { ?>
                                 </div>
 
                                 <?php } ?>
-                                <a class="link"
-                                    href="<?php echo site_url('pc_forms_p2?page=sh2') ?>&&name=<?php echo $show->ParticipantName; ?>&&key=<?php echo $show->ParticipantID; ?>">>>เพิ่มติดต่อ>>
+                                <a 
+                                    href="<?php echo site_url('pc_forms_p2?page=sh2') ?>&&name=<?php echo $show->ParticipantName; ?>&&key=<?php echo $show->ParticipantID; ?>" class="my-link fw-bold">>>เพิ่มติดต่อ>>
                                 </a>
-                            </th>
-                            <th scope="row " style="text-align: left; ">
+                            </td>
+                            <td scope="row " style="text-align: left; ">
                                 <?php
                           $ParticipantID = $show->ParticipantID;
                           $result2 = $this->db->query("SELECT * FROM PARTICIPANT_COOPERATION 
@@ -175,8 +175,8 @@ foreach ($result2->result() as $show2) { ?>
                                     <div class="col">
                                         <p class="">
 
-                                            <a class="link"
-                                                href="<?php echo site_url('pcp_forms_p3?page=sh33') ?>&&key=<?php echo $show2->Id; ?>&&name=<?php echo $show->ParticipantName; ?>">
+                                            <a 
+                                                href="<?php echo site_url('pcp_forms_p3?page=sh33') ?>&&key=<?php echo $show2->Id; ?>&&name=<?php echo $show->ParticipantName; ?>" class="my-link">
 
                                                 <?php echo DateThai($show2->CooperationStartDate); ?>
                                         </p>
@@ -185,11 +185,11 @@ foreach ($result2->result() as $show2) { ?>
                                 </div>
 
                                 <?php } ?>
-                                <a class="link"
-                                    href="<?php echo site_url('pcp_forms_p3?page=sh3') ?>&&name=<?php echo $show->ParticipantName; ?>&&key=<?php echo $show->ParticipantID; ?>">>>เพิ่มการมีส่วนร่วม>>
+                                <a 
+                                    href="<?php echo site_url('pcp_forms_p3?page=sh3') ?>&&name=<?php echo $show->ParticipantName; ?>&&key=<?php echo $show->ParticipantID; ?>" class="my-link fw-bold">>>เพิ่มการมีส่วนร่วม>>
                                 </a>
-                            </th>
-                            <th scope="row " style="text-align: left; ">
+                            </td>
+                            <td scope="row " style="text-align: left; ">
                                 <?php
                           
                           $result3 = $this->db->query("SELECT * FROM PARTICIPANT_NOTE 
@@ -202,8 +202,8 @@ foreach ($result3->result() as $show3) { ?>
                                     <div class="col">
                                         <p class="">
 
-                                            <a class="link"
-                                                href="<?php echo site_url('pn_forms_p4?page=sh44') ?>&&key=<?php echo $show3->Id; ?>&&name=<?php echo $ParticipantName = $show->ParticipantName; ?>">
+                                            <a 
+                                                href="<?php echo site_url('pn_forms_p4?page=sh44') ?>&&key=<?php echo $show3->Id; ?>&&name=<?php echo $ParticipantName = $show->ParticipantName; ?>" class="my-link">
                                                 <?php echo $show3->Note; ?>
 
                                         </p>
@@ -212,10 +212,10 @@ foreach ($result3->result() as $show3) { ?>
                                 </div>
                                 <?php } ?>
 
-                                <a class="link"
-                                    href="<?php echo site_url('pn_forms_p4?page=sh4') ?>&&name=<?php echo $show->ParticipantName; ?>&&key=<?php echo $show->ParticipantID; ?>">>>บันทึกเพิ่มเติม>>
+                                <a 
+                                    href="<?php echo site_url('pn_forms_p4?page=sh4') ?>&&name=<?php echo $show->ParticipantName; ?>&&key=<?php echo $show->ParticipantID; ?>" class="my-link fw-bold">>>บันทึกเพิ่มเติม>>
                                 </a>
-                            </th>
+                            </td>
                             <td style="text-align: center;">
                                 <button type="button" class="btn btn-primary" data-bs-toggle="modal"
                                     data-bs-target="#look1<?php echo $show->ParticipantID; ?>"><i

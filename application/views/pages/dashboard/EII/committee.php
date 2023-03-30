@@ -1,4 +1,13 @@
 <main id="main" class="main">
+    <style>
+    .my-link {
+        color: black;
+    }
+
+    .my-link:hover {
+        color: blue;
+    }
+    </style>
     <?php $page = isset($_GET['page']) ? $_GET['page'] : ''; ?>
     <?php $key = isset($_GET['key']) ? $_GET['key'] : ''; ?>
     <?php $name = isset($_GET['name']) ? $_GET['name'] : ''; ?>
@@ -61,7 +70,7 @@
                 <div class="row">
                     <div class="col">
                         <h6 class="card-title">
-                            <div class="dropdown">
+                            <!-- <div class="dropdown">
                                 <button class="btn btn-white dropdown-toggle" type="button" id="dropdownMenuButton1"
                                     data-bs-toggle="dropdown" aria-expanded="false">
                                     ประเภทข้อมูล
@@ -73,13 +82,12 @@
                                     </li>
 
                                 </ul>
-                            </div>
+                            </div> -->
                         </h6>
                     </div>
                     <div class="col">
-                        <h6 style="float: right; padding: 15px;" class="card-title"><a href="<?php echo site_url(
-                                                                                                        'c_forms_p1?page=sh1'
-                                                                                                    ); ?>"
+                        <h6 style="float: right; padding: 15px;" class="card-title"><a
+                                href="<?php echo site_url('c_forms_p1?page=sh1'); ?>"
                                 class="btn btn-success">เพิ่มข้อมูล</a>
                         </h6>
                     </div>
@@ -90,9 +98,10 @@
 
                         <tr>
 
-                            <th style="text-align: center;" scope="col">เลขที่คำสั่ง</th>
-                            <th style="text-align: center;" scope="col">ปีที่ออกคำสั่ง</th>
-                            <th style="text-align: center;" scope="col">คณะกรรมการ</th>
+                            <th style="" scope="col">เลขที่คำสั่ง</th>
+                            <th style="" scope="col">ปีที่ออกคำสั่ง</th>
+                            <th style="" scope="col">คณะกรรมการ</th>
+                            <th style="text-align: center;" scope="col">ดูรายละเอียด</th>
                             <th style="text-align: center;" scope="col">ปฎิบัติ</th>
                         </tr>
 
@@ -102,7 +111,7 @@
 
                         <tr>
                             <?php
-                                    $CommitteeAppointmentNumber = $show->CommitteeAppointmentNumber;
+                                    $Id = $show->Id;
                                     $results = $this->db->query("SELECT * FROM COMMITTEE 
                             INNER JOIN CLS_PROVINCE 
                             ON CLS_PROVINCE.PROVINCE_CODE = COMMITTEE.CommitteeProvinceCode 
@@ -110,35 +119,64 @@
                             INNER JOIN CLS_APPOINTMENT_TYPE 
                             ON CLS_APPOINTMENT_TYPE.APPOINTMENT_TYPE_CODE = COMMITTEE.CommitteeAppointmentTypeCode 
                             -- TargetEducationLevelCode
-                            WHERE CommitteeAppointmentNumber = $CommitteeAppointmentNumber
+                            WHERE Id = $Id
                             ");
 
                                     foreach ($results->result() as $shows) {
                                     ?>
-                            <td style="text-align: center;"><?php echo $show->CommitteeAppointmentNumber; ?>
-                            <th scope="row" style="text-align: center;"><?php echo $show->CommitteeYear; ?></th>
-                            <td style="text-align: center;"><a
-                                    href="<?php echo site_url('Fm_committee_das_p2?page=sh2') ?>&&key=<?php echo $show->CommitteeAppointmentNumber ?>&&year=<?php echo $show->CommitteeYear ?>&&province=<?php echo $show->CommitteeProvinceCode ?>"
-                                    class="btn btn-info"><i class="bi bi-eye"></i></a></td>
+                            <td style=""><?php echo $show->CommitteeAppointmentNumber; ?>
+                            <td scope="row" style=""><?php echo $show->CommitteeYear; ?></td>
+                            <td scope="row " style="">
+                                <?php 
+                             $CommitteeAppointmentNumber = $show->CommitteeAppointmentNumber;
+                            $resultc = $this->db->query("SELECT * FROM COMMITTEE_MEMBER 
+                            INNER JOIN CLS_PREFIX
+                            ON CLS_PREFIX.PREFIX_CODE = COMMITTEE_MEMBER.CommitteeMemberPrefixCode
+                            WHERE COMMITTEE_MEMBER.CommitteeAppointmentNumber='" . $CommitteeAppointmentNumber . "' AND COMMITTEE_MEMBER.DeleteStatus = 0"); ?>
+
+                                <?php foreach ($resultc->result() as $showc) { ?>
+                                <div class="row">
+                                    <div class="col">
+                                        <p>
+
+                                            <a href="<?php echo site_url('cm_forms_p2?page=sh22') ?>&&key=<?php echo $showc->Id; ?>&&name=<?php echo $show->CommitteeAppointmentNumber; ?>"
+                                                class="my-link">
+                                                <?php echo $showc->PREFIX_NAME; ?> <?php echo nbs(2); ?>
+                                                <?php echo $showc->CommitteeMemberNameThai; ?>-
+                                                <?php echo $showc->CommitteeMemberLastNameThai; ?></a>
+                                        </p>
+                                    </div>
+
+                                </div>
+                                <?php } ?>
+                                <a href="<?php echo site_url('cm_forms_p2?page=sh2') ?>&&name=<?php echo $show->CommitteeAppointmentNumber; ?>&&key=<?php echo $show->Id; ?>&&year=<?php echo $show->CommitteeYear; ?>&&Province=<?php echo  $show->CommitteeProvinceCode; ?>"
+                                    class="my-link fw-bold">>>เพิ่มผู้จัดทำ>>
+                                </a>
+                            </td>
+                            <td style="text-align: center;">
+
+                                <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                                    data-bs-target="#look1<?php echo $show->Id; ?>"><i
+                                        class="bi bi-card-list"></i></button>
+
+                            </td>
                             <!-- แก้ไขลบ -->
                             <td style="text-align: center;">
-                            <a href="<?php echo site_url('c_forms_p1?page=sh11') ?>&&key=<?php echo $show->CommitteeAppointmentNumber; ?>&&name=<?php echo $show->CommitteeAppointmentNumber; ?>"
-                    class="btn btn-warning"> <i class="bi bi-pencil-square"></i></a>
-                                <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                                    data-bs-target="#look1<?php echo $show->CommitteeAppointmentNumber; ?>"><i
-                                        class="bi bi-card-list"></i></button>
+                                <a href="<?php echo site_url('c_forms_p1?page=sh11') ?>&&key=<?php echo $show->Id; ?>&&name=<?php echo $show->CommitteeAppointmentNumber; ?>"
+                                    class="btn btn-warning"> <i class="bi bi-pencil-square"></i></a>
+
                                 <button type="button" class="btn btn-danger" data-bs-toggle="modal"
-                                    data-bs-target="#del_committee<?php echo $show->CommitteeAppointmentNumber; ?>">
+                                    data-bs-target="#del_committee<?php echo $show->Id; ?>">
                                     <i class="bi bi-trash"></i>
                                 </button>
                                 <!-- Modal -->
-                                <div class="modal fade" id="del_committee<?php echo $show->CommitteeAppointmentNumber; ?>" tabindex="-1"
+                                <div class="modal fade" id="del_committee<?php echo $show->Id; ?>" tabindex="-1"
                                     aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                    <div class="modal-dialog">
+                                    <div class="modal-dialog modal-dialog-centered">
                                         <div class="modal-content">
                                             <div class="modal-header">
                                                 <h6 class="modal-title" id="exampleModalLabel">
-                                                    ยืนยันการลบข้อมูล<?php echo nbs(2); ?><?php echo $show->CommitteeProvinceCode; ?>
+                                                    ยืนยันการลบข้อมูล<?php echo nbs(2); ?><?php echo $show->CommitteeAppointmentNumber; ?>
                                                 </h6>
 
                                             </div>
@@ -152,10 +190,10 @@
                                                 <button type="button" class="btn btn-secondary"
                                                     data-bs-dismiss="modal">ยกเลิก</button>
                                                 <form method="post" action="<?php echo site_url('c_del_p1'); ?>">
-                                                    <input type="hidden" name="Id" value="<?php echo $show->CommitteeAppointmentNumber; ?>">
+                                                    <input type="hidden" name="Id" value="<?php echo $show->Id; ?>">
                                                     <div class="d-flex justify-content-center">
                                                         <button name="Submit" type="submit"
-                                                            class="btn btn-primary">ยืนยันก่อนลบ</button>
+                                                            class="btn btn-danger">ยืนยันก่อนลบ</button>
                                                     </div>
                                                 </form>
                                             </div>
@@ -176,136 +214,7 @@
         </div>
     </div><!-- End Recent Sales -->
     <?php } ?>
-    <?php
-    $page = isset($_GET['page']) ? $_GET['page'] : '';
 
-    if ($page == 'sh2') { ?>
-    <div class="col-12">
-        <div class="card recent-sales overflow-auto">
-
-            <div class="card-body">
-                <div class="row">
-                    <div class="col">
-                        <h6 class="card-title">
-                            <div class="dropdown">
-                                <button class="btn btn-white dropdown-toggle" type="button" id="dropdownMenuButton1"
-                                    data-bs-toggle="dropdown" aria-expanded="false">
-                                    ประเภทข้อมูล
-                                </button>
-                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                                    <li>
-                                        <a class="dropdown-item"
-                                            href="<?php echo site_url('Fm_committee_das_p1?page=sh1'); ?>">ข้อมูลอำนาจและหน้าที่ของคณะกรรมการขับเคลื่อน</a>
-                                    </li>
-
-                                </ul>
-                            </div>
-                        </h6>
-                    </div>
-                    <div class="col">
-                        <h6 style="float: right; padding: 15px;" class="card-title"><a
-                                href="<?php echo site_url('cm_forms_p2?page=sh2'); ?>&&key=<?php echo $key; ?>&&year=<?php echo $year; ?>&&province=<?php echo $province; ?>" class="btn btn-success">เพิ่มข้อมูล</a></h6>
-                    </div>
-                </div>
-
-                <table class="table table-borderless datatable">
-                    <thead>
-
-                        <tr>
-
-
-                            <th style="text-align: center;" scope="col">เลขที่คำสั่ง</th>
-                            <th style="text-align: center;" scope="col">ชื่อ </th>
-                            <th style="text-align: center;" scope="col">ตำแหน่ง (กรรมการ)</th>
-                            <th style="text-align: center;" scope="col">ปฎิบัติ</th>
-
-                        </tr>
-
-                    </thead>
-                    <tbody>
-                       
-                        <?php
-                               
-                                $results = $this->db->query("SELECT * FROM COMMITTEE_MEMBER 
-                            INNER JOIN CLS_PROVINCE 
-                            ON CLS_PROVINCE.PROVINCE_CODE = COMMITTEE_MEMBER.CommitteeProvinceCode 
-                            -- BestPracticeTypeCode
-                            INNER JOIN CLS_PREFIX 
-                            ON CLS_PREFIX.PREFIX_CODE = COMMITTEE_MEMBER.CommitteeMemberPrefixCode 
-                            -- -- TargetEducationLevelCode
-                            INNER JOIN CLS_COMMITEE_POSITION 
-                            ON CLS_COMMITEE_POSITION.COMMITEE_POSITION_CODE  = COMMITTEE_MEMBER.CommitteeMemberPositionCode 
-                            -- -- RecognizedCode
-                            WHERE CommitteeAppointmentNumber = $key
-                            ");
-
-                                foreach ($results->result() as $shows) {
-                                ?>
-                        <tr>
-                            <th scope="row" style="text-align: center;">
-                                <?php echo $shows->CommitteeAppointmentNumber; ?></th>
-                            <th scope="row" style="text-align: center;">
-                                <?php echo $shows->CommitteeMemberNameThai; ?><?php echo nbs(2); ?><?php echo $shows->CommitteeMemberLastNameThai; ?>
-                            </th>
-                            <th scope="row" style="text-align: center;">
-                                <?php echo $shows->CommitteeMemberOrganizationPosition; ?></th>
-
-                            <!-- แก้ไขลบ -->
-                            <td style="text-align: center;">
-                                <a href="<?php echo site_url('cm_forms_p2?page=sh22') ?>&&key=<?php echo $shows->Id; ?>&&name= <?php echo $shows->CommitteeAppointmentNumber; ?>"
-                                    class="btn btn-warning"> <i class="bi bi-pencil-square"></i></a>
-                                <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                                    data-bs-target="#look2<?php echo $shows->Id; ?>"><i
-                                        class="bi bi-card-list"></i></button>
-                                <button type="button" class="btn btn-danger" data-bs-toggle="modal"
-                                    data-bs-target="#del_comm_member<?php echo $shows->Id; ?>">
-                                    <i class="bi bi-trash"></i>
-                                </button>
-                                <!-- Modal -->
-                                <div class="modal fade" id="del_comm_member<?php echo $shows->Id; ?>"
-                                    tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                    <div class="modal-dialog">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h6 class="modal-title" id="exampleModalLabel">
-                                                    ยืนยันการลบข้อมูล<?php echo nbs(2); ?><?php echo $shows->CommitteeProvinceCode; ?>
-                                                </h6>
-
-                                            </div>
-                                            <div class="modal-body">
-                                                คุณต้องการลบข้อมูลใช่หรือไหม
-
-                                            </div>
-
-
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-secondary"
-                                                    data-bs-dismiss="modal">ยกเลิก</button>
-                                                <form method="post" action="<?php echo site_url('cm_del_p2'); ?>">
-                                                    <input type="hidden" name="Id"
-                                                        value="<?php echo $shows->Id; ?>">
-                                                    <div class="d-flex justify-content-center">
-                                                        <button name="Submit" type="submit"
-                                                            class="btn btn-primary">ยืนยันก่อนลบ</button>
-                                                    </div>
-                                                </form>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div> <!-- Modal -->
-                            </td>
-                        </tr>
-                        <?php 
-                            } ?>
-                    </tbody>
-                </table>
-
-            </div>
-
-        </div>
-    </div><!-- End Recent Sales -->
-    <?php }
-    ?>
     <script>
     setTimeout(function() {
         document.getElementById('myAlert').remove();
@@ -320,9 +229,9 @@
                       ');
     foreach ($result->result() as $show) {
     ?>
-<div class="modal fade" id="look1<?php echo $show->CommitteeAppointmentNumber; ?>" tabindex="-1" aria-labelledby="exampleModalLabel"
+<div class="modal fade" id="look1<?php echo $show->Id; ?>" tabindex="-1" aria-labelledby="exampleModalLabel"
     aria-hidden="true">
-    <div class="modal-dialog modal-lg">
+    <div class="modal-dialog modal-dialog modal-xl modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
                 <h6 class="modal-title" id="exampleModalLabel">ข้อมูลคำสั่งแต่งตั้งคณะกรรมการ</h6>
@@ -330,7 +239,7 @@
             </div>
             <div class="modal-body">
                 <?php
-                        $CommitteeAppointmentNumber = $show->CommitteeAppointmentNumber;
+                        $Id = $show->Id;
                         $results = $this->db->query("SELECT * FROM COMMITTEE 
                             INNER JOIN CLS_PROVINCE 
                             ON CLS_PROVINCE.PROVINCE_CODE = COMMITTEE.CommitteeProvinceCode 
@@ -338,83 +247,6 @@
                             INNER JOIN CLS_APPOINTMENT_TYPE 
                             ON CLS_APPOINTMENT_TYPE.APPOINTMENT_TYPE_CODE = COMMITTEE.CommitteeAppointmentTypeCode 
                             -- TargetEducationLevelCode
-                            WHERE CommitteeAppointmentNumber = $CommitteeAppointmentNumber
-                            ");
-
-                        foreach ($results->result() as $shows) {
-                        ?>
-                <div class="row">
-                    <div class="col">
-                        <h6 class="fw-bold">จังหวัด</h6>
-                        <p><?php echo $shows->PROVINCE_NAME; ?></p>
-                        <h6 class="fw-bold">ปีที่ออกคำสั่ง</h6>
-                        <p><?php echo $show->CommitteeYear; ?></p>
-                        <!-- <h6 class="fw-bold">เลขออกคำสั่ง</h6>
-                        <p><?php echo $show->CommitteeAppointmentNumber; ?></p> -->
-                        
-                    </div>
-                    <div class="col">
-                        <h6 class="fw-bold">ประเภทการแต่งตั้ง</h6>
-                        <p><?php echo $shows->APPOINTMENT_TYPE_NAME; ?></p>
-                        <h6 class="fw-bold">ลิงก์เอกสารคำสั่ง</h6>
-                        <p>
-                            <th scope="row " style="text-align: center;">
-                                <a href="<?php echo base_url('document') ?>/<?php echo $show->CommitteeAppointmentAttachmentURL; ?>"
-                                    target="_blank"><i class="bi bi-file-text"></i></a>
-    
-                            </th>
-                        </p>
-
-                    </div>
-
-
-
-                </div>
-                <?php } ?>
-            </div>
-            <div class="modal-footer">
-                <!-- <a href="<?php echo site_url('c_forms_p1?page=sh11') ?>&&key=<?php echo $show->Id; ?>&&name=<?php echo $show->CommitteeAppointmentNumber; ?>"
-                    class="btn btn-warning"> <i class="bi bi-pencil-square"></i></a> -->
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ปิด</button>
-
-            </div>
-        </div>
-    </div>
-</div>
-
-<?php  } ?>
-</tbody>
-</table>
-<?php } ?>
-<?php if ($page == 'sh2') {  ?>
-
-
-<?php
-    $result = $this->db->query('SELECT * FROM COMMITTEE_MEMBER 
-                      ');
-    foreach ($result->result() as $show) {
-    ?>
-<div class="modal fade" id="look2<?php echo $show->Id; ?>" tabindex="-1" aria-labelledby="exampleModalLabel"
-    aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-xl">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h6 class="modal-title" id="exampleModalLabel">ข้อมูลรายชื่อคณะกรรมการ</h6>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <?php
-                        $Id = $show->Id;
-                        $results = $this->db->query("SELECT * FROM COMMITTEE_MEMBER 
-                            INNER JOIN CLS_PROVINCE 
-                            ON CLS_PROVINCE.PROVINCE_CODE = COMMITTEE_MEMBER.CommitteeProvinceCode 
-                            -- BestPracticeTypeCode
-                            INNER JOIN CLS_PREFIX 
-                            ON CLS_PREFIX.PREFIX_CODE = COMMITTEE_MEMBER.CommitteeMemberPrefixCode 
-                            -- -- TargetEducationLevelCode
-                            INNER JOIN CLS_COMMITEE_POSITION 
-                            ON CLS_COMMITEE_POSITION.COMMITEE_POSITION_CODE  = COMMITTEE_MEMBER.CommitteeMemberPositionCode 
-                            -- -- RecognizedCode
                             WHERE Id = $Id
                             ");
 
@@ -426,45 +258,88 @@
                         <p><?php echo $shows->PROVINCE_NAME; ?></p>
                         <h6 class="fw-bold">ปีที่ออกคำสั่ง</h6>
                         <p><?php echo $show->CommitteeYear; ?></p>
-                        <h6 class="fw-bold">เลขที่คำสั่ง</h6>
-                        <p><?php echo $show->CommitteeAppointmentNumber; ?></p>
-                        <h6 class="fw-bold">คำนำหน้าชื่อ</h6>
-                        <p><?php echo $shows->PREFIX_NAME; ?></p>
+                        <h6 class="fw-bold">เลขออกคำสั่ง</h6>
+                        <p><?php echo $CommitteeAppointmentNumber = $show->CommitteeAppointmentNumber; ?></p>
+
                     </div>
                     <div class="col">
-                        <h6 class="fw-bold">
-                            ชื่อ-นามสกุล(ภาษาไทย)</h6>
-                        <p><?php echo $show->CommitteeMemberNameThai; ?>-<?php echo $show->CommitteeMemberLastNameThai; ?>
-                        </p>
-                        <h6 class="fw-bold">
-                            ชื่อ-นามสกุล(ภาษาอังกฤษ)
-                        </h6>
-                        <p><?php echo $show->CommitteeMemberNameEnglish; ?>-<?php echo $show->CommitteeMemberLastNameEnglish; ?>
+                        <h6 class="fw-bold">ประเภทการแต่งตั้ง</h6>
+                        <p><?php echo $shows->APPOINTMENT_TYPE_NAME; ?></p>
+                        <h6 class="fw-bold">ลิงก์เอกสารคำสั่ง</h6>
+                        <p>
+                            <td scope="row " style="text-align: center;">
+                                <a href="<?php echo base_url('document') ?>/<?php echo $show->CommitteeAppointmentAttachmentURL; ?>"
+                                    target="_blank">รายละเอียดเอกสาร</i></a>
+
+                            </td>
                         </p>
 
                     </div>
 
 
-                    <div class="col">
-                        <h6 class="fw-bold">
-                            ตำแหน่งกรรมการและอนุกรรมการ</h6>
-                        <p><?php echo $shows->COMMITEE_POSITION_NAME; ?></p>
-                        <h6 class="fw-bold">
-                            ตำแหน่งในองค์กรของกรรมการและอนุกรรมการ
-                        </h6>
-                        <p><?php echo $show->CommitteeMemberOrganizationPosition; ?></p>
 
-                        <h6 class="fw-bold">เริ่มวาระการดำรงตำแหน่ง</h6>
-                        <p><?php echo $show->CommitteeMemberTermStartDate; ?></p>
-                        <h6 class="fw-bold">สิ้นสุดวาระการดำรงตำแหน่ง</h6>
-                        <p><?php echo $show->CommitteeMemberTermEndDate; ?></p>
+                </div>
+                <div class="row">
+                    <h5 class="fw-bold">รายชื่อผู้จัดทำ</h5>
+                    <?php $resultc = $this->db->query("SELECT * FROM COMMITTEE_MEMBER 
+                                    JOIN CLS_PROVINCE 
+                                    ON COMMITTEE_MEMBER.CommitteeProvinceCode = CLS_PROVINCE.PROVINCE_CODE  
+                                    JOIN CLS_PREFIX 
+                                    ON COMMITTEE_MEMBER.CommitteeMemberPrefixCode = CLS_PREFIX.PREFIX_CODE 
+                                    JOIN CLS_COMMITEE_POSITION 
+                                    ON COMMITTEE_MEMBER.CommitteeMemberPositionCode = CLS_COMMITEE_POSITION.COMMITEE_POSITION_CODE   
+                                    WHERE CommitteeAppointmentNumber='" . $CommitteeAppointmentNumber . "' AND COMMITTEE_MEMBER.DeleteStatus = 0"); ?>
 
-                    </div>
+                    <table class="m-3 col-11">
+                        <tr>
+                            
+                            <th style="" class="col-2">ชื่อ-นามสกุล</th>
+                            <th style="" class="col-3">ตำแหน่งกรรมการ</th>
+                            <th style="" class="col-2">ตำแหน่งในองค์กร</th>
+                            <th style="" class="col-2">เริ่มตำแหน่ง-สิ้นสุด</th>
+                        </tr>
+                        <?php
+                       
+                         foreach ($resultc->result() as $showc) { ?>
+                            
+                        <tr>
+                            
+                            <td>
+                                <p>
+                                    <?php echo $showc->PREFIX_NAME; ?>
+                                    <?php echo nbs(2); ?>
+                                    <?php echo $showc->CommitteeMemberNameThai; ?>-
+                                    <?php echo $showc->CommitteeMemberLastNameThai; ?>
+                                </p>
+                            </td>
+                            <td>
+                                <p>
+                                  <?php echo $showc->COMMITEE_POSITION_NAME; ?>
+                                </p>
+                            </td>
+                            <td>
+                                <p>
+                                    <?php echo $showc->CommitteeMemberOrganizationPosition; ?>
+                                </p>
+                            </td>
+                            <td style="">
+                            <p><?php echo DateThai($showc->CommitteeMemberTermStartDate); ?>-<?php echo DateThai($showc->CommitteeMemberTermEndDate); ?></p>
+                            </td>
+
+
+                             
+                            
+                          
+                        </tr>
+                            <?php } ?>
+                    </table>
+
                 </div>
                 <?php } ?>
             </div>
             <div class="modal-footer">
-                <!-- <a href="<?php echo site_url('cm_forms_p2?page=sh22') ?>&&key=<?php echo $show->Id; ?>&&name=<?php $name; ?>" class="btn btn-warning"> <i class="bi bi-pencil-square"></i></a> -->
+                <!-- <a href="<?php echo site_url('c_forms_p1?page=sh11') ?>&&key=<?php echo $show->Id; ?>&&name=<?php echo $show->CommitteeAppointmentNumber; ?>"
+                    class="btn btn-warning"> <i class="bi bi-pencil-square"></i></a> -->
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ปิด</button>
 
             </div>

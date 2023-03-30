@@ -1,6 +1,15 @@
 <?php $page = isset($_GET['page']) ? $_GET['page'] : ''; ?>
 <?php $name = isset($_GET['name']) ? $_GET['name'] : ''; ?>
 <?php $key = isset($_GET['key']) ? $_GET['key'] : ''; ?>
+<style>
+    .my-link {
+        color: black;
+    }
+
+    .my-link:hover {
+        color: blue;
+    }
+    </style>
 <main id="main" class="main">
     <?php
     session_start(); // เริ่มต้น session
@@ -144,6 +153,7 @@
                             <th style="text-align: center;" scope="col">ระดับตัวชี้วัด</th>
                             <th style="text-align: center;" scope="col">องค์ประกอบ</th>
                             <th style="text-align: center;" scope="col">คำอธิบาย</th>
+                            <th style="text-align: center;" scope="col">ดูรายละเอียด</th>
                             <th style="text-align: center;" scope="col">ปฎิบัติ</th>
 
 
@@ -157,24 +167,37 @@
                         ?>
                         <tr>
                             <th scope="row " style="text-align: center;">
-                                <?php echo $show->CriteriaID; ?></th>
+                                <?php echo $CriteriaID = $show->CriteriaID; ?></th>
                             <th scope="row" style="text-align: center;"><?php echo $show->CriteriaName; ?></th>
-                            <td style="text-align: center;"><a
-                                    href="<?php echo site_url('Fm_evaluation_das_p2?page=sh2') ?>&&key=<?php echo $show->CriteriaID ?>&&name=<?php echo $show->CriteriaName ?>"
-                                    class="btn btn-info"><i class="bi bi-eye"></i></a></td>
+                            <td style="text-align: center;">
+                            <?php $columnValues = array();
+                                                        $resultA2 = $this->db->query("SELECT * FROM ASSESSMENT_CRITERIA_LEVEL WHERE CriteriaID = $CriteriaID AND DeleteStatus = 0 " );
+                                                        foreach ($resultA2->result() as $showA2) { ?>
+                                    <a href="<?php echo site_url('ass_ria_lvl_forms_p2?page=sh22') ?>&&lvl=<?php echo $show->CriteriaLevelAmount ?>&&key=<?php echo $showA2->Id; ?>&&name=<?php echo $show->CriteriaName; ?>" class="my-link "><?php echo $showA2->LevelName; ?> </a><br>
+                                    <?php } ?>
+                    <a href="<?php echo site_url('ass_ria_lvl_forms_p2?page=sh2') ?>&&name=<?php echo $show->CriteriaName; ?>&&key=<?php echo $show->CriteriaID; ?>&&lvl=<?php echo $show->CriteriaLevelAmount ?>"
+                                    class="my-link fw-bold">>>เพิ่มระดับตัวชี้วัด>>
+                                </a>
+                                </td>
                             <td style="text-align: center;"><a
                                     href="<?php echo site_url('Fm_evaluation_das_p3?page=sh3') ?>&&key=<?php echo $show->CriteriaID ?>&&name=<?php echo $show->CriteriaName ?>"
                                     class="btn btn-info"><i class="bi bi-eye"></i></a></td>
                                     <td style="text-align: center;"><a
                                     href="<?php echo site_url('Fm_evaluation_das_p4?page=sh4') ?>&&key=<?php echo $show->CriteriaID ?>&&name=<?php echo $show->CriteriaName ?>"
                                     class="btn btn-info"><i class="bi bi-eye"></i></a></td>
+                                    <td style="text-align: center;">
+                           
+                                <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                                    data-bs-target="#look1<?php echo $show->CriteriaID; ?>"><i
+                                        class="bi bi-card-list"></i></button>
+                               
+                                
+                            </td>
                             <!-- แก้ไขลบ -->
                             <td style="text-align: center;">
                             <a href="<?php echo site_url('ass_ria_forms_p1?page=sh11') ?>&&key=<?php echo $show->CriteriaID; ?>"
                     class="btn btn-warning"> <i class="bi bi-pencil-square"></i></a>
-                                <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                                    data-bs-target="#look1<?php echo $show->CriteriaID; ?>"><i
-                                        class="bi bi-card-list"></i></button>
+                                
                                 <button type="button" class="btn btn-danger" data-bs-toggle="modal"
                                     data-bs-target="#look1<?php echo $show->CriteriaID; ?>">
                                     <i class="bi bi-trash"></i>
@@ -223,6 +246,7 @@
 
         </div>
     </div><!-- End Recent Sales -->
+    
     <?php } ?>
     <!-- ข้อมูลองค์ประกอบตัวชี้วัด -->
 
@@ -985,10 +1009,10 @@
 
                         <tr>
 
-                            <th style="text-align: center;" scope="col">ปีการศึกษาที่ทำการประเมิน</th>
-                            <th style="text-align: center;" scope="col">รหัสสถานศึกษา</th>
-                            <th style="text-align: center;" scope="col">ชื่อการประเมิน</th>
-                            
+                            <th style="" scope="col">ปีการศึกษาที่ทำการประเมิน</th>
+                            <th style="" scope="col">รหัสสถานศึกษา</th>
+                            <th style="" scope="col">ชื่อการประเมิน</th>
+                            <th style="text-align: center;" scope="col">ดูรายละเอียด</th>
                             <th style="text-align: center;" scope="col">ปฎิบัติ</th>
 
 
@@ -1005,16 +1029,31 @@
                 WHERE  DeleteStatus = '0'");
                 foreach ($result->result() as $show) {  ?>
                         <tr>
-                            <th scope="row " style="text-align: center;">
+                            <th scope="row " style="">
                                 <?php echo $show->AchievementAssessmentYear; ?></th>
-                            <th scope="row"><?php echo $show->SchoolID; ?></th>
-                            <td style="text-align: center;"><?php echo $show->SchoolAssessmentName; ?>
-                           
-                            <!-- แก้ไข -->
+
+                                <?php
+                      $result = $this->db->query('SELECT * FROM ACHIEVEMENT_ASSESSMENT 
+                      INNER JOIN SCHOOL
+                      ON ACHIEVEMENT_ASSESSMENT.SchoolID = SCHOOL.SchoolID
+                      ');
+                     foreach ($result->result() as $show) {
+                     ?>
+                            <th scope="row"><?php echo $show->SchoolNameThai; ?></th>
+<?php } ?>
+                            <td style=""><?php echo $show->SchoolAssessmentName; ?>
                             <td style="text-align: center;">
+                            
                                 <button type="button" class="btn btn-primary" data-bs-toggle="modal"
                                     data-bs-target="#look8<?php echo $show->Id; ?>"><i
                                         class="bi bi-card-list"></i></button>
+                               
+                            </td>
+                            <!-- แก้ไข -->
+                            <td style="text-align: center;">
+                            <a href="<?php echo site_url('par_forms_p1?page=sh11') ?>&&key=<?php echo $show->Id; ?>"
+                    class="btn btn-warning"> <i class="bi bi-pencil-square"></i></a>
+                               
                                 <button type="button" class="btn btn-danger" data-bs-toggle="modal"
                                     data-bs-target="#del_achie_ass<?php echo $show->Id; ?>">
                                     <i class="bi bi-trash"></i>
@@ -1430,12 +1469,14 @@
 
 <?php
                       $result = $this->db->query('SELECT * FROM ACHIEVEMENT_ASSESSMENT 
+                      INNER JOIN SCHOOL
+                      ON ACHIEVEMENT_ASSESSMENT.SchoolID = SCHOOL.SchoolID
                       ');
                      foreach ($result->result() as $show) {
                      ?>
 <div class="modal fade" id="look8<?php echo $show->Id; ?>" tabindex="-1" aria-labelledby="exampleModalLabel"
     aria-hidden="true">
-    <div class="modal-dialog modal-lg">
+    <div class="modal-dialog modal-xl  modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel">ผู้เข้ามามีส่วนร่วม</h5>
@@ -1444,26 +1485,34 @@
             <div class="modal-body">
                 <div class="row">
                     <div class="col">
-                        <h5 class="fw-bold">ปีการศึกษาที่ทำการประเมิน</h5>
+                        <h6 class="fw-bold">ปีการศึกษาที่ทำการประเมิน</h6>
                         <p><?php echo $show->AchievementAssessmentYear; ?></p>
-                        <h5 class="fw-bold">รหัสสถานศึกษา</h5>
-                        <p><?php echo $show->SchoolID; ?></p>
-                        <h5 class="fw-bold">ชื่อการประเมิน</h5>
+
+                        <h6 class="fw-bold">รหัสสถานศึกษา</h6>
+                        <p><?php echo $show->SchoolNameThai; ?></p>
+
+                        <h6 class="fw-bold">ชื่อการประเมิน</h6>
                         <p><?php echo $show->SchoolAssessmentName; ?></p>
 
                     </div>
                     <div class="col">
-                        <h5 class="fw-bold">คำอธิบายการประเมิน</h5>
+                        <h6 class="fw-bold">คำอธิบายการประเมิน</h6>
                         <p><?php echo $show->SchoolAssessmentDescription; ?></p>
-                        <h5 class="fw-bold">ชื่อผู้ประเมิน</h5>
+                        <h6 class="fw-bold">ชื่อผู้ประเมิน</h6>
                         <p><?php echo $show->AssessmentorName; ?></p>
-                        <h5 class="fw-bold">ผลการประเมินผลสัมฤทธิ์การศึกษา</h5>
-                        <p><?php echo $show->AchievementAssessmentPassingFlag; ?></p>
-                        <h5 class="fw-bold">ลิงก์เอกสารแนบรายละเอียดการประเมินผลสัมฤทธิ์การศึกษา</h5>
+                        <h6 class="fw-bold">ผลการประเมินผลสัมฤทธิ์การศึกษา</h6>
+                        <p>
+                    <?php if ($show->AchievementAssessmentPassingFlag == 0) { ?>
+                       ไม่ผ่าน
+                   <?php }elseif ($show->AchievementAssessmentPassingFlag == 1) {?>
+                       ผ่าน
+                   <?php  } ?>
+                    </p>
+                        <h6 class="fw-bold">ลิงก์เอกสารแนบรายละเอียดการประเมินผลสัมฤทธิ์การศึกษา</h6>
                         <p>
                             <th scope="row " style="text-align: center;">
                                 <a href="<?php echo base_url('document') ?>/<?php echo $show->AchievementAssessmentAttachmentURL; ?>"
-                                    target="_blank"><i class="bi bi-file-text"></i></a>
+                                    target="_blank">รายละเอียดเอกสาร</i></a>
 
                             </th>
                         </p>
@@ -1472,8 +1521,7 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <a href="<?php echo site_url('par_forms_p1?page=sh11') ?>&&key=<?php echo $show->Id; ?>"
-                    class="btn btn-warning"> <i class="bi bi-pencil-square"></i></a>
+                
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ปิด</button>
 
             </div>

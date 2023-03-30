@@ -2,6 +2,15 @@
     <?php $page = isset($_GET['page']) ? $_GET['page'] : '';  ?>
     <?php $key = isset($_GET['key']) ? $_GET['key'] : '';  ?>
     <?php $name = isset($_GET['name']) ? $_GET['name'] : '';  ?>
+    <style>
+        .my-link {
+  color: black;
+}
+
+.my-link:hover {
+  color: blue;
+}
+    </style>
     <?php
     session_start(); // เริ่มต้น session
     if (isset($_SESSION['success'])) { ?>
@@ -133,7 +142,7 @@
                                         <td style=""><?php echo $show->Semester; ?></td>
                                         <td style=""><?php echo $show->MediaName; ?></td>
                                         <td style=""><?php echo $shows->MEDIA_TYPE_NAME; ?></td>
-                                        <th scope="row " style="text-align: left;">
+                                        <td scope="row " style="text-align: left;">
                                         <?php $resultc = $this->db->query("SELECT * FROM LEARNING_TECHNOLOGY_MEDIA_CREATOR 
                                         JOIN CLS_PERSONAL_ID_TYPE 
                                         ON LEARNING_TECHNOLOGY_MEDIA_CREATOR.CreatorPersonalIDTypeCode = CLS_PERSONAL_ID_TYPE.PERSONAL_ID_TYPE_CODE 
@@ -146,7 +155,7 @@
                                                 <div class="col">
                                                     <p>
 
-                                                    <a href="<?php echo site_url('LTMC_forms_p2?page=sh22') ?>&&key=<?php echo $showc->Id; ?>&&name=<?php echo $show->MediaName; ?>" >
+                                                    <a href="<?php echo site_url('LTMC_forms_p2?page=sh22') ?>&&key=<?php echo $showc->Id; ?>&&name=<?php echo $show->MediaName; ?>" class="my-link">
                                                             <?php echo $showc->PREFIX_NAME; ?>            <?php echo nbs(2); ?>
                                                             <?php echo $showc->CreatorNameThai; ?>-
                                                             <?php echo $showc->CreatorLastNameThai; ?></a>
@@ -156,9 +165,9 @@
                                             </div>
                                         <?php } ?>
                                         <a href="<?php echo site_url('LTMC_forms_p2?page=sh2') ?>&&name=<?php echo $show->MediaName; ?>&&key=<?php echo $show->MediaID; ?>"
-                                            >>>เพิ่มผู้จัดทำ>>
+                                           class="my-link fw-bold" >>>เพิ่มผู้จัดทำ>>
                                         </a>
-                                    </th>                                        <td style="text-align: center;"><button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#look<?php echo $show->MediaID; ?>"><i class="bi bi-card-list"></i></button></td>
+                                    </td>                                        <td style="text-align: center;"><button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#look<?php echo $show->MediaID; ?>"><i class="bi bi-card-list"></i></button></td>
                                         <td style="text-align: center;">
                                         <a href="<?php echo site_url('LTM_forms_p1?page=sh11') ?>&&key=<?php echo $show->MediaID; ?>&&name=<?php echo $show->MediaName; ?>" class="btn btn-warning"> <i class="bi bi-pencil-square"></i></a>
                                             <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#del_LTM<?php echo $show->MediaID; ?>">
