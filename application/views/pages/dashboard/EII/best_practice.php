@@ -113,8 +113,10 @@
 
                         <tr>
                             <!-- <th style="text-align: center;" scope="col">วิธีปฏิบัติที่เป็นเลิศในการจัดการศึกษา</th> -->
+                            <th style="" scope="col" class="1">ปีการศึกษา</th>
+                            <th style="" scope="col"class="1">ภาคเรียน</th>
                             <th style="" scope="col" class="col-3">ชื่อวิธีปฏิบัติ</th>
-                            <th style="" scope="col"class="col-2">ประเภทวิธีปฏิบัติ</th>
+                            <!-- <th style="" scope="col"class="col-2">ประเภทวิธีปฏิบัติ</th> -->
                             <th style="" scope="col"class="col-2">ระดับการศึกษาที่นำไปใช้</th>
                             <th style="" scope="col"class="col-2">ผู้จัดทำ</th>
                             <th style="text-align: center;" scope="col"class="col-1">ดูรายละเอียด</th>
@@ -142,13 +144,20 @@
                             <!-- <th scope="row " style="text-align: center;">
                                 <?php echo $show->BestPracticeID; ?>
                             </th> -->
-
+                            <td style="">
+                                <?php echo $show->EducationYear; ?>
+                            </td>
+                            <td style="">
+                                <?php echo $show->Semester; ?>
+                            </td>
                             <td style="">
                                 <?php echo $show->BestPracticeName; ?>
                             </td>
-                            <td style="">
-                                <?php echo $shows->BEST_PRACTICE_TYPE_NAME; ?>
-                            </td>
+                            <!-- <td style="">
+                                <?php 
+                                // echo $shows->BEST_PRACTICE_TYPE_NAME; 
+                                ?>
+                            </td> -->
                             <td style="">
                                 <?php echo $shows->EDUCATION_LEVEL_NAME; ?>
                             </td>

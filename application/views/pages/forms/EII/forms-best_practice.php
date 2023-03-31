@@ -1,28 +1,57 @@
 <main id="main" class="main">
-<style>
+    <style>
     label[for="Y"]:after {
-  content: " *";
-  color: red;
-}
-  </style>
+        content: " *";
+        color: red;
+    }
+    </style>
     <?php $page = isset($_GET['page']) ? $_GET['page'] : '';  ?>
     <?php $key = isset($_GET['key']) ? $_GET['key'] : '';  ?>
     <?php $name = isset($_GET['name']) ? $_GET['name'] : '';  ?>
+    <?php 
+session_start(); // เริ่มต้น session
+if (isset( $_SESSION['success'])) { ?>
+    <div style="position: relative;">
+        <div class="alert alert-success" id="myAlert"
+            style="position: absolute; top: 0; left: 0; right: 0; z-index: 1;">
+            <strong>
+                <?php
+                        echo $_SESSION['success'];
+                        unset($_SESSION['success']);
+                        ?>
+            </strong>
+
+        </div>
+    </div>
+    <?php  }
+        if (isset( $_SESSION['false'])) { ?>
+    <div style="position: relative;">
+        <div class="alert alert-danger" id="myAlert" style="position: absolute; top: 0; left: 0; right: 0; z-index: 1;">
+            <strong>
+                <?php
+                        echo $_SESSION['false'];
+                        unset($_SESSION['false']);
+                        ?>
+            </strong>
+
+        </div>
+    </div>
+    <?php  } ?>
     <div class="pagetitle">
-       
+
         <?php switch ($page) {
             case 'sh1': ?> <h1>ข้อมูลแนวปฏิบัติที่เป็นเลิศในการจัดการศึกษา</h1>
-                
-               <?php break;
+
+        <?php break;
                 case 'sh11': ?> <h1>ข้อมูลแนวปฏิบัติที่เป็นเลิศในการจัดการศึกษา - <?php echo $name; ?></h1>
-                
-                <?php break;
+
+        <?php break;
                  case 'sh2': ?> <h1>ข้อมูลผู้จัดทำวิธีปฏิบัติที่เป็นเลิศในการจัดการศึกษา - <?php echo $name; ?></h1>
-                
-                 <?php break;
+
+        <?php break;
                   case 'sh22': ?> <h1>ข้อมูลผู้จัดทำวิธีปฏิบัติที่เป็นเลิศในการจัดการศึกษา - <?php echo $name; ?></h1>
-                
-                  <?php break;
+
+        <?php break;
             
             default:
                 # code...
@@ -58,7 +87,7 @@
                             default: ?>
                         <?php break;
                         } ?> -->
-                         <?php  echo br(2); ?>
+                        <?php  echo br(2); ?>
                         <?php if ($page == 'sh1') { ?>
 
                         <!-- start Form ข้อมูลแนวปฏิบัติที่เป็นเลิศในการจัดการศึกษา -->
@@ -66,7 +95,7 @@
                                                 'BP_forms_up_p1'
                                             ); ?>" method="post" enctype="multipart/form-data"
                             onsubmit="return checkSelectedOption()">
-<!-- 
+                            <!-- 
                             <div class="row mb-3">
                                 <div class="form-floating">
                                     <input type="text" class="form-control" id="floatingName"
@@ -363,8 +392,7 @@
                                             <?php } ?>
 
                                         </select>
-                                        <label
-                                            for="floatingSelect"><?php echo nbs(2); ?>ระดับการศึกษาที่นำไปใช้</label>
+                                        <label for="floatingSelect"><?php echo nbs(2); ?>ระดับการศึกษาที่นำไปใช้</label>
                                     </div>
                                 </div>
                                 <div class="col">
@@ -400,8 +428,8 @@
                             <div class="row mb-3">
                                 <div class="form-floating">
                                     <textarea class="form-control" placeholder="Leave a comment here"
-                                        id="floatingTextarea2" style="height: 60px"
-                                        name="Abstract" required><?php echo $show->Abstract ?></textarea>
+                                        id="floatingTextarea2" style="height: 60px" name="Abstract"
+                                        required><?php echo $show->Abstract ?></textarea>
                                     <label for="Y"><?php echo nbs(2); ?>บทคัดย่อ</label>
                                 </div>
                             </div>
@@ -486,38 +514,35 @@
 
                         </form><!-- ข้อมูลแนวปฏิบัติที่เป็นเลิศในการจัดการศึกษา -->
                         <script>
-                        
-
-                            ///CLS_BEST_PRACTICE_TYPE
-                            var my_CLS_BEST_PRACTICE_TYPE = "<?php echo $show->BestPracticeTypeCode ?>";
-                            var selectoption_CLS_BEST_PRACTICE_TYPE = document.querySelector('#BestPracticeTypeCode');
-                            var size_my_CLS_BEST_PRACTICE_TYPE = document.getElementById("BestPracticeTypeCode").options
-                                .length;
-                            for (let i = 0; i < size_my_CLS_BEST_PRACTICE_TYPE; i++) {
-                                if (selectoption_CLS_BEST_PRACTICE_TYPE[i].value == my_CLS_BEST_PRACTICE_TYPE) {
-                                    selectoption_CLS_BEST_PRACTICE_TYPE[i].selected = true;
-                                }
+                        ///CLS_BEST_PRACTICE_TYPE
+                        var my_CLS_BEST_PRACTICE_TYPE = "<?php echo $show->BestPracticeTypeCode ?>";
+                        var selectoption_CLS_BEST_PRACTICE_TYPE = document.querySelector('#BestPracticeTypeCode');
+                        var size_my_CLS_BEST_PRACTICE_TYPE = document.getElementById("BestPracticeTypeCode").options
+                            .length;
+                        for (let i = 0; i < size_my_CLS_BEST_PRACTICE_TYPE; i++) {
+                            if (selectoption_CLS_BEST_PRACTICE_TYPE[i].value == my_CLS_BEST_PRACTICE_TYPE) {
+                                selectoption_CLS_BEST_PRACTICE_TYPE[i].selected = true;
                             }
-                            ///CLS_EDUCATION_LEVEL
-                            var my_CLS_EDUCATION_LEVEL = "<?php echo $show->TargetEducationLevelCode ?>";
-                            var selectoption_CLS_EDUCATION_LEVEL = document.querySelector('#TargetEducationLevelCode');
-                            var size_my_CLS_EDUCATION_LEVEL = document.getElementById("TargetEducationLevelCode")
-                                .options.length;
-                            for (let i = 0; i < size_my_CLS_EDUCATION_LEVEL; i++) {
-                                if (selectoption_CLS_EDUCATION_LEVEL[i].value == my_CLS_EDUCATION_LEVEL) {
-                                    selectoption_CLS_EDUCATION_LEVEL[i].selected = true;
-                                }
+                        }
+                        ///CLS_EDUCATION_LEVEL
+                        var my_CLS_EDUCATION_LEVEL = "<?php echo $show->TargetEducationLevelCode ?>";
+                        var selectoption_CLS_EDUCATION_LEVEL = document.querySelector('#TargetEducationLevelCode');
+                        var size_my_CLS_EDUCATION_LEVEL = document.getElementById("TargetEducationLevelCode")
+                            .options.length;
+                        for (let i = 0; i < size_my_CLS_EDUCATION_LEVEL; i++) {
+                            if (selectoption_CLS_EDUCATION_LEVEL[i].value == my_CLS_EDUCATION_LEVEL) {
+                                selectoption_CLS_EDUCATION_LEVEL[i].selected = true;
                             }
-                            ///CLS_RECOGNIZED_BY
-                            var my_CLS_RECOGNIZED_BY = "<?php echo $show->RecognizedCode ?>";
-                            var selectoption_CLS_RECOGNIZED_BY = document.querySelector('#RecognizedCode');
-                            var size_my_CLS_RECOGNIZED_BY = document.getElementById("RecognizedCode").options.length;
-                            for (let i = 0; i < size_my_CLS_RECOGNIZED_BY; i++) {
-                                if (selectoption_CLS_RECOGNIZED_BY[i].value == my_CLS_RECOGNIZED_BY) {
-                                    selectoption_CLS_RECOGNIZED_BY[i].selected = true;
-                                }
+                        }
+                        ///CLS_RECOGNIZED_BY
+                        var my_CLS_RECOGNIZED_BY = "<?php echo $show->RecognizedCode ?>";
+                        var selectoption_CLS_RECOGNIZED_BY = document.querySelector('#RecognizedCode');
+                        var size_my_CLS_RECOGNIZED_BY = document.getElementById("RecognizedCode").options.length;
+                        for (let i = 0; i < size_my_CLS_RECOGNIZED_BY; i++) {
+                            if (selectoption_CLS_RECOGNIZED_BY[i].value == my_CLS_RECOGNIZED_BY) {
+                                selectoption_CLS_RECOGNIZED_BY[i].selected = true;
                             }
-                        
+                        }
                         </script>
                         <?php }
                         } ?>
@@ -531,47 +556,47 @@
 
                             <div class="row mb-3">
                                 <!-- <div class="col"> -->
-                                    
-                                    <!-- <div class="form-floating"> -->
-                                        <!-- <input type="text" class="form-control" id="floatingName"
+
+                                <!-- <div class="form-floating"> -->
+                                <!-- <input type="text" class="form-control" id="floatingName"
                                             placeholder="วิธีปฏิบัติที่เป็นเลิศในการจัดการศึกษา"
                                             name="" value="<?php echo $key; ?>" disabled> -->
-                                            <input type="hidden" class="form-control" id="floatingName"
-                                            placeholder="วิธีปฏิบัติที่เป็นเลิศในการจัดการศึกษา"
-                                            name="BestPracticeID" value="<?php echo $key; ?>" >
-                                        <!-- <label for="Y">
+                                <input type="hidden" class="form-control" id="floatingName"
+                                    placeholder="วิธีปฏิบัติที่เป็นเลิศในการจัดการศึกษา" name="BestPracticeID"
+                                    value="<?php echo $key; ?>">
+                                <!-- <label for="Y">
                                             <?php echo nbs(2); ?> วิธีปฏิบัติที่เป็นเลิศในการจัดการศึกษา
                                         </label> -->
-                                    <!-- </div> -->
+                                <!-- </div> -->
                                 <!-- </div> -->
 
                                 <div class="col">
                                     <div class="form-floating">
                                         <select class="form-select" id="CreatorPersonalIDTypeCode"
-                                        aria-label="Floating label select example" name="CreatorPersonalIDTypeCode">
-                                        <option value="-1" selected>เลือก</option>
-                                        <?php
+                                            aria-label="Floating label select example" name="CreatorPersonalIDTypeCode">
+                                            <option value="-1" selected>เลือก</option>
+                                            <?php
                                                 $result = $this->db->query('SELECT * FROM CLS_PERSONAL_ID_TYPE');
                                                 foreach ($result->result() as $cls) {
                                                     ?>
                                             <option value="<?= $cls->PERSONAL_ID_TYPE_CODE; ?>">
                                                 <?= $cls->PERSONAL_ID_TYPE_NAME; ?></option>
-                                                <?php } ?>
-                                            </select>
-                                            <label for="Y" >
-                                                <?php echo nbs(2); ?>ประเภทบัตรประจำตัวผู้จัดทำ
-                                            </label>
-                                        </div>
+                                            <?php } ?>
+                                        </select>
+                                        <label for="Y">
+                                            <?php echo nbs(2); ?>ประเภทบัตรประจำตัวผู้จัดทำ
+                                        </label>
                                     </div>
-                                    <div class="col">
-                                        <div class="form-floating">
-                                            <input type="text" class="form-control" id="floatingName"
-                                                placeholder="หมายเลขบัตรประจำตัวผู้จัดทำ" name="CreatorPersonalID" value="" >
-                                            <label for="">
-                                                <?php echo nbs(2); ?> หมายเลขบัตรประจำตัวผู้จัดทำ
-                                            </label>
-                                        </div>
+                                </div>
+                                <div class="col">
+                                    <div class="form-floating">
+                                        <input type="text" class="form-control" id="floatingName"
+                                            placeholder="หมายเลขบัตรประจำตัวผู้จัดทำ" name="CreatorPersonalID" value="">
+                                        <label for="">
+                                            <?php echo nbs(2); ?> หมายเลขบัตรประจำตัวผู้จัดทำ
+                                        </label>
                                     </div>
+                                </div>
                             </div>
                             <div class="row mb-3">
                             </div>
@@ -596,7 +621,8 @@
                                 <div class="col">
                                     <div class="form-floating">
                                         <input type="text" class="form-control" id="floatingName"
-                                            placeholder="ชื่อผู้จัดทำ (ภาษาไทย)" name="CreatorNameThai" value="" required>
+                                            placeholder="ชื่อผู้จัดทำ (ภาษาไทย)" name="CreatorNameThai" value=""
+                                            required>
                                         <label for="Y">
                                             <?php echo nbs(2); ?> ชื่อผู้จัดทำ (ภาษาไทย)
                                         </label>
@@ -618,7 +644,7 @@
                                     <div class="form-floating">
                                         <input type="text" class="form-control" id="floatingName"
                                             placeholder="ชื่อกลางผู้จัดทำ (ภาษาไทย)" name="CreatorMiddleNameThai"
-                                            value="" >
+                                            value="">
                                         <label for="">
                                             <?php echo nbs(2); ?> ชื่อกลางผู้จัดทำ (ภาษาไทย)
                                         </label>
@@ -640,8 +666,8 @@
                                 <div class="col">
                                     <div class="form-floating">
                                         <input type="text" class="form-control" id="floatingName"
-                                            placeholder=" นามสกุลผู้จัดทำ (ภาษาไทย)" name="CreatorLastNameThai"
-                                            value="" required>
+                                            placeholder=" นามสกุลผู้จัดทำ (ภาษาไทย)" name="CreatorLastNameThai" value=""
+                                            required>
                                         <label for="Y">
                                             <?php echo nbs(2); ?> นามสกุลผู้จัดทำ (ภาษาไทย)
                                         </label>
@@ -739,53 +765,53 @@
                             <input type="hidden" name="Id" value="<?php echo $show->Id ?>">
                             <div class="row mb-3">
                                 <div class="col">
-                                <div class="form-floating">
-                                    <select class="form-select" id="BestPracticeID"
-                                        aria-label="Floating label select example" name="BestPracticeID"
-                                        value="<?php echo $show->BestPracticeID ?>">
+                                    <div class="form-floating">
+                                        <select class="form-select" id="BestPracticeID"
+                                            aria-label="Floating label select example" name="BestPracticeID"
+                                            value="<?php echo $show->BestPracticeID ?>">
 
-                                        <?php
+                                            <?php
                                                 $result = $this->db->query('SELECT * FROM BEST_PRACTICE WHERE DeleteStatus = 0');
                                                 foreach ($result->result() as $cls) {
                                                 ?>
-                                        <option value="<?= $cls->BestPracticeID; ?>">
-                                            <?= $cls->BestPracticeName; ?></option>
-                                        <?php } ?>
-                                    </select>
-                                    <label for="floatingSelect">
-                                        <?php echo nbs(2); ?>วิธีปฏิบัติที่เป็นเลิศในการจัดการศึกษา
-                                    </label>
+                                            <option value="<?= $cls->BestPracticeID; ?>">
+                                                <?= $cls->BestPracticeName; ?></option>
+                                            <?php } ?>
+                                        </select>
+                                        <label for="floatingSelect">
+                                            <?php echo nbs(2); ?>วิธีปฏิบัติที่เป็นเลิศในการจัดการศึกษา
+                                        </label>
+                                    </div>
                                 </div>
-                            </div>
 
 
-                            
+
                             </div>
                             <div class="row mb-3">
-                            <div class="col">
-                                 <div class="form-floating">
-                                     <select class="form-select" id="CreatorPersonalIDTypeCode"
-                                         aria-label="Floating label select example" name="CreatorPersonalIDTypeCode"
-                                         value="<?php echo $show->CreatorPersonalIDTypeCode ?>">
- 
-                                         <?php
+                                <div class="col">
+                                    <div class="form-floating">
+                                        <select class="form-select" id="CreatorPersonalIDTypeCode"
+                                            aria-label="Floating label select example" name="CreatorPersonalIDTypeCode"
+                                            value="<?php echo $show->CreatorPersonalIDTypeCode ?>">
+
+                                            <?php
                                                  $result = $this->db->query('SELECT * FROM CLS_PERSONAL_ID_TYPE');
                                                  foreach ($result->result() as $cls) {
                                                  ?>
-                                         <option value="<?= $cls->PERSONAL_ID_TYPE_CODE; ?>">
-                                             <?= $cls->PERSONAL_ID_TYPE_NAME; ?></option>
-                                         <?php } ?>
-                                     </select>
-                                     <label for="floatingSelect">
-                                         <?php echo nbs(2); ?>ประเภทบัตรประจำตัวผู้จัดทำ
-                                     </label>
-                                 </div>
-                            </div>
+                                            <option value="<?= $cls->PERSONAL_ID_TYPE_CODE; ?>">
+                                                <?= $cls->PERSONAL_ID_TYPE_NAME; ?></option>
+                                            <?php } ?>
+                                        </select>
+                                        <label for="floatingSelect">
+                                            <?php echo nbs(2); ?>ประเภทบัตรประจำตัวผู้จัดทำ
+                                        </label>
+                                    </div>
+                                </div>
                                 <div class="col">
                                     <div class="form-floating">
                                         <input type="text" class="form-control" id="floatingName"
                                             placeholder="หมายเลขบัตรประจำตัวผู้จัดทำ" name="CreatorPersonalID"
-                                            value="<?php echo $show->CreatorPersonalID ?>" >
+                                            value="<?php echo $show->CreatorPersonalID ?>">
                                         <label for="">
                                             <?php echo nbs(2); ?> หมายเลขบัตรประจำตัวผู้จัดทำ
                                         </label>
@@ -838,7 +864,7 @@
                                     <div class="form-floating">
                                         <input type="text" class="form-control" id="floatingName"
                                             placeholder="ชื่อกลางผู้จัดทำ (ภาษาไทย)" name="CreatorMiddleNameThai"
-                                            value="<?php echo $show->CreatorMiddleNameThai ?>" >
+                                            value="<?php echo $show->CreatorMiddleNameThai ?>">
                                         <label for="">
                                             <?php echo nbs(2); ?> ชื่อกลางผู้จัดทำ (ภาษาไทย)
                                         </label>
@@ -892,7 +918,7 @@
                             <div class="text-center">
                                 <a href="Fm_best_practice_das_p1?page=sh1" class="btn btn-danger"
                                     style="float: left;">ยกเลิก</a>
-                                    <button type="button" class="btn btn-danger" data-bs-toggle="modal"
+                                <button type="button" class="btn btn-danger" data-bs-toggle="modal"
                                     data-bs-target="#del_BPC<?php echo $show->Id; ?>">
                                     <i class="bi bi-trash"></i>
                                 </button>
@@ -926,35 +952,35 @@
                         </form><!-- ข้อมูลแนวปฏิบัติที่เป็นเลิศในการจัดการศึกษา -->
                         <!-- Modal -->
                         <div class="modal fade" id="del_BPC<?php echo $show->Id; ?>" tabindex="-1"
-                                    aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                    <div class="modal-dialog">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h5 class="modal-title" id="exampleModalLabel">
-                                                    ยืนยันการลบข้อมูล<?php echo nbs(2); ?><?php echo $show->CreatorNameThai; ?>-<?php echo $show->CreatorLastNameThai; ?>
-                                                </h5>
+                            aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">
+                                            ยืนยันการลบข้อมูล<?php echo nbs(2); ?><?php echo $show->CreatorNameThai; ?>-<?php echo $show->CreatorLastNameThai; ?>
+                                        </h5>
 
-                                            </div>
-                                            <div class="modal-body">
-                                               <p class="text-center"> คุณต้องการลบข้อมูลใช่หรือไหม</p>
-
-                                            </div>
-
-
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-secondary"
-                                                    data-bs-dismiss="modal">ยกเลิก</button>
-                                                <form method="post" action="<?php echo site_url('BPC_del_p2'); ?>">
-                                                    <input type="hidden" name="Id" value="<?php echo $show->Id; ?>">
-                                                    <div class="d-flex justify-content-center">
-                                                        <button name="Submit" type="submit"
-                                                            class="btn btn-danger">ยืนยันก่อนลบ</button>
-                                                    </div>
-                                                </form>
-                                            </div>
-                                        </div>
                                     </div>
-                                </div> <!-- Modal -->
+                                    <div class="modal-body">
+                                        <p class="text-center"> คุณต้องการลบข้อมูลใช่หรือไหม</p>
+
+                                    </div>
+
+
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary"
+                                            data-bs-dismiss="modal">ยกเลิก</button>
+                                        <form method="post" action="<?php echo site_url('BPC_del_p2'); ?>">
+                                            <input type="hidden" name="Id" value="<?php echo $show->Id; ?>">
+                                            <div class="d-flex justify-content-center">
+                                                <button name="Submit" type="submit"
+                                                    class="btn btn-danger">ยืนยันก่อนลบ</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div> <!-- Modal -->
                         <script>
                         ///CLS_PERSONAL_ID_TYPE
                         var my_CLS_PERSONAL_ID_TYPE = "<?php echo $show->CreatorPersonalIDTypeCode ?>";
@@ -984,7 +1010,11 @@
                                 selectoption_BEST_PRACTICE[i].selected = true;
                             }
                         }
+                        setTimeout(function() {
+                            document.getElementById('myAlert').remove();
+                        }, 2000); // นับถอยหลังให้แสดง 5 วินาที (5000 มิลลิวินาที)
                         </script>
+
                         <?php }
                         } ?>
                     </div>
