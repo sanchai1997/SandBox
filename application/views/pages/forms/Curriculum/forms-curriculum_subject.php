@@ -2,7 +2,12 @@
 <main id="main" class="main">
 
     <div class="pagetitle">
-      <h1>ข้อมูลหลักสูตรรายวิชา</h1>
+      <h1>ข้อมูลหลักสูตรรายวิชา - <?php echo $Curriculum[0]->SchoolNameThai; ?> 
+                                        ปีการศึกษา <?= $Curriculum[0]->EducationYear; ?> 
+                                        <?php $Semester_code = $Curriculum[0]->Semester;
+                                                    if ($Semester_code == 0) echo "ตลอดปีการศึกษา";
+                                                    else if ($Semester_code == 1) echo "ภาคเรียนที่ 1";
+                                                    else if ($Semester_code == 2) echo "ภาคเรียนที่ 2"; ?></h1>
       </nav>
     </div><!-- End Page Title -->
 

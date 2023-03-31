@@ -2,8 +2,15 @@
 
     <div class="pagetitle">
         <div class="row">
-            <div class="col-6">
-                <h1>ข้อมูลแผนการเรียนรู้ </h1>
+            <div>
+                <h1>ข้อมูลแผนการเรียนรู้ - <?php echo $Curriculum[0]->SchoolNameThai; ?> 
+                                        ปีการศึกษา <?= $Curriculum[0]->EducationYear; ?> 
+                                        <?php $Semester_code = $Curriculum[0]->Semester;
+                                                    if ($Semester_code == 0) echo "ตลอดปีการศึกษา";
+                                                    else if ($Semester_code == 1) echo "ภาคเรียนที่ 1";
+                                                    else if ($Semester_code == 2) echo "ภาคเรียนที่ 2"; ?> 
+                                    - <?php echo $Subject[0]->SubjectName; ?> </h1>
+
             </div>
 
         </div>
@@ -46,7 +53,7 @@
                             <th style="text-align: center;" scope="col">ปีการศึกษา</th>
                             <th style="text-align: center;" scope="col">ภาคเรียน</th>
                             <th style="text-align: center;" scope="col">เรื่อง</th>
-                            <th style="text-align: center;" scope="col">รายละเอียด</th>
+                            <th style="text-align: center;" scope="col">กิจกรรม</th>
                             <th style="text-align: center;" scope="col">ปฎิบัติ</th>
                         </tr>
                     </thead>
@@ -64,13 +71,30 @@
                                 </th>
                                 <th style="text-align: center;" scope="col"><?php echo $lcp->PLAN_NAME?></th>
                                 <td style="text-align: center;">
-                                    <a href='list-curriculum_activity?pid=<?php echo $lcp->PLAN_ID; ?>&&sid=<?php echo $SubjectCode; ?>&&cid=<?php echo $CurriculumID; ?>'>
-                                        <button type="button" class="btn btn-info"><i class="bi bi-eye-fill"></i></button> 
-                                    </a>
+                                    <?php $list_curriculum_activity = $this->Curriculum_model->get_curriculum_activity_All($lcp->PLAN_ID); ?>
+                                    <?php foreach($list_curriculum_activity as $lca) { ?>
+                                        <div class="row">
+                                                <div class="col">
+                                                    <p>
+                                                        <a href='edit_forms-curriculum_activity?pid=<?php echo$lca->PLAN_ID ?>&&ACTIVITY_ID=<?php echo$lca->ACTIVITY_ID ?>&&sid=<?php echo $SubjectCode; ?>&&cid=<?php echo $CurriculumID; ?>' class="my-link">
+                                                            <?php echo $lca->ACTIVITY_NAME; ?> 
+                                                        </a>
+                                                    
+                                                    </p>
+                                                </div>
+
+                                            </div>
+                                    <?php } ?>
+                                    <a href="forms-curriculum_activity?pid=<?php echo $lcp->PLAN_ID; ?>&&sid=<?php echo $SubjectCode; ?>&&cid=<?php echo $CurriculumID; ?>" class="fw-bold my-link">
+                                            >>เพิ่มกิจกรรม>>
+                                     </a>
+                                    
                                 </td>
+
+
                                 <td style="text-align: center;">
                                     <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#view<?php echo $lcp->PLAN_ID; ?>"><i class="bi bi-card-list"></i></button>
-                                        <a href='edit_forms_curriculum_plan?pid=<?php echo $lcp->PLAN_ID; ?>' class="btn btn-warning">
+                                        <a href='edit_forms_curriculum_plan?pid=<?php echo $lcp->PLAN_ID; ?>&&sid=<?php echo $SubjectCode; ?>&&cid=<?php echo $CurriculumID; ?>' class="btn btn-warning">
                                             <i class="bi bi-pencil-square"></i>
                                         </a>
                                     <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#delete<?php echo $lcp->PLAN_ID; ?>">
@@ -176,5 +200,13 @@
         </div>
     </div><!-- End Recent Sales -->
 
+<style>
+    .my-link {
+        color: black;
+    }
 
+    .my-link:hover {
+        color: blue;
+    }
+</style>
 </main><!-- End #main -->
