@@ -310,7 +310,7 @@
                         <h5 class="fw-bold">บทคัดย่อ</h5>
                         <p><?php echo $show->Abstract; ?></p>
                         <h5 class="fw-bold">เอกสารแนบ</h5>
-                        <p><a href="<?php echo base_url('document') ?>/<?php echo $show->AttachmentURL; ?>"
+                        <p><a href="<?php echo base_url('assets/EII/BEST_PRACTICE') ?>/<?php echo $show->AttachmentURL; ?>"
                                 target="_blank">รายละเอียดเอกสาร</i></a></p>
                     </div>
                     <div class="col">

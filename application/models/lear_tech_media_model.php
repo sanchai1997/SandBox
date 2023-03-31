@@ -29,7 +29,7 @@ class Lear_tech_media_model extends CI_Model
 			if (isset($_FILES['AttachmentURL'])) {
 				$file = $_FILES['AttachmentURL']['tmp_name'];
 				if (file_exists($file)) {
-					$config['upload_path'] = './document/';
+					$config['upload_path'] = './assets/EII/LEARNING_TLEARNING_TECHNOLOGY_MEDIA/';
 					$config['allowed_types'] = 'doc|docx|pdf|jpg|png|xls|ppt|zip|xlsx';
 					$config['encrypt_name'] = TRUE;
 					$this->load->library('upload', $config);
@@ -99,7 +99,7 @@ class Lear_tech_media_model extends CI_Model
 		if (isset($_FILES['AttachmentURL'])) {
 			$file = $_FILES['AttachmentURL']['tmp_name'];
 			if (file_exists($file)) {
-				$config['upload_path'] = './document/';
+				$config['upload_path'] = './assets/EII/LEARNING_TLEARNING_TECHNOLOGY_MEDIA/';
 				$config['allowed_types'] = 'doc|docx|pdf|jpg|png|xls|ppt|zip|xlsx';
 				$config['encrypt_name'] = TRUE;
 				$this->load->library('upload', $config);

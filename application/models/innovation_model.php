@@ -24,7 +24,7 @@ class Innovation_model extends CI_Model
 			if (isset($_FILES['AttachmentURL'])) {
 				$file = $_FILES['AttachmentURL']['tmp_name'];
 				if (file_exists($file)) {
-					$config['upload_path'] = './document/';
+					$config['upload_path'] = './assets/EII/INNOVATION/';
 					$config['allowed_types'] = 'doc|docx|pdf|jpg|png|xls|ppt|zip';
 					$config['encrypt_name'] = TRUE;
 					$this->load->library('upload', $config);
@@ -95,7 +95,7 @@ class Innovation_model extends CI_Model
 		if (isset($_FILES['AttachmentURL'])) {
 			$file = $_FILES['AttachmentURL']['tmp_name'];
 			if (file_exists($file)) {
-				$config['upload_path'] = './document/';
+				$config['upload_path'] = './assets/EII/INNOVATION/';
 				$config['allowed_types'] = 'doc|docx|pdf|jpg|png|xls|ppt|zip';
 				$config['encrypt_name'] = TRUE;
 				$this->load->library('upload', $config);

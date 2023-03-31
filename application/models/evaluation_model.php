@@ -401,7 +401,7 @@ class Evaluation_model extends CI_Model
 		if (isset($_FILES['SchoolAssessmentAttachmentURL'])) {
 			$file = $_FILES['SchoolAssessmentAttachmentURL']['tmp_name'];
 			if (file_exists($file)) {
-				$config['upload_path'] = './document/';
+				$config['upload_path'] = './assets/EII/SCHOOL_ASSESSMENT_CRITERIA/';
 				$config['allowed_types'] = 'doc|docx|pdf|jpg|png|xls|ppt|zip|xlsx';
 				$config['encrypt_name'] = TRUE;
 		
@@ -462,7 +462,7 @@ public function edit_sc_ass_ria() //sh6
 		if (isset($_FILES['SchoolAssessmentAttachmentURL'])) {
 			$file = $_FILES['SchoolAssessmentAttachmentURL']['tmp_name'];
 			if (file_exists($file)) {
-				$config['upload_path'] = './document/';
+				$config['upload_path'] = './assets/EII/SCHOOL_ASSESSMENT_CRITERIA/';
 				$config['allowed_types'] = 'doc|docx|pdf|jpg|png|xls|ppt|zip|xlsx';
 				$config['encrypt_name'] = TRUE;
 		
@@ -622,8 +622,8 @@ public function del_sc_ass_ria(){
 		if (isset($_FILES['AchievementAssessmentAttachmentURL'])) {
 			$file = $_FILES['AchievementAssessmentAttachmentURL']['tmp_name'];
 			if (file_exists($file)) {
-				$config['upload_path'] = './document/';
-		$config['upload_path'] = './document/';
+				
+		$config['upload_path'] = './assets/EII/ACHIEVEMENT_ASSESSMENT/';
         $config['allowed_types'] = 'doc|docx|pdf|jpg|png|xls|ppt|zip|xlsx';
         $config['encrypt_name'] = TRUE;
 
@@ -673,7 +673,7 @@ public function edit_achie_ass() //sh8
 		if (isset($_FILES['AchievementAssessmentAttachmentURL'])) {
 			$file = $_FILES['AchievementAssessmentAttachmentURL']['tmp_name'];
 			if (file_exists($file)) {
-				$config['upload_path'] = './document/';
+				$config['upload_path'] = './assets/EII/ACHIEVEMENT_ASSESSMENT/';
         $config['allowed_types'] = 'doc|docx|pdf|jpg|png|xls|ppt|zip|xlsx';
         $config['encrypt_name'] = TRUE;
 

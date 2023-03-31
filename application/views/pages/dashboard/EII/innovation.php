@@ -296,7 +296,7 @@
                                         <?php echo $show->Abstract; ?>
                                     </p>
                                     <h5 class="fw-bold">เอกสารแนบ</h5>
-                                    <p><a href="<?php echo base_url('document') ?>/<?php echo $show->AttachmentURL; ?>"
+                                    <p><a href="<?php echo base_url('assets/EII/INNOVATION') ?>/<?php echo $show->AttachmentURL; ?>"
                                             target="_blank">รายละเอียดเอกสาร</i></a></p>
                                     <h5 class="fw-bold">แหล่งนวัตกรรม</h5>
                                     <p>
