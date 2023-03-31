@@ -13,7 +13,7 @@ class CurriculumController extends CI_Controller{
         $this->load->model('Student_model');
     }
     public function do_upload($fileName , $field_name ) {
-        $config['upload_path'] = APPPATH."documents/";  // โฟลเดอร์ ตำแหน่งเดียวกับ root ของโปรเจ็ค
+        $config['upload_path'] = 'assets/curriculum/document/';   // โฟลเดอร์ ตำแหน่งเดียวกับ root ของโปรเจ็ค
         
         $config['allowed_types'] = 'jpg|jpeg|png|iso|dmg|zip|rar|doc|docx|xls|xlsx|ppt|pptx|csv|ods|odt|odp|pdf|rtf|sxc|sxi|txt|exe|avi|mpeg|3gp'; // ปรเเภทไฟล์ 
         $config['max_size']     = '0';  // ขนาดไฟล์ (kb)  0 คือไม่จำกัด ขึ้นกับกำหนดใน php.ini ปกติไม่เกิน 2MB
