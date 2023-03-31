@@ -54,11 +54,11 @@
 
                 <div class="col-md-6">
                   <div class="form-floating">
-                    <select class="form-select" aria-label="Default select example" name="SchoolID" id="SchoolID">
-                      <?php foreach($listSchool as $ls) { ?>
-                        <option value="<?php echo $ls->SchoolID; ?>"><?php echo $ls->SchoolNameThai; ?></option>
-                      <?php } ?>
-                    </select>
+                  <?php foreach($listSchool as $ls) { 
+                        if($ls->SchoolID == $SchoolID) {?>
+                          <input type="text" class="form-control"  placeholder="สถานศึกษา" value="<?php echo $ls->SchoolNameThai; ?>" disabled>
+                         <input type="text" class="form-control" name="SchoolID" id="SchoolID" placeholder="สถานศึกษา" value="<?php echo $ls->SchoolID; ?>" hidden>
+                  <?php } } ?>
                     <label >สถานศึกษา<font color="red"> *</font></label>
                   </div>
                 </div>
@@ -147,7 +147,7 @@
                 </div>
 
                 <div class="d-flex justify-content-between">
-                  <a href="list-curriculum" class="btn btn-danger">ยกเลิก</a>
+                  <a href="list_curriculum_by_school?sid=<?php echo  $SchoolID; ?>" class="btn btn-danger">ยกเลิก</a>
                   <button type="button" class="btn btn-warning" onclick="return check(Curriculum)">แก้ไขข้อมูล</button>
                 </div> 
 

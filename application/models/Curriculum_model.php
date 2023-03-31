@@ -35,9 +35,12 @@ class Curriculum_model  extends CI_Model {
     }
 
     public function get_Curriculum( $CurriculumID) {
-        $this->db->from('CURRICULUM')
+        $this->db->select('c.*, s.SchoolNameThai')
+        ->from('CURRICULUM c')
+        ->join('SCHOOL s', 's.SchoolID   = c.SchoolID  ', 'LEFT') 
         ->where('CurriculumID', $CurriculumID )
-        ->where('DeleteStatus', 0)
+        ->where('c.DeleteStatus', 0)
+        ->where('s.DeleteStatus', 0)
         ;
         $query = $this->db->get();
     

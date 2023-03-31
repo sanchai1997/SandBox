@@ -29,6 +29,17 @@ class School_model extends CI_Model
         return $query->result();
     }
 
+    public function get_school($SchoolID)
+    {
+        $this->db->from('SCHOOL')
+             ->where('SchoolID', $SchoolID)
+            ->where('DeleteStatus', 0)
+            ->LIMIT(1);
+        $query = $this->db->get();
+
+        return $query->result();
+    }
+
     ///////////////////////////////////SCHOOL/////////////////////////////////////////
     //Add Data Form School
     public function add_school()

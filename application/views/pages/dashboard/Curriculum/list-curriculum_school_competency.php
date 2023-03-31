@@ -2,8 +2,13 @@
 
     <div class="pagetitle">
         <div class="row">
-            <div class="col-6">
-                <h1>ข้อมูลสมรรถนะของหลักสูตร</h1>
+            <div>
+                <h1>ข้อมูลสมรรถนะของหลักสูตร - <?php echo $Curriculum[0]->SchoolNameThai; ?> 
+                                        ปีการศึกษา <?= $Curriculum[0]->EducationYear; ?> 
+                                        <?php $Semester_code = $Curriculum[0]->Semester;
+                                                    if ($Semester_code == 0) echo "ตลอดปีการศึกษา";
+                                                    else if ($Semester_code == 1) echo "ภาคเรียนที่ 1";
+                                                    else if ($Semester_code == 2) echo "ภาคเรียนที่ 2"; ?></h1>
             </div>
 
         </div>
