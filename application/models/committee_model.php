@@ -27,7 +27,7 @@ if ($num_chk <= 0 ) {
 	if (isset($_FILES['CommitteeAppointmentAttachmentURL'])) {
 		$file = $_FILES['CommitteeAppointmentAttachmentURL']['tmp_name'];
 		if (file_exists($file)) {
-	$config['upload_path'] = './document/';
+	$config['upload_path'] = 'assets/EII/COMMITTEE/';
 	$config['allowed_types'] = 'doc|docx|pdf|jpg|png|xls|ppt|zip|xlsx';
 	$config['encrypt_name'] = TRUE;
   
@@ -87,7 +87,7 @@ public function edit_committee()
 	if (isset($_FILES['CommitteeAppointmentAttachmentURL'])) {
 		$file = $_FILES['CommitteeAppointmentAttachmentURL']['tmp_name'];
 		if (file_exists($file)) {
-			$config['upload_path'] = './document/';
+			$config['upload_path'] = 'assets/EII/COMMITTEE/';
 			$config['allowed_types'] = 'doc|docx|pdf|jpg|png|xls|ppt|zip|xlsx';
 			$config['encrypt_name'] = TRUE;
 			$this->load->library('upload',$config);

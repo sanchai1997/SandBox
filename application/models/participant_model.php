@@ -169,7 +169,7 @@ if ($num_chk <= 0 ) {
 		if (isset($_FILES['CooperationAttachmentURL'])) {
 			$file = $_FILES['CooperationAttachmentURL']['tmp_name'];
 			if (file_exists($file)) {
-		$config['upload_path'] = './document/';
+		$config['upload_path'] = 'assets/EII/PARTICIPANT_COOPERATION/';
         $config['allowed_types'] = 'doc|docx|pdf|jpg|png|xls|ppt|zip|xlsx';
         $config['encrypt_name'] = TRUE;
 
@@ -227,7 +227,7 @@ if ($num_chk <= 0 ) {
 		if(isset($_FILES['CooperationAttachmentURL'])){
 			$file = $_FILES['CooperationAttachmentURL']['tmp_name'];
 			if(file_exists($file)){
-		$config['upload_path'] = './document/';
+		$config['upload_path'] = 'assets/EII/PARTICIPANT_COOPERATION/';
         $config['allowed_types'] = 'doc|docx|pdf|jpg|png|xls|ppt|zip|xlsx';
         $config['encrypt_name'] = TRUE;
 
