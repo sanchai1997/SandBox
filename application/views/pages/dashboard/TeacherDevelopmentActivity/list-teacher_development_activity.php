@@ -37,7 +37,9 @@
                 <div class="row">
 
                     <div class="col">
-                        <h5 style="float: right; padding: 15px;" class="card-title"><a href="forms-teacher_development_activity" class="btn btn-success">เพิ่มข้อมูล</a></h5>
+                        <h5 style="float: right; padding: 15px;" class="card-title">
+                        <a href="" class="btn btn-success">อัพโหลดไฟล์</a>
+                        <a href="forms-teacher_development_activity" class="btn btn-success">เพิ่มข้อมูล</a></h5>
                     </div>
                 </div>
                 <table class="table table-borderless datatable">
@@ -132,9 +134,6 @@
                                             </div>
 
                                             <div class="modal-footer">
-                                                <a href='edit_forms-teacher_development_activity?tid=<?php echo $ls->TeacherID;?>&&name=<?php echo $ls->DevelopmentActivityName;?>&&sdate=<?php echo $ls->DevelopmentActivityStartDate;?>' class="btn btn-warning">
-                                                    <i class="bi bi-pencil-square"></i> 
-                                                </a> 
                                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ปิด</button>                                            </div>
                                         </div>
                                     </div>

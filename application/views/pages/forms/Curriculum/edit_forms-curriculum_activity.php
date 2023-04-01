@@ -353,6 +353,9 @@ function onloadpage(){
              
                 <div class="d-flex justify-content-between">
                   <a href="list-curriculum_activity?pid=<?php echo $PLAN_ID; ?>&&sid=<?php echo $SubjectCode; ?>&&cid=<?php echo $CurriculumID; ?>" class="btn btn-danger" >ยกเลิก</a>
+                  <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#delete">
+                                        <i class=" bi bi-trash"></i>
+                   </button>
                   <button type="button" class="btn btn-warning" onclick="return check(ACTIVITY)">แก้ไขข้อมูล</button>
                 </div> 
                <!-- Modal -->

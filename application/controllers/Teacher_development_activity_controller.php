@@ -86,7 +86,7 @@ class Teacher_development_activity_controller extends CI_Controller{
 
 
     public function do_upload($fileName , $field_name ) {
-        $config['upload_path'] = APPPATH."documents/";  // โฟลเดอร์ ตำแหน่งเดียวกับ root ของโปรเจ็ค
+        $config['upload_path'] = "assets/teacher_development/document/";  // โฟลเดอร์ ตำแหน่งเดียวกับ root ของโปรเจ็ค
         $config['allowed_types'] = 'jpg|jpeg|png|iso|dmg|zip|rar|doc|docx|xls|xlsx|ppt|pptx|csv|ods|odt|odp|pdf|rtf|sxc|sxi|txt|exe|avi|mpeg|3gp'; // ปรเเภทไฟล์ 
         $config['max_size']     = '0';  // ขนาดไฟล์ (kb)  0 คือไม่จำกัด ขึ้นกับกำหนดใน php.ini ปกติไม่เกิน 2MB
         $config['file_name'] = $fileName;  // ชื่อไฟล์ ถ้าไม่กำหนดจะเป็นตามชื่อเดิม
@@ -96,7 +96,6 @@ class Teacher_development_activity_controller extends CI_Controller{
 
         if ( ! $this->upload->do_upload($field_name)) {
             $error = array('error' => $this->upload->display_errors());
-            show_error($error);
             return -1 ;
         }
         else {
