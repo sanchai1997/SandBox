@@ -163,7 +163,7 @@
                                                         จำนวนห้องที่สอนด้วยหลักสูตร : <?= $ls->ClassroomNumber; ?>
                                                     </div>
                                                     <div class=" col-8" style="padding-bottom: 8px; padding-left: 40px;">
-                                                        เอกสารแนบหลักสูตร : <a href="load_file?file=<?php echo $ls->CurriculumDocumentURL; ?>"><i class="bi bi-file-earmark-text-fill"></i> เอกสารแนบหลักสูตร</a>
+                                                        เอกสารแนบหลักสูตร : <a href="<?php echo base_url('assets/curriculum/document/') ?><?php echo $ls->CurriculumDocumentURL; ?>"><i class="bi bi-file-earmark-text-fill"></i> เอกสารแนบหลักสูตร</a>
                                                     </div>
                                                 </div>
 
@@ -179,11 +179,11 @@
                                                         ชื่อหลักสูตรท้องถิ่นที่อ้างอิง : <?= $ls->LocalCurriculumName; ?>
                                                     </div>
                                                     <div class=" col-8" style="padding-bottom: 8px; padding-left: 40px;">
-                                                        เอกสารแนบหลักสูตรท้องถิ่นที่อ้างอิง : <a href="load_file?file=<?php echo $ls->LocalCurriculumDocumentURL; ?>"><i class="bi bi-file-earmark-text-fill"></i> เอกสารแนบหลักสูตร</a>
+                                                        เอกสารแนบหลักสูตรท้องถิ่นที่อ้างอิง : <a href="<?php echo base_url('assets/curriculum/document/') ?><?php echo $ls->LocalCurriculumDocumentURL; ?>"><i class="bi bi-file-earmark-text-fill"></i> เอกสารแนบหลักสูตรท้องถิ่นที่อ้างอิง</a>
                                                     </div>
                                                 </div>
-
-
+                                               
+                                                
 
                                             </div>
                                             <div class="modal-footer">

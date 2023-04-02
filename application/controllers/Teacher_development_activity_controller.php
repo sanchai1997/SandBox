@@ -32,7 +32,6 @@ class Teacher_development_activity_controller extends CI_Controller{
 
     public function add_teacher_development_activity() {
         $DevelopmentDocument = $this->do_upload('DevelopmentDocument',"DevelopmentDocument");
-
         if($DevelopmentDocument != -1 ){
             $teacher_development_activity = [
                 'DevelopmentActivityEducationYear' => $this->input->post('DevelopmentActivityEducationYear'),
@@ -49,7 +48,6 @@ class Teacher_development_activity_controller extends CI_Controller{
                 'DeleteStatus' => 0 
             ];
             $result =  $this->TeacherDevelopmentActivity_model->insert_TeacherDevelopmentActivity($teacher_development_activity);
-            
             if($result == 1 ){
                 $this->session->set_flashdata('success',"บันทึกข้อมูลสำเร็จ");
                 redirect(base_url('list-teacher_development_activity')); //รอเพิ่มหน้า 
@@ -99,8 +97,8 @@ class Teacher_development_activity_controller extends CI_Controller{
             return -1 ;
         }
         else {
-            $data = array('upload_data' => $this->upload->data());
-            return $this->upload->data('full_path') ;
+            $data = $this->upload->data();
+            return $data['file_name'];
         }
 
     }

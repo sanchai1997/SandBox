@@ -27,8 +27,8 @@ class CurriculumController extends CI_Controller{
             return -1 ;
         }
         else {
-            $data = array('upload_data' => $this->upload->data());
-            return $this->upload->data('full_path') ;
+            $data = $this->upload->data();
+            return $data['file_name'];
         }
 
     }
@@ -113,8 +113,8 @@ class CurriculumController extends CI_Controller{
         $CurriculumDocumentURL = $this->do_upload('CurriculumDocument'.$CurriculumID ,"CurriculumDocumentURL");
         $LocalCurriculumDocumentURL = $this->do_upload('LocalCurriculumDocument'.$CurriculumID ,"LocalCurriculumDocumentURL");
 
-        if($CurriculumDocumentURL != -1) {$CurriculumDocumentURL=null;}
-        if($LocalCurriculumDocumentURL != -1) {$LocalCurriculumDocumentURL=null;}
+        if($CurriculumDocumentURL == -1) {$CurriculumDocumentURL=null;}
+        if($LocalCurriculumDocumentURL == -1) {$LocalCurriculumDocumentURL=null;}
 
         $curriculum = [
             'CurriculumID' => $CurriculumID,
@@ -139,7 +139,7 @@ class CurriculumController extends CI_Controller{
             redirect(base_url('list_curriculum_by_school?sid='.$SchoolID));
         }else{
             $this->session->set_flashdata('errors',"เกิดข้อผิดพลาดในการบันทึกข้อมูล");
-            redirect(base_url('forms-curriculum'));
+            redirect(base_url('forms-curriculum?sid='.$SchoolID));
         }   
 
     }

@@ -127,8 +127,8 @@
                                                         วันที่สิ้นสุดกิจกรรม - <?= $ls->DevelopmentActivityStartDate ; ?>
                                                     </div>
                                                     <div class=" col-8" style="padding-bottom: 8px; padding-left: 40px;">
-                                                        เอกสารแนบ/เกียรติบัตร -  <a href="load_file?file=<?php echo $ls->DevelopmentDocument; ?>" ><i class="bi bi-file-earmark-text-fill"></i> เอกสารแนบ/เกียรติบัตร </a>   
-                                                    </div>
+                                                        เอกสารแนบ/เกียรติบัตร -  <a href="<?php echo base_url('assets/teacher_development/document/') ?><?php echo $ls->DevelopmentDocument; ?>" ><i class="bi bi-file-earmark-text-fill"></i> เอกสารแนบ/เกียรติบัตร </a>   
+                                                    </div> 
                                                 </div>                                              
 
                                             </div>
