@@ -43,18 +43,6 @@
 
                 <div class="col-md-16">
                   <div class="form-floating">
-                  <select class="form-select" aria-label="Default select example" name="ExpenseTypeCode" id="ExpenseTypeCode">
-                      <option selected value="-1">ประเภทงบประมาณ</option>
-                      <?php foreach($listBudget_type as $lb_t) { ?>
-                        <option value="<?php echo $lb_t->BUDGET_TYPE_NAME; ?>"><?php echo $lb_t->BUDGET_TYPE_NAME; ?></option>
-                      <?php } ?>
-                    </select>
-                    <label>ประเภทงบประมาณ</label>
-                  </div>
-                </div>
-
-                <div class="col-md-16">
-                  <div class="form-floating">
                   <select class="form-select" aria-label="Default select example" name="BudgetSchoolID" id="BudgetSchoolID">
                       <option selected value="-1">เลือกสถานศึกษา</option>
                       <?php foreach($listSchool as $ls) { ?>
@@ -119,7 +107,7 @@
 
                 <div class="col-md-16">
                   <div class="form-floating">
-                  <select class="form-select" aria-label="Default select example" name="BudgetSchoolID" id="BudgetSchoolID">
+                  <select class="form-select" aria-label="Default select example" name="ExpenseBudgetSchoolID" id="ExpenseBudgetSchoolID">
                       <option selected value="-1">เลือกสถานศึกษา</option>
                       <?php foreach($listSchool as $ls) { ?>
                         <option value="<?php echo $ls->SchoolID; ?>"><?php echo $ls->SchoolNameThai; ?></option>
@@ -134,7 +122,7 @@
                   <select class="form-select" aria-label="Default select example" name="ExpenseTypeCode" id="ExpenseTypeCode">
                       <option selected value="-1">เลือกประเภทการเบิกจ่าย</option>
                       <?php foreach($listBudget_type as $lb_t) { ?>
-                        <option value="<?php echo $lb_t->BUDGET_TYPE_NAME; ?>"><?php echo $lb_t->BUDGET_TYPE_NAME; ?></option>
+                        <option value="<?php echo $lb_t->BUDGET_TYPE_CODE; ?>"><?php echo $lb_t->BUDGET_TYPE_NAME; ?></option>
                       <?php } ?>
                     </select>
                     <label>รหัสประเภทการเบิกจ่าย</label>

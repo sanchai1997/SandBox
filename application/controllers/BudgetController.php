@@ -34,9 +34,14 @@ class BudgetController extends CI_Controller{
             show_404();
         }
 
+        $data['listSchool'] = $this->School_model->get_school_All();
+        $data['listBudget_type'] = $this->Budget_model->get_expense_type();
+
         $data['BudgetID'] = $_GET['bid']; 
 
         $data['Budget'] = $this->Budget_model->get_Budget($data['BudgetID'] );
+
+        $data['expense'] = $this->expense_model->get_expense($data['BudgetID'] );
 
         $this->load->view('templates/header');
         $this->load->view('templates/sidebar');
@@ -80,7 +85,7 @@ class BudgetController extends CI_Controller{
                 'ExpenseEducationYear' => $this->input->post('ExpenseEducationYear'),
                 'ExpenseSemester' => $this->input->post('ExpenseSemester'),
                 'BudgetID' => $budget_id,
-                'ExpenseSchoolID ' => $this->input->post('BudgetSchoolID'),
+                'ExpenseSchoolID ' => $this->input->post('ExpenseBudgetSchoolID'),
                 'ExpenseTypeCode' => $this->input->post('ExpenseTypeCode'),
                 'ExpenseAmount' => $this->input->post('ExpenseAmount'),
                 'ExpenseDate' => $this->input->post('ExpenseDate'),

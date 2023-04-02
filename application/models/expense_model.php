@@ -15,6 +15,15 @@ class expense_model extends CI_Model
         return $result_expense;
     }
 
+    public function get_expense($BudgetID) {
+        $this->db->from('expense')
+        ->where('BudgetID', $BudgetID );
+        
+        $query = $this->db->get();
+
+        return $query->result();
+    }
+
 }
 ?>
 
