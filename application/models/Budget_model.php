@@ -18,7 +18,14 @@ class Budget_model extends CI_Model
     public function insert_budget($budget) {
         
         $result_budget = $this->db->insert('BUDGET', $budget);
-        return $result_budget;
+
+        if($result_budget == 1){
+            $BudgetID = $this->db->insert_id();
+            return $BudgetID;
+        }else{
+            return -1 ;
+        }
+        
     }
 
     public function get_Budget_All() {
