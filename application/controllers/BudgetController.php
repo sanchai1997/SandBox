@@ -9,7 +9,7 @@ class BudgetController extends CI_Controller{
         $this->load->library('session');
         $this->load->model('School_model');
         $this->load->model('Budget_model');
-        $this->load->model('expense_model');
+        $this->load->model('Expense_model');
     }
     public function forms_budget() {
         
@@ -41,7 +41,7 @@ class BudgetController extends CI_Controller{
 
         $data['Budget'] = $this->Budget_model->get_Budget($data['BudgetID'] );
 
-        $data['expense'] = $this->expense_model->get_expense($data['BudgetID'] );
+        $data['expense'] = $this->Expense_model->get_expense($data['BudgetID'] );
 
         $this->load->view('templates/header');
         $this->load->view('templates/sidebar');
@@ -91,7 +91,7 @@ class BudgetController extends CI_Controller{
                 'ExpenseDate' => $this->input->post('ExpenseDate'),
             ];
 
-            $result_expense2 =  $this->expense_model->insert_expense($expense);
+            $result_expense2 =  $this->Expense_model->insert_expense($expense);
            
             
             
