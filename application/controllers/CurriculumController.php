@@ -704,7 +704,7 @@ class CurriculumController extends CI_Controller{
       
         if($result_curriculum_activity == 1 ){    
             $this->session->set_flashdata('success',"บันทึกข้อมูลสำเร็จ");
-            redirect(base_url('list-curriculum_activity?pid='. $PLAN_ID.'&&sid='. $SubjectCode.'&&cid='. $CurriculumID ));
+            redirect(base_url('list-curriculum_plan?sid='. $SubjectCode.'&&cid='.$CurriculumID));
         }else{
             $this->session->set_flashdata('errors',"เกิดข้อผิดพลาดในการบันทึกข้อมูล");
             redirect(base_url('forms-curriculum_activity?pid='. $PLAN_ID.'&&sid='. $SubjectCode.'&&cid='. $CurriculumID));
