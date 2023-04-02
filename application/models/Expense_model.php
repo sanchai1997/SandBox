@@ -1,6 +1,6 @@
 <?php
 
-class expense_model extends CI_Model
+class Expense_model extends CI_Model
 {
 
     public function __construct()
@@ -11,12 +11,12 @@ class expense_model extends CI_Model
     }
 
     public function insert_expense($expense) {
-        $result_expense = $this->db->insert('expense', $expense);
+        $result_expense = $this->db->insert('EXPENSE', $expense);
         return $result_expense;
     }
 
     public function get_expense($BudgetID) {
-        $this->db->from('expense')
+        $this->db->from('EXPENSE')
         ->where('BudgetID', $BudgetID );
         
         $query = $this->db->get();
