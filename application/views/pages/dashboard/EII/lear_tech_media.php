@@ -282,7 +282,7 @@
                                     <h5 class="fw-bold">บทคัดย่อ</h5>
                                     <p><?php echo $show->Abstract; ?></p>
                                     <h5 class="fw-bold">เอกสารแนบ</h5>
-                                    <p><a href="<?php echo base_url('assets/EII/LEARNING_TLEARNING_TECHNOLOGY_MEDIA') ?>/<?php echo $show->AttachmentURL; ?>" target="_blank">รายละเอียดเอกสาร</a></p>
+                                    <p><a href="<?php echo base_url('assets/EII/LEARNING_TECHNOLOGY_MEDIA') ?>/<?php echo $show->AttachmentURL; ?>" target="_blank">รายละเอียดเอกสาร</a></p>
                                     <h5 class="fw-bold">แหล่งที่มา</h5>
                                     <p><?php echo $show->Source; ?></p>
                                     <h5 class="fw-bold">วันที่เผยแพร่</h5>

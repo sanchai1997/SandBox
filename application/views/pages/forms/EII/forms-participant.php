@@ -860,6 +860,7 @@ if (isset( $_SESSION['success'])) { ?>
                                     ); ?>สถานศึกษาที่เข้าไปมีส่วนร่วม</label>
                                 </div>
                             </div>
+                            <input name="oil_file" value="<?php echo $show->CooperationAttachmentURL ?>" type="hidden">
                             <div class="row mb-3">
                                 <div class="input-group mb-3">
                                     <label class="input-group-text" for="inputGroupFile01">ลิ้งก์เอกสารแนบ</label>

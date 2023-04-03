@@ -83,7 +83,7 @@ if (isset( $_SESSION['success'])) { ?>
                             <!-- start Form ข้อมูลนวัตกรรมการศึกษา -->
 
                             <body>
-                                <form action="<?php echo site_url('forms_up_p1'); ?>" method="post"
+                                <form action="<?php echo site_url('forms_up_p1'); ?>" method="POST"
                                     enctype="multipart/form-data" onsubmit="return checkSelectedOption()">
 
                                     <!-- <div class="row mb-3">
@@ -381,7 +381,7 @@ if (isset( $_SESSION['success'])) { ?>
                                         </div>
                                     </div>
 
-
+                                    <input name="oil_file" value="<?php echo $show->AttachmentURL; ?>" type="">
 
                                     <div class="row mb-3">
                                         <div class="input-group mb-3">
