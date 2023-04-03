@@ -395,7 +395,7 @@ foreach ($results->result() as $showx) {
                         <td><p><?php echo $showx->CooperationActivity; ?></p></td>
                         <td><p><?php echo $showx->COOPERATION_LEVEL_NAME; ?></p></td>
                         <td><p><?php echo $showx->COOPERATION_STATUS_NAME; ?></p></td>
-                        <td><p><a href="<?php echo base_url('document') ?>/<?php echo $showx->CooperationAttachmentURL; ?>"
+                        <td><p><a href="<?php echo base_url('assets/EII/PARTICIPANT_COOPERATION') ?>/<?php echo $showx->CooperationAttachmentURL; ?>"
                                 target="_blank">รายละเอียดเอกสาร</i></a></p></td>
                     </tr>
                     <?php } ?>

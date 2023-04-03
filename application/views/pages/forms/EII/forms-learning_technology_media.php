@@ -8,6 +8,36 @@
     <?php $page = isset($_GET['page']) ? $_GET['page'] : '';  ?>
     <?php $name = isset($_GET['name']) ? $_GET['name'] : ''; ?>
     <?php $key = isset($_GET['key']) ? $_GET['key'] : ''; ?>
+    <?php 
+session_start(); // เริ่มต้น session
+if (isset( $_SESSION['success'])) { ?>
+        <div style="position: relative;">
+            <div class="alert alert-success" id="myAlert"
+                style="position: absolute; top: 0; left: 0; right: 0; z-index: 1;">
+                <strong>
+                    <?php
+                        echo $_SESSION['success'];
+                        unset($_SESSION['success']);
+                        ?>
+                </strong>
+
+            </div>
+        </div>
+        <?php  }
+        if (isset( $_SESSION['false'])) { ?>
+        <div style="position: relative;">
+            <div class="alert alert-danger" id="myAlert"
+                style="position: absolute; top: 0; left: 0; right: 0; z-index: 1;">
+                <strong>
+                    <?php
+                        echo $_SESSION['false'];
+                        unset($_SESSION['false']);
+                        ?>
+                </strong>
+
+            </div>
+        </div>
+        <?php  } ?>
     <div class="pagetitle">
         <?php switch ($page) {
                 case 'sh1':

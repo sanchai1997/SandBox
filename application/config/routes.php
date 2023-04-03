@@ -18,7 +18,7 @@ $route['forms-curriculum'] = 'CurriculumController/forms_curriculum';
 $route['add_curriculum']['post'] = 'CurriculumController/add_curriculum';
 $route['edit_forms-curriculum'] = 'CurriculumController/forms_edit_curriculum';
 $route['edit_curriculum']['post'] = 'CurriculumController/edit_curriculum';
-$route['delete-curriculum/(:num)'] = 'CurriculumController/delete_curriculum/$1';
+$route['delete-curriculum/(:num)/(:num)'] = 'CurriculumController/delete_curriculum/$1/$2';
 $route['list_curriculum_by_school'] = 'CurriculumController/list_curriculum_by_school';
 //Curriculum_subject
 $route['list-curriculum_subject'] = 'CurriculumController/list_curriculum_subject';
@@ -51,7 +51,7 @@ $route['forms-curriculum_activity'] = 'CurriculumController/forms_curriculum_act
 $route['add_curriculum_activity']['post'] = 'CurriculumController/add_curriculum_activity';
 $route['edit_forms-curriculum_activity'] = 'CurriculumController/edit_forms_curriculum_activity';
 $route['edit_curriculum_activity']['post'] = 'CurriculumController/edit_curriculum_activity';
-$route['delete-curriculum_activity/(:num)/(:num)'] = 'CurriculumController/delete_curriculum_activity/$1/$2';
+$route['delete-curriculum_activity/(:num)/(:num)/(:num)/(:num)'] = 'CurriculumController/delete_curriculum_activity/$1/$2/$3/$4';
 //curriculum_assessment
 $route['forms-curriculum_assessment'] = 'CurriculumController/forms_curriculum_assessment';
 $route['add_curriculum_assessment']['post'] = 'CurriculumController/add_curriculum_assessment';

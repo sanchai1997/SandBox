@@ -45,7 +45,7 @@
                                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                                         <?php foreach ($School as $ls) { ?>
                                             <li>
-                                                <a class="dropdown-item" href="list_curriculum_by_school?sid=<?php echo $ls->SchoolID; ?>&&sname=<?php echo $ls->SchoolNameThai; ?>"><?php echo $ls->SchoolNameThai; ?></a>
+                                                <a class="dropdown-item" href="list_curriculum_by_school?sid=<?php echo $ls->SchoolID; ?>"><?php echo $ls->SchoolNameThai; ?></a>
                                             </li>
                                         <?php } ?>
                                     </ul>
@@ -54,9 +54,11 @@
                             <?php } ?>
                         </h1>
                     </div>
-                    <div class="col">
-                        <h5 style="float: right; padding: 15px;" class="card-title"><a href="" class="btn btn-success">อัพโหลดไฟล์</a>&nbsp;&nbsp;<a href="forms-curriculum" class="btn btn-success">เพิ่มข้อมูล</a></h5>
-                    </div>
+                     <?php if (!empty($School)) {?>
+                        <div class="col">
+                            <h5 style="float: right; padding: 15px;" class="card-title"><a href="" class="btn btn-success">อัพโหลดไฟล์</a>&nbsp;&nbsp;<a href="forms-curriculum?sid=<?php echo $SchoolID; ?>" class="btn btn-success">เพิ่มข้อมูล</a></h5>
+                        </div>
+                    <?php } ?>
                 </div>
                 <table class="table table-borderless datatable">
                     <thead>
@@ -64,6 +66,7 @@
                             <th style="text-align: center;" scope="col">ปีการศึกษา</th>
                             <th style="text-align: center;" scope="col">ภาคเรียน</th>
                             <th style="text-align: center;" scope="col">ชื่อหลักสูตร</th>
+                            <th style="text-align: center;" scope="col">หลักสูตรรายวิชา</th>
                             <th style="text-align: center;" scope="col">รายละเอียด</th>
                             <th style="text-align: center;" scope="col">ปฎิบัติ</th>
 
@@ -93,7 +96,9 @@
                                     </td>
                                     <td style="text-align: center;">
                                         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#view<?php echo $ls->CurriculumID; ?>"><i class="bi bi-card-list"></i></button>
-                                        <a href='edit_forms-curriculum?cid=<?php echo $ls->CurriculumID; ?>' class="btn btn-warning">
+                                    </td>
+                                    <td style="text-align: center;">
+                                        <a href='edit_forms-curriculum?cid=<?php echo $ls->CurriculumID; ?>&&sid=<?php echo $SchoolID; ?>' class="btn btn-warning">
                                             <i class="bi bi-pencil-square"></i>
                                         </a>
                                         <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#delete<?php echo $ls->CurriculumID; ?>">
@@ -108,7 +113,7 @@
                                         <div class="modal-content">
 
                                             <div class="modal-header">
-                                                <h5 class="modal-title" id="exampleModalLabel" style="padding-left: 30px; padding-top: 15px;"> <i class="bi bi-card-heading"></i> ข้อมูลหลักสูตร / หลักสูตรของพื้นที่นวัตกรรม</h5>
+                                                <h5 class="modal-title" id="exampleModalLabel" style="padding-left: 30px; padding-top: 15px;"> <i class="bi bi-card-heading"></i> ข้อมูลหลักสูตร / หลักสูตรของพื้นที่นวัตกรรม - <?php echo $SchoolNameThai; ?></h5>
                                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                 <hr>
                                             </div>
@@ -158,7 +163,10 @@
                                                         จำนวนห้องที่สอนด้วยหลักสูตร : <?= $ls->ClassroomNumber; ?>
                                                     </div>
                                                     <div class=" col-8" style="padding-bottom: 8px; padding-left: 40px;">
-                                                        เอกสารแนบหลักสูตร : <a href="load_file?file=<?php echo $ls->CurriculumDocumentURL; ?>"><i class="bi bi-file-earmark-text-fill"></i> เอกสารแนบหลักสูตร</a>
+                                                        เอกสารแนบหลักสูตร :
+                                                        <?php if($ls->CurriculumDocumentURL != null) { ?>
+                                                            <a href="<?php echo base_url('assets/curriculum/document/') ?><?php echo $ls->CurriculumDocumentURL; ?>"><i class="bi bi-file-earmark-text-fill"></i> เอกสารแนบหลักสูตร</a>
+                                                        <?php  } ?>
                                                     </div>
                                                 </div>
 
@@ -166,23 +174,25 @@
                                                     <h6 style="padding-top: 10px;"><b>ข้อมูลหลักสูตรท้องถิ่น</b></h6>
                                                     <div class=" col-8" style="padding-bottom: 8px; padding-left: 40px;">
                                                         อ้างอิงหลักสูตรท้องถิ่น : <?php $LocalCurriculumFlag_code = $ls->LocalCurriculumFlag;
-                                                                                    if ($Semester_code == 0) echo "อ้างอิง";
-                                                                                    else if ($Semester_code == 1) echo "ไม่อ้างอิง"; ?>
+                                                                                    if ($LocalCurriculumFlag_code == 0) echo "อ้างอิง";
+                                                                                    else if ($LocalCurriculumFlag_code == 1) echo "ไม่อ้างอิง"; ?>
 
                                                     </div>
                                                     <div class=" col-8" style="padding-bottom: 8px; padding-left: 40px;">
                                                         ชื่อหลักสูตรท้องถิ่นที่อ้างอิง : <?= $ls->LocalCurriculumName; ?>
                                                     </div>
                                                     <div class=" col-8" style="padding-bottom: 8px; padding-left: 40px;">
-                                                        เอกสารแนบหลักสูตรท้องถิ่นที่อ้างอิง : <a href="load_file?file=<?php echo $ls->LocalCurriculumDocumentURL; ?>"><i class="bi bi-file-earmark-text-fill"></i> เอกสารแนบหลักสูตร</a>
+                                                        เอกสารแนบหลักสูตรท้องถิ่นที่อ้างอิง : 
+                                                        <?php if($ls->LocalCurriculumDocumentURL != null) { ?>
+                                                           <a href="<?php echo base_url('assets/curriculum/document/') ?><?php echo $ls->LocalCurriculumDocumentURL; ?>"><i class="bi bi-file-earmark-text-fill"></i> เอกสารแนบหลักสูตรท้องถิ่นที่อ้างอิง</a>
+                                                        <?php  } ?>
                                                     </div>
                                                 </div>
-
-
+                                               
+                                                
 
                                             </div>
                                             <div class="modal-footer">
-                                                <a href='edit_forms-curriculum?cid=<?php echo $ls->CurriculumID; ?>' class="btn btn-warning"><i class="bi bi-pencil-square"></i></button></a>
                                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ปิด</button>                                            </div>
                                         </div>
                                     </div>
@@ -202,7 +212,7 @@
                                                 </h6>
                                             </div>
                                             <div class="modal-footer">
-                                                <a href="<?php echo base_url('delete-curriculum/' . $ls->CurriculumID) ?>" class="btn btn-danger">ลบ</a>
+                                                <a href="<?php echo base_url('delete-curriculum/' . $ls->CurriculumID . '/' .$SchoolID) ?>  " class="btn btn-danger">ลบ</a>
                                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ยกเลิก</button>
                                             </div>
                                         </div>

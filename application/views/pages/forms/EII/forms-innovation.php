@@ -24,6 +24,20 @@ if (isset( $_SESSION['success'])) { ?>
 
             </div>
         </div>
+        <?php  }
+        if (isset( $_SESSION['false'])) { ?>
+        <div style="position: relative;">
+            <div class="alert alert-danger" id="myAlert"
+                style="position: absolute; top: 0; left: 0; right: 0; z-index: 1;">
+                <strong>
+                    <?php
+                        echo $_SESSION['false'];
+                        unset($_SESSION['false']);
+                        ?>
+                </strong>
+
+            </div>
+        </div>
         <?php  } ?>
         <div class="pagetitle">
             <?php switch ($page) {
@@ -920,3 +934,8 @@ if (isset( $_SESSION['success'])) { ?>
 
     </main><!-- End #main -->
     </bady>
+    <script>
+  setTimeout(function() {
+    document.getElementById('myAlert').remove();
+  }, 2000); // นับถอยหลังให้แสดง 2 วินาที (2000 มิลลิวินาที)
+</script>

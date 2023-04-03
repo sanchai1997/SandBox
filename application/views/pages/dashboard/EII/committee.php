@@ -268,7 +268,7 @@
                         <h6 class="fw-bold">ลิงก์เอกสารคำสั่ง</h6>
                         <p>
                             <td scope="row " style="text-align: center;">
-                                <a href="<?php echo base_url('document') ?>/<?php echo $show->CommitteeAppointmentAttachmentURL; ?>"
+                                <a href="<?php echo base_url('assets/EII/COMMITTEE') ?>/<?php echo $show->CommitteeAppointmentAttachmentURL; ?>"
                                     target="_blank">รายละเอียดเอกสาร</i></a>
 
                             </td>

@@ -8,20 +8,36 @@ class Participant_model extends CI_Model {
 		// print_r($_POST);
 		// echo'</pre>';
 		// exit;
-        $data = array(
-            // 'ParticipantID' => $this->input->post('ParticipantID'),
-            'ParticipantName' => $this->input->post('ParticipantName'),
-            'ParticipantTypeCode' => $this->input->post('ParticipantTypeCode')
-        );
-		$query=$this->db->insert('PARTICIPANT',$data);
-		if($query){
-			session_start(); // เริ่มต้น session
-			$_SESSION['success'] = "เพิ่มข้อมูลเรียบร้อย !"; // กำหนดค่า success ใน session เป็น true
-			header("Location: ".site_url('Fm_participant_das_p1?page=sh1')); // ไปยังหน้าก่อนหน้านี้
-			
-		} else {
-			echo 'false';
-		}
+$ParticipantName = $this->input->post('ParticipantName');
+$ParticipantTypeCode = $this->input->post('ParticipantTypeCode');
+$this->db->where('ParticipantName', $ParticipantName);
+$this->db->where('ParticipantTypeCode', $ParticipantTypeCode);
+$this->db->where('DeleteStatus=0');
+$query = $this->db->get('PARTICIPANT');
+$num_chk = $query->num_rows();
+if ($num_chk <= 0 ) {
+  // ไม่พบข้อมูลในฐานข้อมูล
+  $data = array(
+	  // 'ParticipantID' => $this->input->post('ParticipantID'),
+	  'ParticipantName' => $this->input->post('ParticipantName'),
+	  'ParticipantTypeCode' => $this->input->post('ParticipantTypeCode')
+  );
+  $query=$this->db->insert('PARTICIPANT',$data);
+  if($query){
+	  session_start(); // เริ่มต้น session
+	  $_SESSION['success'] = "เพิ่มข้อมูลเรียบร้อย !"; // กำหนดค่า success ใน session เป็น true
+	  header("Location: ".site_url('Fm_participant_das_p1?page=sh1')); // ไปยังหน้าก่อนหน้านี้
+	  
+  } else {
+	  echo 'false';
+  }
+} else {
+	// พบข้อมูลในฐานข้อมูล
+	session_start(); // เริ่มต้น session
+	$_SESSION['false'] = "ไม่มามารถบันทึกข้อมูลได้โปรดตรวจสอบข้อมูล (ชื่อ/ประเภท) ซ้ำกันในระบบ !"; // กำหนดค่า success ใน session เป็น true
+	header('Location: ' . $_SERVER['HTTP_REFERER']);
+	exit;
+}
     }
 	public function edit_par()
     {
@@ -153,7 +169,7 @@ class Participant_model extends CI_Model {
 		if (isset($_FILES['CooperationAttachmentURL'])) {
 			$file = $_FILES['CooperationAttachmentURL']['tmp_name'];
 			if (file_exists($file)) {
-		$config['upload_path'] = './document/';
+		$config['upload_path'] = 'assets/EII/PARTICIPANT_COOPERATION/';
         $config['allowed_types'] = 'doc|docx|pdf|jpg|png|xls|ppt|zip|xlsx';
         $config['encrypt_name'] = TRUE;
 
@@ -211,7 +227,7 @@ class Participant_model extends CI_Model {
 		if(isset($_FILES['CooperationAttachmentURL'])){
 			$file = $_FILES['CooperationAttachmentURL']['tmp_name'];
 			if(file_exists($file)){
-		$config['upload_path'] = './document/';
+		$config['upload_path'] = 'assets/EII/PARTICIPANT_COOPERATION/';
         $config['allowed_types'] = 'doc|docx|pdf|jpg|png|xls|ppt|zip|xlsx';
         $config['encrypt_name'] = TRUE;
 

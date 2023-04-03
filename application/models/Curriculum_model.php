@@ -35,9 +35,12 @@ class Curriculum_model  extends CI_Model {
     }
 
     public function get_Curriculum( $CurriculumID) {
-        $this->db->from('CURRICULUM')
+        $this->db->select('c.*, s.SchoolNameThai')
+        ->from('CURRICULUM c')
+        ->join('SCHOOL s', 's.SchoolID   = c.SchoolID  ', 'LEFT') 
         ->where('CurriculumID', $CurriculumID )
-        ->where('DeleteStatus', 0)
+        ->where('c.DeleteStatus', 0)
+        ->where('s.DeleteStatus', 0)
         ;
         $query = $this->db->get();
     
@@ -239,9 +242,20 @@ class Curriculum_model  extends CI_Model {
     }
     public function get_curriculum_activity($ACTIVITY_ID) {
         $this->db->select('*')
-        ->from('ACTIVITY')
-        ->where('ACTIVITY_ID',$ACTIVITY_ID);
+        ->from('ACTIVITY a')
+        ->join('ASSESSMENT asm', 'asm.ASSESSMENT_ID  = a.ASSESSMENT_ID ', 'LEFT') 
+        ->join('SCORE s', 's.SCORE_ID  = asm.SCORE_ID ', 'LEFT') 
+        ->where('a.ACTIVITY_ID',$ACTIVITY_ID) ;
         $query = $this->db->get();
+
+        if($query->result()==null || $query->result()==-1 || $query->result()==''){
+            $this->db->select('*')
+            ->from('ACTIVITY')
+            ->where('ACTIVITY_ID',$ACTIVITY_ID) ;
+            $query = $this->db->get();
+        }
+
+ 
        
         return $query->result();
     }
@@ -263,11 +277,16 @@ class Curriculum_model  extends CI_Model {
 
 public function insert_curriculum_assessment($curriculum_assessment) {
     $result_curriculum_activity = $this->db->insert('ASSESSMENT', $curriculum_assessment);
-    return $result_curriculum_activity;
+    if($result_curriculum_activity == 1){
+        $result_activity_id = $this->db->insert_id();
+        return $result_activity_id;
+    }else{
+        return -1;
+    }
 }    
 public function get_assessment($ACTIVITY_ID) {
     $this->db->select('*')
-    ->from('assessment')
+    ->from('ASSESSMENT')
     ->where('ACTIVITY_ID',$ACTIVITY_ID);
     $query = $this->db->get();
     return $query->result();
@@ -280,16 +299,16 @@ public function get_CLS_FUNDAMENTAL_SUBJECT_PASSING() {
     return $query->result();
 }
 
-public function update_assessment($SCORE_ID,$curriculum_assessment){
-    $this->db->where('SCORE_ID', $SCORE_ID);
-    $result = $this->db->update('assessment',$curriculum_assessment);
+public function update_assessment($ASSESSMENT_ID,$curriculum_assessment){
+    $this->db->where('ASSESSMENT_ID', $ASSESSMENT_ID);
+    $result = $this->db->update('ASSESSMENT',$curriculum_assessment);
 
     
     return $result;
 }
 #############################score################
 public function insert_score($SCORE) {
-    $result_SCORE = $this->db->insert('score', $SCORE);
+    $result_SCORE = $this->db->insert('SCORE', $SCORE);
     if($result_SCORE == 1){
         $result_score_id = $this->db->insert_id();
         return $result_score_id;
@@ -304,7 +323,7 @@ public function insert_score($SCORE) {
     }
 public function get_score($SCORE_ID) {
     $this->db->select('*')
-    ->from('score')
+    ->from('SCORE')
     ->where('SCORE_ID',$SCORE_ID);
     $query = $this->db->get();
     return $query->result();
@@ -330,7 +349,7 @@ public function get_score($SCORE_ID) {
     }
     public function update_EPORTFOLIO($EPORTFOLIO_ID,$eportfolio){
         $this->db->where('EPORTFOLIO_ID ', $EPORTFOLIO_ID);
-        $result = $this->db->update('eportfolio',$eportfolio);
+        $result = $this->db->update('EPORTFOLIO',$eportfolio);
         return $result;
     }
     public function delete_eportfolio($EPORTFOLIO_ID){   
@@ -339,7 +358,7 @@ public function get_score($SCORE_ID) {
         ];
         $this->db->where('EPORTFOLIO_ID', $EPORTFOLIO_ID);
             
-        $result = $this->db->update('eportfolio', $data);
+        $result = $this->db->update('EPORTFOLIO', $data);
         show_error($this->db->last_query());
 
         return $result;

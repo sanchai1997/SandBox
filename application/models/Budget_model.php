@@ -18,12 +18,19 @@ class Budget_model extends CI_Model
     public function insert_budget($budget) {
         
         $result_budget = $this->db->insert('BUDGET', $budget);
-        return $result_budget;
+
+        if($result_budget == 1){
+            $BudgetID = $this->db->insert_id();
+            return $BudgetID;
+        }else{
+            return -1 ;
+        }
+        
     }
 
     public function get_Budget_All() {
         $this->db->select('b.*, s.SchoolNameThai, ')
-        ->from('budget b')
+        ->from('BUDGET b')
         ->join('SCHOOL s', 's.SchoolID   = b.BudgetSchoolID   ', 'LEFT') 
         ;
        
@@ -33,7 +40,7 @@ class Budget_model extends CI_Model
     }
     
     public function get_Budget( $BudgetID) {
-        $this->db->from('budget')
+        $this->db->from('BUDGET')
         ->where('BudgetID ', $BudgetID );
         
         $query = $this->db->get();

@@ -13,7 +13,7 @@ class CurriculumController extends CI_Controller{
         $this->load->model('Student_model');
     }
     public function do_upload($fileName , $field_name ) {
-        $config['upload_path'] = APPPATH."documents/";  // โฟลเดอร์ ตำแหน่งเดียวกับ root ของโปรเจ็ค
+        $config['upload_path'] = 'assets/curriculum/document/';   // โฟลเดอร์ ตำแหน่งเดียวกับ root ของโปรเจ็ค
         
         $config['allowed_types'] = 'jpg|jpeg|png|iso|dmg|zip|rar|doc|docx|xls|xlsx|ppt|pptx|csv|ods|odt|odp|pdf|rtf|sxc|sxi|txt|exe|avi|mpeg|3gp'; // ปรเเภทไฟล์ 
         $config['max_size']     = '0';  // ขนาดไฟล์ (kb)  0 คือไม่จำกัด ขึ้นกับกำหนดใน php.ini ปกติไม่เกิน 2MB
@@ -27,8 +27,8 @@ class CurriculumController extends CI_Controller{
             return -1 ;
         }
         else {
-            $data = array('upload_data' => $this->upload->data());
-            return $this->upload->data('full_path') ;
+            $data = $this->upload->data();
+            return $data['file_name'];
         }
 
     }
@@ -40,7 +40,7 @@ class CurriculumController extends CI_Controller{
             // Whoops, we don't have a page for that!
             show_404();
         }
-
+        $data['SchoolID'] = $_GET['sid']; 
         $data['title'] = 'Curriculum'; // Capitalize the first letter
         $data['listSchool'] = $this->School_model->get_school_All();
         $data['listCurriculumType'] = $this->Code_model->get_CurriculumType_All();
@@ -64,10 +64,37 @@ class CurriculumController extends CI_Controller{
         }
 
         $data['SchoolID'] = $_GET['sid']; 
-        $data['SchoolNameThai'] = $_GET['sname']; 
+        $school = $this->School_model->get_school($data['SchoolID']);  
+        $data['SchoolNameThai'] = $school[0]->SchoolNameThai ; 
 
         $data['listCurriculum'] = $this->Curriculum_model->get_Curriculum_by_school($data['SchoolID']);  
         $data['School'] = $this->School_model->get_school_All();
+
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/sidebar', $data);
+        $this->load->view('pages/dashboard/Curriculum/list-curriculum', $data);
+        $this->load->view('templates/footer', $data);
+
+    }
+    public function list_curriculum() {
+        
+        if ( ! file_exists(APPPATH.'views/pages/dashboard/Curriculum/list-curriculum.php'))
+        {
+            show_404();
+        }
+
+        $data['School'] = $this->School_model->get_school_All();
+
+        if($data['School']==null){
+            $data['listCurriculum'] = null;  
+        }else{
+            $data['School_id'] = $this->School_model->get_school_top();
+            $data['SchoolID'] = $data['School_id'][0]-> SchoolID;
+            $data['SchoolNameThai'] = $data['School_id'][0]-> SchoolNameThai;
+            $data['listCurriculum'] = $this->Curriculum_model->get_Curriculum_by_school($data['SchoolID']);  
+          
+        }
+        
 
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
@@ -86,8 +113,8 @@ class CurriculumController extends CI_Controller{
         $CurriculumDocumentURL = $this->do_upload('CurriculumDocument'.$CurriculumID ,"CurriculumDocumentURL");
         $LocalCurriculumDocumentURL = $this->do_upload('LocalCurriculumDocument'.$CurriculumID ,"LocalCurriculumDocumentURL");
 
-        if($CurriculumDocumentURL != -1) {$CurriculumDocumentURL=null;}
-        if($LocalCurriculumDocumentURL != -1) {$LocalCurriculumDocumentURL=null;}
+        if($CurriculumDocumentURL == -1) {$CurriculumDocumentURL=null;}
+        if($LocalCurriculumDocumentURL == -1) {$LocalCurriculumDocumentURL=null;}
 
         $curriculum = [
             'CurriculumID' => $CurriculumID,
@@ -109,39 +136,11 @@ class CurriculumController extends CI_Controller{
 
         if($result_curriculum == 1 ){
             $this->session->set_flashdata('success',"บันทึกข้อมูลสำเร็จ");
-            redirect(base_url('list-curriculum'));
+            redirect(base_url('list_curriculum_by_school?sid='.$SchoolID));
         }else{
             $this->session->set_flashdata('errors',"เกิดข้อผิดพลาดในการบันทึกข้อมูล");
-            redirect(base_url('forms-curriculum'));
+            redirect(base_url('forms-curriculum?sid='.$SchoolID));
         }   
-
-    }
-
-    
-    public function list_curriculum() {
-        
-        if ( ! file_exists(APPPATH.'views/pages/dashboard/Curriculum/list-curriculum.php'))
-        {
-            show_404();
-        }
-
-        $data['School'] = $this->School_model->get_school_All();
-
-        if($data['School']==null){
-            $data['listCurriculum'] = null;  
-        }else{
-            $data['School_id'] = $this->School_model->get_school_top();
-            $SchoolID = array_column($data['School_id'],'SchoolID');
-            $data['SchoolNameThai'] = $data['School_id'][0]-> SchoolNameThai;
-            $data['listCurriculum'] = $this->Curriculum_model->get_Curriculum_by_school($SchoolID);  
-          
-        }
-        
-
-        $this->load->view('templates/header', $data);
-        $this->load->view('templates/sidebar', $data);
-        $this->load->view('pages/dashboard/Curriculum/list-curriculum', $data);
-        $this->load->view('templates/footer', $data);
 
     }
 
@@ -153,6 +152,7 @@ class CurriculumController extends CI_Controller{
         }
 
         $data['title'] = 'Curriculum'; // Capitalize the first letter
+        $data['SchoolID'] = $_GET['sid']; 
         $data['listSchool'] = $this->School_model->get_school_All();
         $data['listCurriculumType'] = $this->Code_model->get_CurriculumType_All();
         $data['listEducationLevel'] = $this->Code_model->get_EducationLevel_All();
@@ -250,23 +250,23 @@ class CurriculumController extends CI_Controller{
 
         if($result == 1 ){
             $this->session->set_flashdata('success',"แก้ไขข้อมูลสำเร็จ");
-            redirect(base_url('list-curriculum'));
+            redirect(base_url('list_curriculum_by_school?sid='.$SchoolID));
         }else{
             $this->session->set_flashdata('errors',"เกิดข้อผิดพลาดในการแก้ไขข้อมูล");
             redirect(base_url('edit_forms-curriculum?cid='. $Old_CurriculumID));
         }
 
     }
-    public function delete_curriculum($CurriculumID ){
+    public function delete_curriculum($CurriculumID,$SchoolID ){
 
 
         $result =$this->Curriculum_model->delete_curriculum($CurriculumID);
         if($result == 1 ){
             $this->session->set_flashdata('success',"ลบข้อมูลสำเร็จ");
-            redirect(base_url('list-curriculum'));
+            redirect(base_url('list_curriculum_by_school?sid='.$SchoolID));
         }else{
             $this->session->set_flashdata('errors',"เกิดข้อผิดพลาดในการลบข้อมูล");
-            redirect(base_url('list-curriculum'));
+            redirect(base_url('list_curriculum_by_school?sid='.$SchoolID));
         }
         
     }
@@ -284,6 +284,7 @@ class CurriculumController extends CI_Controller{
         $data['title'] = 'Curriculum Subject'; // Capitalize the first letter
         $data['CurriculumID'] = $_GET['cid']; 
         $data['listCurriculumSubject'] = $this->Curriculum_model->get_CurriculumSubject_All($data['CurriculumID']);
+        $data['Curriculum'] = $this->Curriculum_model->get_Curriculum($data['CurriculumID']);
 
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
@@ -304,6 +305,7 @@ class CurriculumController extends CI_Controller{
         $data['listSubjectGroup'] = $this->Code_model->get_SubjectGroup_All();
         $data['listSubjectType'] = $this->Code_model->get_Subject_Type_All();
         $data['CurriculumID'] = $_GET['cid']; 
+        $data['Curriculum'] = $this->Curriculum_model->get_Curriculum($data['CurriculumID']);
 
 
         $this->load->view('templates/header', $data);
@@ -353,7 +355,7 @@ class CurriculumController extends CI_Controller{
         $data['CurriculumID'] = $_GET['cid']; 
         $data['SubjectCode'] = $_GET['sid']; 
         $data['CurriculumSubject'] = $this->Curriculum_model->get_CurriculumSubject($data['CurriculumID'],$data['SubjectCode']);
-
+        $data['Curriculum'] = $this->Curriculum_model->get_Curriculum($data['CurriculumID']);
 
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
@@ -415,7 +417,8 @@ class CurriculumController extends CI_Controller{
         $data['CurriculumID'] = $_GET['cid']; 
         $data['SubjectCode'] = $_GET['sid']; 
         $data['listCurriculumCompetency'] = $this->Curriculum_model->get_CurriculumCompetency_All($data['CurriculumID'], $data['SubjectCode']);
-
+        $data['Curriculum'] = $this->Curriculum_model->get_Curriculum($data['CurriculumID']);
+        $data['Subject'] = $this->Curriculum_model->get_CurriculumSubject($data['CurriculumID'], $data['SubjectCode']);
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
         $this->load->view('pages/dashboard/Curriculum/list-curriculum_school_competency', $data);
@@ -435,6 +438,8 @@ class CurriculumController extends CI_Controller{
         $data['listCompetency'] = $this->Code_model->get_Competency_Type_All();
         $data['CurriculumID'] = $_GET['cid']; 
         $data['SubjectCode'] = $_GET['sid']; 
+        $data['Curriculum'] = $this->Curriculum_model->get_Curriculum($data['CurriculumID']);
+        $data['Subject'] = $this->Curriculum_model->get_CurriculumSubject($data['CurriculumID'], $data['SubjectCode']);
 
 
         $this->load->view('templates/header', $data);
@@ -481,6 +486,8 @@ class CurriculumController extends CI_Controller{
         $data['CompetencyCode'] = $_GET['cpid']; 
 
         $data['CurriculumCompetency'] = $this->Curriculum_model->get_CurriculumCompetency($data['CurriculumID'], $data['SubjectCode'], $data['CompetencyCode'] );
+        $data['Curriculum'] = $this->Curriculum_model->get_Curriculum($data['CurriculumID']);
+        $data['Subject'] = $this->Curriculum_model->get_CurriculumSubject($data['CurriculumID'], $data['SubjectCode']);
 
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
@@ -537,6 +544,8 @@ class CurriculumController extends CI_Controller{
         $data['CurriculumID'] = $_GET['cid']; 
         $data['SubjectCode'] = $_GET['sid']; 
         $data['listcurriculum_plan'] = $this->Curriculum_model->get_Curriculum_plan_All($data['CurriculumID'], $data['SubjectCode']);
+        $data['Curriculum'] = $this->Curriculum_model->get_Curriculum($data['CurriculumID']);
+        $data['Subject'] = $this->Curriculum_model->get_CurriculumSubject($data['CurriculumID'], $data['SubjectCode']);
 
         $this->load->view('templates/header');
         $this->load->view('templates/sidebar');
@@ -553,6 +562,8 @@ class CurriculumController extends CI_Controller{
         }
         $data['CurriculumID'] = $_GET['cid']; 
         $data['SubjectCode'] = $_GET['sid']; 
+        $data['Curriculum'] = $this->Curriculum_model->get_Curriculum($data['CurriculumID']);
+        $data['Subject'] = $this->Curriculum_model->get_CurriculumSubject($data['CurriculumID'], $data['SubjectCode']);
 
         $this->load->view('templates/header');
         $this->load->view('templates/sidebar');
@@ -601,9 +612,13 @@ class CurriculumController extends CI_Controller{
         {
             show_404();
         }
-        $data['PLAN_ID'] = $_GET['pid']; 
+        $data['PLAN_ID'] = $_GET['pid'];
+        $data['CurriculumID'] = $_GET['cid']; 
+        $data['SubjectCode'] = $_GET['sid']; 
 
         $data['curriculum_plan'] = $this->Curriculum_model->get_Curriculum_plan($data['PLAN_ID']);
+        $data['Curriculum'] = $this->Curriculum_model->get_Curriculum($data['CurriculumID']);
+        $data['Subject'] = $this->Curriculum_model->get_CurriculumSubject($data['CurriculumID'], $data['SubjectCode']);
 
         $this->load->view('templates/header');
         $this->load->view('templates/sidebar');
@@ -677,22 +692,25 @@ class CurriculumController extends CI_Controller{
     public function add_curriculum_activity() {
 
         $PLAN_ID =  $this->input->post('PLAN_ID');
+        $CurriculumID = $this->input->post('CurriculumID');
+        $SubjectCode = $this->input->post('SubjectCode');
+
         $curriculum_activity = [
             'ACTIVITY_NAME' => $this->input->post('ACTIVITY_NAME'),
             'PLAN_ID' =>$PLAN_ID ,
         ];
         $result_curriculum_activity = $this->Curriculum_model->insert_curriculum_activity($curriculum_activity);
-
       
         if($result_curriculum_activity == 1 ){    
             $this->session->set_flashdata('success',"บันทึกข้อมูลสำเร็จ");
-            redirect(base_url('list-curriculum_activity?pid='. $PLAN_ID.'&&sid='. $SubjectCode.'&&cid='. $CurriculumID ));
+            redirect(base_url('list-curriculum_plan?sid='. $SubjectCode.'&&cid='.$CurriculumID));
         }else{
             $this->session->set_flashdata('errors',"เกิดข้อผิดพลาดในการบันทึกข้อมูล");
             redirect(base_url('forms-curriculum_activity?pid='. $PLAN_ID.'&&sid='. $SubjectCode.'&&cid='. $CurriculumID));
         }
 
     }
+
     public function forms_curriculum_activity() {
         
         if ( ! file_exists(APPPATH.'views/pages/forms/Curriculum/forms-curriculum_activity.php'))
@@ -721,46 +739,24 @@ class CurriculumController extends CI_Controller{
         $data['SubjectCode'] = $_GET['sid']; 
 
         $data['curriculum_activity'] = $this->Curriculum_model->get_curriculum_activity($data['ACTIVITY_ID']);
-        $data['assignment'] = $this->Curriculum_model->get_assessment($data['ACTIVITY_ID']);
+        
         $data['CLS_FUNDAMENTAL_SUBJECT_PASSING'] = $this->Curriculum_model->get_CLS_FUNDAMENTAL_SUBJECT_PASSING();
 
-        if($data['assignment'] == "" || $data['assignment'] == null){
-            $data['assignment']  = null;
-            $data['score'] = null;
             $this->load->view('templates/header');
             $this->load->view('templates/sidebar');
             $this->load->view('pages/forms/Curriculum/edit_forms-curriculum_activity',$data);
             $this->load->view('templates/footer');
-       }else{
-            $SCORE_ID = array_column($data['assignment'], 'SCORE_ID');
-            $data['score'] = $this->Curriculum_model->get_score($SCORE_ID[0]);
-            $this->load->view('templates/header');
-            $this->load->view('templates/sidebar');
-            $this->load->view('pages/forms/Curriculum/edit_forms-curriculum_activity',$data);
-            $this->load->view('templates/footer');
-       }
-
 
     }
 
     public function edit_curriculum_activity() {
-
         $PLAN_ID =  $this->input->post('PLAN_ID');
         $ACTIVITY_ID =  $this->input->post('ACTIVITY_ID');
         $CurriculumID = $this->input->post('CurriculumID');
         $SubjectCode = $this->input->post('SubjectCode');
-        $checkstatus = $this->input->post('checkstatus');
-        $SCORE_ID  = $this->input->post('SCORE_ID');
+        $ASSESSMENT_ID   = $this->input->post('ASSESSMENT_ID');
+        $SCORE_ID   = $this->input->post('SCORE_ID');
 
-
-        $curriculum_activity = [
-            'ACTIVITY_NAME' => $this->input->post('ACTIVITY_NAME'),
-            'PLAN_ID' =>$PLAN_ID ,
-        ];
-
-     
-            $ACTIVITY_ID =  $this->input->post('ACTIVITY_ID');
-        
             $SCORE_TEACHER = $this->input->post('SCORE_TEACHER');
             $SCORE_PARENT  = $this->input->post('SCORE_PARENT');
             $SCORE_OTHER = $this->input->post('SCORE_OTHER');
@@ -773,7 +769,8 @@ class CurriculumController extends CI_Controller{
                 'SCORE_SUM_TOTAL' => $SCORE_SUM_TOTAL,
                 'FUNDAMENTAL_SUBJECT_PASSING_CODE' => $this->input->post('FUNDAMENTAL_SUBJECT_PASSING_CODE'),
             ];
-            if($checkstatus == 0){
+
+            if($ASSESSMENT_ID  == null || $ASSESSMENT_ID=''){
                 $resultscoreid = $this->Curriculum_model->insert_score($SCORE);
 
                 $curriculum_assessment = [
@@ -781,51 +778,58 @@ class CurriculumController extends CI_Controller{
                     'ASSESSMENT_PEOPLE_ID' => $this->input->post('ASSESSMENT_PEOPLE_ID'),
                     'SCORE_ID' => $resultscoreid,
                     'ASSESSMENT_TOOL_CODE' => $this->input->post('ASSESSMENT_TOOL_CODE'),
-                    'ACTIVITY_ID' =>$ACTIVITY_ID ,
                     'DeleteStatus' => 0 
                 ];
-                $result_curriculum_assessment = $this->Curriculum_model->insert_curriculum_assessment($curriculum_assessment);
-                
-                
+                $result_ASSESSMENT_ID  = $this->Curriculum_model->insert_curriculum_assessment($curriculum_assessment);
+
+                $curriculum_activity = [
+                    'ACTIVITY_NAME' => $this->input->post('ACTIVITY_NAME'),
+                    'PLAN_ID' =>$PLAN_ID ,
+                    'ASSESSMENT_ID' => $result_ASSESSMENT_ID 
+                ];
+               
             }else{
+                $ASSESSMENT_ID = $this->input->post('ASSESSMENT_ID');
                 $result_score_id = $this->Curriculum_model->update_score($SCORE_ID,$SCORE);
                 
                 $curriculum_assessment = [
                     'ASSESSMENT_NAME' => $this->input->post('ASSESSMENT_NAME'),
                     'ASSESSMENT_PEOPLE_ID' => $this->input->post('ASSESSMENT_PEOPLE_ID'),
-                    'SCORE_ID' => $SCORE_ID,
+                   // 'SCORE_ID' => $SCORE_ID,
                     'ASSESSMENT_TOOL_CODE' => $this->input->post('ASSESSMENT_TOOL_CODE'),
-                    'ACTIVITY_ID' =>$ACTIVITY_ID ,
                     'DeleteStatus' => 0 
                 ];
-                $result_curriculum_assessment = $this->Curriculum_model->update_assessment($SCORE_ID,$curriculum_assessment);
+                
+               $result_assessment = $this->Curriculum_model->update_assessment($ASSESSMENT_ID,$curriculum_assessment);
+               $curriculum_activity = [
+                    'ACTIVITY_NAME' => $this->input->post('ACTIVITY_NAME'),
+                    'PLAN_ID' =>$PLAN_ID ,
+                    'ASSESSMENT_ID' => $this->input->post('ASSESSMENT_ID')
+                ];
+               
             }
-            
-    
-           
-    
             $result_curriculum_activity = $this->Curriculum_model->update_curriculum_activity($curriculum_activity,$ACTIVITY_ID );
     
-            if($result_curriculum_assessment==1){    
-                $this->session->set_flashdata('success',"บันทึกข้อมูลสำเร็จ");
-                redirect(base_url('list-curriculum_activity?pid='. $PLAN_ID.'&&sid='. $SubjectCode.'&&cid='. $CurriculumID ));
+            if($result_curriculum_activity==1){    
+                $this->session->set_flashdata('success',"แก้ไขข้อมูลสำเร็จ");
+                redirect(base_url('list-curriculum_plan?sid='. $SubjectCode.'&&cid='.$CurriculumID)); 
             }else{
-                $this->session->set_flashdata('errors',"เกิดข้อผิดพลาดในการบันทึกข้อมูล");
-                redirect(base_url('forms-curriculum_activity?pid='. $PLAN_ID.'&&sid='. $SubjectCode.'&&cid='. $CurriculumID));
+                $this->session->set_flashdata('errors',"เกิดข้อผิดพลาดในการแก้ไขข้อมูล");
+                redirect(base_url('edit_forms-curriculum_activity?pid='. $PLAN_ID.'&&sid='. $SubjectCode.'&&cid='. $CurriculumID .'&&ACTIVITY_ID='.$ACTIVITY_ID ));
             }
            
     }
-    public function delete_curriculum_activity ($PLAN_ID,$ACTIVITY_ID){
+    public function delete_curriculum_activity ($PLAN_ID,$ACTIVITY_ID,$SubjectCode,$CurriculumID){
 
 
         $result =$this->Curriculum_model->delete_curriculum_activity($ACTIVITY_ID);
 
         if($result == 1 ){
             $this->session->set_flashdata('success',"ลบข้อมูลสำเร็จ");
-            redirect(base_url('list-curriculum_activity?pid='. $PLAN_ID.'&&sid='. $SubjectCode.'&&cid='. $CurriculumID ));
+            redirect(base_url('list-curriculum_plan?sid='. $SubjectCode.'&&cid='.$CurriculumID)); 
         }else{
             $this->session->set_flashdata('errors',"เกิดข้อผิดพลาดในการลบข้อมูล");
-            redirect(base_url('list-curriculum_activity?pid='. $PLAN_ID.'&&sid='. $SubjectCode.'&&cid='. $CurriculumID ));
+            redirect(base_url('edit_forms-curriculum_activity?pid='. $PLAN_ID.'&&sid='. $SubjectCode.'&&cid='. $CurriculumID .'&&ACTIVITY_ID='.$ACTIVITY_ID ));
         }
     }
 
@@ -944,7 +948,7 @@ class CurriculumController extends CI_Controller{
     }
     
     
-    
+ #eportfolio   
     public function forms_eportfolio() {
         
         if ( ! file_exists(APPPATH.'views/pages/forms/Curriculum/forms-eportfolio.php'))
