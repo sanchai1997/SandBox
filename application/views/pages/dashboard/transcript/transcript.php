@@ -249,10 +249,11 @@
                     <table class="table table-borderless datatable">
                         <thead>
                             <tr>
-                                <th>ใบแสดงผลการศึกษาชุดที่</th>
-                                <th scope="col">ใบแสดงผลการศึกษาเลขที่</th>
-                                <th style="text-align: center;" scope="col">ดาวน์โหลดใบแสดงผลการศึกษา</th>
-                                <th style="text-align: center;" scope="col">พิมพ์ใบแสดงผลการศึกษา</th>
+
+                                <th style="text-align: center;" scope="col">ใบแสดงผลการศึกษาชุดที่</th>
+                                <th style="text-align: center;" scope="col">ปีการศึกษา</th>
+                                <th style="text-align: center;" scope="col">ภาคเรียน</th>
+                                <th scope="col">ชั้นเรียน</th>
                                 <th style="text-align: center;" scope="col">รายละเอียด</th>
                                 <th style="text-align: center;" scope="col">ปฎิบัติ</th>
                             </tr>
@@ -260,16 +261,18 @@
                         <tbody>
                             <?php
                             $result = $this->db->query('SELECT * FROM TRANSCRIPT
-                            WHERE DeleteStatus = 0 AND StudentReferenceID = "' . $_GET['StudentReferenceID'] . '"');
+                            INNER JOIN CLS_GRADE_LEVEL ON TRANSCRIPT.OldSchoolLastGradeLevelCode = CLS_GRADE_LEVEL.GRADE_LEVEL_CODE
+                            WHERE DeleteStatus = 0 AND StudentReferenceID = "' . $_GET['StudentReferenceID'] . '"
+                            ');
                             $Count = 0;
                             foreach ($result->result() as $TRANSCRIPT) {
                                 $Count++;
                             ?>
                                 <tr>
-                                    <td><?= $TRANSCRIPT->TranscriptSeriesNumber; ?></td>
-                                    <td><?= $TRANSCRIPT->TranscriptNumber; ?></td>
-                                    <td style="text-align: center;"><a class="btn btn-light"><i class="bi bi-download"></i></a></td>
-                                    <td style="text-align: center;"><a class="btn btn-light"><i class="bi bi-printer"></i></a></td>
+                                    <td style="text-align: center;"><?= $TRANSCRIPT->TranscriptSeriesNumber . ' - ' . $TRANSCRIPT->TranscriptNumber; ?></td>
+                                    <td style="text-align: center;"><?= $TRANSCRIPT->EducationYear; ?></td>
+                                    <td style="text-align: center;"><?= $TRANSCRIPT->Semester; ?></td>
+                                    <td><?= $TRANSCRIPT->GRADE_LEVEL_NAME; ?></td>
                                     <td style="text-align: center;">
                                         <a href="?SchoolID=<?= $_GET['SchoolID'] ?>&&StudentReferenceID=<?= $_GET['StudentReferenceID'] ?>&&EducationYear=<?= $_GET['EducationYear'] ?>&&Semester=<?= $_GET['Semester'] ?>&&GradeLevelCode=<?= $_GET['GradeLevelCode'] ?>&&StudentID=<?= $_GET['StudentID'] ?>&&TranscriptSeriesNumber=<?= $TRANSCRIPT->TranscriptSeriesNumber; ?>&&TranscriptNumber=<?= $TRANSCRIPT->TranscriptNumber; ?>" class="btn btn-primary"><i class="bi bi-card-list"></i></a>
                                     </td>
@@ -314,34 +317,28 @@
                                 <div class="row">
                                     <div class="col-12">
                                         <h5 style="text-align: left; padding-left: 25px; padding-top: 20px;" class="card-title">
-                                            <b>ใบแสดงผลการศึกษาชุดที่: <?= $_GET['TranscriptSeriesNumber']; ?> &nbsp;เลขที่: <?= $_GET['TranscriptNumber']; ?></b>
-                                            <a style="float: right;" href="edit-forms-transcript-main?SchoolID=<?= $_GET['SchoolID'] ?>&&StudentReferenceID=<?= $_GET['StudentReferenceID'] ?>&&EducationYear=<?= $_GET['EducationYear'] ?>&&Semester=<?= $_GET['Semester'] ?>&&GradeLevelCode=<?= $_GET['GradeLevelCode'] ?>&&StudentID=<?= $_GET['StudentID'] ?>&&TranscriptSeriesNumber=<?= $TRANSCRIPT->TranscriptSeriesNumber; ?>&&TranscriptNumber=<?= $TRANSCRIPT->TranscriptNumber; ?>" class="btn btn-sm btn-warning"><i class="bi bi-pencil-square"></i></a>
+                                            <b>ใบแสดงผลการศึกษาชุดที่: <?= $_GET['TranscriptSeriesNumber']; ?> - <?= $_GET['TranscriptNumber']; ?></b>
                                         </h5>
                                         <div class="row">
-                                            <div class="col-6" style="text-align: left; padding-left: 20px; padding-bottom: 5px;">
-                                                <label style="padding-left: 30px;"><b>ข้อมูลสถานศึกษาที่สำเร็จการศึกษา</b></label><br>
-                                                <label style="padding-left: 50px; padding-top: 10px;">สถานศึกษา :&nbsp;
-                                                    <?php if ($TRANSCRIPT->GraduatedSchoolID != '') {
-                                                        $result = $this->db->query('SELECT * FROM SCHOOL 
-                                                        WHERE SchoolID = ' . $TRANSCRIPT->GraduatedSchoolID . '
-                                                        ');
-                                                        foreach ($result->result() as $SCHOOL) {
-                                                            echo $SCHOOL->SchoolNameThai;
-                                                        }
+                                            <div class="col-4" style="text-align: left;  padding-bottom: 5px;">
+                                                <label style="padding-left: 40px;"><b>ข้อมูลปีการศึกษา</b></label><br>
+                                                <label style="padding-left: 60px; padding-top: 10px;">ปีการศึกษา :&nbsp;
+                                                    <?php if ($TRANSCRIPT->EducationYear != '') {
+                                                        echo $TRANSCRIPT->EducationYear;
                                                     } else {
                                                         echo '-';
                                                     }  ?>
                                                 </label><br>
-                                                <label style="padding-left: 50px; padding-top: 10px;">วันที่เริ่มเข้าเรียน :&nbsp;
-                                                    <?php if ($TRANSCRIPT->GraduatedSchoolAdmissionDate != '') {
-                                                        echo DateThai($TRANSCRIPT->GraduatedSchoolAdmissionDate);
+                                                <label style="padding-left: 60px; padding-top: 10px;">ภาคเรียน :&nbsp;
+                                                    <?php if ($TRANSCRIPT->Semester != '') {
+                                                        echo $TRANSCRIPT->Semester;
                                                     } else {
                                                         echo '-';
                                                     }  ?>
                                                 </label><br>
                                             </div>
-                                            <div class="col-6" style="text-align: left;  padding-bottom: 5px;">
-                                                <label style="padding-left: 40px;"><b>ข้อมูลสถานศึกษาเดิม</b></label><br>
+                                            <div class="col-4" style="text-align: left;  padding-bottom: 5px;">
+                                                <label style="padding-left: 40px;"><b>ข้อมูลสถานศึกษา</b></label><br>
                                                 <label style="padding-left: 60px; padding-top: 10px;">สถานศึกษา :&nbsp;
                                                     <?php if ($TRANSCRIPT->OldSchoolID != '') {
                                                         $result = $this->db->query('SELECT * FROM SCHOOL 
@@ -361,12 +358,14 @@
                                                          ');
                                                         foreach ($result->result() as $GRADE_LEVEL) {
                                                             echo $GRADE_LEVEL->GRADE_LEVEL_NAME;
+                                                            $GANDENAME = $GRADE_LEVEL->GRADE_LEVEL_NAME;
                                                         }
                                                     } else {
                                                         echo '-';
                                                     }  ?>
                                                 </label><br>
                                             </div>
+
                                         </div>
                                     </div>
                                 </div>
@@ -508,13 +507,11 @@
                                     <div class="col-12">
                                         <h5 style="text-align: left; padding-top: 25px;" class="card-title">
                                             <b>ผลการเรียนรายวิชา</b>
-                                            <a style="float: right;" href="transcript-subject?SchoolID=<?= $_GET['SchoolID'] ?>&&StudentReferenceID=<?= $_GET['StudentReferenceID'] ?>&&EducationYear=<?= $_GET['EducationYear'] ?>&&Semester=<?= $_GET['Semester'] ?>&&GradeLevelCode=<?= $_GET['GradeLevelCode'] ?>&&StudentID=<?= $_GET['StudentID'] ?>&&TranscriptSeriesNumber=<?= $TRANSCRIPT->TranscriptSeriesNumber; ?>&&TranscriptNumber=<?= $TRANSCRIPT->TranscriptNumber; ?>" class="btn btn-sm btn-warning"><i class="bi bi-pencil-square"></i></a>
+                                            <a style="float: right;" href="transcript-subject?SchoolID=<?= $_GET['SchoolID'] ?>&&StudentReferenceID=<?= $_GET['StudentReferenceID'] ?>&&EducationYear=<?= $_GET['EducationYear'] ?>&&Semester=<?= $_GET['Semester'] ?>&&GradeLevelCode=<?= $_GET['GradeLevelCode'] ?>&&StudentID=<?= $_GET['StudentID'] ?>&&TranscriptSeriesNumber=<?= $TRANSCRIPT->TranscriptSeriesNumber; ?>&&TranscriptNumber=<?= $TRANSCRIPT->TranscriptNumber; ?>&&TranscriptEducationYear=<?= $TRANSCRIPT->EducationYear; ?>&&TranscriptSemester=<?= $TRANSCRIPT->Semester; ?>" class="btn btn-sm btn-warning"><i class="bi bi-pencil-square"></i></a>
                                         </h5>
                                         <table class="table table-bordered">
                                             <thead>
                                                 <tr>
-                                                    <td style="width: 10%; text-align: center;" scope="col">ปีการศึกษา</td>
-                                                    <td style="width: 10%; text-align: center;" scope="col">ภาคเรียน</td>
                                                     <td scope="col">รหัสวิชา</td>
                                                     <td scope="col">ชื่อวิชา</td>
                                                     <td scope="col">ประเภทรายวิชา</td>
@@ -525,20 +522,19 @@
                                             </thead>
                                             <tbody>
                                                 <?php
-                                                $result = $this->db->query('SELECT * ,COUNT(TranscriptSeriesNumber) As Count FROM TRANSCRIPT_SUBJECT 
+                                                $result = $this->db->query('SELECT * FROM TRANSCRIPT_SUBJECT 
                                                     INNER JOIN CLS_SUBJECT_TYPE ON TRANSCRIPT_SUBJECT.SubjectTypeCode = CLS_SUBJECT_TYPE.SUBJECT_TYPE_CODE
                                                     INNER JOIN CLS_SUBJECT_GROUP ON TRANSCRIPT_SUBJECT.SubjectGroupCode = CLS_SUBJECT_GROUP.SUBJECT_GROUP_CODE
                                                     INNER JOIN CLS_GRADE ON TRANSCRIPT_SUBJECT.SubjectGradeCode = CLS_GRADE.GRADE_CODE
                                                     WHERE DeleteStatus = 0
-                                                    AND TranscriptSeriesNumber = "' . $TRANSCRIPT->TranscriptSeriesNumber . '"
-                                                    AND TranscriptNumber = "' . $TRANSCRIPT->TranscriptNumber . '"
+                                                    AND TranscriptSeriesNumber = ' . $TRANSCRIPT->TranscriptSeriesNumber . '
+                                                    AND TranscriptNumber = ' . $TRANSCRIPT->TranscriptNumber . '
+                                                    ORDER BY SubjectName ASC
                                                      ');
-                                                foreach ($result->result() as $TRANSCRIPT_SUBJECT) {
-                                                    if ($TRANSCRIPT_SUBJECT->Count != 0) {
+                                                if ($result->result() == True) {
+                                                    foreach ($result->result() as $TRANSCRIPT_SUBJECT) {
                                                 ?>
                                                         <tr>
-                                                            <td style="text-align: center;"><?= $TRANSCRIPT_SUBJECT->SubjectEducationYear ?></td>
-                                                            <td style="text-align: center;"><?= $TRANSCRIPT_SUBJECT->SubjectSemester ?></td>
                                                             <td><?= $TRANSCRIPT_SUBJECT->SubjectCode ?></td>
                                                             <td><?= $TRANSCRIPT_SUBJECT->SubjectName ?></td>
                                                             <td><?= $TRANSCRIPT_SUBJECT->SUBJECT_TYPE_NAME ?></td>
@@ -546,13 +542,14 @@
                                                             <td style="text-align: center;"><?= $TRANSCRIPT_SUBJECT->SubjectCredit ?></td>
                                                             <td style="text-align: center;"><?= $TRANSCRIPT_SUBJECT->GRADE_NAME ?></td>
                                                         </tr>
-                                                    <?php } else {
-                                                    ?>
-                                                        <tr>
-                                                            <td style="text-align: center;" colspan="6"> - ไม่พบข้อมูล - </td>
-                                                        </tr>
-                                                <?php
+                                                    <?php
                                                     }
+                                                } else {
+                                                    ?>
+                                                    <tr>
+                                                        <td style="text-align: center;" colspan="8"> - ไม่พบข้อมูล - </td>
+                                                    </tr>
+                                                <?php
                                                 } ?>
                                             </tbody>
                                         </table>
@@ -572,8 +569,6 @@
                                         <table class="table table-bordered">
                                             <thead>
                                                 <tr>
-                                                    <td style="width: 10%; text-align: center;" scope="col">ปีการศึกษา</td>
-                                                    <td style="width: 10%; text-align: center;" scope="col">ภาคเรียน</td>
                                                     <td scope="col">ชื่อกิจกรรม</td>
                                                     <td style="text-align: center;" scope="col">จำนวนชั่วโมง</td>
                                                     <td style="text-align: center;" scope="col">ผลการประเมิน</td>
@@ -622,7 +617,6 @@
                                         <table class="table table-bordered">
                                             <thead>
                                                 <tr>
-                                                    <td style="width: 10%; text-align: center;" scope="col">ปีการศึกษา</td>
                                                     <td scope="col">ชั้นปีการทดสอบ</td>
                                                     <td scope="col">กลุ่มสาระวิชา</td>
                                                     <td style="text-align: center;" scope="col">ผลการทดสอบ</td>
@@ -673,8 +667,6 @@
                                         <table class="table table-bordered">
                                             <thead>
                                                 <tr>
-                                                    <td style="width: 10%; text-align: center;" scope="col">ปีการศึกษา</td>
-                                                    <td style="width: 10%; text-align: center;" scope="col">ภาคเรียน</td>
                                                     <td scope="col">ชั้นปีการประเมิน</td>
                                                     <td style="text-align: center;" scope="col">คณิตศาสตร์</td>
                                                     <td style="text-align: center;" scope="col">ภาษาไทย</td>
@@ -727,8 +719,6 @@
                                         <table class="table table-bordered table-fixed">
                                             <thead>
                                                 <tr>
-                                                    <td style="width: 10%; text-align: center;" scope="col">ปีการศึกษา</td>
-                                                    <td style="width: 10%; text-align: center;" scope="col">ภาคเรียน</td>
                                                     <td scope="col">ระดับการศึกษา</td>
                                                     <td scope="col">ระดับชั้นปี</td>
                                                     <td style="text-align: center;" scope="col">อ่านออกเสียง</td>
@@ -784,8 +774,6 @@
                                         <table class="table table-bordered">
                                             <thead>
                                                 <tr>
-                                                    <td style="width: 10%; text-align: center;" scope="col">ปีการศึกษา</td>
-                                                    <td style="width: 10%; text-align: center;" scope="col">ภาคเรียน</td>
                                                     <td scope="col">สมรรถนะ</td>
                                                     <td style="text-align: center;" scope="col">คะแนน</td>
                                                     <td style="text-align: center;" scope="col">ผลการประเมิณ</td>

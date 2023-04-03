@@ -50,7 +50,7 @@
                     </div>
                     <div class="col-3">
                         <h5 style="float: right; padding: 15px;" class="card-title">
-                            <a href="forms-transcript-subject?SchoolID=<?= $_GET['SchoolID']; ?>&&StudentReferenceID=<?= $_GET['StudentReferenceID']; ?>&&EducationYear=<?= $_GET['EducationYear']; ?>&&Semester=<?= $_GET['Semester']; ?>&&GradeLevelCode=<?= $_GET['GradeLevelCode']; ?>&&StudentID=<?= $_GET['StudentID']; ?>&&TranscriptSeriesNumber=<?= $_GET['TranscriptSeriesNumber']; ?>&&TranscriptNumber=<?= $_GET['TranscriptNumber']; ?>" class="btn btn-success"><i class="bi bi-file-earmark-plus">
+                            <a href="forms-transcript-subject?SchoolID=<?= $_GET['SchoolID']; ?>&&StudentReferenceID=<?= $_GET['StudentReferenceID']; ?>&&EducationYear=<?= $_GET['EducationYear']; ?>&&Semester=<?= $_GET['Semester']; ?>&&GradeLevelCode=<?= $_GET['GradeLevelCode']; ?>&&StudentID=<?= $_GET['StudentID']; ?>&&TranscriptSeriesNumber=<?= $_GET['TranscriptSeriesNumber']; ?>&&TranscriptNumber=<?= $_GET['TranscriptNumber']; ?>&&TranscriptEducationYear=<?= $_GET['TranscriptEducationYear']; ?>&&TranscriptSemester=<?= $_GET['TranscriptSemester']; ?>" class="btn btn-success"><i class="bi bi-file-earmark-plus">
                                 </i> เพิ่มข้อมูล
                             </a>
                         </h5>
@@ -77,6 +77,7 @@
                       WHERE DeleteStatus = 0
                       AND TranscriptSeriesNumber = "' . $_GET['TranscriptSeriesNumber'] . '"
                       AND TranscriptNumber = "' . $_GET['TranscriptNumber'] . '"
+                      ORDER BY SubjectName ASC
                        ');
                         $Count = 0;
                         foreach ($result->result() as $TRANSCRIPT_SUBJECT) {
@@ -90,7 +91,7 @@
                                 <td style="text-align: center;"><?= $TRANSCRIPT_SUBJECT->SubjectCredit ?></td>
                                 <td style="text-align: center;"><?= $TRANSCRIPT_SUBJECT->GRADE_NAME ?></td>
                                 <td style="text-align: center;">
-                                    <a href="edit-forms-transcript-subject?SchoolID=<?= $_GET['SchoolID']; ?>&&StudentReferenceID=<?= $_GET['StudentReferenceID']; ?>&&EducationYear=<?= $_GET['EducationYear']; ?>&&Semester=<?= $_GET['Semester']; ?>&&GradeLevelCode=<?= $_GET['GradeLevelCode']; ?>&&StudentID=<?= $_GET['StudentID']; ?>&&TranscriptSeriesNumber=<?= $_GET['TranscriptSeriesNumber']; ?>&&TranscriptNumber=<?= $_GET['TranscriptNumber']; ?>&&SubjectEducationYear=<?= $TRANSCRIPT_SUBJECT->SubjectEducationYear ?>&&SubjectSemester=<?= $TRANSCRIPT_SUBJECT->SubjectSemester ?>&&SubjectCode=<?= $TRANSCRIPT_SUBJECT->SubjectCode ?>" class="btn btn-warning"><i class="bi bi-pencil-square"></i></a>
+                                    <a href="edit-forms-transcript-subject?SchoolID=<?= $_GET['SchoolID']; ?>&&StudentReferenceID=<?= $_GET['StudentReferenceID']; ?>&&EducationYear=<?= $_GET['EducationYear']; ?>&&Semester=<?= $_GET['Semester']; ?>&&GradeLevelCode=<?= $_GET['GradeLevelCode']; ?>&&StudentID=<?= $_GET['StudentID']; ?>&&TranscriptSeriesNumber=<?= $_GET['TranscriptSeriesNumber']; ?>&&TranscriptNumber=<?= $_GET['TranscriptNumber']; ?>&&TranscriptEducationYear=<?= $_GET['TranscriptEducationYear']; ?>&&TranscriptSemester=<?= $_GET['TranscriptSemester']; ?>&&SubjectCode=<?= $TRANSCRIPT_SUBJECT->SubjectCode ?>" class="btn btn-warning"><i class="bi bi-pencil-square"></i></a>
                                     &nbsp; <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#Delete<?= $Count ?>"><i class=" bi bi-trash"></i></button>
                                 </td>
                             </tr>

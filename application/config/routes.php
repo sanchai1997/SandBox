@@ -51,7 +51,7 @@ $route['forms-curriculum_activity'] = 'CurriculumController/forms_curriculum_act
 $route['add_curriculum_activity']['post'] = 'CurriculumController/add_curriculum_activity';
 $route['edit_forms-curriculum_activity'] = 'CurriculumController/edit_forms_curriculum_activity';
 $route['edit_curriculum_activity']['post'] = 'CurriculumController/edit_curriculum_activity';
-$route['delete-curriculum_activity/(:num)/(:num)'] = 'CurriculumController/delete_curriculum_activity/$1/$2';
+$route['delete-curriculum_activity/(:num)/(:num)/(:num)/(:num)'] = 'CurriculumController/delete_curriculum_activity/$1/$2/$3/$4';
 //curriculum_assessment
 $route['forms-curriculum_assessment'] = 'CurriculumController/forms_curriculum_assessment';
 $route['add_curriculum_assessment']['post'] = 'CurriculumController/add_curriculum_assessment';
@@ -183,7 +183,7 @@ $route['teacher'] = 'teacher/index';
 $route['forms-teacher'] = 'forms_teacher';
 $route['forms-teacher-select'] = 'forms_teacher/forms_teacher_select';
 $route['add-teacher/(:num)']['post'] = 'forms_teacher/add_teacher/$1';
-$route['add-teacher-select/(:num)']['post'] = 'forms_teacher/add_teacher_select/$1';
+$route['add-teacher-select/(:num)/(:num)/(:num)/(:num)/(:num)']['post'] = 'forms_teacher/add_teacher_select/$1/$2/$3/$4/$5';
 $route['edit-forms-teacher-main'] = 'forms_teacher/edit_forms_teacher_main';
 $route['edit-forms-teacher-person'] = 'forms_teacher/edit_forms_teacher_person';
 $route['edit-forms-teacher-marriage'] = 'forms_teacher/edit_forms_teacher_marriage';
@@ -224,7 +224,7 @@ $route['update-teacher-assistance/(:any)/(:num)/(:num)/(:num)/(:num)/(:num)/(:nu
 $route['delete-teacher-assistance/(:any)/(:num)/(:num)/(:num)/(:num)/(:num)/(:num)/(:any)'] = 'forms_teacher/delete_teacher_assistance/$1/$2/$3/$4/$5/$6/$7/$8';
 
 //Academic
-$route['teacher-academic'] = 'teacher/teacher_academic';
+$route['graduated'] = 'teacher/teacher_academic';
 $route['forms-teacher-academic'] = 'forms_teacher/forms_teacher_academic';
 $route['edit-forms-teacher-academic'] = 'forms_teacher/edit_teacher_academic';
 $route['add-teacher-academic/(:any)/(:num)/(:num)/(:num)/(:num)/(:num)']['post'] = 'forms_teacher/add_teacher_academic/$1/$2/$3/$4/$5/$6';
@@ -253,6 +253,8 @@ $route['delete-teacher-teaching/(:any)/(:num)/(:num)/(:num)/(:num)/(:num)/(:num)
 ////////////////////// ROUTE GRADUATED ////////////////////////
 //GRADUATED 
 $route['graduated'] = 'graduated';
+$route['delete-graduated/(:any)/(:num)/(:num)/(:num)/(:num)'] = 'forms_graduated/delete_graduated/$1/$2/$3/$4/$5';
+
 ///////////////////// GRADUATED - END /////////////////////////
 
 ////////////////////// ROUTE Transcript ////////////////////////
@@ -270,7 +272,7 @@ $route['delete-transcript/(:num)/(:any)/(:num)/(:num)/(:num)/(:num)/(:num)/(:num
 $route['transcript-subject'] = 'transcript/transcript_subject';
 $route['forms-transcript-subject'] = 'forms_transcript/forms_transcript_subject';
 $route['edit-forms-transcript-subject'] = 'forms_transcript/edit_forms_transcript_subject';
-$route['add-transcript-subject/(:num)/(:any)/(:num)/(:num)/(:num)/(:num)/(:num)/(:num)']['post'] = 'forms_transcript/add_transcript_subject/$1/$2/$3/$4/$5/$6/$7/$8';
+$route['add-transcript-subject/(:num)/(:any)/(:num)/(:num)/(:num)/(:num)/(:num)/(:num)/(:num)/(:num)']['post'] = 'forms_transcript/add_transcript_subject/$1/$2/$3/$4/$5/$6/$7/$8/$9/$10';
 $route['delete-transcript-subject/(:num)/(:any)/(:num)/(:num)/(:num)/(:num)/(:num)/(:num)/(:num)/(:num)'] = 'forms_transcript/delete_transcript_subject/$1/$2/$3/$4/$5/$6/$7/$8/$9/$10';
 $route['update-transcript-subject/(:num)/(:any)/(:num)/(:num)/(:num)/(:num)/(:num)/(:num)/(:num)/(:num)']['post'] = 'forms_transcript/update_transcript_subject/$1/$2/$3/$4/$5/$6/$7/$8/$9/$10';
 

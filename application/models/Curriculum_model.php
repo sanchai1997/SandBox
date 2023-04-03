@@ -242,9 +242,20 @@ class Curriculum_model  extends CI_Model {
     }
     public function get_curriculum_activity($ACTIVITY_ID) {
         $this->db->select('*')
-        ->from('ACTIVITY')
-        ->where('ACTIVITY_ID',$ACTIVITY_ID);
+        ->from('ACTIVITY a')
+        ->join('ASSESSMENT asm', 'asm.ASSESSMENT_ID  = a.ASSESSMENT_ID ', 'LEFT') 
+        ->join('SCORE s', 's.SCORE_ID  = asm.SCORE_ID ', 'LEFT') 
+        ->where('a.ACTIVITY_ID',$ACTIVITY_ID) ;
         $query = $this->db->get();
+
+        if($query->result()==null || $query->result()==-1 || $query->result()==''){
+            $this->db->select('*')
+            ->from('ACTIVITY')
+            ->where('ACTIVITY_ID',$ACTIVITY_ID) ;
+            $query = $this->db->get();
+        }
+
+ 
        
         return $query->result();
     }
@@ -266,7 +277,12 @@ class Curriculum_model  extends CI_Model {
 
 public function insert_curriculum_assessment($curriculum_assessment) {
     $result_curriculum_activity = $this->db->insert('ASSESSMENT', $curriculum_assessment);
-    return $result_curriculum_activity;
+    if($result_curriculum_activity == 1){
+        $result_activity_id = $this->db->insert_id();
+        return $result_activity_id;
+    }else{
+        return -1;
+    }
 }    
 public function get_assessment($ACTIVITY_ID) {
     $this->db->select('*')
@@ -283,8 +299,8 @@ public function get_CLS_FUNDAMENTAL_SUBJECT_PASSING() {
     return $query->result();
 }
 
-public function update_assessment($SCORE_ID,$curriculum_assessment){
-    $this->db->where('SCORE_ID', $SCORE_ID);
+public function update_assessment($ASSESSMENT_ID,$curriculum_assessment){
+    $this->db->where('ASSESSMENT_ID', $ASSESSMENT_ID);
     $result = $this->db->update('ASSESSMENT',$curriculum_assessment);
 
     
