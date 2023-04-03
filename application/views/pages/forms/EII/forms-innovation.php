@@ -381,7 +381,7 @@ if (isset( $_SESSION['success'])) { ?>
                                         </div>
                                     </div>
 
-                                    <input name="oil_file" value="<?php echo $show->AttachmentURL; ?>" type="">
+                                    <input name="oil_file" value="<?php echo $show->AttachmentURL; ?>" type="hidden">
 
                                     <div class="row mb-3">
                                         <div class="input-group mb-3">

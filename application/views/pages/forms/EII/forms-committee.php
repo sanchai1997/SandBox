@@ -328,7 +328,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <input name="oil_file" value="<?php echo $show->CommitteeAppointmentAttachmentURL ?>" type="">
+                                    <input name="oil_file" value="<?php echo $show->CommitteeAppointmentAttachmentURL ?>" type="hidden">
                                     <div class="row mb-2">
                                         <div class="input-group mb-2">
                                             <label class="input-group-text" for="inputGroupFile01">ลิงก์เอกสารคำสั่ง</label>
