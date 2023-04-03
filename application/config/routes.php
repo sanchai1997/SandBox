@@ -83,7 +83,15 @@ $route['load_file'] = 'DocumentController/load_file';
 $route['list-budget'] = 'BudgetController/list_budget';
 $route['edit_forms_budget'] = 'BudgetController/edit_forms_budget';
 $route['forms-budget'] = 'BudgetController/forms_budget';
+$route['list_budget_by_school'] = 'BudgetController/list_budget_by_school';
 $route['add-budget']['post'] = 'BudgetController/add_budget';
+$route['edit-budget']['post'] = 'BudgetController/edit_budget';
+$route['delete-budget/(:num)'] = 'BudgetController/delete_budget/$1';
+//Expense
+$route['forms_Expense'] = 'ExpenseController/forms_Expense';
+$route['add-Expense']['post'] = 'ExpenseController/add_Expense';
+$route['edit_forms_Expense'] = 'ExpenseController/edit_forms_Expense';
+
 
 
 

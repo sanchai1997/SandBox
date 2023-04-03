@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class BudgetController extends CI_Controller{
+class ExpenseController extends CI_Controller{
     public function __construct() {
         parent::__construct();
         $this->load->helper('url');
@@ -11,49 +11,42 @@ class BudgetController extends CI_Controller{
         $this->load->model('Budget_model');
         $this->load->model('Expense_model');
     }
-    public function forms_budget() {
+    public function forms_Expense() {
         
-        if ( ! file_exists(APPPATH.'views/pages/forms/Budget/forms-budget.php'))
+        if ( ! file_exists(APPPATH.'views/pages/forms/Expense/forms-Expense.php'))
         {
             show_404();
         }
-
         $data['listSchool'] = $this->School_model->get_school_All();
         $data['listBudget_type'] = $this->Budget_model->get_expense_type();
-        $data['innovation_area'] = $this->Budget_model->get_innovation_area_All();
-        $data['expense_type'] = $this->Budget_model->get_expense_type();
-
-        $data['SchoolID'] = $_GET['sid'];
+        $data['BudgetID'] = $_GET['bid']; 
+        $data['SchoolID'] = $_GET['sid']; 
         
-        
-
         $this->load->view('templates/header');
         $this->load->view('templates/sidebar');
-        $this->load->view('pages/forms/Budget/forms-budget',$data);
+        $this->load->view('pages/forms/Expense/forms-Expense',$data);
         $this->load->view('templates/footer');
 
     }
 
-    public function edit_forms_budget() {
+    public function edit_forms_Expense() {
         
-        if ( ! file_exists(APPPATH.'views/pages/forms/Budget/edit_forms-budget.php'))
+        if ( ! file_exists(APPPATH.'views/pages/forms/Expense/edit_forms-Expense.php'))
         {
             show_404();
         }
 
-
         $data['listSchool'] = $this->School_model->get_school_All();
         $data['listBudget_type'] = $this->Budget_model->get_expense_type();
 
-        $data['BudgetID'] = $_GET['bid']; 
-        $data['SchoolID'] = $_GET['sid'];
-
-        $data['Budget'] = $this->Budget_model->get_Budget($data['BudgetID'] );
-
+        $data['ExpenseID'] = $_GET['eid']; 
+        $data['SchoolID'] = $_GET['sid']; 
+        
+        $data['expense'] = $this->Expense_model->get_expense($data['ExpenseID']);
 
         $this->load->view('templates/header');
         $this->load->view('templates/sidebar');
-        $this->load->view('pages/forms/Budget/edit_forms-budget',$data);
+        $this->load->view('pages/forms/Expense/edit_forms-Expense',$data);
         $this->load->view('templates/footer');
 
     }
@@ -65,29 +58,16 @@ class BudgetController extends CI_Controller{
             show_404();
         }
 
-        
+        $data['listBudget'] = $this->Budget_model->get_Budget_All();
         $data['School'] = $this->School_model->get_school_All();
 
-      
-
         if($data['School']==null){
-            $data['listBudget'] = null;
+           
         }else{
-            $data['listBudget'] = $this->Budget_model->get_Budget_All();
             $data['School_id'] = $this->School_model->get_school_top();
             $data['SchoolID'] = $data['School_id'][0]-> SchoolID;
             $data['SchoolNameThai'] = $data['School_id'][0]-> SchoolNameThai;
-            if($data['listBudget'] !=null){
-                $BudgetID = array_column($data['listBudget'], 'BudgetID');
-                $data['innovation_area'] = $this->Budget_model->get_innovation_area($BudgetID);
-            }
-            
         }
-        
-        
-
-
-        
 
         $this->load->view('templates/header');
         $this->load->view('templates/sidebar');
@@ -109,10 +89,6 @@ class BudgetController extends CI_Controller{
         $data['listBudget'] = $this->Budget_model->get_Budget_by_school($data['SchoolID']);  
         $data['School'] = $this->School_model->get_school_All();
 
-       
-
-        
-
         $this->load->view('templates/header');
         $this->load->view('templates/sidebar');
         $this->load->view('pages/dashboard/Budget/list-budget',$data);
@@ -120,29 +96,26 @@ class BudgetController extends CI_Controller{
 
     }
 
-    public function add_budget() {
-       
-        $SchoolID  = $this->input->post('SchoolID');
-        
+    public function add_Expense() {
+            
+            
+            $SchoolID = $this->input->post('SchoolID'); 
 
-            $budget = [
-                'BudgetEducationYear' => $this->input->post('BudgetEducationYear'),
-                'BudgetSemester' => $this->input->post('BudgetSemester'),
-                'BudgetYear' => $this->input->post('BudgetYear'),
-                'AREA_NAME' => $this->input->post('AREA_NAME'),
-                'EXPENSE_TYPE_CODE' => $this->input->post('ExpenseTypeCode'),   
-                'BudgetSchoolID'  =>  $this->input->post('BudgetSchoolID'),
-                'BudgetProgram' => $this->input->post('BudgetProgram'),
-                'BudgetAmount' => $this->input->post('BudgetAmount'),
-                'BudgetDate' => $this->input->post('BudgetDate'),
-                'BudgetReceivedDate' => $this->input->post('BudgetReceivedDate'),
+            $expense = [
+                'ExpenseEducationYear' => $this->input->post('ExpenseEducationYear'),
+                'ExpenseSemester' => $this->input->post('ExpenseSemester'),
+                'BudgetID' => $this->input->post('BudgetID'),
+                'ExpenseSchoolID ' => $this->input->post('ExpenseBudgetSchoolID'),
+                'ExpenseTypeCode' => $this->input->post('ExpenseTypeCode'),
+                'ExpenseAmount' => $this->input->post('ExpenseAmount'),
+                'ExpenseDate' => $this->input->post('ExpenseDate'),
             ];
 
-            $result_budget =  $this->Budget_model->insert_budget($budget);
-
-
-
-            if($result_budget == 1){
+            $result_expense =  $this->Expense_model->insert_expense($expense);
+           
+            
+            
+            if($result_expense == 1){
                 $this->session->set_flashdata('success',"บันทึกข้อมูลสำเร็จ");
                 redirect(base_url('list_budget_by_school?sid='.$SchoolID));
             }else{
@@ -154,23 +127,24 @@ class BudgetController extends CI_Controller{
 
     public function edit_budget() {
        
-        $SchoolID  = $this->input->post('SchoolID');
-        $BudgetID  = $this->input->post('BudgetID');
-        
+        $ExpenseID  = $this->input->post('ExpenseID');
+        $SchoolID = $this->input->post('SchoolID'); 
+        show_error($SchoolID);
+       
 
-        $budget = [
-            'BudgetEducationYear' => $this->input->post('BudgetEducationYear'),
-            'BudgetSemester' => $this->input->post('BudgetSemester'),
-            'BudgetYear' => $this->input->post('BudgetYear'),
-            'BudgetSchoolID'  =>  $this->input->post('BudgetSchoolID'),
-            'BudgetProgram' => $this->input->post('BudgetProgram'),
-            'BudgetAmount' => $this->input->post('BudgetAmount'),
-            'BudgetDate' => $this->input->post('BudgetDate'),
-            'BudgetReceivedDate' => $this->input->post('BudgetReceivedDate'),
+        $expense = [
+            'ExpenseEducationYear' => $this->input->post('ExpenseEducationYear'),
+            'ExpenseSemester' => $this->input->post('ExpenseSemester'),
+            'ExpenseSchoolID ' => $this->input->post('ExpenseSchoolID'),
+            'ExpenseTypeCode' => $this->input->post('ExpenseTypeCode'),
+            'ExpenseAmount' => $this->input->post('ExpenseAmount'),
+            'ExpenseDate' => $this->input->post('ExpenseDate'),
         ];
 
-        $budget =  $this->Budget_model->update_budget($budget,$BudgetID);
-   
+        $result_expense =  $this->Expense_model->update_expense($expense,$ExpenseID);
+       
+        
+        
         if($result_expense == 1){
             $this->session->set_flashdata('success',"บันทึกข้อมูลสำเร็จ");
             redirect(base_url('list_budget_by_school?sid='.$SchoolID));

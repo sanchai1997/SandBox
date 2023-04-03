@@ -1,7 +1,6 @@
 <body onload="onloadpage()">
 <main id="main" class="main">
 <?php foreach($Budget as $b) { ?>
-<?php foreach($expense as $e) { ?>
     <div class="pagetitle">
       <h1>แก้ไขข้อมูลงบประมาณ</h1>
     </div><!-- End Page Title -->
@@ -15,8 +14,13 @@
               <h5 class="card-title">ข้อมูลงบประมาณ</h5>
 
               <!-- start Form ข้อมูลงบประมาณ -->
-              <form class="row g-3" action="<?php echo base_url('add-budget');?>" method="POST" name="BUDGET" id="BUDGET" enctype="multipart/form-data">
+              <form class="row g-3" action="<?php echo base_url('edit-budget');?>" method="POST" name="BUDGET" id="BUDGET" enctype="multipart/form-data">
               
+              
+            
+              <input type="hidden" class="form-control"name="BudgetID"id="BudgetID" value="<?php echo $b->BudgetID ; ?>">
+              <input type="hidden" class="form-control"name="SchoolID"id="SchoolID" value="<?php echo $SchoolID ; ?>">
+
               <div class="col-md-16">
                   <div class="form-floating">
                     <input type="text" class="form-control"name="BudgetEducationYear"id="BudgetEducationYear" placeholder="ปีการศึกษา" maxlength="4" value="<?php echo $b->BudgetEducationYear; ?>">
@@ -82,94 +86,32 @@
                     <label >วันที่ได้รับเงินอุดหนุนทั่วไปเพื่อพัฒนานวัตกรรมการศึกษา</label>
                   </div>
                 </div>
-                   <!-- start Form ข้อมูลรายจ่าย -->
-                  <h5 class="card-title">ข้อมูลรายจ่าย</h5>
-
-                <div class="col-md-16">
-                  <div class="form-floating">
-                    <input type="text" class="form-control"name="ExpenseEducationYear"id="ExpenseEducationYear" placeholder="ปีการศึกษาที่เบิกจ่าย" maxlength="4" value="<?php echo $e->ExpenseEducationYear ; ?>">
-                    <label >ปีการศึกษาที่เบิกจ่าย</label>
-                  </div>
-                </div>
-
-                <div class="col-md-16">
-                  <div class="form-floating">
-                  <select class="form-select" aria-label="Default select example" name="ExpenseSemester" id="ExpenseSemester">
-                      <option selected value="-1">เลือกภาคเรียน</option>
-                      <option value="0">ตลอดปีการศึกษา</option>
-                      <option value="1">ภาคเรียนที่ 1</option>
-                      <option value="2">ภาคเรียนที่ 2</option>
-                    </select>
-                    <label>ภาคเรียนที่เบิกจ่าย</label>
-                  </div>
-                </div>
-
-               
-
-                <div class="col-md-16">
-                  <div class="form-floating">
-                  <select class="form-select" aria-label="Default select example" name="ExpenseSchoolID" id="ExpenseSchoolID">
-                      <option selected value="-1">เลือกสถานศึกษา</option>
-                      <?php foreach($listSchool as $ls) { ?>
-                        <option value="<?php echo $ls->SchoolID; ?>"><?php echo $ls->SchoolNameThai; ?></option>
-                      <?php } ?>
-                    </select>
-                    <label>สถานศึกษาที่เบิกจ่าย</label>
-                  </div>
-                </div>
-
-                <div class="col-md-16">
-                  <div class="form-floating">
-                  <select class="form-select" aria-label="Default select example" name="ExpenseTypeCode" id="ExpenseTypeCode">
-                      <option selected value="-1">เลือกประเภทการเบิกจ่าย</option>
-                      <?php foreach($listBudget_type as $lb_t) { ?>
-                        <option value="<?php echo $lb_t->BUDGET_TYPE_CODE; ?>"><?php echo $lb_t->BUDGET_TYPE_NAME; ?></option>
-                      <?php } ?>
-                    </select>
-                    <label>รหัสประเภทการเบิกจ่าย</label>
-                  </div>
-                </div>
-                
-                <div class="col-md-16">
-                  <div class="form-floating">
-                    <input type="text" class="form-control"name="ExpenseAmount"id="ExpenseAmount" placeholder="ปีการศึกษาที่เบิกจ่าย" maxlength="4" value="<?php echo $e->ExpenseAmount ; ?>">
-                    <label >จำนวนวันที่เบิกจ่าย</label>
-                  </div>
-                </div>
-
-                <div class="col-md-16">
-                  <div class="form-floating">
-                    <input type="date" class="form-control" name="ExpenseDate"id="ExpenseDate" value="<?php echo $e->ExpenseDate ; ?>">
-                    <label >วันที่เบิกจ่าย</label>
-                  </div>
-                </div>
-
-           <!-- End Form ข้อมูลรายจ่าย -->
+         
               
                 <!-- Modal -->
                 <div class="modal fade" id="Modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
                   <div class="modal-dialog modal-dialog-centered" role="document">
                       <div class="modal-content">
                           <div class="modal-header">
-                              <h5 class="modal-title" id="exampleModalLongTitle">ยืนยันการเพิ่มข้อมูล</h5>
+                              <h5 class="modal-title" id="exampleModalLongTitle">ยืนยันการแก้ไขข้อมูล</h5>
                               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                           </div>
                           <div class="modal-body">
                               <h6>
-                                  <center>คุณต้องการเพิ่มข้อมูลใช่หรือไหม ?</center>
+                                  <center>คุณต้องการแก้ไขข้อมูลใช่หรือไหม ?</center>
                               </h6>
                           </div>
                           <div class="modal-footer">
-                              <button type="submit" class="btn btn-primary click" >บันทึกข้อมูล</button> 
-                              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ยกเลิก</button>
+                              <button type="submit" class="btn btn-primary click" >แก้ไขข้อมูล</button> 
+                              <button type="button" class="btn btn-danger" data-bs-dismiss="modal">ยกเลิก</button>
                           </div>
                       </div>
                   </div>
                </div>   
 
                 <div class="d-flex justify-content-between">
-                  <a href="list-budget" class="btn btn-danger" >ยกเลิก</a>
-                  <button type="button" class="btn btn-primary" onclick="return check(BUDGET)">บันทึกข้อมูล</button>
+                  <a href="list_budget_by_school?sid=<?php echo $SchoolID?>" class="btn btn-danger" >ยกเลิก</a>
+                  <button type="button" class="btn btn-warning" onclick="return check(BUDGET)">แก้ไขข้อมูล</button>
                 </div> 
             <!-- Modal -->
             <div class="modal fade" id="Modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
@@ -230,39 +172,6 @@
      }
    }
 
-     ///ExpenseSemester
-   var my_ExpenseSemester = "<?php echo $e->ExpenseSemester; ?>";
-   var selectoption_ExpenseSemester = document.querySelector('#ExpenseSemester');
-   var size_my_ExpenseSemester =  document.getElementById("ExpenseSemester").options.length;
-   for (let i = 0; i < size_my_ExpenseSemester; i++) {
-     if(selectoption_ExpenseSemester[i].value==my_ExpenseSemester){
-      selectoption_ExpenseSemester[i].selected = true;
-        break;
-     }
-   }
-
-   
-    //ExpenseSchoolID
-   var my_ExpenseSchoolID = "<?php echo $e->ExpenseSchoolID ; ?>";
-   var selectoption_ExpenseSchoolID = document.querySelector('#ExpenseSchoolID');
-   var size_my_ExpenseSchoolID =  document.getElementById("ExpenseSchoolID").options.length;
-   for (let i = 0; i < size_my_ExpenseSchoolID; i++) {
-     if(selectoption_ExpenseSchoolID[i].value==my_ExpenseSchoolID){
-      selectoption_ExpenseSchoolID[i].selected = true;
-        break;
-     }
-   }
-
-       //ExpenseSchoolID
-    var my_ExpenseTypeCode = "<?php echo $e->ExpenseTypeCode ; ?>";
-   var selectoption_ExpenseTypeCode = document.querySelector('#ExpenseTypeCode');
-   var size_my_ExpenseTypeCode =  document.getElementById("ExpenseTypeCode").options.length;
-   for (let i = 0; i < size_my_ExpenseTypeCode; i++) {
-     if(selectoption_ExpenseTypeCode[i].value==my_ExpenseTypeCode){
-      selectoption_ExpenseTypeCode[i].selected = true;
-        break;
-     }
-   }
 
 
   }
@@ -311,13 +220,9 @@
         return false;
     }
     
-    var Check_BudgetAmount = /^[0-9]{1,12}$/;
+   
     if(frm.BudgetAmount.value ==""){
         alert("กรุณากรอกจำนวนเงินอุดหนุนทั่วไปเพื่อพัฒนานวัตกรรมการศึกษา");
-        frm.BudgetAmount.value = "";
-        return false;
-    }else if (!frm.BudgetAmount.value.match(Check_BudgetAmount)){
-        alert("กรุณากรอกจำนวนเงินอุดหนุนทั่วไปเพื่อพัฒนานวัตกรรมการศึกษาให้ถูกต้อง");
         frm.BudgetAmount.value = "";
         return false;
     }
@@ -332,52 +237,11 @@
       return false;
     }
 
-    //Check_ExpenseEducationYear(ปีการศึกษาที่เบิกจ่าย)
-    var EDUCATION = /^[0-9]{4}$/;
-    if(frm.ExpenseEducationYear.value ==""){
-        alert("กรุณากรอกปีการศึกษาที่เบิกจ่าย");
-        frm.ExpenseEducationYear.value = "";
-        return false;
-    }else if (!frm.ExpenseEducationYear.value.match(EDUCATION)){
-        alert("กรุณากรอกปีการศึกษาที่เบิกจ่าย");
-        frm.ExpenseEducationYear.value = "";
-        return false;
-    }
-     //Check_ExpenseSemester (ภาคเรียนที่ได้รับเงินอุดหนุนทั่วไปเพื่อพัฒนานวัตกรรมการศึกษา)
-     if(frm.ExpenseSemester.value==-1){
-      alert("กรุณาเลือกภาคเรียนที่เบิกจ่าย");
-      return false;
-    }
-    //Check_ExpenseSchoolID(เลือกสถานศึกษา)
-    if(frm.ExpenseSchoolID.value==-1){
-      alert("กรุณาเลือกสถานศึกษา");
-      return false;
-    }
-    //Check_ExpenseTypeCode(ประเภทการเบิกจ่าย)
-    if(frm.ExpenseTypeCode.value==-1){
-      alert("กรุณากรอกประเภทการเบิกจ่าย");
-      return false;
-    }
-    var Check_ExpenseAmount = /^[0-9]{1,12}$/;
-    if(frm.ExpenseAmount.value ==""){
-        alert("กรุณากรอกจำนวนเงินการเบิก");
-        frm.ExpenseAmount.value = "";
-        return false;
-    }else if (!frm.ExpenseAmount.value.match(Check_ExpenseAmount)){
-        alert("กรุณากรอกจำนวนเงินการเบิกให้ถูกต้อง");
-        frm.ExpenseAmount.value = "";
-        return false;
-    }
-    //Cehck_BudgetReceivedDate (วันที่อนุมัติเงินอุดหนุนทั่วไปเพื่อพัฒนานวัตกรรมการศึกษา)
-    if(frm.ExpenseDate.value==""){
-      alert("กรุณากรอกข้อมูลวันที่เบิกจ่าย");
-      return false;
-    }
 
     $('#Modal').modal('show');
   }
 </script>
 <?php } ?> 
-<?php } ?> 
+
 
   </main><!-- End #main -->
