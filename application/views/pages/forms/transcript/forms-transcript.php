@@ -41,7 +41,52 @@
           <div class="card-body">
             <!-- Floating Labels Form -->
             <form class="row g-3" action="<?php echo base_url('add-transcript/' . $_GET['SchoolID'] . '/' . $_GET['StudentReferenceID'] . '/' . $_GET['EducationYear'] . '/' . $_GET['Semester'] . '/' . $_GET['GradeLevelCode'] . '/' . $_GET['StudentID']); ?>" method="POST" id="Transcript" enctype="multipart/form-data">
-              <h6 style="padding-left: 15px;" class="card-title">ข้อมูลใบแสดงผลการศึกษา ปพ.1</h6>
+              <h6 style="padding-left: 15px;" class="card-title">ข้อมูลใบแสดงผลการศึกษา</h6>
+              <div class="col-md-6">
+                <div class="form-floating">
+                  <input type="hidden" name="EducationYear" value="<?= $_GET['EducationYear'] ?>">
+                  <input type="number" class="form-control" maxlength="4" name="EducationYear" id="EducationYear" value="<?= $_GET['EducationYear'] ?>" disabled>
+                  <label for="EducationYear">ปีการศึกษา<font color="red"> *</font></label>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-floating">
+                  <input type="hidden" name="Semester" value="<?= $_GET['Semester'] ?>">
+                  <input type="number" class="form-control" maxlength="1" name="Semester" id="Semester" value="<?= $_GET['Semester'] ?>" disabled>
+                  <label for="Semester">ภาคเรียน<font color="red"> *</font></label>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-floating">
+                  <select class="form-select" name="OldSchoolID" id="OldSchoolID" aria-label="OldSchoolID" disabled>
+                    <?php
+                    $result = $this->db->query('SELECT * FROM SCHOOL WHERE SchoolID = ' . $_GET['SchoolID'] . '');
+                    foreach ($result->result() as $SCHOOL) {
+                    ?>
+
+                      <option value="<?= $SCHOOL->SchoolID; ?>"><?= $SCHOOL->SchoolNameThai; ?></option>
+                    <?php
+                    }
+                    ?>
+                  </select>
+                  <label for="OldSchoolID">สถานศึกษา<font color="red"> *</font> </label>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-floating">
+                  <select class="form-select" name="OldSchoolLastGradeLevelCode" id="OldSchoolLastGradeLevelCode" aria-label="OldSchoolLastGradeLevelCode" disabled>
+                    <?php
+                    $result = $this->db->query('SELECT * FROM CLS_GRADE_LEVEL WHERE GRADE_LEVEL_CODE = ' . $_GET['GradeLevelCode'] . '');
+                    foreach ($result->result() as $GRADE_LEVEL) {
+                    ?>
+                      <option value="<?= $GRADE_LEVEL->GRADE_LEVEL_CODE; ?>"><?= $GRADE_LEVEL->GRADE_LEVEL_NAME; ?></option>
+                    <?php
+                    }
+                    ?>
+                  </select>
+                  <label for="OldSchoolLastGradeLevelCode">ชั้นปีการศึกษา<font color="red"> *</font> </label>
+                </div>
+              </div>
               <div class="col-md-6">
                 <div class="form-floating">
                   <input type="number" class="form-control" maxlength="5" name="TranscriptSeriesNumber" id="TranscriptSeriesNumber">
@@ -95,6 +140,11 @@
   </section>
   <script type="text/javascript">
     function check(frm) {
+
+      if (frm.OldSchoolLastGradeLevelCode.value == "") {
+        alert("กรุณาเลือกชั้นปีการศึกษา");
+        return false;
+      }
       var Series = /^[0-9]{1,5}$/;
       var Number = /^[0-9]{1,6}$/;
 

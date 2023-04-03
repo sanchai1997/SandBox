@@ -34,9 +34,20 @@ class Forms_teacher extends CI_Controller
     //Add Data Form teacher
     public function add_teacher($SchoolID)
     {
-        $this->forms_teacher->add_teacher($SchoolID);
-        $_SESSION['success'] = "บันทึกข้อมูลเรียบร้อย";
-        redirect(base_url('teacher?SchoolID=' . $SchoolID));
+        $result = $this->db->query('SELECT * 
+        FROM TEACHER
+        WHERE DeleteStatus = 0 AND SchoolID = ' . $SchoolID . ' 
+        AND TeacherPersonalID = ' . $_POST['TeacherPersonalID'] . '
+        ')->result();
+
+        if ($result != TRUE) {
+            $this->forms_teacher->add_teacher($SchoolID);
+            $_SESSION['success'] = "บันทึกข้อมูลเรียบร้อย";
+            redirect(base_url('teacher?SchoolID=' . $SchoolID));
+        } else {
+            $_SESSION['danger'] = "ไม่สามารถบันทึกข้อมูลได้ โปรดตรวจสอบข้อมูลครูอาจจะซ้ำกันในระบบ";
+            redirect(base_url('forms-teacher?SchoolID=' . $SchoolID));
+        }
     }
     ////////////////////////////// forms-teacher-END/////////////////////////////////
 
@@ -61,9 +72,20 @@ class Forms_teacher extends CI_Controller
     //Add Data Form teacher
     public function add_teacher_select($SchoolID, $EducationYear, $Semester, $EntryMajorCode, $EntryProgramCode)
     {
-        $this->forms_teacher->add_teacher_select($SchoolID, $EducationYear, $Semester, $EntryMajorCode, $EntryProgramCode);
-        $_SESSION['success'] = "บันทึกข้อมูลเรียบร้อย";
-        redirect(base_url('teacher?SchoolID=' . $SchoolID . '&&EducationYear=' . $EducationYear . '&&Semester=' . $Semester . '&&EntryMajorCode=' . $EntryMajorCode . '&&EntryProgramCode=' . $EntryProgramCode));
+        $result = $this->db->query('SELECT * 
+        FROM TEACHER
+        WHERE DeleteStatus = 0 AND SchoolID = ' . $SchoolID . ' 
+        AND TeacherPersonalID = ' . $_POST['TeacherPersonalID'] . '
+        ')->result();
+
+        if ($result != TRUE) {
+            $this->forms_teacher->add_teacher_select($SchoolID, $EducationYear, $Semester, $EntryMajorCode, $EntryProgramCode);
+            $_SESSION['success'] = "บันทึกข้อมูลเรียบร้อย";
+            redirect(base_url('teacher?SchoolID=' . $SchoolID . '&&EducationYear=' . $EducationYear . '&&Semester=' . $Semester . '&&EntryMajorCode=' . $EntryMajorCode . '&&EntryProgramCode=' . $EntryProgramCode));
+        } else {
+            $_SESSION['danger'] = "ไม่สามารถบันทึกข้อมูลได้ โปรดตรวจสอบข้อมูลครูอาจจะซ้ำกันในระบบ";
+            redirect(base_url('forms-teacher-select?SchoolID=' . $SchoolID . '&&EducationYear=' . $EducationYear . '&&Semester=' . $Semester . '&&EntryMajorCode=' . $EntryMajorCode . '&&EntryProgramCode=' . $EntryProgramCode));
+        }
     }
     ////////////////////////////// forms-teacher-END/////////////////////////////////
 

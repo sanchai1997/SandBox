@@ -1,15 +1,13 @@
 <main id="main" class="main">
     <div class="pagetitle">
-        <h1 style="padding-bottom: 5px;">แก้ไขข้อมูลผลประเมินและผลตัดสิน
-            <?php if (isset($_GET['SchoolID'])) {
-                $result = $this->db->query('SELECT *  FROM SCHOOL WHERE SchoolID = ' . $_GET['SchoolID'] . '');
-                foreach ($result->result() as $SCHOOL) {
-                    $SchoolName = $SCHOOL->SchoolNameThai;
-                }
-                $result = $this->db->query('SELECT * FROM CLS_GRADE_LEVEL WHERE GRADE_LEVEL_CODE = ' . $_GET['GradeLevelCode'] . '');
-                foreach ($result->result() as $GRADE_LEVEL) {
-                    $GRADE_NAME = $GRADE_LEVEL->GRADE_LEVEL_NAME;
-                }
+        <h1 style="padding-bottom: 5px;">แก้ไขข้อมูลผลประเมินและผลตัดสิน : ใบแสดงผลการศึกษาชุดที่
+            <?php if (isset($_GET['TranscriptSeriesNumber'])) {
+                echo $_GET['TranscriptSeriesNumber'] . ' - ' . $_GET['TranscriptNumber'];
+            }
+            $result = $this->db->query('SELECT * FROM CLS_GRADE_LEVEL WHERE GRADE_LEVEL_CODE = ' . $_GET['GradeLevelCode'] . '');
+            foreach ($result->result() as $GRADE_LEVEL) {
+                $GRADE_NAME = $GRADE_LEVEL->GRADE_LEVEL_NAME;
+            }
             ?>
 
         </h1>
@@ -229,7 +227,6 @@
                                     </div>
                                 </div>
                             </div>
-                        <?php } ?>
 
                             </form><!-- End Form ข้อมูลการพัฒนาบุคลากรครู -->
 
