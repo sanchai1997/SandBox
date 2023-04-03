@@ -42,8 +42,71 @@
                     <input type="text" class="form-control" name="ACTIVITY_NAME" id="ACTIVITY_NAME" placeholder="ชื่อกิจกรรม" maxlength="100">
                     <label >ชื่อกิจกรรม<font color="red"> *</font></label>
                   </div>
+                  </div>
+
+                    <div class="pagetitle">
+                    <h5 class="card-title">การวัดและประเมินผล</h5>
+                  </div>
+                  <div class="col-md-16">
+                    <div class="form-floating">
+                      <input type="text" class="form-control" name="ASSESSMENT_NAME" id="ASSESSMENT_NAME" placeholder="ชื่อการวัดและประเมินผล" maxlength="255" >
+                      <label >ชื่อการวัดและประเมินผล<font color="red"> *</font></label>
+                    </div>
+                  </div>
+
+                  <div class="col-md-16">
+                    <div class="form-floating">
+                      <select class="form-select" aria-label="Default select example" name="ASSESSMENT_PEOPLE_ID" id="ASSESSMENT_PEOPLE_ID">
+                          <option value="-1" selected  >กรุณาเลือกผู้ประเมิน</option>    
+                          <option value="0">ครู</option>
+                          <option value="1">นักเรียน</option>
+                          <option value="2">ผู้ปกครอง</option>
+                          <option value="3">อื่นๆ</option>
+                      </select>    
+                      <label>ผู้ประเมิน<font color="red"> *</font></label>
+                    </div>
+                  </div>
+
+                  <div class="col-md-16">
+                    <div class="form-floating">
+                      <select class="form-select" aria-label="Default select example" name="ASSESSMENT_TOOL_CODE" id="ASSESSMENT_TOOL_CODE" >
+                        <option selected value="-1">เลือกเครื่องมือการประเมิน</option>
+                          <option value="0">แบบสังเกตพฤติกรรม</option>
+                          <option value="1">แบบประเมิน</option>
+                      </select>    
+                      <label>เครื่องมือการประเมิน<font color="red"> *</font></label>
+                    </div>
+                  </div>
+                  <div class="pagetitle">
+                  <h5 class="card-title">การวัดผลมาตรฐานกลาง</h5>
                 </div>
 
+                  <div class="col-md-16">
+                    <div class="form-floating">
+                      <input type="text" class="form-control" name="SCORE_TEACHER" id="SCORE_TEACHER" placeholder="ชื่อการวัดและประเมินผล" maxlength="255">
+                      <label >สัดส่วนการประเมินโดยผู้สอน<font color="red"> *</font></label>
+                    </div>
+                  </div>
+                  <div class="col-md-16">
+                    <div class="form-floating">
+                      <input type="text" class="form-control" name="SCORE_PARENT" id="SCORE_PARENT" placeholder="ชื่อการวัดและประเมินผล" maxlength="255">
+                      <label >สัดส่วนการประเมินโดยผู้ปกครอง<font color="red"> *</font></label>
+                    </div>
+                  </div>
+                  <div class="col-md-16">
+                    <div class="form-floating">
+                      <input type="text" class="form-control" name="SCORE_OTHER" id="SCORE_OTHER" placeholder="ชื่อการวัดและประเมินผล" maxlength="255" >
+                      <label >สัดส่วนการประเมินโดยบุคลากรอื่น<font color="red"> *</font></label>
+                    </div>
+                  </div>
+                  <div class="col-md-16">
+                    <div class="form-floating">
+                      <input type="text" class="form-control" name="SCORE_SUM_TOTAL" id="SCORE_SUM_TOTAL" placeholder="คะแนนรวม (เต็ม 100)" maxlength="255" disabled>
+                      <label >คะแนนรวม</label>
+                    </div>
+                  </div>
+                  
+                
 
                 
 

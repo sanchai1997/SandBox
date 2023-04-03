@@ -76,14 +76,75 @@
                                         <div class="row">
                                                 <div class="col">
                                                     <p>
-                                                        <a href='edit_forms-curriculum_activity?pid=<?php echo$lca->PLAN_ID ?>&&ACTIVITY_ID=<?php echo$lca->ACTIVITY_ID ?>&&sid=<?php echo $SubjectCode; ?>&&cid=<?php echo $CurriculumID; ?>' class="my-link">
-                                                            <?php echo $lca->ACTIVITY_NAME; ?> 
-                                                        </a>
-                                                    
+                                                    <button type="button" class="my-link btn btn-link " data-bs-toggle="modal" data-bs-target="#viewACTIVITY<?php echo$lca->ACTIVITY_ID ?>">  <?php echo $lca->ACTIVITY_NAME; ?> </button>
+
+    
                                                     </p>
                                                 </div>
 
+                                        </div>
+                            <!-- Modal view Activity -->
+                            <div class="modal fade" id="viewACTIVITY<?php echo$lca->ACTIVITY_ID ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" style="text-align: left;">
+                                <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-xl">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel" style="padding-left: 30px; padding-top: 15px;"> <i class="bi bi-card-heading"></i>ข้อมูลกิจกรรม - <?php echo $lca->ACTIVITY_NAME; ?></h5>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                            <hr>
+                                        </div>
+                                        <div class="modal-body" style="padding-left: 70px; padding-top: 20px;">
+                                            <div class="row">
+                                                <h6 style="padding-top: 10px;"><b>ชื่อกิจกรรม</b></h6>
+                                                    <div class=" col-8" style="padding-bottom: 8px; padding-left: 40px;">
+                                                       <?php echo $lca->ACTIVITY_NAME  ?>
+                                                    </div>
                                             </div>
+                                            <div class="row">
+                                                <h6 style="padding-top: 10px;"><b>การวัดและประเมินผล</b></h6>
+                                                    <div class=" col-8" style="padding-bottom: 8px; padding-left: 40px;">
+                                                        ชื่อการวัดและประเมินผล : <?php echo $lca->ASSESSMENT_NAME  ?> 
+                                                    </div>
+                                                    <div class=" col-8" style="padding-bottom: 8px; padding-left: 40px;">
+                                                        ผู้ประเมิน : *** โชว์กี่คนนนน
+                                                    </div>
+                                                    <div class=" col-8" style="padding-bottom: 8px; padding-left: 40px;">
+
+                                                        เครื่องมือการประเมิน : <?php  $code = $lca->ASSESSMENT_TOOL_CODE;
+                                                                    if ($code == '' ) echo "";
+                                                                    else if ($code == 0) echo "แบบสังเกตพฤติกรรม";
+                                                                    else if ($code == 1) echo "แบบประเมิน";?>
+                                                    </div>
+                                            </div>
+                                            <div class="row">
+                                                    <h6 style="padding-top: 10px;"><b>การวัดผลมาตรฐานกลาง</b></h6>
+                                                    <div class=" col-8" style="padding-bottom: 8px; padding-left: 40px;">
+                                                        สัดส่วนการประเมินโดยผู้สอน : <?= $lca->SCORE_TEACHER; ?>
+                                                    </div>
+                                                    <div class=" col-8" style="padding-bottom: 8px; padding-left: 40px;">
+                                                        สัดส่วนการประเมินโดยผู้ปกครอง : <?= $lca->SCORE_PARENT; ?>
+                                                    </div>
+                                                    <div class=" col-8" style="padding-bottom: 8px; padding-left: 40px;">
+                                                        สัดส่วนการประเมินโดยบุคลากรอื่น : <?= $lca->SCORE_OTHER; ?>
+                                                    </div>
+                                                    <div class=" col-8" style="padding-bottom: 8px; padding-left: 40px;">
+                                                        คะแนนรวม : <?= $lca->SCORE_SUM_TOTAL; ?>
+                                                    </div>
+                                                    <div class=" col-8" style="padding-bottom: 8px; padding-left: 40px;">
+                                                        ผลการตัดสินรายวิชาพื้นฐาน : <?= $lca->FUNDAMENTAL_SUBJECT_PASSING_NAME; ?>
+                                                    </div>
+
+                                            </div>
+                                    </div>
+                                        <div class="modal-footer">
+                                            <a href='edit_forms-curriculum_activity?pid=<?php echo$lca->PLAN_ID ?>&&ACTIVITY_ID=<?php echo$lca->ACTIVITY_ID ?>&&sid=<?php echo $SubjectCode; ?>&&cid=<?php echo $CurriculumID; ?>' class="btn btn-warning">
+                                                <i class="bi bi-pencil-square"></i>
+                                            </a>
+                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ปิด</button>                                            </div>
+                                        </div>
+                                </div>
+                            </div>
+                            <!----------------------------  END Modal view Activity --------------------------------->
+
                                     <?php } ?>
                                     <a href="forms-curriculum_activity?pid=<?php echo $lcp->PLAN_ID; ?>&&sid=<?php echo $SubjectCode; ?>&&cid=<?php echo $CurriculumID; ?>" class="fw-bold my-link">
                                             >>เพิ่มกิจกรรม>>
@@ -162,7 +223,6 @@
                                             </div>
                                     </div>
                                         <div class="modal-footer">
-                                            <a href='edit_forms_curriculum_plan?pid=<?php echo $lcp->PLAN_ID; ?>' class="btn btn-warning"><i class="bi bi-pencil-square"></i></button></a>
                                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ปิด</button>                                            </div>
                                         </div>
                                 </div>
@@ -189,6 +249,7 @@
                                     </div>
                                 </div>
                              <!----------------------------  END Modal delete--------------------------------->
+
                         <?php } ?>
 
                     </tbody>
@@ -203,10 +264,12 @@
 <style>
     .my-link {
         color: black;
+        text-decoration: none;
     }
 
     .my-link:hover {
         color: blue;
     }
+
 </style>
 </main><!-- End #main -->

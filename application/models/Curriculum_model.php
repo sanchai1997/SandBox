@@ -232,9 +232,12 @@ class Curriculum_model  extends CI_Model {
     }
     public function get_curriculum_activity_All($PLAN_ID) {
         $this->db->select('*')
-        ->from('ACTIVITY')
-        ->where('PLAN_ID ', $PLAN_ID  ) 
-        ->where('DeleteStatus ', 0  ) ;
+        ->from('ACTIVITY a')
+        ->join('ASSESSMENT asm', 'asm.ASSESSMENT_ID  = a.ASSESSMENT_ID ', 'LEFT') 
+        ->join('SCORE s', 's.SCORE_ID  = asm.SCORE_ID ', 'LEFT') 
+        ->join('CLS_FUNDAMENTAL_SUBJECT_PASSING fsp', 'fsp.FUNDAMENTAL_SUBJECT_PASSING_CODE  = s.FUNDAMENTAL_SUBJECT_PASSING_CODE ', 'LEFT') 
+        ->where('a.PLAN_ID ', $PLAN_ID  ) 
+        ->where('a.DeleteStatus ', 0  ) ;
         $query = $this->db->get();
 
        
