@@ -2,7 +2,7 @@
 <main id="main" class="main">
 <?php foreach($expense as $e) { ?>
     <div class="pagetitle">
-      <h1>แก้ไขข้อมูลเบิกจ่ายณ</h1>
+      <h1>แก้ไขข้อมูลเบิกจ่าย</h1>
     </div><!-- End Page Title -->
 
     <section class="section">
@@ -14,13 +14,14 @@
           
 
               <!-- start Form ข้อมูลงบประมาณ -->
-              <form class="row g-3" action="<?php echo base_url('edit-budget');?>" method="POST" name="BUDGET" id="BUDGET" enctype="multipart/form-data">
+              <form class="row g-3" action="<?php echo base_url('edit-Expense');?>" method="POST" name="BUDGET" id="BUDGET" enctype="multipart/form-data">
               
               
-              <input type="hidden" class="form-control"name="ExpenseID"id="ExpenseID" value="<?php echo $e->ExpenseID  ; ?>">
-            
+              <input type="hidden" class="form-control"name="ExpenseID"id="ExpenseID" value="<?php echo $ExpenseID ; ?>">
+              <input type="hidden" class="form-control"name="SchoolID"id="SchoolID" value="<?php echo $SchoolID ; ?>">
+
                    <!-- start Form ข้อมูลรายจ่าย -->
-                  <h5 class="card-title">ข้อมูลเบิกจ่าย</h5>
+                  <h5 class="card-title"></h5>
 
                 <div class="col-md-16">
                   <div class="form-floating">

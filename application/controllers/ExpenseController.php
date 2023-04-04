@@ -125,13 +125,12 @@ class ExpenseController extends CI_Controller{
         
     }
 
-    public function edit_budget() {
+    public function edit_Expense() {
        
         $ExpenseID  = $this->input->post('ExpenseID');
         $SchoolID = $this->input->post('SchoolID'); 
-        show_error($SchoolID);
+   
        
-
         $expense = [
             'ExpenseEducationYear' => $this->input->post('ExpenseEducationYear'),
             'ExpenseSemester' => $this->input->post('ExpenseSemester'),
