@@ -17,8 +17,10 @@ class Expense_model extends CI_Model
 
     public function get_expense_all($ExpenseID) {
         $this->db->from('EXPENSE')
-        ->where('BudgetID', $ExpenseID );
+        ->where('BudgetID', $ExpenseID )
+        ->where('DeleteStatus', 0 );
         
+
         $query = $this->db->get();
 
         return $query->result();
@@ -38,6 +40,17 @@ class Expense_model extends CI_Model
         $result = $this->db->update('EXPENSE',  $expense);
 
 
+        return $result;
+    }
+
+    public function delete_expense($ExpenseID){   
+        $data = [
+            'DeleteStatus' => 1
+        ];
+
+        $this->db->where('ExpenseID ', $ExpenseID );
+        $result = $this->db->update('EXPENSE',  $data);
+    
         return $result;
     }
     

@@ -200,8 +200,8 @@
                                                     <center>คุณต้องการลบข้อมูลใช่หรือไหม ?</center>
                                                 </h6>
                                             </div>
-                                            <div class="modal-footer">
-                                                <a href="" class="btn btn-danger">ลบ</a>
+                                            <div class="modal-footer"> 
+                                                <a href="<?php echo base_url('delete_budget/' . $lb->BudgetID . '/' .$SchoolID) ?>  " class="btn btn-danger">ลบ</a>
                                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ยกเลิก</button>
                                             </div>
                                         </div>

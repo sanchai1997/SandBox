@@ -44,7 +44,7 @@
                 
                 <div class="col-md-16">
                   <div class="form-floating">
-                  <select class="form-select" aria-label="Default select example" name="AREA_NAME" id="AREA_NAME">
+                  <select class="form-select" aria-label="Default select example" name="AREA_NO" id="AREA_NO">
                       <option selected value="-1">เลือกชื่อเขตพื้นที่</option>
                       <?php foreach($innovation_area as $ina) { ?>
                         <option value="<?php echo $ina->INNOVATION_AREA_CODE ; ?>"><?php echo $ina->INNOVATION_AREA_NAME; ?></option>
@@ -176,7 +176,7 @@
         frm.BudgetYear.value = "";
         return false;
     }
-      if(frm.AREA_NAME.value==-1){
+      if(frm.AREA_NO.value==-1){
       alert("กรุณาเลือกชื่อเขตพื้นที่");
       return false;
     }
