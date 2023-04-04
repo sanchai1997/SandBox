@@ -36,6 +36,8 @@ class Expense_model extends CI_Model
     public function update_expense($expense,$ExpenseID ){
         $this->db->where('ExpenseID', $ExpenseID );
         $result = $this->db->update('EXPENSE',  $expense);
+
+
         return $result;
     }
     

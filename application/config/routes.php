@@ -91,6 +91,7 @@ $route['delete-budget/(:num)'] = 'BudgetController/delete_budget/$1';
 $route['forms_Expense'] = 'ExpenseController/forms_Expense';
 $route['add-Expense']['post'] = 'ExpenseController/add_Expense';
 $route['edit_forms_Expense'] = 'ExpenseController/edit_forms_Expense';
+$route['edit-Expense']['post'] = 'ExpenseController/edit_Expense';
 
 
 
