@@ -197,7 +197,10 @@ class Innovation_model extends CI_Model
 	}
 	public function add_in_tor_model()
 	{
-
+	// echo '<pre>';
+	// 	print_r($_POST);
+	// 	echo '</pre>';
+	// 	exit;
 
 		$InnovationID = $this->input->post('InnovationID');
 		$CreatorPersonalID = $this->input->post('CreatorPersonalID');
@@ -238,10 +241,7 @@ class Innovation_model extends CI_Model
 			header('Location: ' . $_SERVER['HTTP_REFERER']);
 			exit;
 		}
-		// echo '<pre>';
-		// print_r($_POST);
-		// echo '</pre>';
-		// exit;
+	
 
 	}
 	public function edit_in_tor_model()

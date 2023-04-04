@@ -541,8 +541,9 @@ if (isset( $_SESSION['success'])) { ?>
                                 <div class="row mb-3">
                                     <div class="col">
                                         <div class="form-floating">
-                                            <select class="form-select" id="CreatorPersonalIDTypeCode" aria-label="Floating label select example"
-                                                name="CreatorPersonalIDTypeCode" >
+                                            <select class="form-select" id="CreatorPersonalIDTypeCode"
+                                                aria-label="Floating label select example"
+                                                name="CreatorPersonalIDTypeCode">
                                                 <option value="-1" selected>เลือก</option>
                                                 <?php
                                            $result = $this->db->query('SELECT * FROM CLS_PERSONAL_ID_TYPE');
@@ -564,11 +565,9 @@ if (isset( $_SESSION['success'])) { ?>
                                     <div class="col">
                                         <div class="form-floating" id="CreatorPersonalID">
                                             <input type="text" class="form-control" id="my-auto"
-                                                placeholder="หมายเลขบัตรประจำตัวผู้จัดทำ" name=""
-                                                disabled>
-                                                <input type="hidden" class="form-control" id="my-autoo"
-                                                placeholder="" name="CreatorPersonalID"
-                                                >
+                                                placeholder="หมายเลขบัตรประจำตัวผู้จัดทำ" name="">
+                                            <input type="hidden" class="form-control" id="my-autoo" placeholder=""
+                                                name="CreatorPersonalID">
                                             <label for=""><?php echo nbs(2); ?> หมายเลขบัตรประจำตัวผู้จัดทำ </label>
                                         </div>
                                     </div>
@@ -693,18 +692,21 @@ if (isset( $_SESSION['success'])) { ?>
                             const input1 = document.getElementById("my-autoo");
 
                             select.addEventListener("change", function() {
-                                if (select.value === "N"||select.value === "-1") {
+                                if (select.value === "N" || select.value === "-1") {
                                     input.disabled = true;
-                                    
+
                                     input.value = '0';
                                     input1.value = '0';
 
                                 } else {
                                     input.disabled = false;
-                                   
+
                                     input.value = '';
                                     input1.value = '';
                                 }
+                            });
+                            input.addEventListener("input", function() {
+                                input1.value = input.value;
                             });
 
                             function checkSelectedOption() {
@@ -788,17 +790,15 @@ if (isset( $_SESSION['success'])) { ?>
 
 
                                     <div class="row mb-3">
-                                    <div class="col">
-                                        <div class="form-floating" id="CreatorPersonalID">
-                                            <input type="text" class="form-control" id="my-auto"
-                                                placeholder="หมายเลขบัตรประจำตัวผู้จัดทำ" name=""
-                                                disabled>
-                                                <input type="hidden" class="form-control" id="my-autoo"
-                                                placeholder="" name="CreatorPersonalID"
-                                                >
-                                            <label for=""><?php echo nbs(2); ?> หมายเลขบัตรประจำตัวผู้จัดทำ </label>
+                                        <div class="col">
+                                            <div class="form-floating" id="CreatorPersonalID">
+                                                <input type="text" class="form-control" id="my-auto"
+                                                    placeholder="หมายเลขบัตรประจำตัวผู้จัดทำ" name=""  value="<?php echo $show->CreatorPersonalID ?>">
+                                                <input type="hidden" class="form-control" id="my-autoo" placeholder=""
+                                                    name="CreatorPersonalID" value="<?php echo $show->CreatorPersonalID ?>">
+                                                <label for=""><?php echo nbs(2); ?> หมายเลขบัตรประจำตัวผู้จัดทำ </label>
+                                            </div>
                                         </div>
-                                    </div>
 
                                         <div class="col">
                                             <div class="form-floating">
@@ -962,23 +962,26 @@ if (isset( $_SESSION['success'])) { ?>
                                     </div>
                                 </div> <!-- Modal -->
                                 <script>
-                                    const select = document.getElementById("CreatorPersonalIDTypeCode");
+                                const select = document.getElementById("CreatorPersonalIDTypeCode");
                             const input = document.getElementById("my-auto");
                             const input1 = document.getElementById("my-autoo");
 
                             select.addEventListener("change", function() {
-                                if (select.value === "N"||select.value === "-1") {
+                                if (select.value === "N" || select.value === "-1") {
                                     input.disabled = true;
-                                    
+
                                     input.value = '0';
                                     input1.value = '0';
 
                                 } else {
                                     input.disabled = false;
-                                   
+
                                     input.value = '';
                                     input1.value = '';
                                 }
+                            });
+                            input.addEventListener("input", function() {
+                                input1.value = input.value;
                             });
                                 ///CLS_PERSONAL_ID_TYPE
                                 var my_CLS_PERSONAL_ID_TYPE = "<?php echo $show->CreatorPersonalIDTypeCode ?>";

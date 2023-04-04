@@ -210,13 +210,14 @@
                                                 <input type="text" class="form-control" id="floatingName"
                                                     placeholder="รหัสตัวชี้วัด" name="CriteriaID"
                                                     value="<?php echo $show->CriteriaID ?>">
+                                                    <input type="hidden" class="form-control" id="floatingName"
+                                                    placeholder="รหัสตัวชี้วัด" name="Id"
+                                                    value="<?php echo $show->Id ?>">
 
                                                 <label for="floatingName"><?php echo nbs(2); ?> รหัสตัวชี้วัด </label>
                                             </div>
                                         </div>
-                                        <input type="hidden" class="form-control" id="floatingName"
-                                            placeholder="รหัสตัวชี้วัด" name="CriteriaID"
-                                            value="<?php echo $show->CriteriaID ?>">
+                                       
 
                                         <div class="col">
                                             <div class="form-floating">
@@ -524,7 +525,9 @@
                                     <div class="text-center">
                                         <a href="Fm_evaluation_das_p1?page=sh1" class="btn btn-danger"
                                             style="float: left;">ยกเลิก</a>
-
+ <!-- ปุ่มลบ --> <button type="button" class="btn btn-danger" data-bs-toggle="modal"
+ data-bs-target="#del_com<?php echo $show->Id; ?>"><i class="bi bi-trash"></i>
+                                    </button> <!-- ปุ่มลบ -->
                                         <button type="button" class="btn btn-warning" data-bs-toggle="modal"
                                             data-bs-target="#exampleModal" style="float: right;">แก้ไขข้อมูล</button>
                                     </div>
@@ -554,6 +557,39 @@
                                         </div>
                                     </div>
                                 </form><!-- end Form ข้อมูลระดับตัวชี้วัด -->
+                                 <!-- Modal -->
+                            <div class="modal fade" id="del_com<?php echo $show->Id; ?>" tabindex="-1"
+                                aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-scrollable">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel">
+                                                ยืนยันการลบข้อมูล
+                                                <?php echo nbs(2); ?>
+                                                <?php echo $show->LevelName; ?>
+                                            </h5>
+
+                                        </div>
+                                        <div class="modal-body">
+                                            <p class="text-center"> คุณต้องการลบข้อมูลใช่หรือไหม</p>
+
+                                        </div>
+
+
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary"
+                                                data-bs-dismiss="modal">ยกเลิก</button>
+                                            <form method="post" action="<?php echo site_url('ass_ria_lvl_del_p2'); ?>">
+                                                <input type="hidden" name="Id" value="<?php echo $show->Id; ?>">
+                                                <div class="d-flex justify-content-center">
+                                                    <button name="Submit" type="submit"
+                                                        class="btn btn-danger">ยืนยันก่อนลบ</button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div> <!-- Modal -->
 
                                 <script>
                                 var select1 = document.getElementById("CriteriaID");
@@ -827,7 +863,9 @@
                                     <div class="text-center">
                                         <a href="Fm_evaluation_das_p1?page=sh1" class="btn btn-danger"
                                             style="float: left;">ยกเลิก</a>
-
+ <!-- ปุ่มลบ --> <button type="button" class="btn btn-danger" data-bs-toggle="modal"
+ data-bs-target="#del_com<?php echo $show->Id; ?>"><i class="bi bi-trash"></i>
+                                    </button> <!-- ปุ่มลบ -->
                                         <button type="button" class="btn btn-warning" data-bs-toggle="modal"
                                             data-bs-target="#exampleModal" style="float: right;">แก้ไขข้อมูล</button>
                                     </div>
@@ -857,6 +895,39 @@
                                         </div>
                                     </div>
                                 </form><!-- end Form ข้อมูลองค์ประกอบตัวชี้วัด -->
+                                 <!-- Modal -->
+                            <div class="modal fade" id="del_com<?php echo $show->Id; ?>" tabindex="-1"
+                                aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-scrollable">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel">
+                                                ยืนยันการลบข้อมูล
+                                                <?php echo nbs(2); ?>
+                                                <?php echo $show->CompositionName; ?>
+                                            </h5>
+
+                                        </div>
+                                        <div class="modal-body">
+                                            <p class="text-center"> คุณต้องการลบข้อมูลใช่หรือไหม</p>
+
+                                        </div>
+
+
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary"
+                                                data-bs-dismiss="modal">ยกเลิก</button>
+                                            <form method="post" action="<?php echo site_url('ass_ria_com_del_p3'); ?>">
+                                                <input type="hidden" name="Id" value="<?php echo $show->Id; ?>">
+                                                <div class="d-flex justify-content-center">
+                                                    <button name="Submit" type="submit"
+                                                        class="btn btn-danger">ยืนยันก่อนลบ</button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div> <!-- Modal -->
                                 <script>
                                 var select1 = document.getElementById("CriteriaID");
                                 select1.addEventListener("change", function() {
@@ -1683,7 +1754,7 @@
                                     </div>
                                     <div class="row mb-3">
                                         <div class="form-floating">
-                                            <select class="form-select" id="floatingSelect"
+                                            <select class="form-select" id="SchoolAssessmentCode"
                                                 aria-label="Floating label select example" name="SchoolAssessmentCode">
                                                 <option selected>เลือก</option>
                                                 <?php
@@ -1713,7 +1784,9 @@
                                     <div class="text-center">
                                         <a href="Fm_evaluation_das_p5?page=sh5" class="btn btn-danger"
                                             style="float: left;">ยกเลิก</a>
-
+ <!-- ปุ่มลบ --> <button type="button" class="btn btn-danger" data-bs-toggle="modal"
+ data-bs-target="#del_com"><i class="bi bi-trash"></i>
+                                    </button> <!-- ปุ่มลบ -->
                                         <button type="button" class="btn btn-warning" data-bs-toggle="modal"
                                             data-bs-target="#exampleModal" style="float: right;">แก้ไขข้อมูล</button>
                                     </div>
@@ -1743,7 +1816,49 @@
                                         </div>
                                     </div>
                                 </form><!-- end Form ข้อมูลผลการประเมินตามตัวชี้วัด -->
+                                 <!-- Modal -->
+                            <div class="modal fade" id="del_com" tabindex="-1"
+                                aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel">
+                                                ยืนยันการลบข้อมูล
+                                                <?php echo nbs(2); ?>
+                                                <?php echo $show->AssessmentorName; ?>
+                                            </h5>
+
+                                        </div>
+                                        <div class="modal-body">
+                                            <p class="text-center"> คุณต้องการลบข้อมูลใช่หรือไหม</p>
+
+                                        </div>
+
+
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary"
+                                                data-bs-dismiss="modal">ยกเลิก</button>
+                                            <form method="post" action="<?php echo site_url('sc_ass_ria_del_p6'); ?>">
+                                                <input type="hidden" name="Id" value="<?php echo $show->Id; ?>">
+                                                <div class="d-flex justify-content-center">
+                                                    <button name="Submit" type="submit"
+                                                        class="btn btn-danger">ยืนยันก่อนลบ</button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div> <!-- Modal -->
                                 <script>
+                                ///CLS_EVALUATION
+                                var my_CLS_EVALUATION = "<?php echo $show->SchoolAssessmentCode; ?>";
+                                var selectoption_CLS_EVALUATION = document.querySelector('#SchoolAssessmentCode');
+                                var size_my_CLS_EVALUATION = document.getElementById("SchoolAssessmentCode").options.length;
+                                for (let i = 0; i < size_my_CLS_EVALUATION; i++) {
+                                    if (selectoption_CLS_EVALUATION[i].value == my_CLS_EVALUATION) {
+                                        selectoption_CLS_EVALUATION[i].selected = true;
+                                    }
+                                }
                                 ///ASSESSMENT_CRITERIA
                                 var my_ASSESSMENT_CRITERIA = "<?php echo $show->CriteriaID; ?>";
                                 var selectoption_ASSESSMENT_CRITERIA = document.querySelector('#CriteriaID');

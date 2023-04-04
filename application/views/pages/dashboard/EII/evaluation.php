@@ -176,7 +176,8 @@
                             <td scope="row" style="text-align: center;">
                                 <?php echo $CriteriaName = $show->CriteriaName; ?></td>
                             <td style="text-align: center;">
-                                <?php
+                                <?php      
+                                            $this->db->where('DeleteStatus', 0);
                                            $this->db->where('CriteriaID', $CriteriaID); // เพิ่มเงื่อนไข WHERE ในคำสั่ง SQL
                                            $result = $this->db->get('ASSESSMENT_CRITERIA_LEVEL '); 
                                             foreach ($result->result() as $cls) {
@@ -193,6 +194,7 @@
                             </td>
 
                             <td style="text-align: center;"><?php 
+                            $this->db->where('DeleteStatus', 0);
                              $this->db->where('CriteriaID', $CriteriaID); // เพิ่มเงื่อนไข WHERE ในคำสั่ง SQL
                              $resultA3 = $this->db->get('ASSESSMENT_CRITERIA_COMPOSITION '); 
                                                        
@@ -222,13 +224,13 @@
                                     class="btn btn-warning"> <i class="bi bi-pencil-square"></i></a>
 
                                 <button type="button" class="btn btn-danger" data-bs-toggle="modal"
-                                    data-bs-target="#<?php echo $show->CriteriaID; ?>">
+                                    data-bs-target="#del_ass_ria">
                                     <i class="bi bi-trash"></i>
                                 </button>
                                 <!-- Modal -->
-                                <div class="modal fade" id="del_ass_ria<?php echo $show->CriteriaID; ?>" tabindex="-1"
+                                <div class="modal fade" id="del_ass_ria" tabindex="-1"
                                     aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                    <div class="modal-dialog">
+                                    <div class="modal-dialog modal-dialog-centered">
                                         <div class="modal-content">
                                             <div class="modal-header">
                                                 <h5 class="modal-title" id="exampleModalLabel">
@@ -249,7 +251,7 @@
                                                     <input type="hidden" name="Id" value="<?php echo $show->Id; ?>">
                                                     <div class="d-flex justify-content-center">
                                                         <button name="Submit" type="submit"
-                                                            class="btn btn-primary">ยืนยันก่อนลบ</button>
+                                                            class="btn btn-danger">ยืนยันก่อนลบ</button>
                                                     </div>
                                                 </form>
                                             </div>
@@ -481,7 +483,9 @@
                             <td style=""><?php echo $show_top->SchoolAssessmentName; ?></td>
 
                             <td style="">
-                            <?php $this->db->where('Id_sa', $show_top->Id); // เพิ่มเงื่อนไข WHERE ในคำสั่ง SQL
+                            <?php 
+                             $this->db->where('DeleteStatus', 0);
+                            $this->db->where('Id_sa', $show_top->Id); // เพิ่มเงื่อนไข WHERE ในคำสั่ง SQL
                              $resultA3 = $this->db->get('SCHOOL_ASSESSMENT_CRITERIA '); 
                                                        
                                                         foreach ($resultA3->result() as $showA3) { ?>
@@ -508,7 +512,7 @@
                                 <!-- Modal -->
                                 <div class="modal fade" id="del_sc_ass<?php echo $show_top->Id; ?>" tabindex="-1"
                                     aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                    <div class="modal-dialog">
+                                    <div class="modal-dialog modal-dialog-centered">
                                         <div class="modal-content">
                                             <div class="modal-header">
                                                 <h5 class="modal-title" id="exampleModalLabel">
@@ -529,7 +533,7 @@
                                                     <input type="hidden" name="Id" value="<?php echo $show_top->Id; ?>">
                                                     <div class="d-flex justify-content-center">
                                                         <button name="Submit" type="submit"
-                                                            class="btn btn-primary">ยืนยันก่อนลบ</button>
+                                                            class="btn btn-danger">ยืนยันก่อนลบ</button>
                                                     </div>
                                                 </form>
                                             </div>
@@ -904,7 +908,7 @@
                                 <!-- Modal -->
                                 <div class="modal fade" id="del_achie_ass<?php echo $show->Id; ?>" tabindex="-1"
                                     aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                    <div class="modal-dialog">
+                                    <div class="modal-dialog modal-dialog-centered">
                                         <div class="modal-content">
                                             <div class="modal-header">
                                                 <h5 class="modal-title" id="exampleModalLabel">
@@ -926,7 +930,7 @@
                                                     <input type="hidden" name="Id" value="<?php echo $show->Id; ?>">
                                                     <div class="d-flex justify-content-center">
                                                         <button name="Submit" type="submit"
-                                                            class="btn btn-primary">ยืนยันก่อนลบ</button>
+                                                            class="btn btn-danger">ยืนยันก่อนลบ</button>
                                                     </div>
                                                 </form>
                                             </div>

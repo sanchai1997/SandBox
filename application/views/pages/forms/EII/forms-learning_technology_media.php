@@ -331,13 +331,19 @@ if (isset( $_SESSION['success'])) { ?>
                                     </div>
                                 </div>
 
-                                <div class="col">
-                                    <div class="form-floating">
-                                        <input type="text" class="form-control" id="floatingName" placeholder="ภาคเรียน"
-                                            name="Semester" value="<?php echo $show->Semester ?>">
-                                        <label for="Y"><?php echo nbs(2); ?> ภาคเรียน </label>
-                                    </div>
-                                </div>
+                                  <div class="col">
+                                            <div class="form-floating">
+                                                <select class="form-select" id="Semester"
+                                                    name="Semester">
+                                                    <option value="-1">กรุณาเลือกภาคเรียนที่ทำการประเมิน</option>
+                                                    <option value="0">ตลอดปีการศึกษา</option>
+                                                    <option value="1">ภาคเรียนที่ 1</option>
+                                                    <option value="2">ภาคเรียนที่ 2</option>
+                                                    <option value="3">ภาคเรียนฤดูร้อน</option>
+                                                </select>
+                                                <label for="Semester">ภาคเรียน</label>
+                                            </div>
+                                        </div>
                             </div>
                             <div class="row mb-3">
                                 <div class="form-floating">
@@ -474,6 +480,15 @@ if (isset( $_SESSION['success'])) { ?>
                             </div>
                         </form><!-- End Form ข้อมูลเทคโนโลยี และสื่อการเรียนรู้ -->
                         <script>
+                            ///Semester
+                        var my_Semester = '<?php echo $show->Semester; ?>';
+                        var selectoption_Semester = document.querySelector('#Semester');
+                        var size_my_Semester = document.getElementById("Semester").options.length;
+                        for (let i = 0; i < size_my_Semester; i++) {
+                            if (selectoption_Semester[i].value == my_Semester) {
+                                selectoption_Semester[i].selected = true;
+                            }
+                        }
                         ///CLS_MEDIA_TYPE
                         var my_CLS_MEDIA_TYPE = '<?php echo $show->MediaTypeCode; ?>';
                         var selectoption_CLS_MEDIA_TYPE = document.querySelector('#MediaTypeCode');
@@ -655,23 +670,26 @@ if (isset( $_SESSION['success'])) { ?>
                             </div>
                         </form><!-- End Form ข้อมูลเทคโนโลยี และสื่อการเรียนรู้ -->
                         <script>
-                            const select = document.getElementById("CreatorPersonalIDTypeCode");
+                           const select = document.getElementById("CreatorPersonalIDTypeCode");
                             const input = document.getElementById("my-auto");
                             const input1 = document.getElementById("my-autoo");
 
                             select.addEventListener("change", function() {
-                                if (select.value === "N"||select.value === "-1") {
+                                if (select.value === "N" || select.value === "-1") {
                                     input.disabled = true;
-                                    
+
                                     input.value = '0';
                                     input1.value = '0';
 
                                 } else {
                                     input.disabled = false;
-                                   
+
                                     input.value = '';
                                     input1.value = '';
                                 }
+                            });
+                            input.addEventListener("input", function() {
+                                input1.value = input.value;
                             });
                         function checkSelectedOption() {
                             const CLS_PERSONAL_ID_TYPE = document.querySelector('#CreatorPersonalIDTypeCode');
@@ -934,23 +952,26 @@ if (isset( $_SESSION['success'])) { ?>
                                 </div>
                             </div> <!-- Modal -->
                         <script>
-                            const select = document.getElementById("CreatorPersonalIDTypeCode");
+                           const select = document.getElementById("CreatorPersonalIDTypeCode");
                             const input = document.getElementById("my-auto");
                             const input1 = document.getElementById("my-autoo");
 
                             select.addEventListener("change", function() {
-                                if (select.value === "N"||select.value === "-1") {
+                                if (select.value === "N" || select.value === "-1") {
                                     input.disabled = true;
-                                    
+
                                     input.value = '0';
                                     input1.value = '0';
 
                                 } else {
                                     input.disabled = false;
-                                   
+
                                     input.value = '';
                                     input1.value = '';
                                 }
+                            });
+                            input.addEventListener("input", function() {
+                                input1.value = input.value;
                             });
                         ///CLS_PERSONAL_ID_TYPE
                         var my_CLS_PERSONAL_ID_TYPE = '<?php echo $show->CreatorPersonalIDTypeCode; ?>';

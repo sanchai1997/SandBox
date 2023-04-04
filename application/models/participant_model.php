@@ -51,7 +51,7 @@ if ($num_chk <= 0 ) {
             'ParticipantName' => $this->input->post('ParticipantName'),
             'ParticipantTypeCode' => $this->input->post('ParticipantTypeCode')
         );
-		$this->db->where('Id',$this->input->post('Id'));
+		$this->db->where('ParticipantID',$this->input->post('ParticipantID'));
 		$query=$this->db->update('PARTICIPANT',$data);
 		if($query){
 			session_start(); // เริ่มต้น session

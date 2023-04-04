@@ -5,10 +5,10 @@ class Best_practice_model extends CI_Model
 	public function add_BP()
 	{
 
-		echo '<pre>';
-		print_r($_POST);
-		echo'</pre>';
-		exit;
+		// echo '<pre>';
+		// print_r($_POST);
+		// echo'</pre>';
+		// exit;
 		// สร้างตัวแปร $id_name มาเก็บค่าไว้ก่อน
 		$EducationYear = $this->input->post('EducationYear');
 		$Semester = $this->input->post('Semester');

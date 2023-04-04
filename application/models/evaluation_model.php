@@ -45,7 +45,7 @@ class Evaluation_model extends CI_Model
 			'CriteriaPassingScorePercentage' => $this->input->post('CriteriaPassingScorePercentage')
 
 		);
-		$this->db->where('CriteriaID', $this->input->post('CriteriaID'));
+		$this->db->where('Id', $this->input->post('Id'));
 		$query = $this->db->update('ASSESSMENT_CRITERIA', $data);
 		if ($query) {
 			session_start(); // เริ่มต้น session
@@ -69,7 +69,7 @@ class Evaluation_model extends CI_Model
 				
 		'DeleteStatus' => $status 
 	);
-		$this->db->where('CriteriaID', $this->input->post('CriteriaID'));
+		$this->db->where('Id', $this->input->post('Id'));
 		$query = $this->db->update('ASSESSMENT_CRITERIA', $data);
 		if ($query) {
 			session_start(); // เริ่มต้น session
@@ -597,6 +597,10 @@ public function edit_sc_ass_ria() //sh6
 	
 }
 public function del_sc_ass_ria(){
+	// echo '<pre>';
+	// 	print_r($_POST);
+	// 	echo'</pre>';
+	// 	exit;
 	$status = '1';
 	$data = array(
 				
