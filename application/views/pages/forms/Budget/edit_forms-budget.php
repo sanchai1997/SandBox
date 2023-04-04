@@ -49,6 +49,32 @@
 
                 <div class="col-md-16">
                   <div class="form-floating">
+                  <select class="form-select" aria-label="Default select example" name="AREA_NO" id="AREA_NO">
+                      <option selected value="-1">เลือกชื่อเขตพื้นที่</option>
+                      <?php foreach($innovation_area as $ina) { ?>
+                        <option value="<?php echo $ina->INNOVATION_AREA_CODE ; ?>"><?php echo $ina->INNOVATION_AREA_NAME; ?></option>
+                      <?php } ?>
+                    </select>
+                    <label>ชื่อเขตพื้นที่<font color="red"> *</font></label>
+                  </div>
+                </div>
+
+                <div class="col-md-16">
+                  <div class="form-floating">
+                  <select class="form-select" aria-label="Default select example" name="ExpenseTypeCode" id="ExpenseTypeCode">
+                      <option selected value="-1">ประเภทงบประมาณ</option>
+                      <?php foreach($expense_type as $ept) { ?>
+                        <option value="<?php echo $ept->BUDGET_TYPE_CODE  ; ?>"><?php echo $ept->BUDGET_TYPE_NAME; ?></option>
+                      <?php } ?>
+                    </select>
+                    <label>ประเภทงบประมาณ<font color="red"> *</font></label>
+                  </div>
+                </div>
+
+              
+
+                <div class="col-md-16">
+                  <div class="form-floating">
                   <select class="form-select" aria-label="Default select example" name="BudgetSchoolID" id="BudgetSchoolID">
                       <option selected value="-1">เลือกสถานศึกษา</option>
                       <?php foreach($listSchool as $ls) { ?>
@@ -161,7 +187,9 @@
         break;
      }
    }
-   //BudgetSchoolID
+
+
+      //BudgetSchoolID
    var my_BudgetSchoolID = "<?php echo $b->BudgetSchoolID; ?>";
    var selectoption_BudgetSchoolID = document.querySelector('#BudgetSchoolID');
    var size_my_BudgetSchoolID =  document.getElementById("BudgetSchoolID").options.length;
@@ -171,6 +199,28 @@
         break;
      }
    }
+      //AREA_NO
+      var my_AREA_NO = "<?php echo $b->AREA_NO; ?>";
+   var selectoption_AREA_NO = document.querySelector('#AREA_NO');
+   var size_my_AREA_NO =  document.getElementById("AREA_NO").options.length;
+   for (let i = 0; i < size_my_AREA_NO; i++) {
+     if(selectoption_AREA_NO[i].value==my_AREA_NO){
+      selectoption_AREA_NO[i].selected = true;
+        break;
+     }
+   }
+  //EXPENSE_TYPE_CODE
+  var my_EXPENSE_TYPE_CODE = "<?php echo $b->EXPENSE_TYPE_CODE; ?>";
+   var selectoption_EXPENSE_TYPE_CODE = document.querySelector('#ExpenseTypeCode');
+   var size_my_EXPENSE_TYPE_CODE =  document.getElementById("ExpenseTypeCode").options.length;
+   for (let i = 0; i < size_my_EXPENSE_TYPE_CODE; i++) {
+     if(selectoption_EXPENSE_TYPE_CODE[i].value==my_EXPENSE_TYPE_CODE){
+      selectoption_EXPENSE_TYPE_CODE[i].selected = true;
+        break;
+     }
+   }
+
+   
 
 
 
@@ -203,6 +253,7 @@
         frm.BudgetYear.value = "";
         return false;
     }
+
     //Check_BudgetSchoolID(เลือกสถานศึกษา)
     if(frm.BudgetSchoolID.value==-1){
       alert("กรุณาเลือกสถานศึกษา");
@@ -220,7 +271,7 @@
         return false;
     }
     
-   
+
     if(frm.BudgetAmount.value ==""){
         alert("กรุณากรอกจำนวนเงินอุดหนุนทั่วไปเพื่อพัฒนานวัตกรรมการศึกษา");
         frm.BudgetAmount.value = "";

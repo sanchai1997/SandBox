@@ -107,6 +107,8 @@
 
                 <div class="d-flex justify-content-between">
                   <a href="list_budget_by_school?sid=<?php echo $SchoolID?>" class="btn btn-danger" >ยกเลิก</a>
+                  <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#delete<?php echo $e->ExpenseID ; ?>">
+                                        <i class=" bi bi-trash"></i>
                   <button type="button" class="btn btn-warning" onclick="return check(BUDGET)">แก้ไขข้อมูล</button>
                 </div> 
             <!-- Modal -->
@@ -128,7 +130,27 @@
                           </div>
                       </div>
                   </div>
-               </div>  
+               </div> 
+               
+               <div class="modal fade" id="delete<?php echo $e->ExpenseID ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true" >
+                        <div class="modal-dialog modal-dialog-centered" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLongTitle">ยืนยันการลบข้อมูล</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <h6>
+                                        <center>คุณต้องการลบข้อมูลใช่หรือไหม ?</center>
+                                    </h6>
+                                </div>
+                                <div class="modal-footer">
+                                    <a href="<?php echo base_url('delete_Expense/' . $e->ExpenseID.'/'.$SchoolID ) ?>" class="btn btn-danger">ลบ</a>
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ยกเลิก</button>
+                                </div>
+                            </div>
+                        </div>
+                </div>
                 
 
               </form><!-- End Form ข้อมูลงบประมาณ -->

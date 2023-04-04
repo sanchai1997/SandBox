@@ -153,6 +153,19 @@ class ExpenseController extends CI_Controller{
         }
     
 }
+public function delete_Expense($ExpenseID,$SchoolID ){
+
+
+    $result =$this->Expense_model->delete_expense($ExpenseID);
+    if($result == 1 ){
+        $this->session->set_flashdata('success',"ลบข้อมูลสำเร็จ");
+        redirect(base_url('list_budget_by_school?sid='.$SchoolID));
+    }else{
+        $this->session->set_flashdata('errors',"เกิดข้อผิดพลาดในการลบข้อมูล");
+        redirect(base_url('list_budget_by_school?sid='.$SchoolID));
+    }
+    
+}
 
 
 }

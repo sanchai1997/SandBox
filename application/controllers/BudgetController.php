@@ -44,6 +44,8 @@ class BudgetController extends CI_Controller{
 
         $data['listSchool'] = $this->School_model->get_school_All();
         $data['listBudget_type'] = $this->Budget_model->get_expense_type();
+        $data['innovation_area'] = $this->Budget_model->get_innovation_area_All();
+        $data['expense_type'] = $this->Budget_model->get_expense_type();
 
         $data['BudgetID'] = $_GET['bid']; 
         $data['SchoolID'] = $_GET['sid'];
@@ -129,7 +131,7 @@ class BudgetController extends CI_Controller{
                 'BudgetEducationYear' => $this->input->post('BudgetEducationYear'),
                 'BudgetSemester' => $this->input->post('BudgetSemester'),
                 'BudgetYear' => $this->input->post('BudgetYear'),
-                'AREA_NAME' => $this->input->post('AREA_NAME'),
+                'AREA_NO' => $this->input->post('AREA_NO'),
                 'EXPENSE_TYPE_CODE' => $this->input->post('ExpenseTypeCode'),   
                 'BudgetSchoolID'  =>  $this->input->post('BudgetSchoolID'),
                 'BudgetProgram' => $this->input->post('BudgetProgram'),
@@ -162,6 +164,8 @@ class BudgetController extends CI_Controller{
             'BudgetEducationYear' => $this->input->post('BudgetEducationYear'),
             'BudgetSemester' => $this->input->post('BudgetSemester'),
             'BudgetYear' => $this->input->post('BudgetYear'),
+            'AREA_NO' => $this->input->post('AREA_NO'),
+            'EXPENSE_TYPE_CODE' => $this->input->post('ExpenseTypeCode'),   
             'BudgetSchoolID'  =>  $this->input->post('BudgetSchoolID'),
             'BudgetProgram' => $this->input->post('BudgetProgram'),
             'BudgetAmount' => $this->input->post('BudgetAmount'),
@@ -180,6 +184,19 @@ class BudgetController extends CI_Controller{
         }
     
 }
+   public function delete_budget($BudgetID,$SchoolID ){
+
+
+        $result =$this->Budget_model->delete_budget($BudgetID);
+        if($result == 1 ){
+            $this->session->set_flashdata('success',"ลบข้อมูลสำเร็จ");
+            redirect(base_url('list_budget_by_school?sid='.$SchoolID));
+        }else{
+            $this->session->set_flashdata('errors',"เกิดข้อผิดพลาดในการลบข้อมูล");
+            redirect(base_url('list_budget_by_school?sid='.$SchoolID));
+        }
+        
+    }
 
 
 }
