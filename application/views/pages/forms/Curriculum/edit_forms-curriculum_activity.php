@@ -66,27 +66,29 @@
                     </div>
                 </div>
 
+            
+
                 <div class="col-md-6">
                     <legend class="col-form-label col-sm-3 pt-0">ผู้ประเมิน<font color="red"> *</font></legend>
                     <div class="col-sm-9">
                         <div style="padding-left: 50px;" class="form-check">
-                            <input class="form-check-input" value="SCORE_TEACHER" type="checkbox" id="gridCheck1"  name="ASSESSMENT_PEOPLE_ID">
+                            <input class="form-check-input" value="SCORE_TEACHER" type="checkbox" id="gridCheck1"  name="ASSESSMENT_PEOPLE_ID" <?php if( $ac->SCORE_TEACHER !=null){ ?> checked <?php } ?> >
                             <label class="form-check-label" for="gridCheck1">
                                 ครู
                             </label>
                         </div>
 
                         <div style="padding-left: 50px;" class="form-check">
-                            <input class="form-check-input" value="SCORE_PARENT" type="checkbox" id="gridCheck1"  name="ASSESSMENT_PEOPLE_ID">
+                            <input class="form-check-input" value="SCORE_PARENT" type="checkbox" id="gridCheck1"  name="ASSESSMENT_PEOPLE_ID" <?php if( $ac->SCORE_PARENT !=null){ ?> checked <?php } ?>
                             <label class="form-check-label" for="gridCheck1">
-                                นักเรียน
+                                ผู้ปกครอง
                             </label>
                         </div>
 
                         <div style="padding-left: 50px;" class="form-check">
-                            <input class="form-check-input" value="SCORE_OTHER" type="checkbox" id="gridCheck1"  name="ASSESSMENT_PEOPLE_ID">
+                            <input class="form-check-input" value="SCORE_OTHER" type="checkbox" id="gridCheck1"  name="ASSESSMENT_PEOPLE_ID" <?php if( $ac->SCORE_OTHER !=null){ ?> checked <?php } ?>
                             <label class="form-check-label" for="gridCheck1">
-                                ผู้ปกครอง
+                                บุคลากรอื่น
                             </label>
                         </div>
 
@@ -99,19 +101,19 @@
 
                 <div class="col-md-16">
                   <div class="form-floating">
-                    <input type="text" class="form-control" name="SCORE_TEACHER" id="SCORE_TEACHER" placeholder="ชื่อการวัดและประเมินผล" maxlength="255"  value="<?php echo $ac->SCORE_TEACHER ?>" onchange="calSumScore()">
+                    <input type="text" class="form-control" name="SCORE_TEACHER" id="SCORE_TEACHER" placeholder="สัดส่วนการประเมินโดยผู้สอน" maxlength="255"  value="<?php echo $ac->SCORE_TEACHER ?>" onchange="calSumScore()">
                     <label >สัดส่วนการประเมินโดยผู้สอน<font color="red"> *</font></label>
                   </div>
                 </div>
                 <div class="col-md-16">
                   <div class="form-floating">
-                    <input type="text" class="form-control" name="SCORE_PARENT" id="SCORE_PARENT" placeholder="ชื่อการวัดและประเมินผล" maxlength="255"  value="<?php echo $ac->SCORE_PARENT ?>" onchange="calSumScore()">
+                    <input type="text" class="form-control" name="SCORE_PARENT" id="SCORE_PARENT" placeholder="สัดส่วนการประเมินโดยผู้ปกครอง" maxlength="255"  value="<?php echo $ac->SCORE_PARENT ?>" onchange="calSumScore()">
                     <label >สัดส่วนการประเมินโดยผู้ปกครอง<font color="red"> *</font></label>
                   </div>
                 </div>
                 <div class="col-md-16">
                   <div class="form-floating">
-                    <input type="text" class="form-control" name="SCORE_OTHER" id="SCORE_OTHER" placeholder="ชื่อการวัดและประเมินผล" maxlength="255"  value="<?php echo $ac->SCORE_OTHER ?>" onchange="calSumScore()">
+                    <input type="text" class="form-control" name="SCORE_OTHER" id="SCORE_OTHER" placeholder="สัดส่วนการประเมินโดยบุคลากรอื่น" maxlength="255"  value="<?php echo $ac->SCORE_OTHER ?>" onchange="calSumScore()">
                     <label >สัดส่วนการประเมินโดยบุคลากรอื่น<font color="red"> *</font></label>
                   </div>
                 </div>
@@ -199,16 +201,6 @@
 <script type="text/javascript">
 
 function onloadpage(){
-   ///ASSESSMENT_PEOPLE_ID
-   var my_ASSESSMENT_PEOPLE_ID = "<?php echo $curriculum_activity[0]->ASSESSMENT_PEOPLE_ID; ?>";
-   var selectoption_ASSESSMENT_PEOPLE_ID = document.querySelector('#ASSESSMENT_PEOPLE_ID');
-   var size_my_ASSESSMENT_PEOPLE_ID =  document.getElementById("ASSESSMENT_PEOPLE_ID").options.length;
-   for (let i = 0; i < size_my_ASSESSMENT_PEOPLE_ID; i++) {
-     if(selectoption_ASSESSMENT_PEOPLE_ID[i].value==my_ASSESSMENT_PEOPLE_ID){
-      selectoption_ASSESSMENT_PEOPLE_ID[i].selected = true;
-        break;
-     }
-   }
   ///ASSESSMENT_TOOL_CODE
    var my_ASSESSMENT_TOOL_CODE = "<?php echo $curriculum_activity[0]->ASSESSMENT_TOOL_CODE; ?>";
    var selectoption_ASSESSMENT_TOOL_CODE = document.querySelector('#ASSESSMENT_TOOL_CODE');
@@ -219,6 +211,17 @@ function onloadpage(){
         break;
      }
    }
+
+    ///ASSESSMENT_PEOPLE_ID
+   var my_ASSESSMENT_PEOPLE_ID = "<?php echo $curriculum_activity[0]->ASSESSMENT_PEOPLE_ID; ?>";
+   var selectoption_ASSESSMENT_PEOPLE_ID = document.querySelector('#ASSESSMENT_PEOPLE_ID');
+   var size_my_ASSESSMENT_PEOPLE_ID =  document.getElementById("ASSESSMENT_PEOPLE_ID").options.length;
+   for (let i = 0; i < size_my_ASSESSMENT_PEOPLE_ID; i++) {
+     if(selectoption_ASSESSMENT_PEOPLE_ID[i].value==my_ASSESSMENT_PEOPLE_ID){
+      selectoption_ASSESSMENT_PEOPLE_ID[i].selected = true;
+        break;
+     }
+   }   
   ///FUNDAMENTAL_SUBJECT_PASSING_CODE
    var my_FUNDAMENTAL_SUBJECT_PASSING_CODE = "<?php echo $curriculum_activity[0]->FUNDAMENTAL_SUBJECT_PASSING_CODE; ?>";
    var selectoption_FUNDAMENTAL_SUBJECT_PASSING_CODE = document.querySelector('#FUNDAMENTAL_SUBJECT_PASSING_CODE');

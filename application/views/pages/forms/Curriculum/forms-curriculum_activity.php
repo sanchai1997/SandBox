@@ -98,19 +98,19 @@
 
                   <div class="col-md-16">
                     <div class="form-floating">
-                      <input type="text" class="form-control score" name="SCORE_TEACHER" id="SCORE_TEACHER" placeholder="ชื่อการวัดและประเมินผล" maxlength="255" ">
+                      <input type="text" class="form-control score" name="SCORE_TEACHER" id="SCORE_TEACHER" placeholder="สัดส่วนการประเมินโดยผู้สอน" maxlength="255" ">
                       <label >สัดส่วนการประเมินโดยผู้สอน<font color="red"> *</font></label>
                     </div>
                   </div>
                   <div class="col-md-16">
                     <div class="form-floating">
-                      <input type="text" class="form-control score" name="SCORE_PARENT" id="SCORE_PARENT" placeholder="ชื่อการวัดและประเมินผล" maxlength="255" ">
+                      <input type="text" class="form-control score" name="SCORE_PARENT" id="SCORE_PARENT" placeholder="สัดส่วนการประเมินโดยผู้ปกครอง" maxlength="255" ">
                       <label >สัดส่วนการประเมินโดยผู้ปกครอง<font color="red"> *</font></label>
                     </div>
                   </div>
                   <div class="col-md-16">
                     <div class="form-floating">
-                      <input type="text" class="form-control score" name="SCORE_OTHER" id="SCORE_OTHER" placeholder="ชื่อการวัดและประเมินผล" maxlength="255" ">
+                      <input type="text" class="form-control score" name="SCORE_OTHER" id="SCORE_OTHER" placeholder="สัดส่วนการประเมินโดยบุคลากรอื่น" maxlength="255" ">
                       <label >สัดส่วนการประเมินโดยบุคลากรอื่น<font color="red"> *</font></label>
                     </div>
                   </div>
@@ -251,9 +251,6 @@
       alert("คะแนนรวมต้องไม่เกิน 100");
       return false;
     }
-
-    
-      
 
     $('#Modal').modal('show');
     

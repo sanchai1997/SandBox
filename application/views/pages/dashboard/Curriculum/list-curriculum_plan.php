@@ -105,7 +105,10 @@
                                                         ชื่อการวัดและประเมินผล : <?php echo $lca->ASSESSMENT_NAME  ?> 
                                                     </div>
                                                     <div class=" col-8" style="padding-bottom: 8px; padding-left: 40px;">
-                                                        ผู้ประเมิน : *** โชว์กี่คนนนน
+                                                        ผู้ประเมิน : <?php if( $lca->SCORE_TEACHER!=null) echo "ครู "; 
+                                                                        if( $lca->SCORE_PARENT!=null) echo "ผู้ปกครอง "; 
+                                                                        if( $lca->SCORE_OTHER!=null) echo "บุคลากรอื่น "; 
+                                                                    ?>
                                                     </div>
                                                     <div class=" col-8" style="padding-bottom: 8px; padding-left: 40px;">
 
@@ -118,13 +121,16 @@
                                             <div class="row">
                                                     <h6 style="padding-top: 10px;"><b>การวัดผลมาตรฐานกลาง</b></h6>
                                                     <div class=" col-8" style="padding-bottom: 8px; padding-left: 40px;">
-                                                        สัดส่วนการประเมินโดยผู้สอน : <?= $lca->SCORE_TEACHER; ?>
+                                                        สัดส่วนการประเมินโดยผู้สอน : <?php if( $lca->SCORE_TEACHER==null) echo "-"; 
+                                                                                      else  echo $lca->SCORE_TEACHER;   ?>
                                                     </div>
                                                     <div class=" col-8" style="padding-bottom: 8px; padding-left: 40px;">
-                                                        สัดส่วนการประเมินโดยผู้ปกครอง : <?= $lca->SCORE_PARENT; ?>
+                                                        สัดส่วนการประเมินโดยผู้ปกครอง : <?php if( $lca->SCORE_PARENT==null) echo "-"; 
+                                                                                      else  echo $lca->SCORE_PARENT;   ?>
                                                     </div>
                                                     <div class=" col-8" style="padding-bottom: 8px; padding-left: 40px;">
-                                                        สัดส่วนการประเมินโดยบุคลากรอื่น : <?= $lca->SCORE_OTHER; ?>
+                                                        สัดส่วนการประเมินโดยบุคลากรอื่น : <?php if( $lca->SCORE_OTHER==null) echo "-"; 
+                                                                                      else  echo $lca->SCORE_OTHER;   ?>
                                                     </div>
                                                     <div class=" col-8" style="padding-bottom: 8px; padding-left: 40px;">
                                                         คะแนนรวม : <?= $lca->SCORE_SUM_TOTAL; ?>
