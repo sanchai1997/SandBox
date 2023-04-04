@@ -179,7 +179,7 @@ if ($num_chk <= 0 ) {
         {
             echo $this->upload->display_errors();
         } else {
-
+			
             $data = $this->upload->data();
             $filename = $data['file_name'];
         $data = array(
@@ -237,7 +237,8 @@ if ($num_chk <= 0 ) {
         {
             echo $this->upload->display_errors();
         } else {
-
+			$oil_file = $this->input->post('oil_file');
+			unlink('assets/EII/PARTICIPANT_COOPERATION/'.$oil_file);
             $data = $this->upload->data();
             $filename = $data['file_name'];
         $data = array(

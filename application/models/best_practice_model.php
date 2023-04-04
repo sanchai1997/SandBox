@@ -105,7 +105,8 @@ class Best_practice_model extends CI_Model
 				if (!$this->upload->do_upload('AttachmentURL')) {
 					echo $this->upload->display_errors();
 				} else {
-
+					$oil_file = $this->input->post('oil_file');
+			unlink('assets/EII/BEST_PRACTICE/' . $oil_file);
 					$data = $this->upload->data();
 					$filename = $data['file_name'];
 					$data = array(

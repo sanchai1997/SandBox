@@ -39,15 +39,17 @@ class Forms_transcript extends CI_Controller
          WHERE DeleteStatus = 0
          AND TranscriptSeriesNumber  = ' . $_POST['TranscriptSeriesNumber'] . '
          AND TranscriptNumber   = ' . $_POST['TranscriptNumber'] . '
+         AND OldSchoolID   = ' . $SchoolID . '
+         AND OldSchoolLastGradeLevelCode   = ' . $GradeLevelCode . '
          AND StudentReferenceID = "' . $StudentReferenceID . '"
          ')->result();
 
         if ($result != TRUE) {
-            $this->forms_transcript->add_transcript($StudentReferenceID);
+            $this->forms_transcript->add_transcript($SchoolID, $StudentReferenceID, $EducationYear, $Semester, $GradeLevelCode);
             $_SESSION['success'] = "บันทึกข้อมูลเรียบร้อย";
             redirect(base_url('transcript?SchoolID=' . $SchoolID . '&&StudentReferenceID=' . $StudentReferenceID . '&&EducationYear=' . $EducationYear . '&&Semester=' . $Semester . '&&GradeLevelCode=' . $GradeLevelCode . '&&StudentID=' . $StudentID));
         } else {
-            $_SESSION['danger'] = "ไม่สามารถบันทึกข้อมูลได้ โปรดตรวจสอบข้อมูลใบแสดงผลการศึกษาชุดที่และเลขที่อาจจะซ้ำกันในระบบ";
+            $_SESSION['danger'] = "ไม่สามารถบันทึกข้อมูลได้ โปรดตรวจสอบข้อมูลอาจจะซ้ำกันในระบบ";
             redirect(base_url('forms-transcript?SchoolID=' . $SchoolID . '&&StudentReferenceID=' . $StudentReferenceID . '&&EducationYear=' . $EducationYear . '&&Semester=' . $Semester . '&&GradeLevelCode=' . $GradeLevelCode . '&&StudentID=' . $StudentID));
         }
     }
@@ -131,34 +133,34 @@ class Forms_transcript extends CI_Controller
     }
 
     //add_transcript_evaluation
-    public function add_transcript_subject($SchoolID, $StudentReferenceID, $EducationYear, $Semester, $GradeLevelCode, $StudentID, $TranscriptSeriesNumber, $TranscriptNumber)
+    public function add_transcript_subject($SchoolID, $StudentReferenceID, $EducationYear, $Semester, $GradeLevelCode, $StudentID, $TranscriptSeriesNumber, $TranscriptNumber, $TranscriptEducationYear, $TranscriptSemester)
     {
         $result = $this->db->query('SELECT * 
         FROM TRANSCRIPT_SUBJECT 
         WHERE DeleteStatus = 0
         AND TranscriptSeriesNumber = ' . $TranscriptSeriesNumber . ' 
         AND TranscriptNumber = ' . $TranscriptNumber . '
-        AND SubjectEducationYear  = ' . $_POST['SubjectEducationYear'] . '
-        AND SubjectSemester   = ' . $_POST['SubjectSemester'] . '
+        AND SubjectEducationYear  = ' . $TranscriptEducationYear . '
+        AND SubjectSemester   = ' . $TranscriptSemester . '
         AND SubjectCode    = "' . $_POST['SubjectCode'] . '"
         ')->result();
 
         if ($result != TRUE) {
-            $this->forms_transcript->add_transcript_subject($TranscriptSeriesNumber, $TranscriptNumber);
+            $this->forms_transcript->add_transcript_subject($TranscriptSeriesNumber, $TranscriptNumber, $TranscriptEducationYear, $TranscriptSemester);
             $_SESSION['success'] = "บันทึกข้อมูลเรียบร้อย";
-            redirect(base_url('transcript-subject?SchoolID=' . $SchoolID . '&&StudentReferenceID=' . $StudentReferenceID . '&&EducationYear=' . $EducationYear . '&&Semester=' . $Semester . '&&GradeLevelCode=' . $GradeLevelCode . '&&StudentID=' . $StudentID . '&&TranscriptSeriesNumber=' . $TranscriptSeriesNumber . '&&TranscriptNumber=' . $TranscriptNumber));
+            redirect(base_url('transcript-subject?SchoolID=' . $SchoolID . '&&StudentReferenceID=' . $StudentReferenceID . '&&EducationYear=' . $EducationYear . '&&Semester=' . $Semester . '&&GradeLevelCode=' . $GradeLevelCode . '&&StudentID=' . $StudentID . '&&TranscriptSeriesNumber=' . $TranscriptSeriesNumber . '&&TranscriptNumber=' . $TranscriptNumber . '&&TranscriptEducationYear=' . $TranscriptEducationYear . '&&TranscriptSemester=' . $TranscriptSemester));
         } else {
             $_SESSION['danger'] = "ไม่สามารถบันทึกข้อมูลได้ โปรดตรวจสอบข้อมูลรายวิชาอาจจะซ้ำกันในระบบ";
-            redirect(base_url('forms-transcript-subject?SchoolID=' . $SchoolID . '&&StudentReferenceID=' . $StudentReferenceID . '&&EducationYear=' . $EducationYear . '&&Semester=' . $Semester . '&&GradeLevelCode=' . $GradeLevelCode . '&&StudentID=' . $StudentID . '&&TranscriptSeriesNumber=' . $TranscriptSeriesNumber . '&&TranscriptNumber=' . $TranscriptNumber));
+            redirect(base_url('forms-transcript-subject?SchoolID=' . $SchoolID . '&&StudentReferenceID=' . $StudentReferenceID . '&&EducationYear=' . $EducationYear . '&&Semester=' . $Semester . '&&GradeLevelCode=' . $GradeLevelCode . '&&StudentID=' . $StudentID . '&&TranscriptSeriesNumber=' . $TranscriptSeriesNumber . '&&TranscriptNumber=' . $TranscriptNumber . '&&TranscriptEducationYear=' . $TranscriptEducationYear . '&&TranscriptSemester=' . $TranscriptSemester));
         }
     }
 
     //Delete Data transcript_subject
-    public function delete_transcript_subject($SchoolID, $StudentReferenceID, $EducationYear, $Semester, $GradeLevelCode, $StudentID, $TranscriptSeriesNumber, $TranscriptNumber, $SubjectEducationYear, $SubjectSemester)
+    public function delete_transcript_subject($SchoolID, $StudentReferenceID, $EducationYear, $Semester, $GradeLevelCode, $StudentID, $TranscriptSeriesNumber, $TranscriptNumber, $TranscriptEducationYear, $TranscriptSemester)
     {
-        $this->forms_transcript->delete_transcript_subject($TranscriptSeriesNumber, $TranscriptNumber, $SubjectEducationYear, $SubjectSemester);
+        $this->forms_transcript->delete_transcript_subject($TranscriptSeriesNumber, $TranscriptNumber, $TranscriptEducationYear, $TranscriptSemester);
         $_SESSION['success'] = "ลบข้อมูลเรียบร้อย";
-        redirect(base_url('transcript-subject?SchoolID=' . $SchoolID . '&&StudentReferenceID=' . $StudentReferenceID . '&&EducationYear=' . $EducationYear . '&&Semester=' . $Semester . '&&GradeLevelCode=' . $GradeLevelCode . '&&StudentID=' . $StudentID . '&&TranscriptSeriesNumber=' . $TranscriptSeriesNumber . '&&TranscriptNumber=' . $TranscriptNumber));
+        redirect(base_url('transcript-subject?SchoolID=' . $SchoolID . '&&StudentReferenceID=' . $StudentReferenceID . '&&EducationYear=' . $EducationYear . '&&Semester=' . $Semester . '&&GradeLevelCode=' . $GradeLevelCode . '&&StudentID=' . $StudentID . '&&TranscriptSeriesNumber=' . $TranscriptSeriesNumber . '&&TranscriptNumber=' . $TranscriptNumber . '&&TranscriptEducationYear=' . $TranscriptEducationYear . '&&TranscriptSemester=' . $TranscriptSemester));
     }
 
     //EDITForm transcript-subject
@@ -179,11 +181,11 @@ class Forms_transcript extends CI_Controller
     }
 
     //Update Data transcript_subject
-    public function update_transcript_subject($SchoolID, $StudentReferenceID, $EducationYear, $Semester, $GradeLevelCode, $StudentID, $TranscriptSeriesNumber, $TranscriptNumber, $SubjectEducationYear, $SubjectSemester)
+    public function update_transcript_subject($SchoolID, $StudentReferenceID, $EducationYear, $Semester, $GradeLevelCode, $StudentID, $TranscriptSeriesNumber, $TranscriptNumber, $TranscriptEducationYear, $TranscriptSemester)
     {
-        $this->forms_transcript->update_transcript_subject($TranscriptSeriesNumber, $TranscriptNumber, $SubjectEducationYear, $SubjectSemester);
+        $this->forms_transcript->update_transcript_subject($TranscriptSeriesNumber, $TranscriptNumber, $TranscriptEducationYear, $TranscriptSemester);
         $_SESSION['success'] = "บันทึกข้อมูลเรียบร้อย";
-        redirect(base_url('transcript-subject?SchoolID=' . $SchoolID . '&&StudentReferenceID=' . $StudentReferenceID . '&&EducationYear=' . $EducationYear . '&&Semester=' . $Semester . '&&GradeLevelCode=' . $GradeLevelCode . '&&StudentID=' . $StudentID . '&&TranscriptSeriesNumber=' . $TranscriptSeriesNumber . '&&TranscriptNumber=' . $TranscriptNumber));
+        redirect(base_url('transcript-subject?SchoolID=' . $SchoolID . '&&StudentReferenceID=' . $StudentReferenceID . '&&EducationYear=' . $EducationYear . '&&Semester=' . $Semester . '&&GradeLevelCode=' . $GradeLevelCode . '&&StudentID=' . $StudentID . '&&TranscriptSeriesNumber=' . $TranscriptSeriesNumber . '&&TranscriptNumber=' . $TranscriptNumber . '&&TranscriptEducationYear=' . $TranscriptEducationYear . '&&TranscriptSemester=' . $TranscriptSemester));
     }
 
     ////////////////////////////////forms-transcript-subject -END///////////////////////////////

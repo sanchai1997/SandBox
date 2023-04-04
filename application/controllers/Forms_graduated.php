@@ -31,44 +31,11 @@ class Forms_graduated extends CI_Controller
         $this->load->view('templates/footer', $data);
     }
 
-    //Add Data Form graduated
-    public function add_graduated()
-    {
-        $this->forms_graduated->add_graduated();
-        $_SESSION['success'] = "บันทึกข้อมูลเรียบร้อย";
-        redirect(base_url('graduated'));
-    }
-    //edit-forms-graduated
-    public function edit_graduated()
-    {
-
-        if (!file_exists(APPPATH . 'views/pages/forms/graduated/edit-forms-graduated.php')) {
-            //Whoops,wedon'thaveapageforthat!
-            show_404();
-        }
-
-        $data['title'] = 'Forms edit-forms-graduated'; //Capitalizethefirstletter
-
-        $this->load->view('templates/header', $data);
-        $this->load->view('templates/sidebar', $data);
-        $this->load->view('pages/forms/graduated/edit-forms-graduated', $data);
-        $this->load->view('templates/footer', $data);
-    }
-
-    //Update Data graduated
-    public function update_graduated($GraduatedSchoolID, $StudentReferenceID, $GraduatedGradeLevelCode, $EducationYear)
-    {
-
-        $this->forms_graduated->update_graduated($GraduatedSchoolID, $StudentReferenceID, $GraduatedGradeLevelCode, $EducationYear);
-        $_SESSION['success'] = "แก้ไขข้อมูลเรียบร้อย";
-        redirect(base_url('graduated-P2?SchoolID=' . $GraduatedSchoolID . '&&GraduatedGradeLevelCode=' . $GraduatedGradeLevelCode . '&&EducationYear=' . $EducationYear));
-    }
-
     //Delete Data graduated
-    public function delete_graduated($GraduatedSchoolID, $StudentReferenceID, $GraduatedGradeLevelCode, $EducationYear)
+    public function delete_graduated($StudentReferenceID, $SchoolID, $EducationYear, $Semester, $GradeLevelCode)
     {
-        $this->forms_graduated->delete_graduated($StudentReferenceID);
+        $this->forms_graduated->delete_graduated($StudentReferenceID, $SchoolID, $EducationYear, $Semester, $GradeLevelCode);
         $_SESSION['success'] = "ลบข้อมูลเรียบร้อย";
-        redirect(base_url('graduated-P2?SchoolID=' . $GraduatedSchoolID . '&&EducationYear=' . $EducationYear . '&&GraduatedGradeLevelCode=' . $GraduatedGradeLevelCode));
+        redirect(base_url('graduated?SchoolID=' . $SchoolID . '&&EducationYear=' . $EducationYear . '&&Semester=' . $Semester . '&&GradeLevelCode=' . $GradeLevelCode));
     }
 }

@@ -210,7 +210,7 @@ if (isset( $_SESSION['success'])) { ?>
                                         <label for="Y"><?php echo nbs(1); ?>คำค้นหา</label>
                                     </div>
                                 </div>
-
+                                
                                 <div class="col">
                                     <div class="input-group mb-3">
                                         <label class="input-group-text" for="inputGroupFile01">เอกสารแนบ</label>
@@ -441,7 +441,7 @@ if (isset( $_SESSION['success'])) { ?>
                                         <label for="Y"><?php echo nbs(2); ?> คำค้นหา </label>
                                     </div>
                                 </div>
-
+                                <input name="oil_file" value="<?php echo $show->AttachmentURL ?>" type="hidden">
                                 <div class="col">
                                     <div class="input-group mb-3">
                                         <label class="input-group-text" for="inputGroupFile01">เอกสารแนบ</label>

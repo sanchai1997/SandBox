@@ -11,12 +11,16 @@ class Transcript_model extends CI_Model
     }
 
     //ADD Data transcript
-    public function add_transcript($StudentReferenceID)
+    public function add_transcript($SchoolID, $StudentReferenceID, $EducationYear, $Semester, $GradeLevelCode)
     {
         $data = [
 
             'TranscriptSeriesNumber' => $this->input->post('TranscriptSeriesNumber'),
             'TranscriptNumber' => $this->input->post('TranscriptNumber'),
+            'EducationYear' => $EducationYear,
+            'Semester' => $Semester,
+            'OldSchoolID' => $SchoolID,
+            'OldSchoolLastGradeLevelCode' => $GradeLevelCode,
             'StudentReferenceID' => $StudentReferenceID
         ];
 
@@ -30,22 +34,6 @@ class Transcript_model extends CI_Model
         $data = [
 
             'DeleteStatus' => '1'
-
-        ];
-
-        $result = $this->db->where('StudentReferenceID ', $StudentReferenceID)->where('TranscriptSeriesNumber ', $TranscriptSeriesNumber)->where('TranscriptNumber ', $TranscriptNumber)->update('TRANSCRIPT', $data);
-        return $result;
-    }
-
-    //Update Data transcript
-    public function update_transcript_main($StudentReferenceID, $TranscriptSeriesNumber, $TranscriptNumber)
-    {
-        $data = [
-
-            'GraduatedSchoolID' => $this->input->post('GraduatedSchoolID'),
-            'GraduatedSchoolAdmissionDate' => $this->input->post('GraduatedSchoolAdmissionDate'),
-            'OldSchoolID' => $this->input->post('OldSchoolID'),
-            'OldSchoolLastGradeLevelCode' => $this->input->post('OldSchoolLastGradeLevelCode')
 
         ];
 
@@ -75,14 +63,14 @@ class Transcript_model extends CI_Model
 
 
     //ADD Data transcript - subject
-    public function add_transcript_subject($TranscriptSeriesNumber, $TranscriptNumber)
+    public function add_transcript_subject($TranscriptSeriesNumber, $TranscriptNumber, $TranscriptEducationYear, $TranscriptSemester)
     {
         $data = [
 
             'TranscriptSeriesNumber' => $TranscriptSeriesNumber,
             'TranscriptNumber' => $TranscriptNumber,
-            'SubjectEducationYear' => $this->input->post('SubjectEducationYear'),
-            'SubjectSemester' => $this->input->post('SubjectSemester'),
+            'SubjectEducationYear' =>  $TranscriptEducationYear,
+            'SubjectSemester' => $TranscriptSemester,
             'SubjectCode' => $this->input->post('SubjectCode'),
             'SubjectName' => $this->input->post('SubjectName'),
             'SubjectTypeCode' => $this->input->post('SubjectTypeCode'),
@@ -97,7 +85,7 @@ class Transcript_model extends CI_Model
     }
 
     //Delete Data transcript-Subject
-    public function delete_transcript_subject($TranscriptSeriesNumber, $TranscriptNumber, $SubjectEducationYear, $SubjectSemester)
+    public function delete_transcript_subject($TranscriptSeriesNumber, $TranscriptNumber, $TranscriptEducationYear, $TranscriptSemester)
     {
         $data = [
 
@@ -105,13 +93,13 @@ class Transcript_model extends CI_Model
 
         ];
 
-        $result = $this->db->where('TranscriptSeriesNumber', $TranscriptSeriesNumber)->where('TranscriptNumber', $TranscriptNumber)->where('SubjectEducationYear', $SubjectEducationYear)
-            ->where('SubjectSemester', $SubjectSemester)->where('SubjectCode', $_POST['SubjectCode'])->update('TRANSCRIPT_SUBJECT', $data);
+        $result = $this->db->where('TranscriptSeriesNumber', $TranscriptSeriesNumber)->where('TranscriptNumber', $TranscriptNumber)->where('SubjectEducationYear', $TranscriptEducationYear)
+            ->where('SubjectSemester', $TranscriptSemester)->where('SubjectCode', $_POST['SubjectCode'])->update('TRANSCRIPT_SUBJECT', $data);
         return $result;
     }
 
     //Update Data transcript-Subject
-    public function update_transcript_subject($TranscriptSeriesNumber, $TranscriptNumber, $SubjectEducationYear, $SubjectSemester)
+    public function update_transcript_subject($TranscriptSeriesNumber, $TranscriptNumber, $TranscriptEducationYear, $TranscriptSemester)
     {
         $data = [
 
@@ -123,8 +111,8 @@ class Transcript_model extends CI_Model
 
         ];
 
-        $result = $this->db->where('TranscriptSeriesNumber', $TranscriptSeriesNumber)->where('TranscriptNumber', $TranscriptNumber)->where('SubjectEducationYear', $SubjectEducationYear)
-            ->where('SubjectSemester', $SubjectSemester)->where('SubjectCode', $_POST['SubjectCode'])->update('TRANSCRIPT_SUBJECT', $data);
+        $result = $this->db->where('TranscriptSeriesNumber', $TranscriptSeriesNumber)->where('TranscriptNumber', $TranscriptNumber)->where('SubjectEducationYear', $TranscriptEducationYear)
+            ->where('SubjectSemester', $TranscriptSemester)->where('SubjectCode', $_POST['SubjectCode'])->update('TRANSCRIPT_SUBJECT', $data);
         return $result;
     }
 

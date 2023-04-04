@@ -1,17 +1,24 @@
-<style>
-  label.col-form-label {
-    padding-left: 30px;
-  }
-
-  h5.card-title {
-    padding-left: 20px;
-  }
-</style>
 <main id="main" class="main">
-
   <div class="pagetitle">
-    <h1>เพิ่มข้อมูลผู้สำเร็จการศึกษา</h1>
+    <h1>แก้ไขข้อมูลรหัสนักเรียน
+      <?php if (isset($_GET['StudentReferenceID'])) { ?>
+        <?php
+        $result = $this->db->query('SELECT *  FROM STUDENT 
+                INNER JOIN CLS_PREFIX ON STUDENT.StudentPrefixCode = CLS_PREFIX.PREFIX_CODE
+                WHERE StudentReferenceID = "' . $_GET['StudentReferenceID'] . '" AND SchoolID = ' . $_GET['SchoolID'] . '');
+        foreach ($result->result() as $STUDENT) {
 
+
+          $result = $this->db->query('SELECT *  FROM SCHOOL WHERE SchoolID = ' . $_GET['SchoolID'] . '');
+          foreach ($result->result() as $SCHOOL) {
+            $SchoolName = $SCHOOL->SchoolNameThai;
+          }
+        ?>
+
+    </h1>
+    <a class="btn btn-light text-dark"><b><?= $SchoolName . ' - ' . $STUDENT->PREFIX_NAME . $STUDENT->StudentNameThai . ' ' . $STUDENT->StudentLastNameThai ?></b></a>
+<?php }
+      } ?>
   </div><!-- End Page Title -->
 
   <section class="section">
@@ -20,214 +27,139 @@
 
         <div class="card">
           <div class="card-body">
-            <h5 class="card-title">ข้อมูลการสำเร็จการศึกษา</h5>
-
-            <!-- start Form GRADUATED -->
-            <form class="row g-3" action="<?php echo base_url('add-graduated'); ?>" method="POST">
-              <div class="row mb-3">
-                <label for="inputText" class="col-sm-2 col-form-label">ปีการศึกษา</label>
-                <div class="col-sm-10">
-                  <input type="number" class="form-control" name="EducationYear">
+            <!-- Floating Labels Form -->
+            <form class="row g-3" action="<?php echo base_url('update-student-journey/' . $_GET['StudentReferenceID'] . '/' . $_GET['SchoolID'] . '/' . $_GET['EducationYear'] . '/' . $_GET['Semester'] . '/' . $_GET['GradeLevelCode']); ?>" method="POST" id="Student" enctype="multipart/form-data">
+              <h6 style="padding-left: 15px;" class="card-title"></h6>
+              <div class="col-md-6">
+                <div class="form-floating">
+                  <input type="number" class="form-control" name="JourneyTime" id="JourneyTime" value="<?= $STUDENT->JourneyTime ?>">
+                  <label for="JourneyTime">ปีการศึกษา</label>
                 </div>
               </div>
-              <div class="row mb-3">
-                <label for="inputText" class="col-sm-2 col-form-label">ภาคเรียน</label>
-                <div class="col-sm-10">
-                  <input type="number" class="form-control" name="Semester">
+              <div class="col-md-6">
+                <div class="form-floating">
+                  <input type="number" class="form-control" name="JourneyTime" id="JourneyTime" value="<?= $STUDENT->JourneyTime ?>">
+                  <label for="JourneyTime">ภาคเรียน</label>
                 </div>
               </div>
-              <div class="row mb-3">
-                <label for="inputText" class="col-sm-2 col-form-label">สถานศึกษา</label>
-                <div class="col-sm-10">
-                  <select class="form-select" id="School" aria-label="Default select example" name="GraduatedSchoolID">
-                    <option selected>เลือก</option>
-                    <?php
-                    $result = $this->db->query('SELECT * FROM SCHOOL');
-                    foreach ($result->result() as $SCHOOL) {
+              <div class="col-md-6">
+                <div class="form-floating">
+                  <select class="form-select" name="DisabilityCode" id="DisabilityCode" aria-label="DisabilityCode">
+                    <?php if ($STUDENT->DisabilityCode == '') { ?>
+                      <option value="" selected>เลือก</option>
+                    <?php }
+                    $result = $this->db->query('SELECT * FROM CLS_DISABILITY');
+                    foreach ($result->result() as $DISABILITY) {
                     ?>
-                      <option value="<?= $SCHOOL->SchoolID; ?>"><?= $SCHOOL->SchoolNameThai; ?></option>
-                    <?php
-                    }
-                    ?>
-                  </select>
-                </div>
-              </div>
-
-              <div class="row mb-3">
-                <label for="inputText" class="col-sm-2 col-form-label">นักเรียน</label>
-                <div class="col-sm-10">
-                  <select class="form-select" id="Student" aria-label="Default select example" name="StudentReferenceID">
-                    <option selected>เลือก</option>
-                    <?php
-                    $result = $this->db->query('SELECT * FROM STUDENT ORDER BY StudentID ASC');
-                    foreach ($result->result() as $STUDENT) {
-                    ?>
-                      <option id="<?= $STUDENT->SchoolID; ?>" value="<?= $STUDENT->StudentReferenceID; ?>"><?= $STUDENT->StudentNameThai; ?> <?= $STUDENT->StudentLastNameThai; ?> <?= $STUDENT->StudentID; ?></option>
+                      <option <?php if ($STUDENT->DisabilityCode == $DISABILITY->DISABILITY_CODE) {
+                                echo 'selected';
+                              } ?> value="<?= $DISABILITY->DISABILITY_CODE; ?>"><?= $DISABILITY->DISABILITY_NAME; ?></option>
                     <?php
                     }
                     ?>
                   </select>
+                  <label for="GuardianPrefixCode">สถานศึกษา</label>
                 </div>
               </div>
-              <div class="row mb-3">
-                <label for="inputText" class="col-sm-2 col-form-label">ปีการศึกษาที่จบ</label>
-                <div class="col-sm-10">
-                  <input type="text" class="form-control" name="GraduatedEducationYear">
+              <h6 style="padding-left: 15px;" class="card-title">ข้อมูลการสำเร็จการศึกษา</h6>
+              <div class="col-md-6">
+                <div class="form-floating">
+                  <input type="number" class="form-control" name="JourneyTime" id="JourneyTime" value="<?= $STUDENT->JourneyTime ?>">
+                  <label for="JourneyTime">ปีการศึกษาที่สำเร็จการศึกษา</label>
                 </div>
               </div>
-              <div class="row mb-3">
-                <label for="inputDate" class="col-sm-2 col-form-label">วันที่สำเร็จการศึกษา</label>
-                <div class="col-sm-10">
-                  <input type="date" class="form-control" name="GraduatedDate">
+              <div class="col-md-6">
+                <div class="form-floating">
+                  <input type="date" class="form-control" name="JourneyTime" id="JourneyTime" value="<?= $STUDENT->JourneyTime ?>">
+                  <label for="JourneyTime">วันที่สำเร็จการศึกษา</label>
                 </div>
               </div>
-
-              <div class="row mb-3">
-                <label class="col-sm-2 col-form-label">ระดับการศึกษา</label>
-                <div class="col-sm-10">
-                  <select class="form-select" aria-label="Default select example" name="GraduatedEducationLevelCode">
-                    <option selected>เลือก</option>
-                    <?php
-                    $result = $this->db->query('SELECT * FROM CLS_EDUCATION_LEVEL');
-                    foreach ($result->result() as $EDUCATION_LEVEL) {
+              <div class="col-md-6">
+                <div class="form-floating">
+                  <select class="form-select" name="DisabilityCode" id="DisabilityCode" aria-label="DisabilityCode">
+                    <?php if ($STUDENT->DisabilityCode == '') { ?>
+                      <option value="" selected>เลือก</option>
+                    <?php }
+                    $result = $this->db->query('SELECT * FROM CLS_DISABILITY');
+                    foreach ($result->result() as $DISABILITY) {
                     ?>
-                      <option value="<?= $EDUCATION_LEVEL->EDUCATION_LEVEL_CODE; ?>"><?= $EDUCATION_LEVEL->EDUCATION_LEVEL_NAME; ?></option>
-                    <?php
-                    }
-                    ?>
-                  </select>
-                </div>
-              </div>
-
-              <div class="row mb-3">
-                <label class="col-sm-2 col-form-label">ชั้นเรียน</label>
-                <div class="col-sm-10">
-                  <select class="form-select" aria-label="Default select example" name="GraduatedGradeLevelCode">
-                    <option selected>เลือก</option>
-                    <?php
-                    $result = $this->db->query('SELECT * FROM CLS_GRADE_LEVEL');
-                    foreach ($result->result() as $GRADE_LEVEL) {
-                    ?>
-                      <option value="<?= $GRADE_LEVEL->GRADE_LEVEL_CODE; ?>"><?= $GRADE_LEVEL->GRADE_LEVEL_NAME; ?></option>
+                      <option <?php if ($STUDENT->DisabilityCode == $DISABILITY->DISABILITY_CODE) {
+                                echo 'selected';
+                              } ?> value="<?= $DISABILITY->DISABILITY_CODE; ?>"><?= $DISABILITY->DISABILITY_NAME; ?></option>
                     <?php
                     }
                     ?>
                   </select>
+                  <label for="GuardianPrefixCode">ระดับการศึกษา</label>
                 </div>
               </div>
-              <div class="row mb-3">
-                <label for="inputText" class="col-sm-3 col-form-label">ลำดับการสำเร็จการศึกษา</label>
-                <div class="col-sm-9">
-                  <input type="text" class="form-control" name="GraduatedOrderNumber">
-                </div>
-              </div>
-              <h5 class="card-title">ข้อมูลผลการศึกษา</h5>
-              <div class="row mb-3">
-                <label for="inputText" class="col-sm-3 col-form-label">เลขที่ใบแสดงผลการศึกษา</label>
-                <div class="col-sm-9">
-                  <input type="text" class="form-control" name="GraduatedTranscriptNumber">
-                </div>
-              </div>
-              <div class="row mb-3">
-                <label for="inputText" class="col-sm-3 col-form-label">ชุดที่ใบแสดงผลการศึกษา</label>
-                <div class="col-sm-9">
-                  <input type="text" class="form-control" name="GraduatedTranscriptSeriesNumber">
-                </div>
-              </div>
-
-              <h5 class="card-title">ข้อมูลใบประกาศนียบัตร</h5>
-              <div class="row mb-3">
-                <label for="inputText" class="col-sm-3 col-form-label">หมายเลขใบประกาศนียบัตร</label>
-                <div class="col-sm-9">
-                  <input type="text" class="form-control" name="CertificationNumber">
-                </div>
-              </div>
-
-              <h5 class="card-title">ข้อมูลผู้อนุมัติจบ</h5>
-              <div class="row mb-3">
-                <label class="col-sm-3 col-form-label">คำนำหน้าชื่อผู้อนุมัติจบ</label>
-                <div class="col-sm-9">
-                  <select class="form-select" aria-label="Default select example" name="EndorserPrefixCode">
-                    <option selected>คำนำหน้าชื่อ</option>
-                    <option value="003">นาย</option>
-                    <option value="004">นางสาว</option>
-                    <option value="005">นาง</option>
-                    <option value="140">ดอกเตอร์</option>
-                    <option value="165">ศาสตราจารย์ดอกเตอร์</option>
-                    <option value="141">ผู้ช่วยศาสตราจารย์</option>
-                    <option value="143">รองศาสตราจารย์</option>
-                    <option value="143">ศาสตราจารย์</option>
+              <div class="col-md-6">
+                <div class="form-floating">
+                  <select class="form-select" name="DisabilityCode" id="DisabilityCode" aria-label="DisabilityCode">
+                    <?php if ($STUDENT->DisabilityCode == '') { ?>
+                      <option value="" selected>เลือก</option>
+                    <?php }
+                    $result = $this->db->query('SELECT * FROM CLS_DISABILITY');
+                    foreach ($result->result() as $DISABILITY) {
+                    ?>
+                      <option <?php if ($STUDENT->DisabilityCode == $DISABILITY->DISABILITY_CODE) {
+                                echo 'selected';
+                              } ?> value="<?= $DISABILITY->DISABILITY_CODE; ?>"><?= $DISABILITY->DISABILITY_NAME; ?></option>
+                    <?php
+                    }
+                    ?>
                   </select>
+                  <label for="GuardianPrefixCode">ชั้นเรียน</label>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-floating">
+                  <input type="number" class="form-control" name="JourneyTime" id="JourneyTime" value="<?= $STUDENT->JourneyTime ?>">
+                  <label for="JourneyTime">ลำดับการสำเร็จการศึกษา</label>
                 </div>
               </div>
 
-              <div class="row mb-3">
-                <label for="inputText" class="col-sm-3 col-form-label">ชื่อผู้อนุมัติจบ (ภาษาไทย)</label>
-                <div class="col-sm-9">
-                  <input type="text" class="form-control" name="EndorserNameThai">
-                </div>
-              </div>
 
-              <div class="row mb-3">
-                <label for="inputText" class="col-sm-3 col-form-label">ชื่อกลางผู้อนุมัติจบ (ภาษาไทย)</label>
-                <div class="col-sm-9">
-                  <input type="text" class="form-control" name="EndorserMiddleNameThai">
-                </div>
-              </div>
 
-              <div class="row mb-3">
-                <label for="inputText" class="col-sm-3 col-form-label">นามสกุลผู้อนุมัติจบ (ภาษาไทย)</label>
-                <div class="col-sm-9">
-                  <input type="text" class="form-control" name="EndorserLastNameThai">
-                </div>
+              <div class="d-flex justify-content-between">
+                <a href="student?SchoolID=<?= $STUDENT->SchoolID; ?>&&StudentReferenceID=<?= $STUDENT->StudentReferenceID ?>&&EducationYear=<?= $STUDENT->EducationYear; ?>&&Semester=<?= $STUDENT->Semester; ?>&&GradeLevelCode=<?= $STUDENT->GradeLevelCode; ?>&&ShowDetail=" class="btn btn-danger">ยกเลิก</a>
+                <button type="button" class="btn btn-warning" onclick="return check(Student)">แก้ไขข้อมูล</button>
               </div>
-
-              <div class="row mb-3">
-                <label class="col-sm-3 col-form-label">ตำแหน่งผู้อนุมัติจบ</label>
-                <div class="col-sm-9">
-                  <select class="form-select" aria-label="Default select example" name="EndorserPositionCode">
-                    <option selected>ตำแหน่ง</option>
-                    <option value="10003">ผู้ช่วยศาสตราจารย์</option>
-                    <option value="10004">รองศาสตราจารย์</option>
-                    <option value="10005">ศาสตราจารย์</option>
-                    <option value="10006">รองผู้อำนวยการสถานศึกษา</option>
-                    <option value="10007">ผู้อำนวยการสถานศึกษา</option>
-                  </select>
-                </div>
-              </div>
-              <div class="text-center">
-                <a href="graduated" style="float: left;" class="btn btn-light">ยกเลิก</a>
-                <button style="float: right;" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#ADD">บันทึกข้อมูล</button>
-              </div>
-              <div class="modal fade" id="ADD" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+              <!-- Modal -->
+              <div class="modal fade" id="Modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered" role="document">
                   <div class="modal-content">
                     <div class="modal-header">
-                      <h5 class="modal-title" id="exampleModalLongTitle">ยืนยันเพิ่มข้อมูล</h5>
-                      <!--<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>-->
+                      <h5 class="modal-title" id="exampleModalLongTitle">ยืนยันแก้ไขข้อมูล</h5>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
                       <h6>
-                        <center>คุณต้องการเพิ่มข้อมูลใช่หรือไหม ?</center>
+                        <center>คุณต้องการแก้ไขข้อมูลใช่หรือไหม ?</center>
                       </h6>
                     </div>
                     <div class="modal-footer">
-                      <button style="float: right;" type="submit" class="btn btn-primary">ยืนยัน</button>
+                      <button type="submit" class="btn btn-primary">ยืนยัน</button>
                       <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ยกเลิก</button>
                     </div>
                   </div>
                 </div>
               </div>
 
-            </form> <!-- end Form ข้อมูลวุฒิการศึกษาของบุคลากรอื่น -->
+
+            </form><!-- End Form ข้อมูลการพัฒนาบุคลากรครู -->
 
           </div>
         </div>
 
       </div>
 
-
     </div>
   </section>
+  <script type="text/javascript">
+    function check(frm) {
+      $('#Modal').modal('show');
+    }
+  </script>
 
 </main><!-- End #main -->

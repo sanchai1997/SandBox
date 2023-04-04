@@ -392,7 +392,7 @@ if (isset( $_SESSION['success'])) { ?>
                                         <label for="Y"><?php echo nbs(2); ?> คำค้นห้า </label>
                                     </div>
                                 </div>
-
+                                <input name="oil_file" type="hidden" value="<?php echo $show->AttachmentURL ?>">
                                 <div class="col">
                                     <div class="input-group mb-3">
                                         <label class="input-group-text" for="inputGroupFile01">เอกสารแนบ</label>
