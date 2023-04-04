@@ -847,7 +847,7 @@
 
                         <tr>
 
-                            <th style="" scope="col">ปีการศึกษาที่ทำการประเมิน</th>
+                            <th style="" scope="col" class="col-2">ปีการศึกษาที่ทำการประเมิน</th>
                             <th style="" scope="col">สถานศึกษา</th>
                             <th style="" scope="col">ชื่อการประเมิน</th>
                             <th style="text-align: center;" scope="col">ดูรายละเอียด</th>
@@ -1237,10 +1237,10 @@
                      ?>
 <div class="modal fade" id="look5<?php echo $Id = $show->Id; ?>" tabindex="-1" aria-labelledby="exampleModalLabel"
     aria-hidden="true">
-    <div class="modal-dialog modal-lg">
+    <div class="modal-dialog  modal-xl modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">ผู้เข้ามามีส่วนร่วม</h5>
+                <h5 class="modal-title" id="exampleModalLabel">การประเมินผลสถานศึกษา</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
@@ -1250,9 +1250,9 @@
                      foreach ($result_un->result() as $show_un) { ?>
                 <div class="row">
                     <div class="col">
-                        <h5 class="fw-bold">ปีการศึกษาที่ทำกระประเมิน</h5>
+                        <h6 class="fw-bold">ปีการศึกษาที่ทำกระประเมิน</h6>
                         <p><?php echo $show->SchoolAssessmentEducationYear; ?></p>
-                        <h5 class="fw-bold">ภาคเรียนที่ทำการประเมิน</h5>
+                        <h6 class="fw-bold">ภาคเรียนที่ทำการประเมิน</h6>
                         <p><?php $sum = $show->SchoolAssessmentSemester; ?></p>
                         <?php 
                          if ($sum== 1) {
@@ -1265,19 +1265,82 @@
                             echo "<p>ภาคเรียนฤดูร้อน</p>";
                           } 
                         ?>
-                        <h5 class="fw-bold">รหัสสถานศึกษา</h5>
+                        <h6 class="fw-bold">สถานศึกษา</h6>
                         <p><?php echo $show->SchoolNameThai; ?></p>
 
                     </div>
                     <div class="col">
-                        <h5 class="fw-bold">ชื่อการประเมิน</h5>
+                        <h6 class="fw-bold">ชื่อการประเมิน</h6>
                         <p><?php echo $show->SchoolAssessmentName; ?></p>
-                        <h5 class="fw-bold">คำอธิบายการประเมิน</h5>
+                        <h6 class="fw-bold">คำอธิบายการประเมิน</h6>
                         <p><?php echo $show->SchoolAssessmentDescription; ?></p>
 
 
                     </div>
                 </div>
+                          <table class="table table-borderless">
+                          <tr>
+                            <th>ตัวชี้วัด</th>
+                            <th>ระดับตัวชี้วัด</th>
+                          </tr>
+                          <tr>
+                            <td>
+                                <table class="table table-bordered">
+                                    <tr>
+                                        <td class="col-1">ตัวชี้วัด</td>
+                                        <td class="col-2">ผู้ประเมิน</td>
+                                        <td class="col-1">คะแนน</td>
+                                        <td class="col-2">ผลการประเมิน</td>
+                                        <td class="col-1">เอกสาร</td>
+                                    </tr>
+                                    <?php $resultc = $this->db->query("SELECT * FROM SCHOOL_ASSESSMENT_CRITERIA
+                                    INNER JOIN CLS_SCHOOL_EVALUATION
+                                    ON CLS_SCHOOL_EVALUATION.SCHOOL_EVALUATION_CODE = SCHOOL_ASSESSMENT_CRITERIA.SchoolAssessmentCode
+                                where Id_sa = $Id"); 
+                                    foreach ($resultc->result() as $showc) {  ?>
+                                <tr>
+                                    <td>
+                                        <p>
+                                            <?php echo $showc->CriteriaID; ?>
+                                        </p>
+                                    </td>
+                                    <td>
+                                        <p>
+                                            <?php echo $showc->AssessmentorName; ?>
+                                        </p>
+                                    </td>
+                                    <td>
+                                        <p>
+                                            <?php echo $showc->SchoolAssessmentScore; ?>
+                                        </p>
+                                    </td>
+                                    <td>
+                                        <p>
+                                            <?php echo $showc->SCHOOL_EVALUATION_NAME; ?>
+                                        </p>
+                                    </td>
+                                    <td scope="row " style="text-align: center;">
+                                <a href="<?php echo base_url('assets/EII/SCHOOL_ASSESSMENT_CRITERIA/') ?>/<?php echo $showc->SchoolAssessmentAttachmentURL; ?>"
+                                    target="_blank">รายละเอียดเอกสาร</i></a>
+
+                            </td>
+                                </tr>
+                                <?php } ?>
+                                </table>
+                            </td>
+                            <td>
+                                <table class="table table-bordered">
+                                <tr>
+                                        <td class="col-1">ตัวชี้วัด</td>
+                                        <td class="col-2">ลำดับองค์ประกอบ</td>
+                                        <td class="col-1">ลำดับตัวชื่อวัดที่ได้</td>
+                                     
+                                    </tr>
+                                </table>
+                            </td>
+                          </tr>
+                          </table>
+
                 <?php  } ?>
             </div>
             <div class="modal-footer">
@@ -1306,15 +1369,15 @@
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">ผู้เข้ามามีส่วนร่วม</h5>
+                <h6 class="modal-title" id="exampleModalLabel">ผู้เข้ามามีส่วนร่วม</h6>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
                 <div class="row">
                     <div class="col">
-                        <h5 class="fw-bold">ปีการศึกษาที่ทำการประเมิน</h5>
+                        <h6 class="fw-bold">ปีการศึกษาที่ทำการประเมิน</h6>
                         <p><?php echo $show->SchoolAssessmentEducationYear; ?></p>
-                        <h5 class="fw-bold">ภาคเรียนที่ทำการประเมิน</h5>
+                        <h6 class="fw-bold">ภาคเรียนที่ทำการประเมิน</h6>
                         <p><?php echo $show->SchoolAssessmentSemester; ?></p>
                         <h5 class="fw-bold">รหัสสถานศึกษา</h5>
                         <p><?php echo $show->SchoolID; ?></p>
@@ -1429,7 +1492,7 @@
                         <h6 class="fw-bold">ปีการศึกษาที่ทำการประเมิน</h6>
                         <p><?php echo $show->AchievementAssessmentYear; ?></p>
 
-                        <h6 class="fw-bold">รหัสสถานศึกษา</h6>
+                        <h6 class="fw-bold">สถานศึกษา</h6>
                         <p><?php echo $show->SchoolNameThai; ?></p>
 
                         <h6 class="fw-bold">ชื่อการประเมิน</h6>
@@ -1452,7 +1515,7 @@
                         <h6 class="fw-bold">ลิงก์เอกสารแนบรายละเอียดการประเมินผลสัมฤทธิ์การศึกษา</h6>
                         <p>
                             <th scope="row " style="text-align: center;">
-                                <a href="<?php echo base_url('document') ?>/<?php echo $show->AchievementAssessmentAttachmentURL; ?>"
+                                <a href="<?php echo base_url('assets/EII/ACHIEVEMENT_ASSESSMENT/') ?>/<?php echo $show->AchievementAssessmentAttachmentURL; ?>"
                                     target="_blank">รายละเอียดเอกสาร</i></a>
 
                             </th>
