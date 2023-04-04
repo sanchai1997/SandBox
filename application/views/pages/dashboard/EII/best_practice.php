@@ -148,7 +148,18 @@
                                 <?php echo $show->EducationYear; ?>
                             </td>
                             <td style="">
-                                <?php echo $show->Semester; ?>
+                            <?php $sum = $show->Semester;
+                         if ($sum== 1) {
+                           $sun_name = "ภาคเรียนที่ 1";
+                          } elseif ($sum == 2) {
+                           $sun_name = "ภาคเรียนที่ 2";
+                          } elseif ($sum == 0) {
+                           $sun_name = "ตลอดปีการศึกษา";
+                          } elseif ($sum == 3) {
+                           $sun_name = "ภาคเรียนฤดูร้อน";
+                          } 
+                        ?>
+                                        <?php echo $sun_name; ?>
                             </td>
                             <td style="">
                                 <?php echo $show->BestPracticeName; ?>
@@ -290,7 +301,20 @@
                         <h5 class="fw-bold">ปีการศึกษา</h5>
                         <p><?php echo $show->EducationYear; ?></p>
                         <h5 class="fw-bold">ภาคเรียน</h5>
-                        <p><?php echo $show->Semester; ?></p>
+                        <?php $sum = $show->Semester;
+                         if ($sum== 1) {
+                           $sun_name = "ภาคเรียนที่ 1";
+                          } elseif ($sum == 2) {
+                           $sun_name = "ภาคเรียนที่ 2";
+                          } elseif ($sum == 0) {
+                           $sun_name = "ตลอดปีการศึกษา";
+                          } elseif ($sum == 3) {
+                           $sun_name = "ภาคเรียนฤดูร้อน";
+                          } 
+                        ?>
+                                    <p>
+                                        <?php echo  $sun_name; ?>
+                                    </p>
                         <h5 class="fw-bold">ชื่อวิธีปฏิบัติ</h5>
                         <p><?php echo $show->BestPracticeName; ?></p>
                         <h5 class="fw-bold">ประเภทวิธีปฏิบัติ</h5>

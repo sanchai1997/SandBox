@@ -467,13 +467,13 @@
                             <?php  $sum = $show_top->SchoolAssessmentSemester; ?>
                             <?php 
                          if ($sum== 1) {
-                            echo "<p>ภาคเรียนที่ 1</p>";
+                            echo "ภาคเรียนที่ 1";
                           } elseif ($sum == 2) {
-                            echo "<p>ภาคเรียนที่ 2</p>";
+                            echo "ภาคเรียนที่ 2";
                           } elseif ($sum == 0) {
-                            echo "<p>ตลอดปีการศึกษา</p>";
+                            echo "ตลอดปีการศึกษา";
                           } elseif ($sum == 3) {
-                            echo "<p>ภาคเรียนฤดูร้อน</p>";
+                            echo "ภาคเรียนฤดูร้อน";
                           } 
                         ?>
                           </td>

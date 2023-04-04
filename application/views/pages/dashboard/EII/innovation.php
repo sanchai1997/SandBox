@@ -127,7 +127,18 @@
                                         <?php echo $show->EducationYear; ?>
                                     </td>
                                     <td scope="row " style="">
-                                        <?php echo $show->Semester; ?>
+                                    <?php $sum = $show->Semester;
+                         if ($sum== 1) {
+                           $sun_name = "ภาคเรียนที่ 1";
+                          } elseif ($sum == 2) {
+                           $sun_name = "ภาคเรียนที่ 2";
+                          } elseif ($sum == 0) {
+                           $sun_name = "ตลอดปีการศึกษา";
+                          } elseif ($sum == 3) {
+                           $sun_name = "ภาคเรียนฤดูร้อน";
+                          } 
+                        ?>
+                                        <?php echo $sun_name; ?>
                                     </td>
                                     <td scope="row " style="">
                                         <?php echo $show->InnovationName; ?>
@@ -262,8 +273,19 @@
                                         <?php echo $show->EducationYear; ?>
                                     </p>
                                     <h5 class="fw-bold">ภาคเรียน</h5>
+                                    <?php $sum = $show->Semester;
+                         if ($sum== 1) {
+                           $sun_name = "ภาคเรียนที่ 1";
+                          } elseif ($sum == 2) {
+                           $sun_name = "ภาคเรียนที่ 2";
+                          } elseif ($sum == 0) {
+                           $sun_name = "ตลอดปีการศึกษา";
+                          } elseif ($sum == 3) {
+                           $sun_name = "ภาคเรียนฤดูร้อน";
+                          } 
+                        ?>
                                     <p>
-                                        <?php echo $show->Semester; ?>
+                                        <?php echo  $sun_name; ?>
                                     </p>
                                     <h5 class="fw-bold">ชื่อนวัตกรรม</h5>
                                     <p>
@@ -304,7 +326,7 @@
                                     </p>
                                     <h5 class="fw-bold">วันที่เผยแพร่</h5>
                                     <p>
-                                        <?php echo $show->PublishDate; ?>
+                                        <?php echo DateThai($show->PublishDate); ?>
                                     </p>
                                 </div>
                                 <div class="row">

@@ -103,13 +103,26 @@ if (isset( $_SESSION['success'])) { ?>
                                             </div>
                                         </div>
 
-                                        <div class="col">
+                                        <!-- <div class="col">
                                             <div class="form-floating">
                                                 <input type="number" class="form-control" id="floatingName"
                                                     placeholder="ภาคเรียน" name="Semester" required max="2">
                                                 <label for="Y"><?php echo nbs(2); ?> ภาคเรียน </label>
                                             </div>
+                                        </div> -->
+                                        <div class="col">
+                                            <div class="form-floating">
+                                                <select class="form-select" id="Semester" name="Semester">
+                                                    <option value="-1">กรุณาเลือกภาคเรียนที่ทำการประเมิน</option>
+                                                    <option value="0">ตลอดปีการศึกษา</option>
+                                                    <option value="1">ภาคเรียนที่ 1</option>
+                                                    <option value="2">ภาคเรียนที่ 2</option>
+                                                    <option value="3">ภาคเรียนฤดูร้อน</option>
+                                                </select>
+                                                <label for="Semester">ภาคเรียน</label>
+                                            </div>
                                         </div>
+
                                     </div>
 
                                     <div class="row mb-3">
@@ -208,7 +221,7 @@ if (isset( $_SESSION['success'])) { ?>
                                     <div class="row mb-3">
                                         <div class="form-floating">
                                             <input type="text" class="form-control" id="floatingName"
-                                                placeholder="คำค้นหา" name="SearchKeyword" >
+                                                placeholder="คำค้นหา" name="SearchKeyword">
                                             <label for=""><?php echo nbs(2); ?> คำค้นหา </label>
                                         </div>
 
@@ -216,7 +229,7 @@ if (isset( $_SESSION['success'])) { ?>
                                     <div class="text-center">
                                         <a href="<?php echo site_url('Fm_innovation_das_p1?page=sh1') ?>"
                                             class="btn btn-danger" style="float: left;">ยกเลิก</a>
-                                            
+
                                         <button type="button" class="btn btn-primary" data-bs-toggle="modal"
                                             data-bs-target="#exampleModal" style="float: right;">บันทึกข้อมูล</button>
                                     </div>
@@ -264,6 +277,14 @@ if (isset( $_SESSION['success'])) { ?>
                                         alert('กรุณาเลือกระดับการศึกษาที่นำไปใช้');
                                         return false;
                                     }
+                                    ///semmer
+                                    const semmer = document.querySelector('#Semester');
+                                    const semmer_Value = semmer.value;
+
+                                    if (semmer_Value === '-1') {
+                                        alert('กรุณาเลือกภาคเรียน');
+                                        return false;
+                                    }
                                 }
                                 </script>
                             </body>
@@ -304,12 +325,24 @@ if (isset( $_SESSION['success'])) { ?>
                                             </div>
                                         </div>
 
-                                        <div class="col">
+                                        <!-- <div class="col">
                                             <div class="form-floating">
                                                 <input type="number" class="form-control" id="floatingName"
                                                     placeholder="ภาคเรียน" name="Semester" required max="1"
                                                     value="<?php echo $show->Semester; ?>">
                                                 <label for="Y"><?php echo nbs(2); ?> ภาคเรียน </label>
+                                            </div>
+                                        </div> -->
+                                        <div class="col">
+                                            <div class="form-floating">
+                                                <select class="form-control" id="Semester" name="Semester">
+                                                    <option value="-1">กรุณาเลือกภาคเรียนที่ทำการประเมิน</option>
+                                                    <option value="0">ตลอดปีการศึกษา</option>
+                                                    <option value="1">ภาคเรียนที่ 1</option>
+                                                    <option value="2">ภาคเรียนที่ 2</option>
+                                                    <option value="3">ภาคเรียนฤดูร้อน</option>
+                                                </select>
+                                                <label for="Semester">ภาคเรียน</label>
                                             </div>
                                         </div>
                                     </div>
@@ -421,7 +454,7 @@ if (isset( $_SESSION['success'])) { ?>
 
                                     </div>
                                     <div class="text-center">
-                                    <a href="<?php echo site_url('Fm_innovation_das_p1?page=sh1') ?>"
+                                        <a href="<?php echo site_url('Fm_innovation_das_p1?page=sh1') ?>"
                                             class="btn btn-danger" style="float: left;">ยกเลิก</a>
 
                                         <button type="button" class="btn btn-warning" data-bs-toggle="modal"
@@ -475,6 +508,15 @@ if (isset( $_SESSION['success'])) { ?>
                                             selectoption_CLS_EDUCATION_LEVEL[i].selected = true;
                                         }
                                     }
+                                    ///Semester
+                                    var my_Semester = <?php echo $show->Semester; ?>;
+                                    var selectoption_Semester = document.querySelector('#Semester');
+                                    var size_my_Semester = document.getElementById("Semester").options.length;
+                                    for (let i = 0; i < size_my_Semester; i++) {
+                                        if (selectoption_Semester[i].value == my_Semester) {
+                                            selectoption_Semester[i].selected = true;
+                                        }
+                                    }
                                     </script>
                                 </form><!-- End Form ข้อมูลนวัตกรรมการศึกษา -->
                             </body>
@@ -499,9 +541,8 @@ if (isset( $_SESSION['success'])) { ?>
                                 <div class="row mb-3">
                                     <div class="col">
                                         <div class="form-floating">
-                                            <select class="form-select" id="CreatorPersonalIDTypeCode"
-                                                aria-label="Floating label select example"
-                                                name="CreatorPersonalIDTypeCode" required>
+                                            <select class="form-select" id="CreatorPersonalIDTypeCode" aria-label="Floating label select example"
+                                                name="CreatorPersonalIDTypeCode" >
                                                 <option value="-1" selected>เลือก</option>
                                                 <?php
                                            $result = $this->db->query('SELECT * FROM CLS_PERSONAL_ID_TYPE');
@@ -522,9 +563,12 @@ if (isset( $_SESSION['success'])) { ?>
                                 <div class="row mb-3">
                                     <div class="col">
                                         <div class="form-floating" id="CreatorPersonalID">
-                                            <input type="text" class="form-control" id="CreatorPersonalID"
-                                                placeholder="หมายเลขบัตรประจำตัวผู้จัดทำ" name="CreatorPersonalID"
-                                                required>
+                                            <input type="text" class="form-control" id="my-auto"
+                                                placeholder="หมายเลขบัตรประจำตัวผู้จัดทำ" name=""
+                                                disabled>
+                                                <input type="hidden" class="form-control" id="my-autoo"
+                                                placeholder="" name="CreatorPersonalID"
+                                                >
                                             <label for=""><?php echo nbs(2); ?> หมายเลขบัตรประจำตัวผู้จัดทำ </label>
                                         </div>
                                     </div>
@@ -612,8 +656,8 @@ if (isset( $_SESSION['success'])) { ?>
                                     </div>
                                 </div>
                                 <div class="text-center">
-                                <a href="<?php echo site_url('Fm_innovation_das_p1?page=sh1') ?>"
-                                            class="btn btn-danger" style="float: left;">ยกเลิก</a>
+                                    <a href="<?php echo site_url('Fm_innovation_das_p1?page=sh1') ?>"
+                                        class="btn btn-danger" style="float: left;">ยกเลิก</a>
 
                                     <button type="button" class="btn btn-primary" data-bs-toggle="modal"
                                         data-bs-target="#exampleModal" style="float: right;">บันทึกข้อมูล</button>
@@ -643,16 +687,28 @@ if (isset( $_SESSION['success'])) { ?>
                                     </div>
                                 </div>
                             </form><!-- End Form ข้อมูลนวัตกรรมการศึกษา -->
-                            <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js">
-                                $(document).ready(function() {
-                                    $('#CreatorPersonalIDTypeCode').change(function() {
-                                        if ($(this).val() == 'N') {
-                                            $('#CreatorPersonalID').prop('type', 'hidden');
-                                        }
-                                    });
-                                });
+                            <script>
+                            const select = document.getElementById("CreatorPersonalIDTypeCode");
+                            const input = document.getElementById("my-auto");
+                            const input1 = document.getElementById("my-autoo");
+
+                            select.addEventListener("change", function() {
+                                if (select.value === "N"||select.value === "-1") {
+                                    input.disabled = true;
+                                    
+                                    input.value = '0';
+                                    input1.value = '0';
+
+                                } else {
+                                    input.disabled = false;
+                                   
+                                    input.value = '';
+                                    input1.value = '';
+                                }
+                            });
+
                             function checkSelectedOption() {
-                                
+
 
                                 const CLS_PERSONAL_ID_TYPE = document.querySelector('#CreatorPersonalIDTypeCode');
                                 const CLS_PERSONAL_ID_TYPE_Value = CLS_PERSONAL_ID_TYPE.value;
@@ -732,15 +788,17 @@ if (isset( $_SESSION['success'])) { ?>
 
 
                                     <div class="row mb-3">
-                                        <div class="col" id="hiddenlol">
-                                            <div class="form-floating">
-                                                <input type="text" class="form-control" id="floatingName"
-                                                    placeholder="หมายเลขบัตรประจำตัวผู้จัดทำ" name="CreatorPersonalID"
-                                                    required value="<?php echo $show->CreatorPersonalID ?>">
-                                                <label for="Y"><?php echo nbs(2); ?> หมายเลขบัตรประจำตัวผู้จัดทำ
-                                                </label>
-                                            </div>
+                                    <div class="col">
+                                        <div class="form-floating" id="CreatorPersonalID">
+                                            <input type="text" class="form-control" id="my-auto"
+                                                placeholder="หมายเลขบัตรประจำตัวผู้จัดทำ" name=""
+                                                disabled>
+                                                <input type="hidden" class="form-control" id="my-autoo"
+                                                placeholder="" name="CreatorPersonalID"
+                                                >
+                                            <label for=""><?php echo nbs(2); ?> หมายเลขบัตรประจำตัวผู้จัดทำ </label>
                                         </div>
+                                    </div>
 
                                         <div class="col">
                                             <div class="form-floating">
@@ -836,68 +894,93 @@ if (isset( $_SESSION['success'])) { ?>
                                     </div>
 
                                     <div class="text-center">
-                                             <!-- ปุ่มยกเลิก --> <a href="<?php echo site_url('Fm_innovation_das_p1?page=sh1') ?>" class="btn btn-danger" style="float: left;">ยกเลิก</a> <!-- ปุ่มยกเลิก -->
-                                           
-                                            <!-- ปุ่มลบ --> <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#del_inno<?php echo $show->Id; ?>"><i class="bi bi-trash"></i> </button> <!-- ปุ่มลบ -->
-                                            <button type="button" class="btn btn-warning" data-bs-toggle="modal"
+                                        <!-- ปุ่มยกเลิก --> <a
+                                            href="<?php echo site_url('Fm_innovation_das_p1?page=sh1') ?>"
+                                            class="btn btn-danger" style="float: left;">ยกเลิก</a> <!-- ปุ่มยกเลิก -->
+
+                                        <!-- ปุ่มลบ --> <button type="button" class="btn btn-danger"
+                                            data-bs-toggle="modal" data-bs-target="#del_inno<?php echo $show->Id; ?>"><i
+                                                class="bi bi-trash"></i> </button> <!-- ปุ่มลบ -->
+                                        <button type="button" class="btn btn-warning" data-bs-toggle="modal"
                                             data-bs-target="#exampleModal" style="float: right;">แก้ไขข้อมูล</button>
-                                        </div>
-                                        
-                                        <!-- Modal -->
-                                        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
+                                    </div>
+
+                                    <!-- Modal -->
+                                    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
                                         aria-labelledby="exampleModalLongTitle" aria-hidden="true">
                                         <div class="modal-dialog modal-dialog-centered" role="document">
                                             <div class="modal-content">
                                                 <div class="modal-header">
                                                     <h5 class="modal-title" id="exampleModalLongTitle">
                                                         ยืนยันการแก้ไขข้อมูล</h5>
-                                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                         aria-label="Close"></button>
-                                                    </div>
-                                                    <div class="modal-body">
-                                                        <h6>
-                                                            <center>คุณต้องการแก้ไขข้อมูลใช่หรือไหม ?</center>
-                                                        </h6>
-                                                    </div>
-                                                    <div class="modal-footer">
-                                                        <button type="submit" class="btn btn-warning">แก้ไขข้อมูล</button>
-                                                        <button type="button" class="btn btn-secondary"
-                                                        data-bs-dismiss="modal">ยกเลิก</button>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </form><!-- End Form ข้อมูลนวัตกรรมการศึกษา -->
-                                    <!-- Modal -->
-                                    <div class="modal fade" id="del_inno<?php echo $show->Id; ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                        <div class="modal-dialog">
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <h5 class="modal-title" id="exampleModalLabel">
-                                                        ยืนยันการลบข้อมูล<?php echo nbs(2); ?><?php echo $show->Id; ?>
-                                                    </h5>
-
                                                 </div>
                                                 <div class="modal-body">
-                                                    <p class="text-center">คุณต้องการลบข้อมูลใช่หรือไหม</p>
-
+                                                    <h6>
+                                                        <center>คุณต้องการแก้ไขข้อมูลใช่หรือไหม ?</center>
+                                                    </h6>
                                                 </div>
-
-
                                                 <div class="modal-footer">
-                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ยกเลิก</button>
-                                                    <form method="post" action="<?php echo site_url('del_p2'); ?>">
-                                                        <input type="hidden" name="Id" value="<?php echo $show->Id; ?>">
-                                                        <div class="d-flex justify-content-center">
-                                                            <button name="Submit" type="submit" class="btn btn-danger">ยืนยันก่อนลบ</button>
-                                                        </div>
-                                                    </form>
+                                                    <button type="submit" class="btn btn-warning">แก้ไขข้อมูล</button>
+                                                    <button type="button" class="btn btn-secondary"
+                                                        data-bs-dismiss="modal">ยกเลิก</button>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div> <!-- Modal -->
-                                    <script>
-                                        ///CLS_PERSONAL_ID_TYPE
+                                    </div>
+                                </form><!-- End Form ข้อมูลนวัตกรรมการศึกษา -->
+                                <!-- Modal -->
+                                <div class="modal fade" id="del_inno<?php echo $show->Id; ?>" tabindex="-1"
+                                    aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="exampleModalLabel">
+                                                    ยืนยันการลบข้อมูล<?php echo nbs(2); ?><?php echo $show->Id; ?>
+                                                </h5>
+
+                                            </div>
+                                            <div class="modal-body">
+                                                <p class="text-center">คุณต้องการลบข้อมูลใช่หรือไหม</p>
+
+                                            </div>
+
+
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary"
+                                                    data-bs-dismiss="modal">ยกเลิก</button>
+                                                <form method="post" action="<?php echo site_url('del_p2'); ?>">
+                                                    <input type="hidden" name="Id" value="<?php echo $show->Id; ?>">
+                                                    <div class="d-flex justify-content-center">
+                                                        <button name="Submit" type="submit"
+                                                            class="btn btn-danger">ยืนยันก่อนลบ</button>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div> <!-- Modal -->
+                                <script>
+                                    const select = document.getElementById("CreatorPersonalIDTypeCode");
+                            const input = document.getElementById("my-auto");
+                            const input1 = document.getElementById("my-autoo");
+
+                            select.addEventListener("change", function() {
+                                if (select.value === "N"||select.value === "-1") {
+                                    input.disabled = true;
+                                    
+                                    input.value = '0';
+                                    input1.value = '0';
+
+                                } else {
+                                    input.disabled = false;
+                                   
+                                    input.value = '';
+                                    input1.value = '';
+                                }
+                            });
+                                ///CLS_PERSONAL_ID_TYPE
                                 var my_CLS_PERSONAL_ID_TYPE = "<?php echo $show->CreatorPersonalIDTypeCode ?>";
                                 var selectoption_CLS_PERSONAL_ID_TYPE = document.querySelector(
                                     '#CreatorPersonalIDTypeCode');
@@ -935,7 +1018,7 @@ if (isset( $_SESSION['success'])) { ?>
     </main><!-- End #main -->
     </bady>
     <script>
-  setTimeout(function() {
-    document.getElementById('myAlert').remove();
-  }, 2000); // นับถอยหลังให้แสดง 2 วินาที (2000 มิลลิวินาที)
-</script>
+    setTimeout(function() {
+        document.getElementById('myAlert').remove();
+    }, 2000); // นับถอยหลังให้แสดง 2 วินาที (2000 มิลลิวินาที)
+    </script>

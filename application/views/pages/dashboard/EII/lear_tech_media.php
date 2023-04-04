@@ -139,7 +139,18 @@
                                     <tr>
                                         <!-- <th scope="row " style="text-align: center;"><?php echo $show->MediaID; ?></th> -->
                                         <td style=""><?php echo $show->EducationYear; ?></td>
-                                        <td style=""><?php echo $show->Semester; ?></td>
+                                        <td style=""> <?php $sum = $show->Semester;
+                         if ($sum== 1) {
+                           $sun_name = "ภาคเรียนที่ 1";
+                          } elseif ($sum == 2) {
+                           $sun_name = "ภาคเรียนที่ 2";
+                          } elseif ($sum == 0) {
+                           $sun_name = "ตลอดปีการศึกษา";
+                          } elseif ($sum == 3) {
+                           $sun_name = "ภาคเรียนฤดูร้อน";
+                          } 
+                        ?>
+                                        <?php echo $sun_name; ?></td>
                                         <td style=""><?php echo $show->MediaName; ?></td>
                                         <td style=""><?php echo $shows->MEDIA_TYPE_NAME; ?></td>
                                         <td scope="row " style="text-align: left;">
@@ -264,7 +275,20 @@
                                     <h5 class="fw-bold">ปีการศึกษา</h5>
                                     <p><?php echo $show->EducationYear; ?></p>
                                     <h5 class="fw-bold">ภาคเรียน</h5>
-                                    <p><?php echo $show->Semester; ?></p>
+                                    <?php $sum = $show->Semester;
+                         if ($sum== 1) {
+                           $sun_name = "ภาคเรียนที่ 1";
+                          } elseif ($sum == 2) {
+                           $sun_name = "ภาคเรียนที่ 2";
+                          } elseif ($sum == 0) {
+                           $sun_name = "ตลอดปีการศึกษา";
+                          } elseif ($sum == 3) {
+                           $sun_name = "ภาคเรียนฤดูร้อน";
+                          } 
+                        ?>
+                                    <p>
+                                        <?php echo  $sun_name; ?>
+                                    </p>
                                     <h5 class="fw-bold">ชื่อเทคโนโลยีและสื่อการเรียนรู้</h5>
                                     <p><?php echo $show->MediaName; ?></p>
                                     <h5 class="fw-bold">ประเภทเทคโนโลยีและสื่อการเรียนรู้</h5>
@@ -286,7 +310,7 @@
                                     <h5 class="fw-bold">แหล่งที่มา</h5>
                                     <p><?php echo $show->Source; ?></p>
                                     <h5 class="fw-bold">วันที่เผยแพร่</h5>
-                                    <p><?php echo $show->PublishDate; ?></p>
+                                    <p><?php echo dateThai($show->PublishDate); ?></p>
                                 </div>
                             </div>
                             
