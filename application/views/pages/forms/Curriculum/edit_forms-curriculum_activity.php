@@ -56,47 +56,64 @@
                 </div>
 
                 <div class="col-md-16">
-                  <div class="form-floating">
-                    <select class="form-select" aria-label="Default select example" name="ASSESSMENT_PEOPLE_ID" id="ASSESSMENT_PEOPLE_ID">
-                        <option value="-1" selected  >กรุณาเลือกผู้ประเมิน</option>    
-                        <option value="0">ครู</option>
-                        <option value="1">นักเรียน</option>
-                        <option value="2">ผู้ปกครอง</option>
-                        <option value="3">อื่นๆ</option>
-                    </select>    
-                    <label>ผู้ประเมิน<font color="red"> *</font></label>
-                  </div>
+                    <div class="form-floating">
+                      <select class="form-select" aria-label="Default select example" name="ASSESSMENT_TOOL_CODE" id="ASSESSMENT_TOOL_CODE" >
+                        <option selected value="-1">เลือกเครื่องมือการประเมิน</option>
+                          <option value="0">แบบสังเกตพฤติกรรม</option>
+                          <option value="1">แบบประเมิน</option>
+                      </select>    
+                      <label>เครื่องมือการประเมิน<font color="red"> *</font></label>
+                    </div>
                 </div>
 
-                <div class="col-md-16">
-                  <div class="form-floating">
-                    <select class="form-select" aria-label="Default select example" name="ASSESSMENT_TOOL_CODE" id="ASSESSMENT_TOOL_CODE" >
-                      <option selected value="-1">เลือกเครื่องมือการประเมิน</option>
-                        <option value="0">แบบสังเกตพฤติกรรม</option>
-                        <option value="1">แบบประเมิน</option>
-                    </select>    
-                    <label>เครื่องมือการประเมิน<font color="red"> *</font></label>
-                  </div>
+            
+
+                <div class="col-md-6">
+                    <legend class="col-form-label col-sm-3 pt-0">ผู้ประเมิน<font color="red"> *</font></legend>
+                    <div class="col-sm-9">
+                        <div style="padding-left: 50px;" class="form-check">
+                            <input class="form-check-input" value="SCORE_TEACHER" type="checkbox" id="gridCheck1"  name="ASSESSMENT_PEOPLE_ID" <?php if( $ac->SCORE_TEACHER !=null){ ?> checked <?php } ?> >
+                            <label class="form-check-label" for="gridCheck1">
+                                ครู
+                            </label>
+                        </div>
+
+                        <div style="padding-left: 50px;" class="form-check">
+                            <input class="form-check-input" value="SCORE_PARENT" type="checkbox" id="gridCheck1"  name="ASSESSMENT_PEOPLE_ID" <?php if( $ac->SCORE_PARENT !=null){ ?> checked <?php } ?>
+                            <label class="form-check-label" for="gridCheck1">
+                                ผู้ปกครอง
+                            </label>
+                        </div>
+
+                        <div style="padding-left: 50px;" class="form-check">
+                            <input class="form-check-input" value="SCORE_OTHER" type="checkbox" id="gridCheck1"  name="ASSESSMENT_PEOPLE_ID" <?php if( $ac->SCORE_OTHER !=null){ ?> checked <?php } ?>
+                            <label class="form-check-label" for="gridCheck1">
+                                บุคลากรอื่น
+                            </label>
+                        </div>
+
+                    </div>
                 </div>
+
                 <div class="pagetitle">
-                <h5 class="card-title">การวัดผลมาตรฐานกลาง</h5>
-              </div>
+                  <h5 class="card-title">การวัดผลมาตรฐานกลาง</h5>
+                </div>
 
                 <div class="col-md-16">
                   <div class="form-floating">
-                    <input type="text" class="form-control" name="SCORE_TEACHER" id="SCORE_TEACHER" placeholder="ชื่อการวัดและประเมินผล" maxlength="255"  value="<?php echo $ac->SCORE_TEACHER ?>">
+                    <input type="text" class="form-control" name="SCORE_TEACHER" id="SCORE_TEACHER" placeholder="สัดส่วนการประเมินโดยผู้สอน" maxlength="255"  value="<?php echo $ac->SCORE_TEACHER ?>" onchange="calSumScore()">
                     <label >สัดส่วนการประเมินโดยผู้สอน<font color="red"> *</font></label>
                   </div>
                 </div>
                 <div class="col-md-16">
                   <div class="form-floating">
-                    <input type="text" class="form-control" name="SCORE_PARENT" id="SCORE_PARENT" placeholder="ชื่อการวัดและประเมินผล" maxlength="255"  value="<?php echo $ac->SCORE_PARENT ?>">
+                    <input type="text" class="form-control" name="SCORE_PARENT" id="SCORE_PARENT" placeholder="สัดส่วนการประเมินโดยผู้ปกครอง" maxlength="255"  value="<?php echo $ac->SCORE_PARENT ?>" onchange="calSumScore()">
                     <label >สัดส่วนการประเมินโดยผู้ปกครอง<font color="red"> *</font></label>
                   </div>
                 </div>
                 <div class="col-md-16">
                   <div class="form-floating">
-                    <input type="text" class="form-control" name="SCORE_OTHER" id="SCORE_OTHER" placeholder="ชื่อการวัดและประเมินผล" maxlength="255"  value="<?php echo $ac->SCORE_OTHER ?>">
+                    <input type="text" class="form-control" name="SCORE_OTHER" id="SCORE_OTHER" placeholder="สัดส่วนการประเมินโดยบุคลากรอื่น" maxlength="255"  value="<?php echo $ac->SCORE_OTHER ?>" onchange="calSumScore()">
                     <label >สัดส่วนการประเมินโดยบุคลากรอื่น<font color="red"> *</font></label>
                   </div>
                 </div>
@@ -184,16 +201,6 @@
 <script type="text/javascript">
 
 function onloadpage(){
-   ///ASSESSMENT_PEOPLE_ID
-   var my_ASSESSMENT_PEOPLE_ID = "<?php echo $curriculum_activity[0]->ASSESSMENT_PEOPLE_ID; ?>";
-   var selectoption_ASSESSMENT_PEOPLE_ID = document.querySelector('#ASSESSMENT_PEOPLE_ID');
-   var size_my_ASSESSMENT_PEOPLE_ID =  document.getElementById("ASSESSMENT_PEOPLE_ID").options.length;
-   for (let i = 0; i < size_my_ASSESSMENT_PEOPLE_ID; i++) {
-     if(selectoption_ASSESSMENT_PEOPLE_ID[i].value==my_ASSESSMENT_PEOPLE_ID){
-      selectoption_ASSESSMENT_PEOPLE_ID[i].selected = true;
-        break;
-     }
-   }
   ///ASSESSMENT_TOOL_CODE
    var my_ASSESSMENT_TOOL_CODE = "<?php echo $curriculum_activity[0]->ASSESSMENT_TOOL_CODE; ?>";
    var selectoption_ASSESSMENT_TOOL_CODE = document.querySelector('#ASSESSMENT_TOOL_CODE');
@@ -204,6 +211,17 @@ function onloadpage(){
         break;
      }
    }
+
+    ///ASSESSMENT_PEOPLE_ID
+   var my_ASSESSMENT_PEOPLE_ID = "<?php echo $curriculum_activity[0]->ASSESSMENT_PEOPLE_ID; ?>";
+   var selectoption_ASSESSMENT_PEOPLE_ID = document.querySelector('#ASSESSMENT_PEOPLE_ID');
+   var size_my_ASSESSMENT_PEOPLE_ID =  document.getElementById("ASSESSMENT_PEOPLE_ID").options.length;
+   for (let i = 0; i < size_my_ASSESSMENT_PEOPLE_ID; i++) {
+     if(selectoption_ASSESSMENT_PEOPLE_ID[i].value==my_ASSESSMENT_PEOPLE_ID){
+      selectoption_ASSESSMENT_PEOPLE_ID[i].selected = true;
+        break;
+     }
+   }   
   ///FUNDAMENTAL_SUBJECT_PASSING_CODE
    var my_FUNDAMENTAL_SUBJECT_PASSING_CODE = "<?php echo $curriculum_activity[0]->FUNDAMENTAL_SUBJECT_PASSING_CODE; ?>";
    var selectoption_FUNDAMENTAL_SUBJECT_PASSING_CODE = document.querySelector('#FUNDAMENTAL_SUBJECT_PASSING_CODE');
@@ -217,45 +235,105 @@ function onloadpage(){
    
   }
 
+  $(document).ready(function () {
+    $('.form-check-input').change(function () {
+        $('input[name=' + this.value + ']')[0].disabled = !this.checked;
+        if( $('input[name=' + this.value + ']')[0].disabled == true){
+          document.getElementById(this.value).value = "";
+          let totalScore = 0;
+          $(document).find("input.score").each(function(){
+            if($(this).prop('disabled')==false){
+                num= $(this).val();
+              if(num=='') num=0;
+              totalScore += parseFloat(num);
+            }
+          
+          })
+          document.getElementById("SCORE_SUM_TOTAL").value = totalScore;
+        }
+   
+    }).change();
+
+  });
+
+  $('.score').on('keyup', function () {
+   let totalScore = 0;
+    $(document).find("input.score").each(function(){
+      if($(this).prop('disabled')==false){
+          num= $(this).val();
+        if(num=='') num=0;
+        totalScore += parseFloat(num);
+      }
+    
+   })
+   document.getElementById("SCORE_SUM_TOTAL").value = totalScore;
+  });
+
   function check(frm){
    if(frm.ACTIVITY_NAME.value==""){
       alert("กรุณากรอกชื่อกิจกรรม")
       return false;
    }
 
-   
    if(frm.ASSESSMENT_NAME.value==""){
       alert("กรุณากรอกชื่อการวัดและประเมินผลม")
       return false;
    }
-   if(frm.ASSESSMENT_PEOPLE_ID.value==-1){
-      alert("กรุณาเลือกผู้ประเมิน");
-      return false;
-    }
     if(frm.ASSESSMENT_TOOL_CODE.value==-1){
       alert("กรุณาเลือกเครื่องมือการประเมิน");
       return false;
     }
+    if(frm.ASSESSMENT_PEOPLE_ID.value==-1){
+      alert("กรุณาเลือกผู้ประเมิน");
+      return false;
+    }
 
-    var score = /^[0-9]*[.]?[0-9]{0,1}$/;
-    
-    if(!frm.SCORE_TEACHER.value.match(score)){
+    var checkboxs=document.getElementsByName("ASSESSMENT_PEOPLE_ID");
+    var okay=false;
+    for(var i=0,l=checkboxs.length;i<l;i++)
+    {
+        if(checkboxs[i].checked)
+        {
+            okay=true;
+            break;
+        }
+    }
+    if(okay==false){
+      alert("กรุณาเลือกผู้ประเมินอย่างน้อย 1 คน");
+      return false;
+    }
+
+    var SCORE = /^[0-9]*[.]?[0-9]$/;
+
+    const SCORE_TEACHER = document.getElementById('SCORE_TEACHER');
+    if ( (SCORE_TEACHER.disabled == false) && (!frm.SCORE_TEACHER.value.match(SCORE)) ) {
       alert("กรุณากรอกสัดส่วนการประเมินโดยผู้สอนให้ถูกต้อง");
       return false;
     }
-    if(!frm.SCORE_PARENT.value.match(score)){
+
+    const SCORE_PARENT = document.getElementById('SCORE_PARENT');
+    if ( (SCORE_PARENT.disabled == false) && (!frm.SCORE_PARENT.value.match(SCORE)) ) {
       alert("กรุณากรอกสัดส่วนการประเมินโดยผู้ปกครองให้ถูกต้อง");
       return false;
     }
-    if(!frm.SCORE_OTHER.value.match(score)){
+
+    const SCORE_OTHER = document.getElementById('SCORE_OTHER');
+    if ( (SCORE_OTHER.disabled == false) && (!frm.SCORE_OTHER.value.match(SCORE)) ) {
       alert("กรุณากรอกสัดส่วนการประเมินโดยบุคลากรอื่นให้ถูกต้อง");
       return false;
     }
+
+    if(frm.SCORE_SUM_TOTAL.value>100){
+      alert("คะแนนรวมต้องไม่เกิน 100");
+      return false;
+    }
+
     if(frm.FUNDAMENTAL_SUBJECT_PASSING_CODE.value==-1){
       alert("กรุณาเลือกผลการตัดสินรายวิชาพื้นฐาน");
       return false;
     }
-
+    
+      
 
     $('#Modal').modal('show');
     
