@@ -10,7 +10,7 @@
 
           <div class="card">
             <div class="card-body">
-              <h5 class="card-title">ข้อมูลงบประมาณ</h5>
+              <h5 class="card-title"></h5>
 
               <!-- start Form ข้อมูลงบประมาณ -->
               <form class="row g-3" action="<?php echo base_url('add-budget');?>" method="POST" name="BUDGET" id="BUDGET" enctype="multipart/form-data">
@@ -56,9 +56,9 @@
 
                 <div class="col-md-16">
                   <div class="form-floating">
-                  <select class="form-select" aria-label="Default select example" name="ExpenseTypeCode" id="ExpenseTypeCode">
-                      <option selected value="-1">ประเภทงบประมาณ</option>
-                      <?php foreach($expense_type as $ept) { ?>
+                  <select class="form-select" aria-label="Default select example" name="BUDGET_TYPE_CODE" id="BUDGET_TYPE_CODE">
+                      <option selected value="-1">เลือกประเภทงบประมาณ</option>
+                      <?php foreach($listBudget_type as $ept) { ?>
                         <option value="<?php echo $ept->BUDGET_TYPE_CODE  ; ?>"><?php echo $ept->BUDGET_TYPE_NAME; ?></option>
                       <?php } ?>
                     </select>
@@ -68,15 +68,15 @@
 
                 <div class="col-md-16">
                   <div class="form-floating">
-                  <select class="form-select" aria-label="Default select example" name="BudgetSchoolID" id="BudgetSchoolID">
-                      <option selected value="-1">เลือกสถานศึกษา</option>
-                      <?php foreach($listSchool as $ls) { ?>
-                        <option value="<?php echo $ls->SchoolID; ?>"><?php echo $ls->SchoolNameThai; ?></option>
-                      <?php } ?>
-                    </select>
-                    <label>รหัสสถานศึกษาที่ได้รับเงินอุดหนุนทั่วไปเพื่อพัฒนานวัตกรรมการศึกษา<font color="red"> *</font></label>
+                  <?php foreach($listSchool as $ls) { 
+                        if($ls->SchoolID == $SchoolID) {?>
+                         <input type="text" class="form-control"  placeholder="สถานศึกษา" value="<?php echo $ls->SchoolNameThai; ?>" disabled>
+                         <input type="text" class="form-control" name="BudgetSchoolID" id="BudgetSchoolID" placeholder="สถานศึกษา" value="<?php echo $ls->SchoolID; ?>" hidden>
+                  <?php } } ?>
+                    <label >สถานศึกษาที่ได้รับเงินอุดหนุนทั่วไปเพื่อพัฒนานวัตกรรมการศึกษา<font color="red"> *</font></label>
                   </div>
                 </div>
+
 
                 <div class="col-md-16">
                   <div class="form-floating">
@@ -106,12 +106,8 @@
                   </div>
                 </div>
 
-             
-
-             
-
                 <div class="d-flex justify-content-between">
-                  <a href="list-budget" class="btn btn-danger" >ยกเลิก</a>
+                  <a href="list_budget_by_school?sid=<?php echo $SchoolID?>" class="btn btn-danger" >ยกเลิก</a>
                   <button type="button" class="btn btn-primary" onclick="return check(BUDGET)">บันทึกข้อมูล</button>
                 </div> 
             <!-- Modal -->
@@ -181,7 +177,7 @@
       return false;
     }
      
-      if(frm.ExpenseTypeCode.value==-1){
+      if(frm.BUDGET_TYPE_CODE.value==-1){
       alert("กรุณาเลือกประเภทงบประมาณ");
       return false;
     }

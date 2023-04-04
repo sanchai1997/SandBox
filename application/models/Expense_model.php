@@ -15,11 +15,18 @@ class Expense_model extends CI_Model
         return $result_expense;
     }
 
+    public function get_expense_type() {
+        $query = $this->db->get('CLS_EXPENSE_TYPE');
+        return $query->result();
+    }
+
     public function get_expense_all($ExpenseID) {
-        $this->db->from('EXPENSE')
-        ->where('BudgetID', $ExpenseID )
-        ->where('DeleteStatus', 0 );
-        
+
+        $this->db->select('e.*, et.EXPENSE_TYPE_NAME')
+        ->from('EXPENSE e')
+        ->join('CLS_EXPENSE_TYPE et', 'et.EXPENSE_TYPE_CODE  = e.ExpenseTypeCode ', 'LEFT') 
+        ->where('e.BudgetID', $ExpenseID )
+        ->where('e.DeleteStatus', 0 );
 
         $query = $this->db->get();
 

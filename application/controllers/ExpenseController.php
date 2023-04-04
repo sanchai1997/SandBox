@@ -18,7 +18,7 @@ class ExpenseController extends CI_Controller{
             show_404();
         }
         $data['listSchool'] = $this->School_model->get_school_All();
-        $data['listBudget_type'] = $this->Budget_model->get_expense_type();
+        $data['listExpense_type'] = $this->Expense_model->get_expense_type();
         $data['BudgetID'] = $_GET['bid']; 
         $data['SchoolID'] = $_GET['sid']; 
         
@@ -37,7 +37,7 @@ class ExpenseController extends CI_Controller{
         }
 
         $data['listSchool'] = $this->School_model->get_school_All();
-        $data['listBudget_type'] = $this->Budget_model->get_expense_type();
+        $data['listExpense_type'] = $this->Expense_model->get_expense_type();
 
         $data['ExpenseID'] = $_GET['eid']; 
         $data['SchoolID'] = $_GET['sid']; 
@@ -51,53 +51,9 @@ class ExpenseController extends CI_Controller{
 
     }
 
-    public function list_budget() {
-        
-        if ( ! file_exists(APPPATH.'views/pages/dashboard/Budget/list-budget.php'))
-        {
-            show_404();
-        }
 
-        $data['listBudget'] = $this->Budget_model->get_Budget_All();
-        $data['School'] = $this->School_model->get_school_All();
-
-        if($data['School']==null){
-           
-        }else{
-            $data['School_id'] = $this->School_model->get_school_top();
-            $data['SchoolID'] = $data['School_id'][0]-> SchoolID;
-            $data['SchoolNameThai'] = $data['School_id'][0]-> SchoolNameThai;
-        }
-
-        $this->load->view('templates/header');
-        $this->load->view('templates/sidebar');
-        $this->load->view('pages/dashboard/Budget/list-budget',$data);
-        $this->load->view('templates/footer');
-
-    }
-    public function list_budget_by_school() {
-        
-        if ( ! file_exists(APPPATH.'views/pages/dashboard/Budget/list-budget.php'))
-        {
-            show_404();
-        }
-
-        $data['SchoolID'] = $_GET['sid']; 
-        $school = $this->School_model->get_school($data['SchoolID']);  
-        $data['SchoolNameThai'] = $school[0]->SchoolNameThai ; 
-
-        $data['listBudget'] = $this->Budget_model->get_Budget_by_school($data['SchoolID']);  
-        $data['School'] = $this->School_model->get_school_All();
-
-        $this->load->view('templates/header');
-        $this->load->view('templates/sidebar');
-        $this->load->view('pages/dashboard/Budget/list-budget',$data);
-        $this->load->view('templates/footer');
-
-    }
 
     public function add_Expense() {
-            
             
             $SchoolID = $this->input->post('SchoolID'); 
 
@@ -105,7 +61,7 @@ class ExpenseController extends CI_Controller{
                 'ExpenseEducationYear' => $this->input->post('ExpenseEducationYear'),
                 'ExpenseSemester' => $this->input->post('ExpenseSemester'),
                 'BudgetID' => $this->input->post('BudgetID'),
-                'ExpenseSchoolID ' => $this->input->post('ExpenseBudgetSchoolID'),
+                'ExpenseSchoolID ' =>  $SchoolID,
                 'ExpenseTypeCode' => $this->input->post('ExpenseTypeCode'),
                 'ExpenseAmount' => $this->input->post('ExpenseAmount'),
                 'ExpenseDate' => $this->input->post('ExpenseDate'),
@@ -134,7 +90,7 @@ class ExpenseController extends CI_Controller{
         $expense = [
             'ExpenseEducationYear' => $this->input->post('ExpenseEducationYear'),
             'ExpenseSemester' => $this->input->post('ExpenseSemester'),
-            'ExpenseSchoolID ' => $this->input->post('ExpenseSchoolID'),
+            'ExpenseSchoolID ' => $SchoolID,
             'ExpenseTypeCode' => $this->input->post('ExpenseTypeCode'),
             'ExpenseAmount' => $this->input->post('ExpenseAmount'),
             'ExpenseDate' => $this->input->post('ExpenseDate'),

@@ -11,7 +11,7 @@
 
           <div class="card">
             <div class="card-body">
-              <h5 class="card-title">ข้อมูลงบประมาณ</h5>
+              <h5 class="card-title"></h5>
 
               <!-- start Form ข้อมูลงบประมาณ -->
               <form class="row g-3" action="<?php echo base_url('edit-budget');?>" method="POST" name="BUDGET" id="BUDGET" enctype="multipart/form-data">
@@ -61,9 +61,9 @@
 
                 <div class="col-md-16">
                   <div class="form-floating">
-                  <select class="form-select" aria-label="Default select example" name="ExpenseTypeCode" id="ExpenseTypeCode">
-                      <option selected value="-1">ประเภทงบประมาณ</option>
-                      <?php foreach($expense_type as $ept) { ?>
+                  <select class="form-select" aria-label="Default select example" name="BUDGET_TYPE_CODE" id="BUDGET_TYPE_CODE">
+                      <option selected value="-1">เลือกประเภทงบประมาณ</option>
+                      <?php foreach($listBudget_type as $ept) { ?>
                         <option value="<?php echo $ept->BUDGET_TYPE_CODE  ; ?>"><?php echo $ept->BUDGET_TYPE_NAME; ?></option>
                       <?php } ?>
                     </select>
@@ -71,17 +71,14 @@
                   </div>
                 </div>
 
-              
-
                 <div class="col-md-16">
                   <div class="form-floating">
-                  <select class="form-select" aria-label="Default select example" name="BudgetSchoolID" id="BudgetSchoolID">
-                      <option selected value="-1">เลือกสถานศึกษา</option>
-                      <?php foreach($listSchool as $ls) { ?>
-                        <option value="<?php echo $ls->SchoolID; ?>"><?php echo $ls->SchoolNameThai; ?></option>
-                      <?php } ?>
-                    </select>
-                    <label>รหัสสถานศึกษาที่ได้รับเงินอุดหนุนทั่วไปเพื่อพัฒนานวัตกรรมการศึกษา</label>
+                  <?php foreach($listSchool as $ls) { 
+                        if($ls->SchoolID == $SchoolID) {?>
+                         <input type="text" class="form-control"  placeholder="สถานศึกษา" value="<?php echo $ls->SchoolNameThai; ?>" disabled>
+                         <input type="text" class="form-control" name="BudgetSchoolID" id="BudgetSchoolID" placeholder="สถานศึกษา" value="<?php echo $ls->SchoolID; ?>" hidden>
+                  <?php } } ?>
+                    <label >สถานศึกษาที่ได้รับเงินอุดหนุนทั่วไปเพื่อพัฒนานวัตกรรมการศึกษา<font color="red"> *</font></label>
                   </div>
                 </div>
 
@@ -188,17 +185,6 @@
      }
    }
 
-
-      //BudgetSchoolID
-   var my_BudgetSchoolID = "<?php echo $b->BudgetSchoolID; ?>";
-   var selectoption_BudgetSchoolID = document.querySelector('#BudgetSchoolID');
-   var size_my_BudgetSchoolID =  document.getElementById("BudgetSchoolID").options.length;
-   for (let i = 0; i < size_my_BudgetSchoolID; i++) {
-     if(selectoption_BudgetSchoolID[i].value==my_BudgetSchoolID){
-      selectoption_BudgetSchoolID[i].selected = true;
-        break;
-     }
-   }
       //AREA_NO
       var my_AREA_NO = "<?php echo $b->AREA_NO; ?>";
    var selectoption_AREA_NO = document.querySelector('#AREA_NO');
@@ -209,13 +195,13 @@
         break;
      }
    }
-  //EXPENSE_TYPE_CODE
-  var my_EXPENSE_TYPE_CODE = "<?php echo $b->EXPENSE_TYPE_CODE; ?>";
-   var selectoption_EXPENSE_TYPE_CODE = document.querySelector('#ExpenseTypeCode');
-   var size_my_EXPENSE_TYPE_CODE =  document.getElementById("ExpenseTypeCode").options.length;
-   for (let i = 0; i < size_my_EXPENSE_TYPE_CODE; i++) {
-     if(selectoption_EXPENSE_TYPE_CODE[i].value==my_EXPENSE_TYPE_CODE){
-      selectoption_EXPENSE_TYPE_CODE[i].selected = true;
+  //BUDGET_TYPE_CODE
+  var my_BUDGET_TYPE_CODE= "<?php echo $b->BUDGET_TYPE_CODE; ?>";
+   var selectoption_BUDGET_TYPE_CODE = document.querySelector('#BUDGET_TYPE_CODE');
+   var size_my_BUDGET_TYPE_CODE =  document.getElementById("BUDGET_TYPE_CODE").options.length;
+   for (let i = 0; i < size_my_BUDGET_TYPE_CODE; i++) {
+     if(selectoption_BUDGET_TYPE_CODE[i].value==my_BUDGET_TYPE_CODE){
+      selectoption_BUDGET_TYPE_CODE[i].selected = true;
         break;
      }
    }

@@ -42,36 +42,24 @@
                   </div>
                 </div>
 
-               
-
-                <div class="col-md-16">
-                  <div class="form-floating">
-                  <select class="form-select" aria-label="Default select example" name="ExpenseSchoolID" id="ExpenseSchoolID">
-                      <option selected value="-1">เลือกสถานศึกษา</option>
-                      <?php foreach($listSchool as $ls) { ?>
-                        <option value="<?php echo $ls->SchoolID; ?>"><?php echo $ls->SchoolNameThai; ?></option>
-                      <?php } ?>
-                    </select>
-                    <label>สถานศึกษาที่เบิกจ่าย</label>
-                  </div>
-                </div>
+    
 
                 <div class="col-md-16">
                   <div class="form-floating">
                   <select class="form-select" aria-label="Default select example" name="ExpenseTypeCode" id="ExpenseTypeCode">
                       <option selected value="-1">เลือกประเภทการเบิกจ่าย</option>
-                      <?php foreach($listBudget_type as $lb_t) { ?>
-                        <option value="<?php echo $lb_t->BUDGET_TYPE_CODE; ?>"><?php echo $lb_t->BUDGET_TYPE_NAME; ?></option>
+                      <?php foreach($listExpense_type as $lb_t) { ?>
+                        <option value="<?php echo $lb_t->EXPENSE_TYPE_CODE; ?>"><?php echo $lb_t->EXPENSE_TYPE_NAME; ?></option>
                       <?php } ?>
                     </select>
-                    <label>รหัสประเภทการเบิกจ่าย</label>
+                    <label>ประเภทการเบิกจ่าย</label>
                   </div>
                 </div>
                 
                 <div class="col-md-16">
                   <div class="form-floating">
                     <input type="text" class="form-control"name="ExpenseAmount"id="ExpenseAmount" placeholder="ปีการศึกษาที่เบิกจ่าย" maxlength="4" value="<?php echo $e->ExpenseAmount ; ?>">
-                    <label >จำนวนวันที่เบิกจ่าย</label>
+                    <label >จำนวนเงินการเบิกจ่าย</label>
                   </div>
                 </div>
 
@@ -182,19 +170,7 @@
      }
    }
 
-   
-    //ExpenseSchoolID
-   var my_ExpenseSchoolID = "<?php echo $e->ExpenseSchoolID ; ?>";
-   var selectoption_ExpenseSchoolID = document.querySelector('#ExpenseSchoolID');
-   var size_my_ExpenseSchoolID =  document.getElementById("ExpenseSchoolID").options.length;
-   for (let i = 0; i < size_my_ExpenseSchoolID; i++) {
-     if(selectoption_ExpenseSchoolID[i].value==my_ExpenseSchoolID){
-      selectoption_ExpenseSchoolID[i].selected = true;
-        break;
-     }
-   }
-
-       //ExpenseSchoolID
+       //ExpenseSTypeCode
     var my_ExpenseTypeCode = "<?php echo $e->ExpenseTypeCode ; ?>";
    var selectoption_ExpenseTypeCode = document.querySelector('#ExpenseTypeCode');
    var size_my_ExpenseTypeCode =  document.getElementById("ExpenseTypeCode").options.length;
@@ -226,18 +202,13 @@
       alert("กรุณาเลือกภาคเรียนที่เบิกจ่าย");
       return false;
     }
-    //Check_ExpenseSchoolID(เลือกสถานศึกษา)
-    if(frm.ExpenseSchoolID.value==-1){
-      alert("กรุณาเลือกสถานศึกษา");
-      return false;
-    }
     //Check_ExpenseTypeCode(ประเภทการเบิกจ่าย)
     if(frm.ExpenseTypeCode.value==-1){
       alert("กรุณากรอกประเภทการเบิกจ่าย");
       return false;
     }
     if(frm.ExpenseAmount.value ==""){
-        alert("กรุณากรอกจำนวนเงินการเบิก");
+        alert("กรุณากรอกจำนวนเงินการเบิกจ่าย");
         frm.ExpenseAmount.value = "";
         return false;
     }

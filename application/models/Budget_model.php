@@ -10,7 +10,7 @@ class Budget_model extends CI_Model
         $this->load->helper('url');
     }
 
-    public function get_expense_type() {
+    public function get_budget_type() {
         $query = $this->db->get('CLS_BUDGET_TYPE');
         return $query->result();
     }
@@ -24,13 +24,11 @@ class Budget_model extends CI_Model
     }
 
     public function get_Budget_All() {
-        $this->db->select('b.*, s.SchoolNameThai, ')
+        $this->db->select('b.*, s.SchoolNameThai ')
         ->from('BUDGET b')
         ->where('b.DeleteStatus', 0 )
         ->join('SCHOOL s', 's.SchoolID   = b.BudgetSchoolID   ', 'LEFT');
-        
-        
-        ;
+
        
         $query = $this->db->get();
     
@@ -63,9 +61,10 @@ class Budget_model extends CI_Model
         return $result;
     }
     public function get_Budget_by_school($SchoolID) {
-        $this->db
+        $this->db->select('*')
         ->from('BUDGET b')
         ->join('SCHOOL s', 's.SchoolID   = b.BudgetSchoolID   ', 'LEFT') 
+        ->join('CLS_INNOVATION_AREA ina', 'b.AREA_NO = ina.INNOVATION_AREA_CODE', 'LEFT') 
         ->where('b.DeleteStatus', 0 )
         ->where_in('b.BudgetSchoolID', $SchoolID  )
         ;
