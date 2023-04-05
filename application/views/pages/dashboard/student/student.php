@@ -253,6 +253,7 @@
                                 </div>
                                 <?php
                                 $result = $this->db->query('SELECT * FROM STUDENT
+                            INNER JOIN CLS_CITIZEN_ID_TYPE ON STUDENT.StudentPersonalIDTypeCode =  CLS_CITIZEN_ID_TYPE.CITIZEN_ID_TYPE_CODE
                             INNER JOIN CLS_GRADE_LEVEL ON STUDENT.GradeLevelCode =  CLS_GRADE_LEVEL.GRADE_LEVEL_CODE
                             INNER JOIN CLS_EDUCATION_LEVEL ON STUDENT.EducationLevelCode =  CLS_EDUCATION_LEVEL.EDUCATION_LEVEL_CODE
                             INNER JOIN CLS_STUDENT_STATUS ON STUDENT.StudentStatusCode = CLS_STUDENT_STATUS.STUDENT_STATUS_CODE
@@ -305,7 +306,10 @@
                                                     <label style="padding-left: 25px;"> หลักสูตร: &nbsp; <?php if ($STUDENT_DETAIL->CurriculumID == '') {
                                                                                                                 echo '-';
                                                                                                             } else {
-                                                                                                                echo $STUDENT_DETAIL->CurriculumID;
+                                                                                                                $result = $this->db->query('SELECT * FROM CURRICULUM WHERE CurriculumID = ' . $STUDENT_DETAIL->CurriculumID . '');
+                                                                                                                foreach ($result->result() as $CURRICULUM) {
+                                                                                                                    echo $CURRICULUM->CurriculumName;
+                                                                                                                }
                                                                                                             } ?></label><br>
                                                     <label style="padding-left: 25px;"> ห้องเรียน: &nbsp;<?php if ($STUDENT_DETAIL->Classroom == '') {
                                                                                                                 echo '-';
@@ -344,7 +348,8 @@
                                                 </h5>
                                                 <div class="row">
                                                     <div class="col-4" style="text-align: left; padding-left: 25px; padding-bottom: 5px;">
-                                                        <label style="padding-left: 25px;"> หมายเลขบัตรประจำตัวประชาชน: &nbsp;<?= $STUDENT_DETAIL->StudentPersonalID ?></label><br>
+                                                        <label style="padding-left: 25px;"> ประเภทบัตรประจำตัว: &nbsp;<?= $STUDENT_DETAIL->CITIZEN_ID_TYPE_NAME ?></label><br>
+                                                        <label style="padding-left: 25px;"> หมายเลขบัตร: &nbsp;<?= $STUDENT_DETAIL->StudentPersonalID ?></label><br>
                                                         <label style="padding-left: 25px;"> เลขที่หนังสือเดินทาง: &nbsp;<?php if ($STUDENT_DETAIL->StudentPassportNumber == NULL) {
                                                                                                                             echo '-';
                                                                                                                         } else echo $STUDENT_DETAIL->StudentPassportNumber; ?></label><br>

@@ -127,7 +127,7 @@ class Student_model extends CI_Model
         $result = $this->db->insert('STUDENT', $data);
         return $result;
     }
-    
+
     //Update Student Main
     public function update_student_main($StudentReferenceID, $SchoolID, $ImageStudent)
     {
@@ -184,6 +184,7 @@ class Student_model extends CI_Model
 
         $data = [
 
+            'StudentPersonalIDTypeCode' => $this->input->post('StudentPersonalIDTypeCode'),
             'StudentPersonalID' => $this->input->post('StudentPersonalID'),
             'StudentPassportNumber' => $this->input->post('StudentPassportNumber'),
             'StudentGenderCode' => $this->input->post('StudentGenderCode'),

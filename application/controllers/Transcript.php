@@ -117,4 +117,16 @@ class Transcript extends CI_Controller
         $this->load->view('pages/dashboard/transcript/transcript-competency', $data);
         $this->load->view('templates/footer', $data);
     }
+
+    public function transcript_download()
+    {
+
+        if (!file_exists(APPPATH . 'views/pages/dashboard/transcript/transcript-download.php')) {
+            // Whoops, we don't have a page for that!
+            show_404();
+        }
+
+        $data['title'] = 'transcript-download'; // Capitalize the first letter
+        $this->load->view('pages/dashboard/transcript/transcript-download', $data);
+    }
 }

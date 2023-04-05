@@ -35,7 +35,7 @@
                 <div class="card">
                     <div class="card-body">
                         <!-- Floating Labels Form -->
-                        <form class="row g-3" action="<?php echo base_url('update-transcript-subject/' . $_GET['SchoolID'] . '/' . $_GET['StudentReferenceID'] . '/' . $_GET['EducationYear'] . '/' . $_GET['Semester'] . '/' . $_GET['GradeLevelCode'] . '/' . $_GET['StudentID'] . '/' . $_GET['TranscriptSeriesNumber'] . '/' . $_GET['TranscriptNumber'] . '/' . $_GET['TranscriptEducationYear'] . '/' . $_GET['TranscriptSemester']); ?>" method="POST" id="Transcript" enctype="multipart/form-data">
+                        <form class="row g-3" action="<?php echo base_url('update-transcript-subject/' . $_GET['SchoolID'] . '/' . $_GET['StudentReferenceID'] . '/' . $_GET['EducationYear'] . '/' . $_GET['Semester'] . '/' . $_GET['GradeLevelCode'] . '/' . $_GET['StudentID'] . '/' . $_GET['TranscriptSeriesNumber'] . '/' . $_GET['TranscriptNumber'] . '/' . $_GET['TranscriptEducationYear'] . '/' . $_GET['TranscriptSemester'] . '/' . $_GET['OldSchoolLastGradeLevelCode']); ?>" method="POST" id="Transcript" enctype="multipart/form-data">
                             <h6 style="padding-left: 15px;" class="card-title"></h6>
                             <?php
                             $result = $this->db->query('SELECT * FROM TRANSCRIPT_SUBJECT 
@@ -138,7 +138,7 @@
                                 </div>
                             <?php } ?>
                             <div class="d-flex justify-content-between">
-                                <a href="transcript-subject?SchoolID=<?= $_GET['SchoolID']; ?>&&StudentReferenceID=<?= $_GET['StudentReferenceID']; ?>&&EducationYear=<?= $_GET['EducationYear']; ?>&&Semester=<?= $_GET['Semester']; ?>&&GradeLevelCode=<?= $_GET['GradeLevelCode']; ?>&&StudentID=<?= $_GET['StudentID']; ?>&&TranscriptSeriesNumber=<?= $_GET['TranscriptSeriesNumber']; ?>&&TranscriptNumber=<?= $_GET['TranscriptNumber']; ?>&&TranscriptEducationYear=<?= $_GET['TranscriptEducationYear']; ?>&&TranscriptSemester=<?= $_GET['TranscriptSemester']; ?>" class="btn btn-danger">ยกเลิก</a>
+                                <a href="transcript-subject?SchoolID=<?= $_GET['SchoolID']; ?>&&StudentReferenceID=<?= $_GET['StudentReferenceID']; ?>&&EducationYear=<?= $_GET['EducationYear']; ?>&&Semester=<?= $_GET['Semester']; ?>&&GradeLevelCode=<?= $_GET['GradeLevelCode']; ?>&&StudentID=<?= $_GET['StudentID']; ?>&&TranscriptSeriesNumber=<?= $_GET['TranscriptSeriesNumber']; ?>&&TranscriptNumber=<?= $_GET['TranscriptNumber']; ?>&&TranscriptEducationYear=<?= $_GET['TranscriptEducationYear']; ?>&&TranscriptSemester=<?= $_GET['TranscriptSemester']; ?>&&OldSchoolLastGradeLevelCode=<?= $_GET['OldSchoolLastGradeLevelCode']; ?>" class="btn btn-danger">ยกเลิก</a>
                                 <button type="button" class="btn btn-primary" onclick="return check(Transcript)">บันทึกข้อมูล</button>
                             </div>
                             <!-- Modal -->

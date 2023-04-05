@@ -50,7 +50,7 @@
                     </div>
                     <div class="col-3">
                         <h5 style="float: right; padding: 15px;" class="card-title">
-                            <a href="forms-transcript-rt?SchoolID=<?= $_GET['SchoolID']; ?>&&StudentReferenceID=<?= $_GET['StudentReferenceID']; ?>&&EducationYear=<?= $_GET['EducationYear']; ?>&&Semester=<?= $_GET['Semester']; ?>&&GradeLevelCode=<?= $_GET['GradeLevelCode']; ?>&&StudentID=<?= $_GET['StudentID']; ?>&&TranscriptSeriesNumber=<?= $_GET['TranscriptSeriesNumber']; ?>&&TranscriptNumber=<?= $_GET['TranscriptNumber']; ?>" class="btn btn-success"><i class="bi bi-file-earmark-plus">
+                            <a href="forms-transcript-rt?SchoolID=<?= $_GET['SchoolID']; ?>&&StudentReferenceID=<?= $_GET['StudentReferenceID']; ?>&&EducationYear=<?= $_GET['EducationYear']; ?>&&Semester=<?= $_GET['Semester']; ?>&&GradeLevelCode=<?= $_GET['GradeLevelCode']; ?>&&StudentID=<?= $_GET['StudentID']; ?>&&TranscriptSeriesNumber=<?= $_GET['TranscriptSeriesNumber']; ?>&&TranscriptNumber=<?= $_GET['TranscriptNumber']; ?>&&TranscriptEducationYear=<?= $_GET['TranscriptEducationYear']; ?>&&TranscriptSemester=<?= $_GET['TranscriptSemester']; ?>" class="btn btn-success"><i class="bi bi-file-earmark-plus">
                                 </i> เพิ่มข้อมูล
                             </a>
                         </h5>
@@ -60,8 +60,6 @@
                 <table class="table table-borderless datatable">
                     <thead>
                         <tr>
-                            <th scope="col">ปีการศึกษา</th>
-                            <th scope="col">ภาคเรียน</th>
                             <th scope="col">ระดับการศึกษา</th>
                             <th scope="col">ระดับชั้นปี</th>
                             <th style="text-align: center;" scope="col">อ่านออกเสียง</th>
@@ -85,8 +83,6 @@
                         ?>
                             <tr>
 
-                                <td><?= $TRANSCRIPT_RT->RTEducationYear ?></td>
-                                <td><?= $TRANSCRIPT_RT->RTSemester ?></td>
                                 <td><?= $TRANSCRIPT_RT->EDUCATION_LEVEL_NAME ?></td>
                                 <td><?= $TRANSCRIPT_RT->GRADE_LEVEL_NAME ?></td>
                                 <td style="text-align: center;"><?= $TRANSCRIPT_RT->RTPronounceScore ?></td>

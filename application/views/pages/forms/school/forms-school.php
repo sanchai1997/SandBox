@@ -290,15 +290,16 @@
 
       //Check_InnovationAreaCode
       if (frm.InnovationAreaCode.value == "") {
-        <?php $_SESSION['warning'] = 'กรุณาเลือกพื้นที่นวัฒกรรมการศึกษา' ?>
+        alert("กรุณาเลือกพื้นที่นวัตกรรม");
+        return false;
       }
 
       if (frm.ImageSchool.value == "") {
         alert("กรุณาเพิ่มรูปตราโรงเรียน");
         return false;
-      } else if (!frm.ImageSchool.value == "") {
+      } else if (frm.ImageSchool.value != "") {
         var fty = new Array(".jpg", ".jpeg", ".png"); // ประเภทไฟล์ที่อนุญาตให้อัพโหลด   
-        var a = frm.ImageTeacher.value; //กำหนดค่าของไฟล์ใหกับตัวแปร a   
+        var a = frm.ImageSchool.value; //กำหนดค่าของไฟล์ใหกับตัวแปร a   
         var permiss = 0; // เงื่อนไขไฟล์อนุญาต
         a = a.toLowerCase();
         if (a != "") {

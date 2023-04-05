@@ -81,14 +81,20 @@
                                 <div class="form-floating">
                                     <select class="form-select" name="GradeLevelCode" id="GradeLevelCode" aria-label="GradeLevelCode">
                                         <?php
-                                        $result = $this->db->query('SELECT * FROM CLS_GRADE_LEVEL ');
-
-                                        foreach ($result->result() as $GRADE_LEVEL) {
+                                        if ($STUDENT->GradeLevelCode == NULL) {
                                         ?>
-                                            <option <?php if ($STUDENT->GradeLevelCode == $GRADE_LEVEL->GRADE_LEVEL_CODE) {
-                                                        echo 'selected';
-                                                    } ?> value="<?= $GRADE_LEVEL->GRADE_LEVEL_CODE; ?>"><?= $GRADE_LEVEL->GRADE_LEVEL_NAME; ?></option>
+                                            <option value="" selected>เลือก</option>
+                                            <?php
+                                        } else {
+                                            $result = $this->db->query('SELECT * FROM CLS_GRADE_LEVEL ');
+
+                                            foreach ($result->result() as $GRADE_LEVEL) {
+                                            ?>
+                                                <option <?php if ($STUDENT->GradeLevelCode == $GRADE_LEVEL->GRADE_LEVEL_CODE) {
+                                                            echo 'selected';
+                                                        } ?> value="<?= $GRADE_LEVEL->GRADE_LEVEL_CODE; ?>"><?= $GRADE_LEVEL->GRADE_LEVEL_NAME; ?></option>
                                         <?php
+                                            }
                                         }
                                         ?>
                                     </select>

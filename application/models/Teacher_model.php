@@ -188,6 +188,7 @@ class Teacher_model extends CI_Model
     {
         $data = [
 
+            'TeacherPersonalIDTypeCode' => $this->input->post('TeacherPersonalIDTypeCode'),
             'TeacherPersonalID' => $this->input->post('TeacherPersonalID'),
             'TeacherPassportNumber' => $this->input->post('TeacherPassportNumber'),
             'TeacherGenderCode' => $this->input->post('TeacherGenderCode'),

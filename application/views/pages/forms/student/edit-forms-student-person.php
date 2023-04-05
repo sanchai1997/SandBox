@@ -30,10 +30,28 @@
                         <!-- Floating Labels Form -->
                         <form class="row g-3" action="<?php echo base_url('update-student-person/' . $_GET['StudentReferenceID'] . '/' . $_GET['SchoolID'] . '/' . $_GET['EducationYear'] . '/' . $_GET['Semester'] . '/' . $_GET['GradeLevelCode']); ?>" method="POST" id="Student" enctype="multipart/form-data">
                             <h6 style="padding-left: 15px;" class="card-title">ข้อมูลบุคคล</h6>
+                            <div class="col-md-12">
+                                <div class="form-floating">
+                                    <select class="form-select" name="StudentPersonalIDTypeCode" id="StudentPersonalIDTypeCode" aria-label="StudentPersonalIDTypeCode">
+                                        <option value="" selected>เลือก</option>
+                                        <?php
+                                        $result = $this->db->query('SELECT * FROM CLS_CITIZEN_ID_TYPE');
+                                        foreach ($result->result() as $CITIZEN_ID_TYPE) {
+                                        ?>
+                                            <option <?php if ($STUDENT->StudentPersonalIDTypeCode == $CITIZEN_ID_TYPE->CITIZEN_ID_TYPE_CODE) {
+                                                        echo 'selected';
+                                                    } ?> value="<?= $CITIZEN_ID_TYPE->CITIZEN_ID_TYPE_CODE; ?>"><?= $CITIZEN_ID_TYPE->CITIZEN_ID_TYPE_NAME; ?></option>
+                                        <?php
+                                        }
+                                        ?>
+                                    </select>
+                                    <label for="StudentPersonalIDTypeCode">ประเภทบัตรประจำตัว<font color="red"> *</font></label>
+                                </div>
+                            </div>
                             <div class="col-md-6">
                                 <div class="form-floating">
                                     <input type="text" class="form-control" maxlength="13" name="StudentPersonalID" id="StudentPersonalID" value="<?= $STUDENT->StudentPersonalID ?>">
-                                    <label for="StudentPersonalID">หมายเลขบัตรประจำตัวประชาชน<font color="red"> *</font></label>
+                                    <label for="StudentPersonalID">หมายเลขบัตร<font color="red"> *</font></label>
                                 </div>
                             </div>
                             <div class="col-md-6">
@@ -239,10 +257,10 @@
 
             var Year = /^[0-9]{13,13}$/;
             if (frm.StudentPersonalID.value == "") {
-                alert("กรุณาหมายเลขบัตรประจำตัวประชาชน");
+                alert("กรุณาหมายเลขบัตร");
                 return false;
             } else if (!frm.StudentPersonalID.value.match(Year)) {
-                alert("กรุณาหมายเลขบัตรประจำตัวประชาชนให้ครบ 13 หลัก");
+                alert("กรุณาหมายเลขบัตรให้ครบ 13 หลัก");
                 frm.StudentPersonalID.value = "";
                 return false;
             }
