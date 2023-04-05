@@ -10,7 +10,7 @@ class Evaluation_model extends CI_Model
 		// echo'</pre>';
 		// exit;
 		$data = array(
-			// 'CriteriaID' => $this->input->post('CriteriaID'),
+			'CriteriaID' => $this->input->post('CriteriaID'),
 			'CriteriaName' => $this->input->post('CriteriaName'),
 			'CriteriaDescription' => $this->input->post('CriteriaDescription'),
 			'CriteriaLevelAmount' => $this->input->post('CriteriaLevelAmount'),
@@ -37,7 +37,7 @@ class Evaluation_model extends CI_Model
 		// echo'</pre>';
 		// exit;
 		$data = array(
-			// 'CriteriaID' => $this->input->post('CriteriaID'),
+			'CriteriaID' => $this->input->post('CriteriaID'),
 			'CriteriaName' => $this->input->post('CriteriaName'),
 			'CriteriaDescription' => $this->input->post('CriteriaDescription'),
 			'CriteriaLevelAmount' => $this->input->post('CriteriaLevelAmount'),
@@ -45,7 +45,7 @@ class Evaluation_model extends CI_Model
 			'CriteriaPassingScorePercentage' => $this->input->post('CriteriaPassingScorePercentage')
 
 		);
-		$this->db->where('CriteriaID', $this->input->post('CriteriaID'));
+		$this->db->where('Id', $this->input->post('Id'));
 		$query = $this->db->update('ASSESSMENT_CRITERIA', $data);
 		if ($query) {
 			session_start(); // เริ่มต้น session
@@ -69,7 +69,7 @@ class Evaluation_model extends CI_Model
 				
 		'DeleteStatus' => $status 
 	);
-		$this->db->where('CriteriaID', $this->input->post('CriteriaID'));
+		$this->db->where('Id', $this->input->post('Id'));
 		$query = $this->db->update('ASSESSMENT_CRITERIA', $data);
 		if ($query) {
 			session_start(); // เริ่มต้น session
@@ -89,6 +89,7 @@ class Evaluation_model extends CI_Model
 		// echo'</pre>';
 		// exit;
 		$data = array(
+			'Id_ac' => $this->input->post('Id_ac'),
 			'CriteriaID' => $this->input->post('CriteriaID'),
 			'LevelIndex' => $this->input->post('LevelIndex'),
 			'LevelName' => $this->input->post('LevelName'),
@@ -113,24 +114,49 @@ class Evaluation_model extends CI_Model
 		// print_r($_POST);
 		// echo'</pre>';
 		// exit;
-		$data = array(
-			'CriteriaID' => $this->input->post('CriteriaID'),
-			'LevelIndex' => $this->input->post('LevelIndex'),
-			'LevelName' => $this->input->post('LevelName'),
-			'LevelScore' => $this->input->post('LevelScore')
+		// สร้างตัวแปร $id_name มาเก็บค่าไว้ก่อน
+		$Id_ac = $this->input->post('Id_ac');
+		$LevelIndex = $this->input->post('LevelIndex');
 
-		);
-		$this->db->where('Id', $this->input->post('Id'));
-		$query = $this->db->update('ASSESSMENT_CRITERIA_LEVEL', $data);
-		if ($query) {
-			session_start(); // เริ่มต้น session
-			$_SESSION['success'] = "แก้ไขสำเร็จ!"; // กำหนดค่า success ใน session เป็น true
-			header("Location: " . site_url('Fm_evaluation_das_p1?page=sh1'));
-			// ไปยังหน้าก่อนหน้านี้
+// นำค่า $id_name มาใช้ในการค้นหาข้อมูลในฐานข้อมูล
+$this->db->where('Id_ac', $Id_ac);
+$this->db->where('LevelIndex', $LevelIndex);
+$this->db->where('DeleteStatus=0');
+$query = $this->db->get('ASSESSMENT_CRITERIA_LEVEL');
 
-		} else {
-			echo 'false';
-		}
+// นับจำนวนแถวที่ค้นพบ
+$num_chk = $query->num_rows();
+
+// ตรวจสอบจำนวนแถวที่ค้นพบว่ามีมากกว่า 0 หรือไม่
+if ($num_chk <= 0 ) {
+	// ไม่พบข้อมูลในฐานข้อมูล
+	$data = array(
+		'Id_ac' => $this->input->post('Id_ac'),
+		'CriteriaID' => $this->input->post('CriteriaID'),
+		'LevelIndex' => $this->input->post('LevelIndex'),
+		'LevelName' => $this->input->post('LevelName'),
+		'LevelScore' => $this->input->post('LevelScore')
+  
+	);
+	$this->db->where('Id', $this->input->post('Id'));
+	$query = $this->db->update('ASSESSMENT_CRITERIA_LEVEL', $data);
+	if ($query) {
+		session_start(); // เริ่มต้น session
+		$_SESSION['success'] = "แก้ไขสำเร็จ!"; // กำหนดค่า success ใน session เป็น true
+		header("Location: " . site_url('Fm_evaluation_das_p1?page=sh1'));
+		// ไปยังหน้าก่อนหน้านี้
+  
+	} else {
+		echo 'false';
+	}
+} else {
+
+   // พบข้อมูลในฐานข้อมูล
+   session_start(); // เริ่มต้น session
+   $_SESSION['false'] = "ไม่มามารถแก้ไขได้เนื่องจากลำดับองค์ประกอบตัวชี้วัด ซ้ำกันในระบบ !"; // กำหนดค่า success ใน session เป็น true
+   header('Location: ' . $_SERVER['HTTP_REFERER']);
+   exit;
+}
 	}
 	public function del_ass_ria_lvl() //sh2
 	{
@@ -164,6 +190,7 @@ class Evaluation_model extends CI_Model
 		// echo'</pre>';
 		// exit;
 		$data = array(
+			'Id_ac' => $this->input->post('Id_ac'),
 			'CriteriaID' => $this->input->post('CriteriaID'),
 			'CompositionIndex' => $this->input->post('CompositionIndex'),
 			'CompositionName' => $this->input->post('CompositionName'),
@@ -186,30 +213,54 @@ class Evaluation_model extends CI_Model
 	public function edit_ass_ria_com() //sh3
 	{
 
-		// echo '<pre>';
-		// print_r($_POST);
-		// echo'</pre>';
-		// exit;
-		$data = array(
-			'CriteriaID' => $this->input->post('CriteriaID'),
-			'CompositionIndex' => $this->input->post('CompositionIndex'),
-			'CompositionName' => $this->input->post('CompositionName'),
-			'CompositionWeightScore' => $this->input->post('CompositionWeightScore'),
-			'CompositionGuideline' => $this->input->post('CompositionGuideline')
+			// echo '<pre>';
+			// print_r($_POST);
+			// echo'</pre>';
+			// exit;
+			// สร้างตัวแปร $id_name มาเก็บค่าไว้ก่อน
+$Id_ac = $this->input->post('Id_ac');
+$CompositionIndex = $this->input->post('CompositionIndex');
+
+// นำค่า $id_name มาใช้ในการค้นหาข้อมูลในฐานข้อมูล
+$this->db->where('Id_ac', $Id_ac);
+$this->db->where('CompositionIndex', $CompositionIndex);
+$this->db->where('DeleteStatus=0');
+$query = $this->db->get('ASSESSMENT_CRITERIA_COMPOSITION');
+
+// นับจำนวนแถวที่ค้นพบ
+$num_chk = $query->num_rows();
+
+// ตรวจสอบจำนวนแถวที่ค้นพบว่ามีมากกว่า 0 หรือไม่
+if ($num_chk <= 0 ) {
+  // ไม่พบข้อมูลในฐานข้อมูล
+  $data = array(
+	  'Id_ac' => $this->input->post('Id_ac'),
+	  'CriteriaID' => $this->input->post('CriteriaID'),
+	  'CompositionIndex' => $this->input->post('CompositionIndex'),
+	  'CompositionName' => $this->input->post('CompositionName'),
+	  'CompositionWeightScore' => $this->input->post('CompositionWeightScore'),
+	  'CompositionGuideline' => $this->input->post('CompositionGuideline')
 
 
-		);
-		$this->db->where('Id', $this->input->post('Id'));
-		$query = $this->db->update('ASSESSMENT_CRITERIA_COMPOSITION', $data);
-		if ($query) {
-			session_start(); // เริ่มต้น session
-			$_SESSION['success'] = "แก้ไขสำเร็จ!"; // กำหนดค่า success ใน session เป็น true
-			header("Location: " . site_url('Fm_evaluation_das_p1?page=sh1'));
-			// ไปยังหน้าก่อนหน้านี้
+  );
+  $this->db->where('Id', $this->input->post('Id'));
+  $query = $this->db->update('ASSESSMENT_CRITERIA_COMPOSITION', $data);
+  if ($query) {
+	  session_start(); // เริ่มต้น session
+	  $_SESSION['success'] = "แก้ไขสำเร็จ!"; // กำหนดค่า success ใน session เป็น true
+	  header("Location: " . site_url('Fm_evaluation_das_p1?page=sh1'));
+	  // ไปยังหน้าก่อนหน้านี้
 
-		} else {
-			echo 'false';
-		}
+  } else {
+	  echo 'false';
+  }
+} else {
+  // พบข้อมูลในฐานข้อมูล
+  session_start(); // เริ่มต้น session
+			$_SESSION['false'] = "ไม่มามารถแก้ไขได้เนื่องจากลำดับองค์ประกอบตัวชี้วัด ซ้ำกันในระบบ !"; // กำหนดค่า success ใน session เป็น true
+			header('Location: ' . $_SERVER['HTTP_REFERER']);
+			exit;
+}
 	}
 	public function del_ass_ria_com() //sh3
 	{
@@ -243,6 +294,7 @@ class Evaluation_model extends CI_Model
 		// echo'</pre>';
 		// exit;
 		$data = array(
+			'Id_ac' => $this->input->post('Id_ac'),
 			'CriteriaID' => $this->input->post('CriteriaID'),
 			'CompositionIndex' => $this->input->post('CompositionIndex'),
 			'LevelIndex' => $this->input->post('LevelIndex'),
@@ -269,6 +321,7 @@ class Evaluation_model extends CI_Model
 		// echo'</pre>';
 		// exit;
 		$data = array(
+			'Id_ac' => $this->input->post('Id_ac'),
 			'CriteriaID' => $this->input->post('CriteriaID'),
 			'CompositionIndex' => $this->input->post('CompositionIndex'),
 			'LevelIndex' => $this->input->post('LevelIndex'),
@@ -319,25 +372,50 @@ class Evaluation_model extends CI_Model
 		// print_r($_POST);
 		// echo'</pre>';
 		// exit;
-		$data = array(
-			'SchoolAssessmentEducationYear' => $this->input->post('SchoolAssessmentEducationYear'),
-			'SchoolAssessmentSemester' => $this->input->post('SchoolAssessmentSemester'),
-			'SchoolID' => $this->input->post('SchoolID'),
-			'SchoolAssessmentName' => $this->input->post('SchoolAssessmentName'),
-			'SchoolAssessmentDescription' => $this->input->post('SchoolAssessmentDescription')
+		// สร้างตัวแปร $id_name มาเก็บค่าไว้ก่อน
+$SchoolAssessmentEducationYear = $this->input->post('SchoolAssessmentEducationYear');
+$SchoolAssessmentSemester = $this->input->post('SchoolAssessmentSemester');
+$SchoolID = $this->input->post('SchoolID');
+$SchoolAssessmentName = $this->input->post('SchoolAssessmentName');
+// นำค่า $id_name มาใช้ในการค้นหาข้อมูลในฐานข้อมูล
+$this->db->where('SchoolAssessmentEducationYear', $SchoolAssessmentEducationYear);
+$this->db->where('SchoolAssessmentSemester', $SchoolAssessmentSemester);
+$this->db->where('SchoolID', $SchoolID);
+$this->db->where('SchoolAssessmentName', $SchoolAssessmentName);
+$query = $this->db->get('SCHOOL_ASSESSMENT');
+
+// นับจำนวนแถวที่ค้นพบ
+$num_chk = $query->num_rows();
+
+// ตรวจสอบจำนวนแถวที่ค้นพบว่ามีมากกว่า 0 หรือไม่
+if ($num_chk <= 0 ) {
+  // ไม่พบข้อมูลในฐานข้อมูล
+  $data = array(
+	  'SchoolAssessmentEducationYear' => $this->input->post('SchoolAssessmentEducationYear'),
+	  'SchoolAssessmentSemester' => $this->input->post('SchoolAssessmentSemester'),
+	  'SchoolID' => $this->input->post('SchoolID'),
+	  'SchoolAssessmentName' => $this->input->post('SchoolAssessmentName'),
+	  'SchoolAssessmentDescription' => $this->input->post('SchoolAssessmentDescription')
 
 
-		);
-		$query = $this->db->insert('SCHOOL_ASSESSMENT', $data);
-		if ($query) {
-			session_start(); // เริ่มต้น session
-			$_SESSION['success'] = "เพิ่มข้อมูลเรียบร้อย!"; // กำหนดค่า success ใน session เป็น true
-			header("Location: " . site_url('Fm_evaluation_das_p1?page=sh1'));
-			// ไปยังหน้าก่อนหน้านี้
+  );
+  $query = $this->db->insert('SCHOOL_ASSESSMENT', $data);
+  if ($query) {
+	  session_start(); // เริ่มต้น session
+	  $_SESSION['success'] = "เพิ่มข้อมูลเรียบร้อย!"; // กำหนดค่า success ใน session เป็น true
+	  header("Location: " . site_url('Fm_evaluation_das_p5?page=sh5'));
+	  // ไปยังหน้าก่อนหน้านี้
 
-		} else {
-			echo 'false';
-		}
+  } else {
+	  echo 'false';
+  }
+} else {
+  // พบข้อมูลในฐานข้อมูล
+  session_start(); // เริ่มต้น session
+			$_SESSION['false'] = "ไม่มามารถบันทึกข้อมูลได้โปรดตรวจสอบข้อมูล (ปีการศึกษา/ภาคเรียน/สถานศึกษา/ชื่อการประเมิน) ซ้ำกันในระบบ !"; // กำหนดค่า success ใน session เป็น true
+			header('Location: ' . $_SERVER['HTTP_REFERER']);
+			exit;
+}
 	}
 	public function edit_sc_ass() //sh5
 	{
@@ -360,7 +438,7 @@ class Evaluation_model extends CI_Model
 		if ($query) {
 			session_start(); // เริ่มต้น session
 			$_SESSION['success'] = "แก้ไขสำเร็จ!"; // กำหนดค่า success ใน session เป็น true
-			header("Location: " . site_url('Fm_evaluation_das_p1?page=sh1'));
+			header("Location: " . site_url('Fm_evaluation_das_p5?page=sh5'));
 			// ไปยังหน้าก่อนหน้านี้
 
 		} else {
@@ -384,7 +462,7 @@ class Evaluation_model extends CI_Model
 		if ($query) {
 			session_start(); // เริ่มต้น session
 			$_SESSION['success'] = "ลบสำเร็จ!"; // กำหนดค่า success ใน session เป็น true
-			header("Location: " . site_url('Fm_evaluation_das_p1?page=sh1'));
+			header("Location: " . site_url('Fm_evaluation_das_p5?page=sh5'));
 			// ไปยังหน้าก่อนหน้านี้
 
 		} else {
@@ -414,6 +492,8 @@ class Evaluation_model extends CI_Model
 					$data = $this->upload->data();
 					$filename = $data['file_name'];
 				$data = array(
+					'Id_sa' => $this->input->post('Id_sa'),
+					'Id_ac' => $this->input->post('Id_ac'),
 					'SchoolAssessmentEducationYear' => $this->input->post('SchoolAssessmentEducationYear'),
 					'SchoolAssessmentSemester' => $this->input->post('SchoolAssessmentSemester'),
 					'SchoolID' => $this->input->post('SchoolID'),
@@ -428,6 +508,8 @@ class Evaluation_model extends CI_Model
 			}
 			}else {
 				$data = array(
+					'Id_sa' => $this->input->post('Id_sa'),
+					'Id_ac' => $this->input->post('Id_ac'),
 					'SchoolAssessmentEducationYear' => $this->input->post('SchoolAssessmentEducationYear'),
 					'SchoolAssessmentSemester' => $this->input->post('SchoolAssessmentSemester'),
 					'SchoolID' => $this->input->post('SchoolID'),
@@ -443,7 +525,7 @@ class Evaluation_model extends CI_Model
 		if ($query) {
 			session_start(); // เริ่มต้น session
 			$_SESSION['success'] = "เพิ่มข้อมูลเรียบร้อย!"; // กำหนดค่า success ใน session เป็น true
-			header("Location: " . site_url('Fm_evaluation_das_p1?page=sh1'));
+			header("Location: " . site_url('Fm_evaluation_das_p5?page=sh5'));
 			// ไปยังหน้าก่อนหน้านี้
 
 		} else {
@@ -471,7 +553,8 @@ public function edit_sc_ass_ria() //sh6
 				if (!$this->upload->do_upload('SchoolAssessmentAttachmentURL')) {
 					echo $this->upload->display_errors();
 				} else {
-		
+					$oil_file = $this->input->post('oil_file');
+					unlink('assets/EII/SCHOOL_ASSESSMENT_CRITERIA/' . $oil_file);
 					$data = $this->upload->data();
 					$filename = $data['file_name'];
 				$data = array(
@@ -505,7 +588,7 @@ public function edit_sc_ass_ria() //sh6
 		if ($query) {
 			session_start(); // เริ่มต้น session
 			$_SESSION['success'] = "แก้ไขข้อมูลสำเร็จ!"; // กำหนดค่า success ใน session เป็น true
-			header("Location: " . site_url('Fm_evaluation_das_p1?page=sh1'));
+			header("Location: " . site_url('Fm_evaluation_das_p5?page=sh5'));
 			// ไปยังหน้าก่อนหน้านี้
 
 		} else {
@@ -514,6 +597,10 @@ public function edit_sc_ass_ria() //sh6
 	
 }
 public function del_sc_ass_ria(){
+	// echo '<pre>';
+	// 	print_r($_POST);
+	// 	echo'</pre>';
+	// 	exit;
 	$status = '1';
 	$data = array(
 				
@@ -524,7 +611,7 @@ public function del_sc_ass_ria(){
 		if ($query) {
 			session_start(); // เริ่มต้น session
 			$_SESSION['success'] = "ลบข้อมูลสำเร็จ!"; // กำหนดค่า success ใน session เป็น true
-			header("Location: " . site_url('Fm_evaluation_das_p1?page=sh1'));
+			header("Location: " . site_url('Fm_evaluation_das_p5?page=sh5'));
 			// ไปยังหน้าก่อนหน้านี้
 
 		} else {
@@ -552,7 +639,7 @@ public function del_sc_ass_ria(){
 		if ($query) {
 			session_start(); // เริ่มต้น session
 			$_SESSION['success'] = "เพิ่มข้อมูลเรียบร้อย!"; // กำหนดค่า success ใน session เป็น true
-			header("Location: " . site_url('Fm_evaluation_das_p1?page=sh1'));
+			header("Location: " . site_url('Fm_evaluation_das_p5?page=sh5'));
 			// ไปยังหน้าก่อนหน้านี้
 
 		} else {
@@ -581,7 +668,7 @@ public function del_sc_ass_ria(){
 		if ($query) {
 			session_start(); // เริ่มต้น session
 			$_SESSION['success'] = "แก้ไขสำเร็จ!"; // กำหนดค่า success ใน session เป็น true
-			header("Location: " . site_url('Fm_evaluation_das_p1?page=sh1'));
+			header("Location: " . site_url('Fm_evaluation_das_p5?page=sh5'));
 			// ไปยังหน้าก่อนหน้านี้
 
 		} else {
@@ -605,7 +692,7 @@ public function del_sc_ass_ria(){
 		if ($query) {
 			session_start(); // เริ่มต้น session
 			$_SESSION['success'] = "ลบข้อมูลสำเร็จ!"; // กำหนดค่า success ใน session เป็น true
-			header("Location: " . site_url('Fm_evaluation_das_p1?page=sh1'));
+			header("Location: " . site_url('Fm_evaluation_das_p5?page=sh5'));
 			// ไปยังหน้าก่อนหน้านี้
 
 		} else {
@@ -682,6 +769,8 @@ public function edit_achie_ass() //sh8
         if (!$this->upload->do_upload('AchievementAssessmentAttachmentURL')) {
             echo $this->upload->display_errors();
         } else {
+			$oil_file = $this->input->post('oil_file');
+			unlink('assets/EII/ACHIEVEMENT_ASSESSMENT/' . $oil_file);
 
             $data = $this->upload->data();
             $filename = $data['file_name'];
@@ -744,7 +833,15 @@ public function edit_achie_ass() //sh8
 		$this->db->from('ASSESSMENT_CRITERIA ');
 		$this->db->where('DeleteStatus = 0');
 		$query = $this->db->get();
+		
+
+		$this->db->select('*');
+		$this->db->from('ASSESSMENT_CRITERIA ');
+		$this->db->where('DeleteStatus = 0');
+		$query = $this->db->get();
 		return $query->result();
+
+
 	}
 	public function show_ass_ria_lvl() //sh2
 	{

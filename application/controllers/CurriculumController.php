@@ -694,13 +694,41 @@ class CurriculumController extends CI_Controller{
         $PLAN_ID =  $this->input->post('PLAN_ID');
         $CurriculumID = $this->input->post('CurriculumID');
         $SubjectCode = $this->input->post('SubjectCode');
+       
+        $SCORE_TEACHER = $this->input->post('SCORE_TEACHER');
+            if (empty($SCORE_TEACHER)) $SCORE_TEACHER=null;
+        $SCORE_PARENT  = $this->input->post('SCORE_PARENT');
+            if (empty($SCORE_PARENT)) $SCORE_PARENT=null;
+        $SCORE_OTHER = $this->input->post('SCORE_OTHER');
+            if (empty($SCORE_OTHER)) $SCORE_OTHER=null;
+        $SCORE_SUM_TOTAL = ($SCORE_TEACHER+$SCORE_PARENT+$SCORE_OTHER);
+
+        $SCORE = [
+            'SCORE_TEACHER' =>  $SCORE_TEACHER ,
+            'SCORE_PARENT' => $SCORE_PARENT,
+            'SCORE_OTHER' => $SCORE_OTHER,
+            'SCORE_SUM_TOTAL' => $SCORE_SUM_TOTAL,
+        ];
+        $resultscoreid = $this->Curriculum_model->insert_score($SCORE);
+
+        $curriculum_assessment = [
+            'ASSESSMENT_NAME' => $this->input->post('ASSESSMENT_NAME'),
+            //'ASSESSMENT_PEOPLE_ID' => $this->input->post('ASSESSMENT_PEOPLE_ID'),
+            'SCORE_ID' => $resultscoreid,
+            'ASSESSMENT_TOOL_CODE' => $this->input->post('ASSESSMENT_TOOL_CODE'),
+            'DeleteStatus' => 0 
+        ];
+        $result_ASSESSMENT_ID  = $this->Curriculum_model->insert_curriculum_assessment($curriculum_assessment);
+
 
         $curriculum_activity = [
             'ACTIVITY_NAME' => $this->input->post('ACTIVITY_NAME'),
             'PLAN_ID' =>$PLAN_ID ,
+            'ASSESSMENT_ID' => $result_ASSESSMENT_ID 
         ];
         $result_curriculum_activity = $this->Curriculum_model->insert_curriculum_activity($curriculum_activity);
       
+
         if($result_curriculum_activity == 1 ){    
             $this->session->set_flashdata('success',"บันทึกข้อมูลสำเร็จ");
             redirect(base_url('list-curriculum_plan?sid='. $SubjectCode.'&&cid='.$CurriculumID));
@@ -758,8 +786,11 @@ class CurriculumController extends CI_Controller{
         $SCORE_ID   = $this->input->post('SCORE_ID');
 
             $SCORE_TEACHER = $this->input->post('SCORE_TEACHER');
+                if (empty($SCORE_TEACHER)) $SCORE_TEACHER=null;
             $SCORE_PARENT  = $this->input->post('SCORE_PARENT');
+                if (empty($SCORE_PARENT)) $SCORE_PARENT=null;
             $SCORE_OTHER = $this->input->post('SCORE_OTHER');
+                if (empty($SCORE_OTHER)) $SCORE_OTHER=null;
             $SCORE_SUM_TOTAL = ($SCORE_TEACHER+$SCORE_PARENT+$SCORE_OTHER);
     
             $SCORE = [
@@ -768,46 +799,24 @@ class CurriculumController extends CI_Controller{
                 'SCORE_OTHER' => $SCORE_OTHER,
                 'SCORE_SUM_TOTAL' => $SCORE_SUM_TOTAL,
                 'FUNDAMENTAL_SUBJECT_PASSING_CODE' => $this->input->post('FUNDAMENTAL_SUBJECT_PASSING_CODE'),
+            ];             
+
+            $result_score_id = $this->Curriculum_model->update_score($SCORE_ID,$SCORE);
+            
+            $curriculum_assessment = [
+                'ASSESSMENT_NAME' => $this->input->post('ASSESSMENT_NAME'),
+                'ASSESSMENT_PEOPLE_ID' => $this->input->post('ASSESSMENT_PEOPLE_ID'),
+                // 'SCORE_ID' => $SCORE_ID,
+                'ASSESSMENT_TOOL_CODE' => $this->input->post('ASSESSMENT_TOOL_CODE'),
+                'DeleteStatus' => 0 
             ];
+            $result_assessment = $this->Curriculum_model->update_assessment($ASSESSMENT_ID,$curriculum_assessment);
 
-            if($ASSESSMENT_ID  == null || $ASSESSMENT_ID=''){
-                $resultscoreid = $this->Curriculum_model->insert_score($SCORE);
-
-                $curriculum_assessment = [
-                    'ASSESSMENT_NAME' => $this->input->post('ASSESSMENT_NAME'),
-                    'ASSESSMENT_PEOPLE_ID' => $this->input->post('ASSESSMENT_PEOPLE_ID'),
-                    'SCORE_ID' => $resultscoreid,
-                    'ASSESSMENT_TOOL_CODE' => $this->input->post('ASSESSMENT_TOOL_CODE'),
-                    'DeleteStatus' => 0 
-                ];
-                $result_ASSESSMENT_ID  = $this->Curriculum_model->insert_curriculum_assessment($curriculum_assessment);
-
-                $curriculum_activity = [
-                    'ACTIVITY_NAME' => $this->input->post('ACTIVITY_NAME'),
-                    'PLAN_ID' =>$PLAN_ID ,
-                    'ASSESSMENT_ID' => $result_ASSESSMENT_ID 
-                ];
-               
-            }else{
-                $ASSESSMENT_ID = $this->input->post('ASSESSMENT_ID');
-                $result_score_id = $this->Curriculum_model->update_score($SCORE_ID,$SCORE);
-                
-                $curriculum_assessment = [
-                    'ASSESSMENT_NAME' => $this->input->post('ASSESSMENT_NAME'),
-                    'ASSESSMENT_PEOPLE_ID' => $this->input->post('ASSESSMENT_PEOPLE_ID'),
-                   // 'SCORE_ID' => $SCORE_ID,
-                    'ASSESSMENT_TOOL_CODE' => $this->input->post('ASSESSMENT_TOOL_CODE'),
-                    'DeleteStatus' => 0 
-                ];
-                
-               $result_assessment = $this->Curriculum_model->update_assessment($ASSESSMENT_ID,$curriculum_assessment);
-               $curriculum_activity = [
-                    'ACTIVITY_NAME' => $this->input->post('ACTIVITY_NAME'),
-                    'PLAN_ID' =>$PLAN_ID ,
-                    'ASSESSMENT_ID' => $this->input->post('ASSESSMENT_ID')
-                ];
-               
-            }
+            $curriculum_activity = [
+                'ACTIVITY_NAME' => $this->input->post('ACTIVITY_NAME'),
+                'PLAN_ID' =>$PLAN_ID ,
+                'ASSESSMENT_ID' => $this->input->post('ASSESSMENT_ID')
+            ];
             $result_curriculum_activity = $this->Curriculum_model->update_curriculum_activity($curriculum_activity,$ACTIVITY_ID );
     
             if($result_curriculum_activity==1){    

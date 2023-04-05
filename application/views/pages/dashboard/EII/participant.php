@@ -223,7 +223,7 @@ foreach ($result3->result() as $show3) { ?>
                             </td>
                             <!-- แก้ไข+ลบ -->
                             <td style="text-align: center;">
-                                <a href="<?php echo site_url('par_forms_p1?page=sh11') ?>&&key=<?php echo $show->ParticipantID; ?>&&name=<?php echo $ParticipantName; ?>"
+                                <a href="<?php echo site_url('par_forms_p1?page=sh11') ?>&&key=<?php echo $show->ParticipantID; ?>&&name=<?php echo  $show->ParticipantName; ?>"
                                     class="btn btn-warning"> <i class="bi bi-pencil-square"></i></a>
                                 <button type="button" class="btn btn-danger" data-bs-toggle="modal"
                                     data-bs-target="#del_par<?php echo $show->ParticipantID; ?>">

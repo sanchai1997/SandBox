@@ -194,17 +194,11 @@ if (isset( $_SESSION['success'])) { ?>
 
                             <input type="hidden" name="ParticipantID" value="<?php echo $show->ParticipantID ?>">
                             <div class="row mb-3">
-                                <div class="col">
-                                    <div class="form-floating">
-                                        <input type="text" class="form-control" id="floatingName"
+                               
+                                        <input type="hidden" class="form-control" id="floatingName"
                                             placeholder="ภาครัฐหรือภาคเอกชนที่เข้ามาขับเคลื่อนพื้นที่นวัตกรรมการศึกษา"
                                             name="ParticipantID" value="<?php echo $show->ParticipantID ?>">
-                                        <label for="Y"><?php echo nbs(
-                                            2
-                                        ); ?>
-                                            ภาครัฐหรือภาคเอกชนที่เข้ามาขับเคลื่อนพื้นที่นวัตกรรมการศึกษา </label>
-                                    </div>
-                                </div>
+                                        
 
                                 <div class="col">
                                     <div class="form-floating">
@@ -860,6 +854,7 @@ if (isset( $_SESSION['success'])) { ?>
                                     ); ?>สถานศึกษาที่เข้าไปมีส่วนร่วม</label>
                                 </div>
                             </div>
+                            <input name="oil_file" value="<?php echo $show->CooperationAttachmentURL ?>" type="hidden">
                             <div class="row mb-3">
                                 <div class="input-group mb-3">
                                     <label class="input-group-text" for="inputGroupFile01">ลิ้งก์เอกสารแนบ</label>

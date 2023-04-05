@@ -10,36 +10,35 @@
     <?php $key = isset($_GET['key']) ? $_GET['key'] : ''; ?>
     <?php $year = isset($_GET['year']) ? $_GET['year'] : ''; ?>
     <?php $Province = isset($_GET['Province']) ? $_GET['Province'] : ''; ?>
-    <?php 
-session_start(); // เริ่มต้น session
-if (isset( $_SESSION['success'])) { ?>
+    <?php
+    session_start(); // เริ่มต้น session
+    if (isset($_SESSION['success'])) { ?>
         <div style="position: relative;">
             <div class="alert alert-success" id="myAlert"
                 style="position: absolute; top: 0; left: 0; right: 0; z-index: 1;">
                 <strong>
                     <?php
-                        echo $_SESSION['success'];
-                        unset($_SESSION['success']);
-                        ?>
+                    echo $_SESSION['success'];
+                    unset($_SESSION['success']);
+                    ?>
                 </strong>
 
             </div>
         </div>
-        <?php  }
-        if (isset( $_SESSION['false'])) { ?>
+    <?php }
+    if (isset($_SESSION['false'])) { ?>
         <div style="position: relative;">
-            <div class="alert alert-danger" id="myAlert"
-                style="position: absolute; top: 0; left: 0; right: 0; z-index: 1;">
+            <div class="alert alert-danger" id="myAlert" style="position: absolute; top: 0; left: 0; right: 0; z-index: 1;">
                 <strong>
                     <?php
-                        echo $_SESSION['false'];
-                        unset($_SESSION['false']);
-                        ?>
+                    echo $_SESSION['false'];
+                    unset($_SESSION['false']);
+                    ?>
                 </strong>
 
             </div>
         </div>
-        <?php  } ?>
+    <?php } ?>
     <div class="pagetitle">
         <div class="row ">
             <?php switch ($page) {
@@ -260,6 +259,7 @@ if (isset( $_SESSION['success'])) { ?>
 
                                 <!-- start Form ข้อมูลอำนาจและหน้าที่ของคณะกรรมการขับเคลื่อนพื้นที่นวัตกรรมการศึกษาด้านต่าง ๆ -->
                                 <form action="<?php echo site_url('c_edit_p1'); ?>" method="post" enctype="multipart/form-data">
+                                    <input type="hidden" name="Id" value="<?php echo $show->Id ?>">
                                     <input type="hidden" name="CommitteeAppointmentNumber"
                                         value="<?php echo $show->CommitteeAppointmentNumber ?>">
                                     <div class="row mb-3">
@@ -328,6 +328,7 @@ if (isset( $_SESSION['success'])) { ?>
                                             </div>
                                         </div>
                                     </div>
+                                    <input name="oil_file" value="<?php echo $show->CommitteeAppointmentAttachmentURL ?>" type="hidden">
                                     <div class="row mb-2">
                                         <div class="input-group mb-2">
                                             <label class="input-group-text" for="inputGroupFile01">ลิงก์เอกสารคำสั่ง</label>
@@ -403,7 +404,7 @@ if (isset( $_SESSION['success'])) { ?>
                                 <?php echo br(2); ?>
 
                                 <div class="row mb-3">
-                                <div class="col">
+                                    <div class="col">
                                         <div class="form-floating">
                                             <input type="text" class="form-control" id="floatingName"
                                                 placeholder="เลขที่คำสั่ง" name="" value="<?php echo $name; ?>" disabled>
@@ -430,24 +431,26 @@ if (isset( $_SESSION['success'])) { ?>
                                         </div>
                                     </div>
                                     <div class="col">
-                                    <?php
-                                                $result = $this->db->query("SELECT * FROM CLS_PROVINCE where PROVINCE_CODE = {$Province}");
-                                                foreach ($result->result() as $cls) {
-                                                    ?>
-                                        <div class="form-floating">
-                                            <input type="text" class="form-control" id="floatingName"
-                                                placeholder="จังหวัด" name="" value="<?php echo $cls->PROVINCE_NAME;; ?>" disabled>
-                                            <label for="Y">
-                                                <?php echo nbs(2); ?> จังหวัด
-                                            </label>
-                                            <input type="hidden" class="form-control" id="floatingName"
-                                                placeholder="จังหวัด" name="CommitteeProvinceCode"
-                                                value="<?php echo $cls->PROVINCE_CODE;; ?>">
-                                        </div>
+                                        <?php
+                                        $result = $this->db->query("SELECT * FROM CLS_PROVINCE where PROVINCE_CODE = {$Province}");
+                                        foreach ($result->result() as $cls) {
+                                            ?>
+                                            <div class="form-floating">
+                                                <input type="text" class="form-control" id="floatingName" placeholder="จังหวัด"
+                                                    name="" value="<?php echo $cls->PROVINCE_NAME;
+                                                    ; ?>" disabled>
+                                                <label for="Y">
+                                                    <?php echo nbs(2); ?> จังหวัด
+                                                </label>
+                                                <input type="hidden" class="form-control" id="floatingName"
+                                                    placeholder="จังหวัด" name="CommitteeProvinceCode"
+                                                    value="<?php echo $cls->PROVINCE_CODE;
+                                                    ; ?>">
+                                            </div>
                                         <?php } ?>
                                     </div>
-                                   
-                                    
+
+
                                 </div>
                                 <div class="row mb-3">
                                     <div class="form-floating">
@@ -712,21 +715,22 @@ if (isset( $_SESSION['success'])) { ?>
                                 <div class="row mb-3">
                                     <div class="col">
                                         <div class="form-floating">
-                                        <?php
-$CommitteeProvinceCode = $show->CommitteeProvinceCode;
-$resulta = $this->db->query("SELECT * FROM COMMITTEE 
+                                            <?php
+                                            $CommitteeProvinceCode = $show->CommitteeProvinceCode;
+                                            $resulta = $this->db->query("SELECT * FROM COMMITTEE 
 INNER JOIN CLS_PROVINCE
 ON CLS_PROVINCE.PROVINCE_CODE = COMMITTEE.CommitteeProvinceCode
-where COMMITTEE.CommitteeProvinceCode = $CommitteeProvinceCode;
-"); 
-foreach ($resulta->result() as $showa) { ?>
-                                            <input type="text" class="form-control" id="CommitteeProvinceCode"
-                                                placeholder="จังหวัด" name=""
-                                                value="<?php echo $showa->PROVINCE_NAME ?>" disabled>
+where COMMITTEE.CommitteeProvinceCode = $CommitteeProvinceCode AND  COMMITTEE.DeleteStatus = 0;
+");
+                                            foreach ($resulta->result() as $showa) { ?>
+                                                <input type="text" class="form-control" id="CommitteeProvinceCode"
+                                                    placeholder="จังหวัด" name="" value="<?php echo $showa->PROVINCE_NAME ?>"
+                                                    disabled>
+
                                                 <input type="hidden" class="form-control" id="CommitteeProvinceCode1"
-                                                placeholder="จังหวัด" name="CommitteeProvinceCode"
-                                                value="<?php echo $showa->CommitteeProvinceCode ?>">
-<?php } ?>
+                                                    placeholder="จังหวัด" name="CommitteeProvinceCode"
+                                                    value="<?php echo $showa->CommitteeProvinceCode ?>">
+                                            <?php } ?>
                                             <label for="Y">
                                                 <?php echo nbs(2); ?>
                                                 จังหวัด
@@ -736,10 +740,10 @@ foreach ($resulta->result() as $showa) { ?>
                                     <div class="col">
                                         <div class="form-floating">
                                             <input type="text" class="form-control" id="CommitteeYear"
-                                                placeholder="ปีที่ออกคำสั่ง" name=""
-                                                value="<?php echo $show->CommitteeYear ?>" disabled>
+                                                placeholder="ปีที่ออกคำสั่ง" name="" value="<?php echo $show->CommitteeYear ?>"
+                                                disabled>
 
-                                                <input type="hidden" class="form-control" id="CommitteeYear1"
+                                            <input type="hidden" class="form-control" id="CommitteeYear1"
                                                 placeholder="ปีที่ออกคำสั่ง" name="CommitteeYear"
                                                 value="<?php echo $show->CommitteeYear ?>">
                                             <label for="Y">
@@ -971,15 +975,15 @@ foreach ($resulta->result() as $showa) { ?>
                             </div> <!-- Modal -->
 
                             <script>
-                                // ///COMMITTEE
-                                // var my_COMMITTEE = "<?php echo $show->CommitteeAppointmentNumber ?>";
-                                // var selectoption_COMMITTEE = document.querySelector('#CommitteeAppointmentNumber');
-                                // var size_my_COMMITTEE = document.getElementById("CommitteeAppointmentNumber").options.length;
-                                // for (let i = 0; i < size_my_COMMITTEE; i++) {
-                                //     if (selectoption_COMMITTEE[i].value == my_COMMITTEE) {
-                                //         selectoption_COMMITTEE[i].selected = true;
-                                //     }
-                                // }
+                                ///COMMITTEE
+                                var my_COMMITTEE = "<?php echo $show->CommitteeAppointmentNumber ?>";
+                                var selectoption_COMMITTEE = document.querySelector('#CommitteeAppointmentNumber');
+                                var size_my_COMMITTEE = document.getElementById("CommitteeAppointmentNumber").options.length;
+                                for (let i = 0; i < size_my_COMMITTEE; i++) {
+                                    if (selectoption_COMMITTEE[i].value == my_COMMITTEE) {
+                                        selectoption_COMMITTEE[i].selected = true;
+                                    }
+                                }
                                 // ///CLS_PROVINCE
                                 // var my_CLS_PROVINCE = "<?php echo $show->CommitteeProvinceCode ?>";
                                 // var selectoption_CLS_PROVINCE = document.querySelector('#CommitteeProvinceCode');
@@ -1021,13 +1025,17 @@ foreach ($resulta->result() as $showa) { ?>
                                         ?>
                                         if (select1.value == "<?php echo $showa->CommitteeAppointmentNumber; ?>") {
                                             var x = document.getElementById("CommitteeAppointmentNumber").value;
-                                            document.getElementById("CommitteeProvinceCode").value = "<?php echo $showa->PROVINCE_NAME ?>"
+                                            document.getElementById("CommitteeProvinceCode").value =
+                                                "<?php echo $showa->PROVINCE_NAME ?>"
                                             var x = document.getElementById("CommitteeAppointmentNumber").value;
-                                            document.getElementById("CommitteeProvinceCode1").value = "<?php echo $showa->CommitteeProvinceCode ?>"
+                                            document.getElementById("CommitteeProvinceCode1").value =
+                                                "<?php echo $showa->CommitteeProvinceCode ?>"
                                             var x = document.getElementById("CommitteeAppointmentNumber").value;
-                                            document.getElementById("CommitteeYear").value = "<?php echo $showa->CommitteeYear ?>"
+                                            document.getElementById("CommitteeYear").value =
+                                                "<?php echo $showa->CommitteeYear ?>"
                                             var x = document.getElementById("CommitteeAppointmentNumber").value;
-                                            document.getElementById("CommitteeYear1").value = "<?php echo $showa->CommitteeYear ?>"
+                                            document.getElementById("CommitteeYear1").value =
+                                                "<?php echo $showa->CommitteeYear ?>"
                                         }
                                     <?php } ?>
 
@@ -1049,8 +1057,8 @@ foreach ($resulta->result() as $showa) { ?>
         </div>
     </section>
     <script>
-    setTimeout(function() {
-        document.getElementById('myAlert').remove();
-    }, 2000); // นับถอยหลังให้แสดง 5 วินาที (5000 มิลลิวินาที)
+        setTimeout(function () {
+            document.getElementById('myAlert').remove();
+        }, 2000); // นับถอยหลังให้แสดง 5 วินาที (5000 มิลลิวินาที)
     </script>
 </main><!-- End #main -->

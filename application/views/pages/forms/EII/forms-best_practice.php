@@ -115,9 +115,14 @@ if (isset( $_SESSION['success'])) { ?>
 
                                 <div class="col">
                                     <div class="form-floating">
-                                        <input type="text" class="form-control" id="floatingName" placeholder="ภาคเรียน"
-                                            name="Semester" required>
-                                        <label for="Y"><?php echo nbs(2); ?> ภาคเรียน </label>
+                                        <select class="form-select" id="Semester" name="Semester">
+                                            <option value="-1">กรุณาเลือกภาคเรียนที่ทำการประเมิน</option>
+                                            <option value="0">ตลอดปีการศึกษา</option>
+                                            <option value="1">ภาคเรียนที่ 1</option>
+                                            <option value="2">ภาคเรียนที่ 2</option>
+                                            <option value="3">ภาคเรียนฤดูร้อน</option>
+                                        </select>
+                                        <label for="Y">ภาคเรียน</label>
                                     </div>
                                 </div>
                             </div>
@@ -302,6 +307,14 @@ if (isset( $_SESSION['success'])) { ?>
                                 alert('กรุณาเลือกการเผยแพร่ที่ได้รับการยอมรับ');
                                 return false;
                             }
+                            ///semmer
+                            const semmer = document.querySelector('#Semester');
+                            const semmer_Value = semmer.value;
+
+                            if (semmer_Value === '-1') {
+                                alert('กรุณาเลือกภาคเรียน');
+                                return false;
+                            }
                         }
                         </script>
                         <?php } ?>
@@ -341,12 +354,18 @@ if (isset( $_SESSION['success'])) { ?>
                                 </div>
 
                                 <div class="col">
-                                    <div class="form-floating">
-                                        <input type="text" class="form-control" id="floatingName" placeholder="ภาคเรียน"
-                                            name="Semester" value="<?php echo $show->Semester ?>" required>
-                                        <label for="Y"><?php echo nbs(2); ?> ภาคเรียน </label>
-                                    </div>
-                                </div>
+                                            <div class="form-floating">
+                                                <select class="form-select" id="Semester"
+                                                    name="Semester">
+                                                    <option value="-1">กรุณาเลือกภาคเรียนที่ทำการประเมิน</option>
+                                                    <option value="0">ตลอดปีการศึกษา</option>
+                                                    <option value="1">ภาคเรียนที่ 1</option>
+                                                    <option value="2">ภาคเรียนที่ 2</option>
+                                                    <option value="3">ภาคเรียนฤดูร้อน</option>
+                                                </select>
+                                                <label for="Y">ภาคเรียน</label>
+                                            </div>
+                                        </div>
                             </div>
                             <div class="row mb-3">
                                 <div class="form-floating">
@@ -441,7 +460,7 @@ if (isset( $_SESSION['success'])) { ?>
                                         <label for="Y"><?php echo nbs(2); ?> คำค้นหา </label>
                                     </div>
                                 </div>
-
+                                <input name="oil_file" value="<?php echo $show->AttachmentURL ?>" type="hidden">
                                 <div class="col">
                                     <div class="input-group mb-3">
                                         <label class="input-group-text" for="inputGroupFile01">เอกสารแนบ</label>
@@ -514,6 +533,16 @@ if (isset( $_SESSION['success'])) { ?>
 
                         </form><!-- ข้อมูลแนวปฏิบัติที่เป็นเลิศในการจัดการศึกษา -->
                         <script>
+                             ///Semester
+                        var my_Semester = "<?php echo $show->Semester ?>";
+                        var selectoption_Semester = document.querySelector('#Semester');
+                        var size_my_Semester = document.getElementById("Semester").options
+                            .length;
+                        for (let i = 0; i < size_my_Semester; i++) {
+                            if (selectoption_Semester[i].value == my_Semester) {
+                                selectoption_Semester[i].selected = true;
+                            }
+                        }
                         ///CLS_BEST_PRACTICE_TYPE
                         var my_CLS_BEST_PRACTICE_TYPE = "<?php echo $show->BestPracticeTypeCode ?>";
                         var selectoption_CLS_BEST_PRACTICE_TYPE = document.querySelector('#BestPracticeTypeCode');
@@ -589,14 +618,16 @@ if (isset( $_SESSION['success'])) { ?>
                                     </div>
                                 </div>
                                 <div class="col">
-                                    <div class="form-floating">
-                                        <input type="text" class="form-control" id="floatingName"
-                                            placeholder="หมายเลขบัตรประจำตัวผู้จัดทำ" name="CreatorPersonalID" value="">
-                                        <label for="">
-                                            <?php echo nbs(2); ?> หมายเลขบัตรประจำตัวผู้จัดทำ
-                                        </label>
+                                        <div class="form-floating" id="CreatorPersonalID">
+                                            <input type="text" class="form-control" id="my-auto"
+                                                placeholder="หมายเลขบัตรประจำตัวผู้จัดทำ" name=""
+                                                disabled>
+                                                <input type="hidden" class="form-control" id="my-autoo"
+                                                placeholder="" name="CreatorPersonalID"
+                                                >
+                                            <label for=""><?php echo nbs(2); ?> หมายเลขบัตรประจำตัวผู้จัดทำ </label>
+                                        </div>
                                     </div>
-                                </div>
                             </div>
                             <div class="row mb-3">
                             </div>
@@ -728,6 +759,28 @@ if (isset( $_SESSION['success'])) { ?>
 
                         </form><!-- ข้อมูลแนวปฏิบัติที่เป็นเลิศในการจัดการศึกษา -->
                         <script>
+                       const select = document.getElementById("CreatorPersonalIDTypeCode");
+                            const input = document.getElementById("my-auto");
+                            const input1 = document.getElementById("my-autoo");
+
+                            select.addEventListener("change", function() {
+                                if (select.value === "N" || select.value === "-1") {
+                                    input.disabled = true;
+
+                                    input.value = '0';
+                                    input1.value = '0';
+
+                                } else {
+                                    input.disabled = false;
+
+                                    input.value = '';
+                                    input1.value = '';
+                                }
+                            });
+                            input.addEventListener("input", function() {
+                                input1.value = input.value;
+                            });
+
                         function checkSelectedOption() {
 
                             const CLS_PERSONAL_ID_TYPE = document.querySelector('#CreatorPersonalIDTypeCode');
@@ -793,7 +846,7 @@ if (isset( $_SESSION['success'])) { ?>
                                         <select class="form-select" id="CreatorPersonalIDTypeCode"
                                             aria-label="Floating label select example" name="CreatorPersonalIDTypeCode"
                                             value="<?php echo $show->CreatorPersonalIDTypeCode ?>">
-
+                                            <option value="-1">เลือก</option>
                                             <?php
                                                  $result = $this->db->query('SELECT * FROM CLS_PERSONAL_ID_TYPE');
                                                  foreach ($result->result() as $cls) {
@@ -808,15 +861,16 @@ if (isset( $_SESSION['success'])) { ?>
                                     </div>
                                 </div>
                                 <div class="col">
-                                    <div class="form-floating">
-                                        <input type="text" class="form-control" id="floatingName"
-                                            placeholder="หมายเลขบัตรประจำตัวผู้จัดทำ" name="CreatorPersonalID"
-                                            value="<?php echo $show->CreatorPersonalID ?>">
-                                        <label for="">
-                                            <?php echo nbs(2); ?> หมายเลขบัตรประจำตัวผู้จัดทำ
-                                        </label>
+                                        <div class="form-floating" id="CreatorPersonalID">
+                                            <input type="text" class="form-control" id="my-auto"
+                                                placeholder="หมายเลขบัตรประจำตัวผู้จัดทำ" name=""value="<?php echo $show->CreatorPersonalID ?>"
+                                                >
+                                                <input type="hidden" class="form-control" id="my-autoo"
+                                                placeholder="" name="CreatorPersonalID"
+                                                value="<?php echo $show->CreatorPersonalID ?>">
+                                            <label for=""><?php echo nbs(2); ?> หมายเลขบัตรประจำตัวผู้จัดทำ </label>
+                                        </div>
                                     </div>
-                                </div>
                             </div>
                             <div class="row mb-3">
                                 <div class="form-floating">
@@ -982,6 +1036,27 @@ if (isset( $_SESSION['success'])) { ?>
                             </div>
                         </div> <!-- Modal -->
                         <script>
+                            const select = document.getElementById("CreatorPersonalIDTypeCode");
+                            const input = document.getElementById("my-auto");
+                            const input1 = document.getElementById("my-autoo");
+
+                            select.addEventListener("change", function() {
+                                if (select.value === "N" || select.value === "-1") {
+                                    input.disabled = true;
+
+                                    input.value = '0';
+                                    input1.value = '0';
+
+                                } else {
+                                    input.disabled = false;
+
+                                    input.value = '';
+                                    input1.value = '';
+                                }
+                            });
+                            input.addEventListener("input", function() {
+                                input1.value = input.value;
+                            });
                         ///CLS_PERSONAL_ID_TYPE
                         var my_CLS_PERSONAL_ID_TYPE = "<?php echo $show->CreatorPersonalIDTypeCode ?>";
                         var selectoption_CLS_PERSONAL_ID_TYPE = document.querySelector('#CreatorPersonalIDTypeCode');
