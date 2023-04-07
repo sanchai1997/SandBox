@@ -50,7 +50,7 @@
                     </div>
                     <div class="col-3">
                         <h5 style="float: right; padding: 15px;" class="card-title">
-                            <a href="forms-transcript-competency?SchoolID=<?= $_GET['SchoolID']; ?>&&StudentReferenceID=<?= $_GET['StudentReferenceID']; ?>&&EducationYear=<?= $_GET['EducationYear']; ?>&&Semester=<?= $_GET['Semester']; ?>&&GradeLevelCode=<?= $_GET['GradeLevelCode']; ?>&&StudentID=<?= $_GET['StudentID']; ?>&&TranscriptSeriesNumber=<?= $_GET['TranscriptSeriesNumber']; ?>&&TranscriptNumber=<?= $_GET['TranscriptNumber']; ?>" class="btn btn-success"><i class="bi bi-file-earmark-plus">
+                            <a href="forms-transcript-competency?SchoolID=<?= $_GET['SchoolID']; ?>&&StudentReferenceID=<?= $_GET['StudentReferenceID']; ?>&&EducationYear=<?= $_GET['EducationYear']; ?>&&Semester=<?= $_GET['Semester']; ?>&&GradeLevelCode=<?= $_GET['GradeLevelCode']; ?>&&StudentID=<?= $_GET['StudentID']; ?>&&TranscriptSeriesNumber=<?= $_GET['TranscriptSeriesNumber']; ?>&&TranscriptNumber=<?= $_GET['TranscriptNumber']; ?>&&TranscriptEducationYear=<?= $_GET['TranscriptEducationYear']; ?>&&TranscriptSemester=<?= $_GET['TranscriptSemester']; ?>" class="btn btn-success"><i class="bi bi-file-earmark-plus">
                                 </i> เพิ่มข้อมูล
                             </a>
                         </h5>
@@ -60,8 +60,6 @@
                 <table class="table table-borderless datatable">
                     <thead>
                         <tr>
-                            <th style="width: 10%; text-align: center;" scope="col">ปีการศึกษา</th>
-                            <th style="width: 10%; text-align: center;" scope="col">ภาคเรียน</th>
                             <th scope="col">สมรรถนะ</th>
                             <th style="text-align: center;" scope="col">คะแนน</th>
                             <th style="text-align: center;" scope="col">ผลการประเมิณ</th>
@@ -83,8 +81,6 @@
                         ?>
                             <tr>
 
-                                <td style="text-align: center;"><?= $TRANSCRIPT_COMPETENCY->CompetencyEducationYear ?></td>
-                                <td style="text-align: center;"><?= $TRANSCRIPT_COMPETENCY->CompetencySemester ?></td>
                                 <td><?= $TRANSCRIPT_COMPETENCY->COMPETENCY_NAME ?></td>
                                 <td style="text-align: center;"><?= $TRANSCRIPT_COMPETENCY->CompetencyScore ?></td>
                                 <td style="text-align: center;"><?= $TRANSCRIPT_COMPETENCY->COMPETENCY_EVAULATION_NAME ?></td>

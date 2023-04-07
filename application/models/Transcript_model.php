@@ -41,9 +41,21 @@ class Transcript_model extends CI_Model
         return $result;
     }
 
-    //Update Data transcript - Evaluation
-    public function update_transcript_evaluation($StudentReferenceID, $TranscriptSeriesNumber, $TranscriptNumber)
+    public function update_studentClass($StudentReferenceID, $GradeLevelCode)
     {
+        $data = [
+
+            'GradeLevelCode' => $GradeLevelCode
+
+        ];
+
+        $result = $this->db->where('StudentReferenceID ', $StudentReferenceID)->update('STUDENT', $data);
+        return $result;
+    }
+    //Update Data transcript - Evaluation
+    public function update_transcript_evaluation($StudentReferenceID, $TranscriptSeriesNumber, $TranscriptNumber, $EducationYear, $Semester, $GradeLevelCode)
+    {
+
         $data = [
 
             'FundamentalEvaluationCode' => $this->input->post('FundamentalEvaluationCode'),
@@ -58,6 +70,37 @@ class Transcript_model extends CI_Model
         ];
 
         $result = $this->db->where('StudentReferenceID ', $StudentReferenceID)->where('TranscriptSeriesNumber ', $TranscriptSeriesNumber)->where('TranscriptNumber ', $TranscriptNumber)->update('TRANSCRIPT', $data);
+
+        //อนุบาล 
+        if ($GradeLevelCode == '111' || $GradeLevelCode == '112' || $GradeLevelCode == '211' || $GradeLevelCode == '212' || $GradeLevelCode == '214' || $GradeLevelCode == '215' || $GradeLevelCode == '311' || $GradeLevelCode == '312') {
+            if ($Semester == 1) {
+                $data_ST = [
+
+                    'Semester' => $Semester + 1,
+
+                ];
+                $result = $this->db->where('StudentReferenceID ', $StudentReferenceID)->update('STUDENT', $data_ST);
+            } elseif ($Semester == 2) {
+
+                $data_ST = [
+                    'EducationYear' => $EducationYear + 1,
+                    'Semester' => $Semester - 1,
+                    'GradeLevelCode' => $GradeLevelCode + 1,
+
+                ];
+                $result = $this->db->where('StudentReferenceID ', $StudentReferenceID)->update('STUDENT', $data_ST);
+            }
+        } elseif ($GradeLevelCode == '113') { ///สำเร็จการศึกษาา
+
+            $data = [
+                'EducationYear' => $EducationYear + 1,
+                'Semester' => $Semester + 1,
+                'GradeLevelCode' => $GradeLevelCode + 1,
+
+            ];
+        }
+
+
         return $result;
     }
 
@@ -65,22 +108,29 @@ class Transcript_model extends CI_Model
     //ADD Data transcript - subject
     public function add_transcript_subject($TranscriptSeriesNumber, $TranscriptNumber, $TranscriptEducationYear, $TranscriptSemester)
     {
-        $data = [
 
-            'TranscriptSeriesNumber' => $TranscriptSeriesNumber,
-            'TranscriptNumber' => $TranscriptNumber,
-            'SubjectEducationYear' =>  $TranscriptEducationYear,
-            'SubjectSemester' => $TranscriptSemester,
-            'SubjectCode' => $this->input->post('SubjectCode'),
-            'SubjectName' => $this->input->post('SubjectName'),
-            'SubjectTypeCode' => $this->input->post('SubjectTypeCode'),
-            'SubjectGroupCode' => $this->input->post('SubjectGroupCode'),
-            'SubjectCredit' => $this->input->post('SubjectCredit'),
-            'SubjectGradeCode' => $this->input->post('SubjectGradeCode')
+        $result = $this->db->query('SELECT * FROM CURRICULUM_SUBJECT WHERE DeleteStatus = 0  
+        AND CurriculumID  = ' . $_POST['CurriculumID'] . ' 
+        ');
+        foreach ($result->result() as $CURRICULUM_SUBJECT) {
 
-        ];
+            $data = [
 
-        $result = $this->db->insert('TRANSCRIPT_SUBJECT', $data);
+                'TranscriptSeriesNumber' => $TranscriptSeriesNumber,
+                'TranscriptNumber' => $TranscriptNumber,
+                'SubjectEducationYear' =>  $TranscriptEducationYear,
+                'SubjectSemester' => $TranscriptSemester,
+                'SubjectCode' =>  $CURRICULUM_SUBJECT->SubjectCode,
+                'SubjectName' => $CURRICULUM_SUBJECT->SubjectName,
+                'SubjectTypeCode' => $CURRICULUM_SUBJECT->SubjectTypeCode,
+                'SubjectGroupCode' => $CURRICULUM_SUBJECT->SubjectGroupCode,
+                'SubjectCredit' => $CURRICULUM_SUBJECT->Credit
+
+            ];
+
+            $result = $this->db->insert('TRANSCRIPT_SUBJECT', $data);
+        }
+
         return $result;
     }
 
@@ -118,14 +168,14 @@ class Transcript_model extends CI_Model
 
 
     //ADD Data transcript - activity
-    public function add_transcript_activity($TranscriptSeriesNumber, $TranscriptNumber)
+    public function add_transcript_activity($TranscriptSeriesNumber, $TranscriptNumber, $TranscriptEducationYear, $TranscriptSemester)
     {
         $data = [
 
             'TranscriptSeriesNumber' => $TranscriptSeriesNumber,
             'TranscriptNumber' => $TranscriptNumber,
-            'ActivityEducationYear' => $this->input->post('ActivityEducationYear'),
-            'ActivitySemester' => $this->input->post('ActivitySemester'),
+            'ActivityEducationYear' => $TranscriptEducationYear,
+            'ActivitySemester' => $TranscriptSemester,
             'ActivityName' => $this->input->post('ActivityName'),
             'ActivityHour' => $this->input->post('ActivityHour'),
             'ActivityPassingCode' => $this->input->post('ActivityPassingCode')
@@ -167,13 +217,13 @@ class Transcript_model extends CI_Model
 
 
     //ADD Data transcript - onet
-    public function add_transcript_onet($TranscriptSeriesNumber, $TranscriptNumber)
+    public function add_transcript_onet($TranscriptSeriesNumber, $TranscriptNumber, $TranscriptEducationYear)
     {
         $data = [
 
             'TranscriptSeriesNumber' => $TranscriptSeriesNumber,
             'TranscriptNumber' => $TranscriptNumber,
-            'ONETEducationYear' => $this->input->post('ONETEducationYear'),
+            'ONETEducationYear' => $TranscriptEducationYear,
             'ONETGradeLevelCode' => $this->input->post('ONETGradeLevelCode'),
             'ONETSubjectGroupCode' => $this->input->post('ONETSubjectGroupCode'),
             'ONETSubjectGradeCode' => $this->input->post('ONETSubjectGradeCode')
@@ -215,14 +265,14 @@ class Transcript_model extends CI_Model
 
 
     //ADD Data transcript - nt
-    public function add_transcript_nt($TranscriptSeriesNumber, $TranscriptNumber)
+    public function add_transcript_nt($TranscriptSeriesNumber, $TranscriptNumber, $TranscriptEducationYear, $TranscriptSemester)
     {
         $data = [
 
             'TranscriptSeriesNumber' => $TranscriptSeriesNumber,
             'TranscriptNumber' => $TranscriptNumber,
-            'NTEducationYear' => $this->input->post('NTEducationYear'),
-            'NTSemester' => $this->input->post('NTSemester'),
+            'NTEducationYear' => $TranscriptEducationYear,
+            'NTSemester' => $TranscriptSemester,
             'NTGradeLevelCode' => $this->input->post('NTGradeLevelCode'),
             'NTMathScore' => $this->input->post('NTMathScore'),
             'NTThaiLanguageScore' => $this->input->post('NTThaiLanguageScore'),
@@ -266,14 +316,14 @@ class Transcript_model extends CI_Model
 
 
     //ADD Data transcript - rt
-    public function add_transcript_rt($TranscriptSeriesNumber, $TranscriptNumber)
+    public function add_transcript_rt($TranscriptSeriesNumber, $TranscriptNumber, $TranscriptEducationYear, $TranscriptSemester)
     {
         $data = [
 
             'TranscriptSeriesNumber' => $TranscriptSeriesNumber,
             'TranscriptNumber' => $TranscriptNumber,
-            'RTEducationYear' => $this->input->post('RTEducationYear'),
-            'RTSemester' => $this->input->post('RTSemester'),
+            'RTEducationYear' => $TranscriptEducationYear,
+            'RTSemester' => $TranscriptSemester,
             'RTEducationLevelCode' => $this->input->post('RTEducationLevelCode'),
             'RTGradeLevelCode' => $this->input->post('RTGradeLevelCode'),
             'RTPronounceScore' => $this->input->post('RTPronounceScore'),
@@ -317,14 +367,14 @@ class Transcript_model extends CI_Model
     }
 
     //ADD Data transcript - competency
-    public function add_transcript_competency($TranscriptSeriesNumber, $TranscriptNumber)
+    public function add_transcript_competency($TranscriptSeriesNumber, $TranscriptNumber, $TranscriptEducationYear, $TranscriptSemester)
     {
         $data = [
 
             'TranscriptSeriesNumber' => $TranscriptSeriesNumber,
             'TranscriptNumber' => $TranscriptNumber,
-            'CompetencyEducationYear' => $this->input->post('CompetencyEducationYear'),
-            'CompetencySemester' => $this->input->post('CompetencySemester'),
+            'CompetencyEducationYear' => $TranscriptEducationYear,
+            'CompetencySemester' => $TranscriptSemester,
             'CompetencyCode' => $this->input->post('CompetencyCode'),
             'CompetencyScore' => $this->input->post('CompetencyScore'),
             'CompetencyEvaluationCode' => $this->input->post('CompetencyEvaluationCode')

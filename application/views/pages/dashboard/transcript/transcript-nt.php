@@ -50,7 +50,7 @@
                     </div>
                     <div class="col-3">
                         <h5 style="float: right; padding: 15px;" class="card-title">
-                            <a href="forms-transcript-nt?SchoolID=<?= $_GET['SchoolID']; ?>&&StudentReferenceID=<?= $_GET['StudentReferenceID']; ?>&&EducationYear=<?= $_GET['EducationYear']; ?>&&Semester=<?= $_GET['Semester']; ?>&&GradeLevelCode=<?= $_GET['GradeLevelCode']; ?>&&StudentID=<?= $_GET['StudentID']; ?>&&TranscriptSeriesNumber=<?= $_GET['TranscriptSeriesNumber']; ?>&&TranscriptNumber=<?= $_GET['TranscriptNumber']; ?>" class="btn btn-success"><i class="bi bi-file-earmark-plus">
+                            <a href="forms-transcript-nt?SchoolID=<?= $_GET['SchoolID']; ?>&&StudentReferenceID=<?= $_GET['StudentReferenceID']; ?>&&EducationYear=<?= $_GET['EducationYear']; ?>&&Semester=<?= $_GET['Semester']; ?>&&GradeLevelCode=<?= $_GET['GradeLevelCode']; ?>&&StudentID=<?= $_GET['StudentID']; ?>&&TranscriptSeriesNumber=<?= $_GET['TranscriptSeriesNumber']; ?>&&TranscriptNumber=<?= $_GET['TranscriptNumber']; ?>&&TranscriptEducationYear=<?= $_GET['TranscriptEducationYear'] ?>&&TranscriptSemester=<?= $_GET['TranscriptSemester']; ?>" class="btn btn-success"><i class="bi bi-file-earmark-plus">
                                 </i> เพิ่มข้อมูล
                             </a>
                         </h5>
@@ -59,8 +59,6 @@
                 <table class="table table-borderless datatable">
                     <thead>
                         <tr>
-                            <th scope="col">ปีการศึกษา</th>
-                            <th scope="col">ภาคเรียน</th>
                             <th scope="col">ชั้นปี</th>
                             <th style="text-align: center;" scope="col">คณิตศาสตร์</th>
                             <th style="text-align: center;" scope="col">ภาษาไทย</th>
@@ -81,15 +79,12 @@
                             $Count++;
                         ?>
                             <tr>
-
-                                <td><?= $TRANSCRIPT_NT->NTEducationYear ?></td>
-                                <td><?= $TRANSCRIPT_NT->NTSemester ?></td>
                                 <td><?= $TRANSCRIPT_NT->GRADE_LEVEL_NAME ?></td>
                                 <td style="text-align: center;"><?= $TRANSCRIPT_NT->NTMathScore ?></td>
                                 <td tyle="text-align: center;"><?= $TRANSCRIPT_NT->NTThaiLanguageScore ?></td>
                                 <td style="text-align: center;"><?= $TRANSCRIPT_NT->NTMeanScore ?></td>
                                 <td style="text-align: center;">
-                                    <a href="edit-forms-transcript-nt?SchoolID=<?= $_GET['SchoolID']; ?>&&StudentReferenceID=<?= $_GET['StudentReferenceID']; ?>&&EducationYear=<?= $_GET['EducationYear']; ?>&&Semester=<?= $_GET['Semester']; ?>&&GradeLevelCode=<?= $_GET['GradeLevelCode']; ?>&&StudentID=<?= $_GET['StudentID']; ?>&&TranscriptSeriesNumber=<?= $_GET['TranscriptSeriesNumber']; ?>&&TranscriptNumber=<?= $_GET['TranscriptNumber']; ?>&&NTEducationYear=<?= $TRANSCRIPT_NT->NTEducationYear ?>&&NTSemester=<?= $TRANSCRIPT_NT->NTSemester ?>&&NTGradeLevelCode=<?= $TRANSCRIPT_NT->NTGradeLevelCode ?>" class="btn btn-warning"><i class="bi bi-pencil-square"></i></a>
+                                    <a href="edit-forms-transcript-nt?SchoolID=<?= $_GET['SchoolID']; ?>&&StudentReferenceID=<?= $_GET['StudentReferenceID']; ?>&&EducationYear=<?= $_GET['EducationYear']; ?>&&Semester=<?= $_GET['Semester']; ?>&&GradeLevelCode=<?= $_GET['GradeLevelCode']; ?>&&StudentID=<?= $_GET['StudentID']; ?>&&TranscriptSeriesNumber=<?= $_GET['TranscriptSeriesNumber']; ?>&&TranscriptNumber=<?= $_GET['TranscriptNumber']; ?>&&NTEducationYear=<?= $TRANSCRIPT_NT->NTEducationYear ?>&&NTSemester=<?= $TRANSCRIPT_NT->NTSemester ?>&&NTGradeLevelCode=<?= $TRANSCRIPT_NT->NTGradeLevelCode ?>&&TranscriptEducationYear=<?= $_GET['TranscriptEducationYear'] ?>&&TranscriptSemester=<?= $_GET['TranscriptSemester']; ?>" class="btn btn-warning"><i class="bi bi-pencil-square"></i></a>
                                     &nbsp; <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#Delete<?= $Count ?>"><i class=" bi bi-trash"></i></button>
                                 </td>
                             </tr>

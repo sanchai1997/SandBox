@@ -37,6 +37,7 @@ class Forms_school extends CI_Controller
         FROM SCHOOL 
         WHERE DeleteStatus = 0
         AND SchoolID = ' . $_POST['JurisdictionCode'] . $_POST['SchoolAddressProvinceCode'] . ' 
+        OR SchoolNameThai = "' . $_POST['SchoolNameThai'] . '" 
         ')->result();
         if ($result != TRUE) {
             $this->forms_school->add_school();

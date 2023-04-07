@@ -264,6 +264,7 @@
                                 </div>
                                 <?php
                                 $result = $this->db->query('SELECT * FROM TEACHER
+                            INNER JOIN CLS_CITIZEN_ID_TYPE ON TEACHER.TeacherPersonalIDTypeCode =  CLS_CITIZEN_ID_TYPE.CITIZEN_ID_TYPE_CODE
                             INNER JOIN CLS_PERSONNEL_STATUS ON TEACHER.PersonnelStatusCode = CLS_PERSONNEL_STATUS.PERSONNEL_STATUS_CODE
                             INNER JOIN CLS_EDUCATION_LEVEL ON TEACHER.EntryEducationLevelCode = CLS_EDUCATION_LEVEL.EDUCATION_LEVEL_CODE
                             INNER JOIN CLS_DEGREE ON TEACHER.EntryDegreeCode = CLS_DEGREE.DEGREE_CODE
@@ -351,13 +352,12 @@
                                                 </h5>
                                                 <div class="row">
                                                     <div class="col-4" style="text-align: left; padding-left: 25px; padding-bottom: 5px;">
-                                                        <label style="padding-left: 25px;"> หมายเลขบัตรประจำตัวประชาชน: &nbsp;<?= $TEACHER_DETAIL->TeacherPersonalID ?></label><br>
+                                                        <label style="padding-left: 25px;"> ประเภทบัตรประจำตัว: &nbsp;<?= $TEACHER_DETAIL->CITIZEN_ID_TYPE_NAME ?></label><br>
+                                                        <label style="padding-left: 25px;"> หมายเลขบัตร: &nbsp;<?= $TEACHER_DETAIL->TeacherPersonalID ?></label><br>
                                                         <label style="padding-left: 25px;"> เลขที่หนังสือเดินทาง: &nbsp;<?php if ($TEACHER_DETAIL->TeacherPassportNumber == NULL) {
                                                                                                                             echo '-';
                                                                                                                         } else echo $TEACHER_DETAIL->TeacherPassportNumber; ?></label><br>
-                                                        <label style="padding-left: 25px;"> เพศ: &nbsp;<?php if ($TEACHER_DETAIL->TeacherGenderCode == NULL) {
-                                                                                                            echo '-';
-                                                                                                        } else echo $TEACHER_DETAIL->GENDER_NAME; ?></label><br>
+
                                                     </div>
                                                     <div class="col-4" style="text-align: left; padding-left: 25px; padding-bottom: 5px;">
                                                         <label style="padding-left: 25px;"> สัญชาติ: &nbsp;<?php if ($TEACHER_DETAIL->TeacherNationalityCode == NULL) {
@@ -366,10 +366,10 @@
                                                         <label style="padding-left: 25px;"> วันที่เกิด: &nbsp;<?php if ($TEACHER_DETAIL->TeacherBirthDate == NULL) {
                                                                                                                     echo '-';
                                                                                                                 } else echo DateThai($TEACHER_DETAIL->TeacherBirthDate); ?></label><br>
+                                                        <label style="padding-left: 25px;"> เพศ: &nbsp;<?php if ($TEACHER_DETAIL->TeacherGenderCode == NULL) {
+                                                                                                            echo '-';
+                                                                                                        } else echo $TEACHER_DETAIL->GENDER_NAME; ?></label><br>
 
-                                                        <label style="padding-left: 25px;"> กลุ่มเลือด: &nbsp;<?php if ($TEACHER_DETAIL->TeacherBloodCode == NULL) {
-                                                                                                                    echo '-';
-                                                                                                                } else echo $TEACHER_DETAIL->BLOOD_NAME; ?></label><br>
                                                     </div>
                                                     <div class="col-4" style="text-align: left; padding-left: 25px; padding-bottom: 5px;">
 
@@ -380,6 +380,9 @@
                                                         <label style="padding-left: 25px;"> ศาสนา: &nbsp;<?php if ($TEACHER_DETAIL->TeacherReligionCode == NULL) {
                                                                                                                 echo '-';
                                                                                                             } else echo $TEACHER_DETAIL->RELIGION_NAME; ?></label><br>
+                                                        <label style="padding-left: 25px;"> กลุ่มเลือด: &nbsp;<?php if ($TEACHER_DETAIL->TeacherBloodCode == NULL) {
+                                                                                                                    echo '-';
+                                                                                                                } else echo $TEACHER_DETAIL->BLOOD_NAME; ?></label><br>
                                                     </div>
                                                 </div>
                                             </div>

@@ -147,7 +147,7 @@
                             <div class="col-md-6">
                                 <div class="form-floating">
                                     <input type="text" class="form-control" maxlength="13" name="StudentPersonalID" id="StudentPersonalID">
-                                    <label for="StudentPersonalID">หมายเลขบัตรประจำตัวประชาชน<font color="red"> *</font></label>
+                                    <label for="StudentPersonalID">หมายเลขบัตร<font color="red"> *</font></label>
                                 </div>
                             </div>
                             <div class="col-md-6">
@@ -402,9 +402,9 @@
             if (frm.ImageStudent.value == "") {
                 alert("กรุณาใส่รูปของนักเรียน");
                 return false;
-            } else if (!frm.ImageStudent.value == "") {
+            } else if (frm.ImageStudent.value != "") {
                 var fty = new Array(".jpg", ".jpeg", ".png"); // ประเภทไฟล์ที่อนุญาตให้อัพโหลด   
-                var a = frm.ImageTeacher.value; //กำหนดค่าของไฟล์ใหกับตัวแปร a   
+                var a = frm.ImageStudent.value; //กำหนดค่าของไฟล์ใหกับตัวแปร a   
                 var permiss = 0; // เงื่อนไขไฟล์อนุญาต
                 a = a.toLowerCase();
                 if (a != "") {
@@ -440,10 +440,10 @@
 
             var Year = /^[0-9]{13,13}$/;
             if (frm.StudentPersonalID.value == "") {
-                alert("กรุณาหมายเลขบัตรประจำตัวประชาชน");
+                alert("กรุณาหมายเลขบัตร");
                 return false;
             } else if (!frm.StudentPersonalID.value.match(Year)) {
-                alert("กรุณาหมายเลขบัตรประจำตัวประชาชนให้ครบ 13 หลัก");
+                alert("กรุณาหมายเลขบัตรให้ครบ 13 หลัก");
                 frm.StudentPersonalID.value = "";
                 return false;
             }

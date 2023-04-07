@@ -123,7 +123,7 @@
                                         <label for="ExtracurricularEvaluationCode">กิจกรรมพัฒนาผู้เรียน<font color="red"> *</font> </label>
                                     </div>
                                 </div>
-                                <h6 style="padding-left: 15px;" class="card-title">ข้อมูลผลการตัดสิน</h6>
+                                <h6 style="padding-left: 15px;" class="card-title">ข้อมูลผลการตัดสิน </h6>
                                 <div class="col-md-6">
                                     <div class="form-floating">
                                         <select class="form-select" name="FundamentalSubjectPassingCode" id="FundamentalSubjectPassingCode" aria-label="FundamentalSubjectPassingCode">
@@ -146,13 +146,13 @@
                                 <div class="col-md-6">
                                     <div class="form-floating">
                                         <select class="form-select" name="LiteracyPassingCode" id="LiteracyPassingCode" aria-label="LiteracyPassingCode">
-                                            <?php if ($TRANSCRIPT->LiteracyEvaluationCode == NULL) { ?>
+                                            <?php if ($TRANSCRIPT->LiteracyPassingCode == NULL) { ?>
                                                 <option value="" selected>เลือก</option>
                                             <?php }
                                             $result = $this->db->query('SELECT * FROM CLS_LITERACY_PASSING');
                                             foreach ($result->result() as $LITERACY_PASSING) {
                                             ?>
-                                                <option <?php if ($TRANSCRIPT->LiteracyEvaluationCode == $LITERACY_PASSING->LITERACY_PASSING_CODE) {
+                                                <option <?php if ($TRANSCRIPT->LiteracyPassingCode == $LITERACY_PASSING->LITERACY_PASSING_CODE) {
                                                             echo 'selected';
                                                         } ?> value="<?= $LITERACY_PASSING->LITERACY_PASSING_CODE; ?>"><?= $LITERACY_PASSING->LITERACY_PASSING_NAME; ?></option>
                                             <?php

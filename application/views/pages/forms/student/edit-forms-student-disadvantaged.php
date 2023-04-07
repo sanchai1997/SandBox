@@ -72,7 +72,7 @@
                                 </div>
                             </div>
                             <div class="col-md-6">
-                                <legend class="col-form-label col-sm-3 pt-0">ขาดแคลนอาหารกลางวัน</legend>
+                                <legend class="col-form-label col-sm-6 pt-0">ขาดแคลนอาหารกลางวัน</legend>
                                 <div class="col-sm-9">
                                     <div style="padding-left: 50px;" class="form-check">
                                         <input class="form-check-input" value="1" type="radio" id="gridCheck2" <?php if ($STUDENT->LackingFoodFlag != '' && $STUDENT->LackingFoodFlag == 1) {

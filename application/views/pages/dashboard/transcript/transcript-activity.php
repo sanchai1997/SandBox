@@ -38,7 +38,7 @@
                     <div class="col-9">
                         <h1 class="card-title">
                             <?php if (isset($_GET['SchoolID'])) { ?>
-                                <a href="transcript?SchoolID=<?= $_GET['SchoolID']; ?>&&StudentReferenceID=<?= $_GET['StudentReferenceID']; ?>&&EducationYear=<?= $_GET['EducationYear']; ?>&&Semester=<?= $_GET['Semester']; ?>&&GradeLevelCode=<?= $_GET['GradeLevelCode']; ?>&&StudentID=<?= $_GET['StudentID']; ?>&&TranscriptSeriesNumber=<?= $_GET['TranscriptSeriesNumber']; ?>&&TranscriptNumber=<?= $_GET['TranscriptNumber']; ?>" class="btn btn-secondary btn-sm" data-mdb-ripple-color="dark">ย้อนกลับ</a>&nbsp;
+                                <a href="transcript?SchoolID=<?= $_GET['SchoolID']; ?>&&StudentReferenceID=<?= $_GET['StudentReferenceID']; ?>&&EducationYear=<?= $_GET['EducationYear']; ?>&&Semester=<?= $_GET['Semester']; ?>&&GradeLevelCode=<?= $_GET['GradeLevelCode']; ?>&&StudentID=<?= $_GET['StudentID']; ?>&&TranscriptSeriesNumber=<?= $_GET['TranscriptSeriesNumber']; ?>&&TranscriptNumber=<?= $_GET['TranscriptNumber']; ?>&&TranscriptEducationYear=<?= $_GET['TranscriptEducationYear']; ?>&&TranscriptSemester=<?= $_GET['TranscriptSemester']; ?>" class="btn btn-secondary btn-sm" data-mdb-ripple-color="dark">ย้อนกลับ</a>&nbsp;
                             <?php }
                             $result = $this->db->query('SELECT * FROM CLS_GRADE_LEVEL WHERE GRADE_LEVEL_CODE = ' . $_GET['GradeLevelCode'] . '');
                             foreach ($result->result() as $GRADE_LEVEL) {
@@ -50,7 +50,7 @@
                     </div>
                     <div class="col-3">
                         <h5 style="float: right; padding: 15px;" class="card-title">
-                            <a href="forms-transcript-activity?SchoolID=<?= $_GET['SchoolID']; ?>&&StudentReferenceID=<?= $_GET['StudentReferenceID']; ?>&&EducationYear=<?= $_GET['EducationYear']; ?>&&Semester=<?= $_GET['Semester']; ?>&&GradeLevelCode=<?= $_GET['GradeLevelCode']; ?>&&StudentID=<?= $_GET['StudentID']; ?>&&TranscriptSeriesNumber=<?= $_GET['TranscriptSeriesNumber']; ?>&&TranscriptNumber=<?= $_GET['TranscriptNumber']; ?>" class="btn btn-success"><i class="bi bi-file-earmark-plus">
+                            <a href="forms-transcript-activity?SchoolID=<?= $_GET['SchoolID']; ?>&&StudentReferenceID=<?= $_GET['StudentReferenceID']; ?>&&EducationYear=<?= $_GET['EducationYear']; ?>&&Semester=<?= $_GET['Semester']; ?>&&GradeLevelCode=<?= $_GET['GradeLevelCode']; ?>&&StudentID=<?= $_GET['StudentID']; ?>&&TranscriptSeriesNumber=<?= $_GET['TranscriptSeriesNumber']; ?>&&TranscriptNumber=<?= $_GET['TranscriptNumber']; ?>&&TranscriptEducationYear=<?= $_GET['TranscriptEducationYear']; ?>&&TranscriptSemester=<?= $_GET['TranscriptSemester']; ?>" class="btn btn-success"><i class="bi bi-file-earmark-plus">
                                 </i> เพิ่มข้อมูล
                             </a>
                         </h5>
@@ -59,8 +59,6 @@
                 <table class="table table-borderless datatable">
                     <thead>
                         <tr>
-                            <th scope="col">ปีการศึกษา</th>
-                            <th scope="col">ภาคเรียน</th>
                             <th scope="col">ชื่อกิจกรรม</th>
                             <th style="text-align: center;" scope="col">จำนวนชั่วโมง</th>
                             <th style="text-align: center;" scope="col">ผลการประเมิน</th>
@@ -80,13 +78,11 @@
                             $Count++;
                         ?>
                             <tr>
-                                <td><?= $TRANSCRIPT_EXTRACURRICULAR_ACTIVITY->ActivityEducationYear ?></td>
-                                <td><?= $TRANSCRIPT_EXTRACURRICULAR_ACTIVITY->ActivitySemester ?></td>
                                 <td><?= $TRANSCRIPT_EXTRACURRICULAR_ACTIVITY->ActivityName ?></td>
                                 <td style="text-align: center;"><?= $TRANSCRIPT_EXTRACURRICULAR_ACTIVITY->ActivityHour ?></td>
                                 <td style="text-align: center;"><?= $TRANSCRIPT_EXTRACURRICULAR_ACTIVITY->ACTIVITY_PASSING_NAME ?></td>
                                 <td style="text-align: center;">
-                                    <a href="edit-forms-transcript-activity?SchoolID=<?= $_GET['SchoolID']; ?>&&StudentReferenceID=<?= $_GET['StudentReferenceID']; ?>&&EducationYear=<?= $_GET['EducationYear']; ?>&&Semester=<?= $_GET['Semester']; ?>&&GradeLevelCode=<?= $_GET['GradeLevelCode']; ?>&&StudentID=<?= $_GET['StudentID']; ?>&&TranscriptSeriesNumber=<?= $_GET['TranscriptSeriesNumber']; ?>&&TranscriptNumber=<?= $_GET['TranscriptNumber']; ?>&&ActivityEducationYear=<?= $TRANSCRIPT_EXTRACURRICULAR_ACTIVITY->ActivityEducationYear ?>&&ActivitySemester=<?= $TRANSCRIPT_EXTRACURRICULAR_ACTIVITY->ActivitySemester ?>&&ActivityName=<?= $TRANSCRIPT_EXTRACURRICULAR_ACTIVITY->ActivityName ?>" class="btn btn-warning"><i class="bi bi-pencil-square"></i></a>
+                                    <a href="edit-forms-transcript-activity?SchoolID=<?= $_GET['SchoolID']; ?>&&StudentReferenceID=<?= $_GET['StudentReferenceID']; ?>&&EducationYear=<?= $_GET['EducationYear']; ?>&&Semester=<?= $_GET['Semester']; ?>&&GradeLevelCode=<?= $_GET['GradeLevelCode']; ?>&&StudentID=<?= $_GET['StudentID']; ?>&&TranscriptSeriesNumber=<?= $_GET['TranscriptSeriesNumber']; ?>&&TranscriptNumber=<?= $_GET['TranscriptNumber']; ?>&&ActivityEducationYear=<?= $TRANSCRIPT_EXTRACURRICULAR_ACTIVITY->ActivityEducationYear ?>&&ActivitySemester=<?= $TRANSCRIPT_EXTRACURRICULAR_ACTIVITY->ActivitySemester ?>&&ActivityName=<?= $TRANSCRIPT_EXTRACURRICULAR_ACTIVITY->ActivityName ?>&&TranscriptEducationYear=<?= $_GET['TranscriptEducationYear']; ?>&&TranscriptSemester=<?= $_GET['TranscriptSemester']; ?>" class="btn btn-warning"><i class="bi bi-pencil-square"></i></a>
                                     &nbsp; <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#Delete<?= $Count ?>"><i class=" bi bi-trash"></i></button>
                                 </td>
                             </tr>

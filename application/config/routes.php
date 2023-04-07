@@ -279,19 +279,23 @@ $route['update-transcript-main/(:num)/(:any)/(:num)/(:num)/(:num)/(:num)/(:num)/
 $route['update-transcript-evaluation/(:num)/(:any)/(:num)/(:num)/(:num)/(:num)/(:num)/(:num)']['post'] = 'forms_transcript/update_transcript_evaluation/$1/$2/$3/$4/$5/$6/$7/$8';
 $route['delete-transcript/(:num)/(:any)/(:num)/(:num)/(:num)/(:num)/(:num)/(:num)'] = 'forms_transcript/delete_transcript/$1/$2/$3/$4/$5/$6/$7/$8';
 
+//transcript_student
+$route['transcript-download'] = 'transcript/transcript_download';
+
+
 //Subject
 $route['transcript-subject'] = 'transcript/transcript_subject';
 $route['forms-transcript-subject'] = 'forms_transcript/forms_transcript_subject';
 $route['edit-forms-transcript-subject'] = 'forms_transcript/edit_forms_transcript_subject';
-$route['add-transcript-subject/(:num)/(:any)/(:num)/(:num)/(:num)/(:num)/(:num)/(:num)/(:num)/(:num)']['post'] = 'forms_transcript/add_transcript_subject/$1/$2/$3/$4/$5/$6/$7/$8/$9/$10';
-$route['delete-transcript-subject/(:num)/(:any)/(:num)/(:num)/(:num)/(:num)/(:num)/(:num)/(:num)/(:num)'] = 'forms_transcript/delete_transcript_subject/$1/$2/$3/$4/$5/$6/$7/$8/$9/$10';
-$route['update-transcript-subject/(:num)/(:any)/(:num)/(:num)/(:num)/(:num)/(:num)/(:num)/(:num)/(:num)']['post'] = 'forms_transcript/update_transcript_subject/$1/$2/$3/$4/$5/$6/$7/$8/$9/$10';
+$route['add-transcript-subject/(:num)/(:any)/(:num)/(:num)/(:num)/(:num)/(:num)/(:num)/(:num)/(:num)/(:num)']['post'] = 'forms_transcript/add_transcript_subject/$1/$2/$3/$4/$5/$6/$7/$8/$9/$10/$11';
+$route['delete-transcript-subject/(:num)/(:any)/(:num)/(:num)/(:num)/(:num)/(:num)/(:num)/(:num)/(:num)/(:num)'] = 'forms_transcript/delete_transcript_subject/$1/$2/$3/$4/$5/$6/$7/$8/$9/$10/$11';
+$route['update-transcript-subject/(:num)/(:any)/(:num)/(:num)/(:num)/(:num)/(:num)/(:num)/(:num)/(:num)/(:num)']['post'] = 'forms_transcript/update_transcript_subject/$1/$2/$3/$4/$5/$6/$7/$8/$9/$10/$11';
 
 //Activity
 $route['transcript-activity'] = 'transcript/transcript_activity';
 $route['forms-transcript-activity'] = 'forms_transcript/forms_transcript_activity';
 $route['edit-forms-transcript-activity'] = 'forms_transcript/edit_forms_transcript_activity';
-$route['add-transcript-activity/(:num)/(:any)/(:num)/(:num)/(:num)/(:num)/(:num)/(:num)']['post'] = 'forms_transcript/add_transcript_activity/$1/$2/$3/$4/$5/$6/$7/$8';
+$route['add-transcript-activity/(:num)/(:any)/(:num)/(:num)/(:num)/(:num)/(:num)/(:num)/(:num)/(:num)']['post'] = 'forms_transcript/add_transcript_activity/$1/$2/$3/$4/$5/$6/$7/$8/$9/$10';
 $route['delete-transcript-activity/(:num)/(:any)/(:num)/(:num)/(:num)/(:num)/(:num)/(:num)/(:num)/(:num)'] = 'forms_transcript/delete_transcript_activity/$1/$2/$3/$4/$5/$6/$7/$8/$9/$10';
 $route['update-transcript-activity/(:num)/(:any)/(:num)/(:num)/(:num)/(:num)/(:num)/(:num)/(:num)/(:num)'] = 'forms_transcript/update_transcript_activity/$1/$2/$3/$4/$5/$6/$7/$8/$9/$10';
 
@@ -299,7 +303,7 @@ $route['update-transcript-activity/(:num)/(:any)/(:num)/(:num)/(:num)/(:num)/(:n
 $route['transcript-onet'] = 'transcript/transcript_onet';
 $route['forms-transcript-onet'] = 'forms_transcript/forms_transcript_onet';
 $route['edit-forms-transcript-onet'] = 'forms_transcript/edit_forms_transcript_onet';
-$route['add-transcript-onet/(:num)/(:any)/(:num)/(:num)/(:num)/(:num)/(:num)/(:num)']['post'] = 'forms_transcript/add_transcript_onet/$1/$2/$3/$4/$5/$6/$7/$8';
+$route['add-transcript-onet/(:num)/(:any)/(:num)/(:num)/(:num)/(:num)/(:num)/(:num)/(:num)']['post'] = 'forms_transcript/add_transcript_onet/$1/$2/$3/$4/$5/$6/$7/$8/$9';
 $route['update-transcript-onet/(:num)/(:any)/(:num)/(:num)/(:num)/(:num)/(:num)/(:num)/(:num)/(:num)/(:num)'] = 'forms_transcript/update_transcript_onet/$1/$2/$3/$4/$5/$6/$7/$8/$9/$10/$11';
 $route['delete-transcript-onet/(:num)/(:any)/(:num)/(:num)/(:num)/(:num)/(:num)/(:num)/(:num)/(:num)/(:num)'] = 'forms_transcript/delete_transcript_onet/$1/$2/$3/$4/$5/$6/$7/$8/$9/$10/$11';
 
@@ -307,7 +311,7 @@ $route['delete-transcript-onet/(:num)/(:any)/(:num)/(:num)/(:num)/(:num)/(:num)/
 $route['transcript-nt'] = 'transcript/transcript_nt';
 $route['forms-transcript-nt'] = 'forms_transcript/forms_transcript_nt';
 $route['edit-forms-transcript-nt'] = 'forms_transcript/edit_forms_transcript_nt';
-$route['add-transcript-nt/(:num)/(:any)/(:num)/(:num)/(:num)/(:num)/(:num)/(:num)']['post'] = 'forms_transcript/add_transcript_nt/$1/$2/$3/$4/$5/$6/$7/$8';
+$route['add-transcript-nt/(:num)/(:any)/(:num)/(:num)/(:num)/(:num)/(:num)/(:num)/(:num)/(:num)']['post'] = 'forms_transcript/add_transcript_nt/$1/$2/$3/$4/$5/$6/$7/$8/$9/$10';
 $route['update-transcript-nt/(:num)/(:any)/(:num)/(:num)/(:num)/(:num)/(:num)/(:num)/(:num)/(:num)/(:num)'] = 'forms_transcript/update_transcript_nt/$1/$2/$3/$4/$5/$6/$7/$8/$9/$10/$11';
 $route['delete-transcript-nt/(:num)/(:any)/(:num)/(:num)/(:num)/(:num)/(:num)/(:num)/(:num)/(:num)/(:num)'] = 'forms_transcript/delete_transcript_nt/$1/$2/$3/$4/$5/$6/$7/$8/$9/$10/$11';
 
@@ -315,7 +319,7 @@ $route['delete-transcript-nt/(:num)/(:any)/(:num)/(:num)/(:num)/(:num)/(:num)/(:
 $route['transcript-rt'] = 'transcript/transcript_rt';
 $route['forms-transcript-rt'] = 'forms_transcript/forms_transcript_rt';
 $route['edit-forms-transcript-rt'] = 'forms_transcript/edit_forms_transcript_rt';
-$route['add-transcript-rt/(:num)/(:any)/(:num)/(:num)/(:num)/(:num)/(:num)/(:num)']['post'] = 'forms_transcript/add_transcript_rt/$1/$2/$3/$4/$5/$6/$7/$8';
+$route['add-transcript-rt/(:num)/(:any)/(:num)/(:num)/(:num)/(:num)/(:num)/(:num)/(:num)/(:num)']['post'] = 'forms_transcript/add_transcript_rt/$1/$2/$3/$4/$5/$6/$7/$8/$9/$10';
 $route['update-transcript-rt/(:num)/(:any)/(:num)/(:num)/(:num)/(:num)/(:num)/(:num)/(:num)/(:num)/(:num)/(:num)'] = 'forms_transcript/update_transcript_rt/$1/$2/$3/$4/$5/$6/$7/$8/$9/$10/$11/$12';
 $route['delete-transcript-rt/(:num)/(:any)/(:num)/(:num)/(:num)/(:num)/(:num)/(:num)/(:num)/(:num)/(:num)/(:num)'] = 'forms_transcript/delete_transcript_rt/$1/$2/$3/$4/$5/$6/$7/$8/$9/$10/$11/$12';
 
@@ -323,7 +327,7 @@ $route['delete-transcript-rt/(:num)/(:any)/(:num)/(:num)/(:num)/(:num)/(:num)/(:
 $route['transcript-competency'] = 'transcript/transcript_competency';
 $route['forms-transcript-competency'] = 'forms_transcript/forms_transcript_competency';
 $route['edit-forms-transcript-competency'] = 'forms_transcript/edit_forms_transcript_competency';
-$route['add-transcript-competency/(:num)/(:any)/(:num)/(:num)/(:num)/(:num)/(:num)/(:num)']['post'] = 'forms_transcript/add_transcript_competency/$1/$2/$3/$4/$5/$6/$7/$8';
+$route['add-transcript-competency/(:num)/(:any)/(:num)/(:num)/(:num)/(:num)/(:num)/(:num)/(:num)/(:num)']['post'] = 'forms_transcript/add_transcript_competency/$1/$2/$3/$4/$5/$6/$7/$8/$9/$10';
 $route['update-transcript-competency/(:num)/(:any)/(:num)/(:num)/(:num)/(:num)/(:num)/(:num)/(:num)/(:num)/(:num)'] = 'forms_transcript/update_transcript_competency/$1/$2/$3/$4/$5/$6/$7/$8/$9/$10/$11';
 $route['delete-transcript-competency/(:num)/(:any)/(:num)/(:num)/(:num)/(:num)/(:num)/(:num)/(:num)/(:num)/(:num)'] = 'forms_transcript/delete_transcript_competency/$1/$2/$3/$4/$5/$6/$7/$8/$9/$10/$11';
 
