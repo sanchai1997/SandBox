@@ -1335,7 +1335,7 @@
                         <p>
                             <?php echo $show->CriteriaName; ?>
                         </p>
-                        <h5 class="fw-bold">คำฮธิบายเกณฑ์</h5>
+                        <h5 class="fw-bold">คำอธิบายเกณฑ์</h5>
                         <p>
                             <?php echo $show->CriteriaDescription; ?>
                         </p>
