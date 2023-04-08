@@ -51,7 +51,7 @@ class Budget_model extends CI_Model
         
         return $result;
     }
-    public function delete_Budget($BudgetID){   
+    public function delete_budget($BudgetID){   
         $data = [
             'DeleteStatus' => 1
         ];

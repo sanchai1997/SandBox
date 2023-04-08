@@ -60,7 +60,33 @@ class Expense_model extends CI_Model
     
         return $result;
     }
-    
+
+    public function limit_amount($BudgetID) {
+        $this->db->select('b.BudgetAmount as BudgetAmount , b.BudgetAmount-sum(e.ExpenseAmount) as limit_amount')
+        ->from('EXPENSE e')
+        ->join('BUDGET b', 'b.BudgetID=e.BudgetID', 'LEFT') 
+        ->where('b.BudgetID', $BudgetID )
+        ->where('e.DeleteStatus', 0 )
+        ->group_by(' b.BudgetAmount' );
+
+        $query = $this->db->get();
+
+        return $query->result();
+    }
+
+    public function limit_amount_without($BudgetID,$ExpenseID) {
+        $this->db->select('b.BudgetAmount , b.BudgetAmount-sum(e.ExpenseAmount) as limit_amount')
+        ->from('EXPENSE e')
+        ->join('BUDGET b', 'b.BudgetID=e.BudgetID', 'LEFT') 
+        ->where('b.BudgetID', $BudgetID )
+        ->where_not_in('e.ExpenseID', $ExpenseID )
+        ->where('e.DeleteStatus', 0 )
+        ->group_by(' b.BudgetAmount' );
+
+        $query = $this->db->get();
+
+        return $query->result();
+    }
 
 }
 ?>

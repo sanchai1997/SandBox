@@ -380,6 +380,9 @@ class CurriculumController extends CI_Controller{
             'SubjectTypeCode' => $this->input->post('SubjectTypeCode'),
             'Credit' => $this->input->post('Credit'),
             'LearningHour' => $this->input->post('LearningHour'),
+            'SUBJECT_STD_ID' => $this->input->post('SUBJECT_STD_ID'),
+            'SUBJECT_STD_DETAILS' => $this->input->post('SUBJECT_STD_DETAILS'),
+            'SUBJECT_KPI_ID' => $this->input->post('SUBJECT_KPI_ID'),
             'DeleteStatus' => 0 
         ];
         $result_CURRICULUM_SUBJECT = $this->Curriculum_model->update_curriculum_subject($CurriculumID, $Old_SubjectCode, $CURRICULUM_SUBJECT);

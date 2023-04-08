@@ -17,7 +17,7 @@
               <form class="row g-3" action="<?php echo base_url('edit-Expense');?>" method="POST" name="BUDGET" id="BUDGET" enctype="multipart/form-data">
               
               
-              <input type="hidden" class="form-control"name="ExpenseID"id="ExpenseID" value="<?php echo $ExpenseID ; ?>">
+              <input type="hidden" class="form-control"name="OLD_ExpenseID"id="OLD_ExpenseID" value="<?php echo $ExpenseID ; ?>">
               <input type="hidden" class="form-control"name="SchoolID"id="SchoolID" value="<?php echo $SchoolID ; ?>">
 
                    <!-- start Form ข้อมูลรายจ่าย -->
@@ -25,8 +25,15 @@
 
                 <div class="col-md-16">
                   <div class="form-floating">
+                    <input type="text" class="form-control"name="ExpenseID"id="ExpenseID" placeholder="ปีการศึกษา" maxlength="16" require value="<?php echo $e->ExpenseID ; ?>"> 
+                    <label >รหัสการเบิกจ่าย<font color="red"> *</font></label>
+                  </div>
+                </div>
+
+                <div class="col-md-16">
+                  <div class="form-floating">
                     <input type="text" class="form-control"name="ExpenseEducationYear"id="ExpenseEducationYear" placeholder="ปีการศึกษาที่เบิกจ่าย" maxlength="4" value="<?php echo $e->ExpenseEducationYear ; ?>">
-                    <label >ปีการศึกษาที่เบิกจ่าย</label>
+                    <label >ปีการศึกษาที่เบิกจ่าย<font color="red"> *</font></label>
                   </div>
                 </div>
 
@@ -38,7 +45,7 @@
                       <option value="1">ภาคเรียนที่ 1</option>
                       <option value="2">ภาคเรียนที่ 2</option>
                     </select>
-                    <label>ภาคเรียนที่เบิกจ่าย</label>
+                    <label>ภาคเรียนที่เบิกจ่าย<font color="red"> *</font></label>
                   </div>
                 </div>
 
@@ -52,21 +59,21 @@
                         <option value="<?php echo $lb_t->EXPENSE_TYPE_CODE; ?>"><?php echo $lb_t->EXPENSE_TYPE_NAME; ?></option>
                       <?php } ?>
                     </select>
-                    <label>ประเภทการเบิกจ่าย</label>
+                    <label>ประเภทการเบิกจ่าย<font color="red"> *</font></label>
                   </div>
                 </div>
                 
                 <div class="col-md-16">
                   <div class="form-floating">
-                    <input type="text" class="form-control"name="ExpenseAmount"id="ExpenseAmount" placeholder="ปีการศึกษาที่เบิกจ่าย" maxlength="4" value="<?php echo $e->ExpenseAmount ; ?>">
-                    <label >จำนวนเงินการเบิกจ่าย</label>
+                    <input type="text" class="form-control"name="ExpenseAmount"id="ExpenseAmount" placeholder="จำนวนเงินการเบิกจ่าย" value="<?php echo $e->ExpenseAmount ; ?>">
+                    <label >จำนวนเงินการเบิกจ่าย<font color="red"> * ต้องไม่เกิน<?php echo $limit_amount ?></font></label>
                   </div>
                 </div>
 
                 <div class="col-md-16">
                   <div class="form-floating">
                     <input type="date" class="form-control" name="ExpenseDate"id="ExpenseDate" value="<?php echo $e->ExpenseDate ; ?>">
-                    <label >วันที่เบิกจ่าย</label>
+                    <label >วันที่เบิกจ่าย<font color="red"> *</font></label>
                   </div>
                 </div>
 
@@ -133,7 +140,7 @@
                                     </h6>
                                 </div>
                                 <div class="modal-footer">
-                                    <a href="<?php echo base_url('delete_Expense/' . $e->ExpenseID.'/'.$SchoolID ) ?>" class="btn btn-danger">ลบ</a>
+                                    <a href="delete_Expense?eid=<?php echo $e->ExpenseID; ?>&&sid=<?php echo $SchoolID; ?>" class="btn btn-danger">ลบ</a>
                                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ยกเลิก</button>
                                 </div>
                             </div>
@@ -184,7 +191,11 @@
 
   }
   function check(frm){
-
+    if(frm.ExpenseID.value ==""){
+        alert("รหัสการเบิกจ่าย");
+        frm.ExpenseID.value = "";
+        return false;
+    }
 
     //Check_ExpenseEducationYear(ปีการศึกษาที่เบิกจ่าย)
     var EDUCATION = /^[0-9]{4}$/;
@@ -207,8 +218,14 @@
       alert("กรุณากรอกประเภทการเบิกจ่าย");
       return false;
     }
+    var Check_ExpenseAmount = /^[0-9]{1,12}.[0-9]{0,2}$/; 
+    
     if(frm.ExpenseAmount.value ==""){
         alert("กรุณากรอกจำนวนเงินการเบิกจ่าย");
+        frm.ExpenseAmount.value = "";
+        return false;
+    }else if (!frm.ExpenseAmount.value.match(Check_ExpenseAmount)){
+        alert("กรุณากรอกจำนวนเงินการเบิกให้ถูกต้อง");
         frm.ExpenseAmount.value = "";
         return false;
     }

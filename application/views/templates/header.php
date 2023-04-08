@@ -47,6 +47,11 @@ defined('BASEPATH') or exit('No direct script access allowed');
 </head>
 
 <body>
+<script>
+      setTimeout(function() {
+          document.getElementById('myAlert').remove();
+      }, 2000); // นับถอยหลังให้แสดง 5 วินาที (5000 มิลลิวินาที)
+</script>
   <!-- ======= Header ======= -->
   <header id="header" class="header fixed-top d-flex align-items-center">
 
