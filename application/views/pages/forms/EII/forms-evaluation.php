@@ -2336,7 +2336,7 @@ function checkSelectValues() {
                                                     aria-label="Floating label select example" name="LevelIndex">
                                                     <option value="-1" selected>เลือก</option>
                                                     <?php
-                                                        $result = $this->db->query('SELECT * FROM ASSESSMENT_CRITERIA_LEVEL where Id_ac = '."$CriteriaID".' AND DeleteStatus = 0 ORDER BY LevelIndex ASC'); 
+                                                        $result = $this->db->query('SELECT * FROM ASSESSMENT_CRITERIA_LEVEL where CriteriaID = '."$CriteriaID".' AND DeleteStatus = 0 ORDER BY LevelIndex ASC'); 
                                                         foreach ($result->result() as $cls) {
                                                             ?>
                                                     <option value="<?= $cls->LevelIndex; ?>"><?= $cls->LevelIndex; ?>.
@@ -2355,7 +2355,7 @@ function checkSelectValues() {
                                                     aria-label="Floating label select example" name="CompositionIndex">
                                                     <option value="-1" selected>เลือก</option>
                                                     <?php
-                                                      $result = $this->db->query('SELECT * FROM ASSESSMENT_CRITERIA_COMPOSITION WHERE Id_ac = '."$CriteriaID".' AND DeleteStatus = 0 ORDER BY CompositionIndex ASC'); 
+                                                      $result = $this->db->query('SELECT * FROM ASSESSMENT_CRITERIA_COMPOSITION WHERE CriteriaID = '."$CriteriaID".' AND DeleteStatus = 0 ORDER BY CompositionIndex ASC'); 
 
                                                         foreach ($result->result() as $cls) {
                                                             ?>
@@ -2532,7 +2532,7 @@ function checkSelectValues() {
                                                     aria-label="Floating label select example" name="LevelIndex">
                                                    
                                                     <?php
-                                                        $result = $this->db->query('SELECT * FROM ASSESSMENT_CRITERIA_LEVEL where Id_ac = '."$CriteriaID".' AND DeleteStatus = 0 ORDER BY LevelIndex ASC'); 
+                                                        $result = $this->db->query('SELECT * FROM ASSESSMENT_CRITERIA_LEVEL where CriteriaID = '."$CriteriaID".' AND DeleteStatus = 0 ORDER BY LevelIndex ASC'); 
                                                         foreach ($result->result() as $cls) {
                                                             ?>
                                                     <option value="<?= $cls->LevelIndex; ?>"><?= $cls->LevelIndex; ?>.
@@ -2553,7 +2553,7 @@ function checkSelectValues() {
                                                     aria-label="Floating label select example" name="CompositionIndex">
                                                     
                                                     <?php
-                                                      $result = $this->db->query('SELECT * FROM ASSESSMENT_CRITERIA_COMPOSITION WHERE Id_ac = '."$CriteriaID".' AND DeleteStatus = 0 ORDER BY CompositionIndex ASC'); 
+                                                      $result = $this->db->query('SELECT * FROM ASSESSMENT_CRITERIA_COMPOSITION WHERE CriteriaID = '."$CriteriaID".' AND DeleteStatus = 0 ORDER BY CompositionIndex ASC'); 
 
                                                         foreach ($result->result() as $cls) {
                                                             ?>
@@ -2692,7 +2692,7 @@ function checkSelectValues() {
                                                     aria-label="Floating label select example" name="SchoolID">
                                                     <option selected>เลือก</option>
                                                     <?php
-                                                    $result = $this->db->query('SELECT * FROM SCHOOL');
+                                                    $result = $this->db->query('SELECT * FROM SCHOOL where DeleteStatus = 0');
                                                     foreach ($result->result() as $cls) {
                                                         ?>
                                                     <option value="<?= $cls->SchoolID; ?>">

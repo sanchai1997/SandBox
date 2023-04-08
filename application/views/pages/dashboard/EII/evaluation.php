@@ -471,7 +471,7 @@
                         <?php
                             $result = $this->db->query("SELECT * FROM SCHOOL_ASSESSMENT 
                 INNER JOIN SCHOOL
-                ON SCHOOL_ASSESSMENT.SchoolID = SCHOOL.SchoolID where SCHOOL_ASSESSMENT.DeleteStatus = 0");
+                ON SCHOOL_ASSESSMENT.SchoolID = SCHOOL.SchoolID where SCHOOL_ASSESSMENT.DeleteStatus = 0 AND SCHOOL.DeleteStatus = 0");
                             foreach ($result->result() as $show) { ?>
                         <tr>
                             <td scope="row " style="">
@@ -627,7 +627,7 @@
                             INNER JOIN CLS_EVALUATION
                             ON CLS_EVALUATION.EVALUATION_CODE = SCHOOL_ASSESSMENT_CRITERIA.SchoolAssessmentCode
                      
-                 where SCHOOL_ASSESSMENT_CRITERIA.DeleteStatus = 0
+                 where SCHOOL_ASSESSMENT_CRITERIA.DeleteStatus = 0 AND SCHOOL.DeleteStatus = 0 AND ASSESSMENT_CRITERIA.DeleteStatus = 0
              
                 
                 ");
@@ -680,6 +680,7 @@
                                         ON ASSESSMENT_CRITERIA_COMPOSITION.CompositionIndex = SCHOOL_ASSESSMENT_RESULT.CompositionIndex
                                         where ASSESSMENT_CRITERIA_LEVEL.DeleteStatus = 0
                                         AND SCHOOL_ASSESSMENT_RESULT.DeleteStatus = 0
+                                        AND ASSESSMENT_CRITERIA_COMPOSITION.DeleteStatus = 0
                                         AND SCHOOL_ASSESSMENT_RESULT.SchoolAssessmentEducationYear = $SchoolAssessmentEducationYear
                                         AND SCHOOL_ASSESSMENT_RESULT.SchoolAssessmentSemester = $SchoolAssessmentSemester
                                         AND SCHOOL_ASSESSMENT_RESULT.SchoolID =  $SchoolID
@@ -746,6 +747,8 @@
                                         INNER JOIN ASSESSMENT_CRITERIA_COMPOSITION
                                         ON ASSESSMENT_CRITERIA_COMPOSITION.CompositionIndex = SCHOOL_ASSESSMENT_RESULT.CompositionIndex
                                          where SCHOOL_ASSESSMENT_RESULT.DeleteStatus = 0
+                                         AND ASSESSMENT_CRITERIA_LEVEL.DeleteStatus = 0
+                                         AND ASSESSMENT_CRITERIA_COMPOSITION.DeleteStatus = 0
                                         AND SCHOOL_ASSESSMENT_RESULT.SchoolAssessmentEducationYear = $SchoolAssessmentEducationYear
                                         AND SCHOOL_ASSESSMENT_RESULT.SchoolAssessmentSemester = $SchoolAssessmentSemester
                                         AND SCHOOL_ASSESSMENT_RESULT.SchoolID =  $SchoolID
@@ -1644,7 +1647,9 @@
                             INNER JOIN CLS_EVALUATION
                             ON CLS_EVALUATION.EVALUATION_CODE = SCHOOL_ASSESSMENT_CRITERIA.SchoolAssessmentCode
                      
-                 where SCHOOL_ASSESSMENT_CRITERIA.DeleteStatus = 0
+                 where SCHOOL_ASSESSMENT_CRITERIA.DeleteStatus = 0 
+                 AND SCHOOL.DeleteStatus = 0 
+                 AND ASSESSMENT_CRITERIA.DeleteStatus = 0 
                       ");
     foreach ($result_top->result() as $show) {
         ?>
@@ -1766,6 +1771,7 @@
                                         INNER JOIN ASSESSMENT_CRITERIA_COMPOSITION
                                         ON ASSESSMENT_CRITERIA_COMPOSITION.CompositionIndex = SCHOOL_ASSESSMENT_RESULT.CompositionIndex
                                         where SCHOOL_ASSESSMENT_RESULT.DeleteStatus = 0
+                                        AND ASSESSMENT_CRITERIA_COMPOSITION.DeleteStatus = 0
                                         AND SCHOOL_ASSESSMENT_RESULT.SchoolAssessmentEducationYear = $SchoolAssessmentEducationYear
                                         AND SCHOOL_ASSESSMENT_RESULT.SchoolAssessmentSemester = $SchoolAssessmentSemester
                                         AND SCHOOL_ASSESSMENT_RESULT.SchoolID =  $SchoolID
@@ -1802,144 +1808,8 @@
 <?php } ?>
 
 <?php } ?>
-<?php if ($page == 'sh6') { ?>
 
 
-<?php
-    $result = $this->db->query('SELECT * FROM SCHOOL_ASSESSMENT_CRITERIA 
-                      ');
-    foreach ($result->result() as $show) {
-        ?>
-<div class="modal fade" id="look6<?php echo $show->Id; ?>" tabindex="-1" aria-labelledby="exampleModalLabel"
-    aria-hidden="true">
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h6 class="modal-title" id="exampleModalLabel">ผู้เข้ามามีส่วนร่วม</h6>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <div class="row">
-                    <div class="col">
-                        <h6 class="fw-bold">ปีการศึกษาที่ทำการประเมิน</h6>
-                        <p>
-                            <?php echo $show->SchoolAssessmentEducationYear; ?>
-                        </p>
-                        <h6 class="fw-bold">ภาคเรียนที่ทำการประเมิน</h6>
-                        <p>
-                            <?php echo $show->SchoolAssessmentSemester; ?>
-                        </p>
-                        <h5 class="fw-bold">รหัสสถานศึกษา</h5>
-                        <p>
-                            <?php echo $show->SchoolID; ?>
-                        </p>
-                        <h5 class="fw-bold">รหัสตัวชี้วัด</h5>
-                        <p>
-                            <?php echo $show->CriteriaID; ?>
-                        </p>
-
-                    </div>
-                    <div class="col">
-                        <h5 class="fw-bold">ชื่อผู้ประเมิน</h5>
-                        <p>
-                            <?php echo $show->AssessmentorName; ?>
-                        </p>
-                        <h5 class="fw-bold">คะแนน</h5>
-                        <p>
-                            <?php echo $show->SchoolAssessmentScore; ?>
-                        </p>
-                        <h5 class="fw-bold">ผลการประเมิน</h5>
-                        <p>
-                            <?php echo $show->SchoolAssessmentCode; ?>
-                        </p>
-                        <h5 class="fw-bold">ลิงก์เอกสารแนบรายละเอียดการประเมิน</h5>
-                        <p>
-                            <th scope="row " style="text-align: center;">
-                                <a href="<?php echo base_url('document') ?>/<?php echo $show->SchoolAssessmentAttachmentURL; ?>"
-                                    target="_blank"><i class="bi bi-file-text"></i></a>
-
-                            </th>
-                        </p>
-
-                    </div>
-                </div>
-            </div>
-            <div class="modal-footer">
-                <a href="<?php echo site_url('par_forms_p1?page=sh11') ?>&&key=<?php echo $show->Id; ?>"
-                    class="btn btn-warning"> <i class="bi bi-pencil-square"></i></a>
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ปิด</button>
-
-            </div>
-        </div>
-    </div>
-</div>
-
-<?php } ?>
-
-<?php } ?>
-<?php if ($page == 'sh7') { ?>
-
-
-<?php
-    $result = $this->db->query('SELECT * FROM SCHOOL_ASSESSMENT_RESULT 
-                      ');
-    foreach ($result->result() as $show) {
-        ?>
-<div class="modal fade" id="look7<?php echo $show->Id; ?>" tabindex="-1" aria-labelledby="exampleModalLabel"
-    aria-hidden="true">
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">ผู้เข้ามามีส่วนร่วม</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <div class="row">
-                    <div class="col">
-                        <h5 class="fw-bold">ปีการศึกษาที่ทำการประเมิน</h5>
-                        <p>
-                            <?php echo $show->SchoolAssessmentEducationYear; ?>
-                        </p>
-                        <h5 class="fw-bold">ภาคเรียนที่ทำการประเมิน</h5>
-                        <p>
-                            <?php echo $show->SchoolAssessmentSemester; ?>
-                        </p>
-                        <h5 class="fw-bold">รหัสสถานศึกษา</h5>
-                        <p>
-                            <?php echo $show->SchoolID; ?>
-                        </p>
-
-                    </div>
-                    <div class="col">
-                        <h5 class="fw-bold">รหัสตัวชี้วัด</h5>
-                        <p>
-                            <?php echo $show->CriteriaID; ?>
-                        </p>
-                        <h5 class="fw-bold">ลำดับองค์ประกอบตัวชี้วัด</h5>
-                        <p>
-                            <?php echo $show->CompositionIndex; ?>
-                        </p>
-                        <h5 class="fw-bold">ลำดับของระดับตัวชี้วัดที่ได้</h5>
-                        <p>
-                            <?php echo $show->LevelIndex; ?>
-                        </p>
-
-                    </div>
-                </div>
-            </div>
-            <div class="modal-footer">
-                <a href="<?php echo site_url('par_forms_p1?page=sh11') ?>&&key=<?php echo $show->Id; ?>"
-                    class="btn btn-warning"> <i class="bi bi-pencil-square"></i></a>
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ปิด</button>
-
-            </div>
-        </div>
-    </div>
-</div>
-
-<?php } ?>
-
-<?php } ?>
 <?php if ($page == 'sh8') { ?>
 
 
