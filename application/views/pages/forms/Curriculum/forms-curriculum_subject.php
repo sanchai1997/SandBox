@@ -93,6 +93,32 @@
                   </div>
                 </div>
 
+                <div class="col-md-16">
+                  <div class="form-floating">
+                    <input type="text" class="form-control" name="SUBJECT_STD_ID"id="SUBJECT_STD_ID" placeholder="รหัสมาตรฐานการเรียนรู้">
+                    <label>รหัสมาตรฐานการเรียนรู้<font color="red"> *</font></label>
+                  </div>
+                </div>
+                
+                <div class="col-md-16">
+                  <div class="form-floating">
+                    <input type="text" class="form-control" name="SUBJECT_STD_DETAILS"id="SUBJECT_STD_DETAILS" placeholder="มาตรฐานการเรียนรู้">
+                    <label>มาตรฐานการเรียนรู้<font color="red"> *</font></label>
+                  </div>
+                </div>
+
+                <div class="col-md-16">
+                  <div class="form-floating">
+                    <select class="form-select" aria-label="Default select example" name="SUBJECT_KPI_ID" id="SUBJECT_KPI_ID">
+                      <option selected value="-1">เลือกตัวชี้วัด</option>
+                      <?php foreach($listCriteria as $ls) { ?>
+                        <option value="<?php echo $ls->Id; ?>"><?php echo $ls->CriteriaID ; ?></option>
+                      <?php } ?>
+                    </select>
+                    <label>ตัวชี้วัด<font color="red"> *</font></label>
+                  </div>
+                </div>
+
               <!-- End Form ข้อมูลหลักสูตรรายวิชา -->
                 <div class="d-flex justify-content-between">
                   <a href="list-curriculum_subject?cid=<?php echo $CurriculumID; ?>" class="btn btn-danger">ยกเลิก</a>
