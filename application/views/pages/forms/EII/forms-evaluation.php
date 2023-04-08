@@ -1480,7 +1480,7 @@ function checkSelectValues() {
                                                     aria-label="Floating label select example" name="SchoolID">
                                                     <option selected>เลือก</option>
                                                     <?php
-                                                        $result = $this->db->query('SELECT * FROM SCHOOL');
+                                                        $result = $this->db->query('SELECT * FROM SCHOOL where DeleteStatus = 0 ');
                                                         foreach ($result->result() as $cls) {
                                                             ?>
                                                     <option value="<?= $cls->SchoolID; ?>">
@@ -1550,7 +1550,7 @@ function checkSelectValues() {
                                 <?php
 
                                     $result = $this->db->query("SELECT * FROM SCHOOL_ASSESSMENT 
-                            WHERE Id_sa = '" . $key . "' 
+                            WHERE Id_sa = '" . $key . "' AND  DeleteStatus = 0
                             ");
 
                                     foreach ($result->result() as $show) {
