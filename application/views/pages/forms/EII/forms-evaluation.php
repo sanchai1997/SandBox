@@ -2701,7 +2701,7 @@ function checkSelectValues() {
                                                 </select>
                                                 <label for="floatingSelect"><?php echo nbs(
                                                     2
-                                                ); ?>รหัสสถานศึกษา</label>
+                                                ); ?>สถานศึกษา</label>
                                             </div>
                                         </div>
 
