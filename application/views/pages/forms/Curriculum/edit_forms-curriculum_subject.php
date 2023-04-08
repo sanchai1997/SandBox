@@ -89,6 +89,33 @@
                     <label>จำนวนชั่วโมงเรียน<font color="red"> *</font></label>
                   </div>
                 </div>
+
+                <div class="col-md-16">
+                  <div class="form-floating">
+                    <input type="text" class="form-control" name="SUBJECT_STD_ID"id="SUBJECT_STD_ID" placeholder="รหัสมาตรฐานการเรียนรู้" value="<?php echo $cs->SUBJECT_STD_ID; ?>">
+                    <label>รหัสมาตรฐานการเรียนรู้<font color="red"> *</font></label>
+                  </div>
+                </div>
+                
+                <div class="col-md-16">
+                  <div class="form-floating">
+                    <input type="text" class="form-control" name="SUBJECT_STD_DETAILS"id="SUBJECT_STD_DETAILS" placeholder="มาตรฐานการเรียนรู้" value="<?php echo $cs->SUBJECT_STD_DETAILS; ?>">
+                    <label>มาตรฐานการเรียนรู้<font color="red"> *</font></label>
+                  </div>
+                </div>
+
+                <div class="col-md-16">
+                  <div class="form-floating">
+                    <select class="form-select" aria-label="Default select example" name="SUBJECT_KPI_ID" id="SUBJECT_KPI_ID">
+                      <option selected value="-1">เลือกตัวชี้วัด</option>
+                      <?php foreach($listCriteria as $ls) { ?>
+                        <option value="<?php echo $ls->Id; ?>"><?php echo $ls->CriteriaID ; ?></option>
+                      <?php } ?>
+                    </select>
+                    <label>ตัวชี้วัด<font color="red"> *</font></label>
+                  </div>
+                </div>
+
               <!-- End Form ข้อมูลหลักสูตรรายวิชา -->
                 <div class="d-flex justify-content-between">
                 <a href="list-curriculum_subject?cid=<?php echo $CurriculumID; ?>" class="btn btn-danger">ยกเลิก</a>
@@ -146,6 +173,16 @@
    for (let i = 0; i < size_my_SubjectTypeCode; i++) {
      if(selectoption_SubjectTypeCode[i].value==my_SubjectTypeCode){
       selectoption_SubjectTypeCode[i].selected = true;
+     }
+   }
+
+  ///SUBJECT_KPI_ID
+   var my_SUBJECT_KPI_ID = "<?php echo $cs->SUBJECT_KPI_ID; ?>";
+   var selectoption_SUBJECT_KPI_ID = document.querySelector('#SUBJECT_KPI_ID');
+   var size_my_SUBJECT_KPI_ID =  document.getElementById("SUBJECT_KPI_ID").options.length;
+   for (let i = 0; i < size_my_SUBJECT_KPI_ID; i++) {
+     if(selectoption_SUBJECT_KPI_ID[i].value==my_SUBJECT_KPI_ID){
+      selectoption_SUBJECT_KPI_ID[i].selected = true;
      }
    }
 

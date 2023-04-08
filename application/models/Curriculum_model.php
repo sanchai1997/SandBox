@@ -91,10 +91,11 @@ class Curriculum_model  extends CI_Model {
     }
 
     public function get_CurriculumSubject_All($CurriculumID) {
-        $this->db->select('cs.*,st.SUBJECT_TYPE_NAME, sg.SUBJECT_GROUP_NAME')
+        $this->db->select('cs.*,st.SUBJECT_TYPE_NAME, sg.SUBJECT_GROUP_NAME, ac.*')
         ->from('CURRICULUM_SUBJECT cs')
         ->join('CLS_SUBJECT_TYPE st', 'st.SUBJECT_TYPE_CODE   = cs.SubjectTypeCode  ', 'LEFT') 
         ->join('CLS_SUBJECT_GROUP sg', 'sg.SUBJECT_GROUP_CODE   = cs.SubjectGroupCode  ', 'LEFT') 
+        ->join('ASSESSMENT_CRITERIA ac', 'ac.Id   = cs.SUBJECT_KPI_ID  ', 'LEFT') 
         ->where('CurriculumID ', $CurriculumID  ) 
         ->where('cs.DeleteStatus', 0)
         ;
@@ -120,8 +121,8 @@ class Curriculum_model  extends CI_Model {
         $this->db->where('CurriculumID', $CurriculumID)
                 ->where('SubjectCode ', $SubjectCode  ) ;
         $result_CURRICULUM_SUBJECT = $this->db->update('CURRICULUM_SUBJECT', $CURRICULUM_SUBJECT);
-        return $result_CURRICULUM_SUBJECT;
-    
+        
+        return $result_CURRICULUM_SUBJECT;    
     }
 
     public function delete_curriculum_subject($CurriculumID, $SubjectCode){        
@@ -366,6 +367,17 @@ public function get_score($SCORE_ID) {
 
         return $result;
     }
+
+
+    //ASSESSMENT_CRITERIA_All
+    public function get_ASSESSMENT_CRITERIA_All(){
+		$this->db->select('*');
+		$this->db->from('ASSESSMENT_CRITERIA');
+		$this->db->where('DeleteStatus = 0');
+		$query = $this->db->get();
+		return $query->result();
+
+	}
     
     
 }

@@ -17,10 +17,19 @@ class ExpenseController extends CI_Controller{
         {
             show_404();
         }
-        $data['listSchool'] = $this->School_model->get_school_All();
-        $data['listExpense_type'] = $this->Expense_model->get_expense_type();
         $data['BudgetID'] = $_GET['bid']; 
         $data['SchoolID'] = $_GET['sid']; 
+
+        $data['listSchool'] = $this->School_model->get_school_All();
+        $data['listExpense_type'] = $this->Expense_model->get_expense_type();
+        $limit_amount = $this->Expense_model-> limit_amount($data['BudgetID']);    
+        if(count($limit_amount)>0 ){
+             $data['limit_amount'] = $limit_amount[0]->limit_amount;
+        }else{
+            $Budget = $this->Budget_model->get_Budget($data['BudgetID'] );
+            $data['limit_amount'] = $Budget[0]-> BudgetAmount;
+        }
+       
         
         $this->load->view('templates/header');
         $this->load->view('templates/sidebar');
@@ -43,6 +52,14 @@ class ExpenseController extends CI_Controller{
         $data['SchoolID'] = $_GET['sid']; 
         
         $data['expense'] = $this->Expense_model->get_expense($data['ExpenseID']);
+        $limit_amount = $this->Expense_model-> limit_amount_without($data['expense'][0]->BudgetID, $data['expense'][0]->ExpenseID);    
+
+        if(count($limit_amount)>0 ){
+            $data['limit_amount'] = $limit_amount[0]->limit_amount;
+       }else{
+           $Budget = $this->Budget_model->get_Budget($data['expense'][0]->BudgetID );
+           $data['limit_amount'] = $Budget[0]-> BudgetAmount;
+       }
 
         $this->load->view('templates/header');
         $this->load->view('templates/sidebar');
@@ -58,6 +75,7 @@ class ExpenseController extends CI_Controller{
             $SchoolID = $this->input->post('SchoolID'); 
 
             $expense = [
+                'ExpenseID' => $this->input->post('ExpenseID'),
                 'ExpenseEducationYear' => $this->input->post('ExpenseEducationYear'),
                 'ExpenseSemester' => $this->input->post('ExpenseSemester'),
                 'BudgetID' => $this->input->post('BudgetID'),
@@ -83,11 +101,12 @@ class ExpenseController extends CI_Controller{
 
     public function edit_Expense() {
        
-        $ExpenseID  = $this->input->post('ExpenseID');
+        $ExpenseID  = $this->input->post('OLD_ExpenseID');
         $SchoolID = $this->input->post('SchoolID'); 
    
        
         $expense = [
+            'ExpenseID' => $this->input->post('ExpenseID'),
             'ExpenseEducationYear' => $this->input->post('ExpenseEducationYear'),
             'ExpenseSemester' => $this->input->post('ExpenseSemester'),
             'ExpenseSchoolID ' => $SchoolID,
@@ -109,8 +128,9 @@ class ExpenseController extends CI_Controller{
         }
     
 }
-public function delete_Expense($ExpenseID,$SchoolID ){
-
+public function delete_Expense(){
+    $ExpenseID = $_GET['eid'];
+    $SchoolID = $_GET['sid']; 
 
     $result =$this->Expense_model->delete_expense($ExpenseID);
     if($result == 1 ){

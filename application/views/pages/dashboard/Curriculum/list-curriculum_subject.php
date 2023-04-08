@@ -19,7 +19,11 @@
     <!-- Alert -->
     <?php if (!empty($_SESSION['success'])) { ?>
     <div class="col-12">
-        
+            <script>
+                setTimeout(function() {
+                    document.getElementById('myAlert').remove();
+                }, 2000); // นับถอยหลังให้แสดง 5 วินาที (5000 มิลลิวินาที)
+            </script>
             <div class="alert alert-success" id="myAlert" style="top: 0; left: 0; right: 0; z-index: 1;">
                 <strong>
                     <?php
@@ -57,6 +61,9 @@
                             <th style="text-align: center;" scope="col">ประเภทรายวิชา</th>
                             <th style="text-align: center;" scope="col">หน่วยกิต/น้ำหนัก</th>
                             <th style="text-align: center;" scope="col">จำนวนชั่วโมงเรียน</th>
+                            <th style="text-align: center;" scope="col">รหัสมาตรฐานการเรียนรู้</th>
+                            <th style="text-align: center;" scope="col">มาตรฐานการเรียนรู้</th>
+                            <th style="text-align: center;" scope="col">ตัวชี้วัด</th>
                             <th style="text-align: center;" scope="col">สมรรถนะ</th>
                             <th style="text-align: center;" scope="col">แผนการเรียนรู้</th>
                             <th style="text-align: center;" scope="col">ปฎิบัติ</th>
@@ -72,6 +79,9 @@
                                 <td style="text-align: center;"><?php echo $ls->SUBJECT_TYPE_NAME ; ?></td>
                                 <td style="text-align: center;"><?php echo $ls->Credit ; ?></td>
                                 <td style="text-align: center;"><?php echo $ls-> LearningHour; ?></td>
+                                <td style="text-align: center;"><?php echo $ls-> SUBJECT_STD_ID; ?></td>
+                                <td style="text-align: center;"><?php echo $ls-> SUBJECT_STD_DETAILS; ?></td>
+                                <td style="text-align: center;"><?php echo $ls-> CriteriaID; ?></td>
                                 <td style="text-align: center;">
                                     <a href='list-curriculum_school_competency?sid=<?php echo $ls->SubjectCode; ?>&&cid=<?php echo $ls->CurriculumID; ?>'>
                                         <button type="button" class="btn btn-info"><i class="bi bi-eye-fill"></i></button> 
