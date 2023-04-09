@@ -266,7 +266,7 @@
         return false;
     }
     
-    var Check_BudgetAmount = /^[0-9]{1,12}.[0-9]{0,2}$/; 
+    var Check_BudgetAmount = /^(?:\d{1,12}(?:\.\d{0,2})?|\d{1,12})$/;  
     if(frm.BudgetAmount.value ==""){
         alert("กรุณากรอกจำนวนเงินอุดหนุนทั่วไปเพื่อพัฒนานวัตกรรมการศึกษา");
         frm.BudgetAmount.value = "";
@@ -277,13 +277,22 @@
         return false;
     }
     
-    //Check_BudgetDate  (วันที่อนุมัติเงินอุดหนุนทั่วไปเพื่อพัฒนานวัตกรรมการศึกษา)
-    if(frm.BudgetDate.value ==""){
-      alert("กรุณากรอกข้อมูลวันที่อนุมัติเงินอุดหนุนทั่วไปเพื่อพัฒนานวัตกรรมการศึกษาย");
+     //Check_BudgetDate
+     if(frm.BudgetDate.value == ""){
+      alert("กรุณากรอกข้อมูลวันที่อนุมัติเงินอุดหนุนทั่วไปเพื่อพัฒนานวัตกรรมการศึกษา");
+      return false;
+    }else if(frm.BudgetDate.value =="" && frm.BudgetReceivedDate.value !="" ){
+      alert("กรุณากรอกข้อมูลวันที่อนุมัติเงินอุดหนุนทั่วไปเพื่อพัฒนานวัตกรรมการศึกษาก่อน");
+      return false;
+    }else if(frm.BudgetDate.value !="" && frm.BudgetReceivedDate.value =="" ){
+      alert("กรุณากรอกข้อมูลวันที่ได้รับเงินอุดหนุนทั่วไปเพื่อพัฒนานวัตกรรมการศึกษา");
+      return false;
+    }else if(frm.BudgetReceivedDate.value <  frm.BudgetDate.value ){
+      alert("กรุณากรอกข้อมูลวันที่อนุมัติเงินอุดหนุนให้น้อยกว่าวันที่ได้รับเงินอุดหนุน");
       return false;
     }
-    //Cehck_BudgetReceivedDate (วันที่อนุมัติเงินอุดหนุนทั่วไปเพื่อพัฒนานวัตกรรมการศึกษา)
-    if(frm.BudgetReceivedDate.value==""){
+    //Check_BudgetReceivedDate
+    if(frm.BudgetReceivedDate.value ==""){
       alert("กรุณากรอกข้อมูลวันที่ได้รับเงินอุดหนุนทั่วไปเพื่อพัฒนานวัตกรรมการศึกษา");
       return false;
     }

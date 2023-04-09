@@ -291,7 +291,7 @@
       alert("กรุณากรอกข้อมูลวันที่สิ้นสุดก่อน");
       return false;
     }else if(frm.DevelopmentActivityEndDate.value <  frm.DevelopmentActivityStartDate.value ){
-      alert("กรุณากรอกข้อมูลวันที่เริ่มต้นใหน้อยกว่าวันที่สิ้นสุด");
+      alert("กรุณากรอกข้อมูลวันที่เริ่มต้นให้น้อยกว่าวันที่สิ้นสุด");
       return false;
     }
     //Check_DevelopmentActivityEndDate

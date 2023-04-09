@@ -62,14 +62,14 @@
                 <div class="col-md-16">
                   <div class="form-floating">
                     <input type="text" class="form-control"name="ExpenseAmount"id="ExpenseAmount" placeholder="จำนวนเงินการเบิกจ่าย " >
-                    <label >จำนวนเงินการเบิกจ่าย<font color="red">* ต้องไม่เกิน<?php if ($limit_amount!=0) {echo $limit_amount; } ?></font> </label>
-                  </div>
+                    <label >จำนวนเงินการเบิกจ่าย<font color="red">* ต้องไม่เกิน<?php if ($limit_amount!=0) {echo number_format($limit_amount);  ?> บาท <?php }?></font> </label>
+                  </div> 
                 </div>
 
                 <div class="col-md-16">
                   <div class="form-floating">
                     <input type="date" class="form-control" name="ExpenseDate"id="ExpenseDate">
-                    <label >วันที่เบิกจ่าย<font color="red"> *</font></label>
+                    <label >วันที่เบิกจ่าย<font color="red"> * ต้องมากกว่าหรือเท่ากับวันที่<?php if ($limit_amount!=0) {echo $BudgetReceivedDate; }  ?></font></label> 
                   </div>
                 </div>
           
@@ -142,8 +142,8 @@
       alert("กรุณากรอกประเภทการเบิกจ่าย");
       return false;
     }
-    var Check_ExpenseAmount = /^[0-9]{1,12}.[0-9]{0,2}$/; 
-    
+
+    var Check_ExpenseAmount = /^(?:\d{1,12}(?:\.\d{0,2})?|\d{1,12})$/;  
     if(frm.ExpenseAmount.value ==""){
         alert("กรุณากรอกจำนวนเงินการเบิกจ่าย");
         frm.ExpenseAmount.value = "";
@@ -153,14 +153,22 @@
         frm.ExpenseAmount.value = "";
         return false;
     }
-    //Cehck_BudgetReceivedDate (วันที่อนุมัติเงินอุดหนุนทั่วไปเพื่อพัฒนานวัตกรรมการศึกษา)
+    if (frm.ExpenseAmount.value><?php echo $limit_amount; ?>){
+        alert("จำนวนเงินการเบิกจ่ายต้องไม่เกิน<?php echo number_format($limit_amount); ?>");
+        frm.ExpenseAmount.value = "";
+        return false;
+    }
+
+
+    //Cehck_ExpenseDate
     if(frm.ExpenseDate.value==""){
       alert("กรุณากรอกข้อมูลวันที่เบิกจ่าย");
       return false;
+    }else if(frm.ExpenseDate.value < '<?php echo $BudgetReceivedDate; ?>'){
+        alert("วันที่เบิกจ่ายต้องมากกว่าหรือเท่ากับวันที่<?php echo $BudgetReceivedDate; ?>");
+        frm.ExpenseDate.value = "";
+        return false;
     }
-
-    
-
 
     $('#Modal').modal('show');
   }

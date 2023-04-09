@@ -62,7 +62,7 @@ class Expense_model extends CI_Model
     }
 
     public function limit_amount($BudgetID) {
-        $this->db->select('b.BudgetAmount as BudgetAmount , b.BudgetAmount-sum(e.ExpenseAmount) as limit_amount')
+        $this->db->select('b.BudgetAmount as BudgetAmount , b.BudgetAmount-sum(e.ExpenseAmount) as limit_amount, b.BudgetReceivedDate')
         ->from('EXPENSE e')
         ->join('BUDGET b', 'b.BudgetID=e.BudgetID', 'LEFT') 
         ->where('b.BudgetID', $BudgetID )
@@ -75,7 +75,7 @@ class Expense_model extends CI_Model
     }
 
     public function limit_amount_without($BudgetID,$ExpenseID) {
-        $this->db->select('b.BudgetAmount , b.BudgetAmount-sum(e.ExpenseAmount) as limit_amount')
+        $this->db->select('b.BudgetAmount , b.BudgetAmount-sum(e.ExpenseAmount) as limit_amount, b.BudgetReceivedDate')
         ->from('EXPENSE e')
         ->join('BUDGET b', 'b.BudgetID=e.BudgetID', 'LEFT') 
         ->where('b.BudgetID', $BudgetID )

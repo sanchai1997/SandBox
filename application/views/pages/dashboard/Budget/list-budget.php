@@ -74,6 +74,7 @@
                             <th style="text-align: center;" scope="col">ภาคเรียน</th>
                             <th style="text-align: center;" scope="col">ชื่อโครงการ</th>
                             <th style="text-align: center;" scope="col">ข้อมูลเบิกจ่าย</th>
+                            <th style="text-align: center;" scope="col">รายละเอียด</th>
                             <th style="text-align: center;" scope="col">ปฏิบัติ</th>
                             
                         </tr>
@@ -146,10 +147,10 @@
                                                         ประเภทเบิกจ่าย : <?php echo $le->EXPENSE_TYPE_NAME;   ?>
                                                     </div>
                                                     <div class=" col-8" style="padding-bottom: 8px; padding-left: 40px;">
-                                                        จำนวนเงินเบิกจ่าย : <?php echo $le->ExpenseAmount;   ?>
+                                                        จำนวนเงินเบิกจ่าย : <?php echo number_format($le->ExpenseAmount);   ?>  บาท
                                                     </div>
                                                     <div class=" col-8" style="padding-bottom: 8px; padding-left: 40px;">
-                                                        จำนวนเงินเบิกจ่าย : <?php  echo $le->ExpenseDate;   ?>
+                                                        วันที่เบิกจ่าย : <?php  echo $le->ExpenseDate;   ?>
                                                     </div>
 
                                             </div>
@@ -166,13 +167,13 @@
                             <!----------------------------  END Modal view Expense --------------------------------->
 
                                     <?php $i++;  } ?>
-                                    <a href='forms_Expense?bid=<?php echo $lb->BudgetID ;?>&&sid=<?php echo $SchoolID; ?>' class="fw-bold my-link">>>เพิ่มข้อมูลเบิกจ่าย<<</a>
-                                
-                            
+                                    <a href='forms_Expense?bid=<?php echo $lb->BudgetID ;?>&&sid=<?php echo $SchoolID; ?>' class="fw-bold my-link">>>เพิ่มข้อมูลเบิกจ่าย<<</a>                                                            
                             </td>
+                                <td style="text-align: center;">
+                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#view<?php echo $i ;?>"><i class="bi bi-card-list"></i></button>
+                                </td>
                             
                                 <td style="text-align: center;">
-                                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#view<?php echo $i ;?>"><i class="bi bi-card-list"></i></button>
                                     <a href='edit_forms_budget?bid=<?php echo $lb->BudgetID ;?>&&sid=<?php echo $SchoolID; ?>' class="btn btn-warning">
                                         <i class="bi bi-pencil-square"></i> 
                                     </a> 
@@ -215,8 +216,7 @@
                                                     </div>
                                             </div>
                                             <div class="row">
-                                                    <h6 style="padding-top: 10px;"><b>รายละเอียดงบประมาณ</b></h6>
-                                                    
+                                                    <h6 style="padding-top: 10px;"><b>รายละเอียดงบประมาณ</b></h6>                                                    
                                                     
                                                     <div class=" col-8" style="padding-bottom: 8px; padding-left: 40px;">
                                                         ปีงบประมาณ : <?= $lb->BudgetYear ?>
@@ -228,7 +228,7 @@
                                                         แผนงาน/โครงการ/กิจกรรม : <?= $lb->BudgetProgram ?>
                                                     </div>
                                                     <div class=" col-8" style="padding-bottom: 8px; padding-left: 40px;">
-                                                        จำนวนงบประมาณ : <?=$lb->BudgetAmount ?>
+                                                        จำนวนงบประมาณ : <?php echo number_format($lb->BudgetAmount);   ?>  บาท
                                                     </div>
                                                     <div class=" col-8" style="padding-bottom: 8px; padding-left: 40px;">
                                                         วันที่อนุมัติงบประมาณ : <?= $lb->BudgetDate ?>

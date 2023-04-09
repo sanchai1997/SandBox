@@ -59,6 +59,7 @@
                             <th style="text-align: center;" scope="col">ภาคเรียน</th>
                             <th style="text-align: center;" scope="col">เรื่อง</th>
                             <th style="text-align: center;" scope="col">กิจกรรม</th>
+                            <th style="text-align: center;" scope="col">รายละเอียด</th>
                             <th style="text-align: center;" scope="col">ปฎิบัติ</th>
                         </tr>
                     </thead>
@@ -163,9 +164,13 @@
                                     
                                 </td>
 
-
                                 <td style="text-align: center;">
                                     <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#view<?php echo $lcp->PLAN_ID; ?>"><i class="bi bi-card-list"></i></button>
+
+                                </td>
+
+
+                                <td style="text-align: center;">
                                         <a href='edit_forms_curriculum_plan?pid=<?php echo $lcp->PLAN_ID; ?>&&sid=<?php echo $SubjectCode; ?>&&cid=<?php echo $CurriculumID; ?>' class="btn btn-warning">
                                             <i class="bi bi-pencil-square"></i>
                                         </a>

@@ -25,9 +25,11 @@ class ExpenseController extends CI_Controller{
         $limit_amount = $this->Expense_model-> limit_amount($data['BudgetID']);    
         if(count($limit_amount)>0 ){
              $data['limit_amount'] = $limit_amount[0]->limit_amount;
+             $data['BudgetReceivedDate'] = $limit_amount[0]->BudgetReceivedDate;
         }else{
             $Budget = $this->Budget_model->get_Budget($data['BudgetID'] );
             $data['limit_amount'] = $Budget[0]-> BudgetAmount;
+            $data['BudgetReceivedDate'] = $Budget[0]->BudgetReceivedDate;
         }
        
         
@@ -56,9 +58,11 @@ class ExpenseController extends CI_Controller{
 
         if(count($limit_amount)>0 ){
             $data['limit_amount'] = $limit_amount[0]->limit_amount;
+            $data['BudgetReceivedDate'] = $limit_amount[0]->BudgetReceivedDate;
        }else{
            $Budget = $this->Budget_model->get_Budget($data['expense'][0]->BudgetID );
            $data['limit_amount'] = $Budget[0]-> BudgetAmount;
+           $data['BudgetReceivedDate'] = $Budget[0]->BudgetReceivedDate;
        }
 
         $this->load->view('templates/header');

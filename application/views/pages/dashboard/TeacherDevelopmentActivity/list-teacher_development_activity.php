@@ -57,6 +57,7 @@
                             <th style="text-align: center;" scope="col">จำนวนชั่วโมง</th>
                             <th style="text-align: center;" scope="col">วันที่เริ่มกิจกรรม</th>
                             <th style="text-align: center;" scope="col">เอกสารแนบ</th>
+                            <th style="text-align: center;" scope="col">รายละเอียด</th>
                             <th style="text-align: center;" scope="col">ปฎิบัติ</th>
 
                         </tr>
@@ -80,6 +81,8 @@
                                 <td style="text-align: center;"><a href="<?php echo base_url('assets/teacher_development/document/') ?><?php echo $ls->DevelopmentDocument; ?>" ><i class="bi bi-file-earmark-text-fill"></i></a> </td>
                                 <td style="text-align: center;">
                                     <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#view<?php echo $ls->TeacherID; echo $ls->DevelopmentActivityName; echo $ls->DevelopmentActivityStartDate; ?>"><i class="bi bi-card-list"></i></button>
+                                </td>
+                                <td style="text-align: center;">
                                     <a href='edit_forms-teacher_development_activity?tid=<?php echo $ls->TeacherID;?>&&name=<?php echo $ls->DevelopmentActivityName;?>&&sdate=<?php echo $ls->DevelopmentActivityStartDate;?>' class="btn btn-warning">
                                         <i class="bi bi-pencil-square"></i> 
                                     </a> 
