@@ -130,8 +130,12 @@
                                 <?php 
                              $CommitteeAppointmentNumber = $show->CommitteeAppointmentNumber;
                             $resultc = $this->db->query("SELECT * FROM COMMITTEE_MEMBER 
+                            INNER JOIN CLS_PROVINCE 
+                            ON CLS_PROVINCE.PROVINCE_CODE = COMMITTEE_MEMBER.CommitteeProvinceCode 
                             INNER JOIN CLS_PREFIX
                             ON CLS_PREFIX.PREFIX_CODE = COMMITTEE_MEMBER.CommitteeMemberPrefixCode
+                            JOIN CLS_COMMITEE_POSITION 
+                            ON COMMITTEE_MEMBER.CommitteeMemberPositionCode = CLS_COMMITEE_POSITION.COMMITEE_POSITION_CODE 
                             WHERE COMMITTEE_MEMBER.CommitteeAppointmentNumber='" . $CommitteeAppointmentNumber . "' AND COMMITTEE_MEMBER.DeleteStatus = 0"); ?>
 
                                 <?php foreach ($resultc->result() as $showc) { ?>
@@ -139,11 +143,94 @@
                                     <div class="col">
                                         <p>
 
-                                            <a href="<?php echo site_url('cm_forms_p2?page=sh22') ?>&&key=<?php echo $showc->Id; ?>&&name=<?php echo $show->CommitteeAppointmentNumber; ?>"
-                                                class="my-link">
+                                           
+                                                 <!-- Button trigger modal -->
+                                            <button type="button" class="btn " data-bs-toggle="modal"
+                                                data-bs-target="#commi<?php echo $showc->Id; ?>">
                                                 <?php echo $showc->PREFIX_NAME; ?> <?php echo nbs(2); ?>
                                                 <?php echo $showc->CommitteeMemberNameThai; ?>-
-                                                <?php echo $showc->CommitteeMemberLastNameThai; ?></a>
+                                                <?php echo $showc->CommitteeMemberLastNameThai; ?>
+                                            </button><!-- Modal -->
+                                        <div class="modal fade" id="commi<?php echo $showc->Id; ?>" tabindex="-1"
+                                            aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="exampleModalLabel">คณะกรรมการ</h5>
+                                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                            aria-label="Close"></button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <div class="row"><!-- p1 -->
+                                                            
+                                                            <div class="col"><!-- p1 -->
+<div class="row">
+    <div class="col ">
+        <h6 class="fw-bold">จังหวัด</h6>
+        <p><?php echo $showc->PROVINCE_NAME; ?></p>
+    </div>
+</div>
+<div class="row">
+    <div class="col">
+        <h6 class="fw-bold">ปีที่ออกคำสั่ง</h6>
+        <p><?php echo $showc->CommitteeYear; ?></p>
+    </div>
+</div>
+<div class="row">
+    <div class="col">
+        <h6 class="fw-bold">เลขที่คำสั่ง</h6>
+        <p><?php echo $showc->CommitteeAppointmentNumber; ?></p>
+    </div>
+</div>
+<div class="row">
+    <div class="col">
+        <h6 class="fw-bold">เริ่มดำรงตำแหน่ง -> สิ้นสุด</h6>
+        <p><?php echo DateThai($showc->CommitteeMemberTermStartDate); ?> > <?php echo DateThai($showc->CommitteeMemberTermEndDate); ?></p>
+    </div>
+</div>
+                                                            </div><!-- p1 -->
+                                                            <div class="col"><!-- p1 -->
+                                                            <div class="row">
+    <div class="col">
+        <h6 class="fw-bold">ชื่อ-นามสกุล(ภาษาไทย)</h6>
+        <p><?php echo $showc->PREFIX_NAME; ?> <?php echo nbs(2); ?>
+                                                <?php echo $showc->CommitteeMemberNameThai; ?>-
+                                                <?php echo $showc->CommitteeMemberLastNameThai; ?></p>
+    </div>
+</div>
+<div class="row">
+    <div class="col">
+        <h6 class="fw-bold">ชื่อ-นามสกุล(อังกฤษ)</h6>
+        <p><?php echo $showc->CommitteeMemberNameEnglish; ?>-<?php echo $showc->CommitteeMemberLastNameEnglish; ?></p>
+    </div>
+</div>
+<div class="row">
+    <div class="col">
+        <h6 class="fw-bold">ตำแหน่งกรรมการและอนุกรรมการที่คณะกรรมการขับเคลื่อนพื้นที่นวัตกรรมการศึกษาแต่งตั้ง</h6>
+        <p><?php echo $showc->COMMITEE_POSITION_NAME; ?></p>
+    </div>
+</div>
+<div class="row">
+    <div class="col">
+        <h6 class="fw-bold">ตำแหน่งในองค์กรของกรรมการและอนุกรรมการที่คณะกรรมการขับเคลื่อนพื้นที่นวัตกรรมการศึกษาแต่งตั้ง</h6>
+        <p><?php echo $showc->CommitteeMemberOrganizationPosition; ?></p>
+    </div>
+</div>
+                                                            </div><!-- p1 -->
+                                                        </div><!-- p1 -->
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                    <a href="<?php echo site_url('cm_forms_p2?page=sh22') ?>&&key=<?php echo $showc->Id; ?>&&name=<?php echo $show->CommitteeAppointmentNumber; ?>"
+                                                    class="my-link btn btn-warning"> <i
+                                                                class="bi bi-pencil-square"></i>
+                                               </a>
+                                                        <button type="button" class="btn btn-secondary"
+                                                            data-bs-dismiss="modal">ปิด</button>
+                                                        
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                         </p>
                                     </div>
 
