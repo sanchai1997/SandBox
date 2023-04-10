@@ -1,17 +1,21 @@
-a<style>
-    label.col-form-label {
-        padding-left: 30px;
-    }
-
-    h5.card-title {
-        padding-left: 20px;
-    }
-</style>
 <main id="main" class="main">
-
     <div class="pagetitle">
-        <h1>แก้ไขข้อมูลการช่วยราชการ</h1>
+        <h1 style="padding-bottom: 5px;">แก้ไขข้อมูลการช่วยราชการ
+            <?php
+            $result = $this->db->query('SELECT *  FROM PERSONNEL 
+                        INNER JOIN CLS_PREFIX ON PERSONNEL.PersonnelPrefixCode = CLS_PREFIX.PREFIX_CODE
+                        WHERE PersonnelID = "' . $_GET['PersonnelID'] . '" 
+                        AND JurisdictionCode = ' . $_GET['JurisdictionCode'] . '
+                        AND PersonnelTypeCode = ' . $_GET['PersonnelTypeCode'] . '
+                        AND PositionCode = ' . $_GET['PositionCode'] . '
+                        ');
+            foreach ($result->result() as $PERSONNEL) {
 
+            ?>
+        </h1>
+        <a class="btn btn-light text-dark"><b><?= ' : ' . $PERSONNEL->PREFIX_NAME . $PERSONNEL->PersonnelNameThai . ' ' . $PERSONNEL->PersonnelLastNameThai ?></b></a>
+    <?php }
+    ?>
     </div><!-- End Page Title -->
 
     <section class="section">
@@ -21,88 +25,119 @@ a<style>
                 <div class="card">
                     <div class="card-body">
                         <?php
-                        $result = $this->db->query('SELECT *  FROM PERSONNEL_ASSISTANCE 
-                        INNER JOIN CLS_ASSISTANCE_TYPE ON PERSONNEL_ASSISTANCE.AssistanceTypeCode = CLS_ASSISTANCE_TYPE.ASSISTANCE_TYPE_CODE
-                        WHERE DeleteStatus = 0 AND PersonnelID = "' . $_GET['PersonnelID'] . '"');
-                        foreach ($result->result() as $ASSISTANCE) {
+                        $result = $this->db->query('SELECT *
+                                    FROM PERSONNEL_ASSISTANCE 
+                                    INNER JOIN CLS_ASSISTANCE_TYPE ON PERSONNEL_ASSISTANCE.AssistanceTypeCode = CLS_ASSISTANCE_TYPE.ASSISTANCE_TYPE_CODE
+                                    WHERE DeleteStatus = 0
+                                    AND PersonnelID = "' . $_GET['PersonnelID'] . '"
+                                    AND JurisdictionCode = "' . $_GET['JurisdictionCode'] . '"
+                                    AND AssistanceTypeCode = ' . $_GET['AssistanceTypeCode'] . '
+                                    AND AssistanceStartDate = "' . $_GET['AssistanceStartDate'] . '"
+                                    ');
+
+                        foreach ($result->result() as $PERSONNEL_ASSISTANCE) {
                         ?>
                             <!-- Floating Labels Form -->
-                            <form class="row g-3" action="<?php echo base_url('update-assistance/' . $ASSISTANCE->PersonnelID . '/' . $ASSISTANCE->JurisdictionCode . '/' . $ASSISTANCE->AssistanceTypeCode); ?>" method="POST" enctype="multipart/form-data">
-                                <h5 class="card-title">ข้อมูลการช่วยราชการ</h5>
-                                <div class="row mb-3">
-                                    <label for="inputText" class="col-sm-2 col-form-label">หน่วยงานที่ไปช่วยราชการ</label>
-                                    <div class="col-sm-10">
-                                        <input type="text" class="form-control" name="AssistanceOrganizationName" value="<?= $ASSISTANCE->AssistanceOrganizationName; ?>">
+                            <form class="row g-3" action="<?php echo base_url('update-personnel-assistance/' . $_GET['PersonnelID'] . '/' . $_GET['JurisdictionCode'] . '/' . $_GET['PersonnelTypeCode'] . '/' . $_GET['PositionCode'] . '/' . $_GET['AssistanceTypeCode'] . '/' . $_GET['AssistanceStartDate']  . '/' . $PERSONNEL_ASSISTANCE->AssistanceDocumentURL); ?>" method="POST" id="Personnel" enctype="multipart/form-data">
+
+                                <h6 style="padding-left: 15px;" class="card-title"></h6>
+
+                                <div class="col-md-6">
+                                    <div class="form-floating">
+                                        <select class="form-select" name="AssistanceTypeCode" id="AssistanceTypeCode" aria-label="AssistanceTypeCode" disabled>
+                                            <?php
+                                            $result = $this->db->query('SELECT * FROM CLS_ASSISTANCE_TYPE');
+                                            foreach ($result->result() as $ASSISTANCE_TYPE) {
+                                            ?>
+                                                <option <?php if ($PERSONNEL_ASSISTANCE->AssistanceTypeCode == $ASSISTANCE_TYPE->ASSISTANCE_TYPE_CODE) {
+                                                            echo 'selected';
+                                                        } ?> value="<?= $ASSISTANCE_TYPE->ASSISTANCE_TYPE_CODE; ?>"><?= $ASSISTANCE_TYPE->ASSISTANCE_TYPE_NAME; ?></option>
+                                            <?php
+                                            }
+                                            ?>
+                                        </select>
+                                        <label for="AssistanceTypeCode">ประเภท <font color="red"> *</font></label>
                                     </div>
                                 </div>
-                                <div class="row mb-3">
-                                    <label for="inputDate" class="col-sm-2 col-form-label">วันที่เริ่มการช่วยราชการ</label>
-                                    <div class="col-sm-10">
-                                        <input type="date" class="form-control" name="AssistanceStartDate" value="<?= $ASSISTANCE->AssistanceStartDate; ?>">
+                                <div class="col-md-6">
+                                    <div class="form-floating">
+                                        <input type="text" class="form-control" name="AssistanceOrganizationName" id="AssistanceOrganizationName" value="<?= $PERSONNEL_ASSISTANCE->AssistanceOrganizationName ?>">
+                                        <label for="AssistanceOrganizationName">หน่วยงาน</label>
                                     </div>
                                 </div>
-                                <div class="row mb-3">
-                                    <label for="inputDate" class="col-sm-2 col-form-label">วันที่สิ้นสุดการช่วยราชการ</label>
-                                    <div class="col-sm-10">
-                                        <input type="date" class="form-control" name="AssistanceEndDate" value="<?= $ASSISTANCE->AssistanceEndDate; ?>">
+                                <div class="col-md-6">
+                                    <div class="form-floating">
+                                        <input type="date" class="form-control" name="AssistanceStartDate" id="AssistanceStartDate" value="<?= $PERSONNEL_ASSISTANCE->AssistanceStartDate ?>" disabled>
+                                        <label for="AssistanceStartDate">วันที่เริ่ม <font color="red"> *</font></label>
                                     </div>
                                 </div>
-                                <div class="row mb-3">
-                                    <label for="inputText" class="col-sm-2 col-form-label">คำสั่งหรือหนังสือ</label>
-                                    <div class="col-sm-10">
-                                        <input type="text" class="form-control" name="AssistanceCommand" value="<?= $ASSISTANCE->AssistanceCommand; ?>">
+                                <div class="col-md-6">
+                                    <div class="form-floating">
+                                        <input type="date" class="form-control" name="AssistanceEndDate" id="AssistanceEndDate" value="<?= $PERSONNEL_ASSISTANCE->AssistanceEndDate ?>">
+                                        <label for="AssistanceEndDate">วันที่สิ้นสุด</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="form-floating">
+                                        <input type="text" class="form-control" name="AssistanceCommand" id="AssistanceCommand" value="<?= $PERSONNEL_ASSISTANCE->AssistanceCommand ?>">
+                                        <label for="AssistanceCommand">รายละเอียดคำสั่ง</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="form-floating">
+                                        <input type="text" class="form-control" name="AssistanceReason" id="AssistanceReason" value="<?= $PERSONNEL_ASSISTANCE->AssistanceReason ?>">
+                                        <label for="AssistanceReason">หมายเหตุ</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="input-group">
+                                        <label class="input-group-text" for="inputGroupFile01">เอกสารแนบไฟล์</label>
+                                        <input type="file" class="form-control" name="AssistanceDocumentURL" id="AssistanceDocumentURL" placeholder="เอกสารแนบไฟล์">
                                     </div>
                                 </div>
 
-                                <div class="row mb-3">
-                                    <label for="inputText" class="col-sm-2 col-form-label">หมายเหตุ</label>
-                                    <div class="col-sm-10">
-                                        <input type="text" class="form-control" name="AssistanceReason" value="<?= $ASSISTANCE->AssistanceReason; ?>">
-                                    </div>
-                                </div>
+                            <?php }
+                            ?>
 
-                                <div class="row mb-3">
-                                    <label for="inputFile" class="col-sm-2 col-form-label">เอกสารแนบ</label>
-                                    <div class="col-sm-10">
-                                        <input type="file" class="form-control" name="AssistanceDocumentURL">
-                                    </div>
-                                </div>
-                                <input type="hidden" name="PersonnelID" value="<?= $_GET['PersonnelID']; ?>">
-                                <div class="text-center">
-                                    <a href="personnel-assistance?PersonnelID=<?= $_GET['PersonnelID']; ?>" style="float: left;" class="btn btn-light">ยกเลิก</a>
-                                    <button style="float: center;" type="reset" class="btn btn-secondary">รีเซ็ต</button>
-                                    <button style="float: right;" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#EDIT">บันทึกข้อมูล</button>
-                                </div>
-                                <div class="modal fade" id="EDIT" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
-                                    <div class="modal-dialog modal-dialog-centered" role="document">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h5 class="modal-title" id="exampleModalLongTitle">ยืนยันแก้ไขข้อมูล</h5>
-                                                <!--<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>-->
-                                            </div>
-                                            <div class="modal-body">
-                                                <h6>
-                                                    <center>คุณต้องการแก้ไขข้อมูลใช่หรือไหม ?</center>
-                                                </h6>
-                                            </div>
-                                            <div class="modal-footer">
-                                                <button style="float: right;" type="submit" class="btn btn-primary">ยืนยัน</button>
-                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ยกเลิก</button>
-                                            </div>
+                            <div class="d-flex justify-content-between">
+                                <a href="personnel-assistance?PersonnelID=<?= $_GET['PersonnelID'] ?>&&JurisdictionCode=<?= $_GET['JurisdictionCode'] ?>&&PersonnelTypeCode=<?= $_GET['PersonnelTypeCode'] ?>&&PositionCode=<?= $_GET['PositionCode'] ?>" class="btn btn-danger">ยกเลิก</a>
+                                <button type="button" class="btn btn-primary" onclick="return check(Personnel)">บันทึกข้อมูล</button>
+                            </div>
+                            <!-- Modal -->
+                            <div class="modal fade" id="Modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLongTitle">ยืนยันบันทึกข้อมูล</h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <h6>
+                                                <center>คุณต้องการบันทึกข้อมูลใช่หรือไหม ?</center>
+                                            </h6>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="submit" class="btn btn-primary">ยืนยัน</button>
+                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ยกเลิก</button>
                                         </div>
                                     </div>
                                 </div>
+                            </div>
 
-                            </form> <!-- end Form ข้อมูลวุฒิการศึกษาของบุคลากรอื่น -->
+
+                            </form><!-- End Form ข้อมูลการพัฒนาบุคลากรครู -->
 
                     </div>
                 </div>
 
             </div>
 
-
         </div>
     </section>
+    <script type="text/javascript">
+        function check(frm) {
+            $('#Modal').modal('show');
+        }
+    </script>
 
 </main><!-- End #main -->
-<?php } ?>

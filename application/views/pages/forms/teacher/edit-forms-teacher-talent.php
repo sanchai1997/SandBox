@@ -29,7 +29,7 @@
                             <div class="col-md-6">
                                 <div class="form-floating">
                                     <select class="form-select" name="TeacherQualificationCode" id="TeacherQualificationCode" aria-label="TeacherQualificationCode">
-                                        <?php if ($TEACHER->MarriageStatusCode == NULL) { ?>
+                                        <?php if ($TEACHER->TeacherTalentCode == NULL) { ?>
                                             <option value="" selected>เลือก</option>
                                         <?php }
                                         $result = $this->db->query('SELECT * FROM CLS_TEACHER_QUALIFICATION');

@@ -42,6 +42,24 @@
             </div>
         </div>
     <?php } ?>
+    <?php if (!empty($_SESSION['danger'])) { ?>
+        <script>
+            setTimeout(function() {
+                document.getElementById('myAlert').remove();
+            }, 4000); // นับถอยหลังให้แสดง 5 วินาที (5000 มิลลิวินาที)
+        </script>
+        <div style="position: relative;">
+            <div class="alert alert-danger" id="myAlert" style="position: absolute; top: 0; left: 0; right: 0; z-index: 1;">
+                <strong>
+                    <?php
+                    echo '<i class="bi bi-clipboard2-x"></i> ' . $_SESSION['danger'];
+                    unset($_SESSION['danger']);
+                    ?>
+                </strong>
+
+            </div>
+        </div>
+    <?php } ?>
     <!-- Recent Sales -->
     <div class="col-12">
         <div class="card recent-sales overflow-auto">
@@ -49,12 +67,22 @@
             ?>
                 <div class="card-body">
                     <div class="row">
-                        <div class="col">
+                        <div class="col-8">
                             <h1 class="card-title">
                                 <div class="dropdown">
                                     <button class="btn btn-dark dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                                        เลือกสถานศึกษา
-                                    </button>
+                                        <?php if (!isset($_GET['SchoolID'])) { ?>
+                                            เลือกสถานศึกษา
+                                        <?php } else {
+                                            $result = $this->db->query('SELECT * FROM SCHOOL WHERE DeleteStatus = 0 AND SchoolID = ' . $_GET['SchoolID'] . '');
+                                            foreach ($result->result() as $SHOW_SCHOOL) {
+                                                echo $SHOW_SCHOOL->SchoolNameThai;
+                                            }
+                                        } ?>
+                                    </button>&nbsp;
+                                    <a href="" class="btn btn-success">อัปโหลดสถานศึกษา</a>&nbsp;
+                                    <a href="" class="btn btn-success">อัปโหลดนักเรียน</a>&nbsp;
+                                    <a href="" class="btn btn-success">อัปโหลดครูและบุคลากร</a>
                                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                                         <?php
                                         $result = $this->db->query('SELECT * FROM SCHOOL WHERE DeleteStatus = 0');
@@ -70,15 +98,14 @@
                         </div>
                         <div class="col">
                             <h5 style="float: right; padding: 15px;" class="card-title">
-                                <a href="" class="btn btn-success">อัพโหลดไฟล์</a>&nbsp;&nbsp;
-                                <a href="forms-school" class="btn btn-success"><i class="bi bi-file-earmark-plus"></i> เพิ่มข้อมูล</a>
+                                <a href="forms-school" class="btn btn-success"><i class="bi bi-file-earmark-plus"></i> เพิ่มสถานศึกษา</a>
                             </h5>
                         </div>
                     </div>
                     <table class="table table-borderless datatable">
                         <thead>
                             <tr>
-                                <th style="text-align: center;">ตราสัญลักษณ์</th>
+                                <th style="text-align: center;" width="160px">ตราสัญลักษณ์</th>
                                 <th scope="col">ชื่อสถานศึกษา</th>
                                 <th scope="col">พื้นที่นวัตกรรม</th>
                                 <th style="text-align: center;" scope="col">รายละเอียด</th>
@@ -145,9 +172,9 @@ WHERE SCHOOL.SchoolID = ' . $_GET['SchoolID'] . '
                         </div>
                         <div class="row">
                             <?php if ($SCHOOL_DETAIL->ImageSchool != '') { ?>
-                                <div class="col-2" style="padding-bottom: 8px; padding-left: 70px; padding-top: 0px;">
-                                    <div class="card page-detail">
-                                        <img style=" text-align: center; padding: 15px;" src="assets/school/img/<?= $SCHOOL_DETAIL->ImageSchool; ?>" alt="" width="100%" height="100%" style="padding-top: 20px;">
+                                <div class="col-2" style="padding-bottom: 8px; padding-left: 70px; padding-top: 0px; ">
+                                    <div class="card page-detail" style="width: 180px;">
+                                        <img style=" text-align: center; padding: 15px;" src="assets/school/img/<?= $SCHOOL_DETAIL->ImageSchool; ?>" alt="" width="100%" style="padding-top: 20px;">
                                     </div>
                                 </div>
                             <?php } else { ?>
@@ -496,7 +523,7 @@ WHERE SCHOOL.SchoolID = ' . $_GET['SchoolID'] . '
                                 <div class=" card">
                                     <div class="card-body">
                                         <h5 class="card-title">ข้อมูลรางวัล
-                                            <a style="float: right;" href="school-award?SchoolID=<?= $SCHOOL_DETAIL->SchoolID; ?>" class="btn btn-sm btn-info"><i class="bi bi-eye-fill"></i></a>
+                                            <a style="float: right;" href="school-award?SchoolID=<?= $SCHOOL_DETAIL->SchoolID; ?>" class="btn btn-sm btn-warning"><i class="bi bi-pencil-square"></i></a>
                                         </h5>
                                         <table class="table">
                                             <thead>
@@ -543,7 +570,7 @@ WHERE SCHOOL.SchoolID = ' . $_GET['SchoolID'] . '
                                 <div class=" card">
                                     <div class="card-body">
                                         <h5 class="card-title">ข้อมูลห้องเรียน
-                                            <a style="float: right;" href="school-classroom?SchoolID=<?= $SCHOOL_DETAIL->SchoolID; ?>" class="btn btn-sm btn-info"><i class="bi bi-eye-fill"></i></a>
+                                            <a style="float: right;" href="school-classroom?SchoolID=<?= $SCHOOL_DETAIL->SchoolID; ?>" class="btn btn-sm btn-warning"><i class="bi bi-pencil-square"></i></a>
                                         </h5>
                                         <table class="table">
                                             <thead>
@@ -586,7 +613,7 @@ WHERE SCHOOL.SchoolID = ' . $_GET['SchoolID'] . '
                                 <div class=" card">
                                     <div class="card-body">
                                         <h5 class="card-title">ข้อมูลอาคาร
-                                            <a style="float: right;" href="school-building?SchoolID=<?= $SCHOOL_DETAIL->SchoolID; ?>" class="btn btn-sm btn-info"><i class="bi bi-eye-fill"></i></a>
+                                            <a style="float: right;" href="school-building?SchoolID=<?= $SCHOOL_DETAIL->SchoolID; ?>" class="btn btn-sm btn-warning"><i class="bi bi-pencil-square"></i></a>
                                         </h5>
                                         <table class="table">
                                             <thead>

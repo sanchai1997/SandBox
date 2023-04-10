@@ -14,6 +14,11 @@
     <!-- Alert -->
     <?php if (!empty($_SESSION['success'])) { ?>
     <div class="col-12">
+             <script>
+                setTimeout(function() {
+                    document.getElementById('myAlert').remove();
+                }, 2000); // นับถอยหลังให้แสดง 5 วินาที (5000 มิลลิวินาที)
+            </script>
         
             <div class="alert alert-success" id="myAlert" style="top: 0; left: 0; right: 0; z-index: 1;">
                 <strong>
@@ -64,21 +69,23 @@
                 <table class="table table-borderless datatable">
                     <thead>
                         <tr>
+                            <th style="text-align: center;" scope="col">รหัส</th>
                             <th style="text-align: center;" scope="col">ปีการศึกษา</th>
                             <th style="text-align: center;" scope="col">ภาคเรียน</th>
                             <th style="text-align: center;" scope="col">ชื่อโครงการ</th>
                             <th style="text-align: center;" scope="col">ข้อมูลเบิกจ่าย</th>
+                            <th style="text-align: center;" scope="col">รายละเอียด</th>
                             <th style="text-align: center;" scope="col">ปฏิบัติ</th>
                             
                         </tr>
                     </thead>
                     <tbody>
-                    <?php if ($listBudget != null) { ?>
                 
-                    <?php foreach ($listBudget as $lb) { ?>
+                    <?php   $i =1;
+                        foreach ($listBudget as $lb) { ?>
 
                             <tr>
-                                
+                                <td style="text-align: center;"><?php echo $lb->BudgetID ; ?></td>
                                 <td style="text-align: center;"><?php echo $lb->BudgetEducationYear ; ?></td>
                                 <td style="text-align: center;">
                                         <?php
@@ -91,18 +98,18 @@
                                 <td style="text-align: center;"><?php echo $lb->BudgetProgram; ?></td>
                                 
                                 <td style="text-align: center;"> 
-                                <?php $list_Expense = $this->Expense_model->get_expense_all($lb->BudgetID ); $i =1; ?>
+                                <?php $list_Expense = $this->Expense_model->get_expense_all($lb->BudgetID ); ?>
                                     <?php foreach($list_Expense as $le) { ?>
                                         <div class="row">
                                                 <div class="col">
                                                     <p>
-                                                    <button type="button" class="my-link btn btn-link " data-bs-toggle="modal" data-bs-target="#viewExpense<?php echo$le->ExpenseID ?>">  รายการที่ <?php echo $i ?> </button>
+                                                    <button type="button" class="my-link btn btn-link " data-bs-toggle="modal" data-bs-target="#viewExpense<?php echo $i ?>"><?php echo $le->ExpenseID ; ?></button>
                                                     </p>
                                                 </div>
 
                                             </div>
                                                                     <!-- Modal view Expense -->
-                            <div class="modal fade" id="viewExpense<?php echo$le->ExpenseID ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" style="text-align: left;">
+                            <div class="modal fade" id="viewExpense<?php echo $i ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" style="text-align: left;">
                                 <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-xl">
                                     <div class="modal-content">
                                         <div class="modal-header">
@@ -115,7 +122,7 @@
                                                             else if ($Semester_code == 1) echo "ภาคเรียนที่ 1";
                                                             else if ($Semester_code == 2) echo "ภาคเรียนที่ 2";  ?>
                                                  - โครงการ <?php echo $lb->BudgetProgram; ?>     
-                                                 - รายการที่ <?php echo $i ?>
+                                                 - <?php echo $le->ExpenseID ; ?>
                                             </h5>
 
                                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -140,10 +147,10 @@
                                                         ประเภทเบิกจ่าย : <?php echo $le->EXPENSE_TYPE_NAME;   ?>
                                                     </div>
                                                     <div class=" col-8" style="padding-bottom: 8px; padding-left: 40px;">
-                                                        จำนวนเงินเบิกจ่าย : <?php echo $le->ExpenseAmount;   ?>
+                                                        จำนวนเงินเบิกจ่าย : <?php echo number_format($le->ExpenseAmount);   ?>  บาท
                                                     </div>
                                                     <div class=" col-8" style="padding-bottom: 8px; padding-left: 40px;">
-                                                        จำนวนเงินเบิกจ่าย : <?php  echo $le->ExpenseDate;   ?>
+                                                        วันที่เบิกจ่าย : <?php  echo $le->ExpenseDate;   ?>
                                                     </div>
 
                                             </div>
@@ -160,17 +167,17 @@
                             <!----------------------------  END Modal view Expense --------------------------------->
 
                                     <?php $i++;  } ?>
-                                    <a href='forms_Expense?bid=<?php echo $lb->BudgetID ;?>&&sid=<?php echo $SchoolID; ?>' class="fw-bold my-link">>>เพิ่มข้อมูลเบิกจ่าย<<</a>
-                                
-                            
+                                    <a href='forms_Expense?bid=<?php echo $lb->BudgetID ;?>&&sid=<?php echo $SchoolID; ?>' class="fw-bold my-link">>>เพิ่มข้อมูลเบิกจ่าย<<</a>                                                            
                             </td>
+                                <td style="text-align: center;">
+                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#view<?php echo $i ;?>"><i class="bi bi-card-list"></i></button>
+                                </td>
                             
                                 <td style="text-align: center;">
-                                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#view<?php echo $lb->BudgetID ;?>"><i class="bi bi-card-list"></i></button>
                                     <a href='edit_forms_budget?bid=<?php echo $lb->BudgetID ;?>&&sid=<?php echo $SchoolID; ?>' class="btn btn-warning">
                                         <i class="bi bi-pencil-square"></i> 
                                     </a> 
-                                    <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#delete<?php echo $lb->BudgetID ;?>">
+                                    <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#delete<?php echo $i ;?>">
                                         <i class=" bi bi-trash"></i>
                                     </button>                           
                                 </td>
@@ -178,7 +185,7 @@
                             </tr>
 
                             <!-- Modal view -->
-                            <div class="modal fade" id="view<?php echo $lb->BudgetID ;?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal fade" id="view<?php echo $i ;?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                 <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-xl">
                                     <div class="modal-content">
                                         <div class="modal-header">
@@ -209,8 +216,7 @@
                                                     </div>
                                             </div>
                                             <div class="row">
-                                                    <h6 style="padding-top: 10px;"><b>รายละเอียดงบประมาณ</b></h6>
-                                                    
+                                                    <h6 style="padding-top: 10px;"><b>รายละเอียดงบประมาณ</b></h6>                                                    
                                                     
                                                     <div class=" col-8" style="padding-bottom: 8px; padding-left: 40px;">
                                                         ปีงบประมาณ : <?= $lb->BudgetYear ?>
@@ -222,7 +228,7 @@
                                                         แผนงาน/โครงการ/กิจกรรม : <?= $lb->BudgetProgram ?>
                                                     </div>
                                                     <div class=" col-8" style="padding-bottom: 8px; padding-left: 40px;">
-                                                        จำนวนงบประมาณ : <?=$lb->BudgetAmount ?>
+                                                        จำนวนงบประมาณ : <?php echo number_format($lb->BudgetAmount);   ?>  บาท
                                                     </div>
                                                     <div class=" col-8" style="padding-bottom: 8px; padding-left: 40px;">
                                                         วันที่อนุมัติงบประมาณ : <?= $lb->BudgetDate ?>
@@ -240,7 +246,7 @@
                             </div>
                             <!----------------------------  END Modal view --------------------------------->
                             <!-- Modal -->
-                            <div class="modal fade" id="delete<?php echo $lb->BudgetID ;?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+                            <div class="modal fade" id="delete<?php echo $i;?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
                                     <div class="modal-dialog modal-dialog-centered" role="document">
                                         <div class="modal-content">
                                             <div class="modal-header">
@@ -253,15 +259,14 @@
                                                 </h6>
                                             </div>
                                             <div class="modal-footer"> 
-                                                <a href="<?php echo base_url('delete_budget/' . $lb->BudgetID . '/' .$SchoolID) ?>  " class="btn btn-danger">ลบ</a>
+                                                <a href="delete_budget?bid=<?php echo $lb->BudgetID; ?>&&sid=<?php echo $SchoolID; ?>" class="btn btn-danger">ลบ</a>
                                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ยกเลิก</button>
                                             </div>
                                         </div>
                                     </div>
                             </div>
 
-                            <?php } ?>
-                            <?php } ?>
+                            <?php  $i++; } ?>
                     </tbody>
                 </table>
 

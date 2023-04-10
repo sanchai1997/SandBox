@@ -31,7 +31,7 @@
               <div class="col-md-12">
                 <h6 class="card-title"></h6>
                 <div class="form-floating">
-                  <select class="form-select" name="InnovationAreaCode" id="InnovationAreaCode" aria-label="InnovationAreaCode">
+                  <select class="form-select" name="InnovationAreaCode" id="InnovationAreaCode" aria-label="InnovationAreaCode" required>
                     <?php
                     $result = $this->db->query('SELECT * FROM CLS_INNOVATION_AREA ');
                     foreach ($result->result() as $INNOVATION_AREA) {
@@ -49,30 +49,30 @@
               <div class="col-md-12">
                 <div class="input-group">
                   <label class="input-group-text" for="inputGroupFile01">ตราสัญลักษณ์ <font color="red"> *</font></label>
-                  <input type="file" class="form-control" name="ImageSchool" id="ImageSchool" placeholder="รูปตราโรงเรียน">
+                  <input type="file" class="form-control" name="ImageSchool" id="ImageSchool" placeholder="รูปตราโรงเรียน" required>
                 </div>
               </div>
               <div class="col-md-12">
                 <div class="form-floating">
-                  <input type="text" class="form-control " name="SchoolNameThai" id="SchoolNameThai">
+                  <input type="text" class="form-control " name="SchoolNameThai" id="SchoolNameThai" required>
                   <label for="SchoolNameThai">ชื่อสถานศึกษา (ภาษาไทย) <font color="red"> *</font></label>
                 </div>
               </div>
               <div class="col-md-12">
                 <div class="form-floating">
-                  <input type="text" class="form-control " name="SchoolNameEnglish" id="SchoolNameEnglish">
+                  <input type="text" class="form-control " name="SchoolNameEnglish" id="SchoolNameEnglish" required>
                   <label for="SchoolNameEnglish">ชื่อสถานศึกษา (ภาษาอังกฤษ) <font color="red"> *</font></label>
                 </div>
               </div>
               <div class="col-md-6">
                 <div class="form-floating">
-                  <input type="date" class="form-control " name="SchoolEstablishedDate">
+                  <input type="date" class="form-control " name="SchoolEstablishedDate" required>
                   <label for="SchoolEstablishedDate">วันที่ก่อตั้ง <font color="red"> *</font></label>
                 </div>
               </div>
               <div class="col-md-6">
                 <div class="form-floating">
-                  <select class="form-select" name="EducationLevelCode" id="EducationLevelCode" aria-label="EducationLevelCode">
+                  <select class="form-select" name="EducationLevelCode" id="EducationLevelCode" aria-label="EducationLevelCode" required>
                     <option value="" selected>เลือก</option>
                     <?php
                     $result = $this->db->query('SELECT * FROM CLS_EDUCATION_LEVEL');
@@ -88,7 +88,7 @@
               </div>
               <div class="col-md-6">
                 <div class="form-floating">
-                  <select class="form-select" name="SchoolTypeCode" id="SchoolTypeCode" aria-label="SchoolTypeCode">
+                  <select class="form-select" name="SchoolTypeCode" id="SchoolTypeCode" aria-label="SchoolTypeCode" required>
                     <option value="" selected>เลือก</option>
                     <?php
                     $result = $this->db->query('SELECT * FROM CLS_SCHOOL_TYPE');
@@ -104,7 +104,7 @@
               </div>
               <div class="col-md-6">
                 <div class="form-floating">
-                  <select class="form-select" name="SchoolStatusCode" id="SchoolStatusCode" aria-label="SchoolStatusCode">
+                  <select class="form-select" name="SchoolStatusCode" id="SchoolStatusCode" aria-label="SchoolStatusCode" required>
                     <option value="" selected>เลือก</option>
                     <?php
                     $result = $this->db->query('SELECT * FROM CLS_SCHOOL_STATUS');
@@ -120,7 +120,7 @@
               </div>
               <div class="col-md-6">
                 <div class="form-floating">
-                  <select class="form-select" name="MunicipalCode" id="MunicipalCode" aria-label="MunicipalCode">
+                  <select class="form-select" name="MunicipalCode" id="MunicipalCode" aria-label="MunicipalCode" required>
                     <option value="" selected>เลือก</option>
                     <?php
                     $result = $this->db->query('SELECT * FROM CLS_MUNICIPAL');
@@ -136,7 +136,7 @@
               </div>
               <div class="col-md-6">
                 <div class="form-floating">
-                  <select class="form-select" name="JurisdictionCode" id="JurisdictionCode" aria-label="JurisdictionCode">
+                  <select class="form-select" name="JurisdictionCode" id="JurisdictionCode" aria-label="JurisdictionCode" required>
                     <option value="" selected>เลือก</option>
                     <?php
                     $result = $this->db->query('SELECT * FROM CLS_JURISDICTION');
@@ -191,7 +191,7 @@
               </div>
               <div class="col-md-4">
                 <div class="form-floating">
-                  <select class="form-select" aria-label="PROVINCE" name="SchoolAddressProvinceCode" id="SchoolAddressProvinceCode">
+                  <select class="form-select" aria-label="PROVINCE" name="SchoolAddressProvinceCode" id="SchoolAddressProvinceCode" required>
                     <?php
                     $result = $this->db->query('SELECT * FROM CLS_PROVINCE WHERE PROVINCE_CODE = 91');
                     foreach ($result->result() as $PROVINCE) {
@@ -206,7 +206,7 @@
               </div>
               <div class="col-md-4">
                 <div class="form-floating">
-                  <select class="form-select" id="DISTRICT" name="SchoolAddressDistrictCode">
+                  <select class="form-select" id="DISTRICT" name="SchoolAddressDistrictCode" required>
                     <option value="" selected>เลือก</option>
                     <?php
                     $result = $this->db->query('SELECT * FROM CLS_DISTRICT WHERE PROVINCE_CODE = 91');
@@ -220,7 +220,7 @@
               </div>
               <div class="col-md-4">
                 <div class="form-floating">
-                  <select class="form-select" id="SUBDISTRICT" aria-label="SUBDISTRICT" name="SchoolAddressSubdistrictCode">
+                  <select class="form-select" id="SUBDISTRICT" aria-label="SUBDISTRICT" name="SchoolAddressSubdistrictCode" required>
                     <option value="" selected>เลือก</option>
                     <?php
                     $result = $this->db->query('SELECT * FROM CLS_SUBDISTRICT WHERE PROVINCE_CODE = 91');

@@ -16,7 +16,15 @@
               <form class="row g-3" action="<?php echo base_url('add-budget');?>" method="POST" name="BUDGET" id="BUDGET" enctype="multipart/form-data">
               
               <input type="hidden" class="form-control"name="SchoolID"id="SchoolID" value="<?php echo $SchoolID ?>">
-              <div class="col-md-16">
+
+                <div class="col-md-16">
+                  <div class="form-floating">
+                    <input type="text" class="form-control"name="BudgetID"id="BudgetID" placeholder="ปีการศึกษา" maxlength="16" require>
+                    <label >รหัสเงินอุดหนุนทั่วไปเพื่อพัฒนานวัตกรรมการศึกษา<font color="red"> *</font></label>
+                  </div>
+                </div>
+
+                <div class="col-md-16">
                   <div class="form-floating">
                     <input type="text" class="form-control"name="BudgetEducationYear"id="BudgetEducationYear" placeholder="ปีการศึกษา" maxlength="4">
                     <label >ปีการศึกษาที่ได้รับเงินอุดหนุนทั่วไปเพื่อพัฒนานวัตกรรมการศึกษา<font color="red"> *</font></label>
@@ -87,7 +95,7 @@
 
                 <div class="col-md-16">
                   <div class="form-floating">
-                    <input type="text" class="form-control"name="BudgetAmount"id="BudgetAmount" placeholder="จำนวนเงินอุดหนุนทั่วไปเพื่อพัฒนานวัตกรรมการศึกษา" maxlength="12">
+                    <input type="text" class="form-control"name="BudgetAmount"id="BudgetAmount" placeholder="จำนวนเงินอุดหนุนทั่วไปเพื่อพัฒนานวัตกรรมการศึกษา">
                     <label >จำนวนเงินอุดหนุนทั่วไปเพื่อพัฒนานวัตกรรมการศึกษา<font color="red"> *</font></label>
                   </div>
                 </div>
@@ -145,6 +153,12 @@
     </section>
     <script>
   function check(frm){
+    //BudgetID
+    if(frm.BudgetID.value ==""){
+        alert("รหัสเงินอุดหนุนทั่วไปเพื่อพัฒนานวัตกรรมการศึกษา");
+        frm.BudgetID.value = "";
+        return false;
+    }
 
     //Check_BudgetEducationYear(ปีการศึกษาที่ได้รับเงินอุดหนุนทั่วไปเพื่อพัฒนานวัตกรรมการศึกษา)
     var EDUCATION = /^[0-9]{4}$/;
@@ -198,7 +212,7 @@
         return false;
     }
     
-    var Check_BudgetAmount = /^[0-9]{1,12}$/;
+    var Check_BudgetAmount =  /^(?:\d{1,12}(?:\.\d{0,2})?|\d{1,12})$/;  
     if(frm.BudgetAmount.value ==""){
         alert("กรุณากรอกจำนวนเงินอุดหนุนทั่วไปเพื่อพัฒนานวัตกรรมการศึกษา");
         frm.BudgetAmount.value = "";
@@ -208,13 +222,23 @@
         frm.BudgetAmount.value = "";
         return false;
     }
-    //Check_BudgetDate  (วันที่อนุมัติเงินอุดหนุนทั่วไปเพื่อพัฒนานวัตกรรมการศึกษา)
-    if(frm.BudgetDate.value ==""){
-      alert("กรุณากรอกข้อมูลวันที่อนุมัติเงินอุดหนุนทั่วไปเพื่อพัฒนานวัตกรรมการศึกษาย");
+
+     //Check_BudgetDate
+     if(frm.BudgetDate.value == ""){
+      alert("กรุณากรอกข้อมูลวันที่อนุมัติเงินอุดหนุนทั่วไปเพื่อพัฒนานวัตกรรมการศึกษา");
+      return false;
+    }else if(frm.BudgetDate.value =="" && frm.BudgetReceivedDate.value !="" ){
+      alert("กรุณากรอกข้อมูลวันที่อนุมัติเงินอุดหนุนทั่วไปเพื่อพัฒนานวัตกรรมการศึกษาก่อน");
+      return false;
+    }else if(frm.BudgetDate.value !="" && frm.BudgetReceivedDate.value =="" ){
+      alert("กรุณากรอกข้อมูลวันที่ได้รับเงินอุดหนุนทั่วไปเพื่อพัฒนานวัตกรรมการศึกษา");
+      return false;
+    }else if(frm.BudgetReceivedDate.value <  frm.BudgetDate.value ){
+      alert("กรุณากรอกข้อมูลวันที่อนุมัติเงินอุดหนุนให้น้อยกว่าวันที่ได้รับเงินอุดหนุน");
       return false;
     }
-    //Cehck_BudgetReceivedDate (วันที่อนุมัติเงินอุดหนุนทั่วไปเพื่อพัฒนานวัตกรรมการศึกษา)
-    if(frm.BudgetReceivedDate.value==""){
+    //Check_BudgetReceivedDate
+    if(frm.BudgetReceivedDate.value ==""){
       alert("กรุณากรอกข้อมูลวันที่ได้รับเงินอุดหนุนทั่วไปเพื่อพัฒนานวัตกรรมการศึกษา");
       return false;
     }

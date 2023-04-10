@@ -13,6 +13,11 @@
     <!-- Alert -->
     <?php if (!empty($_SESSION['success'])) { ?>
     <div class="col-12">
+            <script>
+                setTimeout(function() {
+                    document.getElementById('myAlert').remove();
+                }, 2000); // นับถอยหลังให้แสดง 5 วินาที (5000 มิลลิวินาที)
+            </script>
         
             <div class="alert alert-success" id="myAlert" style="top: 0; left: 0; right: 0; z-index: 1;">
                 <strong>
@@ -49,6 +54,10 @@
                             <th style="text-align: center;" scope="col">ภาคเรียน</th>
                             <th style="text-align: center;" scope="col">ประเภทกิจกรรม</th>
                             <th style="text-align: center;" scope="col">ชื่อกิจกรรม</th>
+                            <th style="text-align: center;" scope="col">จำนวนชั่วโมง</th>
+                            <th style="text-align: center;" scope="col">วันที่เริ่มกิจกรรม</th>
+                            <th style="text-align: center;" scope="col">เอกสารแนบ</th>
+                            <th style="text-align: center;" scope="col">รายละเอียด</th>
                             <th style="text-align: center;" scope="col">ปฎิบัติ</th>
 
                         </tr>
@@ -67,8 +76,13 @@
                                 </td>
                                 <td style="text-align: center;"><?php echo $ls->TEACHER_DEVELOPMENT_ACTIVITY_TYPE_NAME; ?></td>
                                 <td style="text-align: center;"><?php echo $ls->DevelopmentActivityName; ?></td>
+                                <td style="text-align: center;"><?php echo $ls->DevelopmentActivityHour; ?></td>
+                                <td style="text-align: center;"><?php echo $ls->DevelopmentActivityStartDate; ?></td>
+                                <td style="text-align: center;"><a href="<?php echo base_url('assets/teacher_development/document/') ?><?php echo $ls->DevelopmentDocument; ?>" ><i class="bi bi-file-earmark-text-fill"></i></a> </td>
                                 <td style="text-align: center;">
                                     <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#view<?php echo $ls->TeacherID; echo $ls->DevelopmentActivityName; echo $ls->DevelopmentActivityStartDate; ?>"><i class="bi bi-card-list"></i></button>
+                                </td>
+                                <td style="text-align: center;">
                                     <a href='edit_forms-teacher_development_activity?tid=<?php echo $ls->TeacherID;?>&&name=<?php echo $ls->DevelopmentActivityName;?>&&sdate=<?php echo $ls->DevelopmentActivityStartDate;?>' class="btn btn-warning">
                                         <i class="bi bi-pencil-square"></i> 
                                     </a> 

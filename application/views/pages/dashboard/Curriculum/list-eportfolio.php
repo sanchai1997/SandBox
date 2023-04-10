@@ -13,6 +13,11 @@
     <!-- Alert -->
     <?php if (!empty($_SESSION['success'])) { ?>
     <div class="col-12">
+            <script>
+                setTimeout(function() {
+                    document.getElementById('myAlert').remove();
+                }, 2000); // นับถอยหลังให้แสดง 5 วินาที (5000 มิลลิวินาที)
+            </script>
         
             <div class="alert alert-success" id="myAlert" style="top: 0; left: 0; right: 0; z-index: 1;">
                 <strong>
