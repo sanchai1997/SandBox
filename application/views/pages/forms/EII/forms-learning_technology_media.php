@@ -777,8 +777,8 @@ if (isset( $_SESSION['success'])) { ?>
                             <div class="col">
                                         <div class="form-floating" id="CreatorPersonalID">
                                             <input type="text" class="form-control" id="my-auto"
-                                                placeholder="หมายเลขบัตรประจำตัวผู้จัดทำ" name=""
-                                                disabled>
+                                                placeholder="หมายเลขบัตรประจำตัวผู้จัดทำ" name=""value="<?php echo $show->CreatorPersonalID; ?>"
+                                                >
                                                 <input type="hidden" class="form-control" id="my-autoo"
                                                 placeholder="" name="CreatorPersonalID"
                                                 >
@@ -966,8 +966,8 @@ if (isset( $_SESSION['success'])) { ?>
                                 } else {
                                     input.disabled = false;
 
-                                    input.value = '';
-                                    input1.value = '';
+                                    input.value = '<?php echo $show->CreatorPersonalID; ?>';
+                                    input1.value = '<?php echo $show->CreatorPersonalID; ?>';
                                 }
                             });
                             input.addEventListener("input", function() {

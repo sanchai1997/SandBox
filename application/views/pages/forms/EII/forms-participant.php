@@ -652,7 +652,7 @@ if (isset( $_SESSION['success'])) { ?>
                                         aria-label="Floating label select example" name="CooperationSchoolID">
                                         <option value="-1" selected>เลือก</option>
                                         <?php
-                                            $result = $this->db->query('SELECT * FROM SCHOOL');
+                                            $result = $this->db->query('SELECT * FROM SCHOOL where DeleteStatus=0');
                                             foreach ($result->result() as $cls) {
                                             ?>
                                         <option value="<?= $cls->SchoolID   ; ?>">
@@ -842,7 +842,7 @@ if (isset( $_SESSION['success'])) { ?>
                                         aria-label="Floating label select example" name="CooperationSchoolID">
 
                                         <?php
-                                            $result = $this->db->query('SELECT * FROM SCHOOL');
+                                            $result = $this->db->query('SELECT * FROM SCHOOL where DeleteStatus=0');
                                             foreach ($result->result() as $cls) {
                                             ?>
                                         <option value="<?= $cls->SchoolID   ; ?>">

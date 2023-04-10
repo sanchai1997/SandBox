@@ -976,8 +976,8 @@ if (isset( $_SESSION['success'])) { ?>
                                 } else {
                                     input.disabled = false;
 
-                                    input.value = '';
-                                    input1.value = '';
+                                    input.value = '<?php echo $show->CreatorPersonalID; ?>';
+                                    input1.value = '<?php echo $show->CreatorPersonalID; ?>';
                                 }
                             });
                             input.addEventListener("input", function() {

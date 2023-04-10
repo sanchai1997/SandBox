@@ -1,12 +1,12 @@
 <main id="main" class="main">
-<style>
-        .my-link {
-  color: black;
-}
+    <style>
+    .my-link {
+        color: black;
+    }
 
-.my-link:hover {
-  color: blue;
-}
+    .my-link:hover {
+        color: blue;
+    }
     </style>
     <?php $page = isset($_GET['page']) ? $_GET['page'] : ''; ?>
     <?php $name = isset($_GET['name']) ? $_GET['name'] : ''; ?>
@@ -148,9 +148,73 @@ foreach ($result->result() as $shows) { ?>
                                     <div class="col">
                                         <p class="">
 
-                                            <a 
-                                                href="<?php echo site_url('pc_forms_p2?page=sh22') ?>&&key=<?php echo $shows->Id; ?>&&name=<?php echo $show->ParticipantName; ?>" class="my-link">
+
+                                            <!-- Button trigger modal -->
+                                            <button type="button" class="btn " data-bs-toggle="modal"
+                                                data-bs-target="#participant<?php echo $shows->Id ?>">
                                                 <?php echo $shows->ContactName; ?>
+                                            </button><!-- Modal -->
+                                        <div class="modal fade" id="participant<?php echo $shows->Id ?>" tabindex="-1"
+                                            aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                            <div
+                                                class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="exampleModalLabel">
+                                                            ติดต่อผู้มีส่วนร่วม</h5>
+                                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                            aria-label="Close"></button>
+                                                    </div>
+                                                    <div class="modal-body">
+
+                                                        <div class="row">
+                                                            <div class="col">
+                                                                <h6>ชื่อของผู้ติดต่อ</h6>
+                                                                <p> <?php echo $shows->ContactName; ?></p>
+
+                                                            </div>
+                                                            <div class="col">
+                                                                <h6>หมายเลขโทรศัพท์ของผู้ติดต่อ</h6>
+                                                                <p> <?php echo $shows->ContactPhone; ?></p>
+
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col">
+                                                                <h6>ตำแหน่งในองค์กร</h6>
+                                                                <p> <?php echo $shows->ContactOrganizationPosition; ?>
+                                                                </p>
+
+                                                            </div>
+                                                            <div class="col">
+                                                                <h6>หมายเลขโทรศัพท์มือถือของผู้ติดต่อ</h6>
+                                                                <p> <?php echo $shows->ContactMobilePhone; ?></p>
+
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col">
+
+                                                            </div>
+                                                            <div class="col">
+                                                                <h6>อีเมลของผู้ติดต่อ</h6>
+                                                                <p> <?php echo $shows->ContactEmail; ?></p>
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <a href="<?php echo site_url('pc_forms_p2?page=sh22') ?>&&key=<?php echo $shows->Id; ?>&&name=<?php echo $show->ParticipantName; ?>"
+                                                            class="my-link btn btn-warning"> <i
+                                                                class="bi bi-pencil-square"></i>
+                                                        </a>
+                                                        <button type="button" class="btn btn-secondary"
+                                                            data-bs-dismiss="modal">ปิด</button>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
 
                                         </p>
                                     </div>
@@ -158,15 +222,21 @@ foreach ($result->result() as $shows) { ?>
                                 </div>
 
                                 <?php } ?>
-                                <a 
-                                    href="<?php echo site_url('pc_forms_p2?page=sh2') ?>&&name=<?php echo $show->ParticipantName; ?>&&key=<?php echo $show->ParticipantID; ?>" class="my-link fw-bold">>>เพิ่มติดต่อ>>
+                                <a href="<?php echo site_url('pc_forms_p2?page=sh2') ?>&&name=<?php echo $show->ParticipantName; ?>&&key=<?php echo $show->ParticipantID; ?>"
+                                    class="my-link fw-bold">>>เพิ่มติดต่อ>>
                                 </a>
                             </td>
                             <td scope="row " style="text-align: left; ">
                                 <?php
                           $ParticipantID = $show->ParticipantID;
                           $result2 = $this->db->query("SELECT * FROM PARTICIPANT_COOPERATION 
-                          WHERE  DeleteStatus = 0 AND ParticipantID = $ParticipantID
+                          INNER JOIN CLS_COOPERATION_LEVEL
+                          ON CLS_COOPERATION_LEVEL.COOPERATION_LEVEL_CODE = PARTICIPANT_COOPERATION.CooperationLevelCode
+                          INNER JOIN CLS_COOPERATION_STATUS
+                          ON CLS_COOPERATION_STATUS.COOPERATION_STATUS_CODE = PARTICIPANT_COOPERATION.CooperationStatusCode
+                          INNER JOIN SCHOOL
+                          ON SCHOOL.SchoolID  = PARTICIPANT_COOPERATION.CooperationSchoolID
+                          WHERE SCHOOL.DeleteStatus = 0 AND PARTICIPANT_COOPERATION.DeleteStatus = 0 AND ParticipantID = $ParticipantID
                          
                           ");
 
@@ -175,21 +245,84 @@ foreach ($result2->result() as $show2) { ?>
                                     <div class="col">
                                         <p class="">
 
-                                            <a 
-                                                href="<?php echo site_url('pcp_forms_p3?page=sh33') ?>&&key=<?php echo $show2->Id; ?>&&name=<?php echo $show->ParticipantName; ?>" class="my-link">
 
+                                            <!-- Button trigger modal -->
+                                            <button type="button" class="btn " data-bs-toggle="modal"
+                                                data-bs-target="#exampleModal">
                                                 <?php echo DateThai($show2->CooperationStartDate); ?>
+                                            </button><!-- Modal -->
+                                        <div class="modal fade" id="exampleModal" tabindex="-1"
+                                            aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                            <div
+                                                class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="exampleModalLabel">การมีส่วนร่วม
+                                                        </h5>
+                                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                            aria-label="Close"></button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <div class="row">
+                                                            <div class="col">
+                                                                <h6>วันเริ่ม-สิ้นสุดการมีส่วนร่วม</h6>
+                                                                <p>-<?php echo DateThai($show2->CooperationStartDate); ?>
+                                                                    ->
+                                                                    <?php echo DateThai($show2->CooperationEndDate); ?>
+                                                                </p>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col">
+                                                                <h6>สถานะการมีส่วนร่วม</h6>
+                                                                <p>-<?php echo $show2->COOPERATION_STATUS_NAME; ?> </p>
+                                                            </div>
+                                                            <div class="col">
+                                                                <h6>กิจกรรมที่มีส่วนร่วม</h6>
+                                                                <p>-<?php echo $show2->CooperationActivity; ?> </p>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col">
+                                                                <h6>ระดับการมีส่วนร่วม</h6>
+                                                                <p>-<?php echo$show2->COOPERATION_LEVEL_NAME; ?> </p>
+                                                            </div>
+                                                            <div class="col">
+                                                                <h6>สถานศึกษาที่เข้าไปมีส่วนร่วม</h6>
+                                                                <p>-<?php echo$show2->SchoolNameThai; ?> </p>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col">
+                                                                <h6>ลิงก์เอกสารแนบ</h6>
+                                                                <p><a href="<?php echo base_url('assets/EII/PARTICIPANT_COOPERATION') ?>/<?php echo $show2->CooperationAttachmentURL; ?>"
+                                                                        target="_blank">ลิงก์เอกสารแนบ</i></a></p>
+                                                            </div>
+
+                                                        </div>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <a href="<?php echo site_url('pcp_forms_p3?page=sh33') ?>&&key=<?php echo $show2->Id; ?>&&name=<?php echo $show->ParticipantName; ?>"
+                                                            class="my-link btn btn-warning"> <i
+                                                                class="bi bi-pencil-square"></i></a>
+                                                        <button type="button" class="btn btn-secondary"
+                                                            data-bs-dismiss="modal">ปิด</button>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                         </p>
                                     </div>
 
                                 </div>
 
                                 <?php } ?>
-                                <a 
-                                    href="<?php echo site_url('pcp_forms_p3?page=sh3') ?>&&name=<?php echo $show->ParticipantName; ?>&&key=<?php echo $show->ParticipantID; ?>" class="my-link fw-bold">>>เพิ่มการมีส่วนร่วม>>
+                                <a href="<?php echo site_url('pcp_forms_p3?page=sh3') ?>&&name=<?php echo $show->ParticipantName; ?>&&key=<?php echo $show->ParticipantID; ?>"
+                                    class="my-link fw-bold">>>เพิ่มการมีส่วนร่วม>>
                                 </a>
                             </td>
-                            <td scope="row " style="text-align: left; ">
+                            <td scope="row " style="">
                                 <?php
                           
                           $result3 = $this->db->query("SELECT * FROM PARTICIPANT_NOTE 
@@ -202,18 +335,77 @@ foreach ($result3->result() as $show3) { ?>
                                     <div class="col">
                                         <p class="">
 
-                                            <a 
-                                                href="<?php echo site_url('pn_forms_p4?page=sh44') ?>&&key=<?php echo $show3->Id; ?>&&name=<?php echo $ParticipantName = $show->ParticipantName; ?>" class="my-link">
-                                                <?php echo $show3->Note; ?>
 
+                                            <!-- Button trigger modal -->
+                                            <button type="button" class="btn text-start" data-bs-toggle="modal"
+                                                data-bs-target="#note<?php echo $show3->Id; ?>">
+                                                <?php echo $show3->Note; ?>
+                                            </button><!-- Modal -->
+                                        <div class="modal fade" id="note<?php echo $show3->Id; ?>" tabindex="-1"
+                                            aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                            <div
+                                                class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="exampleModalLabel">บันทึกเพิ่มเติม
+                                                        </h5>
+                                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                            aria-label="Close"></button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <div class="row"><!-- p1 -->
+                                                            
+                                                            <div class="col"><!-- p2 -->
+                                                            <h6>บันทึกเพิ่มเติม</h6>
+                                                            <p><?php echo $show3->Note; ?></p>
+                                                            </div><!-- p2 -->
+                                                            <div class="col"><!-- p2 -->
+                                                                    <div class="row">
+                                                                        <div class="col">
+                                                                        <h6>ชื่อผู้บันทึกเพิ่มเติม</h6>
+                                                                        <p>-<?php echo $show3->NoteReporterName; ?></p>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="row">
+                                                                        <div class="col">
+                                                                        <h6>หมายเลขโทรศัพท์ของผู้บันทึกเพิ่มเติม</h6>
+                                                                        <p>-<?php echo $show3->NoteReporterPhone; ?></p>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="row">
+                                                                        <div class="col">
+                                                                        <h6>หมายเลขโทรศัพท์มือถือของผู้บันทึกเพิ่มเติม</h6>
+                                                                        <p>-<?php echo $show3->NoteReporterMobilePhone; ?></p>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="row">
+                                                                        <div class="col">
+                                                                        <h6>อีเมลของผู้บันทึกเพิ่มเติม</h6>
+                                                                        <p>-<?php echo $show3->NoteReporterEmail; ?></p>
+                                                                        </div>
+                                                                    </div>
+                                                            </div><!-- p2 -->
+                                                        </div><!-- p1 -->
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <a href="<?php echo site_url('pn_forms_p4?page=sh44') ?>&&key=<?php echo $show3->Id; ?>&&name=<?php echo $ParticipantName = $show->ParticipantName; ?>"
+                                                            class="my-link btn btn-warning"><i
+                                                                class="bi bi-pencil-square"></i></a>
+                                                        <button type="button" class="btn btn-secondary"
+                                                            data-bs-dismiss="modal">ปิด</button>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                         </p>
                                     </div>
 
                                 </div>
                                 <?php } ?>
 
-                                <a 
-                                    href="<?php echo site_url('pn_forms_p4?page=sh4') ?>&&name=<?php echo $show->ParticipantName; ?>&&key=<?php echo $show->ParticipantID; ?>" class="my-link fw-bold">>>บันทึกเพิ่มเติม>>
+                                <a href="<?php echo site_url('pn_forms_p4?page=sh4') ?>&&name=<?php echo $show->ParticipantName; ?>&&key=<?php echo $show->ParticipantID; ?>"
+                                    class="my-link fw-bold">>>บันทึกเพิ่มเติม>>
                                 </a>
                             </td>
                             <td style="text-align: center;">
@@ -276,8 +468,8 @@ foreach ($result3->result() as $show3) { ?>
         </div>
     </div><!-- End Recent Sales -->
     <?php } ?>
-  
- 
+
+
 
 
     <script>
@@ -301,7 +493,7 @@ foreach ($result3->result() as $show3) { ?>
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel">
-                    ข้อมูลหม่วยงานที่เข้ามามีส่วนร่วมในพื้นที่นวัตกรรมการศึกษา</h5>
+                    ผู้เข้ามามีส่วนร่วม</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
@@ -309,7 +501,7 @@ foreach ($result3->result() as $show3) { ?>
                            $ParticipantID= $show->ParticipantID;
                        
                        ?>
-                <div class="row fs-5 m-1">ผู้เข้ามามีส่วนร่วม</div>
+
                 <?php echo br(1); ?>
 
                 <?php
@@ -326,8 +518,8 @@ foreach ($results->result() as $shows) {
 
                     <div class="col">
 
-                        <h6 class="fw-bold m-2">ชื่อภาครัฐหรือภาคเอกชนที่เข้ามาขับเคลื่อนพื้นที่นวัตกรรมการศึกษา</h6>
-                        <p class=" m-2"></p><?php echo $show->ParticipantName; ?></p>
+                        <h6 class="fw-bold ">ชื่อภาครัฐหรือภาคเอกชนที่เข้ามาขับเคลื่อนพื้นที่นวัตกรรมการศึกษา</h6>
+                        <p class=" "></p><?php echo $show->ParticipantName; ?></p>
 
                     </div>
                     <div class="col ">
@@ -338,7 +530,7 @@ foreach ($results->result() as $shows) {
                 <?php } ?>
                 <div class="row fs-5 m-1">ติดต่อผู้มีส่วนร่วม</div>
                 <?php echo br(1); ?>
-                <table class="m-3 col-11">
+                <table class=" table table-bordered">
                     <tr>
                         <th>ชื่อของผู้ติดต่อ</th>
                         <th>หมายเลขโทรศัพท์ของผู้ติดต่อ</th>
@@ -354,18 +546,28 @@ $results = $this->db->query("SELECT * FROM PARTICIPANT_CONTACT
 foreach ($results->result() as $shows) {
     ?>
                     <tr>
-                        <td><p><?php echo $shows->ContactName; ?></p></td>
-                        <td><p><?php echo $shows->ContactPhone; ?></p></td>
-                        <td><p><?php echo $shows->ContactMobilePhone; ?></p></td>
-                        <td><p><?php echo $shows->ContactEmail; ?></p></td>
-                        <td><p><?php echo $shows->ContactOrganizationPosition; ?></p></td>
+                        <td>
+                            <p><?php echo $shows->ContactName; ?></p>
+                        </td>
+                        <td>
+                            <p><?php echo $shows->ContactPhone; ?></p>
+                        </td>
+                        <td>
+                            <p><?php echo $shows->ContactMobilePhone; ?></p>
+                        </td>
+                        <td>
+                            <p><?php echo $shows->ContactEmail; ?></p>
+                        </td>
+                        <td>
+                            <p><?php echo $shows->ContactOrganizationPosition; ?></p>
+                        </td>
                     </tr>
                     <?php } ?>
                 </table>
-<!-- // -->
-<div class="row fs-5 m-1">การมีส่วนร่วม</div>
+                <!-- // -->
+                <div class="row fs-5 m-1">การมีส่วนร่วม</div>
                 <?php echo br(1); ?>
-                <table class="m-3 col-11">
+                <table class="table table-bordered">
                     <tr>
                         <th>วันที่เริ่ม</th>
                         <th>วันที่สิ้นสุด</th>
@@ -389,27 +591,41 @@ WHERE PARTICIPANT_COOPERATION.ParticipantID = $ParticipantID AND PARTICIPANT_COO
 foreach ($results->result() as $showx) {
     ?>
                     <tr>
-                        <td><p><?php echo DateThai($showx->CooperationStartDate); ?></p></td>
-                        <td><p><?php echo DateThai($showx->CooperationEndDate); ?></p></td>
-                        <td><p><?php echo $showx->SchoolNameThai; ?></p></td>
-                        <td><p><?php echo $showx->CooperationActivity; ?></p></td>
-                        <td><p><?php echo $showx->COOPERATION_LEVEL_NAME; ?></p></td>
-                        <td><p><?php echo $showx->COOPERATION_STATUS_NAME; ?></p></td>
-                        <td><p><a href="<?php echo base_url('assets/EII/PARTICIPANT_COOPERATION') ?>/<?php echo $showx->CooperationAttachmentURL; ?>"
-                                target="_blank">รายละเอียดเอกสาร</i></a></p></td>
+                        <td>
+                            <p><?php echo DateThai($showx->CooperationStartDate); ?></p>
+                        </td>
+                        <td>
+                            <p><?php echo DateThai($showx->CooperationEndDate); ?></p>
+                        </td>
+                        <td>
+                            <p><?php echo $showx->SchoolNameThai; ?></p>
+                        </td>
+                        <td>
+                            <p><?php echo $showx->CooperationActivity; ?></p>
+                        </td>
+                        <td>
+                            <p><?php echo $showx->COOPERATION_LEVEL_NAME; ?></p>
+                        </td>
+                        <td>
+                            <p><?php echo $showx->COOPERATION_STATUS_NAME; ?></p>
+                        </td>
+                        <td>
+                            <p><a href="<?php echo base_url('assets/EII/PARTICIPANT_COOPERATION') ?>/<?php echo $showx->CooperationAttachmentURL; ?>"
+                                    target="_blank">ลิงก์เอกสารแนบ</i></a></p>
+                        </td>
                     </tr>
                     <?php } ?>
                 </table>
                 <!-- // -->
-<div class="row fs-5 m-1">บันทึกเพิ่มเติม</div>
+                <div class="row fs-5 m-1">บันทึกเพิ่มเติม</div>
                 <?php echo br(1); ?>
-                <table class="m-3 col-11">
+                <table class="table table-bordered">
                     <tr>
-                        <th>บันทึก</th>
-                        <th>ชื่อผู้บันทึก</th>
-                        <th>หมายเลขโทรศัพท์</th>
-                        <th>หมายเลขโทรศัพท์มือถือ</th>
-                        <th>อีเมล</th>
+                        <th >บันทึก</th>
+                        <th class="col-2">ชื่อผู้บันทึก</th>
+                        <th class="col-2">หมายเลขโทรศัพท์</th>
+                        <th class="col-2">หมายเลขโทรศัพท์มือถือ</th>
+                        <th class="col-2">อีเมล</th>
 
                     </tr>
 
@@ -420,11 +636,21 @@ WHERE ParticipantID = $ParticipantID AND DeleteStatus = 0 ");
 foreach ($results->result() as $showx) {
     ?>
                     <tr>
-                        <td><p><?php echo $showx->Note; ?></p></td>
-                        <td><p><?php echo $showx->NoteReporterName; ?></p></td>
-                        <td><p><?php echo $showx->NoteReporterPhone; ?></p></td>
-                        <td><p><?php echo $showx->NoteReporterMobilePhone; ?></p></td>
-                        <td><p><?php echo $showx->NoteReporterEmail; ?></p></td>
+                        <td>
+                            <p><?php echo $showx->Note; ?></p>
+                        </td>
+                        <td>
+                            <p><?php echo $showx->NoteReporterName; ?></p>
+                        </td>
+                        <td>
+                            <p><?php echo $showx->NoteReporterPhone; ?></p>
+                        </td>
+                        <td>
+                            <p><?php echo $showx->NoteReporterMobilePhone; ?></p>
+                        </td>
+                        <td>
+                            <p><?php echo $showx->NoteReporterEmail; ?></p>
+                        </td>
                     </tr>
                     <?php } ?>
                 </table>
