@@ -3,22 +3,21 @@
     <div class="pagetitle">
         <div class="row">
             <div class="col-6">
-                <?php
-                $result = $this->db->query('SELECT *  FROM PERSONNEL WHERE PersonnelID = "' . $_GET['PersonnelID'] . '"');
-                foreach ($result->result() as $PERSONNEL) {
-                ?>
-                    <h1>ระดับการศึกษา - <?= $PERSONNEL->PersonnelNameThai; ?> <?= $PERSONNEL->PersonnelLastNameThai; ?>
-                    <?php } ?>
-                    </h1>
+                <h1>รายละเอียดวุฒิการศึกษา
+                    <?php
+                    $result = $this->db->query('SELECT *  FROM PERSONNEL 
+                        INNER JOIN CLS_PREFIX ON PERSONNEL.PersonnelPrefixCode = CLS_PREFIX.PREFIX_CODE
+                        WHERE PersonnelID = "' . $_GET['PersonnelID'] . '" 
+                        AND JurisdictionCode = ' . $_GET['JurisdictionCode'] . '
+                        AND PersonnelTypeCode = ' . $_GET['PersonnelTypeCode'] . '
+                        AND PositionCode = ' . $_GET['PositionCode'] . '
+                        ');
+                    foreach ($result->result() as $PERSONNEL) {
+                    ?>
+                </h1>
+                <a class="btn btn-light text-dark"><b><?= ' : ' . $PERSONNEL->PREFIX_NAME . $PERSONNEL->PersonnelNameThai . ' ' . $PERSONNEL->PersonnelLastNameThai ?></b></a>
+            <?php } ?>
             </div>
-            <div class="col-6" style="padding-right: 25px;">
-                <a href="personnel-assistance?PersonnelID=<?= $_GET['PersonnelID']; ?>" style="float: right;" class="btn btn-sm btn-light" data-mdb-ripple-color="dark">การช่วยราชการ</a>
-                <a href="personnel-education?PersonnelID=<?= $_GET['PersonnelID']; ?>" style="float: right;" class="btn btn-sm btn-outline-secondary" data-mdb-ripple-color="dark">ระดับการศึกษา</a>
-                <a href="personnel-academic?PersonnelID=<?= $_GET['PersonnelID']; ?>" style="float: right;" class="btn btn-sm btn-light" data-mdb-ripple-color="dark">วิทยฐานะและตำแหน่งวิชาการ</a>
-                <a href="personnel-additionalposition?PersonnelID=<?= $_GET['PersonnelID']; ?>" style="float: right;" class="btn btn-sm btn-light" data-mdb-ripple-color="dark">ตำแหน่งหน้าที่เพิ่มเติม</a>
-
-            </div>
-
         </div>
     </div><!-- End Page Title -->
     <?php if (!empty($_SESSION['success'])) { ?>
@@ -46,39 +45,50 @@
             <div class="card-body">
                 <div class="row">
                     <div class="col">
-                        <h5 class="card-title">รายละเอียดข้อมูล <span style="padding-right:10px">| Table Education</span> <a href="personnel" class="btn btn-secondary btn-sm" data-mdb-ripple-color="dark">ย้อนกลับ</a></h5>
+                        <h5 class="card-title"><span></span> <a href="personnel?PersonnelID=<?= $_GET['PersonnelID'] ?>&&JurisdictionCode=<?= $_GET['JurisdictionCode'] ?>&&PersonnelTypeCode=<?= $_GET['PersonnelTypeCode'] ?>&&PositionCode=<?= $_GET['PositionCode'] ?>&&ShowDetail=" class="btn btn-secondary btn-sm" data-mdb-ripple-color="dark">ย้อนกลับ</a></h5>
                     </div>
                     <div class="col">
-                        <h5 style="float: right; padding: 15px;" class="card-title"><a href="forms-personnel-education?PersonnelID=<?= $_GET['PersonnelID']; ?>" class="btn btn-success ">เพิ่มข้อมูล</a></h5>
+                        <h5 style="float: right; padding: 15px;" class="card-title"><a href="forms-personnel-education?PersonnelID=<?= $_GET['PersonnelID'] ?>&&JurisdictionCode=<?= $_GET['JurisdictionCode'] ?>&&PersonnelTypeCode=<?= $_GET['PersonnelTypeCode'] ?>&&PositionCode=<?= $_GET['PositionCode'] ?>&&ShowDetail=" class="btn btn-success"><i class="bi bi-file-earmark-plus"></i> เพิ่มข้อมูล</a></h5>
                     </div>
                 </div>
                 <table class="table table-borderless datatable">
                     <thead>
                         <tr>
-                            <th scope="col">ระดับการศึกษาที่สำเร็จ</th>
-                            <th style="text-align: center;" scope="col">กลุ่มวิชาเอกที่สำเร็จ</th>
-                            <th style="text-align: center;" scope="col">สาขาที่สำเร็จการศึกษา</th>
-                            <th style="text-align: center;" scope="col">วุฒิการศึกษาที่สำเร็จ</th>
+                            <th scope="col">ระดับการศึกษา</th>
+                            <th scope="col">กลุ่มวิชาเอก</th>
+                            <th scope="col">สาขาวิชา</th>
+                            <th scope="col">วุฒิการศึกษา</th>
                             <th style="text-align: center;" scope="col">ปฎิบัติ</th>
                         </tr>
                     </thead>
                     <tbody>
                         <?php
-                        $result = $this->db->query('SELECT *  FROM PERSONNEL_EDUCATION_DEGREE 
-                        INNER JOIN CLS_EDUCATION_LEVEL ON PERSONNEL_EDUCATION_DEGREE.EducationLevelCode = CLS_EDUCATION_LEVEL.EDUCATION_LEVEL_CODE
-                        INNER JOIN CLS_MAJOR ON PERSONNEL_EDUCATION_DEGREE.EducationMajorCode = CLS_MAJOR.MAJOR_CODE
-                        INNER JOIN CLS_PROGRAM ON PERSONNEL_EDUCATION_DEGREE.EducationProgramCode = CLS_PROGRAM.PROGRAM_CODE
-                        INNER JOIN CLS_DEGREE ON PERSONNEL_EDUCATION_DEGREE.EducationDegreeCode = CLS_DEGREE.DEGREE_CODE
-                        WHERE DeleteStatus = 0 AND PersonnelID = "' . $_GET['PersonnelID'] . '"');
-                        foreach ($result->result() as $EDUCATION) {
+                        $result = $this->db->query('SELECT * 
+                       FROM PERSONNEL_EDUCATION_DEGREE 
+                       INNER JOIN CLS_EDUCATION_LEVEL ON PERSONNEL_EDUCATION_DEGREE.EducationLevelCode  = CLS_EDUCATION_LEVEL.EDUCATION_LEVEL_CODE 
+                       INNER JOIN CLS_MAJOR ON PERSONNEL_EDUCATION_DEGREE.EducationMajorCode  = CLS_MAJOR.MAJOR_CODE 
+                       INNER JOIN CLS_DEGREE ON PERSONNEL_EDUCATION_DEGREE.EducationDegreeCode  = CLS_DEGREE.DEGREE_CODE 
+                       WHERE DeleteStatus = 0 AND PersonnelID = "' . $_GET['PersonnelID'] . '"
+                       ');
+                        $Count = 0;
+                        foreach ($result->result() as $PERSONNEL_EDUCATION_DEGREE) {
+                            $Count++;
                         ?>
                             <tr>
-                                <td><?= $EDUCATION->EDUCATION_LEVEL_NAME; ?></td>
-                                <td><?= $EDUCATION->MAJOR_NAME; ?></td>
-                                <td><?= $EDUCATION->PROGRAM_NAME; ?></td>
-                                <td><?= $EDUCATION->DEGREE_NAME; ?></td>
-                                <td style="text-align: center;"><a href="edit-forms-personnel-education?PersonnelID=<?= $EDUCATION->PersonnelID ?>&&EducationLevelCode=<?= $EDUCATION->EducationLevelCode ?>&&EducationMajorCode=<?= $EDUCATION->EducationMajorCode ?>" class="btn btn-warning"><i class="bi bi-pencil-square"></i></a>
-                                    &nbsp; <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#Delete"><i class=" bi bi-trash"></i></button>
+                                <td><?= $PERSONNEL_EDUCATION_DEGREE->EDUCATION_LEVEL_NAME; ?></td>
+                                <td><?= $PERSONNEL_EDUCATION_DEGREE->MAJOR_NAME; ?></td>
+                                <td><?php if ($PERSONNEL_EDUCATION_DEGREE->EducationProgramCode != NULL) {
+                                        $result_fix = $this->db->query('SELECT *FROM CLS_PROGRAM 
+                                        WHERE PROGRAM_CODE = ' . $PERSONNEL_EDUCATION_DEGREE->EducationProgramCode . '
+                                        ');
+                                        foreach ($result_fix->result() as $PROGRAM) {
+                                            echo $PROGRAM->PROGRAM_NAME;
+                                        }
+                                    } else echo '-'; ?></td>
+                                <td><?= $PERSONNEL_EDUCATION_DEGREE->DEGREE_NAME; ?></td>
+                                <td style="text-align: center;">
+                                    <a href="edit-forms-personnel-education?PersonnelID=<?= $_GET['PersonnelID'] ?>&&JurisdictionCode=<?= $_GET['JurisdictionCode'] ?>&&PersonnelTypeCode=<?= $_GET['PersonnelTypeCode'] ?>&&PositionCode=<?= $_GET['PositionCode'] ?>&&EducationLevelCode=<?= $PERSONNEL_EDUCATION_DEGREE->EducationLevelCode ?>&&EducationMajorCode=<?= $PERSONNEL_EDUCATION_DEGREE->EducationMajorCode ?>&&EducationDegreeCode=<?= $PERSONNEL_EDUCATION_DEGREE->EducationDegreeCode ?>" class="btn btn-warning"><i class="bi bi-pencil-square"></i></a>
+                                    &nbsp; <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#Delete<?= $Count ?>"><i class=" bi bi-trash"></i></button>
                                 </td>
                             </tr>
                         <?php } ?>
@@ -92,23 +102,34 @@
 
 </main><!-- End #main -->
 
-<div class="modal fade" id="Delete" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLongTitle">ยืนยันการลบข้อมูล</h5>
-                <!--<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>-->
-            </div>
-            <div class="modal-body">
-                <h6>
-                    <center>คุณต้องการลบข้อมูลใช่หรือไหม ?</center>
-                </h6>
-            </div>
-            <div class="modal-footer">
-                <a href="<?php echo base_url('delete-education/' . $EDUCATION->PersonnelID . '/' . $EDUCATION->EducationLevelCode . '/' . $EDUCATION->EducationMajorCode);
-                            ?>" class="btn btn-danger">ลบ</a>
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ยกเลิก</button>
+
+<?php
+$result = $this->db->query('SELECT * 
+  FROM PERSONNEL_EDUCATION_DEGREE 
+  WHERE DeleteStatus = 0 AND PersonnelID = "' . $_GET['PersonnelID'] . '"
+  ');
+$CountI = 0;
+foreach ($result->result() as $PERSONNEL_EDUCATION_DEGREE) {
+    $CountI++;
+?>
+    <div class="modal fade" id="Delete<?= $CountI ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">ยืนยันการลบข้อมูล</h5>
+                    <!--<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>-->
+                </div>
+                <div class="modal-body">
+                    <h6>
+                        <center>คุณต้องการลบข้อมูลใช่หรือไหม ?</center>
+                    </h6>
+                </div>
+                <div class="modal-footer">
+                    <a href="<?php echo base_url('delete-personnel-education/'  . $_GET['PersonnelID'] . '/' .  $_GET['JurisdictionCode'] . '/' .  $_GET['PersonnelTypeCode'] . '/' .  $_GET['PositionCode'] . '/' . $PERSONNEL_EDUCATION_DEGREE->EducationLevelCode . '/' . $PERSONNEL_EDUCATION_DEGREE->EducationMajorCode . '/' . $PERSONNEL_EDUCATION_DEGREE->EducationDegreeCode);
+                                ?>" class="btn btn-danger">ลบ</a>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ยกเลิก</button>
+                </div>
             </div>
         </div>
     </div>
-</div>
+<?php } ?>

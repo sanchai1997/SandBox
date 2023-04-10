@@ -307,6 +307,7 @@ class Teacher_model extends CI_Model
     {
         $data = [
 
+            'TeacherID' => Date('Ymd') . rand(1, 9999),
             'DeleteStatus' => '1'
 
         ];

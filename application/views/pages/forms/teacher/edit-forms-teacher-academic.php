@@ -1,6 +1,6 @@
 -<main id="main" class="main">
     <div class="pagetitle">
-        <h1 style="padding-bottom: 5px;">เพิ่มข้อมูลวิทยฐานะ
+        <h1 style="padding-bottom: 5px;">แก้ไขข้อมูลวิทยฐานะ
             <?php if (isset($_GET['TeacherID'])) {
                 $result = $this->db->query('SELECT *  FROM TEACHER 
                 INNER JOIN CLS_PREFIX ON TEACHER.TeacherPrefixCode = CLS_PREFIX.PREFIX_CODE

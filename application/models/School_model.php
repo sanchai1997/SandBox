@@ -32,7 +32,7 @@ class School_model extends CI_Model
     public function get_school($SchoolID)
     {
         $this->db->from('SCHOOL')
-             ->where('SchoolID', $SchoolID)
+            ->where('SchoolID', $SchoolID)
             ->where('DeleteStatus', 0)
             ->LIMIT(1);
         $query = $this->db->get();
@@ -240,7 +240,7 @@ class School_model extends CI_Model
     public function delete_school($SchoolID)
     {
         $data = [
-
+            'SchoolID' => $SchoolID + 1,
             'DeleteStatus' => '1'
 
         ];

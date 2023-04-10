@@ -194,6 +194,7 @@
                                 <th scope="col">ชื่อ</th>
                                 <th scope="col">นามสกุล</th>
                                 <th scope="col">สถานภาพ</th>
+                                <th style="text-align: center;" scope="col">สมุดพก</th>
                                 <th style="text-align: center;" scope="col">รายละเอียด</th>
                             </tr>
                         </thead>
@@ -214,6 +215,9 @@
                                     <td style="padding-top: 40px;"><?= $STUDENT->StudentNameThai; ?></td>
                                     <td style="padding-top: 40px;"><?= $STUDENT->StudentLastNameThai; ?></td>
                                     <td style="padding-top: 40px;"><?= $STUDENT->STUDENT_STATUS_NAME; ?></td>
+                                    <td style="padding-top: 40px; text-align: center;">
+                                        <a target="_blank" href="" class="btn btn-info"><i class="bi bi-printer"></i> พิมพ์</a>
+                                    </td>
                                     <td style="padding-top: 35px; text-align: center;">
                                         <a href="?SchoolID=<?= $STUDENT->SchoolID; ?>&&StudentReferenceID=<?= $STUDENT->StudentReferenceID ?>&&EducationYear=<?= $STUDENT->EducationYear; ?>&&Semester=<?= $STUDENT->Semester; ?>&&GradeLevelCode=<?= $STUDENT->GradeLevelCode; ?>&&StudentID=<?= $STUDENT->StudentID; ?>" class="btn btn-primary"><i class="bi bi-card-list"></i></a>
                                     </td>
@@ -314,7 +318,8 @@
                                         <h5 style="text-align: left; padding-left: 25px; padding-top: 20px;" class="card-title">
                                             <b>ใบแสดงผลการศึกษาชุดที่: <?= $_GET['TranscriptSeriesNumber']; ?> - <?= $_GET['TranscriptNumber']; ?></b>
                                             <?php if ($TRANSCRIPT->FundamentalSubjectPassingCode == 1 && $TRANSCRIPT->LiteracyPassingCode == 1 && $TRANSCRIPT->AttributePassingCode == 1 && $TRANSCRIPT->ExtracurricularPassingCode == 1) { ?>
-                                                <a style="float: right;" target="_blank" href="transcript-download?SchoolID=<?= $_GET['SchoolID'] ?>&&StudentReferenceID=<?= $_GET['StudentReferenceID'] ?>&&TranscriptSeriesNumber=<?= $_GET['TranscriptSeriesNumber'] ?>&&TranscriptNumber=<?= $_GET['TranscriptNumber'] ?>" class="btn btn-success"><i class="bi bi-download"></i> ดาวน์โหลด</a>
+                                                <a style="float: right;" target="_blank" href="transcript-download?SchoolID=<?= $_GET['SchoolID'] ?>&&StudentReferenceID=<?= $_GET['StudentReferenceID'] ?>&&TranscriptSeriesNumber=<?= $_GET['TranscriptSeriesNumber'] ?>&&TranscriptNumber=<?= $_GET['TranscriptNumber'] ?>&&EducationYear=<?= $TRANSCRIPT->EducationYear ?>&&Semester=<?= $TRANSCRIPT->Semester ?>" class="btn btn-success"><i class="bi bi-download"></i> ดาวน์โหลด</a>
+
                                             <?php } ?>
                                         </h5>
                                         <div class="row">

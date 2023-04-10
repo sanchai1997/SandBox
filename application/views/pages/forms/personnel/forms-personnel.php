@@ -1,85 +1,172 @@
-<style>
-    label.col-form-label {
-        padding-left: 30px;
-    }
-
-    h5.card-title {
-        padding-left: 20px;
-    }
-</style>
 <main id="main" class="main">
-
     <div class="pagetitle">
-        <h1>เพิ่มข้อมูลบุคลากรอื่น</h1>
+        <h1>เพิ่มข้อมูลบุคลากรอื่น
+        </h1>
     </div><!-- End Page Title -->
+    <?php if (!empty($_SESSION['danger'])) { ?>
+        <script>
+            setTimeout(function() {
+                document.getElementById('myAlert').remove();
+            }, 4000); // นับถอยหลังให้แสดง 5 วินาที (5000 มิลลิวินาที)
+        </script>
+        <div style="position: relative;">
+            <div class="alert alert-danger" id="myAlert" style="position: absolute; top: 0; left: 0; right: 0; z-index: 1;">
+                <strong>
+                    <?php
+                    echo '<i class="bi bi-clipboard2-x"></i> ' . $_SESSION['danger'];
+                    unset($_SESSION['danger']);
+                    ?>
+                </strong>
 
+            </div>
+        </div>
+    <?php } ?>
     <section class="section">
         <div class="row">
             <div class="col-lg-9">
 
                 <div class="card">
                     <div class="card-body">
-                        <h5 class="card-title">ข้อมูลทั่วไปข้อมูลบุคลากรอื่น</h5>
-
                         <!-- Floating Labels Form -->
-                        <form class="row g-3" action="<?php echo base_url('forms-personnel-P2'); ?>" method="POST">
+                        <form class="row g-3" action="<?php echo base_url('add-personnel'); ?>" method="POST" id="Personnel" enctype="multipart/form-data">
+                            <h6 style="padding-left: 15px;" class="card-title">ข้อมูลตำแหน่งและปฎิบัติราชการ</h6>
                             <div class="col-md-6">
-
                                 <div class="form-floating">
-                                    <select class="form-select" id="floatingSelect" aria-label="State" name="PersonnelPrefixCode">
-                                        <option selected>เลือก</option>
+                                    <input type="number" class="form-control" minlength="4" maxlength="4" name="EntryYear" id="EntryYear" value="<?= date('Y') + 543; ?>" required>
+                                    <label for="EntryYear">ปีที่เก็บข้อมูล <font color="red"> *</font></label>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-floating">
+                                    <select class="form-select" name="EntryTimes" id="EntryTimes" aria-label="EntryTimes" required>
+                                        <option value="" selected>เลือก</option>
+                                        <option value="1">รอบที่ 1 วันที่ 10 มิถุนายน</option>
+                                        <option value="2">รอบที่ 2 วันที่ 10 พฤศจิกายน</option>
+                                    </select>
+                                    <label for="EntryTimes">รอบที่เก็บข้อมูล<font color="red"> *</font></label>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="form-floating">
+                                    <select class="form-select" name="JurisdictionCode" id="JurisdictionCode" aria-label="JurisdictionCode" required>
+                                        <option value="" selected>เลือก</option>
+
                                         <?php
-                                        $result = $this->db->query('SELECT * FROM CLS_PREFIX');
-                                        foreach ($result->result() as $PREFIX) {
+                                        $result = $this->db->query('SELECT * FROM CLS_JURISDICTION ORDER BY JURISDICTION_NAME ASC');
+
+                                        foreach ($result->result() as $JURISDICTION) {
                                         ?>
-                                            <option value="<?= $PREFIX->PREFIX_CODE; ?>"><?= $PREFIX->PREFIX_NAME; ?></option>
+                                            <option value="<?= $JURISDICTION->JURISDICTION_CODE; ?>"><?= $JURISDICTION->JURISDICTION_NAME; ?></option>
                                         <?php
                                         }
                                         ?>
                                     </select>
-                                    <label for="floatingSelect">คำนำหน้าชื่อ</label>
+                                    <label for="JurisdictionCode">หน่วยงานต้นสังกัด<font color="red"> *</font></label>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-floating">
-                                    <input type="text" class="form-control" id="floatingName" placeholder="Your Name" name="PersonnelNameThai" required>
-                                    <label for="floatingName">ชื่อ</label>
+                                    <select class="form-select" name="PersonnelStatusCode" id="PersonnelStatusCode" aria-label="PersonnelStatusCode" required>
+                                        <option value="" selected>เลือก</option>
+
+                                        <?php
+                                        $result = $this->db->query('SELECT * FROM CLS_PERSONNEL_STATUS ORDER BY PERSONNEL_STATUS_NAME ASC ');
+
+                                        foreach ($result->result() as $PERSONNEL_STATUS) {
+                                        ?>
+                                            <option value="<?= $PERSONNEL_STATUS->PERSONNEL_STATUS_CODE; ?>"><?= $PERSONNEL_STATUS->PERSONNEL_STATUS_NAME; ?></option>
+                                        <?php
+                                        }
+                                        ?>
+                                    </select>
+                                    <label for="PersonnelStatusCode">สถานะปฏิบัตรราชการ<font color="red"> *</font></label>
+                                </div>
+                            </div>
+
+                            <div class="col-md-3">
+                                <div class="form-floating">
+                                    <input type="date" class="form-control" name="PersonnelStartDate" id="PersonnelStartDate" required>
+                                    <label for="PersonnelStartDate">วันที่บรรจุ<font color="red"> *</font></label>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-floating">
+                                    <input type="date" class="form-control" name="PersonnelRetireDate" id="PersonnelRetireDate" value="">
+                                    <label for="PersonnelRetireDate">วันที่เกษียณ</label>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-floating">
-                                    <input type="text" class="form-control" id="floatingMiddleName" placeholder="Middle Name" name="PersonnelMiddleNameThai">
-                                    <label for="floatingMiddleName">ชื่อกลาง</label>
+                                    <select class="form-select" name="PersonnelTypeCode" id="PersonnelTypeCode" aria-label="PersonnelTypeCode" required>
+                                        <option value="" selected>เลือก</option>
+
+                                        <?php
+                                        $result = $this->db->query('SELECT * FROM CLS_PERSONNEL_TYPE ORDER BY PERSONNEL_TYPE_NAME ASC');
+
+                                        foreach ($result->result() as $PERSONNEL_TYPE) {
+                                        ?>
+                                            <option value="<?= $PERSONNEL_TYPE->PERSONNEL_TYPE_CODE; ?>"><?= $PERSONNEL_TYPE->PERSONNEL_TYPE_NAME; ?></option>
+                                        <?php
+                                        }
+                                        ?>
+                                    </select>
+                                    <label for="EducationLevelCode">ประเภทบุคลากร<font color="red"> *</font></label>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-floating">
-                                    <input type="text" class="form-control" id="floatingLastName" placeholder="Last Name" name="PersonnelLastNameThai" required>
-                                    <label for="floatingLastName">นามสกุล</label>
+                                    <select class="form-select" name="PositionCode" id="PositionCode" aria-label="PositionCode" required>
+                                        <option value="" selected>เลือก</option>
+
+                                        <?php
+                                        $result = $this->db->query('SELECT * FROM CLS_POSITION ORDER BY POSITION_NAME ASC');
+
+                                        foreach ($result->result() as $POSITION) {
+                                        ?>
+                                            <option value="<?= $POSITION->POSITION_CODE; ?>"><?= $POSITION->POSITION_NAME; ?></option>
+                                        <?php
+                                        }
+                                        ?>
+                                    </select>
+                                    <label for="EducationLevelCode">ตำแหน่ง<font color="red"> *</font></label>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-floating">
-                                    <input type="text" class="form-control" id="floatingNameEN" placeholder="Your Name EN" name="PersonnelNameEnglish">
-                                    <label for="floatingNameEN">ชื่อ (อังกฤษ)</label>
+                                    <select class="form-select" name="PositionLevelCode" id="PositionLevelCode" aria-label="PositionLevelCode" required>
+                                        <option value="" selected>เลือก</option>
+
+                                        <?php
+                                        $result = $this->db->query('SELECT * FROM CLS_POSITION_LEVEL ORDER BY POSITION_LEVEL_NAME ASC');
+
+                                        foreach ($result->result() as $POSITION_LEVEL) {
+                                        ?>
+                                            <option value="<?= $POSITION_LEVEL->POSITION_LEVEL_CODE; ?>"><?= $POSITION_LEVEL->POSITION_LEVEL_NAME; ?></option>
+                                        <?php
+                                        }
+                                        ?>
+                                    </select>
+                                    <label for="EducationLevelCode">ระดับตำแหน่ง<font color="red"> *</font></label>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-floating">
-                                    <input type="text" class="form-control" id="floatingMiddleNameEN" placeholder="Middle Name EN" name="PersonnelMiddleNameEnglish">
-                                    <label for="floatingMiddleNameEN">ชื่อกลาง (อังกฤษ)</label>
+                                    <input type="date" class="form-control" name="PositionStartDate" id="PositionStartDate" required>
+                                    <label for="PositionStartDate">วันที่ดำรงตำแหน่ง<font color="red"> *</font></label>
+                                </div>
+                            </div>
+
+                            <h6 style="padding-left: 15px;" class="card-title">ข้อมูลบุคคล</h6>
+                            <div class="col-md-6">
+                                <div class="input-group">
+                                    <label class="input-group-text" for="inputGroupFile01">รูปภาพบุคลากร <font color="red"> *</font></label>
+                                    <input type="file" class="form-control" name="ImagePersonnel" id="ImagePersonnel" placeholder="รูปภาพบุคลากร" required>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-floating">
-                                    <input type="text" class="form-control" id="floatingLastNameEN" placeholder="Last Name EN" name="PersonnelLastNameEnglish">
-                                    <label for="floatingLastNameEN">นามสกุล (อังกฤษ)</label>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-floating">
-                                    <select class="form-select" id="floatingSelect" aria-label="State" name="PersonnelPersonalIDTypeCode">
-                                        <option selected>เลือก</option>
+                                    <select class="form-select" name="PersonnelPersonalIDTypeCode" id="PersonnelPersonalIDTypeCode" aria-label="PersonnelPersonalIDTypeCode" required>
+                                        <option value="" selected>เลือก</option>
                                         <?php
                                         $result = $this->db->query('SELECT * FROM CLS_CITIZEN_ID_TYPE');
                                         foreach ($result->result() as $CITIZEN_ID_TYPE) {
@@ -89,25 +176,53 @@
                                         }
                                         ?>
                                     </select>
-                                    <label for="floatingSelect">ประเภทบัตรประจำดัว</label>
+                                    <label for="PersonnelPersonalIDTypeCode">ประเภทบัตรประจำตัว<font color="red"> *</font></label>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-floating">
-                                    <input type="text" class="form-control" name="PersonnelPersonalID">
-                                    <label for="floatingLastNameEN">หมายเลขประจำตัวประชาชน</label>
+                                    <input type="text" class="form-control" maxlength="13" name="PersonnelPersonalID" id="PersonnelPersonalID" required>
+                                    <label for="PersonnelPersonalID">หมายเลขบัตร<font color="red"> *</font></label>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-floating">
-                                    <input type="text" class="form-control" name="PersonnelPassportNumber">
-                                    <label for="floatingMiddleNameEN">เลขที่หนังสือเดินทาง</label>
+                                    <input type="text" class="form-control" name="PersonnelPassportNumber" id="PersonnelPassportNumber">
+                                    <label for="PersonnelPassportNumber">เลขที่หนังสือเดินทาง </label>
                                 </div>
                             </div>
-                            <div class="col-md-6">
+                            <div class="col-md-2">
                                 <div class="form-floating">
-                                    <select class="form-select" id="floatingSelect" aria-label="State" name="PersonnelGenderCode">
-                                        <option selected>เลือก</option>
+                                    <select class="form-select" name="PersonnelPrefixCode" id="PersonnelPrefixCode" aria-label="PersonnelPrefixCode"> required
+                                        <option value="" selected>เลือก</option>
+                                        <?php
+                                        $result = $this->db->query('SELECT * FROM CLS_PREFIX ORDER BY PREFIX_NAME ASC');
+                                        foreach ($result->result() as $PREFIX) {
+                                        ?>
+                                            <option value="<?= $PREFIX->PREFIX_CODE; ?>"><?= $PREFIX->PREFIX_NAME; ?></option>
+                                        <?php
+                                        }
+                                        ?>
+                                    </select>
+                                    <label for="PersonnelPrefixCode">คำนำหน้า<font color="red"> *</font></label>
+                                </div>
+                            </div>
+                            <div class="col-md-5">
+                                <div class="form-floating">
+                                    <input type="text" class="form-control" name="PersonnelNameThai" id="PersonnelNameThai" required>
+                                    <label for="PersonnelNameThai">ชื่อ (ภาษาไทย) <font color="red"> *</font></label>
+                                </div>
+                            </div>
+                            <div class="col-md-5">
+                                <div class="form-floating">
+                                    <input type="text" class="form-control" name="PersonnelLastNameThai" id="PersonnelLastNameThai" required>
+                                    <label for="PersonnelLastNameThai">นามสกุล (ภาษาไทย) <font color="red"> *</font></label>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-floating">
+                                    <select class="form-select" name="PersonnelGenderCode" id="PersonnelGenderCode" aria-label="PersonnelGenderCode" required>
+                                        <option value="" selected>เลือก</option>
                                         <?php
                                         $result = $this->db->query('SELECT * FROM CLS_GENDER');
                                         foreach ($result->result() as $GENDER) {
@@ -117,59 +232,47 @@
                                         }
                                         ?>
                                     </select>
-                                    <label for="floatingSelect">เพศ</label>
+                                    <label for="PersonnelGenderCode">เพศ <font color="red"> *</font></label>
                                 </div>
                             </div>
-                            <div class="col-md-6">
-                                <div class="col-md-12">
-                                    <div class="form-floating">
-                                        <input type="date" class="form-control" id="BIRTH_DAT" placeholder="BIRTH_DAT" name="PersonnelBirthDate">
-                                        <label for="BIRTH_DAT">วันเกิด</label>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="col-md-12">
-                                    <div class="form-floating">
-                                        <select class="form-select" id="floatingSelect" aria-label="State" name="PersonnelNationalityCode">
-                                            <option selected>เลือก</option>
-                                            <?php
-                                            $result = $this->db->query('SELECT * FROM CLS_NATIONALITY');
-                                            foreach ($result->result() as $NATIONALITY) {
-                                            ?>
-                                                <option value="<?= $NATIONALITY->NATIONALITY_CODE; ?>"><?= $NATIONALITY->NATIONALITY_NAME; ?></option>
-                                            <?php
-                                            }
-                                            ?>
-                                        </select>
-                                        <label for="NATIONALITY_CODE">สัญชาติ</label>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="col-md-12">
-                                    <div class="form-floating">
-                                        <select class="form-select" id="floatingSelect" aria-label="State" name="PersonnelRaceCode">
-                                            <option selected>เลือก</option>
-                                            <?php
-                                            $result = $this->db->query('SELECT * FROM CLS_RACE');
-                                            foreach ($result->result() as $RACE) {
-                                            ?>
-                                                <option value="<?= $RACE->RACE_CODE; ?>"><?= $RACE->RACE_NAME; ?></option>
-                                            <?php
-                                            }
-                                            ?>
-                                        </select>
-                                        <label for="RACE_CODE">เชื้อชาติ</label>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
+                            <div class="col-md-3">
                                 <div class="form-floating">
-                                    <select class="form-select" id="RELIGION_CODE" aria-label="RELIGION_CODE" name="PersonnelReligionCode">
-                                        <option selected>เลือก</option>
+                                    <select class="form-select" name="PersonnelNationalityCode" id="PersonnelNationalityCode" aria-label="PersonnelNationalityCode" required>
+                                        <option value="" selected>เลือก</option>
                                         <?php
-                                        $result = $this->db->query('SELECT * FROM CLS_RELIGION');
+                                        $result = $this->db->query('SELECT * FROM CLS_NATIONALITY ORDER BY NATIONALITY_NAME ASC');
+                                        foreach ($result->result() as $NATIONALITY) {
+                                        ?>
+                                            <option value="<?= $NATIONALITY->NATIONALITY_CODE; ?>"><?= $NATIONALITY->NATIONALITY_NAME; ?></option>
+                                        <?php
+                                        }
+                                        ?>
+                                    </select>
+                                    <label for="PersonnelNationalityCode">สัญชาติ <font color="red"> *</font></label>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-floating">
+                                    <select class="form-select" name="PersonnelRaceCode" id="PersonnelRaceCode" aria-label="PersonnelRaceCode" required>
+                                        <option value="" selected>เลือก</option>
+                                        <?php
+                                        $result = $this->db->query('SELECT * FROM CLS_RACE ORDER BY RACE_NAME ASC');
+                                        foreach ($result->result() as $RACE) {
+                                        ?>
+                                            <option value="<?= $RACE->RACE_CODE; ?>"><?= $RACE->RACE_NAME; ?></option>
+                                        <?php
+                                        }
+                                        ?>
+                                    </select>
+                                    <label for="PersonnelRaceCode">เชื้อชาติ <font color="red"> *</font></label>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-floating">
+                                    <select class="form-select" name="PersonnelReligionCode" id="PersonnelReligionCode" aria-label="PersonnelReligionCode" required>
+                                        <option value="" selected>เลือก</option>
+                                        <?php
+                                        $result = $this->db->query('SELECT * FROM CLS_RELIGION ORDER BY RELIGION_NAME ASC');
                                         foreach ($result->result() as $RELIGION) {
                                         ?>
                                             <option value="<?= $RELIGION->RELIGION_CODE; ?>"><?= $RELIGION->RELIGION_NAME; ?></option>
@@ -177,13 +280,19 @@
                                         }
                                         ?>
                                     </select>
-                                    <label for="RELIGION_CODE">ศาสนา</label>
+                                    <label for="PersonnelReligionCode">ศาสนา <font color="red"> *</font></label>
                                 </div>
                             </div>
                             <div class="col-md-6">
-                                <div class="form-floating mb-3">
-                                    <select class="form-select" id="BLOOD_CODE" aria-label="BLOOD_CODE" name="PersonnelBloodCode">
-                                        <option selected>เลือก</option>
+                                <div class="form-floating">
+                                    <input type="date" class="form-control " name="PersonnelBirthDate" id="PersonnelBirthDate" required>
+                                    <label for="PersonnelBirthDate">วันที่เกิด <font color="red"> *</font></label>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-floating">
+                                    <select class="form-select" name="PersonnelBloodCode" id="PersonnelBloodCode" aria-label="PersonnelBloodCode" required>
+                                        <option value="" selected>เลือก</option>
                                         <?php
                                         $result = $this->db->query('SELECT * FROM CLS_BLOOD');
                                         foreach ($result->result() as $BLOOD) {
@@ -193,208 +302,199 @@
                                         }
                                         ?>
                                     </select>
-                                    <label for="BLOOD_CODE">กลุ่มเลือด</label>
+                                    <label for="PersonnelBloodCode">กลุ่มเลือด<font color="red"> *</font></label>
                                 </div>
                             </div>
-                            <h5 class="card-title" style="padding-left: 10px;">ข้อมูลที่อยู่ (ตามทะเบียนบ้าน)</h5>
-                            <div class="col-8">
-                                <div class="form-floating">
-                                    <input type="text" class="form-control" id="OFFICIAL_ADDRESS_MOO" placeholder="OFFICIAL_ADDRESS_MOO" name="PersonnelOfficialAddressHouseNumber" required>
-                                    <label for="OFFICIAL_ADDRESS_HOUSE_NO">บ้านเลขที่</label>
-                                </div>
+
+
+
+                            <div class="d-flex justify-content-between">
+                                <a href="personnel" class="btn btn-danger">ยกเลิก</a>
+                                <button type="button" class="btn btn-primary" onclick="return check(Personnel)">บันทึกข้อมูล</button>
                             </div>
-                            <div class="col-md-4">
-                                <div class="col-md-12">
-                                    <div class="form-floating">
-                                        <input type="text" class="form-control" id="OFFICIAL_ADDRESS_MOO" placeholder="OFFICIAL_ADDRESS_MOO" name="PersonnelOfficialAddressMoo">
-                                        <label for="OFFICIAL_ADDRESS_MOO">หมู่ที่</label>
+                            <!-- Modal -->
+                            <div class="modal fade" id="Modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLongTitle">ยืนยันบันทึกข้อมูล</h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <h6>
+                                                <center>คุณต้องการบันทึกข้อมูลใช่หรือไหม ?</center>
+                                            </h6>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="submit" class="btn btn-primary">ยืนยัน</button>
+                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ยกเลิก</button>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md-4">
-                                <div class="form-floating">
-                                    <input type="text" class="form-control" id="OFFICIAL_ADDRESS_STREET" placeholder="OFFICIAL_ADDRESS_STREET" name="PersonnelOfficialAddressStreet">
-                                    <label for="OFFICIAL_ADDRESS_STREET">ถนน</label>
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="form-floating">
-                                    <input type="text" class="form-control" id="OFFICIAL_ADDRESS_SOI" placeholder="OFFICIAL_ADDRESS_SOI" name="PersonnelOfficialAddressSoi">
-                                    <label for="OFFICIAL_ADDRESS_SOI">ซอย</label>
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="form-floating">
-                                    <input type="text" class="form-control" id="OFFICIAL_ADDRESS_TROK" placeholder="OFFICIAL_ADDRESS_TROK" name="PersonnelOfficialAddressTrok">
-                                    <label for="OFFICIAL_ADDRESS_TROK">ตรอก</label>
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="form-floating">
-                                    <select class="form-select" id="PROVINCE" aria-label="PROVINCE" name="PersonnelOfficialAddressProvinceCode" required>
-                                        <option selected>เลือก</option>
-                                        <?php
-                                        $result = $this->db->query('SELECT * FROM CLS_PROVINCE');
-                                        foreach ($result->result() as $PROVINCE) {
-                                        ?>
-                                            <option value="<?= $PROVINCE->PROVINCE_CODE; ?>"><?= $PROVINCE->PROVINCE_NAME; ?></option>
-                                        <?php
-                                        }
-                                        ?>
-                                    </select>
-                                    <label for="OFFICIAL_ADDRESS_PROVINCE_CODE">จังหวัด</label>
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="form-floating">
-                                    <select class="form-select" id="DISTRICT" aria-label="DISTRICT" name="PersonnelOfficialAddressDistrictCode" required>
-                                        <option selected>เลือก</option>
-                                        <?php
-                                        $result = $this->db->query('SELECT * FROM CLS_DISTRICT');
-                                        foreach ($result->result() as $DISTRICT) {
-                                        ?>
-                                            <option id="<?= $DISTRICT->PROVINCE_CODE; ?>" value="<?= $DISTRICT->DISTRICT_CODE; ?>"><?= $DISTRICT->DISTRICT_NAME; ?></option>
-                                        <?php } ?>
-                                    </select>
-                                    <label for="ADDRESS_DISTRICT_CODE">อำเภอ</label>
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="form-floating">
-                                    <select class="form-select" id="SUBDISTRICT" aria-label="SUBDISTRICT" name="PersonnelOfficialAddressSubdistrictCode" required>
-                                        <option selected>เลือก</option>
-                                        <?php
-                                        $result = $this->db->query('SELECT * FROM CLS_SUBDISTRICT');
-                                        foreach ($result->result() as $SUBDISTRICT) {
-                                        ?>
-                                            <option id="<?= $SUBDISTRICT->DISTRICT_CODE; ?>" value="<?= $SUBDISTRICT->SUBDISTRICT_CODE; ?>"><?= $SUBDISTRICT->SUBDISTRICT_NAME; ?></option>
-                                        <?php } ?>
-                                    </select>
-                                    <label for="ADDRESS_SUBDISTRICT_CODE">ตำบล</label>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-floating">
-                                    <input type="text" class="form-control" id="OFFICIAL_ADDRESS_POSTCODE" placeholder="OFFICIAL_ADDRESS_POSTCODE" name="PersonnelOfficialAddressPostcode">
-                                    <label for="OFFICIAL_ADDRESS_POSTCODE">รหัสไปรษณีย์</label>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-floating mb-3">
-                                    <input type="text" class="form-control" id="OFFICIAL_ADDRESS_PHONE_NUMBER" placeholder="OFFICIAL_ADDRESS_PHONE_NUMBER" name="PersonnelOfficialAddressPhoneNumber">
-                                    <label for="OFFICIAL_ADDRESS_PHONE_NUMBER">หมายเลขโทรศัพท์</label>
-                                </div>
-                            </div>
-                            <!-- end OFFICIAL_ADDRESS_HOUSE -->
-                            <h5 class="card-title" style="padding-left: 10px;">ข้อมูลที่อยู่ (ปัจจุบัน)</h5>
-                            <div class="col-8">
-                                <div class="form-floating">
-                                    <input type="text" class="form-control" id="OFFICIAL_ADDRESS_MOO" placeholder="OFFICIAL_ADDRESS_MOO" name="PersonnelCurrentAddressHouseNumber" required>
-                                    <label for="CURRENT_ADDRESS_HOUSE_NO">บ้านเลขที่</label>
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="col-md-12">
-                                    <div class="form-floating">
-                                        <input type="text" class="form-control" id="CURRENT_ADDRESS_MOO" placeholder="CURRENT_ADDRESS_MOO" name="PersonnelCurrentAddressMoo">
-                                        <label for="CURRENT_ADDRESS_MOO">หมู่ที่</label>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="form-floating">
-                                    <input type="text" class="form-control" id="CURRENT_ADDRESS_STREET" placeholder="CURRENT_ADDRESS_STREET" name="PersonnelCurrentAddressStreet">
-                                    <label for="CURRENT_ADDRESS_STREET">ถนน</label>
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="form-floating">
-                                    <input type="text" class="form-control" id="CURRENT_ADDRESS_SOI" placeholder="CURRENT_ADDRESS_SOI" name="PersonnelCurrentAddressSoi">
-                                    <label for="CURRENT_ADDRESS_SOI">ซอย</label>
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="form-floating">
-                                    <input type="text" class="form-control" id="CURRENT_ADDRESS_TROK" placeholder="CURRENT_ADDRESS_TROK" name="PersonnelCurrentAddressTrok">
-                                    <label for="CURRENT_ADDRESS_TROK">ตรอก</label>
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="form-floating">
-                                    <select class="form-select" id="PROVINCE_SUB" aria-label="PROVINCE_SUB" name="PersonnelCurrentAddressProvinceCode" required>
-                                        <option selected>เลือก</option>
-                                        <?php
-                                        $result = $this->db->query('SELECT * FROM CLS_PROVINCE WHERE PROVINCE_CODE = 91');
-                                        foreach ($result->result() as $PROVINCE) {
-                                        ?>
-                                            <option value="<?= $PROVINCE->PROVINCE_CODE; ?>"><?= $PROVINCE->PROVINCE_NAME; ?></option>
-                                        <?php
-                                        }
-                                        ?>
-                                    </select>
-                                    <label for="OFFICIAL_ADDRESS_PROVINCE_CODE">จังหวัด</label>
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="form-floating">
-                                    <select class="form-select" id="DISTRICT_SUB" aria-label="DISTRICT_SUB" name="PersonnelCurrentAddressDistrictCode" required>
-                                        <option selected>เลือก</option>
-                                        <?php
-                                        $result = $this->db->query('SELECT * FROM CLS_DISTRICT WHERE PROVINCE_CODE = 91');
-                                        foreach ($result->result() as $DISTRICT) {
-                                        ?>
-                                            <option id="<?= $DISTRICT->PROVINCE_CODE; ?>" value="<?= $DISTRICT->DISTRICT_CODE; ?>"><?= $DISTRICT->DISTRICT_NAME; ?></option>
-                                        <?php } ?>
-                                    </select>
-                                    <label for="ADDRESS_DISTRICT_CODE">อำเภอ</label>
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="form-floating">
-                                    <select class="form-select" id="SUBDISTRICT_SUB" aria-label="SUBDISTRICT_SUB" name="PersonnelCurrentAddressSubdistrictCode" required>
-                                        <option selected>เลือก</option>
-                                        <?php
-                                        $result = $this->db->query('SELECT * FROM CLS_SUBDISTRICT WHERE PROVINCE_CODE = 91');
-                                        foreach ($result->result() as $SUBDISTRICT) {
-                                        ?>
-                                            <option id="<?= $SUBDISTRICT->DISTRICT_CODE; ?>" value="<?= $SUBDISTRICT->SUBDISTRICT_CODE; ?>"><?= $SUBDISTRICT->SUBDISTRICT_NAME; ?></option>
-                                        <?php } ?>
-                                    </select>
-                                    <label for="ADDRESS_SUBDISTRICT_CODE">ตำบล</label>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-floating">
-                                    <input type="text" class="form-control" id="CURRENT_ADDRESS_POSTCODE" placeholder="CURRENT_ADDRESS_POSTCODE" name="PersonnelCurrentAddressPostcode">
-                                    <label for="CURRENT_ADDRESS_POSTCODE">รหัสไปรษณีย์</label>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-floating">
-                                    <input type="text" class="form-control" id="CURRENT_ADDRESS_PHONE_NUMBER" placeholder="CURRENT_ADDRESS_PHONE_NUMBER" name="PersonnelCurrentPhoneNumber">
-                                    <label for="CURRENT_ADDRESS_PHONE_NUMBER">หมายเลขโทรศัพท์</label>
-                                </div>
-                            </div>
-                            <div class="col-md-16">
-                                <div class="form-floating">
-                                    <input type="email" class="form-control" id="EMAIL" placeholder="EMAIL" name="PersonnelEmail">
-                                    <label for="EMAIL">อีเมลล์</label>
-                                </div>
-                            </div>
-                            <div class="text-center">
-                                <a href="personnel" style="float: left;" class="btn btn-light">ยกเลิก</a>
-                                <button style="float: right;" name="Submit" type="submit" class="btn btn-primary">หน้าถัดไป</button>
-                            </div>
-                        </form><!-- End floating Labels Form -->
-                        <br>
+
+
+                        </form><!-- End Form ข้อมูลการพัฒนาบุคลากรครู -->
 
                     </div>
                 </div>
 
             </div>
 
-
         </div>
     </section>
+    <script type="text/javascript">
+        function check(frm) {
+
+            var Year = /^[0-9]{4,4}$/;
+            if (frm.EntryYear.value == "") {
+                alert("กรุณากรอกปีที่เก็บข้อมูล");
+                return false;
+            } else if (!frm.EntryYear.value.match(Year)) {
+                alert("กรุณากรอกปีที่เก็บข้อมูลให้ครบ 4 หลัก");
+                frm.EntryYear.value = "";
+                return false;
+            }
+
+            if (frm.EntryTimes.value == "") {
+                alert("กรุณาเลือกรอบที่เก็บข้อมูล");
+                return false;
+            }
+
+            if (frm.JurisdictionCode.value == "") {
+                alert("กรุณาเลือกหน่วยงานต้นสังกัด");
+                return false;
+            }
+
+
+            if (frm.PersonnelStatusCode.value == "") {
+                alert("กรุณาเลือกสถานะปฏิบัติราชการ");
+                return false;
+            }
+
+            if (frm.PersonnelStartDate.value == "") {
+                alert("กรุณากรอกวันที่บรรจุ");
+                return false;
+            }
+
+            if (frm.PersonnelTypeCode.value == "") {
+                alert("กรุณาเลือกประเภทบุคลากร");
+                return false;
+            }
+
+            if (frm.PositionCode.value == "") {
+                alert("กรุณาเลือกตำแหน่ง");
+                return false;
+            }
+
+            if (frm.PositionLevelCode.value == "") {
+                alert("กรุณาเลือกระดับตำแหน่ง");
+                return false;
+            }
+
+            if (frm.PositionStartDate.value == "") {
+                alert("กรุณากรอกวันที่ดำรงตำแหน่ง");
+                return false;
+            }
+
+            if (frm.ImagePersonnel.value == "") {
+                alert("กรุณาใส่รูปครูและบุคลากร");
+                return false;
+            } else if (frm.ImagePersonnel.value != "") {
+                var fty = new Array(".jpg", ".jpeg", ".png"); // ประเภทไฟล์ที่อนุญาตให้อัพโหลด   
+                var a = frm.ImagePersonnel.value; //กำหนดค่าของไฟล์ใหกับตัวแปร a   
+                var permiss = 0; // เงื่อนไขไฟล์อนุญาต
+                a = a.toLowerCase();
+                if (a != "") {
+                    for (i = 0; i < fty.length; i++) { // วน Loop ตรวจสอบไฟล์ที่อนุญาต   
+                        if (a.lastIndexOf(fty[i]) >= 0) { // เงื่อนไขไฟล์ที่อนุญาต   
+                            permiss = 1;
+                            break;
+                        } else {
+                            continue;
+                        }
+                    }
+                    if (permiss == 0) {
+                        alert("กรุณาอัพโหลดไฟล์ได้เฉพาะไฟล์ jpg jpeg png");
+                        return false;
+                    }
+                }
+            }
+
+
+            if (frm.PersonnelPersonalIDTypeCode.value == "") {
+                alert("กรุณาเลือกประเภทบัตร");
+                return false;
+            }
+
+            var Year = /^[0-9]{13,13}$/;
+            if (frm.PersonnelPersonalID.value == "") {
+                alert("กรุณาหมายเลขบัตร");
+                return false;
+            } else if (!frm.PersonnelPersonalID.value.match(Year)) {
+                alert("กรุณาหมายเลขบัตรให้ครบ 13 หลัก");
+                frm.PersonnelPersonalID.value = "";
+                return false;
+            }
+
+            if (frm.PersonnelPrefixCode.value == "") {
+                alert("กรุณาเลือกคำนำหน้า");
+                return false;
+            }
+
+            var NameThai = /^[ก-๙]{1,100}$/;
+            if (frm.PersonnelNameThai.value == "") {
+                alert("กรุณาเลือกชื่อ(ภาษาไทย)");
+                return false;
+            } else if (!frm.PersonnelNameThai.value.match(NameThai)) {
+                alert("กรุณาเลือกชื่อเป็น(ภาษาไทย)และไม่เกิน 100 ตัวอักษร");
+                frm.PersonnelNameThai.value = "";
+                return false;
+            }
+
+            if (frm.PersonnelLastNameThai.value == "") {
+                alert("กรุณาเลือกนามสกุล(ภาษาไทย)");
+                return false;
+            } else if (!frm.PersonnelLastNameThai.value.match(NameThai)) {
+                alert("กรุณาเลือกนามสกุลเป็น(ภาษาไทย)และไม่เกิน 100 ตัวอักษร");
+                frm.PersonnelLastNameThai.value = "";
+                return false;
+            }
+
+            if (frm.PersonnelGenderCode.value == "") {
+                alert("กรุณาเลือกเพศ");
+                return false;
+            }
+
+            if (frm.PersonnelNationalityCode.value == "") {
+                alert("กรุณาเลือกสัญชาติ");
+                return false;
+            }
+
+            if (frm.PersonnelRaceCode.value == "") {
+                alert("กรุณาเลือกเชื้อชาติ");
+                return false;
+            }
+
+            if (frm.PersonnelReligionCode.value == "") {
+                alert("กรุณาเลือกศาสนา");
+                return false;
+            }
+
+            if (frm.PersonnelBirthDate.value == "") {
+                alert("กรุณากรอกวันเกิด");
+                return false;
+            }
+
+            if (frm.PersonnelBloodCode.value == "") {
+                alert("กรุณาเลือกกลุ่มเลือด");
+                return false;
+            }
+
+
+            $('#Modal').modal('show');
+
+        }
+    </script>
 
 </main><!-- End #main -->

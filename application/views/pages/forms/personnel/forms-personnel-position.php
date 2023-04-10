@@ -1,6 +1,6 @@
--<main id="main" class="main">
+<main id="main" class="main">
     <div class="pagetitle">
-        <h1 style="padding-bottom: 5px;">เพิ่มข้อมูลวิทยฐานะ
+        <h1 style="padding-bottom: 5px;">เพิ่มข้อมูลตำแหน่งเพิ่มเติม
             <?php
             $result = $this->db->query('SELECT *  FROM PERSONNEL 
                         INNER JOIN CLS_PREFIX ON PERSONNEL.PersonnelPrefixCode = CLS_PREFIX.PREFIX_CODE
@@ -12,13 +12,10 @@
             foreach ($result->result() as $PERSONNEL) {
 
             ?>
-
-        </h1>
         </h1>
         <a class="btn btn-light text-dark"><b><?= ' : ' . $PERSONNEL->PREFIX_NAME . $PERSONNEL->PersonnelNameThai . ' ' . $PERSONNEL->PersonnelLastNameThai ?></b></a>
     <?php }
     ?>
-
     </div><!-- End Page Title -->
     <?php if (!empty($_SESSION['danger'])) { ?>
         <script>
@@ -45,52 +42,57 @@
                 <div class="card">
                     <div class="card-body">
                         <!-- Floating Labels Form -->
-                        <form class="row g-3" action="<?php echo base_url('add-personnel-academic/' . $_GET['PersonnelID'] . '/' . $_GET['JurisdictionCode'] . '/' . $_GET['PersonnelTypeCode'] . '/' . $_GET['PositionCode']); ?>" method="POST" id="Personnel" enctype="multipart/form-data">
+                        <form class="row g-3" action="<?php echo base_url('add-personnel-position/' . $_GET['PersonnelID'] . '/' . $_GET['JurisdictionCode'] . '/' . $_GET['PersonnelTypeCode'] . '/' . $_GET['PositionCode']); ?>" method="POST" id="Personnel" enctype="multipart/form-data">
                             <h6 style="padding-left: 15px;" class="card-title"></h6>
                             <div class="col-md-6">
                                 <div class="form-floating">
-                                    <select class="form-select" name="AcademicStandingCode" id="AcademicStandingCode" aria-label="AcademicStandingCode">
-                                        <option value="" selected>เลือก</option>
-                                        <?php
-
-                                        $result = $this->db->query('SELECT * FROM CLS_ACADEMIC_STANDING');
-                                        foreach ($result->result() as $ACADEMIC_STANDING) {
-                                        ?>
-                                            <option value="<?= $ACADEMIC_STANDING->ACADEMIC_STANDING_CODE; ?>"><?= $ACADEMIC_STANDING->ACADEMIC_STANDING_NAME; ?></option>
-                                        <?php
-                                        }
-                                        ?>
-                                    </select>
-                                    <label for="AcademicStandingCode">วิทยฐานะและตำแหน่งวิชาการ<font color="red"> *</font></label>
+                                    <input type="text" class="form-control" maxlength="255" name="AdditionalPosition" id="AdditionalPosition">
+                                    <label for="AdditionalPosition">ชื่อตำแหน่ง</label>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-floating">
-                                    <input type="date" class="form-control" name="AcademicDate" id="AcademicDate">
-                                    <label for="AcademicDate">วันที่ได้รับ</label>
+                                    <select class="form-select" name="AdditionalDepartmentCode" id="AdditionalDepartmentCode" aria-label="AdditionalDepartmentCode">
+                                        <option value="" selected>เลือก</option>
+                                        <?php
+                                        $result = $this->db->query('SELECT * FROM CLS_DEPARTMENT');
+                                        foreach ($result->result() as $DEPARTMENT) {
+                                        ?>
+                                            <option value="<?= $DEPARTMENT->DEPARTMENT_CODE; ?>"><?= $DEPARTMENT->DEPARTMENT_NAME; ?></option>
+                                        <?php
+                                        }
+                                        ?>
+                                    </select>
+                                    <label for="AdditionalDepartmentCode">กลุ่ม/หมวดตำแหน่ง<font color="red"> *</font></label>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-floating">
+                                    <input type="date" class="form-control" name="AdditionalDutyDate" id="AdditionalDutyDate">
+                                    <label for="AdditionalDutyDate">วันที่ปฎิบัติหน้าที่<font color="red"> *</font></label>
+                                </div>
+                            </div>
+                            <div class="col-md-8">
+                                <div class="form-floating">
+                                    <input type="text" class="form-control" name="AdditionalCommand" id="AdditionalCommand">
+                                    <label for="AdditionalCommand">รายละเอียดคำสั่ง</label>
                                 </div>
                             </div>
                             <div class="col-md-12">
                                 <div class="form-floating">
-                                    <select class="form-select" name="AcademicProgramCode" id="AcademicProgramCode" aria-label="AcademicProgramCode">
-                                        <option value="" selected>เลือก</option>
-                                        <?php
-
-                                        $result = $this->db->query('SELECT * FROM CLS_PROGRAM');
-                                        foreach ($result->result() as $PROGRAM) {
-                                        ?>
-                                            <option value="<?= $PROGRAM->PROGRAM_CODE; ?>"><?= $PROGRAM->PROGRAM_NAME; ?></option>
-                                        <?php
-                                        }
-                                        ?>
-                                    </select>
-                                    <label for="AcademicProgramCode">สาขาที่ยื่นขอ<font color="red"> *</font></label>
+                                    <input type="text" class="form-control" name="AdditionalComment" id="AdditionalComment">
+                                    <label for="AdditionalComment">หมายเหตุ</label>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="input-group">
+                                    <label class="input-group-text" for="inputGroupFile01">เอกสารแนบไฟล์</label>
+                                    <input type="file" class="form-control" name="AdditionalDocumentURL" id="AdditionalDocumentURL" placeholder="เอกสารแนบไฟล์">
                                 </div>
                             </div>
 
-
                             <div class="d-flex justify-content-between">
-                                <a href="personnel-academic?PersonnelID=<?= $_GET['PersonnelID'] ?>&&JurisdictionCode=<?= $_GET['JurisdictionCode'] ?>&&PersonnelTypeCode=<?= $_GET['PersonnelTypeCode'] ?>&&PositionCode=<?= $_GET['PositionCode'] ?>" class="btn btn-danger">ยกเลิก</a>
+                                <a href="personnel-position?PersonnelID=<?= $_GET['PersonnelID'] ?>&&JurisdictionCode=<?= $_GET['JurisdictionCode'] ?>&&PersonnelTypeCode=<?= $_GET['PersonnelTypeCode'] ?>&&PositionCode=<?= $_GET['PositionCode'] ?>" class="btn btn-danger">ยกเลิก</a>
                                 <button type="button" class="btn btn-primary" onclick="return check(Personnel)">บันทึกข้อมูล</button>
                             </div>
                             <!-- Modal -->
@@ -127,8 +129,12 @@
     <script type="text/javascript">
         function check(frm) {
 
-            if (frm.AcademicStandingCode.value == "") {
-                alert("กรุณาเลือกวิทยฐานนะและตำแหน่ง");
+            if (frm.AdditionalDepartmentCode.value == "") {
+                alert("กรุณาเลือกกลุ่มหรือหมวด");
+                return false;
+            }
+            if (frm.AdditionalDutyDate.value == "") {
+                alert("กรุณากรอกวันที่ปฎิบัตหน้าที่");
                 return false;
             }
 

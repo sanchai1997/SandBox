@@ -219,8 +219,24 @@ class Forms_school extends CI_Controller
     //Delete Data Form School
     public function delete_school($SchoolID)
     {
-        $this->forms_school->delete_school($SchoolID);
-        $_SESSION['success'] = "ลบข้อมูลเรียบร้อย";
+        $student = $this->db->query('SELECT * 
+        FROM STUDENT 
+        WHERE DeleteStatus = 0
+        AND SchoolID = ' . $SchoolID . ' 
+        ')->result();
+
+        $teacher = $this->db->query('SELECT * 
+        FROM TEACHER 
+        WHERE DeleteStatus = 0
+        AND SchoolID = ' . $SchoolID . ' 
+        ')->result();
+
+        if ($student != TRUE && $teacher != TRUE) {
+            $this->forms_school->delete_school($SchoolID);
+            $_SESSION['success'] = "ลบข้อมูลเรียบร้อย";
+        } else {
+            $_SESSION['danger'] = "ไม่สามารถลบข้อมูลได้ โปรดลบข้อมูลอื่นที่เกี่ยวข้องก่อนลบข้อมูล";
+        }
         redirect(base_url('school'));
     }
     ///////////////////////////////////SCHOOL- END /////////////////////////////////////////

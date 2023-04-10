@@ -28,40 +28,8 @@ class Personnel extends CI_Controller
         $this->load->view('templates/footer', $data);
     }
 
-    //PageForm additional-position
-    public function additional_position()
-    {
-
-        if (!file_exists(APPPATH . 'views/pages/dashboard/personnel/personnel-additionalposition.php')) {
-            // Whoops, we don't have a page for that!
-            show_404();
-        }
-
-        $data['title'] = 'personnel-additional-position'; // Capitalize the first letter
-        $this->load->view('templates/header', $data);
-        $this->load->view('templates/sidebar', $data);
-        $this->load->view('pages/dashboard/personnel/personnel-additionalposition', $data);
-        $this->load->view('templates/footer', $data);
-    }
-
-    //PageForm additional-position
-    public function academic()
-    {
-
-        if (!file_exists(APPPATH . 'views/pages/dashboard/personnel/personnel-academic.php')) {
-            // Whoops, we don't have a page for that!
-            show_404();
-        }
-
-        $data['title'] = 'personnel-additional-position'; // Capitalize the first letter
-        $this->load->view('templates/header', $data);
-        $this->load->view('templates/sidebar', $data);
-        $this->load->view('pages/dashboard/personnel/personnel-academic', $data);
-        $this->load->view('templates/footer', $data);
-    }
-
     //PageForm education
-    public function education()
+    public function personnel_education()
     {
 
         if (!file_exists(APPPATH . 'views/pages/dashboard/personnel/personnel-education.php')) {
@@ -76,12 +44,11 @@ class Personnel extends CI_Controller
         $this->load->view('templates/footer', $data);
     }
 
-
-    //PageForm assistance
-    public function assistance()
+    //PageForm position
+    public function personnel_position()
     {
 
-        if (!file_exists(APPPATH . 'views/pages/dashboard/personnel/personnel-assistance.php')) {
+        if (!file_exists(APPPATH . 'views/pages/dashboard/personnel/personnel-position.php')) {
             // Whoops, we don't have a page for that!
             show_404();
         }
@@ -89,7 +56,39 @@ class Personnel extends CI_Controller
         $data['title'] = 'personnel-additional-position'; // Capitalize the first letter
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
+        $this->load->view('pages/dashboard/personnel/personnel-position', $data);
+        $this->load->view('templates/footer', $data);
+    }
+
+    //PageForm assistance
+    public function personnel_assistance()
+    {
+
+        if (!file_exists(APPPATH . 'views/pages/dashboard/personnel/personnel-assistance.php')) {
+            // Whoops, we don't have a page for that!
+            show_404();
+        }
+
+        $data['title'] = 'personnel-additional-assistance'; // Capitalize the first letter
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/sidebar', $data);
         $this->load->view('pages/dashboard/personnel/personnel-assistance', $data);
+        $this->load->view('templates/footer', $data);
+    }
+
+    //PageForm academic
+    public function personnel_academic()
+    {
+
+        if (!file_exists(APPPATH . 'views/pages/dashboard/personnel/personnel-academic.php')) {
+            // Whoops, we don't have a page for that!
+            show_404();
+        }
+
+        $data['title'] = 'personnel-additional-academic'; // Capitalize the first letter
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/sidebar', $data);
+        $this->load->view('pages/dashboard/personnel/personnel-academic', $data);
         $this->load->view('templates/footer', $data);
     }
 }

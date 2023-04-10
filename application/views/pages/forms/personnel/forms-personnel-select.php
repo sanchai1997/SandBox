@@ -1,25 +1,7 @@
 <main id="main" class="main">
     <div class="pagetitle">
-        <h1>เพิ่มข้อมูลครูและบุคลากรทางการศึกษา
-            <?php if (isset($_GET['SchoolID'])) { ?>
-                -
-                <?php
-                $result = $this->db->query('SELECT *  FROM SCHOOL WHERE SchoolID = ' . $_GET['SchoolID'] . '');
-                foreach ($result->result() as $SCHOOL) {
-                    echo $SCHOOL->SchoolNameThai;
-                }
-                $result = $this->db->query('SELECT * FROM CLS_PERSONNEL_TYPE WHERE PERSONNEL_TYPE_CODE = ' . $_GET['PersonnelTypeCode'] . '');
-                foreach ($result->result() as $PERSONNEL_TYPE) {
-                    $PERSONNEL_TYPE_NAME = $PERSONNEL_TYPE->PERSONNEL_TYPE_NAME;
-                }
-                $result = $this->db->query('SELECT * FROM CLS_POSITION WHERE POSITION_CODE = ' . $_GET['PositionCode'] . '');
-                foreach ($result->result() as $POSITION) {
-                    $POSITION_NAME = $POSITION->POSITION_NAME;
-                }
-                ?>
-            <?php } ?>
+        <h1>เพิ่มข้อมูลบุคลากรอื่น
         </h1>
-        <a class="btn btn-sm btn-light text-dark"><b> ปีการศึกษา: <?= $_GET['EducationYear'] ?>&nbsp; ภาคเรียน: <?= $_GET['Semester'] ?> &nbsp;ประเภทบุคลากร: <?= $PERSONNEL_TYPE_NAME ?> &nbsp;ตำแหน่ง: <?= $POSITION_NAME ?></b></a>
     </div><!-- End Page Title -->
     <?php if (!empty($_SESSION['danger'])) { ?>
         <script>
@@ -46,18 +28,41 @@
                 <div class="card">
                     <div class="card-body">
                         <!-- Floating Labels Form -->
-                        <form class="row g-3" action="<?php echo base_url('add-teacher-select/' . $_GET['SchoolID'] . '/' . $_GET['EducationYear'] . '/' . $_GET['Semester'] . '/' . $_GET['PersonnelTypeCode'] . '/' . $_GET['PositionCode']); ?>" method="POST" id="Teacher" enctype="multipart/form-data">
+                        <form class="row g-3" action="<?php echo base_url('add-personnel'); ?>" method="POST" id="Personnel" enctype="multipart/form-data">
                             <h6 style="padding-left: 15px;" class="card-title">ข้อมูลตำแหน่งและปฎิบัติราชการ</h6>
-                            <div class="col-md-3">
+                            <div class="col-md-6">
                                 <div class="form-floating">
-                                    <input type="number" class="form-control" minlength="4" maxlength="4" name="EducationYear" id="EducationYear" value="<?= $_GET['EducationYear'] ?>" disabled>
-                                    <label for="EducationYear">ปีการศึกษา <font color="red"> *</font></label>
+                                    <input type="number" class="form-control" minlength="4" maxlength="4" name="EntryYear" id="EntryYear" value="<?= date('Y') + 543; ?>" required>
+                                    <label for="EntryYear">ปีที่เก็บข้อมูล <font color="red"> *</font></label>
                                 </div>
                             </div>
-                            <div class="col-md-3">
+                            <div class="col-md-6">
                                 <div class="form-floating">
-                                    <input type="number" class="form-control" minlength="2" maxlength="2" name="Semester" id="Semester" value="<?= $_GET['Semester'] ?>" disabled>
-                                    <label for="Semester">ภาคเรียน <font color="red"> *</font></label>
+                                    <select class="form-select" name="EntryTimes" id="EntryTimes" aria-label="EntryTimes" required>
+                                        <option value="" selected>เลือก</option>
+                                        <option value="1">รอบที่ 1 วันที่ 10 มิถุนายน</option>
+                                        <option value="2">รอบที่ 2 วันที่ 10 พฤศจิกายน</option>
+                                    </select>
+                                    <label for="EntryTimes">รอบที่เก็บข้อมูล<font color="red"> *</font></label>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="form-floating">
+                                    <input type="hidden" name="JurisdictionCode" value="<?= $_GET['JurisdictionCode'] ?>">
+                                    <select class="form-select" name="JurisdictionCode" id="JurisdictionCode" aria-label="JurisdictionCode" disabled>
+                                        <?php
+                                        $result = $this->db->query('SELECT * FROM CLS_JURISDICTION ORDER BY JURISDICTION_NAME ASC');
+
+                                        foreach ($result->result() as $JURISDICTION) {
+                                        ?>
+                                            <option <?php if ($_GET['JurisdictionCode'] == $JURISDICTION->JURISDICTION_CODE) {
+                                                        echo 'selected';
+                                                    } ?> value="<?= $JURISDICTION->JURISDICTION_CODE; ?>"><?= $JURISDICTION->JURISDICTION_NAME; ?></option>
+                                        <?php
+                                        }
+                                        ?>
+                                    </select>
+                                    <label for="JurisdictionCode">หน่วยงานต้นสังกัด<font color="red"> *</font></label>
                                 </div>
                             </div>
                             <div class="col-md-6">
@@ -66,7 +71,7 @@
                                         <option value="" selected>เลือก</option>
 
                                         <?php
-                                        $result = $this->db->query('SELECT * FROM CLS_PERSONNEL_STATUS ORDER BY PERSONNEL_STATUS_NAME ASC');
+                                        $result = $this->db->query('SELECT * FROM CLS_PERSONNEL_STATUS ORDER BY PERSONNEL_STATUS_NAME ASC ');
 
                                         foreach ($result->result() as $PERSONNEL_STATUS) {
                                         ?>
@@ -75,81 +80,10 @@
                                         }
                                         ?>
                                     </select>
-                                    <label for="EducationLevelCode">สถานะปฎิบัติราชการ<font color="red"> *</font></label>
+                                    <label for="PersonnelStatusCode">สถานะปฏิบัตรราชการ<font color="red"> *</font></label>
                                 </div>
                             </div>
-                            <div class="col-md-6">
-                                <div class="form-floating">
-                                    <select class="form-select" name="EntryEducationLevelCode" id="EntryEducationLevelCode" aria-label="EntryEducationLevelCode" required>
-                                        <option value="" selected>เลือก</option>
 
-                                        <?php
-                                        $result = $this->db->query('SELECT * FROM CLS_EDUCATION_LEVEL ORDER BY EDUCATION_LEVEL_NAME ASC ');
-
-                                        foreach ($result->result() as $EDUCATION_LEVEL) {
-                                        ?>
-                                            <option value="<?= $EDUCATION_LEVEL->EDUCATION_LEVEL_CODE; ?>"><?= $EDUCATION_LEVEL->EDUCATION_LEVEL_NAME; ?></option>
-                                        <?php
-                                        }
-                                        ?>
-                                    </select>
-                                    <label for="EducationLevelCode">ระดับการศึกษาที่บรรจุ<font color="red"> *</font></label>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-floating">
-                                    <select class="form-select" name="EntryDegreeCode" id="EntryDegreeCode" aria-label="EntryDegreeCode" required>
-                                        <option value="" selected>เลือก</option>
-
-                                        <?php
-                                        $result = $this->db->query('SELECT * FROM CLS_DEGREE ORDER BY DEGREE_NAME ASC');
-
-                                        foreach ($result->result() as $DEGREE) {
-                                        ?>
-                                            <option value="<?= $DEGREE->DEGREE_CODE; ?>"><?= $DEGREE->DEGREE_NAME; ?></option>
-                                        <?php
-                                        }
-                                        ?>
-                                    </select>
-                                    <label for="EducationLevelCode">วุฒิการศึกษาที่บรรจุ<font color="red"> *</font></label>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-floating">
-                                    <select class="form-select" name="EntryMajorCode" id="EntryMajorCode" aria-label="EntryMajorCode" required>
-                                        <option value="" selected>เลือก</option>
-
-                                        <?php
-                                        $result = $this->db->query('SELECT * FROM CLS_MAJOR ORDER BY MAJOR_NAME ASC');
-
-                                        foreach ($result->result() as $MAJOR) {
-                                        ?>
-                                            <option value="<?= $MAJOR->MAJOR_CODE; ?>"><?= $MAJOR->MAJOR_NAME; ?></option>
-                                        <?php
-                                        }
-                                        ?>
-                                    </select>
-                                    <label for="EntryMajorCode">วิชาเอกที่บรรจุ<font color="red"> *</font></label>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-floating">
-                                    <select class="form-select" name="EntryProgramCode" id="EntryProgramCode" aria-label="EntryProgramCode">
-                                        <option value="" selected>เลือก</option>
-
-                                        <?php
-                                        $result = $this->db->query('SELECT * FROM CLS_PROGRAM ORDER BY PROGRAM_NAME ASC');
-
-                                        foreach ($result->result() as $PROGRAM) {
-                                        ?>
-                                            <option value="<?= $PROGRAM->PROGRAM_CODE; ?>"><?= $PROGRAM->PROGRAM_NAME; ?></option>
-                                        <?php
-                                        }
-                                        ?>
-                                    </select>
-                                    <label for="EducationLevelCode">สาขาวิชาที่บรรจุ<font color="red"> *</font></label>
-                                </div>
-                            </div>
                             <div class="col-md-3">
                                 <div class="form-floating">
                                     <input type="date" class="form-control" name="PersonnelStartDate" id="PersonnelStartDate" required>
@@ -164,15 +98,15 @@
                             </div>
                             <div class="col-md-6">
                                 <div class="form-floating">
-                                    <select class="form-select" name="PersonnelTypeCode" id="PersonnelTypeCode" aria-label="PersonnelTypeCode" disabled>
+                                    <select class="form-select" name="PersonnelTypeCode" id="PersonnelTypeCode" aria-label="PersonnelTypeCode" required>
+                                        <option value="" selected>เลือก</option>
+
                                         <?php
                                         $result = $this->db->query('SELECT * FROM CLS_PERSONNEL_TYPE ORDER BY PERSONNEL_TYPE_NAME ASC');
 
                                         foreach ($result->result() as $PERSONNEL_TYPE) {
                                         ?>
-                                            <option <?php if ($PERSONNEL_TYPE->PERSONNEL_TYPE_CODE == $_GET['PersonnelTypeCode']) {
-                                                        echo 'selected';
-                                                    } ?> value="<?= $PERSONNEL_TYPE->PERSONNEL_TYPE_CODE; ?>"><?= $PERSONNEL_TYPE->PERSONNEL_TYPE_NAME; ?></option>
+                                            <option value="<?= $PERSONNEL_TYPE->PERSONNEL_TYPE_CODE; ?>"><?= $PERSONNEL_TYPE->PERSONNEL_TYPE_NAME; ?></option>
                                         <?php
                                         }
                                         ?>
@@ -182,15 +116,15 @@
                             </div>
                             <div class="col-md-6">
                                 <div class="form-floating">
-                                    <select class="form-select" name="PositionCode" id="PositionCode" aria-label="PositionCode" disabled>
+                                    <select class="form-select" name="PositionCode" id="PositionCode" aria-label="PositionCode" required>
+                                        <option value="" selected>เลือก</option>
+
                                         <?php
                                         $result = $this->db->query('SELECT * FROM CLS_POSITION ORDER BY POSITION_NAME ASC');
 
                                         foreach ($result->result() as $POSITION) {
                                         ?>
-                                            <option <?php if ($POSITION->POSITION_CODE == $_GET['PositionCode']) {
-                                                        echo 'selected';
-                                                    } ?> value="<?= $POSITION->POSITION_CODE; ?>"><?= $POSITION->POSITION_NAME; ?></option>
+                                            <option value="<?= $POSITION->POSITION_CODE; ?>"><?= $POSITION->POSITION_NAME; ?></option>
                                         <?php
                                         }
                                         ?>
@@ -226,13 +160,13 @@
                             <h6 style="padding-left: 15px;" class="card-title">ข้อมูลบุคคล</h6>
                             <div class="col-md-6">
                                 <div class="input-group">
-                                    <label class="input-group-text" for="inputGroupFile01">รูปภาพครูและบุคลากร <font color="red"> *</font></label>
-                                    <input type="file" class="form-control" name="ImageTeacher" id="ImageTeacher" placeholder="รูปภาพครู" required>
+                                    <label class="input-group-text" for="inputGroupFile01">รูปภาพบุคลากร <font color="red"> *</font></label>
+                                    <input type="file" class="form-control" name="ImagePersonnel" id="ImagePersonnel" placeholder="รูปภาพบุคลากร" required>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-floating">
-                                    <select class="form-select" name="TeacherPersonalIDTypeCode" id="TeacherPersonalIDTypeCode" aria-label="TeacherPersonalIDTypeCode" required>
+                                    <select class="form-select" name="PersonnelPersonalIDTypeCode" id="PersonnelPersonalIDTypeCode" aria-label="PersonnelPersonalIDTypeCode" required>
                                         <option value="" selected>เลือก</option>
                                         <?php
                                         $result = $this->db->query('SELECT * FROM CLS_CITIZEN_ID_TYPE');
@@ -243,24 +177,24 @@
                                         }
                                         ?>
                                     </select>
-                                    <label for="TeacherPersonalIDTypeCode">ประเภทบัตรประจำตัว<font color="red"> *</font></label>
+                                    <label for="PersonnelPersonalIDTypeCode">ประเภทบัตรประจำตัว<font color="red"> *</font></label>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-floating">
-                                    <input type="text" class="form-control" maxlength="13" name="TeacherPersonalID" id="TeacherPersonalID" required>
-                                    <label for="TeacherPersonalID">หมายเลขบัตร<font color="red"> *</font></label>
+                                    <input type="text" class="form-control" maxlength="13" name="PersonnelPersonalID" id="PersonnelPersonalID" required>
+                                    <label for="PersonnelPersonalID">หมายเลขบัตร<font color="red"> *</font></label>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-floating">
-                                    <input type="text" class="form-control" name="TeacherPassportNumber" id="TeacherPassportNumber" required>
-                                    <label for="TeacherPassportNumber">เลขที่หนังสือเดินทาง </label>
+                                    <input type="text" class="form-control" name="PersonnelPassportNumber" id="PersonnelPassportNumber">
+                                    <label for="PersonnelPassportNumber">เลขที่หนังสือเดินทาง </label>
                                 </div>
                             </div>
                             <div class="col-md-2">
                                 <div class="form-floating">
-                                    <select class="form-select" name="TeacherPrefixCode" id="TeacherPrefixCode" aria-label="TeacherPrefixCode" required>
+                                    <select class="form-select" name="PersonnelPrefixCode" id="PersonnelPrefixCode" aria-label="PersonnelPrefixCode"> required
                                         <option value="" selected>เลือก</option>
                                         <?php
                                         $result = $this->db->query('SELECT * FROM CLS_PREFIX ORDER BY PREFIX_NAME ASC');
@@ -271,24 +205,24 @@
                                         }
                                         ?>
                                     </select>
-                                    <label for="TeacherPrefixCode">คำนำหน้า<font color="red"> *</font></label>
+                                    <label for="PersonnelPrefixCode">คำนำหน้า<font color="red"> *</font></label>
                                 </div>
                             </div>
                             <div class="col-md-5">
                                 <div class="form-floating">
-                                    <input type="text" class="form-control" name="TeacherNameThai" id="TeacherNameThai" required>
-                                    <label for="TeacherNameThai">ชื่อ (ภาษาไทย) <font color="red"> *</font></label>
+                                    <input type="text" class="form-control" name="PersonnelNameThai" id="PersonnelNameThai" required>
+                                    <label for="PersonnelNameThai">ชื่อ (ภาษาไทย) <font color="red"> *</font></label>
                                 </div>
                             </div>
                             <div class="col-md-5">
                                 <div class="form-floating">
-                                    <input type="text" class="form-control" name="TeacherLastNameThai" id="TeacherLastNameThai" required>
-                                    <label for="TeacherLastNameThai">นามสกุล (ภาษาไทย) <font color="red"> *</font></label>
+                                    <input type="text" class="form-control" name="PersonnelLastNameThai" id="PersonnelLastNameThai" required>
+                                    <label for="PersonnelLastNameThai">นามสกุล (ภาษาไทย) <font color="red"> *</font></label>
                                 </div>
                             </div>
                             <div class="col-md-3">
                                 <div class="form-floating">
-                                    <select class="form-select" name="TeacherGenderCode" id="TeacherGenderCode" aria-label="TeacherGenderCode" required>
+                                    <select class="form-select" name="PersonnelGenderCode" id="PersonnelGenderCode" aria-label="PersonnelGenderCode" required>
                                         <option value="" selected>เลือก</option>
                                         <?php
                                         $result = $this->db->query('SELECT * FROM CLS_GENDER');
@@ -299,12 +233,12 @@
                                         }
                                         ?>
                                     </select>
-                                    <label for="TeacherGenderCode">เพศ <font color="red"> *</font></label>
+                                    <label for="PersonnelGenderCode">เพศ <font color="red"> *</font></label>
                                 </div>
                             </div>
                             <div class="col-md-3">
                                 <div class="form-floating">
-                                    <select class="form-select" name="TeacherNationalityCode" id="TeacherNationalityCode" aria-label="TeacherNationalityCode" required>
+                                    <select class="form-select" name="PersonnelNationalityCode" id="PersonnelNationalityCode" aria-label="PersonnelNationalityCode" required>
                                         <option value="" selected>เลือก</option>
                                         <?php
                                         $result = $this->db->query('SELECT * FROM CLS_NATIONALITY ORDER BY NATIONALITY_NAME ASC');
@@ -315,12 +249,12 @@
                                         }
                                         ?>
                                     </select>
-                                    <label for="TeacherNationalityCode">สัญชาติ <font color="red"> *</font></label>
+                                    <label for="PersonnelNationalityCode">สัญชาติ <font color="red"> *</font></label>
                                 </div>
                             </div>
                             <div class="col-md-3">
                                 <div class="form-floating">
-                                    <select class="form-select" name="TeacherRaceCode" id="TeacherRaceCode" aria-label="TeacherRaceCode" required>
+                                    <select class="form-select" name="PersonnelRaceCode" id="PersonnelRaceCode" aria-label="PersonnelRaceCode" required>
                                         <option value="" selected>เลือก</option>
                                         <?php
                                         $result = $this->db->query('SELECT * FROM CLS_RACE ORDER BY RACE_NAME ASC');
@@ -331,12 +265,12 @@
                                         }
                                         ?>
                                     </select>
-                                    <label for="TeacherRaceCode">เชื้อชาติ <font color="red"> *</font></label>
+                                    <label for="PersonnelRaceCode">เชื้อชาติ <font color="red"> *</font></label>
                                 </div>
                             </div>
                             <div class="col-md-3">
                                 <div class="form-floating">
-                                    <select class="form-select" name="TeacherReligionCode" id="TeacherReligionCode" aria-label="TeacherReligionCode" required>
+                                    <select class="form-select" name="PersonnelReligionCode" id="PersonnelReligionCode" aria-label="PersonnelReligionCode" required>
                                         <option value="" selected>เลือก</option>
                                         <?php
                                         $result = $this->db->query('SELECT * FROM CLS_RELIGION ORDER BY RELIGION_NAME ASC');
@@ -347,18 +281,18 @@
                                         }
                                         ?>
                                     </select>
-                                    <label for="TeacherReligionCode">ศาสนา <font color="red"> *</font></label>
+                                    <label for="PersonnelReligionCode">ศาสนา <font color="red"> *</font></label>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-floating">
-                                    <input type="date" class="form-control " name="TeacherBirthDate" id="TeacherBirthDate" required>
-                                    <label for="TeacherBirthDate">วันที่เกิด <font color="red"> *</font></label>
+                                    <input type="date" class="form-control " name="PersonnelBirthDate" id="PersonnelBirthDate" required>
+                                    <label for="PersonnelBirthDate">วันที่เกิด <font color="red"> *</font></label>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-floating">
-                                    <select class="form-select" name="TeacherBloodCode" id="TeacherBloodCode" aria-label="TeacherBloodCode" required>
+                                    <select class="form-select" name="PersonnelBloodCode" id="PersonnelBloodCode" aria-label="PersonnelBloodCode" required>
                                         <option value="" selected>เลือก</option>
                                         <?php
                                         $result = $this->db->query('SELECT * FROM CLS_BLOOD');
@@ -369,15 +303,15 @@
                                         }
                                         ?>
                                     </select>
-                                    <label for="TeacherBloodCode">กลุ่มเลือด<font color="red"> *</font></label>
+                                    <label for="PersonnelBloodCode">กลุ่มเลือด<font color="red"> *</font></label>
                                 </div>
                             </div>
 
 
 
                             <div class="d-flex justify-content-between">
-                                <a href="teacher?SchoolID=<?= $_GET['SchoolID'] ?>&&EducationYear=<?= $_GET['EducationYear'] ?>&&Semester=<?= $_GET['Semester'] ?>&&PersonnelTypeCode=<?= $_GET['PersonnelTypeCode'] ?>&&PositionCode=<?= $_GET['PositionCode'] ?>" class="btn btn-danger">ยกเลิก</a>
-                                <button type="button" class="btn btn-primary" onclick="return check(Teacher)">บันทึกข้อมูล</button>
+                                <a href="personnel?JurisdictionCode=<?= $_GET['JurisdictionCode'] ?>" class="btn btn-danger">ยกเลิก</a>
+                                <button type="button" class="btn btn-primary" onclick="return check(Personnel)">บันทึกข้อมูล</button>
                             </div>
                             <!-- Modal -->
                             <div class="modal fade" id="Modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
@@ -413,33 +347,38 @@
     <script type="text/javascript">
         function check(frm) {
 
+            var Year = /^[0-9]{4,4}$/;
+            if (frm.EntryYear.value == "") {
+                alert("กรุณากรอกปีที่เก็บข้อมูล");
+                return false;
+            } else if (!frm.EntryYear.value.match(Year)) {
+                alert("กรุณากรอกปีที่เก็บข้อมูลให้ครบ 4 หลัก");
+                frm.EntryYear.value = "";
+                return false;
+            }
+
+            if (frm.EntryTimes.value == "") {
+                alert("กรุณาเลือกรอบที่เก็บข้อมูล");
+                return false;
+            }
+
             if (frm.PersonnelStatusCode.value == "") {
                 alert("กรุณาเลือกสถานะปฏิบัติราชการ");
                 return false;
             }
 
-            if (frm.EntryEducationLevelCode.value == "") {
-                alert("กรุณาเลือกระดับการศึกษาที่บรรจุ");
-                return false;
-            }
-
-            if (frm.EntryDegreeCode.value == "") {
-                alert("กรุณาเลือกวุฒิการศึกษาที่บรรจุ");
-                return false;
-            }
-
-            if (frm.EntryMajorCode.value == "") {
-                alert("กรุณาเลือกวิชาเอกที่บรรจุ");
-                return false;
-            }
-
-            if (frm.EntryProgramCode.value == "") {
-                alert("กรุณาเลือกสาขาวิชาที่บรรจุ");
-                return false;
-            }
-
             if (frm.PersonnelStartDate.value == "") {
                 alert("กรุณากรอกวันที่บรรจุ");
+                return false;
+            }
+
+            if (frm.PersonnelTypeCode.value == "") {
+                alert("กรุณาเลือกประเภทบุคลากร");
+                return false;
+            }
+
+            if (frm.PositionCode.value == "") {
+                alert("กรุณาเลือกตำแหน่ง");
                 return false;
             }
 
@@ -452,13 +391,13 @@
                 alert("กรุณากรอกวันที่ดำรงตำแหน่ง");
                 return false;
             }
-            s
-            if (frm.ImageTeacher.value == "") {
+
+            if (frm.ImagePersonnel.value == "") {
                 alert("กรุณาใส่รูปครูและบุคลากร");
                 return false;
-            } else if (frm.ImageTeacher.value != "") {
+            } else if (frm.ImagePersonnel.value != "") {
                 var fty = new Array(".jpg", ".jpeg", ".png"); // ประเภทไฟล์ที่อนุญาตให้อัพโหลด   
-                var a = frm.ImageTeacher.value; //กำหนดค่าของไฟล์ใหกับตัวแปร a   
+                var a = frm.ImagePersonnel.value; //กำหนดค่าของไฟล์ใหกับตัวแปร a   
                 var permiss = 0; // เงื่อนไขไฟล์อนุญาต
                 a = a.toLowerCase();
                 if (a != "") {
@@ -477,71 +416,72 @@
                 }
             }
 
-            if (frm.TeacherPersonalIDTypeCode.value == "") {
+
+            if (frm.PersonnelPersonalIDTypeCode.value == "") {
                 alert("กรุณาเลือกประเภทบัตร");
                 return false;
             }
 
             var Year = /^[0-9]{13,13}$/;
-            if (frm.TeacherPersonalID.value == "") {
+            if (frm.PersonnelPersonalID.value == "") {
                 alert("กรุณาหมายเลขบัตร");
                 return false;
-            } else if (!frm.TeacherPersonalID.value.match(Year)) {
+            } else if (!frm.PersonnelPersonalID.value.match(Year)) {
                 alert("กรุณาหมายเลขบัตรให้ครบ 13 หลัก");
-                frm.TeacherPersonalID.value = "";
+                frm.PersonnelPersonalID.value = "";
                 return false;
             }
 
-            if (frm.TeacherPrefixCode.value == "") {
+            if (frm.PersonnelPrefixCode.value == "") {
                 alert("กรุณาเลือกคำนำหน้า");
                 return false;
             }
 
             var NameThai = /^[ก-๙]{1,100}$/;
-            if (frm.TeacherNameThai.value == "") {
+            if (frm.PersonnelNameThai.value == "") {
                 alert("กรุณาเลือกชื่อ(ภาษาไทย)");
                 return false;
-            } else if (!frm.TeacherNameThai.value.match(NameThai)) {
+            } else if (!frm.PersonnelNameThai.value.match(NameThai)) {
                 alert("กรุณาเลือกชื่อเป็น(ภาษาไทย)และไม่เกิน 100 ตัวอักษร");
-                frm.TeacherNameThai.value = "";
+                frm.PersonnelNameThai.value = "";
                 return false;
             }
 
-            if (frm.TeacherLastNameThai.value == "") {
+            if (frm.PersonnelLastNameThai.value == "") {
                 alert("กรุณาเลือกนามสกุล(ภาษาไทย)");
                 return false;
-            } else if (!frm.TeacherLastNameThai.value.match(NameThai)) {
+            } else if (!frm.PersonnelLastNameThai.value.match(NameThai)) {
                 alert("กรุณาเลือกนามสกุลเป็น(ภาษาไทย)และไม่เกิน 100 ตัวอักษร");
-                frm.TeacherLastNameThai.value = "";
+                frm.PersonnelLastNameThai.value = "";
                 return false;
             }
 
-            if (frm.TeacherGenderCode.value == "") {
+            if (frm.PersonnelGenderCode.value == "") {
                 alert("กรุณาเลือกเพศ");
                 return false;
             }
 
-            if (frm.TeacherNationalityCode.value == "") {
+            if (frm.PersonnelNationalityCode.value == "") {
                 alert("กรุณาเลือกสัญชาติ");
                 return false;
             }
 
-            if (frm.TeacherRaceCode.value == "") {
+            if (frm.PersonnelRaceCode.value == "") {
                 alert("กรุณาเลือกเชื้อชาติ");
                 return false;
             }
 
-            if (frm.TeacherReligionCode.value == "") {
+            if (frm.PersonnelReligionCode.value == "") {
                 alert("กรุณาเลือกศาสนา");
                 return false;
             }
 
-            if (frm.TeacherBirthDate.value == "") {
+            if (frm.PersonnelBirthDate.value == "") {
                 alert("กรุณากรอกวันเกิด");
                 return false;
             }
 
-            if (frm.TeacherBloodCode.value == "") {
+            if (frm.PersonnelBloodCode.value == "") {
                 alert("กรุณาเลือกกลุ่มเลือด");
                 return false;
             }

@@ -317,8 +317,26 @@
         //Delete Data Form student
         public function delete_student($StudentReferenceID, $SchoolID, $EducationYear, $Semester, $GradeLevelCode)
         {
-            $this->forms_student->delete_student($StudentReferenceID);
-            $_SESSION['success'] = "ลบข้อมูลเรียบร้อย";
+
+            $transcript = $this->db->query('SELECT * 
+            FROM TRANSCRIPT 
+            WHERE DeleteStatus = 0
+            AND StudentReferenceID = "' . $StudentReferenceID . '" 
+            ')->result();
+
+            $graduated = $this->db->query('SELECT * 
+            FROM GRADUATED 
+            WHERE DeleteStatus = 0
+            AND StudentReferenceID = "' . $StudentReferenceID . '"  
+            ')->result();
+
+            if ($transcript != TRUE && $graduated != TRUE) {
+                $this->forms_student->delete_student($StudentReferenceID);
+                $_SESSION['success'] = "ลบข้อมูลเรียบร้อย";
+            } else {
+                $_SESSION['danger'] = "ไม่สามารถลบข้อมูลได้ โปรดลบข้อมูลอื่นที่เกี่ยวข้องก่อนลบข้อมูล";
+            }
+
             redirect(base_url('student?SchoolID=' . $SchoolID . '&&EducationYear=' . $EducationYear . '&&Semester=' . $Semester . '&&GradeLevelCode=' . $GradeLevelCode));
         }
     }
