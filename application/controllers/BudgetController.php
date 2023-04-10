@@ -111,6 +111,7 @@ class BudgetController extends CI_Controller{
         
 
             $budget = [
+                'BudgetID' => $this->input->post('BudgetID'),
                 'BudgetEducationYear' => $this->input->post('BudgetEducationYear'),
                 'BudgetSemester' => $this->input->post('BudgetSemester'),
                 'BudgetYear' => $this->input->post('BudgetYear'),
@@ -140,9 +141,10 @@ class BudgetController extends CI_Controller{
     public function edit_budget() {
        
         $SchoolID  = $this->input->post('SchoolID');
-        $BudgetID  = $this->input->post('BudgetID');
+        $BudgetID  = $this->input->post('OLDBudgetID');
         
         $budget = [
+            'BudgetID' => $this->input->post('BudgetID'),
             'BudgetEducationYear' => $this->input->post('BudgetEducationYear'),
             'BudgetSemester' => $this->input->post('BudgetSemester'),
             'BudgetYear' => $this->input->post('BudgetYear'),
@@ -166,8 +168,9 @@ class BudgetController extends CI_Controller{
         }
     
 }
-   public function delete_budget($BudgetID,$SchoolID ){
-
+   public function delete_budget(){
+        $BudgetID = $_GET['bid'];
+        $SchoolID = $_GET['sid']; 
 
         $result =$this->Budget_model->delete_budget($BudgetID);
         if($result == 1 ){

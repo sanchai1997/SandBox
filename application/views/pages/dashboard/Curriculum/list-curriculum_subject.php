@@ -19,7 +19,11 @@
     <!-- Alert -->
     <?php if (!empty($_SESSION['success'])) { ?>
     <div class="col-12">
-        
+            <script>
+                setTimeout(function() {
+                    document.getElementById('myAlert').remove();
+                }, 2000); // นับถอยหลังให้แสดง 5 วินาที (5000 มิลลิวินาที)
+            </script>
             <div class="alert alert-success" id="myAlert" style="top: 0; left: 0; right: 0; z-index: 1;">
                 <strong>
                     <?php
@@ -56,7 +60,7 @@
                             <th style="text-align: center;" scope="col">กลุ่มสาระการเรียนรู้</th>
                             <th style="text-align: center;" scope="col">ประเภทรายวิชา</th>
                             <th style="text-align: center;" scope="col">หน่วยกิต/น้ำหนัก</th>
-                            <th style="text-align: center;" scope="col">จำนวนชั่วโมงเรียน</th>
+                            <th style="text-align: center;" scope="col">รายละเอียด</th>
                             <th style="text-align: center;" scope="col">สมรรถนะ</th>
                             <th style="text-align: center;" scope="col">แผนการเรียนรู้</th>
                             <th style="text-align: center;" scope="col">ปฎิบัติ</th>
@@ -71,7 +75,9 @@
                                 <td style="text-align: center;"><?php echo $ls->SUBJECT_GROUP_NAME ; ?></td>
                                 <td style="text-align: center;"><?php echo $ls->SUBJECT_TYPE_NAME ; ?></td>
                                 <td style="text-align: center;"><?php echo $ls->Credit ; ?></td>
-                                <td style="text-align: center;"><?php echo $ls-> LearningHour; ?></td>
+                                <td style="text-align: center;">
+                                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#view<?php echo $ls->SubjectCode; ?>"><i class="bi bi-card-list"></i></button>
+                                </td>
                                 <td style="text-align: center;">
                                     <a href='list-curriculum_school_competency?sid=<?php echo $ls->SubjectCode; ?>&&cid=<?php echo $ls->CurriculumID; ?>'>
                                         <button type="button" class="btn btn-info"><i class="bi bi-eye-fill"></i></button> 
@@ -92,6 +98,67 @@
                                 </td>
 
                             </tr>
+                            <!-- Modal -->
+                            <div class="modal fade" id="view<?php echo $ls->SubjectCode; ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-xl">
+                                    <div class="modal-content">
+
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel" style="padding-left: 30px; padding-top: 15px;"> <i class="bi bi-card-heading"></i> 
+                                                ข้อมูลหลักสูตรรายวิชา - <?php echo $Curriculum[0]->SchoolNameThai; ?> 
+                                                ปีการศึกษา <?= $Curriculum[0]->EducationYear; ?> 
+                                                <?php $Semester_code = $Curriculum[0]->Semester;
+                                                            if ($Semester_code == 0) echo "ตลอดปีการศึกษา";
+                                                            else if ($Semester_code == 1) echo "ภาคเรียนที่ 1";
+                                                            else if ($Semester_code == 2) echo "ภาคเรียนที่ 2"; ?>
+                                            </h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                            <hr>
+                                        </div>
+                                        <div class="modal-body" style="padding-left: 70px; padding-top: 20px;">
+                                            <div class="row">
+                                                <h6 style="padding-top: 10px;"><b>รหัสหลักสูตร</b></h6>
+                                                <div class=" col-8" style="padding-bottom: 8px; padding-left: 40px;">
+                                                    รหัสหลักสูตร : <?= $ls->CurriculumID; ?>
+                                                </div>
+                                            </div>
+
+                                            <div class="row">
+                                                <h6 style="padding-top: 10px;"><b>หลักสูตรรายวิชา</b></h6>
+                                                <div class=" col-8" style="padding-bottom: 8px; padding-left: 40px;">
+                                                 ชื่อรายวิชา : <?= $ls->SubjectName; ?>
+                                                </div>
+                                                <div class=" col-8" style="padding-bottom: 8px; padding-left: 40px;">
+                                                กลุ่มสาระการเรียนรู้ : <?= $ls->SUBJECT_GROUP_NAME; ?>
+                                                </div>
+                                                <div class=" col-8" style="padding-bottom: 8px; padding-left: 40px;">
+                                                ประเภทรายวิชา : <?= $ls->SUBJECT_TYPE_NAME ; ?>
+                                                </div>
+                                                <div class=" col-8" style="padding-bottom: 8px; padding-left: 40px;">
+                                                หน่วยกิต/น้ำหนัก : <?= $ls->Credit; ?>
+                                                </div>
+                                                <div class=" col-8" style="padding-bottom: 8px; padding-left: 40px;">
+                                                รหัสมาตรฐานการเรียนรู้ : <?= $ls->SUBJECT_STD_ID; ?>
+                                                </div>
+                                                <div class=" col-8" style="padding-bottom: 8px; padding-left: 40px;">
+                                                มาตรฐานการเรียนรู้ : <?= $ls->SUBJECT_STD_DETAILS; ?>
+                                                </div>
+                                                <div class=" col-8" style="padding-bottom: 8px; padding-left: 40px;">
+                                                ตัวชี้วัด : <?= $ls->CriteriaID ; ?>
+                                                </div>
+                                            
+                                            </div>
+
+                                                                        
+
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ปิด</button>                                            </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!----------------------------  END --------------------------------->
+                            
                             <!-- Modal -->
                             <div class="modal fade" id="delete<?php echo $ls->SubjectCode; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
                                     <div class="modal-dialog modal-dialog-centered" role="document">

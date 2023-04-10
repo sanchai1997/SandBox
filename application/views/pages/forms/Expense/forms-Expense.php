@@ -20,10 +20,18 @@
                 <input type="hidden" class="form-control"name="BudgetID"id="BudgetID" value="<?php echo $BudgetID ?>">
                 
                 <input type="hidden" class="form-control"name="SchoolID"id="SchoolID" value="<?php echo $SchoolID ?>">
+                
+                <div class="col-md-16">
+                  <div class="form-floating">
+                    <input type="text" class="form-control"name="ExpenseID"id="ExpenseID" placeholder="ปีการศึกษา" maxlength="16" require > 
+                    <label >รหัสการเบิกจ่าย<font color="red"> *</font></label>
+                  </div>
+                </div>
+
                 <div class="col-md-16 ">
                   <div class="form-floating">
                     <input type="text" class="form-control"name="ExpenseEducationYear"id="ExpenseEducationYear" placeholder="ปีการศึกษาที่เบิกจ่าย" maxlength="4">
-                    <label >ปีการศึกษาที่เบิกจ่าย</label>
+                    <label >ปีการศึกษาที่เบิกจ่าย<font color="red"> *</font></label>
                   </div>
                 </div>
 
@@ -35,7 +43,7 @@
                       <option value="1">ภาคเรียนที่ 1</option>
                       <option value="2">ภาคเรียนที่ 2</option>
                     </select>
-                    <label>ภาคเรียนที่เบิกจ่าย</label>
+                    <label>ภาคเรียนที่เบิกจ่าย<font color="red"> *</font></label>
                   </div>
                 </div>
 
@@ -47,21 +55,21 @@
                         <option value="<?php echo $lb_t->EXPENSE_TYPE_CODE; ?>"><?php echo $lb_t->EXPENSE_TYPE_NAME; ?></option>
                       <?php } ?>
                     </select>
-                    <label>ประเภทการเบิกจ่าย</label>
+                    <label>ประเภทการเบิกจ่าย<font color="red"> *</font></label>
                   </div>
                 </div>
-
+                
                 <div class="col-md-16">
                   <div class="form-floating">
-                    <input type="text" class="form-control"name="ExpenseAmount"id="ExpenseAmount" placeholder="ปีการศึกษาที่เบิกจ่าย" maxlength="4">
-                    <label >จำนวนเงินการเบิกจ่าย</label>
-                  </div>
+                    <input type="text" class="form-control"name="ExpenseAmount"id="ExpenseAmount" placeholder="จำนวนเงินการเบิกจ่าย " >
+                    <label >จำนวนเงินการเบิกจ่าย<font color="red">* ต้องไม่เกิน<?php if ($limit_amount!=0) {echo number_format($limit_amount);  ?> บาท <?php }?></font> </label>
+                  </div> 
                 </div>
 
                 <div class="col-md-16">
                   <div class="form-floating">
                     <input type="date" class="form-control" name="ExpenseDate"id="ExpenseDate">
-                    <label >วันที่เบิกจ่าย</label>
+                    <label >วันที่เบิกจ่าย<font color="red"> * ต้องมากกว่าหรือเท่ากับวันที่<?php if ($limit_amount!=0) {echo $BudgetReceivedDate; }  ?></font></label> 
                   </div>
                 </div>
           
@@ -105,6 +113,12 @@
     </section>
     <script>
   function check(frm){
+      //ExpenseID
+    if(frm.ExpenseID.value ==""){
+        alert("รหัสการเบิกจ่าย");
+        frm.ExpenseID.value = "";
+        return false;
+    }
 
      //Check_ExpenseEducationYear(ปีการศึกษาที่เบิกจ่าย)
      var EDUCATION = /^[0-9]{4}$/;
@@ -128,7 +142,8 @@
       alert("กรุณากรอกประเภทการเบิกจ่าย");
       return false;
     }
-    var Check_ExpenseAmount = /^[0-9]{1,12}$/;
+
+    var Check_ExpenseAmount = /^(?:\d{1,12}(?:\.\d{0,2})?|\d{1,12})$/;  
     if(frm.ExpenseAmount.value ==""){
         alert("กรุณากรอกจำนวนเงินการเบิกจ่าย");
         frm.ExpenseAmount.value = "";
@@ -138,14 +153,22 @@
         frm.ExpenseAmount.value = "";
         return false;
     }
-    //Cehck_BudgetReceivedDate (วันที่อนุมัติเงินอุดหนุนทั่วไปเพื่อพัฒนานวัตกรรมการศึกษา)
+    if (frm.ExpenseAmount.value><?php echo $limit_amount; ?>){
+        alert("จำนวนเงินการเบิกจ่ายต้องไม่เกิน<?php echo number_format($limit_amount); ?>");
+        frm.ExpenseAmount.value = "";
+        return false;
+    }
+
+
+    //Cehck_ExpenseDate
     if(frm.ExpenseDate.value==""){
       alert("กรุณากรอกข้อมูลวันที่เบิกจ่าย");
       return false;
+    }else if(frm.ExpenseDate.value < '<?php echo $BudgetReceivedDate; ?>'){
+        alert("วันที่เบิกจ่ายต้องมากกว่าหรือเท่ากับวันที่<?php echo $BudgetReceivedDate; ?>");
+        frm.ExpenseDate.value = "";
+        return false;
     }
-
-    
-
 
     $('#Modal').modal('show');
   }

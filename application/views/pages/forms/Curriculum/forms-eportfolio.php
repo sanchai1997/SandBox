@@ -10,6 +10,11 @@
       <?php if (!empty($_SESSION['errors'])) { ?>
       <div class="row">
         <div class="col-lg-9">
+          <script>
+                setTimeout(function() {
+                    document.getElementById('myAlert').remove();
+                }, 2000); // นับถอยหลังให้แสดง 5 วินาที (5000 มิลลิวินาที)
+            </script>
           <div class="alert alert-danger" id="myAlert" style="top: 0; left: 0; right: 0; z-index: 1;">
               <strong>
                   <?php
