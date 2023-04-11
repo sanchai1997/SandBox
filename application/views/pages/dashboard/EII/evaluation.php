@@ -251,11 +251,11 @@
                                                 </div>
                                             </div>
                                             <div class="modal-footer">
-                                                <button type="button" class="btn btn-secondary"
-                                                    data-bs-dismiss="modal">ปิด</button>
                                                 <a href="<?php echo site_url('ass_ria_lvl_forms_p2?page=sh22') ?>&&lvl=<?php echo $show->CriteriaLevelAmount ?>&&CriteriaID=<?php echo $show->Id ?>&&CriteriaLevelAmount=<?php echo $show->CriteriaLevelAmount ?>&&key=<?php echo $cls->Id_acl; ?>&&name=<?php echo $show->CriteriaName; ?>"
-                                                    class="my-link btn btn-warning"><i class="bi bi-pencil-square"></i>
-                                                </a>
+                                                class="my-link btn btn-warning"><i class="bi bi-pencil-square"></i>
+                                            </a>
+                                            <button type="button" class="btn btn-secondary"
+                                                data-bs-dismiss="modal">ปิด</button>
                                             </div>
                                         </div>
                                     </div>
@@ -321,10 +321,10 @@
                                                 </div>
                                             </div>
                                             <div class="modal-footer">
+                                                <a href="<?php echo site_url('ass_ria_com_forms_p3?page=sh33') ?>&&lvl=<?php echo $show->CriteriaCompositionAmount ?>&&Id_acc=<?php echo $showA3->Id_acc; ?>&&Id=<?php echo $show->Id; ?>&&name=<?php echo $show->CriteriaName; ?>&&CriteriaID=<?php echo $show->CriteriaID; ?>"
+                                                class="my-link btn btn-warning"><i class="bi bi-pencil-square"> </i></a>
                                                 <button type="button" class="btn btn-secondary"
                                                     data-bs-dismiss="modal">ปิด</button>
-                                                    <a href="<?php echo site_url('ass_ria_com_forms_p3?page=sh33') ?>&&lvl=<?php echo $show->CriteriaCompositionAmount ?>&&Id_acc=<?php echo $showA3->Id_acc; ?>&&Id=<?php echo $show->Id; ?>&&name=<?php echo $show->CriteriaName; ?>&&CriteriaID=<?php echo $show->CriteriaID; ?>"
-                                    class="my-link btn btn-warning"><i class="bi bi-pencil-square"> </i></a>
                                                 
                                             </div>
                                         </div>
@@ -726,10 +726,10 @@
                                                 </div>
                                             </div>
                                             <div class="modal-footer">
+                                                <a href="<?php echo site_url('sc_ass_res_forms_p7?page=sh77') ?>&&key=<?php echo $showR->Id_sar; ?>&&year=<?php echo $showR->SchoolAssessmentEducationYear; ?>&&summer=<?php echo $showR->SchoolAssessmentSemester; ?>&&SchoolID=<?php echo $showR->SchoolID; ?>&&CriteriaID=<?php echo $show_top->Id; ?>"
+                                                class="btn btn-warning"> <i class="bi bi-pencil-square"></i></a>
                                                 <button type="button" class="btn btn-secondary"
                                                     data-bs-dismiss="modal">ปิด</button>
-                                                <a href="<?php echo site_url('sc_ass_res_forms_p7?page=sh77') ?>&&key=<?php echo $showR->Id_sar; ?>&&year=<?php echo $showR->SchoolAssessmentEducationYear; ?>&&summer=<?php echo $showR->SchoolAssessmentSemester; ?>&&SchoolID=<?php echo $showR->SchoolID; ?>&&CriteriaID=<?php echo $show_top->Id; ?>"
-                                                    class="btn btn-warning"> <i class="bi bi-pencil-square"></i></a>
                                             </div>
                                         </div>
                                     </div>
@@ -793,10 +793,10 @@
                                                 </div>
                                             </div>
                                             <div class="modal-footer">
+                                                <a href="<?php echo site_url('sc_ass_res_forms_p7?page=sh77') ?>&&key=<?php echo $showR->Id_sar; ?>&&year=<?php echo $showR->SchoolAssessmentEducationYear; ?>&&summer=<?php echo $showR->SchoolAssessmentSemester; ?>&&SchoolID=<?php echo $showR->SchoolID; ?>&&CriteriaID=<?php echo $show_top->Id; ?>"
+                                                class="btn btn-warning"> <i class="bi bi-pencil-square"></i></a>
                                                 <button type="button" class="btn btn-secondary"
                                                     data-bs-dismiss="modal">ปิด</button>
-                                                <a href="<?php echo site_url('sc_ass_res_forms_p7?page=sh77') ?>&&key=<?php echo $showR->Id_sar; ?>&&year=<?php echo $showR->SchoolAssessmentEducationYear; ?>&&summer=<?php echo $showR->SchoolAssessmentSemester; ?>&&SchoolID=<?php echo $showR->SchoolID; ?>&&CriteriaID=<?php echo $show_top->Id; ?>"
-                                                    class="btn btn-warning"> <i class="bi bi-pencil-square"></i></a>
                                             </div>
                                         </div>
                                     </div>
