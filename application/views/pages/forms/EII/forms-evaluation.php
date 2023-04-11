@@ -1450,7 +1450,7 @@ function checkSelectValues() {
                                     <div class="row mb-3">
                                         <div class="col">
                                             <div class="form-floating">
-                                                <input type="text" class="form-control" id="floatingName"
+                                                <input type="number" class="form-control" id="floatingName"
                                                     placeholder="ปีการศึกษาที่ทำกระประเมิน"
                                                     name="SchoolAssessmentEducationYear">
                                                 <label for="floatingName"><?php echo nbs(
@@ -1566,7 +1566,7 @@ function checkSelectValues() {
                                         
                                         <div class="col">
                                             <div class="form-floating">
-                                                <input type="text" class="form-control" id="floatingName"
+                                                <input type="number" class="form-control" id="floatingName"
                                                     placeholder="ปีการศึกษาที่ทำการประเมิน" name=""
                                                     value="<?php echo $show->SchoolAssessmentEducationYear ?>" disabled>
                                                 <input type="hidden" class="form-control" id="floatingName"
@@ -2003,7 +2003,7 @@ function checkSelectValues() {
                                     <input type="hidden" name="Id_sac" value="<?php echo $show->Id_sac ?>">
                                     <div class="row mb-3">
                                         <div class="form-floating">
-                                            <input type="text" class="form-control" id="floatingName"
+                                            <input type="number" class="form-control" id="floatingName"
                                                 placeholder="ปีการศึกษาที่ทำการประเมิน" name=""
                                                 value="<?php echo $show->SchoolAssessmentEducationYear ?>" disabled>
                                             <input type="hidden" class="form-control" id="floatingName" placeholder=""
@@ -2044,7 +2044,7 @@ function checkSelectValues() {
 
                                         <div class="col">
                                             <div class="form-floating">
-                                                <input type="text" class="form-control" id="floatingName"
+                                                <input type="number" class="form-control" id="floatingName"
                                                     placeholder="ปีการศึกษาที่ทำการประเมิน" name=""
                                                     value="<?php echo $show->SchoolNameThai ?>" disabled>
                                                 <input type="hidden" class="form-control" id="floatingName"
@@ -2244,7 +2244,7 @@ function checkSelectValues() {
                                     <div class="row mb-3">
                                         <div class="col">
                                             <div class="form-floating">
-                                                <input type="text" class="form-control" id="floatingName"
+                                                <input type="number" class="form-control" id="floatingName"
                                                     placeholder="ปีการศึกษาที่ทำการประเมิน" name=""
                                                     value="<?php echo $year; ?>" disabled>
                                                 <input type="hidden" class="form-control" id="floatingName"
@@ -2442,7 +2442,7 @@ function checkSelectValues() {
                                     <div class="row mb-3">
                                         <div class="col">
                                             <div class="form-floating">
-                                                <input type="text" class="form-control" id="floatingName"
+                                                <input type="number" class="form-control" id="floatingName"
                                                     placeholder="ปีการศึกษาที่ทำการประเมิน" name=""
                                                     value="<?php echo $year; ?>" disabled>
                                                 <input type="hidden" class="form-control" id="floatingName"
@@ -2677,7 +2677,7 @@ function checkSelectValues() {
                                     <?php echo br(2); ?>
                                     <div class="row mb-3">
                                         <div class="form-floating">
-                                            <input type="text" class="form-control" id="floatingName"
+                                            <input type="number" class="form-control" id="floatingName"
                                                 placeholder="ปีการศึกษาที่ทำการประเมิน"
                                                 name="AchievementAssessmentYear">
                                             <label for="floatingName"><?php echo nbs(2); ?> ปีการศึกษาที่ทำการประเมิน
@@ -2812,7 +2812,7 @@ function checkSelectValues() {
                                     <input type="hidden" name="Id" value="<?php echo $show->Id ?>">
                                     <div class="row mb-3">
                                         <div class="form-floating">
-                                            <input type="text" class="form-control" id="floatingName"
+                                            <input type="number" class="form-control" id="floatingName"
                                                 placeholder="ปีการศึกษาที่ทำการประเมิน" name="AchievementAssessmentYear"
                                                 value="<?php echo $show->AchievementAssessmentYear ?>">
                                             <label for="floatingName"><?php echo nbs(2); ?> ปีการศึกษาที่ทำการประเมิน
