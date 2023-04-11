@@ -396,7 +396,7 @@
                         <p><?php echo $show->Abstract; ?></p>
                         <h5 class="fw-bold">เอกสารแนบ</h5>
                         <p><a href="<?php echo base_url('assets/EII/BEST_PRACTICE') ?>/<?php echo $show->AttachmentURL; ?>"
-                                target="_blank">รายละเอียดเอกสาร</i></a></p>
+                                target="_blank"><i class="bi bi-file-earmark-text-fill"></i>รายละเอียดเอกสาร</a></p>
                     </div>
                     <div class="col">
                         <h5 class="fw-bold">วิธีการปฏิบัติ</h5>

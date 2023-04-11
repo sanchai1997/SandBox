@@ -37,7 +37,7 @@
                 $page
             ) {
                 case 'sh1': ?>
-            <h1>ตัวชี้วัด</h1>
+            <h1>การประกันคุณภาพด้วยตัวชี้วัดของพื้นที่นวัตกรรมการศึกษา</h1>
             <?php break;
                 case 'sh2': ?>
             <h1>ข้อมูลระดับตัวชี้วัด -
@@ -1868,7 +1868,7 @@
                         <p>
                             <th scope="row " style="text-align: center;">
                                 <a href="<?php echo base_url('assets/EII/ACHIEVEMENT_ASSESSMENT/') ?>/<?php echo $show->AchievementAssessmentAttachmentURL; ?>"
-                                    target="_blank">รายละเอียดเอกสาร</i></a>
+                                    target="_blank"><i class="bi bi-file-earmark-text-fill"></i>รายละเอียดเอกสาร</i></a>
 
                             </th>
                         </p>

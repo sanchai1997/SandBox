@@ -380,7 +380,7 @@
                         </p>
                         <h5 class="fw-bold">เอกสารแนบ</h5>
                         <p><a href="<?php echo base_url('assets/EII/INNOVATION') ?>/<?php echo $show->AttachmentURL; ?>"
-                                target="_blank">รายละเอียดเอกสาร</i></a></p>
+                                target="_blank"><i class="bi bi-file-earmark-text-fill"></i>รายละเอียดเอกสาร</a></p>
                         <h5 class="fw-bold">แหล่งนวัตกรรม</h5>
                         <p>
                             <?php echo $show->Source; ?>

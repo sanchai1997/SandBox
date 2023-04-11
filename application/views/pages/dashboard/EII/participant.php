@@ -32,7 +32,7 @@
 
             <?php switch ($page) {
                 case 'sh1':
-            ?> <h1>หน่วยงานที่มีส่วนร่วม</h1>
+            ?> <h1>หน่วยงานที่เข้ามามีส่วนร่วมในพื้นที่นวัตกรรมการศึกษา</h1>
             <?php break;
                 case 'sh2':
                 ?> <h1>การติดต่อของผู้มีส่วนร่วม - <?php echo $name; ?></h1>
@@ -296,7 +296,7 @@ foreach ($result2->result() as $show2) { ?>
                                                             <div class="col">
                                                                 <h6>ลิงก์เอกสารแนบ</h6>
                                                                 <p><a href="<?php echo base_url('assets/EII/PARTICIPANT_COOPERATION') ?>/<?php echo $show2->CooperationAttachmentURL; ?>"
-                                                                        target="_blank">ลิงก์เอกสารแนบ</i></a></p>
+                                                                        target="_blank"><i class="bi bi-file-earmark-text-fill"></i>ลิงก์เอกสารแนบ</i></a></p>
                                                             </div>
 
                                                         </div>
@@ -611,7 +611,7 @@ foreach ($results->result() as $showx) {
                         </td>
                         <td>
                             <p><a href="<?php echo base_url('assets/EII/PARTICIPANT_COOPERATION') ?>/<?php echo $showx->CooperationAttachmentURL; ?>"
-                                    target="_blank">ลิงก์เอกสารแนบ</i></a></p>
+                                    target="_blank"><i class="bi bi-file-earmark-text-fill"></i>ลิงก์เอกสารแนบ</i></a></p>
                         </td>
                     </tr>
                     <?php } ?>
