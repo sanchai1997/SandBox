@@ -70,7 +70,7 @@
      </li><!-- End ข้อมูลงบประมาณ Page Nav -->
 
      <li class="nav-item">
-       <a class="nav-link collapsed" href="forms-area_identitty">
+       <a class="nav-link collapsed" href="list-area_identity">
          <i class="bi bi-card-list"></i>
          <span>ข้อมูลอัตลักษณ์ของแต่ละพื้นที่</span>
        </a>
