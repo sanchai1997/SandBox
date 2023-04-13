@@ -5,15 +5,33 @@
     </div><!-- End Page Title -->
 
     <section class="section">
+       <!-- Alert -->
+       <?php if (!empty($_SESSION['errors'])) { ?>
+      <div class="row">
+        <div class="col-lg-9">
+          <div class="alert alert-danger" id="myAlert" style="top: 0; left: 0; right: 0; z-index: 1;">
+              <strong>
+                  <?php
+                  echo '<i class="bi bi-exclamation-circle-fill"></i> '. $_SESSION['errors'];
+                  unset($_SESSION['errors']);
+                  ?>
+              </strong>
+          </div> 
+        </div>
+      </div>
+      <?php } ?>  
+
       <div class="row">
         <div class="col-lg-9">
 
           <div class="card">
             <div class="card-body">
-              <h5 class="card-title">ข้อมูลอัตลักษณ์ของแต่ละพื้นที่</h5>
+              <h5 class="card-title"></h5>
 
               <!-- start Form ข้อมูลอัตลักษณ์ของแต่ละพื้นที่ -->
-              <form class="row g-3" action="<?php echo base_url('');?>" method="POST" name="AREA_IDENTITY" id="AREA_IDENTITY" enctype="multipart/form-data">
+              <form class="row g-3" action="<?php echo base_url('add-area_identity_by_school');?>" method="POST" name="AREA_IDENTITY" id="AREA_IDENTITY" enctype="multipart/form-data">
+              
+              <input type="hidden" class="form-control"name="SchoolID"id="SchoolID" value="<?php echo $SchoolID ?>">
 
               <div class="col-md-16">
                   <div class="form-floating">
@@ -32,17 +50,16 @@
                     </select>
                     <label>ภาคเรียน</label>
                   </div>
-                </div>
+                </div> 
 
                 <div class="col-md-16">
                   <div class="form-floating">
-                  <select class="form-select" aria-label="Default select example" name="SchoolID" id="SchoolID">
-                      <option selected value="-1">เลือกสถานศึกษา</option>
-                      <?php foreach($listSchool as $ls) { ?>
-                        <option value="<?php echo $ls->SchoolID; ?>"><?php echo $ls->SchoolNameThai; ?></option>
-                      <?php } ?>
-                    </select>
-                    <label>รหัสสถานศึกษาที่ได้รับเงินอุดหนุนทั่วไปเพื่อพัฒนานวัตกรรมการศึกษา</label>
+                  <?php foreach($listSchool as $ls) { 
+                        if($ls->SchoolID == $SchoolID) {?>
+                         <input type="text" class="form-control"  placeholder="สถานศึกษา" value="<?php echo $ls->SchoolNameThai; ?>" disabled>
+                         <input type="text" class="form-control" name="SchoolID" id="SchoolID" placeholder="สถานศึกษา" value="<?php echo $ls->SchoolID; ?>" hidden>
+                  <?php } } ?>
+                    <label >สถานศึกษา<font color="red"> *</font></label>
                   </div>
                 </div>
 
@@ -81,9 +98,11 @@
                   </div>
                 </div>
 
-                <div class="text-center">
-                  <button type="button" class="btn btn-primary" onclick="return check(AREA_IDENTITY)">ยืนยัน</button>
+                <div class="d-flex justify-content-between">
+                  <a href="list-area_identity_by_school?sid=<?php echo $SchoolID?>" class="btn btn-danger" >ยกเลิก</a>
+                  <button type="button" class="btn btn-primary" onclick="return check(AREA_IDENTITY)">บันทึกข้อมูล</button>
                 </div> 
+
                  <!-- Modal -->
                 <div class="modal fade" id="Modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
                   <div class="modal-dialog modal-dialog-centered" role="document">
@@ -106,60 +125,6 @@
                </div>  
 
               </form><!-- End Form ข้อมูลอัตลักษณ์ของแต่ละพื้นที่ -->
-
-              <!-- start Form ข้อมูลการนับถือศาสนาในพื้นที่ -->
-              <form class="row g-3" action="<?php echo base_url('');?>" method="POST" name="AREA_IDENTITY_RELIGION" id="AREA_IDENTITY_RELIGION" enctype="multipart/form-data">
-                <h5 class="card-title">ข้อมูลการนับถือศาสนาในพื้นที่</h5>
-
-
-                <div class="col-md-16">
-                  <div class="form-floating">
-                  <select class="form-select" aria-label="Default select example" name="AreaReligionCode" id="AreaReligionCode">
-                      <option selected value="-1">เลือกศาสนา</option>
-                      <?php foreach($listReligion as $lr) { ?>
-                        <option value="<?php echo $lr->RELIGION_CODE; ?>"><?php echo $lr->RELIGION_NAME; ?></option>
-                      <?php } ?>
-                    </select>
-                    <label>ศาสนา</label>
-                  </div>
-                </div>
-
-                <div class="col-md-16">
-                  <div class="form-floating">
-                    <input type="text" class="form-control"name="AreaReligionPercentage"id="AreaReligionPercentage" placeholder="ร้อยละของแต่ละศาสนา">
-                    <label >ร้อยละของแต่ละศาสนา</label>
-                  </div>
-                </div>
-
-               
-
-              </form><!-- End Form ข้อมูลการนับถือศาสนาในพื้นที่ -->
-
-              <!-- start Form ข้อมูลการประกอบอาชีพในพื้นที่ -->
-              <form class="row g-3" action="<?php echo base_url('');?>" method="POST" name="AREA_IDENTITY_OCCUPATION" id="AREA_IDENTITY_OCCUPATION" enctype="multipart/form-data">
-                <h5 class="card-title">ข้อมูลการประกอบอาชีพในพื้นที่</h5>
-
-                <div class="col-md-16">
-                  <div class="form-floating">
-                  <select class="form-select" aria-label="Default select example" name="AreaReligionCode" id="AreaReligionCode">
-                      <option selected value="-1">เลือกกลุ่มอาชีพ</option>
-                      <?php foreach($listOccupation as $lo) { ?>
-                        <option value="<?php echo $lo->OCCUPATION_CODE; ?>"><?php echo $lo->OCCUPATION_NAME; ?></option>
-                      <?php } ?>
-                    </select>
-                    <label>กลุ่มอาชีพ</label>
-                  </div>
-                </div>
-
-                <div class="col-md-16">
-                  <div class="form-floating">
-                    <input type="text" class="form-control"name="AreaReligionPercentage"id="AreaReligionPercentage" placeholder="ร้อยละของแต่ละศาสนา">
-                    <label >ร้อยละของแต่ละกลุ่มอาชีพ</label>
-                  </div>
-                </div>
-                
-
-              </form><!-- End Form ข้อมูลการประกอบอาชีพในพื้นที่ -->
 
             </div>
           </div>
@@ -189,14 +154,14 @@
       alert("กรุณาเลือกสถานศึกษา");
       return false;
     }
-    var Check_text = /^[A-Z,a-z,ก-์,0-9]{1,255}$/;
+    var Check_text = /^[A-Z,a-z,ก-์,0-9]{1,2048}$/;
     if(AREA_IDENTITY.AreaProduct.value==""){
         alert("กรุณากรอกข้อมูลผลิตภัณฑ์ชุมชน");
         frm.AreaProduct.value = "";
         return false;
     }
     else if(!AREA_IDENTITY.AreaProduct.value.match(Check_text)){
-        alert("กรุณากรอกข้อมูลผลิตภัณฑ์ชุมชน");
+        alert("กรุณากรอกข้อมูลผลิตภัณฑ์ชุมชนให้ถูกต้อง");
         frm.AreaProduct.value = "";
         return false;
     }
@@ -207,7 +172,7 @@
         return false;
     }
     else if(!AREA_IDENTITY.AreaEnvironment.value.match(Check_text)){
-        alert("กรุณากรอกข้อมูลสภาพพื้นที่/สภาพแวดล้อม");
+        alert("กรุณากรอกข้อมูลสภาพพื้นที่/สภาพแวดล้อม ให้ถูกต้อง");
         frm.AreaEnvironment.value = "";
         return false;
     }
@@ -218,7 +183,7 @@
         return false;
     }
     else if(!AREA_IDENTITY.AreaLanguage.value.match(Check_text)){
-        alert("กรุณากรอกภาษาท้องถิ่น");
+        alert("กรุณากรอกภาษาท้องถิ่นให้ถูกต้อง");
         frm.AreaLanguage.value = "";
         return false;
     }
@@ -229,7 +194,7 @@
         return false;
     }
     else if(!AREA_IDENTITY.AreaCulture.value.match(Check_text)){
-        alert("กรุณากรอกข้อมูลค่านิยมความเชื่อ");
+        alert("กรุณากรอกข้อมูลค่านิยมความเชื่อให้ถูกต้อง");
         frm.AreaCulture.value = "";
         return false;
     }
@@ -240,7 +205,7 @@
         return false;
     }
     else if(!AREA_IDENTITY.AreaValues.value.match(Check_text)){
-        alert("กรุณากรอกค่านิยม/ความเชื่อ");
+        alert("กรุณากรอกค่านิยม/ความเชื่อ ให้ถูกต้อง");
         frm.AreaValues.value = "";
         return false;
     }

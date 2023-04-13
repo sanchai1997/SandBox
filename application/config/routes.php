@@ -78,7 +78,7 @@ $route['edit_forms-teacher_development_activity'] = 'Teacher_development_activit
 $route['edit_teacher_development_activity']['post'] = 'Teacher_development_activity_controller/edit_teacher_development_activity';
 $route['delete-teacher_development_activity'] = 'Teacher_development_activity_controller/delete_teacher_development_activity';
 //Files
-$route['load_file'] = 'DocumentController/load_file';
+#$route['load_file'] = 'DocumentController/load_file';
 //budget
 $route['list-budget'] = 'BudgetController/list_budget';
 $route['edit_forms_budget'] = 'BudgetController/edit_forms_budget';
@@ -94,14 +94,13 @@ $route['edit_forms_Expense'] = 'ExpenseController/edit_forms_Expense';
 $route['edit-Expense']['post'] = 'ExpenseController/edit_Expense';
 $route['delete_Expense'] = 'ExpenseController/delete_Expense';
 
-
-
-
-
-
-
 //area_identitty
-$route['forms-area_identitty'] = 'Area_identittyController/forms_Area_identitty';
+$route['list-area_identity'] = 'Area_identittyController/list_area_identity';
+$route['list-area_identity_by_school'] = 'Area_identittyController/list_area_identity_by_school';
+$route['forms-area_identity'] = 'Area_identittyController/forms_Area_identitty';
+$route['add-area_identity_by_school']['post'] = 'Area_identittyController/add_area_identity';
+$route['delete_area_identity'] = 'Area_identittyController/delete_area_identity';
+
 
 
 ////////////////////// ROUTE SCHOOL ////////////////////////
