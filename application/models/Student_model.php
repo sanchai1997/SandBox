@@ -387,6 +387,7 @@ class Student_model extends CI_Model
     {
         $data = [
 
+            'StudentReferenceID' => Date('Ymd') . rand(1, 9999),
             'DeleteStatus' => '1'
 
         ];

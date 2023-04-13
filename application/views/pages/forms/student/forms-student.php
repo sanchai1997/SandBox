@@ -41,19 +41,19 @@
                             <h6 style="padding-left: 15px;" class="card-title">ข้อมูลการศึกษา</h6>
                             <div class="col-md-3">
                                 <div class="form-floating">
-                                    <input type="number" class="form-control" minlength="4" maxlength="4" name="SchoolAdmissionYear" id="SchoolAdmissionYear">
+                                    <input type="number" class="form-control" minlength="4" maxlength="4" name="SchoolAdmissionYear" id="SchoolAdmissionYear" required>
                                     <label for="SchoolAdmissionYear">ปีการศึกษาที่เริ่มเข้าเรียน <font color="red"> *</font></label>
                                 </div>
                             </div>
                             <div class="col-md-5">
                                 <div class="form-floating">
-                                    <input type="number" class="form-control" minlength="4" maxlength="4" name="CurrentEducationLevelAdmissionYear" id="CurrentEducationLevelAdmissionYear" value="<?= date('Y') + 543; ?>">
+                                    <input type="number" class="form-control" minlength="4" maxlength="4" name="CurrentEducationLevelAdmissionYear" id="CurrentEducationLevelAdmissionYear" value="<?= date('Y') + 543; ?>" required>
                                     <label for="CurrentEducationLevelAdmissionYear">ปีการศึกษาที่เริ่มเข้าเรียนในระดับการศึกษาปัจจุบัน <font color="red"> *</font></label>
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="form-floating">
-                                    <select class="form-select" name="EducationLevelCode" id="EducationLevelCode" aria-label="EducationLevelCode">
+                                    <select class="form-select" name="EducationLevelCode" id="EducationLevelCode" aria-label="EducationLevelCode" required>
                                         <option value="" selected>เลือก</option>
 
                                         <?php
@@ -71,19 +71,19 @@
                             </div>
                             <div class="col-md-3">
                                 <div class="form-floating">
-                                    <input type="number" class="form-control" minlength="4" maxlength="4" name="EducationYear" id="EducationYear" value="<?= date('Y') + 543; ?>">
+                                    <input type="number" class="form-control" minlength="4" maxlength="4" name="EducationYear" id="EducationYear" value="<?= date('Y') + 543; ?>" required>
                                     <label for="EducationYear">ปีการศึกษา <font color="red"> *</font></label>
                                 </div>
                             </div>
                             <div class="col-md-3">
                                 <div class="form-floating">
-                                    <input type="number" class="form-control" minlength="2" maxlength="2" name="Semester" id="Semester" value="1">
+                                    <input type="number" class="form-control" minlength="2" maxlength="2" name="Semester" id="Semester" value="1" required>
                                     <label for="Semester">ภาคเรียน <font color="red"> *</font></label>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-floating">
-                                    <select class="form-select" name="GradeLevelCode" id="GradeLevelCode" aria-label="GradeLevelCode">
+                                    <select class="form-select" name="GradeLevelCode" id="GradeLevelCode" aria-label="GradeLevelCode" required>
                                         <option value="" selected>เลือก</option>
 
                                         <?php
@@ -102,7 +102,7 @@
                             <div class="col-md-12">
                                 <div class="input-group">
                                     <label class="input-group-text" for="inputGroupFile01">รูปภาพนักเรียน <font color="red"> *</font></label>
-                                    <input type="file" class="form-control" name="ImageStudent" id="ImageStudent" placeholder="รูปภาพนักเรียน">
+                                    <input type="file" class="form-control" name="ImageStudent" id="ImageStudent" placeholder="รูปภาพนักเรียน" required>
                                 </div>
                             </div>
                             <div class="col-md-6">
@@ -113,7 +113,7 @@
                             </div>
                             <div class="col-md-6">
                                 <div class="form-floating">
-                                    <select class="form-select" name="StudentStatusCode" id="StudentStatusCode" aria-label="StudentStatusCode">
+                                    <select class="form-select" name="StudentStatusCode" id="StudentStatusCode" aria-label="StudentStatusCode" required>
                                         <option value="" selected>เลือก</option>
                                         <?php
                                         $result = $this->db->query('SELECT * FROM CLS_STUDENT_STATUS');
@@ -130,7 +130,7 @@
                             <h6 style="padding-left: 15px;" class="card-title">ข้อมูลบุคคล</h6>
                             <div class="col-md-12">
                                 <div class="form-floating">
-                                    <select class="form-select" name="StudentPersonalIDTypeCode" id="StudentPersonalIDTypeCode" aria-label="StudentPersonalIDTypeCode">
+                                    <select class="form-select" name="StudentPersonalIDTypeCode" id="StudentPersonalIDTypeCode" aria-label="StudentPersonalIDTypeCode" required>
                                         <option value="" selected>เลือก</option>
                                         <?php
                                         $result = $this->db->query('SELECT * FROM CLS_CITIZEN_ID_TYPE');
@@ -146,7 +146,7 @@
                             </div>
                             <div class="col-md-6">
                                 <div class="form-floating">
-                                    <input type="text" class="form-control" maxlength="13" name="StudentPersonalID" id="StudentPersonalID">
+                                    <input type="text" class="form-control" maxlength="13" name="StudentPersonalID" id="StudentPersonalID" required>
                                     <label for="StudentPersonalID">หมายเลขบัตร<font color="red"> *</font></label>
                                 </div>
                             </div>
@@ -158,7 +158,7 @@
                             </div>
                             <div class="col-md-2">
                                 <div class="form-floating">
-                                    <select class="form-select" name="StudentPrefixCode" id="StudentPrefixCode" aria-label="StudentPrefixCode">
+                                    <select class="form-select" name="StudentPrefixCode" id="StudentPrefixCode" aria-label="StudentPrefixCode" required>
                                         <option value="" selected>เลือก</option>
                                         <?php
                                         $result = $this->db->query('SELECT * FROM CLS_PREFIX LIMIT 5');
@@ -174,19 +174,19 @@
                             </div>
                             <div class="col-md-5">
                                 <div class="form-floating">
-                                    <input type="text" class="form-control" name="StudentNameThai" id="StudentNameThai">
+                                    <input type="text" class="form-control" name="StudentNameThai" id="StudentNameThai" required>
                                     <label for="SchoolNameThai">ชื่อ (ภาษาไทย) <font color="red"> *</font></label>
                                 </div>
                             </div>
                             <div class="col-md-5">
                                 <div class="form-floating">
-                                    <input type="text" class="form-control" name="StudentLastNameThai" id="StudentLastNameThai">
+                                    <input type="text" class="form-control" name="StudentLastNameThai" id="StudentLastNameThai" required>
                                     <label for="StudentLastNameThai">นามสกุล (ภาษาไทย) <font color="red"> *</font></label>
                                 </div>
                             </div>
                             <div class="col-md-3">
                                 <div class="form-floating">
-                                    <select class="form-select" name="StudentGenderCode" id="StudentGenderCode" aria-label="StudentGenderCode">
+                                    <select class="form-select" name="StudentGenderCode" id="StudentGenderCode" aria-label="StudentGenderCode" required>
                                         <option value="" selected>เลือก</option>
                                         <?php
                                         $result = $this->db->query('SELECT * FROM CLS_GENDER');
@@ -202,7 +202,7 @@
                             </div>
                             <div class="col-md-3">
                                 <div class="form-floating">
-                                    <select class="form-select" name="StudentNationalityCode" id="StudentNationalityCode" aria-label="StudentNationalityCode">
+                                    <select class="form-select" name="StudentNationalityCode" id="StudentNationalityCode" aria-label="StudentNationalityCode" required>
                                         <option value="" selected>เลือก</option>
                                         <?php
                                         $result = $this->db->query('SELECT * FROM CLS_NATIONALITY ORDER BY NATIONALITY_NAME ASC');
@@ -218,7 +218,7 @@
                             </div>
                             <div class="col-md-3">
                                 <div class="form-floating">
-                                    <select class="form-select" name="StudentRaceCode" id="StudentRaceCode" aria-label="StudentRaceCode">
+                                    <select class="form-select" name="StudentRaceCode" id="StudentRaceCode" aria-label="StudentRaceCode" required>
                                         <option value="" selected>เลือก</option>
                                         <?php
                                         $result = $this->db->query('SELECT * FROM CLS_RACE ORDER BY RACE_NAME ASC');
@@ -234,7 +234,7 @@
                             </div>
                             <div class="col-md-3">
                                 <div class="form-floating">
-                                    <select class="form-select" name="StudentReligionCode" id="StudentReligionCode" aria-label="StudentReligionCode">
+                                    <select class="form-select" name="StudentReligionCode" id="StudentReligionCode" aria-label="StudentReligionCode" required>
                                         <option value="" selected>เลือก</option>
                                         <?php
                                         $result = $this->db->query('SELECT * FROM CLS_RELIGION ORDER BY RELIGION_NAME ASC');
@@ -250,7 +250,7 @@
                             </div>
                             <div class="col-md-4">
                                 <div class="form-floating">
-                                    <select class="form-select" name="StudentLanguageCode" id="StudentLanguageCode" aria-label="StudentLanguageCode">
+                                    <select class="form-select" name="StudentLanguageCode" id="StudentLanguageCode" aria-label="StudentLanguageCode" required>
                                         <option value="" selected>เลือก</option>
                                         <?php
                                         $result = $this->db->query('SELECT * FROM CLS_LANGUAGE ORDER BY LANGUAGE_NAME ASC');
@@ -266,13 +266,13 @@
                             </div>
                             <div class="col-md-4">
                                 <div class="form-floating">
-                                    <input type="date" class="form-control " name="StudentBirthDate" id="StudentBirthDate">
+                                    <input type="date" class="form-control " name="StudentBirthDate" id="StudentBirthDate" required>
                                     <label for="StudentBirthDate">วันที่เกิด <font color="red"> *</font></label>
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="form-floating">
-                                    <select class="form-select" name="StudentBirthProvinceCode" id="StudentBirthProvinceCode" aria-label="StudentBirthProvinceCode">
+                                    <select class="form-select" name="StudentBirthProvinceCode" id="StudentBirthProvinceCode" aria-label="StudentBirthProvinceCode" required>
                                         <?php
                                         $result = $this->db->query('SELECT * FROM CLS_PROVINCE ORDER BY PROVINCE_NAME ASC');
                                         foreach ($result->result() as $PROVINCE) {
@@ -305,13 +305,13 @@
                             </div>
                             <div class="col-md-4">
                                 <div class="form-floating">
-                                    <input type="number" class="form-control" maxlength="3" name="StudentWeight" id="StudentWeight">
+                                    <input type="number" class="form-control" maxlength="3" name="StudentWeight" id="StudentWeight" required>
                                     <label for="StudentWeight">น้ำหนัก <font color="red"> *</font></label>
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="form-floating">
-                                    <input type="number" class="form-control" maxlength="3" name="StudentHeight" id="StudentHeight">
+                                    <input type="number" class="form-control" maxlength="3" name="StudentHeight" id="StudentHeight" required>
                                     <label for="StudentHeight">ส่วนสูง <font color="red"> *</font></label>
                                 </div>
                             </div>

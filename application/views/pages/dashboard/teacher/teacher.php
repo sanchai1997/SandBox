@@ -52,6 +52,24 @@
             </div>
         </div>
     <?php } ?>
+    <?php if (!empty($_SESSION['danger'])) { ?>
+        <script>
+            setTimeout(function() {
+                document.getElementById('myAlert').remove();
+            }, 4000); // นับถอยหลังให้แสดง 5 วินาที (5000 มิลลิวินาที)
+        </script>
+        <div style="position: relative;">
+            <div class="alert alert-danger" id="myAlert" style="position: absolute; top: 0; left: 0; right: 0; z-index: 1;">
+                <strong>
+                    <?php
+                    echo '<i class="bi bi-clipboard2-x"></i> ' . $_SESSION['danger'];
+                    unset($_SESSION['danger']);
+                    ?>
+                </strong>
+
+            </div>
+        </div>
+    <?php } ?>
     <!-- Recent Sales -->
     <div class="col-12">
         <div class="card recent-sales overflow-auto">
@@ -91,7 +109,7 @@
                     <table class="table table-borderless datatable">
                         <thead>
                             <tr>
-                                <th style="text-align: center;">ตราสัญลักษณ์</th>
+                                <th style="text-align: center;" width="160px">ตราสัญลักษณ์</th>
                                 <th scope="col">ชื่อสถานศึกษา</th>
                                 <th scope="col">พื้นที่นวัตกรรม</th>
                                 <th style="text-align: center;" scope="col">รายละเอียด</th>
@@ -119,7 +137,14 @@
                             <h1 class="card-title">
                                 <div class="dropdown">
                                     <button class="btn btn-dark dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                                        เลือกสถานศึกษา
+                                        <?php if (!isset($_GET['SchoolID'])) { ?>
+                                            เลือกสถานศึกษา
+                                        <?php } else {
+                                            $result = $this->db->query('SELECT * FROM SCHOOL WHERE DeleteStatus = 0 AND SchoolID = ' . $_GET['SchoolID'] . '');
+                                            foreach ($result->result() as $SHOW_SCHOOL) {
+                                                echo $SHOW_SCHOOL->SchoolNameThai;
+                                            }
+                                        } ?>
                                     </button>
                                     <?php if (isset($_GET['SchoolID'])) { ?>
                                         &nbsp;<a href="teacher" class="btn btn-secondary btn-sm" data-mdb-ripple-color="dark">ย้อนกลับ</a>
@@ -151,7 +176,8 @@
                                 <th scope="col">ภาคเรียน</th>
                                 <th scope="col">ประเภทบุคลากร</th>
                                 <th scope="col">ตำแหน่ง</th>
-                                <th style="text-align: center;" scope="col">รายชื่อครูและบุคลากร</th>
+                                <th style="text-align: center;" scope="col">จำนวน</th>
+                                <th style="text-align: center;" scope="col">รายละเอียด</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -162,17 +188,22 @@
                             WHERE DeleteStatus = 0 AND SchoolID = ' . $_GET['SchoolID'] . '
                             GROUP BY EducationYear, Semester, PersonnelTypeCode , PositionCode
                             ');
+                            $CountTeacher = 0;
                             foreach ($result->result() as $TEACHER) {
+                                $CountTeacher++;
                             ?>
                                 <tr>
                                     <td style="text-align: center;"><?= $TEACHER->EducationYear; ?></td>
                                     <td><?= $TEACHER->Semester; ?></td>
                                     <td><?= $TEACHER->PERSONNEL_TYPE_NAME; ?></td>
                                     <td><?= $TEACHER->POSITION_NAME; ?></td>
+                                    <td style="text-align: center;"><?= $CountTeacher; ?></td>
                                     <td style="text-align: center;"><a href="?SchoolID=<?= $SCHOOL->SchoolID; ?>&&EducationYear=<?= $TEACHER->EducationYear; ?>&&Semester=<?= $TEACHER->Semester; ?>&&PersonnelTypeCode=<?= $TEACHER->PersonnelTypeCode; ?>&&PositionCode=<?= $TEACHER->PositionCode; ?>" class="btn btn-primary"><i class="bi bi-card-list"></i></a>
                                     </td>
                                 </tr>
-                            <?php } ?>
+                            <?php
+                                $CountTeacher = 0;
+                            } ?>
 
                         </tbody>
                     </table>
@@ -206,7 +237,7 @@
                     <table class="table table-borderless datatable">
                         <thead>
                             <tr>
-                                <th style="text-align: center;">รูปภาพ</th>
+                                <th style="text-align: center;" width="100px">รูปภาพ</th>
                                 <th scope="col">คำนำหน้า</th>
                                 <th scope="col">ชื่อ</th>
                                 <th scope="col">นามสกุล</th>
@@ -290,8 +321,8 @@
                             <div class="row">
                                 <?php if ($TEACHER_DETAIL->ImageTeacher != '') { ?>
                                     <div class="col-2" style="padding-bottom: 8px; padding-left: 70px; padding-top: 15px;">
-                                        <div class="card page-detail">
-                                            <img style=" text-align: center; padding: 15px;" src="assets/teacher/img/<?= $TEACHER_DETAIL->ImageTeacher; ?>" alt="" width="100%" height="100%" style="padding-top: 20px;">
+                                        <div class="card page-detail" style="width: 170px;">
+                                            <img style=" text-align: center; padding: 15px;" src="assets/teacher/img/<?= $TEACHER_DETAIL->ImageTeacher; ?>" alt="" width="100%" style="padding-top: 20px;">
                                         </div>
                                     </div>
                                 <?php } else { ?>
@@ -805,22 +836,24 @@
                                                                 </thead>
                                                                 <tbody>
                                                                     <?php
-                                                                    $result = $this->db->query('SELECT * ,COUNT(TeacherID) AS Count
+                                                                    $result = $this->db->query('SELECT * 
                                                                 FROM TEACHER_TEACHING 
                                                                 INNER JOIN CLS_EDUCATION_LEVEL ON TEACHER_TEACHING.TeachingEducationLevelCode  = CLS_EDUCATION_LEVEL.EDUCATION_LEVEL_CODE 
                                                                 INNER JOIN CLS_SUBJECT_TYPE ON TEACHER_TEACHING.TeachingSubjectGroupCode  = CLS_SUBJECT_TYPE.SUBJECT_TYPE_CODE 
                                                                 INNER JOIN CLS_SUBJECT_GROUP ON TEACHER_TEACHING.TeachingSubjectCode  = CLS_SUBJECT_GROUP.SUBJECT_GROUP_CODE 
                                                                 WHERE DeleteStatus = 0 AND SchoolID = ' . $TEACHER_DETAIL->SchoolID . ' AND TeacherID = "' . $TEACHER_DETAIL->TeacherID . '"
                                                                 ');
-                                                                    foreach ($result->result() as $TEACHER_TEACHING) {
-                                                                        if ($TEACHER_TEACHING->Count == 0) {
+                                                                    if ($result->result() != TRUE) {
                                                                     ?>
-                                                                            <tr>
-                                                                                <td style="text-align: center;" colspan="5">- ไม่พบข้อมูล -</td>
-                                                                            </tr>
+                                                                        <tr>
+                                                                            <td style="text-align: center;" colspan="3">- ไม่พบข้อมูล -</td>
+                                                                        </tr>
                                                                         <?php
-                                                                        } else {
+                                                                    } else {
+                                                                        foreach ($result->result() as $TEACHER_TEACHING) {
+
                                                                         ?>
+
                                                                             <tr>
                                                                                 <td>
                                                                                     <?php if ($TEACHER_TEACHING->TeachingEducationYear == "") {
@@ -889,22 +922,25 @@
                                                                 </thead>
                                                                 <tbody>
                                                                     <?php
-                                                                    $result = $this->db->query('SELECT * ,COUNT(TeacherID) AS Count
+                                                                    $result = $this->db->query('SELECT * 
                                                                 FROM TEACHER_EDUCATION_DEGREE 
                                                                 INNER JOIN CLS_EDUCATION_LEVEL ON TEACHER_EDUCATION_DEGREE.EducationLevelCode  = CLS_EDUCATION_LEVEL.EDUCATION_LEVEL_CODE 
                                                                 INNER JOIN CLS_MAJOR ON TEACHER_EDUCATION_DEGREE.EducationMajorCode  = CLS_MAJOR.MAJOR_CODE 
                                                                 INNER JOIN CLS_DEGREE ON TEACHER_EDUCATION_DEGREE.EducationDegreeCode  = CLS_DEGREE.DEGREE_CODE 
                                                                 WHERE DeleteStatus = 0 AND SchoolID = ' . $TEACHER_DETAIL->SchoolID . ' AND TeacherID = "' . $TEACHER_DETAIL->TeacherID . '"
                                                                 ');
-                                                                    foreach ($result->result() as $TEACHER_EDUCATION_DEGREE) {
-                                                                        if ($TEACHER_EDUCATION_DEGREE->Count == 0) {
+                                                                    if ($result->result() != TRUE) {
                                                                     ?>
-                                                                            <tr>
-                                                                                <td style="text-align: center;" colspan="3">- ไม่พบข้อมูล -</td>
-                                                                            </tr>
+                                                                        <tr>
+                                                                            <td style="text-align: center;" colspan="3">- ไม่พบข้อมูล -</td>
+                                                                        </tr>
                                                                         <?php
-                                                                        } else {
+                                                                    } else {
+
+                                                                        foreach ($result->result() as $TEACHER_EDUCATION_DEGREE) {
+
                                                                         ?>
+
                                                                             <tr>
                                                                                 <td>
                                                                                     <?php if ($TEACHER_EDUCATION_DEGREE->EducationLevelCode == "") {
@@ -961,19 +997,19 @@
                                                                 </thead>
                                                                 <tbody>
                                                                     <?php
-                                                                    $result = $this->db->query('SELECT * ,COUNT(TeacherID) AS Count
+                                                                    $result = $this->db->query('SELECT *
                                                                 FROM TEACHER_CERTIFICATE 
                                                                 INNER JOIN CLS_TEACHER_CERTIFICATE ON TEACHER_CERTIFICATE.CertificateCode  = CLS_TEACHER_CERTIFICATE.TEACHER_CERTIFICATE_CODE 
                                                                 WHERE DeleteStatus = 0 AND SchoolID = ' . $TEACHER_DETAIL->SchoolID . ' AND TeacherID = "' . $TEACHER_DETAIL->TeacherID . '"
                                                                 ');
-                                                                    foreach ($result->result() as $TEACHER_CERTIFICATE) {
-                                                                        if ($TEACHER_CERTIFICATE->Count == 0) {
+                                                                    if ($result->result() != TRUE) {
                                                                     ?>
-                                                                            <tr>
-                                                                                <td style="text-align: center;" colspan="3">- ไม่พบข้อมูล -</td>
-                                                                            </tr>
+                                                                        <tr>
+                                                                            <td style="text-align: center;" colspan="3">- ไม่พบข้อมูล -</td>
+                                                                        </tr>
                                                                         <?php
-                                                                        } else {
+                                                                    } else {
+                                                                        foreach ($result->result() as $TEACHER_CERTIFICATE) {
                                                                         ?>
                                                                             <tr>
                                                                                 <td>
@@ -1030,25 +1066,26 @@
                                                                 <thead>
                                                                     <tr>
                                                                         <td class="col-4" scope="col">ตำแหน่งเพิ่มเติม</td>
-                                                                        <td class="col-4" scope="col">กลุ่ม/หมวดหน้าที่เพิ่มเติม</td>
-                                                                        <td class="col-4" scope="col">วันที่เริ่มปฎิบัติหน้าที่</td>
+                                                                        <td class="col-3" scope="col">กลุ่ม/หมวดหน้าที่เพิ่มเติม</td>
+                                                                        <td class="col-3" scope="col">วันที่เริ่มปฎิบัติหน้าที่</td>
                                                                     </tr>
                                                                 </thead>
                                                                 <tbody>
                                                                     <?php
-                                                                    $result = $this->db->query('SELECT * ,COUNT(TeacherID) AS Count
+                                                                    $result = $this->db->query('SELECT *
                                                                 FROM TEACHER_ADDITIONAL_POSITION 
                                                                 INNER JOIN CLS_DEPARTMENT ON TEACHER_ADDITIONAL_POSITION.AdditionalDepartmentCode  = CLS_DEPARTMENT.DEPARTMENT_CODE 
                                                                 WHERE DeleteStatus = 0 AND SchoolID = ' . $TEACHER_DETAIL->SchoolID . ' AND TeacherID = "' . $TEACHER_DETAIL->TeacherID . '"
                                                                 ');
-                                                                    foreach ($result->result() as $TEACHER_ADDITIONAL_POSITION) {
-                                                                        if ($TEACHER_ADDITIONAL_POSITION->Count == 0) {
+                                                                    if ($result->result() != TRUE) {
                                                                     ?>
-                                                                            <tr>
-                                                                                <td style="text-align: center;" colspan="3">- ไม่พบข้อมูล -</td>
-                                                                            </tr>
+                                                                        <tr>
+                                                                            <td style="text-align: center;" colspan="3">- ไม่พบข้อมูล -</td>
+                                                                        </tr>
                                                                         <?php
-                                                                        } else {
+                                                                    } else {
+                                                                        foreach ($result->result() as $TEACHER_ADDITIONAL_POSITION) {
+
                                                                         ?>
 
                                                                             <tr>
@@ -1071,6 +1108,14 @@
                                                                                         echo '-';
                                                                                     } else {
                                                                                         echo DateThai($TEACHER_ADDITIONAL_POSITION->AdditionalDutyDate);
+                                                                                    } ?>
+                                                                                </td>
+                                                                                <td>
+                                                                                    <?php if ($TEACHER_ADDITIONAL_POSITION->AdditionalDutyDate == "0000-00-00") {
+                                                                                        echo '-';
+                                                                                    } else {
+                                                                                    ?>
+                                                                                    <?php
                                                                                     } ?>
                                                                                 </td>
                                                                             </tr>
@@ -1108,19 +1153,20 @@
                                                                 </thead>
                                                                 <tbody>
                                                                     <?php
-                                                                    $result = $this->db->query('SELECT * ,COUNT(TeacherID) AS Count
+                                                                    $result = $this->db->query('SELECT *
                                                                 FROM TEACHER_ASSISTANCE 
                                                                 INNER JOIN CLS_ASSISTANCE_TYPE ON TEACHER_ASSISTANCE.AssistanceTypeCode  = CLS_ASSISTANCE_TYPE.ASSISTANCE_TYPE_CODE 
                                                                 WHERE DeleteStatus = 0 AND SchoolID = ' . $TEACHER_DETAIL->SchoolID . ' AND TeacherID = "' . $TEACHER_DETAIL->TeacherID . '"
                                                                 ');
-                                                                    foreach ($result->result() as $TEACHER_ASSISTANCE) {
-                                                                        if ($TEACHER_ASSISTANCE->Count == 0) {
+                                                                    if ($result->result() != TRUE) {
                                                                     ?>
-                                                                            <tr>
-                                                                                <td style="text-align: center;" colspan="4">- ไม่พบข้อมูล -</td>
-                                                                            </tr>
+                                                                        <tr>
+                                                                            <td style="text-align: center;" colspan="4">- ไม่พบข้อมูล -</td>
+                                                                        </tr>
                                                                         <?php
-                                                                        } else {
+                                                                    } else {
+                                                                        foreach ($result->result() as $TEACHER_ASSISTANCE) {
+
                                                                         ?>
                                                                             <tr>
                                                                                 <td>
@@ -1184,21 +1230,23 @@
                                                                 </thead>
                                                                 <tbody>
                                                                     <?php
-                                                                    $result = $this->db->query('SELECT * ,COUNT(TeacherID) AS Count
+                                                                    $result = $this->db->query('SELECT *
                                                                 FROM TEACHER_ACADEMIC 
                                                                 INNER JOIN CLS_ACADEMIC_STANDING ON TEACHER_ACADEMIC.AcademicStandingCode  = CLS_ACADEMIC_STANDING.ACADEMIC_STANDING_CODE 
                                                                 INNER JOIN CLS_PROGRAM ON TEACHER_ACADEMIC.AcademicProgramCode  = CLS_PROGRAM.PROGRAM_CODE 
                                                                 WHERE DeleteStatus = 0 AND SchoolID = ' . $TEACHER_DETAIL->SchoolID . ' AND TeacherID = "' . $TEACHER_DETAIL->TeacherID . '"
                                                                 ');
-                                                                    foreach ($result->result() as $TEACHER_ACADEMIC) {
-                                                                        if ($TEACHER_ACADEMIC->Count == 0) {
+                                                                    if ($result->result() != TRUE) {
                                                                     ?>
-                                                                            <tr>
-                                                                                <td style="text-align: center;" colspan="3">- ไม่พบข้อมูล -</td>
-                                                                            </tr>
+                                                                        <tr>
+                                                                            <td style="text-align: center;" colspan="3">- ไม่พบข้อมูล -</td>
+                                                                        </tr>
                                                                         <?php
-                                                                        } else {
+                                                                    } else {
+                                                                        foreach ($result->result() as $TEACHER_ACADEMIC) {
+
                                                                         ?>
+
                                                                             <tr>
                                                                                 <td>
                                                                                     <?php if ($TEACHER_ACADEMIC->AcademicStandingCode == "") {

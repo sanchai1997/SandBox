@@ -335,44 +335,46 @@ $route['delete-transcript-competency/(:num)/(:any)/(:num)/(:num)/(:num)/(:num)/(
 ////////////////////// ROUTE PERSONNEL ////////////////////////
 //PERSONNEL
 $route['personnel'] = 'personnel';
+$route['personnel-education'] = 'personnel/personnel_education';
+$route['personnel-position'] = 'personnel/personnel_position';
+$route['personnel-assistance'] = 'personnel/personnel_assistance';
+$route['personnel-academic'] = 'personnel/personnel_academic';
 $route['forms-personnel'] = 'forms_personnel';
-$route['forms-personnel-P2'] = 'forms_personnel/P2';
+$route['forms-personnel-education'] = 'forms_personnel/forms_personnel_education';
+$route['forms-personnel-position'] = 'forms_personnel/forms_personnel_position';
+$route['forms-personnel-assistance'] = 'forms_personnel/forms_personnel_assistance';
+$route['forms-personnel-academic'] = 'forms_personnel/forms_personnel_academic';
+$route['forms-personnel-select'] = 'forms_personnel/forms_personnel_select';
 $route['add-personnel']['post'] = 'forms_personnel/add_personnel';
-$route['edit-forms-personnel'] = 'forms_personnel/edit_personnel';
-$route['update-personnel/(:any)'] = 'forms_personnel/update_personnel/$1';
-$route['delete-personnel/(:any)'] = 'forms_personnel/delete_personnel/$1';
+$route['add-personnel-education/(:any)/(:num)/(:num)/(:num)']['post'] = 'forms_personnel/add_personnel_education/$1/$2/$3/$4';
+$route['add-personnel-position/(:any)/(:num)/(:num)/(:num)']['post'] = 'forms_personnel/add_personnel_position/$1/$2/$3/$4';
+$route['add-personnel-assistance/(:any)/(:num)/(:num)/(:num)']['post'] = 'forms_personnel/add_personnel_assistance/$1/$2/$3/$4';
+$route['add-personnel-academic/(:any)/(:num)/(:num)/(:num)']['post'] = 'forms_personnel/add_personnel_academic/$1/$2/$3/$4';
+$route['edit-forms-personnel-main'] = 'forms_personnel/edit_forms_personnel_main';
+$route['update-personnel-main/(:any)/(:num)/(:num)/(:num)/(:any)'] = 'forms_personnel/update_personnel_main/$1/$2/$3/$4/$5';
+$route['edit-forms-personnel-person'] = 'forms_personnel/edit_forms_personnel_person';
+$route['update-personnel-person/(:any)/(:num)/(:num)/(:num)'] = 'forms_personnel/update_personnel_person/$1/$2/$3/$4';
+$route['edit-forms-personnel-address'] = 'forms_personnel/edit_forms_personnel_address';
+$route['update-personnel-address/(:any)/(:num)/(:num)/(:num)'] = 'forms_personnel/update_personnel_address/$1/$2/$3/$4';
+$route['edit-forms-personnel-contract'] = 'forms_personnel/edit_forms_personnel_contract';
+$route['update-personnel-contract/(:any)/(:num)/(:num)/(:num)'] = 'forms_personnel/update_personnel_contract/$1/$2/$3/$4';
+$route['edit-forms-personnel-talent'] = 'forms_personnel/edit_forms_personnel_talent';
+$route['update-personnel-talent/(:any)/(:num)/(:num)/(:num)'] = 'forms_personnel/update_personnel_talent/$1/$2/$3/$4';
+$route['edit-forms-personnel-education'] = 'forms_personnel/edit_forms_personnel_education';
+$route['update-personnel-education/(:any)/(:num)/(:num)/(:num)/(:num)/(:num)/(:num)'] = 'forms_personnel/update_personnel_education/$1/$2/$3/$4/$5/$6/$7';
+$route['edit-forms-personnel-position'] = 'forms_personnel/edit_forms_personnel_position';
+$route['update-personnel-position/(:any)/(:num)/(:num)/(:num)/(:num)/(:any)/(:any)'] = 'forms_personnel/update_personnel_position/$1/$2/$3/$4/$5/$6/$7';
+$route['edit-forms-personnel-assistance'] = 'forms_personnel/edit_forms_personnel_assistance';
+$route['update-personnel-assistance/(:any)/(:num)/(:num)/(:num)/(:num)/(:any)/(:any)'] = 'forms_personnel/update_personnel_assistance/$1/$2/$3/$4/$5/$6/$7';
+$route['edit-forms-personnel-academic'] = 'forms_personnel/edit_forms_personnel_academic';
+$route['update-personnel-academic/(:any)/(:num)/(:num)/(:num)/(:num)'] = 'forms_personnel/update_personnel_academic/$1/$2/$3/$4/$5';
 
-//AdditionalPosition
-$route['personnel-additionalposition'] = 'personnel/additional_position';
-$route['forms-personnel-additionalposition'] = 'forms_personnel/forms_additionalposition';
-$route['add-additionalposition/(:any)']['post'] = 'forms_personnel/add_additionalposition/$1';
-$route['edit-forms-personnel-additionalposition'] = 'forms_personnel/edit_additionalposition';
-$route['update-additionalposition/(:any)/(:num)'] = 'forms_personnel/update_additionalposition/$1/$2';
-$route['delete-additionalposition/(:any)/(:num)'] = 'forms_personnel/delete_additionalposition/$1/$2';
+$route['delete-personnel-academic/(:any)/(:num)/(:num)/(:num)/(:num)'] = 'forms_personnel/delete_personnel_academic/$1/$2/$3/$4/$5';
+$route['delete-personnel-position/(:any)/(:num)/(:num)/(:num)/(:num)/(:any)'] = 'forms_personnel/delete_personnel_position/$1/$2/$3/$4/$5/$6';
+$route['delete-personnel-assistance/(:any)/(:num)/(:num)/(:num)/(:num)/(:any)'] = 'forms_personnel/delete_personnel_assistance/$1/$2/$3/$4/$5/$6';
+$route['delete-personnel-education/(:any)/(:num)/(:num)/(:num)/(:num)/(:num)/(:num)'] = 'forms_personnel/delete_personnel_education/$1/$2/$3/$4/$5/$6/$7';
+$route['delete-personnel/(:any)/(:num)/(:num)/(:num)'] = 'forms_personnel/delete_personnel/$1/$2/$3/$4';
 
-//Academic
-$route['personnel-academic'] = 'personnel/academic';
-$route['forms-personnel-academic'] = 'forms_personnel/forms_academic';
-$route['add-academic/(:any)']['post'] = 'forms_personnel/add_academic/$1';
-$route['edit-forms-personnel-academic'] = 'forms_personnel/edit_academic';
-$route['update-academic/(:any)/(:num)'] = 'forms_personnel/update_academic/$1/$2';
-$route['delete-academic/(:any)/(:num)'] = 'forms_personnel/delete_academic/$1/$2';
-
-//Education
-$route['personnel-education'] = 'personnel/education';
-$route['forms-personnel-education'] = 'forms_personnel/forms_education';
-$route['add-education/(:any)']['post'] = 'forms_personnel/add_education/$1';
-$route['edit-forms-personnel-education'] = 'forms_personnel/edit_education';
-$route['update-education/(:any)/(:num)/(:num)'] = 'forms_personnel/update_education/$1/$2/$3';
-$route['delete-education/(:any)/(:num)/(:num)'] = 'forms_personnel/delete_education/$1/$2/$3';
-
-//Assistance
-$route['personnel-assistance'] = 'personnel/assistance';
-$route['forms-personnel-assistance'] = 'forms_personnel/forms_assistance';
-$route['add-assistance/(:any)']['post'] = 'forms_personnel/add_assistance/$1';
-$route['edit-forms-personnel-assistance'] = 'forms_personnel/edit_assistance';
-$route['update-assistance/(:any)/(:num)/(:num)'] = 'forms_personnel/update_assistance/$1/$2/$3';
-$route['delete-assistance/(:any)/(:num)/(:num)'] = 'forms_personnel/delete_assistance/$1/$2/$3';
 ///////////////////// PERSONNEL - END /////////////////////////
 
 ////////////////////// ROUTE innovation ////////////////////////

@@ -107,7 +107,7 @@ if (isset( $_SESSION['success'])) { ?>
                             <div class="row mb-3">
                                 <div class="col">
                                     <div class="form-floating">
-                                        <input type="text" class="form-control" id="floatingName"
+                                        <input type="number" class="form-control" id="floatingName"
                                             placeholder="ปีการศึกษา" name="EducationYear" required>
                                         <label for="Y"><?php echo nbs(2); ?> ปีการศึกษา </label>
                                     </div>
@@ -346,7 +346,7 @@ if (isset( $_SESSION['success'])) { ?>
                             <div class="row mb-3">
                                 <div class="col">
                                     <div class="form-floating">
-                                        <input type="text" class="form-control" id="floatingName"
+                                        <input type="number" class="form-control" id="floatingName"
                                             placeholder="ปีการศึกษา" name="EducationYear"
                                             value="<?php echo $show->EducationYear ?>" required>
                                         <label for="Y"><?php echo nbs(2); ?> ปีการศึกษา </label>
@@ -1050,8 +1050,8 @@ if (isset( $_SESSION['success'])) { ?>
                                 } else {
                                     input.disabled = false;
 
-                                    input.value = '';
-                                    input1.value = '';
+                                    input.value = '<?php echo $show->CreatorPersonalID; ?>';
+                                    input1.value = '<?php echo $show->CreatorPersonalID; ?>';
                                 }
                             });
                             input.addEventListener("input", function() {

@@ -181,10 +181,71 @@
                                                 <div class="col">
                                                     <p>
 
-                                                        <a href="<?php echo site_url('BPC_forms_p2?page=sh22') ?>&&key=<?php echo $showc->Id; ?>&&name=<?php echo $show->BestPracticeName; ?>" class="my-link">
-                                                            <?php echo $showc->PREFIX_NAME; ?>            <?php echo nbs(2); ?>
+                                                       
+                                                             <!-- Button trigger modal -->
+                                            <button type="button" class="btn " data-bs-toggle="modal"
+                                                data-bs-target="#best<?php echo $showc->Id ?>">
+                                                <?php echo $showc->PREFIX_NAME; ?>            <?php echo nbs(2); ?>
                                                             <?php echo $showc->CreatorNameThai; ?>-
-                                                            <?php echo $showc->CreatorLastNameThai; ?></a>
+                                                            <?php echo $showc->CreatorLastNameThai; ?>
+                                            </button><!-- Modal -->
+                                        <div class="modal fade" id="best<?php echo $showc->Id ?>" tabindex="-1"
+                                            aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog modal-xl modal-dialog-centered">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="exampleModalLabel">ผู้จัดทำวิธีปฏิบัติที่เป็นเลิศในการจัดการศึกษา</h5>
+                                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                            aria-label="Close"></button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                           <div class="row">
+                                                               <div class="col">
+                                                                   <h6>ประเภทบัตรประจำตัวผู้จัดทำ</h6>
+                                                                   <p>  <?php echo $showc->PERSONAL_ID_TYPE_NAME; ?></p>
+   
+                                                               </div>
+                                                               <div class="col">
+                                                                   <h6>หมายเลขบัตรประจำตัวผู้จัดการ</h6>
+                                                                   <p>  <?php echo $showc->CreatorPersonalID; ?></p>
+   
+                                                               </div>
+                                                           </div>
+                                                           <div class="row">
+                                                               <div class="col">
+                                                                   <h6>ชื่อ-นามสกุล(ไทย)</h6>
+                                                                   <p>  <?php echo $showc->PREFIX_NAME; ?>
+                                                                     <?php echo $showc->CreatorNameThai; ?> -
+                                                                     <?php echo $showc->CreatorLastNameThai; ?></p>
+   
+                                                               </div>
+                                                               <div class="col">
+                                                                   <h6>ชื่อ-นามสกุล(อังกฤษ)</h6>
+                                                                   <p>  <?php echo $showc->CreatorNameEnglish; ?> -
+                                                                     <?php echo $showc->CreatorLastNameEnglish; ?></p>
+   
+                                                               </div>
+                                                               
+                                                           </div>
+                                                           <div class="row">
+                                                               <div class="col">
+                                                                   <h6>สัดส่วนการมีส่วนร่วม</h6>
+                                                                   <p>  <?php echo $showc->ParticipantRatio ; ?></p>
+   
+                                                               </div>
+                                                               
+                                                           </div>
+                                                       </div>
+                                                    <div class="modal-footer">
+                                                    <a href="<?php echo site_url('BPC_forms_p2?page=sh22') ?>&&key=<?php echo $showc->Id; ?>&&name=<?php echo $show->BestPracticeName; ?>" class="my-link btn btn-warning">
+                                                    <i class="bi bi-pencil-square"></i>  </a>
+                                                        <button type="button" class="btn btn-secondary"
+                                                            data-bs-dismiss="modal">ปิด</button>
+                                                       
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                                     </p>
                                                 </div>
 
@@ -335,7 +396,7 @@
                         <p><?php echo $show->Abstract; ?></p>
                         <h5 class="fw-bold">เอกสารแนบ</h5>
                         <p><a href="<?php echo base_url('assets/EII/BEST_PRACTICE') ?>/<?php echo $show->AttachmentURL; ?>"
-                                target="_blank">รายละเอียดเอกสาร</i></a></p>
+                                target="_blank"><i class="bi bi-file-earmark-text-fill"></i>รายละเอียดเอกสาร</a></p>
                     </div>
                     <div class="col">
                         <h5 class="fw-bold">วิธีการปฏิบัติ</h5>

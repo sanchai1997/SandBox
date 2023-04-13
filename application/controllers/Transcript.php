@@ -129,4 +129,16 @@ class Transcript extends CI_Controller
         $data['title'] = 'transcript-download'; // Capitalize the first letter
         $this->load->view('pages/dashboard/transcript/transcript-download', $data);
     }
+
+    public function transcript_print()
+    {
+
+        if (!file_exists(APPPATH . 'views/pages/dashboard/transcript/transcript-print.php')) {
+            // Whoops, we don't have a page for that!
+            show_404();
+        }
+
+        $data['title'] = 'transcript-print'; // Capitalize the first letter
+        $this->load->view('pages/dashboard/transcript/transcript-print', $data);
+    }
 }

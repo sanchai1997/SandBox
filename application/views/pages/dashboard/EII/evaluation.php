@@ -37,7 +37,7 @@
                 $page
             ) {
                 case 'sh1': ?>
-            <h1>ตัวชี้วัด</h1>
+            <h1>การประกันคุณภาพด้วยตัวชี้วัดของพื้นที่นวัตกรรมการศึกษา</h1>
             <?php break;
                 case 'sh2': ?>
             <h1>ข้อมูลระดับตัวชี้วัด -
@@ -231,31 +231,31 @@
                                             <div class="modal-body">
                                                 <div class="row">
                                                     <div class="col">
-                                                        <h6>รหัสตัวชี้วัด</h6>
+                                                        <h6 class="fw-bold">รหัสตัวชี้วัด</h6>
                                                         <p> <?php echo $show->CriteriaID; ?></p>
                                                     </div>
                                                     <div class="col">
-                                                        <h6> ลำดับของระดับตัวชี้วัด</h6>
+                                                        <h6 class="fw-bold"> ลำดับของระดับตัวชี้วัด</h6>
                                                         <p> <?php echo $cls->LevelIndex; ?></p>
                                                     </div>
                                                 </div>
                                                 <div class="row">
                                                     <div class="col">
-                                                        <h6> หัวข้อระดับตัวชี้วัด</h6>
+                                                        <h6 class="fw-bold"> หัวข้อระดับตัวชี้วัด</h6>
                                                         <p> <?php echo $cls->LevelName; ?></p>
                                                     </div>
                                                     <div class="col">
-                                                        <h6> คะแนนระดับตัวชี้วัด</h6>
+                                                        <h6 class="fw-bold"> คะแนนระดับตัวชี้วัด</h6>
                                                         <p> <?php echo $cls->LevelScore; ?></p>
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="modal-footer">
-                                                <button type="button" class="btn btn-secondary"
-                                                    data-bs-dismiss="modal">ปิด</button>
                                                 <a href="<?php echo site_url('ass_ria_lvl_forms_p2?page=sh22') ?>&&lvl=<?php echo $show->CriteriaLevelAmount ?>&&CriteriaID=<?php echo $show->Id ?>&&CriteriaLevelAmount=<?php echo $show->CriteriaLevelAmount ?>&&key=<?php echo $cls->Id_acl; ?>&&name=<?php echo $show->CriteriaName; ?>"
-                                                    class="my-link btn btn-warning"><i class="bi bi-pencil-square"></i>
-                                                </a>
+                                                class="my-link btn btn-warning"><i class="bi bi-pencil-square"></i>
+                                            </a>
+                                            <button type="button" class="btn btn-secondary"
+                                                data-bs-dismiss="modal">ปิด</button>
                                             </div>
                                         </div>
                                     </div>
@@ -295,36 +295,36 @@
                                             <div class="modal-body">
                                                 <div class="row">
                                                     <div class="col">
-                                                        <h6>รหัสตัวชี้วัด</h6>
+                                                        <h6 class="fw-bold">รหัสตัวชี้วัด</h6>
                                                         <p> <?php echo $show->CriteriaID; ?></p>
                                                     </div>
                                                     <div class="col">
-                                                        <h6> ลำดับองค์ประกอบตัวชี้วัด</h6>
+                                                        <h6 class="fw-bold"> ลำดับองค์ประกอบตัวชี้วัด</h6>
                                                         <p> <?php echo $showA3->CompositionIndex; ?></p>
                                                     </div>
                                                 </div>
                                                 <div class="row">
                                                     <div class="col">
-                                                        <h6> หัวข้อองค์ประกอบตัวชี้วัด</h6>
+                                                        <h6 class="fw-bold"> หัวข้อองค์ประกอบตัวชี้วัด</h6>
                                                         <p> <?php echo $showA3->CompositionName; ?></p>
                                                     </div>
                                                     <div class="col">
-                                                        <h6> ค่าน้ำหนักการประเมิน</h6>
+                                                        <h6 class="fw-bold"> ค่าน้ำหนักการประเมิน</h6>
                                                         <p> <?php echo $showA3->CompositionWeightScore; ?></p>
                                                     </div>
                                                 </div>
                                                 <div class="row">
                                                 <div class="col">
-                                                        <h6> หลักฐานประกอบการประเมิน</h6>
+                                                        <h6 class="fw-bold"> หลักฐานประกอบการประเมิน</h6>
                                                         <p> <?php echo $showA3->CompositionGuideline; ?></p>
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="modal-footer">
+                                                <a href="<?php echo site_url('ass_ria_com_forms_p3?page=sh33') ?>&&lvl=<?php echo $show->CriteriaCompositionAmount ?>&&Id_acc=<?php echo $showA3->Id_acc; ?>&&Id=<?php echo $show->Id; ?>&&name=<?php echo $show->CriteriaName; ?>&&CriteriaID=<?php echo $show->CriteriaID; ?>"
+                                                class="my-link btn btn-warning"><i class="bi bi-pencil-square"> </i></a>
                                                 <button type="button" class="btn btn-secondary"
                                                     data-bs-dismiss="modal">ปิด</button>
-                                                    <a href="<?php echo site_url('ass_ria_com_forms_p3?page=sh33') ?>&&lvl=<?php echo $show->CriteriaCompositionAmount ?>&&Id_acc=<?php echo $showA3->Id_acc; ?>&&Id=<?php echo $show->Id; ?>&&name=<?php echo $show->CriteriaName; ?>&&CriteriaID=<?php echo $show->CriteriaID; ?>"
-                                    class="my-link btn btn-warning"><i class="bi bi-pencil-square"> </i></a>
                                                 
                                             </div>
                                         </div>
@@ -726,10 +726,10 @@
                                                 </div>
                                             </div>
                                             <div class="modal-footer">
+                                                <a href="<?php echo site_url('sc_ass_res_forms_p7?page=sh77') ?>&&key=<?php echo $showR->Id_sar; ?>&&year=<?php echo $showR->SchoolAssessmentEducationYear; ?>&&summer=<?php echo $showR->SchoolAssessmentSemester; ?>&&SchoolID=<?php echo $showR->SchoolID; ?>&&CriteriaID=<?php echo $show_top->Id; ?>"
+                                                class="btn btn-warning"> <i class="bi bi-pencil-square"></i></a>
                                                 <button type="button" class="btn btn-secondary"
                                                     data-bs-dismiss="modal">ปิด</button>
-                                                <a href="<?php echo site_url('sc_ass_res_forms_p7?page=sh77') ?>&&key=<?php echo $showR->Id_sar; ?>&&year=<?php echo $showR->SchoolAssessmentEducationYear; ?>&&summer=<?php echo $showR->SchoolAssessmentSemester; ?>&&SchoolID=<?php echo $showR->SchoolID; ?>&&CriteriaID=<?php echo $show_top->Id; ?>"
-                                                    class="btn btn-warning"> <i class="bi bi-pencil-square"></i></a>
                                             </div>
                                         </div>
                                     </div>
@@ -793,10 +793,10 @@
                                                 </div>
                                             </div>
                                             <div class="modal-footer">
+                                                <a href="<?php echo site_url('sc_ass_res_forms_p7?page=sh77') ?>&&key=<?php echo $showR->Id_sar; ?>&&year=<?php echo $showR->SchoolAssessmentEducationYear; ?>&&summer=<?php echo $showR->SchoolAssessmentSemester; ?>&&SchoolID=<?php echo $showR->SchoolID; ?>&&CriteriaID=<?php echo $show_top->Id; ?>"
+                                                class="btn btn-warning"> <i class="bi bi-pencil-square"></i></a>
                                                 <button type="button" class="btn btn-secondary"
                                                     data-bs-dismiss="modal">ปิด</button>
-                                                <a href="<?php echo site_url('sc_ass_res_forms_p7?page=sh77') ?>&&key=<?php echo $showR->Id_sar; ?>&&year=<?php echo $showR->SchoolAssessmentEducationYear; ?>&&summer=<?php echo $showR->SchoolAssessmentSemester; ?>&&SchoolID=<?php echo $showR->SchoolID; ?>&&CriteriaID=<?php echo $show_top->Id; ?>"
-                                                    class="btn btn-warning"> <i class="bi bi-pencil-square"></i></a>
                                             </div>
                                         </div>
                                     </div>
@@ -1335,7 +1335,7 @@
                         <p>
                             <?php echo $show->CriteriaName; ?>
                         </p>
-                        <h5 class="fw-bold">คำฮธิบายเกณฑ์</h5>
+                        <h5 class="fw-bold">คำอธิบายเกณฑ์</h5>
                         <p>
                             <?php echo $show->CriteriaDescription; ?>
                         </p>
@@ -1868,7 +1868,7 @@
                         <p>
                             <th scope="row " style="text-align: center;">
                                 <a href="<?php echo base_url('assets/EII/ACHIEVEMENT_ASSESSMENT/') ?>/<?php echo $show->AchievementAssessmentAttachmentURL; ?>"
-                                    target="_blank">รายละเอียดเอกสาร</i></a>
+                                    target="_blank"><i class="bi bi-file-earmark-text-fill"></i>รายละเอียดเอกสาร</i></a>
 
                             </th>
                         </p>

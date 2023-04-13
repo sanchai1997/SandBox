@@ -56,10 +56,10 @@
                                     <select class="form-select" name="CurriculumID" id="CurriculumID" aria-label="CurriculumID">
                                         <option value="" selected>เลือก</option>
                                         <?php
-                                        $result = $this->db->query('SELECT * FROM CURRICULUM WHERE EducationYear = ' . $_GET['TranscriptEducationYear'] . ' AND Semester = ' . $_GET['TranscriptSemester'] . ' AND SchoolID = ' . $_GET['SchoolID'] . ' AND GradeLevelCode = ' . $_GET['OldSchoolLastGradeLevelCode'] . '');
+                                        $result = $this->db->query('SELECT * FROM CURRICULUM WHERE SchoolID = ' . $_GET['SchoolID'] . ' AND GradeLevelCode = ' . $_GET['OldSchoolLastGradeLevelCode'] . '');
                                         foreach ($result->result() as $CURRICULUM) {
                                         ?>
-                                            <option value="<?= $CURRICULUM->CurriculumID; ?>"><?= $CURRICULUM->CurriculumName; ?></option>
+                                            <option value="<?= $CURRICULUM->CurriculumID; ?>">ปีการศึกษา <?= $CURRICULUM->EducationYear; ?> ภาคเรียน <?= $CURRICULUM->Semester; ?> : <?= $CURRICULUM->CurriculumName; ?></option>
                                         <?php
                                         }
                                         ?>

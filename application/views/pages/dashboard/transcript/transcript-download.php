@@ -1,6 +1,6 @@
 <?php
 define('FPDF_FONTPATH', 'font/');
-require('fpdf/fpdf.php');
+require('assets/fpdf/fpdf.php');
 
 $pdf = new FPDF();
 $pdf->AddPage();
@@ -65,6 +65,18 @@ foreach ($result->result() as $TRANSCRIPT) {
     } else {
         $Extrapassing =  '-';
     }
+
+
+    $result = $this->db->query('SELECT * FROM CURRICULUM
+    WHERE SchoolID = ' . $_GET['SchoolID'] . '
+    AND EducationYear = ' . $_GET['EducationYear'] . '
+    AND Semester = ' . $_GET['Semester'] . '
+    AND GradeLevelCode = ' . $TRANSCRIPT->OldSchoolLastGradeLevelCode . '
+    
+    ');
+    foreach ($result->result() as $CURRICULUM) {
+        $CURRICULUM_ID = $CURRICULUM->CurriculumID;
+    }
 }
 
 $pdf->Cell(0, 10, iconv('UTF-8', 'cp874', 'แบบรายงานผลการพัฒนาผู้เรียนรายบุคคล'), 0, 1, 'C',);
@@ -88,8 +100,8 @@ $pdf->Cell(0, 10, "", 0, 1, 'C');
 $pdf->SetFont('THSarabunPSK-Bold', '', 14,);
 $pdf->Cell(13, 10, iconv('UTF-8', 'cp874', 'ลำดับที่'), 1, 0, 'C');
 $pdf->Cell(17, 10, iconv('UTF-8', 'cp874', 'รหัสวิชา'), 1, 0, 'C');
-$pdf->Cell(60, 10, iconv('UTF-8', 'cp874', 'รายวิชา'), 1, 0, 'C');
-$pdf->Cell(35, 10, iconv('UTF-8', 'cp874', 'ประเภท'), 1, 0, 'C');
+$pdf->Cell(65, 10, iconv('UTF-8', 'cp874', 'รายวิชา'), 1, 0, 'C');
+$pdf->Cell(30, 10, iconv('UTF-8', 'cp874', 'ประเภท'), 1, 0, 'C');
 $pdf->Cell(20, 10, iconv('UTF-8', 'cp874', 'น้ำหนัก/เวลา'), 1, 0, 'C');
 $pdf->Cell(20, 10, iconv('UTF-8', 'cp874', 'ผลการเรียน'), 1, 0, 'C');
 $pdf->Cell(25, 10, iconv('UTF-8', 'cp874', 'หมายเหตุ'), 1, 0, 'C');
@@ -122,16 +134,22 @@ foreach ($result->result() as $TRANSCRIPT_SUBJECT) {
     } else {
         $i++;
         $pdf->Cell(13, 7, iconv('UTF-8', 'cp874', $i), 1, 0, 'C');
-        $AgvGrade += $TRANSCRIPT_SUBJECT->GRADE_NAME;
+        $AgvGrade += $TRANSCRIPT_SUBJECT->GRADE_NAME * $TRANSCRIPT_SUBJECT->SubjectCredit;
     }
+
     $pdf->Cell(17, 7, iconv('UTF-8', 'cp874', $TRANSCRIPT_SUBJECT->SubjectCode), 1, 0, 'C');
-    $pdf->Cell(60, 7, iconv('UTF-8', 'cp874', '  ' . $TRANSCRIPT_SUBJECT->SubjectName), 1, 0);
-    $pdf->Cell(35, 7, iconv('UTF-8', 'cp874', $TRANSCRIPT_SUBJECT->SUBJECT_TYPE_NAME), 1, 0, 'C');
-    if ($TRANSCRIPT_SUBJECT->SubjectCredit != 0) {
+    $pdf->Cell(65, 7, iconv('UTF-8', 'cp874', '  ' . $TRANSCRIPT_SUBJECT->SubjectName), 1, 0);
+    if ($TRANSCRIPT_SUBJECT->SubjectTypeCode != '08') {
+        $pdf->Cell(30, 7, iconv('UTF-8', 'cp874', $TRANSCRIPT_SUBJECT->SUBJECT_TYPE_NAME), 1, 0, 'C');
+    } else {
+        $pdf->Cell(30, 7, iconv('UTF-8', 'cp874', 'กิจกรรม'), 1, 0, 'C');
+    }
+    if ($TRANSCRIPT_SUBJECT->SubjectTypeCode != '08') {
         $pdf->Cell(20, 7, iconv('UTF-8', 'cp874', $TRANSCRIPT_SUBJECT->SubjectCredit), 1, 0, 'C');
     } else {
         $result = $this->db->query('SELECT * FROM CURRICULUM_SUBJECT
-        WHERE SubjectCode  = "' .  $TRANSCRIPT_SUBJECT->SubjectCode . '"
+        WHERE CurriculumID = ' . $CURRICULUM_ID . '
+        AND SubjectCode  = "' .  $TRANSCRIPT_SUBJECT->SubjectCode . '"
         ');
         foreach ($result->result() as $CURRICULUM_SUBJECT) {
             $pdf->Cell(20, 7, iconv('UTF-8', 'cp874', $CURRICULUM_SUBJECT->LearningHour), 1, 0, 'C');
@@ -158,7 +176,7 @@ $pdf->Cell(60, 7, iconv('UTF-8', 'cp874', '  น้ำหนักวิชา�
 $pdf->Cell(30, 7, iconv('UTF-8', 'cp874', $TotalCreditSub), 1, 0, 'C');
 $pdf->Ln();
 $pdf->Cell(60, 7, iconv('UTF-8', 'cp874', '  ระดับผลการเรียนเฉลี่ย'), 1, 0);
-$pdf->Cell(30, 7, iconv('UTF-8', 'cp874', number_format($AgvGrade / $i, 1)), 1, 0, 'C');
+$pdf->Cell(30, 7, iconv('UTF-8', 'cp874', number_format($AgvGrade / ($TotalCredit + $TotalCreditSub), 2)), 1, 0, 'C');
 $pdf->SetFont('THSarabunPSK', '', 15,);
 $pdf->Cell(90, 7, iconv('UTF-8', 'cp874', '               ( ' . $AdminNameThai . ' )'), 0, 0, 'C');
 $pdf->Ln();
@@ -183,4 +201,4 @@ $pdf->SetFont('THSarabunPSK', '', 15,);
 $pdf->Cell(90, 7, iconv('UTF-8', 'cp874', '               ผู้ปกครอง'), 0, 0, 'C');
 
 $pdf->Output('D', 'Transcript_' . $_GET['TranscriptSeriesNumber'] . $_GET['TranscriptNumber'] . '.pdf');
-//$pdf->Output();
+// $pdf->Output();
