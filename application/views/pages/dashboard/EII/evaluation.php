@@ -1436,16 +1436,16 @@
                             </table>
                         </td>
                     </tr>
-                    <tr>
+                    <!-- <tr>
                         <td><a href="<?php echo site_url('ass_ria_com_lvl_forms_p4?page=sh4') ?>"
                                 class="my-link fw-bold">>>เพิ่มคำอธิบาย>>
                             </a></td>
-                    </tr>
-                    <tr>
+                    </tr> -->
+                    <!-- <tr>
                         <th>คำอธิบายตัวชี้วัด</th>
                         <th>คำอธิบายองค์ประกอบของตัวชี้วัด </th>
-                    </tr>
-                    <tr>
+                    </tr> -->
+                    <!-- <tr>
                         <td>
                             <table class="table table-bordered">
                                 <thead class="table-Ligth">
@@ -1506,7 +1506,7 @@
                                 <?php } ?>
                             </table>
                         </td>
-                    </tr>
+                    </tr> -->
                 </table>
 
             </div>
