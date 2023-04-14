@@ -1024,7 +1024,7 @@
                                                         foreach ($result->result() as $cls) {
                                                             ?>
                                                     <option id="<?= $cls->CriteriaID; ?>" value="<?= $cls->LevelIndex; ?>">
-                                                        <?= $cls->LevelName; ?></option>
+                                                    <?= $cls->LevelIndex; ?>.   <?= $cls->LevelName; ?></option>
                                                     <?php } ?>
                                                     <option value="0">เลือก</option>
                                                 </select>
@@ -1044,7 +1044,7 @@
                                                             ?>
                                                     <option id="<?= $cls->CriteriaID; ?>"
                                                         value="<?= $cls->CompositionIndex; ?>">
-                                                        <?= $cls->CompositionName; ?></option>
+                                                        <?= $cls->CompositionIndex; ?>.   <?= $cls->CompositionName; ?></option>
                                                     <?php } ?>
                                                     <option value="0">เลือก</option>
                                                 </select>
