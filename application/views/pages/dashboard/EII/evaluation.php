@@ -1406,6 +1406,8 @@
                                     <td>หัวข้อ</td>
                                     <td>ค่าน้ำหนัก</td>
                                     <td>หลักฐาน</td>
+                                    <td>คำอธิบายองค์ประกอบของตัวชี้วัด</td>
+
                                 </tr>
                                 <?php $resultc = $this->db->query("SELECT * FROM ASSESSMENT_CRITERIA_COMPOSITION
                                 where CriteriaID = $Id AND DeleteStatus = 0 ORDER BY CompositionIndex ASC");
@@ -1413,7 +1415,7 @@
                                 <tr>
                                     <td>
                                         <p>
-                                            <?php echo $showc->CompositionIndex; ?>
+                                            <?php echo $CompositionIndex = $showc->CompositionIndex; ?>
                                         </p>
                                     </td>
                                     <td>
@@ -1431,6 +1433,22 @@
                                             <?php echo $showc->CompositionGuideline; ?>
                                         </p>
                                     </td>
+                                    <td>
+                                        <table>
+                                        <?php $resultT = $this->db->query("SELECT * FROM ASSESSMENT_CRITERIA_COMPOSITION_LEVEL
+                                  where CriteriaID = $Id  AND DeleteStatus = 0 AND CompositionIndex = $CompositionIndex");
+                                        foreach ($resultT->result() as $showT) { ?>
+                                       <tr>
+                                               <td>
+                                                    <p>
+                                                        <?php echo $showT->CompositionLevelDescription; ?>
+                                                    </p>
+                                               </td>
+                                       </tr>
+                                       <?php } ?>
+
+                                        </table>
+                                    </td>
                                 </tr>
                                 <?php } ?>
                             </table>
@@ -1441,72 +1459,8 @@
                                 class="my-link fw-bold">>>เพิ่มคำอธิบาย>>
                             </a></td>
                     </tr>
-                    <tr>
-                        <th>คำอธิบายตัวชี้วัด</th>
-                        <th>คำอธิบายองค์ประกอบของตัวชี้วัด </th>
-                    </tr>
-                    <tr>
-                        <td>
-                            <table class="table table-bordered">
-                                <thead class="table-Ligth">
-                                    <tr>
-                                        <td>ตัวชี้วัด </td>
-                                        <td>คำอธิบาย </td>
-
-                                    </tr>
-                                </thead>
-                                <?php
-
-                                        $resultY = $this->db->query("SELECT * FROM ASSESSMENT_CRITERIA_COMPOSITION_LEVEL
-                                where CriteriaID = $Id AND LevelIndex <> '0'  AND DeleteStatus = 0 ");
-                                        foreach ($resultY->result() as $showY) { ?>
-                                <tr>
-                                    <td>
-                                        <p>
-                                            <?php echo $showY->LevelIndex; ?>
-                                        </p>
-                                    </td>
-                                    <td>
-                                        <p>
-                                        <a href="<?php echo site_url('ass_ria_com_lvl_forms_p4?page=sh44') ?>&&Id_accl=<?php echo $showY->Id_accl; ?>&&CriteriaID=<?php echo $showY->CriteriaID; ?>"
-                                    class="my-link "> <?php echo $showY->CompositionLevelDescription; ?></a>
-                                           
-                                        </p>
-                                    </td>
-
-                                </tr>
-                                <?php } ?>
-                            </table>
-                        </td>
-
-
-                        <td>
-                            <table class="table table-bordered">
-                                <tr>
-                                    <td>ลำดับองค์ประกอบ</td>
-                                    <td>คำอธิบาย</td>
-
-                                </tr>
-                                <?php $resultT = $this->db->query("SELECT * FROM ASSESSMENT_CRITERIA_COMPOSITION_LEVEL
-                                  where CriteriaID = $Id AND CompositionIndex <> '0' AND DeleteStatus = 0 ");
-                                        foreach ($resultT->result() as $showT) { ?>
-                                <tr>
-                                    <td>
-                                        <p>
-                                            <?php echo $showT->CompositionIndex; ?>
-                                        </p>
-                                    </td>
-                                    <td>
-                                        <p>
-                                            <?php echo $showT->CompositionLevelDescription; ?>
-                                        </p>
-                                    </td>
-
-                                </tr>
-                                <?php } ?>
-                            </table>
-                        </td>
-                    </tr>
+                    
+                    
                 </table>
 
             </div>
