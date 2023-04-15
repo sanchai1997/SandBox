@@ -60,7 +60,7 @@
                   <div class="form-floating">
                     <select class="form-select" aria-label="Default select example"  name="TeacherID"id="TeacherID">
                         <?php foreach($listTeacher as $lt) { ?>
-                          <option value="<?php echo $lt->TeacherID; ?>"><?php echo " (" . $lt->TeacherID . ") " . $lt->TeacherNameThai; ?></option>
+                          <option value="<?php echo $lt->TeacherID; ?>"><?php echo  " (" . $lt->TeacherID . ") " . $lt->TeacherNameThai . " " . $lt->	TeacherLastNameThai; ?></option>
                         <?php } ?>
                     </select>
                     <label for="SCHOOL_STATUS_CODE">ครูและบุคลากรทางการศึกษา<font color="red"> *</font></label>
@@ -122,9 +122,9 @@
 
                 <div class="col-md-16">
                     <div class="input-group mb-3">
-                    <a href="load_file?file=<?php echo $TD->DevelopmentDocument; ?>">
-                      <label class="input-group-text" for="inputGroupFile01"><i class="bi bi-file-earmark-arrow-down-fill"></i>  เอกสารแนบ/เกียรติบัตร<font color="red"> *</font></label>
-                    </a>  
+                  
+                      <label class="input-group-text" for="inputGroupFile01"> เอกสารแนบ/เกียรติบัตร<font color="red"> *</font></label>
+                    
                         <input type="file" class="form-control" name="DevelopmentDocument" id="DevelopmentDocument" placeholder="เอกสารแนบ/เกียรติบัตร" >
                     </div>
                 </div>

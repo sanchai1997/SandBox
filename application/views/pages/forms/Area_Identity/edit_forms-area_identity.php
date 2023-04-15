@@ -39,7 +39,7 @@
               <div class="col-md-16">
                   <div class="form-floating">
                     <input type="text" class="form-control"name="EducationYear"id="EducationYear" placeholder="ปีการศึกษา" maxlength="4" value="<?php echo $a->EducationYear; ?>">
-                    <label >ปีการศึกษา</label>
+                    <label >ปีการศึกษ<font color="red"> *</font>า</label>
                   </div>
                 </div>
 
@@ -51,7 +51,7 @@
                       <option value="1">ภาคเรียนที่ 1</option>
                       <option value="2">ภาคเรียนที่ 2</option>
                     </select>
-                    <label>ภาคเรียน</label>
+                    <label>ภาคเรียน<font color="red"> *</font></label>
                   </div>
                 </div> 
 
@@ -68,35 +68,35 @@
 
                 <div class="col-md-16">
                   <div class="form-floating">
-                    <input type="text" class="form-control"name="AreaProduct"id="AreaProduct" placeholder="ข้อมูลผลิตภัณฑ์ชุมชน" value="<?php echo $a->AreaProduct; ?>">
+                    <textarea type="text" class="form-control"name="AreaProduct"id="AreaProduct" placeholder="ข้อมูลผลิตภัณฑ์ชุมชน" value=""><?php echo $a->AreaProduct; ?></textarea>
                     <label >ข้อมูลผลิตภัณฑ์ชุมชน</label>
                   </div>
                 </div>
 
                 <div class="col-md-16">
                   <div class="form-floating">
-                    <input type="text" class="form-control"name="AreaEnvironment"id="AreaEnvironment" placeholder="ข้อมูลสภาพพื้นที่/สภาพแวดล้อม" value="<?php echo $a->AreaEnvironment; ?>">
+                    <textarea  type="text" class="form-control"name="AreaEnvironment"id="AreaEnvironment" placeholder="ข้อมูลสภาพพื้นที่/สภาพแวดล้อม" value=""><?php echo $a->AreaEnvironment; ?></textarea>
                     <label >ข้อมูลสภาพพื้นที่/สภาพแวดล้อม</label>
                   </div>
                 </div>
 
                 <div class="col-md-16">
                   <div class="form-floating">
-                    <input type="text" class="form-control"name="AreaLanguage"id="AreaLanguage" placeholder="ภาษาท้องถิ่น" value="<?php echo $a->AreaLanguage; ?>">
+                    <textarea  type="text" class="form-control"name="AreaLanguage"id="AreaLanguage" placeholder="ภาษาท้องถิ่น" value=""><?php echo $a->AreaLanguage; ?></textarea>
                     <label >ภาษาท้องถิ่น</label>
                   </div>
                 </div>
                 
                 <div class="col-md-16">
                   <div class="form-floating">
-                    <input type="text" class="form-control"name="AreaValues"id="AreaValues" placeholder="ค่านิยม/ความเชื่อ" value="<?php echo $a->AreaValues; ?>">
+                    <textarea  type="text" class="form-control"name="AreaValues"id="AreaValues" placeholder="ค่านิยม/ความเชื่อ" value=""><?php echo $a->AreaValues; ?></textarea>
                     <label >ค่านิยม/ความเชื่อ</label>
                   </div>
                 </div>
 
                 <div class="col-md-16">
                   <div class="form-floating">
-                    <input type="text" class="form-control"name="AreaCulture"id="AreaCulture" placeholder="ข้อมูลศิลปะ/วัฒนธรรม/ภูมิปัญญา" value="<?php echo $a->AreaCulture; ?>">
+                    <textarea  type="text" class="form-control"name="AreaCulture"id="AreaCulture" placeholder="ข้อมูลศิลปะ/วัฒนธรรม/ภูมิปัญญา" value=""><?php echo $a->AreaCulture; ?></textarea>
                     <label >ข้อมูลศิลปะ/วัฒนธรรม/ภูมิปัญญา</label>
                   </div>
                 </div>
@@ -171,57 +171,32 @@
       alert("กรุณาเลือกสถานศึกษา");
       return false;
     }
-    var Check_text = /^[A-Z,a-z,ก-์,0-9]{1,2048}$/;
-    if(AREA_IDENTITY.AreaProduct.value==""){
-        alert("กรุณากรอกข้อมูลผลิตภัณฑ์ชุมชน");
-        frm.AreaProduct.value = "";
-        return false;
-    }
-    else if(!AREA_IDENTITY.AreaProduct.value.match(Check_text)){
+    var Check_text = /^.{1,2048}$/;
+    if(!AREA_IDENTITY.AreaProduct.value.match(Check_text) && AREA_IDENTITY.AreaProduct.value!="" ){
         alert("กรุณากรอกข้อมูลผลิตภัณฑ์ชุมชนให้ถูกต้อง");
         frm.AreaProduct.value = "";
         return false;
     }
 
-    if(AREA_IDENTITY.AreaEnvironment.value==""){
-        alert("กรุณากรอกข้อมูลสภาพพื้นที่/สภาพแวดล้อม");
-        frm.AreaEnvironment.value = "";
-        return false;
-    }
-    else if(!AREA_IDENTITY.AreaEnvironment.value.match(Check_text)){
+     if(!AREA_IDENTITY.AreaEnvironment.value.match(Check_text) &&  AREA_IDENTITY.AreaEnvironment.value!=""){
         alert("กรุณากรอกข้อมูลสภาพพื้นที่/สภาพแวดล้อม ให้ถูกต้อง");
         frm.AreaEnvironment.value = "";
         return false;
     }
     
-    if(AREA_IDENTITY.AreaLanguage.value==""){
-        alert("กรุณากรอกภาษาท้องถิ่น");
-        frm.AreaLanguage.value = "";
-        return false;
-    }
-    else if(!AREA_IDENTITY.AreaLanguage.value.match(Check_text)){
+    if(!AREA_IDENTITY.AreaLanguage.value.match(Check_text)&&  AREA_IDENTITY.AreaLanguage.value!=""){
         alert("กรุณากรอกภาษาท้องถิ่นให้ถูกต้อง");
         frm.AreaLanguage.value = "";
         return false;
     }
     
-    if(AREA_IDENTITY.AreaCulture.value==""){
-        alert("กรุณากรอกข้อมูลค่านิยมความเชื่อ");
-        frm.AreaCulture.value = "";
-        return false;
-    }
-    else if(!AREA_IDENTITY.AreaCulture.value.match(Check_text)){
+    if(!AREA_IDENTITY.AreaCulture.value.match(Check_text) &&  AREA_IDENTITY.AreaCulture.value!=""){
         alert("กรุณากรอกข้อมูลค่านิยมความเชื่อให้ถูกต้อง");
         frm.AreaCulture.value = "";
         return false;
     }
 
-    if(AREA_IDENTITY.AreaValues.value==""){
-        alert("กรุณากรอกค่านิยม/ความเชื่อ");
-        frm.AreaValues.value = "";
-        return false;
-    }
-    else if(!AREA_IDENTITY.AreaValues.value.match(Check_text)){
+    if(!AREA_IDENTITY.AreaValues.value.match(Check_text) &&  AREA_IDENTITY.AreaValues.value!=""){
         alert("กรุณากรอกค่านิยม/ความเชื่อ ให้ถูกต้อง");
         frm.AreaValues.value = "";
         return false;

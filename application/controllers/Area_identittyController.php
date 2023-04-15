@@ -9,11 +9,11 @@ class Area_identittyController extends CI_Controller{
         $this->load->library('session');
         $this->load->model('School_model');
         $this->load->model('Area_identitty_model');
-        
+        $this->load->helper('string');
         
     }
     public function forms_Area_identitty() {
-        if ( ! file_exists(APPPATH.'views/pages/forms/Area_identity/forms-area_identitty.php'))
+        if ( ! file_exists(APPPATH.'views/pages/forms/Area_Identity/forms-area_identitty.php'))
         {
             show_404();
         }
@@ -27,7 +27,7 @@ class Area_identittyController extends CI_Controller{
 
         $this->load->view('templates/header');
         $this->load->view('templates/sidebar');
-        $this->load->view('pages/forms/Area_identity/forms-area_identitty',$data);
+        $this->load->view('pages/forms/Area_Identity/forms-area_identitty',$data);
         $this->load->view('templates/footer');
 
     }
@@ -35,7 +35,6 @@ class Area_identittyController extends CI_Controller{
     public function list_area_identity() {        
         $data['School'] = $this->School_model->get_school_All();
         
-
         if($data['School']==null){
             $data['listAreaIdentity'] = null;
         }else{
@@ -47,7 +46,7 @@ class Area_identittyController extends CI_Controller{
         }
         $this->load->view('templates/header');
         $this->load->view('templates/sidebar');
-        $this->load->view('pages/dashboard/Area_Identity/list-area_Identity',$data);
+        $this->load->view('pages/dashboard/Area_Identity/list-area_identity',$data);
         $this->load->view('templates/footer');
 
     }
@@ -116,7 +115,7 @@ class Area_identittyController extends CI_Controller{
 
     public function edit_forms_area_identity() {
         
-        if ( ! file_exists(APPPATH.'views/pages/forms/Area_identity/edit_forms-area_identity.php'))
+        if ( ! file_exists(APPPATH.'views/pages/forms/Area_Identity/edit_forms-area_identity.php'))
         {
             show_404();
         }
@@ -133,7 +132,7 @@ class Area_identittyController extends CI_Controller{
 
         $this->load->view('templates/header');
         $this->load->view('templates/sidebar');
-        $this->load->view('pages/forms/Area_identity/edit_forms-area_identity',$data);
+        $this->load->view('pages/forms/Area_Identity/edit_forms-area_identity',$data);
         $this->load->view('templates/footer');
 
     }
@@ -169,7 +168,7 @@ class Area_identittyController extends CI_Controller{
     ///Region
     public function forms_Region() {
         
-        if ( ! file_exists(APPPATH.'views/pages/forms/Area_identity/forms-region.php'))
+        if ( ! file_exists(APPPATH.'views/pages/forms/Area_Identity/forms-region.php'))
         {
             show_404();
         }
@@ -189,7 +188,7 @@ class Area_identittyController extends CI_Controller{
 
         $this->load->view('templates/header');
         $this->load->view('templates/sidebar');
-        $this->load->view('pages/forms/Area_identity/forms-region',$data);
+        $this->load->view('pages/forms/Area_Identity/forms-region',$data);
         $this->load->view('templates/footer');
 
     }
@@ -224,7 +223,7 @@ class Area_identittyController extends CI_Controller{
     
     public function edit_forms_Region() {
         
-        if ( ! file_exists(APPPATH.'views/pages/forms/Area_identity/edit_forms-Region.php'))
+        if ( ! file_exists(APPPATH.'views/pages/forms/Area_Identity/edit_forms-region.php'))
         {
             show_404();
         }
@@ -248,7 +247,7 @@ class Area_identittyController extends CI_Controller{
 
         $this->load->view('templates/header');
         $this->load->view('templates/sidebar');
-        $this->load->view('pages/forms/Area_identity/edit_forms-Region',$data);
+        $this->load->view('pages/forms/Area_Identity/edit_forms-region',$data);
         $this->load->view('templates/footer');
 
     }
@@ -296,7 +295,7 @@ class Area_identittyController extends CI_Controller{
 //////////////////// OCCUPATION ///////////////////
     public function forms_OCCUPATION() {
         
-        if ( ! file_exists(APPPATH.'views/pages/forms/Area_identity/forms-OCCUPATION.php'))
+        if ( ! file_exists(APPPATH.'views/pages/forms/Area_Identity/forms-OCCUPATION.php'))
         {
             show_404();
         }
@@ -316,7 +315,7 @@ class Area_identittyController extends CI_Controller{
 
         $this->load->view('templates/header');
         $this->load->view('templates/sidebar');
-        $this->load->view('pages/forms/Area_identity/forms-Occupation',$data);
+        $this->load->view('pages/forms/Area_Identity/forms-OCCUPATION',$data);
         $this->load->view('templates/footer');
 
     }
@@ -349,7 +348,7 @@ class Area_identittyController extends CI_Controller{
     
     public function edit_forms_OCCUPATION() {
         
-        if ( ! file_exists(APPPATH.'views/pages/forms/Area_identity/edit_forms-OCCUPATION.php'))
+        if ( ! file_exists(APPPATH.'views/pages/forms/Area_Identity/edit_forms-OCCUPATION.php'))
         {
             show_404();
         }
@@ -373,7 +372,7 @@ class Area_identittyController extends CI_Controller{
 
         $this->load->view('templates/header');
         $this->load->view('templates/sidebar');
-        $this->load->view('pages/forms/Area_identity/edit_forms-OCCUPATION',$data);
+        $this->load->view('pages/forms/Area_Identity/edit_forms-OCCUPATION',$data);
         $this->load->view('templates/footer');
 
     }

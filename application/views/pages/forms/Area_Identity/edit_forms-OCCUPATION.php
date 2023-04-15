@@ -146,11 +146,13 @@
         frm.AreaOccupationPercentage.value = "";
         return false;
     }
+    <?php if ($limit_AreaOccupationPercentage>0) { ?>
     if (frm.AreaOccupationPercentage.value><?php echo $limit_AreaOccupationPercentage; ?>){
         alert("ร้อยละของแต่ละกลุ่มอาชีพต้องไม่เกิน<?php echo $limit_AreaOccupationPercentage; ?>");
         frm.AreaOccupationPercentage.value = "";
         return false;
     }
+    <?php } ?>
 
     $('#Modal').modal('show');  
   }

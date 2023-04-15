@@ -56,7 +56,7 @@
                     <select class="form-select" aria-label="Default select example"  name="TeacherID"id="TeacherID">
                       <option selected value="-1">เลือกครูและบุคลากรทางการศึกษา</option>
                         <?php foreach($listTeacher as $lt) { ?>
-                          <option value="<?php echo $lt->TeacherID; ?>"><?php echo " (" . $lt->TeacherID . ") " . $lt->TeacherNameThai; ?></option>
+                          <option value="<?php echo $lt->TeacherID; ?>"><?php echo " (" . $lt->TeacherID . ") " . $lt->TeacherNameThai . " " . $lt->	TeacherLastNameThai; ?></option>
                         <?php } ?>
                     </select>
                     <label>ครูและบุคลากรทางการศึกษา<font color="red"> *</font></label>

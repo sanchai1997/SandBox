@@ -112,9 +112,9 @@
 
                 <div class="col-md-16">
                     <div class="input-group mb-3">
-                    <a href="load_file?file=<?php echo $c->CurriculumDocumentURL; ?>">
-                      <label class="input-group-text" for="inputGroupFile01"><i class="bi bi-file-earmark-arrow-down-fill"></i>  เอกสารหลักสูตร</label>
-                    </a>  
+                    
+                      <label class="input-group-text" for="inputGroupFile01">เอกสารหลักสูตร</label>
+                    
                     <input type="file" class="form-control"  name="CurriculumDocumentURL" id="CurriculumDocumentURL">
                     </div>
                 </div>
@@ -139,9 +139,9 @@
 
                 <div class="col-md-16">
                     <div class="input-group mb-3">
-                    <a href="load_file?file=<?php echo $c->LocalCurriculumDocumentURL; ?>">
-                      <label class="input-group-text" for="inputGroupFile01"><i class="bi bi-file-earmark-arrow-down-fill"></i>  เอกสารแนบหลักสูตรอ้างอิง</label>
-                    </a>  
+                  
+                      <label class="input-group-text" for="inputGroupFile01"> เอกสารแนบหลักสูตรอ้างอิง</label>
+                    
                     <input type="file" class="form-control" name="LocalCurriculumDocumentURL" id="LocalCurriculumDocumentURL" placeholder="เอกสารแนบหลักสูตรอ้างอิง" >
                     </div>
                 </div>
@@ -200,28 +200,6 @@
      }
    }
 
-  
-   ///SchoolID
-   var my_SchoolID = "<?php echo $c->SchoolID; ?>";
-   var selectoption_my_SchoolID = document.querySelector('#SchoolID');
-   var size_my_SchoolID =  document.getElementById("SchoolID").options.length;
-   for (let i = 0; i < size_my_SchoolID; i++) {
-     if(selectoption_my_SchoolID[i].value==my_SchoolID){
-        selectoption_my_SchoolID[i].selected = true;
-        break;
-     }
-   }
-
-  ///CurriculumCode
-   var my_CurriculumCode = "<?php echo $c->CurriculumCode; ?>";
-   var selectoption_my_CurriculumCode = document.querySelector('#CurriculumCode');
-   var size_my_CurriculumCode =  document.getElementById("CurriculumCode").options.length;
-   for (let i = 0; i < size_my_CurriculumCode; i++) {
-     if(selectoption_my_CurriculumCode[i].value==my_CurriculumCode){
-        selectoption_my_CurriculumCode[i].selected = true;
-        break;
-     }
-   }
 
    ///EducationLevelCode
    var my_EducationLevelCode = "<?php echo $c->EducationLevelCode; ?>";
@@ -247,8 +225,14 @@
 
    ///LocalCurriculumFlag
    var my_LocalCurriculumFlag = "<?php echo $c->LocalCurriculumFlag; ?>";
-   var selectoption_LocalCurriculumFlag = document.querySelector('#LocalCurriculumFlag');
-   selectoption_Semester[my_LocalCurriculumFlag].selected = true;
+   var selectoption_my_LocalCurriculumFlag = document.querySelector('#LocalCurriculumFlag');
+   var size_my_LocalCurriculumFlag =  document.getElementById("LocalCurriculumFlag").options.length;
+   for (let i = 0; i < size_my_LocalCurriculumFlag; i++) {
+     if(selectoption_my_LocalCurriculumFlag[i].value==my_LocalCurriculumFlag){
+        selectoption_my_LocalCurriculumFlag[i].selected = true;
+        break;
+     }
+   }   
 
  }
 

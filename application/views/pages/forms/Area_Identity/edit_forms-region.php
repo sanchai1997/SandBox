@@ -145,11 +145,13 @@ for (let i = 0; i < size_my_AreaReligionCode; i++) {
         frm.AreaReligionPercentage.value = "";
         return false;
     }
-    if (frm.AreaReligionPercentage.value><?php echo $limit_AreaReligionPercentage; ?>){
-        alert("ร้อยละของแต่ละศาสนาต้องไม่เกิน<?php echo $limit_AreaReligionPercentage; ?>");
-        frm.AreaReligionPercentage.value = "";
-        return false;
-    }
+    <?php if ($limit_AreaReligionPercentage>0) { ?>
+      if (frm.AreaReligionPercentage.value><?php echo $limit_AreaReligionPercentage; ?>){
+          alert("ร้อยละของแต่ละศาสนาต้องไม่เกิน<?php echo $limit_AreaReligionPercentage; ?>");
+          frm.AreaReligionPercentage.value = "";
+          return false;
+      }
+    <?php } ?>
 
 
     $('#Modal').modal('show');  
