@@ -998,7 +998,7 @@
                                         </div>
                                     </div>
                                     <div class="row mb-3">
-                                        <div class="col">
+                                        <!-- <div class="col">
                                             <div class="form-check">
                                                 <input class="form-check-input" type="radio" name="selectOption"
                                                     value="1" id="flexRadioDefault1">
@@ -1013,7 +1013,7 @@
                                                     ลำดับองค์ประกอบตัวชี้วัด
                                                 </label>
                                             </div>
-                                        </div>
+                                        </div> -->
                                         <div class="col">
                                             <div class="form-floating">
                                                 <select class="form-select" id="LevelIndex"
@@ -1024,7 +1024,7 @@
                                                         foreach ($result->result() as $cls) {
                                                             ?>
                                                     <option id="<?= $cls->CriteriaID; ?>" value="<?= $cls->LevelIndex; ?>">
-                                                        <?= $cls->LevelName; ?></option>
+                                                    <?= $cls->LevelIndex; ?>.   <?= $cls->LevelName; ?></option>
                                                     <?php } ?>
                                                     <option value="0">เลือก</option>
                                                 </select>
@@ -1044,7 +1044,7 @@
                                                             ?>
                                                     <option id="<?= $cls->CriteriaID; ?>"
                                                         value="<?= $cls->CompositionIndex; ?>">
-                                                        <?= $cls->CompositionName; ?></option>
+                                                        <?= $cls->CompositionIndex; ?>.   <?= $cls->CompositionName; ?></option>
                                                     <?php } ?>
                                                     <option value="0">เลือก</option>
                                                 </select>
@@ -1125,7 +1125,7 @@
                                 }
                                 </script>
                                 </script>
-                                <script>
+                                <!-- <script>
                                 $(document).ready(function() {
                                     // ซ่อน select ทั้งสองตั้งแต่เริ่มต้น
                                     $("#LevelIndex, #CompositionIndex").hide();
@@ -1165,7 +1165,7 @@
                                         }
                                     });
                                 });
-                                </script>
+                                </script> -->
                                 <script>
                                 $(document).ready(function() {
                                     $("#CompositionIndex").children('option:gt(0)').hide();
