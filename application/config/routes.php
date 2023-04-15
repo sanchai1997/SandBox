@@ -100,7 +100,22 @@ $route['list-area_identity_by_school'] = 'Area_identittyController/list_area_ide
 $route['forms-area_identity'] = 'Area_identittyController/forms_Area_identitty';
 $route['add-area_identity_by_school']['post'] = 'Area_identittyController/add_area_identity';
 $route['delete_area_identity'] = 'Area_identittyController/delete_area_identity';
+$route['edit_forms_area_identity'] = 'Area_identittyController/edit_forms_area_identity';
+$route['edit-area_identity']['post'] = 'Area_identittyController/edit_area_identity';
 
+//Region
+$route['forms-Region'] = 'Area_identittyController/forms_Region';
+$route['add-Region']['post'] = 'Area_identittyController/add_Region';
+$route['delete_Region'] = 'Area_identittyController/delete_Region';
+$route['edit_forms_Region'] = 'Area_identittyController/edit_forms_Region';
+$route['edit-Region']['post'] = 'Area_identittyController/edit_Region';
+
+//OCCUPATION
+$route['forms-OCCUPATION'] = 'Area_identittyController/forms_OCCUPATION';
+$route['add-OCCUPATION']['post'] = 'Area_identittyController/add_OCCUPATION';
+$route['delete_OCCUPATION'] = 'Area_identittyController/delete_OCCUPATION';
+$route['edit_forms_OCCUPATION'] = 'Area_identittyController/edit_forms_OCCUPATION';
+$route['edit-OCCUPATION']['post'] = 'Area_identittyController/edit_OCCUPATION';
 
 
 ////////////////////// ROUTE SCHOOL ////////////////////////

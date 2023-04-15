@@ -93,16 +93,134 @@
                                         else if ($Semester_code == 2) echo "ภาคเรียนที่ 2";
                                         ?>
                                 </td>
-                                <td style="text-align: center;">
-                                    <a href='list-curriculum_subject?cid=<?php echo $ls->CurriculumID; ?>' class="btn btn-info">
-                                        <i class="bi bi-eye-fill"></i>
-                                    </a>
-                                </td>
-                                <td style="text-align: center;">
-                                    <a href='list-curriculum_subject?cid=<?php echo $ls->CurriculumID; ?>' class="btn btn-info">
-                                        <i class="bi bi-eye-fill"></i>
-                                    </a>
-                                </td>
+
+                                 <td style="text-align: center;"> 
+                                <?php $list_RELIGION = $this->Area_identitty_model->get_RELIGION($ls->SchoolID, $ls->EducationYear, $ls->Semester ); ?>
+                                    <?php foreach($list_RELIGION as $lr) { ?>
+                                        <div class="row">
+                                                <div class="col">
+                                                    <p>
+                                                    <button type="button" class="my-link btn btn-link " data-bs-toggle="modal" data-bs-target="#viewRegion<?php echo $lr->AreaReligionCode ?>"><?php echo $lr->RELIGION_NAME ; ?></button>
+                                                    </p>
+                                                </div>
+
+                                            </div>
+                                                                   
+                                <div class="modal fade" id="viewRegion<?php echo $lr->AreaReligionCode ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" style="text-align: left;">
+                                    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-xl">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="exampleModalLabel" style="padding-left: 30px; padding-top: 15px;"> <i class="bi bi-card-heading"></i>
+                                                    ข้อมูลศาสนา - 
+                                                    <?php echo $SchoolNameThai; ?> 
+                                                    ปีการศึกษา <?= $ls->EducationYear; ?> 
+                                                    <?php $Semester_code = $ls->Semester;
+                                                                if ($Semester_code == 0) echo "ตลอดปีการศึกษา";
+                                                                else if ($Semester_code == 1) echo "ภาคเรียนที่ 1";
+                                                                else if ($Semester_code == 2) echo "ภาคเรียนที่ 2";  ?>
+                                                </h5>
+
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                <hr>
+                                            </div>
+                                            <div class="modal-body" style="padding-left: 70px; padding-top: 20px;">
+                                                <div class="row">
+                                                    <h6 style="padding-top: 10px;"><b>ศาสนา</b></h6>
+                                                        <div class=" col-8" style="padding-bottom: 8px; padding-left: 40px;">
+                                                            <?php echo $lr->RELIGION_NAME  ?> 
+                                                        </div>
+                                                </div>
+                                                <div class="row">
+                                                        <h6 style="padding-top: 10px;"><b>ร้อยละของแต่ละศาสนา</b></h6>
+                                                        <div class=" col-8" style="padding-bottom: 8px; padding-left: 40px;">
+                                                           <?php echo $lr->AreaReligionPercentage;   ?>
+                                                        </div>
+                                                    
+                                                </div>
+                                        </div>
+                                            <div class="modal-footer">
+                                                <a href='edit_forms_Region?y=<?php echo $ls->EducationYear; ?>&&s=<?php echo $ls->Semester; ?>&&sid=<?php echo $SchoolID; ?>&&rid=<?php echo $lr->AreaReligionCode; ?>' class="btn btn-warning">
+                                                    <i class="bi bi-pencil-square"></i> 
+                                                </a> 
+
+                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ปิด</button>                                            </div>
+                                            </div>
+                                    </div>
+                                </div>
+                                <!----------------------------  END Modal view Region--------------------------------->
+
+                                    <?php  } ?>
+                                    <?php $limit_AreaReligionPercentage = $this->Area_identitty_model-> limit_AreaReligionPercentage($ls->EducationYear, $ls->Semester, $ls->SchoolID);    
+                                        if((count($list_RELIGION)==0 ) || ($limit_AreaReligionPercentage[0]->limit_Percentage>0 && count($list_RELIGION)>0 )) {
+                                    ?>
+                                        <a href='forms-Region?y=<?php echo $ls->EducationYear; ?>&&s=<?php echo $ls->Semester; ?>&&sid=<?php echo $SchoolID; ?>' class="fw-bold my-link">>>เพิ่มข้อมูลศาสนา<<</a>                                                            
+                                    <?php  }else  ?>
+                                 </td>
+
+                                <!----------------------------  OCCUPATION--------------------------------->
+
+                                 <td style="text-align: center;"> 
+                                <?php $list_OCCUPATION = $this->Area_identitty_model->get_OCCUPATION($ls->SchoolID, $ls->EducationYear, $ls->Semester ); ?>
+                                    <?php foreach($list_OCCUPATION as $lc) { ?>
+                                        <div class="row">
+                                                <div class="col">
+                                                    <p>
+                                                    <button type="button" class="my-link btn btn-link " data-bs-toggle="modal" data-bs-target="#viewOCCUPATION<?php echo $lc->AreaOccupationCode ?>"><?php echo $lc->OCCUPATION_NAME ; ?></button>
+                                                    </p>
+                                                </div>
+
+                                            </div>
+                                                                    <!-- Modal view  -->
+                                <div class="modal fade" id="viewOCCUPATION<?php echo $lc->AreaOccupationCode ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" style="text-align: left;">
+                                    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-xl">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="exampleModalLabel" style="padding-left: 30px; padding-top: 15px;"> <i class="bi bi-card-heading"></i>
+                                                    ข้อมูลศาสนา - 
+                                                    <?php echo $SchoolNameThai; ?> 
+                                                    ปีการศึกษา <?= $ls->EducationYear; ?> 
+                                                    <?php $Semester_code = $ls->Semester;
+                                                                if ($Semester_code == 0) echo "ตลอดปีการศึกษา";
+                                                                else if ($Semester_code == 1) echo "ภาคเรียนที่ 1";
+                                                                else if ($Semester_code == 2) echo "ภาคเรียนที่ 2";  ?>
+                                                </h5>
+
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                <hr>
+                                            </div>
+                                            <div class="modal-body" style="padding-left: 70px; padding-top: 20px;">
+                                                <div class="row">
+                                                    <h6 style="padding-top: 10px;"><b>กลุ่มอาชีพ</b></h6>
+                                                        <div class=" col-8" style="padding-bottom: 8px; padding-left: 40px;">
+                                                            <?php echo $lc->OCCUPATION_NAME  ?> 
+                                                        </div>
+                                                </div>
+                                                <div class="row">
+                                                        <h6 style="padding-top: 10px;"><b>ร้อยละของแต่ละกลุ่มอาชีพ</b></h6>
+                                                        <div class=" col-8" style="padding-bottom: 8px; padding-left: 40px;">
+                                                           <?php echo $lc->AreaOccupationPercentage;   ?>
+                                                        </div>
+                                                    
+                                                </div>
+                                        </div>
+                                            <div class="modal-footer">
+                                                <a href='edit_forms_OCCUPATION?y=<?php echo $ls->EducationYear; ?>&&s=<?php echo $ls->Semester; ?>&&sid=<?php echo $SchoolID; ?>&&rid=<?php echo $lc->AreaOccupationCode; ?>' class="btn btn-warning">
+                                                    <i class="bi bi-pencil-square"></i> 
+                                                </a> 
+
+                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ปิด</button>                                            </div>
+                                            </div>
+                                    </div>
+                                </div>
+                                <!----------------------------  END Modal view Expense --------------------------------->
+
+                                    <?php  } ?>
+                                    <?php $limit_AreaOccupationPercentage = $this->Area_identitty_model-> limit_AreaOccupationPercentage($ls->EducationYear, $ls->Semester, $ls->SchoolID);    
+                                        if((count($list_OCCUPATION)==0 ) || ($limit_AreaOccupationPercentage[0]->limit_Percentage>0 && count($list_OCCUPATION)>0 )) {
+                                    ?>
+                                        <a href='forms-OCCUPATION?y=<?php echo $ls->EducationYear; ?>&&s=<?php echo $ls->Semester; ?>&&sid=<?php echo $SchoolID; ?>' class="fw-bold my-link">>>เพิ่มข้อมูลกลุ่มอาชีพ<<</a>                                                            
+                                    <?php  }else  ?>
+                                 </td>
                                 
                              
                                 <td style="text-align: center;">
@@ -110,7 +228,7 @@
                                 </td>
                             
                                 <td style="text-align: center;">
-                                    <a href='edit_forms_budget?bid=<?php echo $ls->BudgetID ;?>&&sid=<?php echo $SchoolID; ?>' class="btn btn-warning">
+                                    <a href='edit_forms_area_identity?y=<?php echo $ls->EducationYear; ?>&&s=<?php echo $ls->Semester; ?>&&sid=<?php echo $SchoolID; ?>' class="btn btn-warning">
                                         <i class="bi bi-pencil-square"></i> 
                                     </a> 
                                     <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#delete<?php echo $i ;?>">

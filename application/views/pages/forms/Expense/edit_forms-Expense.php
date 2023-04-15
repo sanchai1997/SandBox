@@ -92,6 +92,13 @@
                   </div>
                 </div>
 
+                <div class="d-flex justify-content-between">
+                  <a href="list_budget_by_school?sid=<?php echo $SchoolID?>" class="btn btn-danger" >ยกเลิก</a>
+                  <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#delete<?php echo $e->ExpenseID ; ?>">
+                                        <i class=" bi bi-trash"></i>
+                  <button type="button" class="btn btn-warning" onclick="return check(BUDGET)">แก้ไขข้อมูล</button>
+                </div> 
+
            <!-- End Form ข้อมูลรายจ่าย -->
               
                 <!-- Modal -->
@@ -104,43 +111,19 @@
                           </div>
                           <div class="modal-body">
                               <h6>
-                                  <center>คุณต้องการแก้ไขข้อมูลใช่หรือไหม ?</center>
+                                  <center>คุณต้องการเพิ่มข้อมูลใช่หรือไม่ ?</center>
                               </h6>
                           </div>
                           <div class="modal-footer">
-                              <button type="submit" class="btn btn-primary click" >แก้ไขข้อมูล</button> 
+                              <button type="submit" class="btn btn-warning click" >แก้ไขข้อมูล</button> 
                               <button type="button" class="btn btn-danger" data-bs-dismiss="modal">ยกเลิก</button>
                           </div>
                       </div>
                   </div>
                </div>   
 
-                <div class="d-flex justify-content-between">
-                  <a href="list_budget_by_school?sid=<?php echo $SchoolID?>" class="btn btn-danger" >ยกเลิก</a>
-                  <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#delete<?php echo $e->ExpenseID ; ?>">
-                                        <i class=" bi bi-trash"></i>
-                  <button type="button" class="btn btn-warning" onclick="return check(BUDGET)">แก้ไขข้อมูล</button>
-                </div> 
-            <!-- Modal -->
-            <div class="modal fade" id="Modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
-                  <div class="modal-dialog modal-dialog-centered" role="document">
-                      <div class="modal-content">
-                          <div class="modal-header">
-                              <h5 class="modal-title" id="exampleModalLongTitle">ยืนยันการเพิ่มข้อมูล</h5>
-                              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                          </div>
-                          <div class="modal-body">
-                              <h6>
-                                  <center>คุณต้องการเพิ่มข้อมูลใช่หรือไหม ?</center>
-                              </h6>
-                          </div>
-                          <div class="modal-footer">
-                              <button type="submit" class="btn btn-primary click" >ยืนยัน</button> 
-                              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ยกเลิก</button>
-                          </div>
-                      </div>
-                  </div>
-               </div> 
+
+
                
                <div class="modal fade" id="delete<?php echo $e->ExpenseID ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true" >
                         <div class="modal-dialog modal-dialog-centered" role="document">

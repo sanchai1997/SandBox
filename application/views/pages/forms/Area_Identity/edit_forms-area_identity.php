@@ -1,7 +1,8 @@
+<body onload="onloadpage()">
 <main id="main" class="main">
-
+<?php foreach($Area_identity as $a) { ?>
     <div class="pagetitle">
-      <h1>ข้อมูลอัตลักษณ์ของแต่ละพื้นที่</h1>
+      <h1>แก้ไขข้อมูลอัตลักษณ์ของแต่ละพื้นที่</h1>
     </div><!-- End Page Title -->
 
     <section class="section">
@@ -29,13 +30,15 @@
               <h5 class="card-title"></h5>
 
               <!-- start Form ข้อมูลอัตลักษณ์ของแต่ละพื้นที่ -->
-              <form class="row g-3" action="<?php echo base_url('add-area_identity_by_school');?>" method="POST" name="AREA_IDENTITY" id="AREA_IDENTITY" enctype="multipart/form-data">
+              <form class="row g-3" action="<?php echo base_url('edit-area_identity');?>" method="POST" name="AREA_IDENTITY" id="AREA_IDENTITY" enctype="multipart/form-data">
               
               <input type="hidden" class="form-control"name="SchoolID"id="SchoolID" value="<?php echo $SchoolID ?>">
+              <input type="hidden" class="form-control"name="OLDEducationYear"id="OLDEducationYear" value="<?php echo $a->EducationYear; ?>">
+              <input type="hidden" class="form-control"name="OLDSemester"id="OLDSemester" value="<?php echo $a->Semester; ?>">
 
               <div class="col-md-16">
                   <div class="form-floating">
-                    <input type="text" class="form-control"name="EducationYear"id="EducationYear" placeholder="ปีการศึกษา" maxlength="4">
+                    <input type="text" class="form-control"name="EducationYear"id="EducationYear" placeholder="ปีการศึกษา" maxlength="4" value="<?php echo $a->EducationYear; ?>">
                     <label >ปีการศึกษา</label>
                   </div>
                 </div>
@@ -65,59 +68,60 @@
 
                 <div class="col-md-16">
                   <div class="form-floating">
-                    <input type="text" class="form-control"name="AreaProduct"id="AreaProduct" placeholder="ข้อมูลผลิตภัณฑ์ชุมชน">
+                    <input type="text" class="form-control"name="AreaProduct"id="AreaProduct" placeholder="ข้อมูลผลิตภัณฑ์ชุมชน" value="<?php echo $a->AreaProduct; ?>">
                     <label >ข้อมูลผลิตภัณฑ์ชุมชน</label>
                   </div>
                 </div>
 
                 <div class="col-md-16">
                   <div class="form-floating">
-                    <input type="text" class="form-control"name="AreaEnvironment"id="AreaEnvironment" placeholder="ข้อมูลสภาพพื้นที่/สภาพแวดล้อม">
+                    <input type="text" class="form-control"name="AreaEnvironment"id="AreaEnvironment" placeholder="ข้อมูลสภาพพื้นที่/สภาพแวดล้อม" value="<?php echo $a->AreaEnvironment; ?>">
                     <label >ข้อมูลสภาพพื้นที่/สภาพแวดล้อม</label>
                   </div>
                 </div>
 
                 <div class="col-md-16">
                   <div class="form-floating">
-                    <input type="text" class="form-control"name="AreaLanguage"id="AreaLanguage" placeholder="ภาษาท้องถิ่น">
+                    <input type="text" class="form-control"name="AreaLanguage"id="AreaLanguage" placeholder="ภาษาท้องถิ่น" value="<?php echo $a->AreaLanguage; ?>">
                     <label >ภาษาท้องถิ่น</label>
                   </div>
                 </div>
                 
                 <div class="col-md-16">
                   <div class="form-floating">
-                    <input type="text" class="form-control"name="AreaValues"id="AreaValues" placeholder="ค่านิยม/ความเชื่อ">
+                    <input type="text" class="form-control"name="AreaValues"id="AreaValues" placeholder="ค่านิยม/ความเชื่อ" value="<?php echo $a->AreaValues; ?>">
                     <label >ค่านิยม/ความเชื่อ</label>
                   </div>
                 </div>
 
                 <div class="col-md-16">
                   <div class="form-floating">
-                    <input type="text" class="form-control"name="AreaCulture"id="AreaCulture" placeholder="ข้อมูลศิลปะ/วัฒนธรรม/ภูมิปัญญา">
+                    <input type="text" class="form-control"name="AreaCulture"id="AreaCulture" placeholder="ข้อมูลศิลปะ/วัฒนธรรม/ภูมิปัญญา" value="<?php echo $a->AreaCulture; ?>">
                     <label >ข้อมูลศิลปะ/วัฒนธรรม/ภูมิปัญญา</label>
                   </div>
                 </div>
 
                 <div class="d-flex justify-content-between">
                   <a href="list-area_identity_by_school?sid=<?php echo $SchoolID?>" class="btn btn-danger" >ยกเลิก</a>
-                  <button type="button" class="btn btn-primary" onclick="return check(AREA_IDENTITY)">บันทึกข้อมูล</button>
+                  <button type="button" class="btn btn-warning" onclick="return check(AREA_IDENTITY)">แก้ไขข้อมูล</button>
                 </div> 
+
 
                  <!-- Modal -->
                 <div class="modal fade" id="Modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
                   <div class="modal-dialog modal-dialog-centered" role="document">
                       <div class="modal-content">
                           <div class="modal-header">
-                              <h5 class="modal-title" id="exampleModalLongTitle">ยืนยันการเพิ่มข้อมูล</h5>
+                              <h5 class="modal-title" id="exampleModalLongTitle">ยืนยันการแก้ไขข้อมูล</h5>
                               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                           </div>
                           <div class="modal-body">
                               <h6>
-                                  <center>คุณต้องการเพิ่มข้อมูลใช่หรือไหม ?</center>
+                                  <center>คุณต้องการแก้ไขข้อมูลใช่หรือไหม ?</center>
                               </h6>
                           </div>
                           <div class="modal-footer">
-                              <button type="submit" class="btn btn-primary click" >ยืนยัน</button> 
+                              <button type="submit" class="btn btn-warning click" >แก้ไขข้อมูล</button> 
                               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ยกเลิก</button>
                           </div>
                       </div>
@@ -135,6 +139,19 @@
       </div>
     </section>
 <script>
+    function onloadpage(){
+
+    ///Semester
+    var my_Semester = "<?php echo $a->Semester; ?>";
+    var selectoption_Semester = document.querySelector('#Semester');
+    var size_my_Semester =  document.getElementById("Semester").options.length;
+    for (let i = 0; i < size_my_Semester; i++) {
+        if(selectoption_Semester[i].value==my_Semester){
+        selectoption_Semester[i].selected = true;
+            break;
+        }
+    }
+    }
   function check(AREA_IDENTITY){
     var EDUCATION = /^[0-9]{4}$/;
     if(AREA_IDENTITY.EducationYear.value ==""){
@@ -214,5 +231,5 @@
   }
      
 </script>
-
+<?php } ?> 
   </main><!-- End #main -->
