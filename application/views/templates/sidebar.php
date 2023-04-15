@@ -36,13 +36,13 @@
            </a>
          </li>
          <li>
-           <a href="graduated">
-             <i class="bi bi-circle"></i><span>ข้อมูลผู้สำเร็จการศึกษา</span>
+           <a href="transcript">
+             <i class="bi bi-circle"></i><span>ข้อมูลผลสัมฤทธิ์ทางการศึกษา</span>
            </a>
          </li>
          <li>
-           <a href="transcript">
-             <i class="bi bi-circle"></i><span>ข้อมูลผลสัมฤทธิ์ทางการศึกษา</span>
+           <a href="craduated">
+             <i class="bi bi-circle"></i><span>ข้อมูลผู้สำเร็จการศึกษา</span>
            </a>
          </li>
        </ul>
