@@ -13,11 +13,11 @@ class Area_identittyController extends CI_Controller{
         
     }
     public function forms_Area_identitty() {
-        
-        if ( ! file_exists(APPPATH.'views/pages/forms/Area_identity/forms-area_identity.php'))
+        if ( ! file_exists(APPPATH.'views/pages/forms/Area_identity/forms-area_identitty.php'))
         {
             show_404();
         }
+        
         $data['listSchool'] = $this->School_model->get_school_All();
         $data['listReligion'] = $this->Area_identitty_model->get_RELIGION_All();
         $data['listOccupation'] = $this->Area_identitty_model->get_OCCUPATION_All();

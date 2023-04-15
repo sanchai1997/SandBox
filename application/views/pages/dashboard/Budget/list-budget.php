@@ -167,7 +167,12 @@
                             <!----------------------------  END Modal view Expense --------------------------------->
 
                                     <?php $i++;  } ?>
-                                    <a href='forms_Expense?bid=<?php echo $lb->BudgetID ;?>&&sid=<?php echo $SchoolID; ?>' class="fw-bold my-link">>>เพิ่มข้อมูลเบิกจ่าย<<</a>                                                            
+                                    <?php        $limit_amount = $this->Expense_model-> limit_amount($lb->BudgetID);    
+    
+                                        if((count($list_Expense)==0 ) || ($limit_amount[0]->limit_amount>0 && count($list_Expense)>0 )) {
+                                    ?>
+                                        <a href='forms_Expense?bid=<?php echo $lb->BudgetID ;?>&&sid=<?php echo $SchoolID; ?>' class="fw-bold my-link">>>เพิ่มข้อมูลเบิกจ่าย<<</a>                                                            
+                                    <?php  }  ?>
                             </td>
                                 <td style="text-align: center;">
                                     <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#view<?php echo $i ;?>"><i class="bi bi-card-list"></i></button>

@@ -154,7 +154,7 @@
                                         if((count($list_RELIGION)==0 ) || ($limit_AreaReligionPercentage[0]->limit_Percentage>0 && count($list_RELIGION)>0 )) {
                                     ?>
                                         <a href='forms-Region?y=<?php echo $ls->EducationYear; ?>&&s=<?php echo $ls->Semester; ?>&&sid=<?php echo $SchoolID; ?>' class="fw-bold my-link">>>เพิ่มข้อมูลศาสนา<<</a>                                                            
-                                    <?php  }else  ?>
+                                    <?php  }  ?>
                                  </td>
 
                                 <!----------------------------  OCCUPATION--------------------------------->
