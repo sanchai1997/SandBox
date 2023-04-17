@@ -36,13 +36,13 @@
            </a>
          </li>
          <li>
-           <a href="graduated">
-             <i class="bi bi-circle"></i><span>ข้อมูลผู้สำเร็จการศึกษา</span>
+           <a href="transcript">
+             <i class="bi bi-circle"></i><span>ข้อมูลผลสัมฤทธิ์ทางการศึกษา</span>
            </a>
          </li>
          <li>
-           <a href="transcript">
-             <i class="bi bi-circle"></i><span>ข้อมูลผลสัมฤทธิ์ทางการศึกษา</span>
+           <a href="craduated">
+             <i class="bi bi-circle"></i><span>ข้อมูลผู้สำเร็จการศึกษา</span>
            </a>
          </li>
        </ul>
@@ -70,7 +70,7 @@
      </li><!-- End ข้อมูลงบประมาณ Page Nav -->
 
      <li class="nav-item">
-       <a class="nav-link collapsed" href="forms-area_identitty">
+       <a class="nav-link collapsed" href="list-area_identity">
          <i class="bi bi-card-list"></i>
          <span>ข้อมูลอัตลักษณ์ของแต่ละพื้นที่</span>
        </a>
@@ -83,32 +83,32 @@
        <ul id="components-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
          <li>
            <a href="<?php echo site_url('Fm_innovation_das_p1?page=sh1') ?>">
-             <i class="bi bi-circle"></i><span>ข้อมูลนวัตกรรมการศึกษา</span>
+             <i class="bi bi-circle"></i><span>นวัตกรรมการศึกษา</span>
            </a>
          </li>
          <li>
            <a href="<?php echo site_url('Fm_lear_tech_media_das_p1?page=sh1') ?>">
-             <i class="bi bi-circle"></i><span>ข้อมูลเทคโนโลยีและสื่อการเรียนรู้</span>
+             <i class="bi bi-circle"></i><span>เทคโนโลยีและสื่อการเรียนรู้</span>
            </a>
          </li>
          <li>
            <a href="<?php echo site_url('Fm_best_practice_das_p1?page=sh1') ?>">
-             <i class="bi bi-circle"></i><span>ข้อมูลแนวปฏิบัติที่เป็นเลิศ</span>
+             <i class="bi bi-circle"></i><span>แนวปฏิบัติที่เป็นเลิศ</span>
            </a>
          </li>
          <li>
            <a href="<?php echo site_url('Fm_participant_das_p1?page=sh1') ?>">
-             <i class="bi bi-circle"></i><span>ข้อมูลหน่วยงานที่มีส่วนร่วม</span>
+             <i class="bi bi-circle"></i><span>หน่วยงานที่เข้ามามีส่วนร่วม</span>
            </a>
          </li>
          <li>
            <a href="<?php echo site_url('Fm_committee_das_p1?page=sh1') ?>">
-             <i class="bi bi-circle"></i><span>ข้อมูลเกี่ยวกับอำนาจหน้าที่</span>
+             <i class="bi bi-circle"></i><span>อำนาจและหน้าที่ของคณะกรรมการ</span>
            </a>
          </li>
          <li>
            <a href="<?php echo site_url('Fm_evaluation_das_p1?page=sh1') ?>">
-             <i class="bi bi-circle"></i><span>ข้อมูลประกันคุณภาพ</span>
+             <i class="bi bi-circle"></i><span>การประกันคุณภาพด้วยตัวชี้วัด</span>
            </a>
          </li>
        </ul>

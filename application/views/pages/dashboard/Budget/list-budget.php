@@ -32,6 +32,22 @@
     </div>
     <?php } ?>  
 
+    <!-- Alert -->
+    <?php if (!empty($_SESSION['errors'])) { ?>
+      <div class="row">
+        <div class="col-lg-9">
+          <div class="alert alert-danger" id="myAlert" style="top: 0; left: 0; right: 0; z-index: 1;">
+              <strong>
+                  <?php
+                  echo '<i class="bi bi-exclamation-circle-fill"></i> '. $_SESSION['errors'];
+                  unset($_SESSION['errors']);
+                  ?>
+              </strong>
+          </div> 
+        </div>
+      </div>
+      <?php } ?>  
+
 
     <!-- Recent Sales -->
     <div class="col-12">
@@ -63,7 +79,7 @@
                             <?php } ?>
                     </div>
                     <div class="col">
-                        <h5 style="float: right; padding: 15px;" class="card-title"><a href="forms-budget?sid=<?php echo $SchoolID; ?>" class="btn btn-success">เพิ่มข้อมูล</a></h5>
+                        <h5 style="float: right; padding: 15px;" class="card-title"><a href="" class="btn btn-success">อัพโหลดไฟล์</a>&nbsp;&nbsp;<a href="forms-budget?sid=<?php echo $SchoolID; ?>" class="btn btn-success">เพิ่มข้อมูล</a></h5>
                     </div>
                 </div>
                 <table class="table table-borderless datatable">
@@ -167,7 +183,12 @@
                             <!----------------------------  END Modal view Expense --------------------------------->
 
                                     <?php $i++;  } ?>
-                                    <a href='forms_Expense?bid=<?php echo $lb->BudgetID ;?>&&sid=<?php echo $SchoolID; ?>' class="fw-bold my-link">>>เพิ่มข้อมูลเบิกจ่าย<<</a>                                                            
+                                    <?php        $limit_amount = $this->Expense_model-> limit_amount($lb->BudgetID);    
+    
+                                        if((count($list_Expense)==0 ) || ($limit_amount[0]->limit_amount>0 && count($list_Expense)>0 )) {
+                                    ?>
+                                        <a href='forms_Expense?bid=<?php echo $lb->BudgetID ;?>&&sid=<?php echo $SchoolID; ?>' class="fw-bold my-link">>>เพิ่มข้อมูลเบิกจ่าย<<</a>                                                            
+                                    <?php  }  ?>
                             </td>
                                 <td style="text-align: center;">
                                     <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#view<?php echo $i ;?>"><i class="bi bi-card-list"></i></button>

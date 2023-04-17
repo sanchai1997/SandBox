@@ -33,7 +33,7 @@
         <div class="row ">
 
             <?php switch ($page) {
-                case 'sh1': ?> <h1>ข้อมูลคำสั่งแต่งตั้งคณะกรรมการ </h1>
+                case 'sh1': ?> <h1>อำนาจและหน้าที่ของคณะกรรมการขับเคลื่อนพื้นที่นวัตกรรมการศึกษาด้านต่างๆ </h1>
             <?php break;
                 case 'sh2': ?> <h1>ข้อมูลรายชื่อคณะกรรมการ - เลขที่คำสั่ง<?php echo $key ?></h1>
             <?php break;
@@ -356,7 +356,7 @@
                         <p>
                             <td scope="row " style="text-align: center;">
                                 <a href="<?php echo base_url('assets/EII/COMMITTEE') ?>/<?php echo $show->CommitteeAppointmentAttachmentURL; ?>"
-                                    target="_blank">รายละเอียดเอกสาร</i></a>
+                                    target="_blank"><i class="bi bi-file-earmark-text-fill"></i>รายละเอียดเอกสาร</a>
 
                             </td>
                         </p>

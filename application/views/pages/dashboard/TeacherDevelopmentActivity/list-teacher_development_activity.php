@@ -31,6 +31,22 @@
     </div>
     <?php } ?>  
 
+    <!-- Alert -->
+    <?php if (!empty($_SESSION['errors'])) { ?>
+      <div class="row">
+        <div class="col-lg-9">
+          <div class="alert alert-danger" id="myAlert" style="top: 0; left: 0; right: 0; z-index: 1;">
+              <strong>
+                  <?php
+                  echo '<i class="bi bi-exclamation-circle-fill"></i> '. $_SESSION['errors'];
+                  unset($_SESSION['errors']);
+                  ?>
+              </strong>
+          </div> 
+        </div>
+      </div>
+      <?php } ?>  
+
 
     <!-- Recent Sales -->
     <div class="col-12">
@@ -43,7 +59,6 @@
 
                     <div class="col">
                         <h5 style="float: right; padding: 15px;" class="card-title">
-                        <a href="" class="btn btn-success">อัพโหลดไฟล์</a>
                         <a href="forms-teacher_development_activity" class="btn btn-success">เพิ่มข้อมูล</a></h5>
                     </div>
                 </div>
@@ -119,6 +134,9 @@
 
                                                 <div class="row">
                                                     <h6 style="padding-top: 10px;"><b>ข้อมูลการพัฒนาบุคลากร</b></h6>
+                                                    <div class=" col-8" style="padding-bottom: 8px; padding-left: 40px;">
+                                                        ครูและบุคลากรทางการศึกษา - <?= " (" . $ls->TeacherID . ") " . $ls->TeacherNameThai . " " . $ls->	TeacherLastNameThai;  ?> 
+                                                    </div>                                       
                                                     <div class=" col-8" style="padding-bottom: 8px; padding-left: 40px;">
                                                         ประเภทกิจกรรม - <?= $ls->TEACHER_DEVELOPMENT_ACTIVITY_TYPE_NAME ; ?> 
                                                     </div>

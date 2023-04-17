@@ -114,7 +114,7 @@ if (isset( $_SESSION['success'])) { ?>
                             <div class="row mb-3">
                                 <div class="col">
                                     <div class="form-floating">
-                                        <input type="text" class="form-control" id="floatingName"
+                                        <input type="number" class="form-control" id="floatingName"
                                             placeholder="ปีการศึกษา" name="EducationYear">
                                         <label for="Y"><?php echo nbs(2); ?> ปีการศึกษา </label>
                                     </div>
@@ -324,7 +324,7 @@ if (isset( $_SESSION['success'])) { ?>
                             <div class="row mb-3">
                                 <div class="col">
                                     <div class="form-floating">
-                                        <input type="text" class="form-control" id="floatingName"
+                                        <input type="number" class="form-control" id="floatingName"
                                             placeholder="ปีการศึกษา" name="EducationYear"
                                             value="<?php echo $show->EducationYear ?>">
                                         <label for="Y"><?php echo nbs(2); ?> ปีการศึกษา </label>

@@ -37,7 +37,7 @@
                 $page
             ) {
                 case 'sh1': ?>
-            <h1>ตัวชี้วัด</h1>
+            <h1>การประกันคุณภาพด้วยตัวชี้วัดของพื้นที่นวัตกรรมการศึกษา</h1>
             <?php break;
                 case 'sh2': ?>
             <h1>ข้อมูลระดับตัวชี้วัด -
@@ -251,11 +251,11 @@
                                                 </div>
                                             </div>
                                             <div class="modal-footer">
-                                                <button type="button" class="btn btn-secondary"
-                                                    data-bs-dismiss="modal">ปิด</button>
                                                 <a href="<?php echo site_url('ass_ria_lvl_forms_p2?page=sh22') ?>&&lvl=<?php echo $show->CriteriaLevelAmount ?>&&CriteriaID=<?php echo $show->Id ?>&&CriteriaLevelAmount=<?php echo $show->CriteriaLevelAmount ?>&&key=<?php echo $cls->Id_acl; ?>&&name=<?php echo $show->CriteriaName; ?>"
-                                                    class="my-link btn btn-warning"><i class="bi bi-pencil-square"></i>
-                                                </a>
+                                                class="my-link btn btn-warning"><i class="bi bi-pencil-square"></i>
+                                            </a>
+                                            <button type="button" class="btn btn-secondary"
+                                                data-bs-dismiss="modal">ปิด</button>
                                             </div>
                                         </div>
                                     </div>
@@ -321,10 +321,10 @@
                                                 </div>
                                             </div>
                                             <div class="modal-footer">
+                                                <a href="<?php echo site_url('ass_ria_com_forms_p3?page=sh33') ?>&&lvl=<?php echo $show->CriteriaCompositionAmount ?>&&Id_acc=<?php echo $showA3->Id_acc; ?>&&Id=<?php echo $show->Id; ?>&&name=<?php echo $show->CriteriaName; ?>&&CriteriaID=<?php echo $show->CriteriaID; ?>"
+                                                class="my-link btn btn-warning"><i class="bi bi-pencil-square"> </i></a>
                                                 <button type="button" class="btn btn-secondary"
                                                     data-bs-dismiss="modal">ปิด</button>
-                                                    <a href="<?php echo site_url('ass_ria_com_forms_p3?page=sh33') ?>&&lvl=<?php echo $show->CriteriaCompositionAmount ?>&&Id_acc=<?php echo $showA3->Id_acc; ?>&&Id=<?php echo $show->Id; ?>&&name=<?php echo $show->CriteriaName; ?>&&CriteriaID=<?php echo $show->CriteriaID; ?>"
-                                    class="my-link btn btn-warning"><i class="bi bi-pencil-square"> </i></a>
                                                 
                                             </div>
                                         </div>
@@ -726,10 +726,10 @@
                                                 </div>
                                             </div>
                                             <div class="modal-footer">
+                                                <a href="<?php echo site_url('sc_ass_res_forms_p7?page=sh77') ?>&&key=<?php echo $showR->Id_sar; ?>&&year=<?php echo $showR->SchoolAssessmentEducationYear; ?>&&summer=<?php echo $showR->SchoolAssessmentSemester; ?>&&SchoolID=<?php echo $showR->SchoolID; ?>&&CriteriaID=<?php echo $show_top->Id; ?>"
+                                                class="btn btn-warning"> <i class="bi bi-pencil-square"></i></a>
                                                 <button type="button" class="btn btn-secondary"
                                                     data-bs-dismiss="modal">ปิด</button>
-                                                <a href="<?php echo site_url('sc_ass_res_forms_p7?page=sh77') ?>&&key=<?php echo $showR->Id_sar; ?>&&year=<?php echo $showR->SchoolAssessmentEducationYear; ?>&&summer=<?php echo $showR->SchoolAssessmentSemester; ?>&&SchoolID=<?php echo $showR->SchoolID; ?>&&CriteriaID=<?php echo $show_top->Id; ?>"
-                                                    class="btn btn-warning"> <i class="bi bi-pencil-square"></i></a>
                                             </div>
                                         </div>
                                     </div>
@@ -793,10 +793,10 @@
                                                 </div>
                                             </div>
                                             <div class="modal-footer">
+                                                <a href="<?php echo site_url('sc_ass_res_forms_p7?page=sh77') ?>&&key=<?php echo $showR->Id_sar; ?>&&year=<?php echo $showR->SchoolAssessmentEducationYear; ?>&&summer=<?php echo $showR->SchoolAssessmentSemester; ?>&&SchoolID=<?php echo $showR->SchoolID; ?>&&CriteriaID=<?php echo $show_top->Id; ?>"
+                                                class="btn btn-warning"> <i class="bi bi-pencil-square"></i></a>
                                                 <button type="button" class="btn btn-secondary"
                                                     data-bs-dismiss="modal">ปิด</button>
-                                                <a href="<?php echo site_url('sc_ass_res_forms_p7?page=sh77') ?>&&key=<?php echo $showR->Id_sar; ?>&&year=<?php echo $showR->SchoolAssessmentEducationYear; ?>&&summer=<?php echo $showR->SchoolAssessmentSemester; ?>&&SchoolID=<?php echo $showR->SchoolID; ?>&&CriteriaID=<?php echo $show_top->Id; ?>"
-                                                    class="btn btn-warning"> <i class="bi bi-pencil-square"></i></a>
                                             </div>
                                         </div>
                                     </div>
@@ -1406,6 +1406,8 @@
                                     <td>หัวข้อ</td>
                                     <td>ค่าน้ำหนัก</td>
                                     <td>หลักฐาน</td>
+                                    <td>คำอธิบายองค์ประกอบของตัวชี้วัด</td>
+
                                 </tr>
                                 <?php $resultc = $this->db->query("SELECT * FROM ASSESSMENT_CRITERIA_COMPOSITION
                                 where CriteriaID = $Id AND DeleteStatus = 0 ORDER BY CompositionIndex ASC");
@@ -1413,7 +1415,7 @@
                                 <tr>
                                     <td>
                                         <p>
-                                            <?php echo $showc->CompositionIndex; ?>
+                                            <?php echo $CompositionIndex = $showc->CompositionIndex; ?>
                                         </p>
                                     </td>
                                     <td>
@@ -1431,6 +1433,22 @@
                                             <?php echo $showc->CompositionGuideline; ?>
                                         </p>
                                     </td>
+                                    <td>
+                                        <table>
+                                        <?php $resultT = $this->db->query("SELECT * FROM ASSESSMENT_CRITERIA_COMPOSITION_LEVEL
+                                  where CriteriaID = $Id  AND DeleteStatus = 0 AND CompositionIndex = $CompositionIndex");
+                                        foreach ($resultT->result() as $showT) { ?>
+                                       <tr>
+                                               <td>
+                                                    <p>
+                                                        <?php echo $showT->CompositionLevelDescription; ?>
+                                                    </p>
+                                               </td>
+                                       </tr>
+                                       <?php } ?>
+
+                                        </table>
+                                    </td>
                                 </tr>
                                 <?php } ?>
                             </table>
@@ -1441,72 +1459,8 @@
                                 class="my-link fw-bold">>>เพิ่มคำอธิบาย>>
                             </a></td>
                     </tr>
-                    <tr>
-                        <th>คำอธิบายตัวชี้วัด</th>
-                        <th>คำอธิบายองค์ประกอบของตัวชี้วัด </th>
-                    </tr>
-                    <tr>
-                        <td>
-                            <table class="table table-bordered">
-                                <thead class="table-Ligth">
-                                    <tr>
-                                        <td>ตัวชี้วัด </td>
-                                        <td>คำอธิบาย </td>
-
-                                    </tr>
-                                </thead>
-                                <?php
-
-                                        $resultY = $this->db->query("SELECT * FROM ASSESSMENT_CRITERIA_COMPOSITION_LEVEL
-                                where CriteriaID = $Id AND LevelIndex <> '0'  AND DeleteStatus = 0 ");
-                                        foreach ($resultY->result() as $showY) { ?>
-                                <tr>
-                                    <td>
-                                        <p>
-                                            <?php echo $showY->LevelIndex; ?>
-                                        </p>
-                                    </td>
-                                    <td>
-                                        <p>
-                                        <a href="<?php echo site_url('ass_ria_com_lvl_forms_p4?page=sh44') ?>&&Id_accl=<?php echo $showY->Id_accl; ?>&&CriteriaID=<?php echo $showY->CriteriaID; ?>"
-                                    class="my-link "> <?php echo $showY->CompositionLevelDescription; ?></a>
-                                           
-                                        </p>
-                                    </td>
-
-                                </tr>
-                                <?php } ?>
-                            </table>
-                        </td>
-
-
-                        <td>
-                            <table class="table table-bordered">
-                                <tr>
-                                    <td>ลำดับองค์ประกอบ</td>
-                                    <td>คำอธิบาย</td>
-
-                                </tr>
-                                <?php $resultT = $this->db->query("SELECT * FROM ASSESSMENT_CRITERIA_COMPOSITION_LEVEL
-                                  where CriteriaID = $Id AND CompositionIndex <> '0' AND DeleteStatus = 0 ");
-                                        foreach ($resultT->result() as $showT) { ?>
-                                <tr>
-                                    <td>
-                                        <p>
-                                            <?php echo $showT->CompositionIndex; ?>
-                                        </p>
-                                    </td>
-                                    <td>
-                                        <p>
-                                            <?php echo $showT->CompositionLevelDescription; ?>
-                                        </p>
-                                    </td>
-
-                                </tr>
-                                <?php } ?>
-                            </table>
-                        </td>
-                    </tr>
+                    
+                    
                 </table>
 
             </div>
@@ -1715,9 +1669,9 @@
 
                     </div>
                 </div>
-                <a href="<?php echo site_url('sc_ass_res_forms_p7?page=sh7') ?>&&year=<?php echo $show_top->SchoolAssessmentEducationYear; ?>&&summer=<?php echo $show_top->SchoolAssessmentSemester; ?>&&SchoolID=<?php echo $show_top->SchoolID; ?>&&CriteriaID=<?php echo $show_top->Id; ?>"
+                <!-- <a href="<?php echo site_url('sc_ass_res_forms_p7?page=sh7') ?>&&year=<?php echo $show_top->SchoolAssessmentEducationYear; ?>&&summer=<?php echo $show_top->SchoolAssessmentSemester; ?>&&SchoolID=<?php echo $show_top->SchoolID; ?>&&CriteriaID=<?php echo $show_top->Id; ?>"
                     class="my-link fw-bold">>>เพิ่มอเกณฑ์การประเมินโรงเรียน>>
-                </a>
+                </a> -->
                 <table class="table table-borderless">
                     <tr>
                         <th>ตัวชี้วัด</th>
@@ -1868,7 +1822,7 @@
                         <p>
                             <th scope="row " style="text-align: center;">
                                 <a href="<?php echo base_url('assets/EII/ACHIEVEMENT_ASSESSMENT/') ?>/<?php echo $show->AchievementAssessmentAttachmentURL; ?>"
-                                    target="_blank">รายละเอียดเอกสาร</i></a>
+                                    target="_blank"><i class="bi bi-file-earmark-text-fill"></i>รายละเอียดเอกสาร</i></a>
 
                             </th>
                         </p>

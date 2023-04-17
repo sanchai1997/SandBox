@@ -6,6 +6,21 @@
     </div><!-- End Page Title -->
 
     <section class="section">
+       <!-- Alert -->
+       <?php if (!empty($_SESSION['errors'])) { ?>
+      <div class="row">
+        <div class="col-lg-9">
+          <div class="alert alert-danger" id="myAlert" style="top: 0; left: 0; right: 0; z-index: 1;">
+              <strong>
+                  <?php
+                  echo '<i class="bi bi-exclamation-circle-fill"></i> '. $_SESSION['errors'];
+                  unset($_SESSION['errors']);
+                  ?>
+              </strong>
+          </div> 
+        </div>
+      </div>
+      <?php } ?>  
       <div class="row">
         <div class="col-lg-9">
 
@@ -131,7 +146,7 @@
                               </h6>
                           </div>
                           <div class="modal-footer">
-                              <button type="submit" class="btn btn-primary click" >แก้ไขข้อมูล</button> 
+                              <button type="submit" class="btn btn-warning click" >แก้ไขข้อมูล</button> 
                               <button type="button" class="btn btn-danger" data-bs-dismiss="modal">ยกเลิก</button>
                           </div>
                       </div>
@@ -147,16 +162,16 @@
                   <div class="modal-dialog modal-dialog-centered" role="document">
                       <div class="modal-content">
                           <div class="modal-header">
-                              <h5 class="modal-title" id="exampleModalLongTitle">ยืนยันการเพิ่มข้อมูล</h5>
+                              <h5 class="modal-title" id="exampleModalLongTitle">ยืนยันการแก้ไขข้อมูล</h5>
                               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                           </div>
                           <div class="modal-body">
                               <h6>
-                                  <center>คุณต้องการเพิ่มข้อมูลใช่หรือไหม ?</center>
+                                  <center>คุณต้องการแก้ไขข้อมูลใช่หรือไหม ?</center>
                               </h6>
                           </div>
                           <div class="modal-footer">
-                              <button type="submit" class="btn btn-primary click" >ยืนยัน</button> 
+                              <button type="submit" class="btn btn-warning click" >แก้ไขข้อมูล</button> 
                               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ยกเลิก</button>
                           </div>
                       </div>
