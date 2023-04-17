@@ -226,6 +226,34 @@ class Forms_teacher extends CI_Controller
     }
     //////////////////////////// edit_forms_teacher_contract-END//////////////////////////////
 
+    ///////////////////////////////edit_forms_teacher_signature/////////////////////////////////
+    //PageEdit contract
+    public function edit_forms_teacher_signature()
+    {
+
+        if (!file_exists(APPPATH . 'views/pages/forms/teacher/edit-forms-teacher-signature.php')) {
+            //Whoops,wedon'thaveapageforthat!
+            show_404();
+        }
+
+        $data['title'] = 'Forms Teacher-signature'; //Capitalizethefirstletter
+
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/sidebar', $data);
+        $this->load->view('pages/forms/teacher/edit-forms-teacher-signature', $data);
+        $this->load->view('templates/footer', $data);
+    }
+
+    //update_teacher_signature
+    public function update_teacher_signature($TeacherID, $SchoolID, $EducationYear, $Semester, $PersonnelTypeCode, $PositionCode, $Signature)
+    {
+        $this->forms_teacher->update_teacher_signature($TeacherID, $SchoolID, $EducationYear, $Semester, $Signature);
+        $_SESSION['success'] = "บันทึกข้อมูลเรียบร้อย";
+        redirect(base_url('teacher?SchoolID=' . $SchoolID . '&&TeacherID=' . $TeacherID . '&&EducationYear=' . $EducationYear . '&&Semester=' . $Semester . '&&PersonnelTypeCode=' . $PersonnelTypeCode . '&&PositionCode=' . $PositionCode . '&&ShowDetail='));
+    }
+    //////////////////////////// edit_forms_teacher_signature-END/////////////////////////////
+
+
     ///////////////////////////////edit_forms_teacher_talent/////////////////////////////////
     //PageEdit talent
     public function edit_forms_teacher_talent()

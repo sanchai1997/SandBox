@@ -183,6 +183,63 @@ class Teacher_model extends CI_Model
         return $result;
     }
 
+    //Update Data Teacher Signature
+    public function update_teacher_signature($TeacherID, $SchoolID, $EducationYear, $Semester, $Signature)
+    {
+        if ($Signature == '0') {
+            $config['upload_path']          = 'assets/teacher/signature/';
+            $config['allowed_types']        = 'png';
+            $config['max_size']             = 50000;
+            $config['max_width']            = 3402;
+            $config['max_height']           = 1417;
+            $config['file_name']            = 'Signature_' . $TeacherID;
+
+            $this->load->library('upload', $config);
+
+            if (!$this->upload->do_upload('Signature')) {
+                copy($config['upload_path'] . 'logoold.jpg', $config['upload_path'] . $config['file_name']);
+                echo str_replace("</p>", "", str_replace("<p>", "", $this->upload->display_errors()));
+            } else {
+                echo 'อัพโหลดไฟล์เรียบร้อยแล้ว';
+            }
+
+            $type = substr($_FILES['Signature']['name'], -4);
+            $new_name = 'Signature_' . $TeacherID . $type;
+
+            $data = [
+
+                'Signature' => $new_name,
+
+            ];
+
+            $result = $this->db->where('TeacherID', $TeacherID)->where('SchoolID', $SchoolID)->where('EducationYear', $EducationYear)->where('Semester', $Semester)->update('TEACHER', $data);
+            return $result;
+        } else {
+            $config['upload_path']          = 'assets/teacher/signature/';
+            $config['allowed_types']        = 'png';
+            $config['max_size']             = 50000;
+            $config['max_width']            = 3402;
+            $config['max_height']           = 1417;
+            $config['file_name']            = $Signature;
+
+            copy($config['upload_path'] . $config['file_name'], $config['upload_path'] . 'logoold.jpg');
+            unlink($config['upload_path'] . $config['file_name']);
+
+            $this->load->library('upload', $config);
+
+            if (!$this->upload->do_upload('Signature')) {
+                copy($config['upload_path'] . 'logoold.jpg', $config['upload_path'] . $config['file_name']);
+                echo str_replace("</p>", "", str_replace("<p>", "", $this->upload->display_errors()));
+            } else {
+                unlink($config['upload_path'] . 'logoold.jpg');
+                echo 'อัพโหลดไฟล์เรียบร้อยแล้ว';
+            }
+            return;
+        }
+    }
+
+
+
     //Update Data Teacher Person
     public function update_teacher_person($TeacherID, $SchoolID, $EducationYear, $Semester)
     {

@@ -28,18 +28,17 @@ class Graduated extends CI_Controller
         $this->load->view('templates/footer', $data);
     }
 
-    public function P2()
+    //PageForm graduated
+    public function graduated_download()
     {
 
-        if (!file_exists(APPPATH . 'views/pages/dashboard/graduated/graduated-P2.php')) {
-            // Whoops, we don't have a page for that!
+        if (!file_exists(APPPATH . 'views/pages/dashboard/graduated/graduated-download.php')) {
+            //Whoops,wedon'thaveapageforthat!
             show_404();
         }
 
-        $data['title'] = 'graduated'; // Capitalize the first letter
-        $this->load->view('templates/header', $data);
-        $this->load->view('templates/sidebar', $data);
-        $this->load->view('pages/dashboard/graduated/graduated-P2', $data);
-        $this->load->view('templates/footer', $data);
+        $data['title'] = 'Forms graduated'; //Capitalizethefirstletter
+
+        $this->load->view('pages/dashboard/graduated/graduated-download', $data);
     }
 }

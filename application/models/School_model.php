@@ -66,7 +66,7 @@ class School_model extends CI_Model
 
         $data = [
 
-            'SchoolID ' => $_POST['JurisdictionCode'] . $_POST['SchoolAddressProvinceCode'],
+            'SchoolID ' => $this->input->post('SchoolID'),
             'InnovationAreaCode' => $this->input->post('InnovationAreaCode'),
             'ImageSchool' => $new_name,
             'SchoolNameThai' => $this->input->post('SchoolNameThai'),
@@ -238,9 +238,10 @@ class School_model extends CI_Model
 
     //Delete Data Form School
     public function delete_school($SchoolID)
+
     {
         $data = [
-            'SchoolID' => $SchoolID + 1,
+            'SchoolID' => date('Ymd') . rand(1, 999),
             'DeleteStatus' => '1'
 
         ];

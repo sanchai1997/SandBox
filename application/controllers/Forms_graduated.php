@@ -31,6 +31,7 @@ class Forms_graduated extends CI_Controller
         $this->load->view('templates/footer', $data);
     }
 
+
     //Delete Data graduated
     public function delete_graduated($StudentReferenceID, $SchoolID, $EducationYear, $Semester, $GradeLevelCode)
     {

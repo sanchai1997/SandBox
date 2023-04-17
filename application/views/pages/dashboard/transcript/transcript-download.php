@@ -9,15 +9,14 @@ $pdf->AddFont('THSarabunPSK-Bold', '', 'THSarabun Bold.php'); //หนา
 $pdf->SetTextColor(0, 0, 0);
 
 $pdf->SetFont('THSarabunPSK-Bold', '', 18);
-$pdf->Cell(0, 10, iconv('UTF-8', 'cp874', 'แบบบรายงานผลการพัฒนาผู้เรียนรายบุคคล'), 0, 1, 'C',);
+$pdf->Cell(0, 10, iconv('UTF-8', 'cp874', 'แบบบรายงานผลการพัฒนาผู้เรียนรายบุคคล'), 0, 1, 'C');
 
 $result = $this->db->query('SELECT * FROM SCHOOL
- INNER JOIN CLS_PREFIX ON SCHOOL.AdministratorPrefixCode = CLS_PREFIX.PREFIX_CODE
- WHERE SchoolID = ' . $_GET['SchoolID'] . '
+ WHERE SchoolID = "' . $_GET['SchoolID'] . '"
  ');
 foreach ($result->result() as $SCHOOL) {
-    $pdf->Image('assets/school/img/' . $SCHOOL->ImageSchool, 18, 10, -830);
-    $AdminNameThai = $SCHOOL->PREFIX_NAME . $SCHOOL->AdministratorNameThai . '  ' . $SCHOOL->AdministratorLastNameThai;
+    
+    $pdf->Image('assets/school/img/' . $SCHOOL->ImageSchool, 80, 90, 100);
 }
 
 $result = $this->db->query('SELECT * FROM TRANSCRIPT
@@ -27,10 +26,10 @@ $result = $this->db->query('SELECT * FROM TRANSCRIPT
  AND StudentReferenceID = "' . $_GET['StudentReferenceID'] . '"
  ');
 
-$pdf->SetFont('THSarabunPSK', '', 15,);
+$pdf->SetFont('THSarabunPSK', '', 15);
 foreach ($result->result() as $TRANSCRIPT) {
 
-    $pdf->Cell(0, 10, iconv('UTF-8', 'cp874', '   ชั้น' . $TRANSCRIPT->GRADE_LEVEL_NAME . '   ปีการศึกษา ' . $TRANSCRIPT->EducationYear . '   ภาคเรียน ' . $TRANSCRIPT->Semester), 0, 0, 'C',);
+    $pdf->Cell(0, 10, iconv('UTF-8', 'cp874', '   ชั้น' . $TRANSCRIPT->GRADE_LEVEL_NAME . '   ปีการศึกษา ' . $TRANSCRIPT->EducationYear . '   ภาคเรียน ' . $TRANSCRIPT->Semester), 0, 0, 'C');
     $pdf->Ln();
 
     if ($TRANSCRIPT->AttributePassingCode != '') {
@@ -79,7 +78,7 @@ foreach ($result->result() as $TRANSCRIPT) {
     }
 }
 
-$pdf->Cell(0, 10, iconv('UTF-8', 'cp874', 'แบบรายงานผลการพัฒนาผู้เรียนรายบุคคล'), 0, 1, 'C',);
+$pdf->Cell(0, 10, iconv('UTF-8', 'cp874', 'แบบรายงานผลการพัฒนาผู้เรียนรายบุคคล'), 0, 1, 'C');
 
 $result = $this->db->query('SELECT * FROM STUDENT
         INNER JOIN CLS_PREFIX ON STUDENT.StudentPrefixCode = CLS_PREFIX.PREFIX_CODE
@@ -97,7 +96,7 @@ foreach ($result->result() as $STUDENT) {
     $pdf->Ln();
 }
 $pdf->Cell(0, 10, "", 0, 1, 'C');
-$pdf->SetFont('THSarabunPSK-Bold', '', 14,);
+$pdf->SetFont('THSarabunPSK-Bold', '', 14);
 $pdf->Cell(13, 10, iconv('UTF-8', 'cp874', 'ลำดับที่'), 1, 0, 'C');
 $pdf->Cell(17, 10, iconv('UTF-8', 'cp874', 'รหัสวิชา'), 1, 0, 'C');
 $pdf->Cell(65, 10, iconv('UTF-8', 'cp874', 'รายวิชา'), 1, 0, 'C');
@@ -115,7 +114,7 @@ $result = $this->db->query('SELECT * FROM TRANSCRIPT_SUBJECT
  AND TranscriptNumber = ' . $_GET['TranscriptNumber'] . '
  ORDER BY SubjectTypeCode,SubjectGroupCode ASC
  ');
-$pdf->SetFont('THSarabunPSK', '', 14,);
+$pdf->SetFont('THSarabunPSK', '', 14);
 $i = 0;
 $x = 0;
 $CountThai = ['ก', 'ข', 'ค', 'ง', 'จ'];
@@ -160,45 +159,45 @@ foreach ($result->result() as $TRANSCRIPT_SUBJECT) {
     $pdf->Ln();
 }
 $pdf->Cell(90, 10, iconv('UTF-8', 'cp874', ''), 0, 1, 'C');
-$pdf->SetFont('THSarabunPSK-Bold', '', 14,);
+$pdf->SetFont('THSarabunPSK-Bold', '', 14);
 $pdf->Cell(90, 7, iconv('UTF-8', 'cp874', 'สรุปผลการประเมิน'), 1, 0, 'C');
-$pdf->SetFont('THSarabunPSK', '', 14,);
+$pdf->SetFont('THSarabunPSK', '', 14);
 $pdf->Cell(90, 7, iconv('UTF-8', 'cp874', '               ( _______________________________ )'), 0, 0, 'C');
 $pdf->Ln();
-$pdf->SetFont('THSarabunPSK', '', 14,);
+$pdf->SetFont('THSarabunPSK', '', 14);
 $pdf->Cell(60, 7, iconv('UTF-8', 'cp874', '  น้ำหนักวิชาพื้นฐาน'), 1, 0);
 $pdf->Cell(30, 7, iconv('UTF-8', 'cp874', $TotalCredit), 1, 0, 'C');
-$pdf->SetFont('THSarabunPSK', '', 15,);
+$pdf->SetFont('THSarabunPSK', '', 15);
 $pdf->Cell(90, 7, iconv('UTF-8', 'cp874', '               ครูประจำชั้น'), 0, 0, 'C');
 $pdf->Ln();
-$pdf->SetFont('THSarabunPSK', '', 14,);
+$pdf->SetFont('THSarabunPSK', '', 14);
 $pdf->Cell(60, 7, iconv('UTF-8', 'cp874', '  น้ำหนักวิชาเพิ่มเติม'), 1, 0);
 $pdf->Cell(30, 7, iconv('UTF-8', 'cp874', $TotalCreditSub), 1, 0, 'C');
 $pdf->Ln();
 $pdf->Cell(60, 7, iconv('UTF-8', 'cp874', '  ระดับผลการเรียนเฉลี่ย'), 1, 0);
 $pdf->Cell(30, 7, iconv('UTF-8', 'cp874', number_format($AgvGrade / ($TotalCredit + $TotalCreditSub), 2)), 1, 0, 'C');
-$pdf->SetFont('THSarabunPSK', '', 15,);
-$pdf->Cell(90, 7, iconv('UTF-8', 'cp874', '               ( ' . $AdminNameThai . ' )'), 0, 0, 'C');
+$pdf->SetFont('THSarabunPSK', '', 15);
+$pdf->Cell(90, 7, iconv('UTF-8', 'cp874', '              ( _______________________________ )'), 0, 0, 'C');
 $pdf->Ln();
-$pdf->SetFont('THSarabunPSK-Bold', '', 14,);
+$pdf->SetFont('THSarabunPSK-Bold', '', 14);
 $pdf->Cell(90, 7, iconv('UTF-8', 'cp874', 'ประเมินคุณลักษณะอันพึงประสงค์'), 1, 0, 'C');
-$pdf->SetFont('THSarabunPSK', '', 15,);
+$pdf->SetFont('THSarabunPSK', '', 15);
 $pdf->Cell(90, 7, iconv('UTF-8', 'cp874', '               ผู้อำนวยการโรงเรียน'), 0, 0, 'C');
 $pdf->Ln();
-$pdf->SetFont('THSarabunPSK', '', 14,);
+$pdf->SetFont('THSarabunPSK', '', 14);
 $pdf->Cell(60, 7, iconv('UTF-8', 'cp874', '  คุณลักษณะอันพึงประสงค์ของสถานศึกษา'), 1, 0);
 $pdf->Cell(30, 7, iconv('UTF-8', 'cp874', $ATTpassing), 1, 0, 'C');
 $pdf->Ln();
 $pdf->Cell(60, 7, iconv('UTF-8', 'cp874', '  การอ่าน คิดวิเคราะห์และเขียน'), 1, 0);
 $pdf->Cell(30, 7, iconv('UTF-8', 'cp874', $Litpassing), 1, 0, 'C');
-$pdf->SetFont('THSarabunPSK', '', 15,);
+$pdf->SetFont('THSarabunPSK', '', 15);
 $pdf->Cell(90, 7, iconv('UTF-8', 'cp874', '               ( _______________________________ )'), 0, 0, 'C');
 $pdf->Ln();
-$pdf->SetFont('THSarabunPSK', '', 14,);
+$pdf->SetFont('THSarabunPSK', '', 14);
 $pdf->Cell(60, 7, iconv('UTF-8', 'cp874', '  กิจกรรมพัฒนาผู้เรียน'), 1, 0);
 $pdf->Cell(30, 7, iconv('UTF-8', 'cp874', $Extrapassing), 1, 0, 'C');
-$pdf->SetFont('THSarabunPSK', '', 15,);
+$pdf->SetFont('THSarabunPSK', '', 15);
 $pdf->Cell(90, 7, iconv('UTF-8', 'cp874', '               ผู้ปกครอง'), 0, 0, 'C');
 
-$pdf->Output('D', 'Transcript_' . $_GET['TranscriptSeriesNumber'] . $_GET['TranscriptNumber'] . '.pdf');
-// $pdf->Output();
+// $pdf->Output('D', 'Transcript_' . $_GET['TranscriptSeriesNumber'] . $_GET['TranscriptNumber'] . '.pdf');
+$pdf->Output();
