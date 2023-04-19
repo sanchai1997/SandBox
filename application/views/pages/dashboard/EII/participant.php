@@ -337,8 +337,8 @@ foreach ($result3->result() as $show3) { ?>
 
 
                                             <!-- Button trigger modal -->
-                                            <button type="button" class="btn text-start" data-bs-toggle="modal"
-                                                data-bs-target="#note<?php echo $show3->Id; ?>">
+                                            <button type="button" class="btn text-start " data-bs-toggle="modal"
+                                                data-bs-target="#note<?php echo $show3->Id; ?>" style="width: 180px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
                                                 <?php echo $show3->Note; ?>
                                             </button><!-- Modal -->
                                         <div class="modal fade" id="note<?php echo $show3->Id; ?>" tabindex="-1"
@@ -356,31 +356,31 @@ foreach ($result3->result() as $show3) { ?>
                                                         <div class="row"><!-- p1 -->
                                                             
                                                             <div class="col"><!-- p2 -->
-                                                            <h6>บันทึกเพิ่มเติม</h6>
+                                                            <h6 class="fw-bold">บันทึกเพิ่มเติม</h6>
                                                             <p><?php echo $show3->Note; ?></p>
                                                             </div><!-- p2 -->
                                                             <div class="col"><!-- p2 -->
                                                                     <div class="row">
                                                                         <div class="col">
-                                                                        <h6>ชื่อผู้บันทึกเพิ่มเติม</h6>
+                                                                        <h6 class="fw-bold">ชื่อผู้บันทึกเพิ่มเติม</h6>
                                                                         <p>-<?php echo $show3->NoteReporterName; ?></p>
                                                                         </div>
                                                                     </div>
                                                                     <div class="row">
                                                                         <div class="col">
-                                                                        <h6>หมายเลขโทรศัพท์ของผู้บันทึกเพิ่มเติม</h6>
+                                                                        <h6 class="fw-bold">หมายเลขโทรศัพท์ของผู้บันทึกเพิ่มเติม</h6>
                                                                         <p>-<?php echo $show3->NoteReporterPhone; ?></p>
                                                                         </div>
                                                                     </div>
                                                                     <div class="row">
                                                                         <div class="col">
-                                                                        <h6>หมายเลขโทรศัพท์มือถือของผู้บันทึกเพิ่มเติม</h6>
+                                                                        <h6 class="fw-bold">หมายเลขโทรศัพท์มือถือของผู้บันทึกเพิ่มเติม</h6>
                                                                         <p>-<?php echo $show3->NoteReporterMobilePhone; ?></p>
                                                                         </div>
                                                                     </div>
                                                                     <div class="row">
                                                                         <div class="col">
-                                                                        <h6>อีเมลของผู้บันทึกเพิ่มเติม</h6>
+                                                                        <h6 class="fw-bold">อีเมลของผู้บันทึกเพิ่มเติม</h6>
                                                                         <p>-<?php echo $show3->NoteReporterEmail; ?></p>
                                                                         </div>
                                                                     </div>

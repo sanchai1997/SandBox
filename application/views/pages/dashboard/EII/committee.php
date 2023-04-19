@@ -97,9 +97,9 @@
                     <thead>
 
                         <tr>
-
-                            <th style="" scope="col">เลขที่คำสั่ง</th>
-                            <th style="" scope="col">ปีที่ออกคำสั่ง</th>
+                        <th style="" scope="col">จังหวัด</th>
+                        <th style="" scope="col">ปีที่ออกคำสั่ง</th>
+                        <th style="" scope="col">เลขที่คำสั่ง</th>
                             <th style="" scope="col">คณะกรรมการ</th>
                             <th style="text-align: center;" scope="col">ดูรายละเอียด</th>
                             <th style="text-align: center;" scope="col">ปฎิบัติ</th>
@@ -124,8 +124,9 @@
 
                                     foreach ($results->result() as $shows) {
                                     ?>
-                            <td style=""><?php echo $show->CommitteeAppointmentNumber; ?>
-                            <td scope="row" style=""><?php echo $show->CommitteeYear; ?></td>
+                                    <td style=""><?php echo $shows->PROVINCE_NAME; ?></td>
+                                    <td scope="row" style=""><?php echo $show->CommitteeYear; ?></td>
+                            <td style=""><?php echo $show->CommitteeAppointmentNumber; ?></td>
                             <td scope="row " style="">
                                 <?php 
                              $CommitteeAppointmentNumber = $show->CommitteeAppointmentNumber;
@@ -147,8 +148,8 @@
                                                  <!-- Button trigger modal -->
                                             <button type="button" class="btn " data-bs-toggle="modal"
                                                 data-bs-target="#commi<?php echo $showc->Id; ?>">
-                                                <?php echo $showc->PREFIX_NAME; ?> <?php echo nbs(2); ?>
-                                                <?php echo $showc->CommitteeMemberNameThai; ?>-
+                                                <?php echo $showc->PREFIX_NAME; ?>                                                                                      
+                                                <?php echo $showc->CommitteeMemberNameThai; ?>
                                                 <?php echo $showc->CommitteeMemberLastNameThai; ?>
                                             </button><!-- Modal -->
                                         <div class="modal fade" id="commi<?php echo $showc->Id; ?>" tabindex="-1"
@@ -193,15 +194,16 @@
                                                             <div class="row">
     <div class="col">
         <h6 class="fw-bold">ชื่อ-นามสกุล(ภาษาไทย)</h6>
-        <p><?php echo $showc->PREFIX_NAME; ?> <?php echo nbs(2); ?>
-                                                <?php echo $showc->CommitteeMemberNameThai; ?>-
+        <p><?php echo $showc->PREFIX_NAME; ?> 
+                                                <?php echo $showc->CommitteeMemberNameThai; ?>
+                                                <?php echo $showc->CommitteeMemberMiddleNameThai; ?>
                                                 <?php echo $showc->CommitteeMemberLastNameThai; ?></p>
     </div>
 </div>
 <div class="row">
     <div class="col">
         <h6 class="fw-bold">ชื่อ-นามสกุล(อังกฤษ)</h6>
-        <p><?php echo $showc->CommitteeMemberNameEnglish; ?>-<?php echo $showc->CommitteeMemberLastNameEnglish; ?></p>
+        <p><?php echo $showc->CommitteeMemberNameEnglish; ?> <?php echo $showc->CommitteeMemberMiddleNameEnglish; ?> <?php echo $showc->CommitteeMemberLastNameEnglish; ?></p>
     </div>
 </div>
 <div class="row">
@@ -237,7 +239,7 @@
                                 </div>
                                 <?php } ?>
                                 <a href="<?php echo site_url('cm_forms_p2?page=sh2') ?>&&name=<?php echo $show->CommitteeAppointmentNumber; ?>&&key=<?php echo $show->Id; ?>&&year=<?php echo $show->CommitteeYear; ?>&&Province=<?php echo  $show->CommitteeProvinceCode; ?>"
-                                    class="my-link fw-bold">>>เพิ่มผู้จัดทำ>>
+                                    class="my-link fw-bold">>>เพิ่มคณะกรรมการ>>
                                 </a>
                             </td>
                             <td style="text-align: center;">
@@ -367,7 +369,7 @@
 
                 </div>
                 <div class="row">
-                    <h5 class="fw-bold">รายชื่อผู้จัดทำ</h5>
+                    <h5 class="fw-bold">รายชื่อคณะกรรมการ</h5>
                     <?php $resultc = $this->db->query("SELECT * FROM COMMITTEE_MEMBER 
                                     JOIN CLS_PROVINCE 
                                     ON COMMITTEE_MEMBER.CommitteeProvinceCode = CLS_PROVINCE.PROVINCE_CODE  
@@ -384,6 +386,7 @@
                             <th style="" class="col-3">ตำแหน่งกรรมการ</th>
                             <th style="" class="col-2">ตำแหน่งในองค์กร</th>
                             <th style="" class="col-2">เริ่มตำแหน่ง-สิ้นสุด</th>
+                            
                         </tr>
                         <?php
                        
@@ -410,7 +413,7 @@
                                 </p>
                             </td>
                             <td style="">
-                            <p><?php echo DateThai($showc->CommitteeMemberTermStartDate); ?>-<?php echo DateThai($showc->CommitteeMemberTermEndDate); ?></p>
+                            <p><?php echo DateThai($showc->CommitteeMemberTermStartDate); ?> - <?php echo DateThai($showc->CommitteeMemberTermEndDate); ?></p>
                             </td>
 
 

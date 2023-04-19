@@ -9,6 +9,7 @@
         <?php $page = isset($_GET['page']) ? $_GET['page'] : '';  ?>
         <?php $name = isset($_GET['name']) ? $_GET['name'] : ''; ?>
         <?php $key = isset($_GET['key']) ? $_GET['key'] : ''; ?>
+        <?php $InnovationID = isset($_GET['InnovationID']) ? $_GET['InnovationID'] : ''; ?>
         <?php 
 session_start(); // เริ่มต้น session
 if (isset( $_SESSION['success'])) { ?>
@@ -86,19 +87,20 @@ if (isset( $_SESSION['success'])) { ?>
                                 <form action="<?php echo site_url('forms_up_p1'); ?>" method="POST"
                                     enctype="multipart/form-data" onsubmit="return checkSelectedOption()">
 
-                                    <!-- <div class="row mb-3">
+                                    <div class="row mb-3">
                                         <div class="form-floating">
                                             <input type="text" class="form-control" id="floatingName"
                                                 placeholder="รหัสนวัตกรรมการศึกษา" name="InnovationID" required
                                                 aria-label="รหัสนวัตกรรมการศึกษา">
                                             <label for="Y"><?php echo nbs(2); ?> รหัสนวัตกรรมการศึกษา </label>
                                         </div>
-                                    </div> -->
+                                    </div>
                                     <div class="row mb-3">
                                         <div class="col">
                                             <div class="form-floating">
                                                 <input type="number" class="form-control" id="floatingName"
-                                                    placeholder="ปีการศึกษา" name="EducationYear" required max="4">
+                                                    placeholder="ปีการศึกษา" name="EducationYear" required
+                                                    pattern="\d{1,4}">
                                                 <label for="Y"><?php echo nbs(2); ?> ปีการศึกษา </label>
                                             </div>
                                         </div>
@@ -296,7 +298,7 @@ if (isset( $_SESSION['success'])) { ?>
                             <?php
                             
                             $result = $this->db->query("SELECT * FROM INNOVATION 
-                            WHERE InnovationID = '".$key."' 
+                            WHERE Id_in = '".$key."' 
                             ");
  
                      foreach ($result->result() as $show) {
@@ -311,15 +313,28 @@ if (isset( $_SESSION['success'])) { ?>
 
 
                                     <input type="hidden" class="form-control" id="floatingName"
-                                        placeholder="รหัสนวัตกรรมการศึกษา" name="InnovationID" required max="16"
-                                        value="<?php echo $show->InnovationID; ?>">
+                                        placeholder="รหัสนวัตกรรมการศึกษา" name="Id_in" required max="16"
+                                        value="<?php echo $show->Id_in; ?>">
 
 
                                     <div class="row mb-3">
                                         <div class="col">
                                             <div class="form-floating">
+                                                <input type="text" class="form-control" id="floatingName"
+                                                    placeholder="รหัสนวัตกรรมการศึกษา" name="" 
+                                                    value="<?php echo $show->InnovationID; ?>" disabled>
+                                                    <input type="hidden" class="form-control" id="floatingName"
+                                                    placeholder="" name="InnovationID" 
+                                                    value="<?php echo $show->InnovationID; ?>" >
+                                                <label for="Y"><?php echo nbs(2); ?> รหัสนวัตกรรมการศึกษา </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row mb-3">
+                                        <div class="col">
+                                            <div class="form-floating">
                                                 <input type="number" class="form-control" id="floatingName"
-                                                    placeholder="ปีการศึกษา" name="EducationYear" required max="4"
+                                                    placeholder="ปีการศึกษา" name="EducationYear" required
                                                     value="<?php echo $show->EducationYear; ?>">
                                                 <label for="Y"><?php echo nbs(2); ?> ปีการศึกษา </label>
                                             </div>
@@ -535,7 +550,25 @@ if (isset( $_SESSION['success'])) { ?>
                                     placeholder="รหัสนวัตกรรมการศึกษา" name="InnovationID" value="<?php echo $key; ?>"
                                     required>
 
+                                <div class="row mb-3">
+                                    <div class="col">
+                                        <div class="form-floating" id="InnovationID">
+                                            <input type="text" class="form-control" placeholder="รหัสนวัตกรรมการศึกษา"
+                                                name="" value="<?php echo $InnovationID ?>" disabled>
+                                            <input type="hidden" class="form-control" placeholder="" name="InnovationID"
+                                                value="<?php echo $key ?>">
+                                            <label for=""><?php echo nbs(2); ?> รหัสนวัตกรรมการศึกษา </label>
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="form-floating" id="CreatorPersonalID">
+                                            <input type="text" class="form-control" placeholder="นวัตกรรมการศึกษา"
+                                                name="" value="<?php echo $name ?>" disabled>
 
+                                            <label for=""><?php echo nbs(2); ?> นวัตกรรมการศึกษา </label>
+                                        </div>
+                                    </div>
+                                </div>
 
 
                                 <div class="row mb-3">
@@ -558,14 +591,11 @@ if (isset( $_SESSION['success'])) { ?>
                                                 for="floatingSelect"><?php echo nbs(2); ?>ประเภทบัตรประจำตัวผู้จัดทำ</label>
                                         </div>
                                     </div>
-                                </div>
-
-
-                                <div class="row mb-3">
+                                
                                     <div class="col">
                                         <div class="form-floating" id="CreatorPersonalID">
                                             <input type="text" class="form-control" id="my-auto"
-                                                placeholder="หมายเลขบัตรประจำตัวผู้จัดทำ" name="">
+                                                placeholder="หมายเลขบัตรประจำตัวผู้จัดทำ" name="" disabled>
                                             <input type="hidden" class="form-control" id="my-autoo" placeholder=""
                                                 name="CreatorPersonalID">
                                             <label for=""><?php echo nbs(2); ?> หมายเลขบัตรประจำตัวผู้จัดทำ </label>
@@ -694,12 +724,14 @@ if (isset( $_SESSION['success'])) { ?>
                             select.addEventListener("change", function() {
                                 if (select.value === "N" || select.value === "-1") {
                                     input.disabled = true;
+                                   
 
-                                    input.value = '0';
-                                    input1.value = '0';
+                                    input.value = '';
+                                    input1.value = '';
 
                                 } else {
                                     input.disabled = false;
+                                   
 
                                     input.value = '';
                                     input1.value = '';
@@ -711,7 +743,16 @@ if (isset( $_SESSION['success'])) { ?>
 
                             function checkSelectedOption() {
 
+if (select.value === "I" || select.value === "O") {
+                            const CreatorPersonalID = document.querySelector('#my-auto');
+                            const CreatorPersonalID_Value = CreatorPersonalID.value;
 
+                            if (CreatorPersonalID_Value.trim().length < 13 || CreatorPersonalID_Value.trim().length >
+                                13) {
+                                alert('กรุณาใส่เลข13หลักให้ถูกต้อง');
+                                return false;
+                            }
+                        }
                                 const CLS_PERSONAL_ID_TYPE = document.querySelector('#CreatorPersonalIDTypeCode');
                                 const CLS_PERSONAL_ID_TYPE_Value = CLS_PERSONAL_ID_TYPE.value;
 
@@ -734,7 +775,9 @@ if (isset( $_SESSION['success'])) { ?>
                             <?php
                             
                             $result = $this->db->query("SELECT * FROM INNOVATION_CREATOR 
-                            WHERE Id = '".$key."' 
+                            INNER JOIN INNOVATION
+                            ON INNOVATION_CREATOR.InnovationID = INNOVATION.Id_in
+                            WHERE Id_inc = '".$key."' 
                             ");
  
                      foreach ($result->result() as $show) {
@@ -744,27 +787,34 @@ if (isset( $_SESSION['success'])) { ?>
 
                             <body>
 
-                                <form action="<?php echo site_url('edit_p2'); ?>" method="post">
-                                    <input type="hidden" name="Id" value="<?php echo $show->Id ?>">
+                                <form action="<?php echo site_url('edit_p2'); ?>" method="post" onsubmit="return checkSelectedOption()">
+                                    <input type="hidden" name="Id_inc" value="<?php echo $show->Id_inc ?>" >
                                     <div class="row mb-3">
 
 
-                                        <div class="form-floating">
-                                            <select class="form-select" id="InnovationID"
-                                                aria-label="Floating label select example" name="InnovationID">
 
-                                                <?php
-                                            $result = $this->db->query('SELECT * FROM INNOVATION WHERE DeleteStatus = 0');
-                                            foreach ($result->result() as $cls) {
-                                            ?>
-                                                <option value="<?= $cls->InnovationID ; ?>">
-                                                    <?= $cls->InnovationName; ?></option>
-                                                <?php } ?>
-                                            </select>
-                                            <label for="Y"><?php echo nbs(2); ?>นวัตกรรมการศึกษา</label>
+
+                                        <div class="col">
+                                            <div class="form-floating" id="InnovationID">
+                                                <input type="text" class="form-control"
+                                                    placeholder="รหัสนวัตกรรมการศึกษา" name=""
+                                                    value="<?php echo $show->InnovationID ?>" disabled>
+                                                <input type="hidden" class="form-control" placeholder="" name="InnovationID"
+                                                    value="<?php echo $show->Id_in?>">
+                                                <label for=""><?php echo nbs(2); ?> รหัสนวัตกรรมการศึกษา </label>
+                                            </div>
                                         </div>
+                                        <div class="col">
+                                            <div class="form-floating" id="CreatorPersonalID">
+                                                <input type="text" class="form-control" placeholder="นวัตกรรมการศึกษา"
+                                                    name="" value="<?php echo $name ?>" disabled>
 
+                                                <label for=""><?php echo nbs(2); ?> นวัตกรรมการศึกษา </label>
+                                            </div>
+                                        </div>
                                     </div>
+
+
                                     <div class="row mb-3">
                                         <div class="col">
 
@@ -786,16 +836,15 @@ if (isset( $_SESSION['success'])) { ?>
                                                     for="floatingSelect"><?php echo nbs(2); ?>ประเภทบัตรประจำตัวผู้จัดทำ</label>
                                             </div>
                                         </div>
-                                    </div>
 
-
-                                    <div class="row mb-3">
                                         <div class="col">
                                             <div class="form-floating" id="CreatorPersonalID">
                                                 <input type="text" class="form-control" id="my-auto"
-                                                    placeholder="หมายเลขบัตรประจำตัวผู้จัดทำ" name=""  value="<?php echo $show->CreatorPersonalID ?>">
+                                                    placeholder="หมายเลขบัตรประจำตัวผู้จัดทำ" name=""
+                                                    value="<?php echo $show->CreatorPersonalID ?>" disabled >
                                                 <input type="hidden" class="form-control" id="my-autoo" placeholder=""
-                                                    name="CreatorPersonalID" value="<?php echo $show->CreatorPersonalID ?>">
+                                                    name="CreatorPersonalID"
+                                                    value="<?php echo $show->CreatorPersonalID ?>">
                                                 <label for=""><?php echo nbs(2); ?> หมายเลขบัตรประจำตัวผู้จัดทำ </label>
                                             </div>
                                         </div>
@@ -899,7 +948,8 @@ if (isset( $_SESSION['success'])) { ?>
                                             class="btn btn-danger" style="float: left;">ยกเลิก</a> <!-- ปุ่มยกเลิก -->
 
                                         <!-- ปุ่มลบ --> <button type="button" class="btn btn-danger"
-                                            data-bs-toggle="modal" data-bs-target="#del_inno<?php echo $show->Id; ?>"><i
+                                            data-bs-toggle="modal"
+                                            data-bs-target="#del_inno<?php echo $show->Id_inc; ?>"><i
                                                 class="bi bi-trash"></i> </button> <!-- ปุ่มลบ -->
                                         <button type="button" class="btn btn-warning" data-bs-toggle="modal"
                                             data-bs-target="#exampleModal" style="float: right;">แก้ไขข้อมูล</button>
@@ -931,13 +981,13 @@ if (isset( $_SESSION['success'])) { ?>
                                     </div>
                                 </form><!-- End Form ข้อมูลนวัตกรรมการศึกษา -->
                                 <!-- Modal -->
-                                <div class="modal fade" id="del_inno<?php echo $show->Id; ?>" tabindex="-1"
+                                <div class="modal fade" id="del_inno<?php echo $show->Id_inc; ?>" tabindex="-1"
                                     aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                    <div class="modal-dialog">
+                                    <div class="modal-dialog modal-dialog-centered">
                                         <div class="modal-content">
                                             <div class="modal-header">
                                                 <h5 class="modal-title" id="exampleModalLabel">
-                                                    ยืนยันการลบข้อมูล<?php echo nbs(2); ?><?php echo $show->Id; ?>
+                                                    ยืนยันการลบข้อมูล
                                                 </h5>
 
                                             </div>
@@ -951,7 +1001,7 @@ if (isset( $_SESSION['success'])) { ?>
                                                 <button type="button" class="btn btn-secondary"
                                                     data-bs-dismiss="modal">ยกเลิก</button>
                                                 <form method="post" action="<?php echo site_url('del_p2'); ?>">
-                                                    <input type="hidden" name="Id" value="<?php echo $show->Id; ?>">
+                                                    <input type="hidden" name="Id_inc" value="<?php echo $show->Id_inc; ?>">
                                                     <div class="d-flex justify-content-center">
                                                         <button name="Submit" type="submit"
                                                             class="btn btn-danger">ยืนยันก่อนลบ</button>
@@ -963,26 +1013,28 @@ if (isset( $_SESSION['success'])) { ?>
                                 </div> <!-- Modal -->
                                 <script>
                                 const select = document.getElementById("CreatorPersonalIDTypeCode");
-                            const input = document.getElementById("my-auto");
-                            const input1 = document.getElementById("my-autoo");
+                                const input = document.getElementById("my-auto");
+                                const input1 = document.getElementById("my-autoo");
 
-                            select.addEventListener("change", function() {
-                                if (select.value === "N" || select.value === "-1") {
-                                    input.disabled = true;
+                                select.addEventListener("change", function() {
+                                    if (select.value === "N" || select.value === "-1") {
+                                        input.disabled = true;
+                                       
 
-                                    input.value = '0';
-                                    input1.value = '0';
+                                        input.value = '';
+                                        input1.value = '';
 
-                                } else {
-                                    input.disabled = false;
+                                    } else {
+                                        input.disabled = false;
+                                       
 
-                                    input.value = '<?php echo $show->CreatorPersonalID; ?>';
-                                    input1.value = '<?php echo $show->CreatorPersonalID; ?>';
-                                }
-                            });
-                            input.addEventListener("input", function() {
-                                input1.value = input.value;
-                            });
+                                        input.value = '<?php echo $show->CreatorPersonalID; ?>';
+                                        input1.value = '<?php echo $show->CreatorPersonalID; ?>';
+                                    }
+                                });
+                                input.addEventListener("input", function() {
+                                    input1.value = input.value;
+                                });
                                 ///CLS_PERSONAL_ID_TYPE
                                 var my_CLS_PERSONAL_ID_TYPE = "<?php echo $show->CreatorPersonalIDTypeCode ?>";
                                 var selectoption_CLS_PERSONAL_ID_TYPE = document.querySelector(
@@ -1005,6 +1057,33 @@ if (isset( $_SESSION['success'])) { ?>
                                         selectoption_CLS_PREFIX[i].selected = true;
                                     }
                                 }
+                                function checkSelectedOption() {
+                            if (select.value === "I" || select.value === "O") {
+                            const CreatorPersonalID = document.querySelector('#my-auto');
+                            const CreatorPersonalID_Value = CreatorPersonalID.value;
+
+                            if (CreatorPersonalID_Value.trim().length < 13 || CreatorPersonalID_Value.trim().length >
+                                13) {
+                                alert('กรุณาใส่เลข13หลักให้ถูกต้อง');
+                                return false;
+                            }
+                        }
+
+                            const CLS_PERSONAL_ID_TYPE = document.querySelector('#CreatorPersonalIDTypeCode');
+                            const CLS_PERSONAL_ID_TYPE_Value = CLS_PERSONAL_ID_TYPE.value;
+
+                            if (CLS_PERSONAL_ID_TYPE_Value === '-1') {
+                                alert('กรุณาเลือกประเภทบัตรประจำตัวผู้จัดทำ');
+                                return false;
+                            }
+                            const CLS_PREFIX = document.querySelector('#CreatorPrefixCode');
+                            const CLS_PREFIX_Value = CLS_PREFIX.value;
+
+                            if (CLS_PREFIX_Value === '-1') {
+                                alert('กรุณาเลือกคำนำหน้าชื่อผู้จัดทำ');
+                                return false;
+                            }
+                        }
                                 </script>
                             </body>
                             <?php } 

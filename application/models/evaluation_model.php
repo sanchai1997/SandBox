@@ -356,7 +356,7 @@ if ($num_chk <= 0 ) {
 				
 		'DeleteStatus' => $status 
 	);
-		$this->db->where('Id', $this->input->post('Id'));
+		$this->db->where('Id_accl', $this->input->post('Id_accl'));
 		$query = $this->db->update('ASSESSMENT_CRITERIA_COMPOSITION_LEVEL', $data);
 		if ($query) {
 			session_start(); // เริ่มต้น session
@@ -626,55 +626,155 @@ public function del_sc_ass_ria(){
 		// print_r($_POST);
 		// echo'</pre>';
 		// exit;
-		$data = array(
-			'SchoolAssessmentEducationYear' => $this->input->post('SchoolAssessmentEducationYear'),
-			'SchoolAssessmentSemester' => $this->input->post('SchoolAssessmentSemester'),
-			'SchoolID' => $this->input->post('SchoolID'),
-			'CriteriaID' => $this->input->post('CriteriaID'),
-			'CompositionIndex' => $this->input->post('CompositionIndex'),
-			'LevelIndex' => $this->input->post('LevelIndex')
+		// สร้างตัวแปร $id_name มาเก็บค่าไว้ก่อน
+
+		$SchoolAssessmentEducationYear = $this->input->post('SchoolAssessmentEducationYear');
+		$SchoolAssessmentSemester = $this->input->post('SchoolAssessmentSemester');
+		$SchoolID = $this->input->post('SchoolID');
+		$CriteriaID = $this->input->post('CriteriaID');
+		$CompositionIndex = $this->input->post('CompositionIndex');
+		$LevelIndex = $this->input->post('LevelIndex');
+
+// นำค่า  มาใช้ในการค้นหาข้อมูลในฐานข้อมูล
+$this->db->where('SchoolAssessmentEducationYear', $SchoolAssessmentEducationYear);
+$this->db->where('SchoolAssessmentSemester', $SchoolAssessmentSemester);
+$this->db->where('SchoolID', $SchoolID);
+$this->db->where('CriteriaID', $CriteriaID);
+$this->db->where('LevelIndex !=' , 0);
+$this->db->where( 'LevelIndex', $LevelIndex);
+$this->db->where('DeleteStatus', 0);
+$query = $this->db->get('SCHOOL_ASSESSMENT_RESULT');
+
+// นับจำนวนแถวที่ค้นพบ
+$num_chk = $query->num_rows();
+
+// ตรวจสอบจำนวนแถวที่ค้นพบว่ามีมากกว่า 0 หรือไม่
+if ($num_chk <= 0 ) {
+
+	$this->db->where('SchoolAssessmentEducationYear', $SchoolAssessmentEducationYear);
+$this->db->where('SchoolAssessmentSemester', $SchoolAssessmentSemester);
+$this->db->where('SchoolID', $SchoolID);
+$this->db->where('CriteriaID', $CriteriaID);
+$this->db->where('CompositionIndex', $CompositionIndex );
+$this->db->where('CompositionIndex !=' , 0);
+$this->db->where('DeleteStatus', 0);
+$query1 = $this->db->get('SCHOOL_ASSESSMENT_RESULT');
+$num_chk1 = $query1->num_rows();
+	if ($num_chk1 <= 0 ) {
+  // ไม่พบข้อมูลในฐานข้อมูล
+  $data = array(
+	  'SchoolAssessmentEducationYear' => $this->input->post('SchoolAssessmentEducationYear'),
+	  'SchoolAssessmentSemester' => $this->input->post('SchoolAssessmentSemester'),
+	  'SchoolID' => $this->input->post('SchoolID'),
+	  'CriteriaID' => $this->input->post('CriteriaID'),
+	  'CompositionIndex' => $this->input->post('CompositionIndex'),
+	  'LevelIndex' => $this->input->post('LevelIndex')
+	  
 
 
-		);
-		$query = $this->db->insert('SCHOOL_ASSESSMENT_RESULT', $data);
-		if ($query) {
-			session_start(); // เริ่มต้น session
-			$_SESSION['success'] = "เพิ่มข้อมูลเรียบร้อย!"; // กำหนดค่า success ใน session เป็น true
-			header("Location: " . site_url('Fm_evaluation_das_p5?page=sh5'));
-			// ไปยังหน้าก่อนหน้านี้
+  );
+  $query = $this->db->insert('SCHOOL_ASSESSMENT_RESULT', $data);
+  if ($query) {
+	  session_start(); // เริ่มต้น session
+	  $_SESSION['success'] = "เพิ่มข้อมูลเรียบร้อย!"; // กำหนดค่า success ใน session เป็น true
+	  header("Location: " . site_url('Fm_evaluation_das_p5?page=sh5'));
+	  // ไปยังหน้าก่อนหน้านี้
 
-		} else {
-			echo 'false';
-		}
+  } else {
+	  echo 'false';
+  }
+} else {
+	// พบข้อมูลในฐานข้อมูล
+	session_start(); // เริ่มต้น session
+			  $_SESSION['false'] = "ไม่มามารถบันทึกข้อมูลได้โปรดตรวจสอบข้อมูล (ลำดับองค์ประกอบตัวชี้วัด) ซ้ำกันในระบบ !"; // กำหนดค่า success ใน session เป็น true
+			  header('Location: ' . $_SERVER['HTTP_REFERER']);
+			  exit;
+  
+  }
+} else {
+//   // พบข้อมูลในฐานข้อมูล
+  session_start(); // เริ่มต้น session
+			$_SESSION['false'] = "ไม่มามารถบันทึกข้อมูลได้โปรดตรวจสอบข้อมูล (ลำดับของระดับตัวชี้วัดที่ได้) ซ้ำกันในระบบ !"; // กำหนดค่า success ใน session เป็น true
+			header('Location: ' . $_SERVER['HTTP_REFERER']);
+			exit;
+
+}
 	}
 	public function edit_sc_ass_res() //sh7
 	{
 
-		// echo '<pre>';
-		// print_r($_POST);
-		// echo'</pre>';
-		// exit;
-		$data = array(
-			'SchoolAssessmentEducationYear' => $this->input->post('SchoolAssessmentEducationYear'),
-			'SchoolAssessmentSemester' => $this->input->post('SchoolAssessmentSemester'),
-			'SchoolID' => $this->input->post('SchoolID'),
-			'CriteriaID' => $this->input->post('CriteriaID'),
-			'CompositionIndex' => $this->input->post('CompositionIndex'),
-			'LevelIndex' => $this->input->post('LevelIndex')
+		$SchoolAssessmentEducationYear = $this->input->post('SchoolAssessmentEducationYear');
+		$SchoolAssessmentSemester = $this->input->post('SchoolAssessmentSemester');
+		$SchoolID = $this->input->post('SchoolID');
+		$CriteriaID = $this->input->post('CriteriaID');
+		$CompositionIndex = $this->input->post('CompositionIndex');
+		$LevelIndex = $this->input->post('LevelIndex');
+
+// นำค่า  มาใช้ในการค้นหาข้อมูลในฐานข้อมูล
+$this->db->where('SchoolAssessmentEducationYear', $SchoolAssessmentEducationYear);
+$this->db->where('SchoolAssessmentSemester', $SchoolAssessmentSemester);
+$this->db->where('SchoolID', $SchoolID);
+$this->db->where('CriteriaID', $CriteriaID);
+$this->db->where('LevelIndex !=' , 0);
+$this->db->where( 'LevelIndex', $LevelIndex);
+$this->db->where('DeleteStatus', 0);
+$query = $this->db->get('SCHOOL_ASSESSMENT_RESULT');
+
+// นับจำนวนแถวที่ค้นพบ
+$num_chk = $query->num_rows();
+
+// ตรวจสอบจำนวนแถวที่ค้นพบว่ามีมากกว่า 0 หรือไม่
+if ($num_chk <= 0 ) {
+
+	$this->db->where('SchoolAssessmentEducationYear', $SchoolAssessmentEducationYear);
+$this->db->where('SchoolAssessmentSemester', $SchoolAssessmentSemester);
+$this->db->where('SchoolID', $SchoolID);
+$this->db->where('CriteriaID', $CriteriaID);
+$this->db->where('CompositionIndex', $CompositionIndex );
+$this->db->where('CompositionIndex !=' , 0);
+$this->db->where('DeleteStatus', 0);
+$query1 = $this->db->get('SCHOOL_ASSESSMENT_RESULT');
+$num_chk1 = $query1->num_rows();
+	if ($num_chk1 <= 0 ) {
+  // ไม่พบข้อมูลในฐานข้อมูล
+  $data = array(
+	  'SchoolAssessmentEducationYear' => $this->input->post('SchoolAssessmentEducationYear'),
+	  'SchoolAssessmentSemester' => $this->input->post('SchoolAssessmentSemester'),
+	  'SchoolID' => $this->input->post('SchoolID'),
+	  'CriteriaID' => $this->input->post('CriteriaID'),
+	  'CompositionIndex' => $this->input->post('CompositionIndex'),
+	  'LevelIndex' => $this->input->post('LevelIndex')
+	  
 
 
-		);
-		$this->db->where('Id_sar', $this->input->post('Id_sar'));
-		$query = $this->db->update('SCHOOL_ASSESSMENT_RESULT', $data);
-		if ($query) {
-			session_start(); // เริ่มต้น session
-			$_SESSION['success'] = "แก้ไขสำเร็จ!"; // กำหนดค่า success ใน session เป็น true
-			header("Location: " . site_url('Fm_evaluation_das_p5?page=sh5'));
-			// ไปยังหน้าก่อนหน้านี้
+  );
+  $this->db->where('Id_sar', $this->input->post('Id_sar'));
+  $query = $this->db->update('SCHOOL_ASSESSMENT_RESULT', $data);
+  if ($query) {
+	  session_start(); // เริ่มต้น session
+	  $_SESSION['success'] = "แก้ไขสำเร็จ!"; // กำหนดค่า success ใน session เป็น true
+	  header("Location: " . site_url('Fm_evaluation_das_p5?page=sh5'));
+	  // ไปยังหน้าก่อนหน้านี้
 
-		} else {
-			echo 'false';
-		}
+  } else {
+	  echo 'false';
+  }
+} else {
+	// พบข้อมูลในฐานข้อมูล
+	session_start(); // เริ่มต้น session
+			  $_SESSION['false'] = "ไม่มามารถบันทึกข้อมูลได้โปรดตรวจสอบข้อมูล (ลำดับองค์ประกอบตัวชี้วัด) ซ้ำกันในระบบ !"; // กำหนดค่า success ใน session เป็น true
+			  header('Location: ' . $_SERVER['HTTP_REFERER']);
+			  exit;
+  
+  }
+} else {
+//   // พบข้อมูลในฐานข้อมูล
+  session_start(); // เริ่มต้น session
+			$_SESSION['false'] = "ไม่มามารถบันทึกข้อมูลได้โปรดตรวจสอบข้อมูล (ลำดับของระดับตัวชี้วัดที่ได้) ซ้ำกันในระบบ !"; // กำหนดค่า success ใน session เป็น true
+			header('Location: ' . $_SERVER['HTTP_REFERER']);
+			exit;
+
+}
 	}
 	public function del_sc_ass_res() //sh7
 	{

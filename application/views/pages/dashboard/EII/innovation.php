@@ -107,8 +107,10 @@
                             <!-- <th style="text-align: center;" scope="col">รหัสนวัตกรรมการศึกษาศึกษา</th> -->
                             <th style="" scope="col" class="col-1">ปีการศึกษา</th>
                             <th style="" scope="col" class="col-1">ภาคเรียน</th>
-                            <th style="" scope="col" class="col-5">ชื่อนวัตกรรม</th>
-                            <th style="" scope="col" class="col-2">ผู้จัดทำ</th>
+                            <th style="" scope="col" class="col-3">ชื่อนวัตกรรม</th>
+                            <th style="" scope="col" class="col-1">รหัสนวัตกรรมการศึกษา</th>
+                            <th style="" scope="col" class="col-1">วันที่เผยแพร่</th>
+                            <th style="" scope="col" class="col-1">ผู้จัดทำ</th>
                             <th style="text-align: center;" scope="col" class="col-1">ดูรายละเอียด</th>
                             <th style="text-align: center;" scope="col" class="col-1">ปฏิบัติ</th>
 
@@ -122,7 +124,7 @@
                                 ?>
 
                         <tr>
-                            <!-- <th scope="row " style="text-align: center;"><?php echo $InnovationID = $show->InnovationID; ?></th> -->
+                            <!-- <th scope="row " style="text-align: center;"><?php echo $Id_in = $show->Id_in; ?></th> -->
                             <td scope="row " style="">
                                 <?php echo $show->EducationYear; ?>
                             </td>
@@ -141,76 +143,87 @@
                                 <?php echo $sun_name; ?>
                             </td>
                             <td scope="row " style="">
-                                <?php echo $show->InnovationName; ?>
+                               <p style="width: 500px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;"> <?php echo $show->InnovationName; ?></p>
+                            </td>
+                            <td scope="row " style="">
+                                <?php echo $show->InnovationID; ?>
+                            </td>
+                            <td scope="row " style="">
+                                <?php echo DateThai($show->PublishDate); ?>
                             </td>
                             <td scope="row " style="text-align: left;">
-                                <?php $resultc = $this->db->query("SELECT * FROM INNOVATION_CREATOR JOIN CLS_PERSONAL_ID_TYPE ON INNOVATION_CREATOR.CreatorPersonalIDTypeCode = CLS_PERSONAL_ID_TYPE.PERSONAL_ID_TYPE_CODE 
+                                <?php 
+                                
+                                $resultc = $this->db->query("SELECT * FROM INNOVATION_CREATOR JOIN CLS_PERSONAL_ID_TYPE ON INNOVATION_CREATOR.CreatorPersonalIDTypeCode = CLS_PERSONAL_ID_TYPE.PERSONAL_ID_TYPE_CODE 
                             JOIN CLS_PREFIX ON INNOVATION_CREATOR.CreatorPrefixCode = CLS_PREFIX.PREFIX_CODE  
-                            WHERE InnovationID='" . $InnovationID . "' AND DeleteStatus = 0"); ?>
+                            WHERE InnovationID='" . $Id_in . "' AND DeleteStatus = 0"); ?>
 
                                 <?php foreach ($resultc->result() as $showc) { ?>
                                 <div class="row">
                                     <div class="col">
                                         <p>
 
-                                           
+
                                             <!-- Button trigger modal -->
                                             <button type="button" class="btn" data-bs-toggle="modal"
-                                                data-bs-target="#inno_mem<?php echo $showc->Id ?>">
-                                                <?php echo $showc->PREFIX_NAME; ?> <?php echo nbs(2); ?>
-                                                <?php echo $showc->CreatorNameThai; ?>-
+                                                data-bs-target="#inno_mem<?php echo $showc->Id_inc ?>">
+                                                <?php echo $showc->PREFIX_NAME; ?>
+                                                <?php echo $showc->CreatorNameThai; ?>
                                                 <?php echo $showc->CreatorLastNameThai; ?></a>
                                             </button>
                                             <!-- Modal -->
-                                        <div class="modal fade" id="inno_mem<?php echo $showc->Id ?>" tabindex="-1"
+                                        <div class="modal fade" id="inno_mem<?php echo $showc->Id_inc ?>" tabindex="-1"
                                             aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                            <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable">
+                                            <div
+                                                class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable">
                                                 <div class="modal-content">
                                                     <div class="modal-header">
-                                                        <h5 class="modal-title" id="exampleModalLabel">ผู้จัดทำนวัตกรรมการศึกษา</h5>
+                                                        <h5 class="modal-title" id="exampleModalLabel">
+                                                            ผู้จัดทำนวัตกรรมการศึกษา</h5>
                                                         <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                             aria-label="Close"></button>
                                                     </div>
                                                     <div class="modal-body">
                                                         <div class="row">
                                                             <div class="col">
-                                                                <h6>ประเภทบัตรประจำตัวผู้จัดทำ</h6>
-                                                                <p>  <?php echo $showc->PERSONAL_ID_TYPE_NAME; ?></p>
+                                                                <h6 class="fw-bold">ประเภทบัตรประจำตัวผู้จัดทำ</h6>
+                                                                <p> <?php echo $showc->PERSONAL_ID_TYPE_NAME; ?></p>
 
                                                             </div>
                                                             <div class="col">
-                                                                <h6>หมายเลขบัตรประจำตัวผู้จัดการ</h6>
-                                                                <p>  <?php echo $showc->CreatorPersonalID; ?></p>
+                                                                <h6 class="fw-bold">หมายเลขบัตรประจำตัวผู้จัดทำ</h6>
+                                                                <p> <?php echo $showc->CreatorPersonalID; ?></p>
 
                                                             </div>
                                                         </div>
                                                         <div class="row">
                                                             <div class="col">
-                                                                <h6>ชื่อ-นามสกุล(ไทย)</h6>
-                                                                <p>  <?php echo $showc->PREFIX_NAME; ?>
-                                                                  <?php echo $showc->CreatorNameThai; ?> -
-                                                                  <?php echo $showc->CreatorLastNameThai; ?></p>
+                                                                <h6 class="fw-bold">ชื่อ-นามสกุล(ไทย)</h6>
+                                                                <p><?php echo $showc->PREFIX_NAME; ?>
+                                                                    <?php echo $showc->CreatorNameThai; ?>
+                                                                    <?php echo $showc->CreatorMiddleNameThai; ?>
+                                                                    <?php echo $showc->CreatorLastNameThai; ?></p>
 
                                                             </div>
                                                             <div class="col">
-                                                                <h6>ชื่อ-นามสกุล(อังกฤษ)</h6>
-                                                                <p>  <?php echo $showc->CreatorNameEnglish; ?> -
-                                                                  <?php echo $showc->CreatorLastNameEnglish; ?></p>
+                                                                <h6 class="fw-bold">ชื่อ-นามสกุล(อังกฤษ)</h6>
+                                                                <p>    <?php echo $showc->CreatorNameEnglish; ?> <?php echo $showc->CreatorMiddleNameEnglish; ?> <?php echo $showc->CreatorLastNameEnglish; ?></p>
 
                                                             </div>
                                                         </div>
                                                         <div class="row">
-                                                           <div class="col">
-                                                               <h6>สัดส่วนการมีส่วนร่วม</h6>
-                                                               <p>  <?php echo $showc->ParticipantRatio ; ?></p>
+                                                            <div class="col">
+                                                                <h6 class="fw-bold">สัดส่วนการมีส่วนร่วม</h6>
+                                                                <p> <?php echo $showc->ParticipantRatio ; ?></p>
 
-                                                           </div>
-                                                           
-                                                       </div>
+                                                            </div>
+
+                                                        </div>
                                                     </div>
                                                     <div class="modal-footer">
-                                                    <a href="<?php echo site_url('forms_p1?page=sh22') ?>&&key=<?php echo $showc->Id; ?>&&name=<?php echo $show->InnovationName; ?>"
-                                                    class="my-link btn btn-warning">  <i class="bi bi-pencil-square"></i>    </a>
+                                                        <a href="<?php echo site_url('forms_p1?page=sh22') ?>&&key=<?php echo $showc->Id_inc; ?>&&name=<?php echo $show->InnovationName; ?>"
+                                                            class="my-link btn btn-warning"> <i
+                                                                class="bi bi-pencil-square"></i> </a>
                                                         <button type="button" class="btn btn-secondary"
                                                             data-bs-dismiss="modal">ปิด</button>
                                                     </div>
@@ -223,7 +236,7 @@
                                 </div>
                                 <?php } ?>
 
-                                <a href="<?php echo site_url('forms_p2?page=sh2') ?>&&name=<?php echo $show->InnovationName; ?>&&key=<?php echo $show->InnovationID; ?>"
+                                <a href="<?php echo site_url('forms_p2?page=sh2') ?>&&InnovationID=<?php echo $show->InnovationID; ?>&&name=<?php echo $show->InnovationName; ?>&&key=<?php echo $show->Id_in; ?>"
                                     class="fw-bold my-link">
                                     >>เพิ่มผู้จัดทำ>>
                                 </a>
@@ -231,12 +244,12 @@
                             </td>
                             <td style="text-align: center;">
                                 <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                                    data-bs-target="#das<?php echo $show->InnovationID; ?>"><i
+                                    data-bs-target="#das<?php echo $show->Id_in; ?>"><i
                                         class="bi bi-card-list"></i></button>
 
                             </td>
                             <td style="text-align: center;">
-                                <a href="<?php echo site_url('forms_p1?page=sh11') ?>&&key=<?php echo $show->InnovationID; ?>&&name=<?php echo $show->InnovationName; ?>"
+                                <a href="<?php echo site_url('forms_p1?page=sh11') ?>&&key=<?php echo $show->Id_in; ?>&&name=<?php echo $show->InnovationName; ?>"
                                     class="btn btn-warning"> <i class="bi bi-pencil-square"></i></a>
                                 <?php echo nbs(1); ?> <button type="button" class="btn btn-danger"
                                     data-bs-toggle="modal"
@@ -251,8 +264,7 @@
                                             <div class="modal-header">
                                                 <h5 class="modal-title" id="exampleModalLabel">
                                                     ยืนยันการลบข้อมูลรหัส
-                                                    <?php echo nbs(2); ?>
-                                                    <?php echo $show->InnovationName; ?>
+                                                    
                                                 </h5>
 
                                             </div>
@@ -266,8 +278,8 @@
                                                 <button type="button" class="btn btn-secondary"
                                                     data-bs-dismiss="modal">ยกเลิก</button>
                                                 <form method="post" action="<?php echo site_url('del_p1'); ?>">
-                                                    <input type="hidden" name="InnovationID"
-                                                        value="<?php echo $show->InnovationID; ?>">
+                                                    <input type="hidden" name="Id_in"
+                                                        value="<?php echo $show->Id_in; ?>">
                                                     <div class="d-flex justify-content-center">
                                                         <button name="Submit" type="submit"
                                                             class="btn btn-danger">ยืนยันก่อนลบ</button>
@@ -299,10 +311,15 @@
 
 <?php
     $result = $this->db->query('SELECT * FROM INNOVATION 
+    INNER JOIN CLS_INNOVATION_TYPE
+    ON CLS_INNOVATION_TYPE.INNOVATION_TYPE_CODE = INNOVATION.InnovationTypeCode
+    INNER JOIN CLS_EDUCATION_LEVEL
+    ON CLS_EDUCATION_LEVEL.EDUCATION_LEVEL_CODE = INNOVATION.TargetEducationLevelCode
+
                       ');
     foreach ($result->result() as $show) {
         ?>
-<div class="modal fade" id="das<?php echo $show->InnovationID; ?>" tabindex="-1" aria-labelledby="exampleModalLabel"
+<div class="modal fade" id="das<?php echo $show->Id_in; ?>" tabindex="-1" aria-labelledby="exampleModalLabel"
     aria-hidden="true">
     <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable">
         <div class="modal-content">
@@ -312,18 +329,7 @@
             </div>
             <div class="modal-body">
                 <?php
-                        $InnovationID = $show->InnovationID;
-                        $results = $this->db->query("SELECT * FROM INNOVATION 
-                            INNER JOIN CLS_INNOVATION_TYPE 
-                            ON INNOVATION.InnovationTypeCode = CLS_INNOVATION_TYPE.INNOVATION_TYPE_CODE 
-                            INNER JOIN CLS_EDUCATION_LEVEL 
-                            ON INNOVATION.TargetEducationLevelCode = CLS_EDUCATION_LEVEL.EDUCATION_LEVEL_CODE 
-                            -- INNER JOIN INNOVATION_CREATOR 
-                            -- ON INNOVATION_CREATOR.InnovationID = INNOVATION.InnovationID 
-                            WHERE InnovationID = $InnovationID
-                            ");
-
-                        foreach ($results->result() as $shows) {
+                       
                             ?>
                 <div class="row">
                     <div class="col">
@@ -355,13 +361,14 @@
 
                         <h5 class="fw-bold">ประเภทนวัตกรรม</h5>
                         <p>
-                            <?php echo $shows->INNOVATION_TYPE_NAME; ?>
+                            <?php echo $show->INNOVATION_TYPE_NAME; ?>
                         </p>
 
                         <h5 class="fw-bold">ระดับการศึกษาที่นำไปใช้</h5>
                         <p>
-                            <?php echo $shows->EDUCATION_LEVEL_NAME; ?>
+                            <?php echo $show->EDUCATION_LEVEL_NAME; ?>
                         </p>
+                        <?php  ?>
                         <h5 class="fw-bold">คำค้นหา</h5>
                         <p>
                             <?php echo $show->SearchKeyword; ?>
@@ -374,10 +381,24 @@
                         <p>
                             <?php echo $show->InnovationBenefit; ?>
                         </p>
-                        <h5 class="fw-bold">บทคัดย่อ</h5>
-                        <p>
-                            <?php echo $show->Abstract; ?>
-                        </p>
+                        <!-- <h5 class="fw-bold">บทคัดย่อ</h5>
+                       
+                          
+                        <div class="card">
+  <div class="card-body">
+    <p><?php echo $show->Abstract; ?></p>
+  </div>
+</div> -->
+
+                        <div class="mb-3">
+                            <label for="exampleFormControlTextarea1" class="form-label"><h5  class="fw-bold">บทคัดย่อ</h5></label>
+                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" disabled
+                                style="width: 75%; background-color: #fff; border: 0px solid #ced4da; border-radius: 0.25rem;"><?php echo $show->Abstract; ?></textarea>
+                        </div>
+
+
+
+
                         <h5 class="fw-bold">เอกสารแนบ</h5>
                         <p><a href="<?php echo base_url('assets/EII/INNOVATION') ?>/<?php echo $show->AttachmentURL; ?>"
                                 target="_blank"><i class="bi bi-file-earmark-text-fill"></i>รายละเอียดเอกสาร</a></p>
@@ -394,9 +415,9 @@
                         <h5 class="fw-bold">รายชื่อผู้จัดทำ</h5>
                         <?php $resultc = $this->db->query("SELECT * FROM INNOVATION_CREATOR JOIN CLS_PERSONAL_ID_TYPE ON INNOVATION_CREATOR.CreatorPersonalIDTypeCode = CLS_PERSONAL_ID_TYPE.PERSONAL_ID_TYPE_CODE 
 JOIN CLS_PREFIX ON INNOVATION_CREATOR.CreatorPrefixCode = CLS_PREFIX.PREFIX_CODE  
-WHERE InnovationID='" . $InnovationID . "'"); ?>
+WHERE InnovationID='" . $Id_in . "' AND  INNOVATION_CREATOR.DeleteStatus = '0'"); ?>
 
-                        <table class="m-2 col-12">
+                        <table class="table table-bordered">
                             <tr>
                                 <th style="">ประเภทบัตร</th>
                                 <th style="" class="col-3">เลขบัตร ปชช.</th>
@@ -417,10 +438,9 @@ WHERE InnovationID='" . $InnovationID . "'"); ?>
                                 </td>
                                 <td>
                                     <p>
-                                        <?php echo $showc->PREFIX_NAME; ?>
-                                        <?php echo nbs(2); ?>
-                                        <?php echo $showc->CreatorNameThai; ?>-
-                                        <?php echo $showc->CreatorLastNameThai; ?>
+                                        <?php echo $showc->PREFIX_NAME; ?> <?php echo $showc->CreatorNameThai; ?> <?php echo $showc->CreatorMiddleNameThai; ?> <?php echo $showc->CreatorLastNameThai; ?>
+                                    <br>
+                                        (<?php echo $showc->CreatorNameEnglish; ?> <?php echo $showc->CreatorMiddleNameEnglish; ?> <?php echo $showc->CreatorLastNameEnglish; ?>)
                                     </p>
                                 </td>
                                 <td style="text-align: center;">
@@ -429,16 +449,16 @@ WHERE InnovationID='" . $InnovationID . "'"); ?>
                                     </p>
                                 </td>
 
-
-
-
                                 <?php } ?>
+
+
+                             
                             </tr>
                         </table>
 
                     </div>
                 </div>
-                <?php } ?>
+             
             </div>
             <div class="modal-footer">
                 <!-- <a href="<?php echo site_url('forms_p1?page=sh11') ?>&&key=<?php echo $show->Id; ?>&&name=<?php echo $show->InnovationName; ?>"
