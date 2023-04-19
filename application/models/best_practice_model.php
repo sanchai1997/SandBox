@@ -159,7 +159,7 @@ class Best_practice_model extends CI_Model
 				}
 			}
 			$this->db->where('Id_best', $this->input->post('Id_best'));
-					$query = $this->db->update('best_practice', $data);
+					$query = $this->db->update('BEST_PRACTICE', $data);
 			if ($query) {
 				session_start(); // เริ่มต้น session
 				$_SESSION['success'] = "เพิ่มข้อมูลเรียบร้อย !"; // กำหนดค่า success ใน session เป็น true
@@ -184,7 +184,7 @@ class Best_practice_model extends CI_Model
 			'DeleteStatus' => $status
 		);
 		$this->db->where('Id_best', $this->input->post('Id_best'));
-		$query = $this->db->update('best_practice', $data);
+		$query = $this->db->update('BEST_PRACTICE', $data);
 		if ($query) {
 			session_start(); // เริ่มต้น session
 			$_SESSION['success'] = "ลบสำเร็จ !"; // กำหนดค่า success ใน session เป็น true
