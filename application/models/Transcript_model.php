@@ -13,18 +13,35 @@ class Transcript_model extends CI_Model
     //ADD Data transcript
     public function add_transcript($SchoolID, $StudentReferenceID, $EducationYear, $Semester, $GradeLevelCode)
     {
-        $data = [
+        $result = $this->db->query('SELECT * FROM STUDENT WHERE DeleteStatus = 0  
+        AND StudentReferenceID  = "' . $StudentReferenceID . '" 
+        ');
+        foreach ($result->result() as $STUDENT) {
+            $SchoolID = $STUDENT->SchoolID;
+            $data = [
 
-            'TranscriptSeriesNumber' => $this->input->post('TranscriptSeriesNumber'),
-            'TranscriptNumber' => $this->input->post('TranscriptNumber'),
-            'EducationYear' => $EducationYear,
-            'Semester' => $Semester,
-            'OldSchoolID' => $SchoolID,
-            'OldSchoolLastGradeLevelCode' => $GradeLevelCode,
-            'StudentReferenceID' => $StudentReferenceID
-        ];
+                'TranscriptSeriesNumber' => $this->input->post('TranscriptSeriesNumber'),
+                'TranscriptNumber' => $this->input->post('TranscriptNumber'),
+                'EducationYear' => $EducationYear,
+                'Semester' => $Semester,
+                'OldSchoolID' => $SchoolID,
+                'OldSchoolLastGradeLevelCode' => $GradeLevelCode,
+                'StudentReferenceID' => $StudentReferenceID,
+                'OldSchoolID' => $SchoolID,
+                'GraduatedSchoolID ' =>  $STUDENT->SchoolID,
+                'GraduatedPersonalIDTypeCode' => $STUDENT->StudentPersonalIDTypeCode,
+                'GraduatedStudentID' => $STUDENT->StudentID,
+                'GraduatedPrefixCode' => $STUDENT->StudentPrefixCode,
+                'GraduatedNameThai' => $STUDENT->StudentNameThai,
+                'GraduatedNameEnglish' => $STUDENT->StudentNameEnglish,
+                'GraduatedLastNameThai' => $STUDENT->StudentLastNameThai,
+                'GraduatedLastNameEnglish' => $STUDENT->StudentLastNameEnglish,
+
+            ];
+        }
 
         $result = $this->db->insert('TRANSCRIPT', $data);
+
         return $result;
     }
 
@@ -72,7 +89,7 @@ class Transcript_model extends CI_Model
         $result = $this->db->where('StudentReferenceID ', $StudentReferenceID)->where('TranscriptSeriesNumber ', $TranscriptSeriesNumber)->where('TranscriptNumber ', $TranscriptNumber)->update('TRANSCRIPT', $data);
 
         //อนุบาล 
-        if ($GradeLevelCode == '111' || $GradeLevelCode == '112' || $GradeLevelCode == '211' || $GradeLevelCode == '212' || $GradeLevelCode == '214' || $GradeLevelCode == '215' || $GradeLevelCode == '311' || $GradeLevelCode == '312') {
+        if ($GradeLevelCode == '111' || $GradeLevelCode == '112' || $GradeLevelCode == '211' || $GradeLevelCode == '212' || $GradeLevelCode == '214' || $GradeLevelCode == '215' || $GradeLevelCode == '311' || $GradeLevelCode == '312' || ($GradeLevelCode == '113' || $GradeLevelCode == '213' || $GradeLevelCode == '216' || $GradeLevelCode == '313') && $Semester != 2) {
             if ($Semester == 1) {
                 $data_ST = [
 
@@ -90,15 +107,49 @@ class Transcript_model extends CI_Model
                 ];
                 $result = $this->db->where('StudentReferenceID ', $StudentReferenceID)->update('STUDENT', $data_ST);
             }
-        } elseif ($GradeLevelCode == '113') { ///สำเร็จการศึกษาา
+        } elseif (($GradeLevelCode == '113' || $GradeLevelCode == '213' || $GradeLevelCode == '216' || $GradeLevelCode == '313') && $Semester == 2) { ///สำเร็จการศึกษาา
 
             $data = [
-                'EducationYear' => $EducationYear + 1,
-                'Semester' => $Semester + 1,
-                'GradeLevelCode' => $GradeLevelCode + 1,
+
+                'StudentStatusCode' => '007'
 
             ];
+
+            $result = $this->db->where('StudentReferenceID ', $StudentReferenceID)->update('STUDENT', $data);
+
+            $result = $this->db->query('SELECT * FROM STUDENT WHERE DeleteStatus = 0  
+                AND StudentReferenceID  = "' . $StudentReferenceID . '" 
+        ');
+            foreach ($result->result() as $STUDENT) {
+                $SchoolID = $STUDENT->SchoolID;
+                $data_ST = [
+
+                    'EducationYear' =>  $EducationYear,
+                    'Semester' =>  $Semester,
+                    'GraduatedSchoolID' =>  $STUDENT->SchoolID,
+                    'StudentReferenceID' => $STUDENT->StudentReferenceID,
+                    'ImageGraduated' => $STUDENT->ImageStudent,
+                    'GraduatedPersonalID' =>  $STUDENT->StudentPersonalID,
+                    'GraduatedPersonalIDTypeCode' => $STUDENT->StudentPersonalIDTypeCode,
+                    'GraduatedStudentID' => $STUDENT->StudentID,
+                    'GraduatedPrefixCode' => $STUDENT->StudentPrefixCode,
+                    'GraduatedNameThai' => $STUDENT->StudentNameThai,
+                    'GraduatedNameEnglish' => $STUDENT->StudentNameEnglish,
+                    'GraduatedLastNameThai' => $STUDENT->StudentLastNameThai,
+                    'GraduatedLastNameEnglish' => $STUDENT->StudentLastNameEnglish,
+                    'GraduatedEducationYear' => $STUDENT->EducationYear,
+                    'GraduatedEducationLevelCode' => $STUDENT->EducationLevelCode,
+                    'GraduatedGradeLevelCode' => $STUDENT->GradeLevelCode,
+                    'GraduatedTranscriptNumber' => $TranscriptNumber,
+                    'GraduatedTranscriptSeriesNumber' => $TranscriptSeriesNumber
+
+                ];
+
+                $result = $this->db->insert('GRADUATED', $data_ST);
+            }
         }
+
+
 
 
         return $result;

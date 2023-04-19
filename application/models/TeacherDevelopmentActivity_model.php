@@ -24,11 +24,12 @@ class TeacherDevelopmentActivity_model extends CI_Model {
 
     
     public function get_TeacherDevelopmentActivityAll() {
-        $this->db->select('td.*, t.TeacherNameThai, at.TEACHER_DEVELOPMENT_ACTIVITY_TYPE_NAME')
+        $this->db->select('td.*, t.*, at.TEACHER_DEVELOPMENT_ACTIVITY_TYPE_NAME')
         ->from('TEACHER_DEVELOPMENT_ACTIVITY td')
         ->join('TEACHER t', 't.TeacherID   = td.TeacherID  ', 'LEFT') 
         ->join('CLS_TEACHER_DEVELOPMENT_ACTIVITY_TYPE at', 'at.TEACHER_DEVELOPMENT_ACTIVITY_TYPE_CODE   = td.DevelopmentActivityTypeCode  ', 'LEFT') 
         ->where('td.DeleteStatus', 0)
+        ->where('t.DeleteStatus', 0)
         ;
 
         $query = $this->db->get();

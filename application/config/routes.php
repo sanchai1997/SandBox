@@ -100,7 +100,22 @@ $route['list-area_identity_by_school'] = 'Area_identittyController/list_area_ide
 $route['forms-area_identity'] = 'Area_identittyController/forms_Area_identitty';
 $route['add-area_identity_by_school']['post'] = 'Area_identittyController/add_area_identity';
 $route['delete_area_identity'] = 'Area_identittyController/delete_area_identity';
+$route['edit_forms_area_identity'] = 'Area_identittyController/edit_forms_area_identity';
+$route['edit-area_identity']['post'] = 'Area_identittyController/edit_area_identity';
 
+//Region
+$route['forms-Region'] = 'Area_identittyController/forms_Region';
+$route['add-Region']['post'] = 'Area_identittyController/add_Region';
+$route['delete_Region'] = 'Area_identittyController/delete_Region';
+$route['edit_forms_Region'] = 'Area_identittyController/edit_forms_Region';
+$route['edit-Region']['post'] = 'Area_identittyController/edit_Region';
+
+//OCCUPATION
+$route['forms-OCCUPATION'] = 'Area_identittyController/forms_OCCUPATION';
+$route['add-OCCUPATION']['post'] = 'Area_identittyController/add_OCCUPATION';
+$route['delete_OCCUPATION'] = 'Area_identittyController/delete_OCCUPATION';
+$route['edit_forms_OCCUPATION'] = 'Area_identittyController/edit_forms_OCCUPATION';
+$route['edit-OCCUPATION']['post'] = 'Area_identittyController/edit_OCCUPATION';
 
 
 ////////////////////// ROUTE SCHOOL ////////////////////////
@@ -200,7 +215,9 @@ $route['edit-forms-teacher-marriage'] = 'forms_teacher/edit_forms_teacher_marria
 $route['edit-forms-teacher-address'] = 'forms_teacher/edit_forms_teacher_address';
 $route['edit-forms-teacher-contract'] = 'forms_teacher/edit_forms_teacher_contract';
 $route['edit-forms-teacher-talent'] = 'forms_teacher/edit_forms_teacher_talent';
+$route['edit-forms-teacher-signature'] = 'forms_teacher/edit_forms_teacher_signature';
 $route['update-teacher-main/(:any)/(:num)/(:num)/(:num)/(:num)/(:num)/(:any)']['post'] = 'forms_teacher/update_teacher_main/$1/$2/$3/$4/$5/$6/$7';
+$route['update-teacher-signature/(:any)/(:num)/(:num)/(:num)/(:num)/(:num)/(:any)']['post'] = 'forms_teacher/update_teacher_signature/$1/$2/$3/$4/$5/$6/$7';
 $route['update-teacher-person/(:any)/(:num)/(:num)/(:num)/(:num)/(:num)']['post'] = 'forms_teacher/update_teacher_person/$1/$2/$3/$4/$5/$6';
 $route['update-teacher-marriage/(:any)/(:num)/(:num)/(:num)/(:num)/(:num)']['post'] = 'forms_teacher/update_teacher_marriage/$1/$2/$3/$4/$5/$6';
 $route['update-teacher-address/(:any)/(:num)/(:num)/(:num)/(:num)/(:num)']['post'] = 'forms_teacher/update_teacher_address/$1/$2/$3/$4/$5/$6';
@@ -263,6 +280,8 @@ $route['delete-teacher-teaching/(:any)/(:num)/(:num)/(:num)/(:num)/(:num)/(:num)
 ////////////////////// ROUTE GRADUATED ////////////////////////
 //GRADUATED 
 $route['graduated'] = 'graduated';
+$route['graduated-download'] = 'graduated/graduated_download';
+
 $route['delete-graduated/(:any)/(:num)/(:num)/(:num)/(:num)'] = 'forms_graduated/delete_graduated/$1/$2/$3/$4/$5';
 
 ///////////////////// GRADUATED - END /////////////////////////
@@ -280,6 +299,7 @@ $route['delete-transcript/(:num)/(:any)/(:num)/(:num)/(:num)/(:num)/(:num)/(:num
 
 //transcript_student
 $route['transcript-download'] = 'transcript/transcript_download';
+$route['transcript-booking-print'] = 'transcript/transcript_booking_print';
 
 
 //Subject

@@ -1,12 +1,12 @@
 <style>
     .page-content img {
-        max-width: 90px;
-        height: 100px;
+        max-width: 100%;
+        height: 100%;
     }
 
     .page-detail img {
-        max-width: 170px;
-        height: 190px;
+        max-width: 100%;
+        height: 100%;
     }
 </style>
 <main id="main" class="main">
@@ -98,14 +98,15 @@
                         </div>
                         <div class="col">
                             <h5 style="float: right; padding: 15px;" class="card-title">
-                                <a href="forms-school" class="btn btn-success"><i class="bi bi-file-earmark-plus"></i> เพิ่มสถานศึกษา</a>
+                                <a href="forms-school" class="btn btn-success"><i class="bi bi-file-earmark-plus"></i> เพิ่มข้อมูล</a>
                             </h5>
                         </div>
                     </div>
                     <table class="table table-borderless datatable">
                         <thead>
                             <tr>
-                                <th style="text-align: center;" width="160px">ตราสัญลักษณ์</th>
+                                <th style="text-align: center;" width="120px" hight="120px">ตราสัญลักษณ์</th>
+                                <th scope="col">รหัสสถานศึกษา</th>
                                 <th scope="col">ชื่อสถานศึกษา</th>
                                 <th scope="col">พื้นที่นวัตกรรม</th>
                                 <th style="text-align: center;" scope="col">รายละเอียด</th>
@@ -118,7 +119,8 @@
                             foreach ($result->result() as $SCHOOL) {
                             ?>
                                 <tr>
-                                    <td class="page-content" style="text-align: center;"><img src="assets/school/img/<?= $SCHOOL->ImageSchool; ?>" alt="" width="100%" height="100%"></td>
+                                    <td class="page-content" style="text-align: center;"><img src="assets/school/img/<?= $SCHOOL->ImageSchool; ?>" alt=""></td>
+                                    <td style="padding-top: 40px;"><?= $SCHOOL->SchoolID; ?></td>
                                     <td style="padding-top: 40px;"><?= $SCHOOL->SchoolNameThai; ?></td>
                                     <td style="padding-top: 40px;"><?= $SCHOOL->INNOVATION_AREA_NAME; ?></td>
                                     <td style="padding-top: 35px; text-align: center;">
@@ -173,7 +175,7 @@ WHERE SCHOOL.SchoolID = ' . $_GET['SchoolID'] . '
                         <div class="row">
                             <?php if ($SCHOOL_DETAIL->ImageSchool != '') { ?>
                                 <div class="col-2" style="padding-bottom: 8px; padding-left: 70px; padding-top: 0px; ">
-                                    <div class="card page-detail" style="width: 180px;">
+                                    <div class="card page-detail" style="width: 170px; height: 180px;">
                                         <img style=" text-align: center; padding: 15px;" src="assets/school/img/<?= $SCHOOL_DETAIL->ImageSchool; ?>" alt="" width="100%" style="padding-top: 20px;">
                                     </div>
                                 </div>
@@ -194,15 +196,17 @@ WHERE SCHOOL.SchoolID = ' . $_GET['SchoolID'] . '
                                         </h5>
                                         <div class="row">
                                             <div class="col-6" style="text-align: left; padding-left: 25px; padding-bottom: 5px;">
+                                                <lable style="padding-left: 20px;">รหัสสถานศึกษา : <?= $SCHOOL_DETAIL->SchoolID; ?></lable><br>
                                                 <lable style="padding-left: 20px;">วันก่อตั้ง : <?= DateThai($SCHOOL_DETAIL->SchoolEstablishedDate); ?></lable><br>
                                                 <lable style="padding-left: 20px;">ประเภทสถานศึกษา : <?= $SCHOOL_DETAIL->SCHOOL_TYPE_NAME; ?></lable><br>
                                                 <lable style="padding-left: 20px;">ระดับศึกษาที่เปิดสอน : <?= $SCHOOL_DETAIL->EDUCATION_LEVEL_NAME; ?></lable><br>
-                                                <lable style="padding-left: 20px;">สถานะของสถานศึกษา : <?= $SCHOOL_DETAIL->SCHOOL_STATUS_NAME; ?></lable>
                                             </div>
                                             <div class="col-6" style="text-align: left; padding-left: 25px; padding-bottom: 5px;">
                                                 <lable style="padding-left: 20px;">พื้นที่นวัตกรรม : <?= $SCHOOL_DETAIL->INNOVATION_AREA_NAME; ?></lable><br>
                                                 <lable style="padding-left: 20px;">หน่วยงานต้นสังกัด : <?= $SCHOOL_DETAIL->JURISDICTION_NAME; ?></lable><br>
-                                                <lable style="padding-left: 20px;">เขตปกครอง : <?= $SCHOOL_DETAIL->MUNICIPAL_NAME; ?></lable>
+                                                <lable style="padding-left: 20px;">เขตปกครอง : <?= $SCHOOL_DETAIL->MUNICIPAL_NAME; ?></lable><br>
+                                                <lable style="padding-left: 20px;">สถานะของสถานศึกษา : <?= $SCHOOL_DETAIL->SCHOOL_STATUS_NAME; ?></lable>
+
                                             </div>
                                         </div>
                                     </div>
@@ -287,12 +291,12 @@ WHERE SCHOOL.SchoolID = ' . $_GET['SchoolID'] . '
                                                 echo $SCHOOL_DETAIL->SchoolLatitude . ',' . $SCHOOL_DETAIL->SchoolLongitude;
                                             } ?>
                                         </label><br>
-                                        <label style="padding-left: 20px;">ลิ้งแผนที่ :
+                                        <label style="padding-left: 20px;">แผนที่ :
                                             <?php if ($SCHOOL_DETAIL->SchoolMapURL == "") {
                                                 echo '-';
                                             } else {
                                             ?>
-                                                <a href="<?= $SCHOOL_DETAIL->SchoolMapURL ?>" target="_blank" class="btn btn-sm btn-light"><?= $SCHOOL_DETAIL->SchoolMapURL ?></a>
+                                                <a href="<?= $SCHOOL_DETAIL->SchoolMapURL ?>" target="_blank" class="btn  btn-light"><i class="bi bi-geo-alt"></i> ลิ้งแผนที่</a>
                                             <?php
                                             } ?>
                                         </label><br>
@@ -349,7 +353,7 @@ WHERE SCHOOL.SchoolID = ' . $_GET['SchoolID'] . '
                                                         echo '-';
                                                     } else {
                                                     ?>
-                                                        <a href="<?= $SCHOOL_DETAIL->SchoolWebsiteURL ?>" target="_blank" class="btn btn-sm btn-light"><?= $SCHOOL_DETAIL->SchoolWebsiteURL ?></a>
+                                                        <a href="<?= $SCHOOL_DETAIL->SchoolWebsiteURL ?>" target="_blank" class="btn btn-light"><i class="bi bi-browser-edge"></i> ลิ้งเว็บไซด์</a>
                                                     <?php
                                                     } ?>
                                                 </label>

@@ -31,6 +31,22 @@
         </div>
     <?php } ?>
 
+    <!-- Alert -->
+    <?php if (!empty($_SESSION['errors'])) { ?>
+      <div class="row">
+        <div class="col-lg-9">
+          <div class="alert alert-danger" id="myAlert" style="top: 0; left: 0; right: 0; z-index: 1;">
+              <strong>
+                  <?php
+                  echo '<i class="bi bi-exclamation-circle-fill"></i> '. $_SESSION['errors'];
+                  unset($_SESSION['errors']);
+                  ?>
+              </strong>
+          </div> 
+        </div>
+      </div>
+      <?php } ?>  
+
     <!-- Recent Sales -->
     <div class="col-12">
         <div class="card recent-sales overflow-auto">
@@ -61,7 +77,7 @@
                     </div>
                      <?php if (!empty($School)) {?>
                         <div class="col">
-                            <h5 style="float: right; padding: 15px;" class="card-title"><a href="" class="btn btn-success">อัพโหลดไฟล์</a>&nbsp;&nbsp;<a href="forms-curriculum?sid=<?php echo $SchoolID; ?>" class="btn btn-success">เพิ่มข้อมูล</a></h5>
+                            <h5 style="float: right; padding: 15px;" class="card-title">&nbsp;&nbsp;<a href="forms-curriculum?sid=<?php echo $SchoolID; ?>" class="btn btn-success">เพิ่มข้อมูล</a></h5>
                         </div>
                     <?php } ?>
                 </div>

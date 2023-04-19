@@ -226,20 +226,6 @@
     </section>
     <script type="text/javascript">
         function check(frm) {
-            var Year = /^[0-9]{4,4}$/;
-            if (frm.EntryYear.value == "") {
-                alert("กรุณากรอกปีที่เก็บข้อมูล");
-                return false;
-            } else if (!frm.EntryYear.value.match(Year)) {
-                alert("กรุณากรอกปีที่เก็บข้อมูลให้ครบ 4 หลัก");
-                frm.EntryYear.value = "";
-                return false;
-            }
-
-            if (frm.EntryTimes.value == "") {
-                alert("กรุณาเลือกรอบที่เก็บข้อมูล");
-                return false;
-            }
 
             if (frm.PersonnelStatusCode.value == "") {
                 alert("กรุณาเลือกสถานะปฏิบัติราชการ");

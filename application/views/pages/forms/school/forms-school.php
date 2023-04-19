@@ -54,6 +54,12 @@
               </div>
               <div class="col-md-12">
                 <div class="form-floating">
+                  <input type="text" maxlength="10" class="form-control " name="SchoolID" id="SchoolID" required>
+                  <label for="SchoolID">รหัสสถานศึกษา<font color="red"> *</font></label>
+                </div>
+              </div>
+              <div class="col-md-12">
+                <div class="form-floating">
                   <input type="text" class="form-control " name="SchoolNameThai" id="SchoolNameThai" required>
                   <label for="SchoolNameThai">ชื่อสถานศึกษา (ภาษาไทย) <font color="red"> *</font></label>
                 </div>
@@ -318,6 +324,17 @@
         }
       }
 
+      var SchoolId = /^[0-9]{1,10}$/;
+      if (frm.SchoolID.value == "") {
+        alert("กรุณากรอกรหัสสถานศึกษา");
+        frm.SchoolID.value = "";
+        return false;
+      } else if (!frm.SchoolID.value.match(SchoolId)) {
+        alert("กรุณากรอกรหัสสถานศึกษาเป็นตัวเลขและไม่เกิน 10 หลัก");
+        frm.SchoolID.value = "";
+        return false;
+      }
+
       var NameThai = /^[ก-์]{1,255}$/;
       if (frm.SchoolNameThai.value == "") {
         alert("กรุณากรอกชื่อโรงเรียน(ภาษาไทย)");
@@ -329,14 +346,13 @@
         return false;
       }
 
-      var NameEnglish = /^[A-Z,a-z]{1,255}$/;
+      var NameEnglish = /^[a-zA-Z0-9. -_]{1,255}$/;
       if (frm.SchoolNameEnglish.value == "") {
         alert("กรุณากรอกชื่อโรงเรียน(ภาษาอังกฤษ)");
         frm.SchoolNameEnglish.value = "";
         return false;
       } else if (!frm.SchoolNameEnglish.value.match(NameEnglish)) {
         alert("กรุณากรอกชื่อโรงเรียนเป็น(ภาษาอังกฤษ)และให้น้อยกว่า 255 อักษร");
-        frm.SchoolNameEnglish.value = "";
         return false;
       }
 

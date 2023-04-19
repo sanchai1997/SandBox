@@ -16,7 +16,7 @@ class Personnel_model extends CI_Model
         $config['max_size']             = 50000;
         $config['max_width']            = 3402;
         $config['max_height']           = 1417;
-        $config['file_name']            = 'ImagePersonnel_' . $_POST['PersonnelPersonalID'];
+        $config['file_name']            = 'ImagePersonnel_' . $_POST['PersonnelPersonalID'] . date('Ymd');
 
         $this->load->library('upload', $config);
 
@@ -28,7 +28,7 @@ class Personnel_model extends CI_Model
         }
 
         $type = substr($_FILES['ImagePersonnel']['name'], -4);
-        $new_name = 'ImagePersonnel_' . $_POST['PersonnelPersonalID'] . $type;
+        $new_name = 'ImagePersonnel_' . $_POST['PersonnelPersonalID'] . date('Ymd') . $type;
 
         $data = [
 

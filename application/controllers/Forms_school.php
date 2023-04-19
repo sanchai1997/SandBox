@@ -35,16 +35,14 @@ class Forms_school extends CI_Controller
     {
         $result = $this->db->query('SELECT * 
         FROM SCHOOL 
-        WHERE DeleteStatus = 0
-        AND SchoolID = ' . $_POST['JurisdictionCode'] . $_POST['SchoolAddressProvinceCode'] . ' 
-        OR SchoolNameThai = "' . $_POST['SchoolNameThai'] . '" 
+        WHERE SchoolID = ' . $_POST['SchoolID'] . ' 
         ')->result();
         if ($result != TRUE) {
             $this->forms_school->add_school();
             $_SESSION['success'] = "บันทึกข้อมูลเรียบร้อย";
             redirect(base_url('school'));
         } else {
-            $_SESSION['danger'] = "ไม่สามารถบันทึกข้อมูลได้ โปรดตรวจสอบข้อมูลสถานศึกษานี้อาจจะซ้ำในระบบ";
+            $_SESSION['danger'] = "ไม่สามารถบันทึกข้อมูลได้ โปรดตรวจสอบข้อมูลรหัสสถานศึกษานี้อาจจะซ้ำในระบบ";
             redirect(base_url('forms-school'));
         }
     }

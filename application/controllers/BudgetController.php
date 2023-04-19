@@ -133,7 +133,7 @@ class BudgetController extends CI_Controller{
                 redirect(base_url('list_budget_by_school?sid='.$SchoolID));
             }else{
                 $this->session->set_flashdata('errors',"เกิดข้อผิดพลาดในการบันทึกข้อมูล");
-                redirect(base_url('list_budget_by_school?sid='.$SchoolID));
+                redirect(base_url('forms-budget?sid='.$SchoolID));
             }
         
     }
@@ -160,13 +160,14 @@ class BudgetController extends CI_Controller{
         $result_budget =  $this->Budget_model->update_budget($budget,$BudgetID);
    
         if($result_budget == 1){
-            $this->session->set_flashdata('success',"บันทึกข้อมูลสำเร็จ");
+            $this->session->set_flashdata('success',"แก้ไขข้อมูลสำเร็จ");
             redirect(base_url('list_budget_by_school?sid='.$SchoolID));
         }else{
-            $this->session->set_flashdata('errors',"เกิดข้อผิดพลาดในการบันทึกข้อมูล");
-            redirect(base_url('list_budget_by_school?sid='.$SchoolID));
+            $this->session->set_flashdata('errors',"เกิดข้อผิดพลาดในการแก้ไขข้อมูล");
+            redirect(base_url('edit_forms_budget?sid='.$SchoolID .'&&bid='.$BudgetID));
         }
     
+
 }
    public function delete_budget(){
         $BudgetID = $_GET['bid'];
