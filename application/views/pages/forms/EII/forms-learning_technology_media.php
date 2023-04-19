@@ -8,6 +8,7 @@
     <?php $page = isset($_GET['page']) ? $_GET['page'] : '';  ?>
     <?php $name = isset($_GET['name']) ? $_GET['name'] : ''; ?>
     <?php $key = isset($_GET['key']) ? $_GET['key'] : ''; ?>
+    <?php $MediaID = isset($_GET['MediaID']) ? $_GET['MediaID'] : ''; ?>
     <?php 
 session_start(); // เริ่มต้น session
 if (isset( $_SESSION['success'])) { ?>
@@ -514,8 +515,22 @@ if (isset( $_SESSION['success'])) { ?>
                             <div class="row mb-3">
                                 <div class="form-floating">
                                     <input type="hidden" class="form-control" id="floatingName"
-                                        placeholder="รหัสข้อมูลเทคโนโลยีและสื่อการเรียนรู้" name="MediaID"
-                                        value="<?php echo $key; ?>">
+                                        placeholder="รหัสข้อมูลเทคโนโลยีและสื่อการเรียนรู้" name=""
+                                        value="<?php echo $MediaID; ?>">
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <div class="col">
+                                    <div class="form-floating">
+                                        <input type="text" class="form-control" id="floatingName"
+                                            placeholder="รหัสข้อมูลเทคโนโลยีและสื่อการเรียนรู้" name=""
+                                            value="<?php echo $MediaID ?>" disabled>
+                                        <input type="hidden" class="form-control" id="floatingName" placeholder=""
+                                            name="MediaID" value="<?php echo $key ?>">
+                                        <label for="Y">
+                                            รหัสข้อมูลเทคโนโลยีและสื่อการเรียนรู้ </label>
+                                    </div>
+
                                 </div>
                             </div>
                             <div class="row mb-3">

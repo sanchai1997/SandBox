@@ -246,7 +246,7 @@
                                 </div>
                                 <?php } ?>
 
-                                <a href="<?php echo site_url('LTMC_forms_p2?page=sh2') ?>&&name=<?php echo $show->MediaName; ?>&&key=<?php echo $show->Id_ltm; ?>"
+                                <a href="<?php echo site_url('LTMC_forms_p2?page=sh2') ?>&&name=<?php echo $show->MediaName; ?>&&key=<?php echo $show->Id_ltm; ?>&&MediaID=<?php echo $show->MediaID; ?>"
                                     class="my-link fw-bold">>>เพิ่มผู้จัดทำ>>
                                 </a>
                             </td>
