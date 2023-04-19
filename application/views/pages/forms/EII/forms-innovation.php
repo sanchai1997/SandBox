@@ -594,7 +594,7 @@ if (isset( $_SESSION['success'])) { ?>
                                 
                                     <div class="col">
                                         <div class="form-floating" id="CreatorPersonalID">
-                                            <input type="text" class="form-control" id="my-auto"
+                                            <input type="number" class="form-control" id="my-auto"
                                                 placeholder="หมายเลขบัตรประจำตัวผู้จัดทำ" name="" disabled>
                                             <input type="hidden" class="form-control" id="my-autoo" placeholder=""
                                                 name="CreatorPersonalID">
@@ -839,7 +839,7 @@ if (select.value === "I" || select.value === "O") {
 
                                         <div class="col">
                                             <div class="form-floating" id="CreatorPersonalID">
-                                                <input type="text" class="form-control" id="my-auto"
+                                                <input type="number" class="form-control" id="my-auto"
                                                     placeholder="หมายเลขบัตรประจำตัวผู้จัดทำ" name=""
                                                     value="<?php echo $show->CreatorPersonalID ?>" disabled >
                                                 <input type="hidden" class="form-control" id="my-autoo" placeholder=""
