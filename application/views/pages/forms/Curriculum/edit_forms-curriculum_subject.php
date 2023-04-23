@@ -264,6 +264,14 @@
       }     
    }
 
+   if(SubjectGroupCode=='09' || SubjectGroupCode=='10' ){
+      document.getElementById("add-SUBJECT_STD").style.display = 'block';
+      // document.getElementById("text_add-SUBJECT_STD").innerHTML = "เพิ่มมาตรฐานการเรียนรู้ - "+$( "#SubjectGroupCode option:selected" ).text() ;
+
+    }else{
+      document.getElementById("add-SUBJECT_STD").style.display = 'none';
+    }
+
 
   }
 
