@@ -91,11 +91,12 @@ class Curriculum_model  extends CI_Model {
     }
 
     public function get_CurriculumSubject_All($CurriculumID) {
-        $this->db->select('cs.*,st.SUBJECT_TYPE_NAME, sg.SUBJECT_GROUP_NAME, ac.*')
+        $this->db->select('cs.*,st.SUBJECT_TYPE_NAME, sg.SUBJECT_GROUP_NAME, ac.*, std.*')
         ->from('CURRICULUM_SUBJECT cs')
         ->join('CLS_SUBJECT_TYPE st', 'st.SUBJECT_TYPE_CODE   = cs.SubjectTypeCode  ', 'LEFT') 
         ->join('CLS_SUBJECT_GROUP sg', 'sg.SUBJECT_GROUP_CODE   = cs.SubjectGroupCode  ', 'LEFT') 
         ->join('ASSESSMENT_CRITERIA ac', 'ac.Id   = cs.SUBJECT_KPI_ID  ', 'LEFT') 
+        ->join('SUBJECT_STD std', 'std.SUBJECT_STD_ID   = cs.SUBJECT_STD_ID  ', 'LEFT') 
         ->where('CurriculumID ', $CurriculumID  ) 
         ->where('cs.DeleteStatus', 0)
         ;
@@ -332,52 +333,43 @@ public function get_score($SCORE_ID) {
     $query = $this->db->get();
     return $query->result();
 }
-#######################eportfolio
-     public function insert_eportfolio($eportfolio) {
-     $result_eportfolio = $this->db->insert('EPORTFOLIO', $eportfolio);
-     return $result_eportfolio;
-    }
-      public function get_EPORTFOLIO_ALL() {
-        $this->db->select('*')
-        ->where('DeleteStatus ', 0  ) 
-        ->from('EPORTFOLIO');
-        $query = $this->db->get();
-        return $query->result();
-    }
-    public function get_EPORTFOLIO($EPORTFOLIO_ID) {
-        $this->db->select('*')
-        ->from('EPORTFOLIO')
-        ->where('EPORTFOLIO_ID',$EPORTFOLIO_ID);
-        $query = $this->db->get();
-        return $query->result();
-    }
-    public function update_EPORTFOLIO($EPORTFOLIO_ID,$eportfolio){
-        $this->db->where('EPORTFOLIO_ID ', $EPORTFOLIO_ID);
-        $result = $this->db->update('EPORTFOLIO',$eportfolio);
-        return $result;
-    }
-    public function delete_eportfolio($EPORTFOLIO_ID){   
-        $data = [
-            'DeleteStatus' => 1
-        ];
-        $this->db->where('EPORTFOLIO_ID', $EPORTFOLIO_ID);
-            
-        $result = $this->db->update('EPORTFOLIO', $data);
-        show_error($this->db->last_query());
-
-        return $result;
-    }
-
 
     //ASSESSMENT_CRITERIA_All
     public function get_ASSESSMENT_CRITERIA_All(){
 		$this->db->select('*');
 		$this->db->from('ASSESSMENT_CRITERIA');
-		$this->db->where('DeleteStatus = 0');
+		$this->db->where('DeleteStatus ', 0  );
 		$query = $this->db->get();
 		return $query->result();
 
 	}
+
+  ################### STD  
+    public function get_STD_All(){
+		$this->db->select('*');
+		$this->db->from('SUBJECT_STD');
+		$this->db->where('DeleteStatus ', 0  );
+		$query = $this->db->get();
+		return $query->result();
+
+	}
+
+    public function get_STD_by_SUBJECT_GROUP($SUBJECT_GROUP_CODE){
+		$this->db->select('*');
+		$this->db->from('SUBJECT_STD');
+		$this->db->where('DeleteStatus ', 0  );
+        $this->db->where('SUBJECT_GROUP_CODE ', $SUBJECT_GROUP_CODE  );
+		$query = $this->db->get();
+		return $query->result();
+
+	}
+
+    public function insert_subject_std($SUBJECT_STD) {
+        $result = $this->db->insert('SUBJECT_STD', $SUBJECT_STD);
+        return $result;
+    
+    }
+
     
     
 }

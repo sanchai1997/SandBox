@@ -1,3 +1,4 @@
+<body onload="onloadpage()">
 
 <main id="main" class="main">
 
@@ -28,6 +29,26 @@
       </div>
       <?php } ?>  
 
+          <!-- Alert -->
+    <?php if (!empty($_SESSION['success'])) { ?>
+    <div class="col-12">
+            <script>
+                setTimeout(function() {
+                    document.getElementById('myAlert').remove();
+                }, 2000); // นับถอยหลังให้แสดง 5 วินาที (5000 มิลลิวินาที)
+            </script>
+            <div class="alert alert-success" id="myAlert" style="top: 0; left: 0; right: 0; z-index: 1;">
+                <strong>
+                    <?php
+                    echo '<i class="bi bi-check-circle-fill"></i> '. $_SESSION['success'];
+                    unset($_SESSION['success']);
+                ?>
+                </strong>
+            </div> 
+        
+    </div>
+    <?php } ?> 
+
       <div class="row">
         <div class="col-lg-9">
 
@@ -57,8 +78,8 @@
 
                 <div class="col-md-16">
                   <div class="form-floating">
-                    <select class="form-select" aria-label="Default select example" name="SubjectGroupCode" id="SubjectGroupCode">
-                      <option selected value="0">เลือกกลุ่มสาระการเรียนรู้ / การศึกษาค้นคว้าด้วยตนเอง</option>
+                    <select class="form-select" aria-label="Default select example" name="SubjectGroupCode" id="SubjectGroupCode" >
+                      <option selected value="-1" >เลือกกลุ่มสาระการเรียนรู้ / การศึกษาค้นคว้าด้วยตนเอง</option>
                       <?php foreach($listSubjectGroup as $ls) { ?>
                         <option value="<?php echo $ls->SUBJECT_GROUP_CODE; ?>"><?php echo $ls->SUBJECT_GROUP_NAME; ?></option>
                       <?php } ?>
@@ -93,19 +114,28 @@
                   </div>
                 </div>
 
-                <div class="col-md-16">
+                <div class="col-md-16" >
                   <div class="form-floating">
-                    <input type="text" class="form-control" name="SUBJECT_STD_ID"id="SUBJECT_STD_ID" placeholder="รหัสมาตรฐานการเรียนรู้">
-                    <label>รหัสมาตรฐานการเรียนรู้<font color="red"> *</font></label>
+                    <select class="form-select" aria-label="Default select example" name="SUBJECT_STD_ID" id="SUBJECT_STD_ID">
+                      <option selected value="-1">เลือกมาตรฐานการเรียนรู้</option>
+                      <?php 
+                      foreach($listSTD as $ls) { ?>
+                        <option value="<?php echo $ls->SUBJECT_STD_ID; ?>" class="<?php echo $ls->SUBJECT_GROUP_CODE; ?>" style="display: none;"><?php echo $ls->SUBJECT_STD_ID . ' : ' .$ls->SUBJECT_STD_DETAILS ; ?></option>
+                      <?php } ?>
+                    </select>
+                    <label>มาตรฐานการเรียนรู้<font color="red"> *กรุณาเลือกกลุ่มสาระการเรียนรู้ / การศึกษาค้นคว้าด้วยตนเอง ก่อน </font></label>
                   </div>
                 </div>
-                
-                <div class="col-md-16">
-                  <div class="form-floating">
-                    <input type="text" class="form-control" name="SUBJECT_STD_DETAILS"id="SUBJECT_STD_DETAILS" placeholder="มาตรฐานการเรียนรู้">
-                    <label>มาตรฐานการเรียนรู้<font color="red"> *</font></label>
-                  </div>
+
+                <div class="col-md-16 " id="add-SUBJECT_STD" style="display: none;">
+                  <h5 style="float: right; padding: 15px;" class="card-title" >
+                    <a href="forms-subject_std?cid=<?php echo $CurriculumID; ?>&&sid=" class="btn btn-success" id="text_add-SUBJECT_STD">
+                      เพิ่มมาตรฐานการเรียนรู้
+                    </a>
+                  </h5>
+
                 </div>
+
 
                 <div class="col-md-16">
                   <div class="form-floating">
@@ -157,6 +187,40 @@
     </section>
 
 <script>
+
+  $(document).ready(function() {
+      $("#SubjectGroupCode").change(function() {
+        
+      
+        var SubjectGroupCode = document.getElementById("SubjectGroupCode").value;
+        var selectoption_SUBJECT_STD_ID = document.querySelector('#SUBJECT_STD_ID'); 
+        var size_SUBJECT_STD_ID =  document.getElementById("SUBJECT_STD_ID").options.length;
+
+
+          for (let i = 1; i < size_SUBJECT_STD_ID; i++) {  
+
+            if(selectoption_SUBJECT_STD_ID[i].className!=SubjectGroupCode){  
+              selectoption_SUBJECT_STD_ID[i].style.display = 'none';   
+              selectoption_SUBJECT_STD_ID[i].selected = false;       
+   
+            }else{
+              selectoption_SUBJECT_STD_ID[i].style.display = 'block';   
+            }
+          }
+
+          if(SubjectGroupCode=='09' || SubjectGroupCode=='10' ){
+            document.getElementById("add-SUBJECT_STD").style.display = 'block';
+           // document.getElementById("text_add-SUBJECT_STD").innerHTML = "เพิ่มมาตรฐานการเรียนรู้ - "+$( "#SubjectGroupCode option:selected" ).text() ;
+
+          }else{
+            document.getElementById("add-SUBJECT_STD").style.display = 'none';
+          }
+      });
+
+   
+    });
+      
+
     function check(frm2){
     
     //Check_CHECK_SubjectName(ชื่อรายวิชา)
@@ -209,34 +273,17 @@
     }
 
     //Check_SUBJECT_STD_ID
-    var CHECK_SUBJECT_STD_ID = /^[0-9]{1,4}$/; 
-    if(frm2.SUBJECT_STD_ID.value==""){
-        alert("กรุณากรอกรหัสมาตรฐานการเรียนรู้");
-        return false;
-    }else if(!frm2.SUBJECT_STD_ID.value.match(CHECK_SUBJECT_STD_ID)){
-      alert("กรุณากรอกรหัสมาตรฐานการเรียนรู้ให้ถูกต้อง");
+    if(frm2.SUBJECT_STD_ID.value==-1){
+      alert("กรุณาเลือกรหัสมาตรฐานการเรียนรู้");
       return false;
     }
 
-    //Check_SUBJECT_STD_DETAILS
-    var CHECK_SUBJECT_STD_DETAILS = /^.{1,100}$/;
-    if(frm2.SUBJECT_STD_DETAILS.value==""){
-        alert("กรุณากรอกมาตรฐานการเรียนรู้");
-        return false;
-    }else if(!frm2.SUBJECT_STD_DETAILS.value.match(CHECK_SUBJECT_STD_DETAILS)){
-      alert("กรุณากรอกมาตรฐานการเรียนรู้ให้ถูกต้อง");
-      return false;
-    }
 
     //Check_SUBJECT_KPI_ID
      if(frm2.SUBJECT_KPI_ID.value==-1){
       alert("กรุณาเลือกตัวชี้วัด");
       return false;
     }
-
-    
-
-    
 
     $('#Modal').modal('show');
     

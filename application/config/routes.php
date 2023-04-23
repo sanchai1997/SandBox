@@ -57,13 +57,22 @@ $route['forms-curriculum_assessment'] = 'CurriculumController/forms_curriculum_a
 $route['add_curriculum_assessment']['post'] = 'CurriculumController/add_curriculum_assessment';
 $route['list_curriculum_assignment'] = 'CurriculumController/list_curriculum_assignment';
 $route['edit_forms-curriculum_assessment'] = 'CurriculumController/edit_forms_curriculum_assessment';
+
+//subject_std
+$route['forms-subject_std'] = 'CurriculumController/forms_subject_std';
+$route['add_subject_std']['post'] = 'CurriculumController/add_subject_std';
+$route['list_subject_stdt'] = 'CurriculumController/list_subject_std';
+$route['edit_forms-subject_std'] = 'CurriculumController/edit_forms_subject_std';
+$route['edit_subject_std']['post'] = 'CurriculumController/edit_subject_std';
+$route['delete-subject_std'] = 'CurriculumController/delete_subject_std';
+
 //eportfolio
-$route['list-eportfolio'] = 'CurriculumController/list_eportfolio';
-$route['forms_eportfolio'] = 'CurriculumController/forms_eportfolio';
-$route['add_eportfolio'] = 'CurriculumController/add_eportfolio';
-$route['edit_forms_eportfolio'] = 'CurriculumController/edit_forms_eportfolio';
-$route['edit_eportfolio']['post'] = 'CurriculumController/edit_eportfolio';
-$route['delete-eportfolio/(:num)'] = 'CurriculumController/delete_eportfolio/$1';
+$route['list-eportfolio'] = 'EportfolioController/list_eportfolio';
+$route['forms_eportfolio'] = 'EportfolioController/forms_eportfolio';
+$route['add_eportfolio'] = 'EportfolioController/add_eportfolio';
+$route['edit_forms_eportfolio'] = 'EportfolioController/edit_forms_eportfolio';
+$route['edit_eportfolio']['post'] = 'EportfolioController/edit_eportfolio';
+$route['delete-eportfolio/(:num)'] = 'EportfolioController/delete_eportfolio/$1';
 
 
 
