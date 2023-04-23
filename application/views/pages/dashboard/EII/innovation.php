@@ -107,8 +107,8 @@
                             <!-- <th style="text-align: center;" scope="col">รหัสนวัตกรรมการศึกษาศึกษา</th> -->
                             <th style="" scope="col" class="col-1">ปีการศึกษา</th>
                             <th style="" scope="col" class="col-1">ภาคเรียน</th>
-                            <th style="" scope="col" class="col-3">ชื่อนวัตกรรม</th>
-                            <th style="" scope="col" class="col-1">รหัสนวัตกรรมการศึกษา</th>
+                            <th style="" scope="col" class="col-1">รหัสนวัตกรรม</th>
+                            <th style="" scope="col" class="col-2">ชื่อนวัตกรรม</th>
                             <th style="" scope="col" class="col-1">วันที่เผยแพร่</th>
                             <th style="" scope="col" class="col-1">ผู้จัดทำ</th>
                             <th style="text-align: center;" scope="col" class="col-1">ดูรายละเอียด</th>
@@ -143,10 +143,10 @@
                                 <?php echo $sun_name; ?>
                             </td>
                             <td scope="row " style="">
-                               <p style="width: 500px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;"> <?php echo $show->InnovationName; ?></p>
+                                <?php echo $show->InnovationID; ?>
                             </td>
                             <td scope="row " style="">
-                                <?php echo $show->InnovationID; ?>
+                               <p style="width: 250px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;"> <?php echo $show->InnovationName; ?></p>
                             </td>
                             <td scope="row " style="">
                                 <?php echo DateThai($show->PublishDate); ?>
@@ -339,31 +339,13 @@
                         <p>
                             <?php echo $show->EducationYear; ?>
                         </p>
-                        <h5 class="fw-bold">ภาคเรียน</h5>
-                        <?php $sum = $show->Semester;
-                         if ($sum== 1) {
-                           $sun_name = "ภาคเรียนที่ 1";
-                          } elseif ($sum == 2) {
-                           $sun_name = "ภาคเรียนที่ 2";
-                          } elseif ($sum == 0) {
-                           $sun_name = "ตลอดปีการศึกษา";
-                          } elseif ($sum == 3) {
-                           $sun_name = "ภาคเรียนฤดูร้อน";
-                          } 
-                        ?>
-                        <p>
-                            <?php echo  $sun_name; ?>
-                        </p>
+                       
                         <h5 class="fw-bold">ชื่อนวัตกรรม</h5>
                         <p>
                             <?php echo $name = $show->InnovationName; ?>
                         </p>
 
-                        <h5 class="fw-bold">ประเภทนวัตกรรม</h5>
-                        <p>
-                            <?php echo $show->INNOVATION_TYPE_NAME; ?>
-                        </p>
-
+                        
                         <h5 class="fw-bold">ระดับการศึกษาที่นำไปใช้</h5>
                         <p>
                             <?php echo $show->EDUCATION_LEVEL_NAME; ?>
@@ -374,21 +356,38 @@
                             <?php echo $show->SearchKeyword; ?>
                         </p>
                     </div>
-
-
+                    
+                    
                     <div class="col">
-                        <h5 class="fw-bold">ประโยชน์ของนวัตกรรม</h5>
+                        <h5 class="fw-bold">ภาคเรียน</h5>
+                        <?php $sum = $show->Semester;
+                         if ($sum== 1) {
+                             $sun_name = "ภาคเรียนที่ 1";
+                            } elseif ($sum == 2) {
+                                $sun_name = "ภาคเรียนที่ 2";
+                            } elseif ($sum == 0) {
+                                $sun_name = "ตลอดปีการศึกษา";
+                            } elseif ($sum == 3) {
+                                $sun_name = "ภาคเรียนฤดูร้อน";
+                            } 
+                            ?>
                         <p>
-                            <?php echo $show->InnovationBenefit; ?>
+                            <?php echo  $sun_name; ?>
                         </p>
-                        <!-- <h5 class="fw-bold">บทคัดย่อ</h5>
-                       
-                          
-                        <div class="card">
-  <div class="card-body">
-    <p><?php echo $show->Abstract; ?></p>
-  </div>
-</div> -->
+                        <h5 class="fw-bold">ประเภทนวัตกรรม</h5>
+                        <p>
+                            <?php echo $show->INNOVATION_TYPE_NAME; ?>
+                        </p>
+                        <h5 class="fw-bold">แหล่งนวัตกรรม</h5>
+                        <p>
+                            <?php echo $show->Source; ?>
+                        </p>
+                        <h5 class="fw-bold">วันที่เผยแพร่</h5>
+                        <p>
+                            <?php echo DateThai($show->PublishDate); ?>
+                        </p>
+                        
+ 
 
                         <div class="mb-3">
                             <label for="exampleFormControlTextarea1" class="form-label"><h5  class="fw-bold">บทคัดย่อ</h5></label>
@@ -402,14 +401,6 @@
                         <h5 class="fw-bold">เอกสารแนบ</h5>
                         <p><a href="<?php echo base_url('assets/EII/INNOVATION') ?>/<?php echo $show->AttachmentURL; ?>"
                                 target="_blank"><i class="bi bi-file-earmark-text-fill"></i>รายละเอียดเอกสาร</a></p>
-                        <h5 class="fw-bold">แหล่งนวัตกรรม</h5>
-                        <p>
-                            <?php echo $show->Source; ?>
-                        </p>
-                        <h5 class="fw-bold">วันที่เผยแพร่</h5>
-                        <p>
-                            <?php echo DateThai($show->PublishDate); ?>
-                        </p>
                     </div>
                     <div class="row">
                         <h5 class="fw-bold">รายชื่อผู้จัดทำ</h5>

@@ -69,7 +69,7 @@
                         <?php break;
                     case 'sh77': ?> <h1>เกณฑ์การประเมินโรงเรียน</h1>
                         <?php break;
-                    case 'sh88': ?> <h1>การประเมินสถานศึกษา</h1>
+                    case 'sh88': ?> <h1>ผลการประเมินสถานศึกษา</h1>
                         <?php break;
                     default: ?>
                         <?php break;

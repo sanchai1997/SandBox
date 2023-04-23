@@ -109,15 +109,15 @@
 
                         <tr>
                             <!-- <th style="text-align: center;" scope="col">ข้อมูลเทคโนโลยีและสื่อการเรียนรู้</th> -->
-                            <th style="" scope="col">ปีการศึกษา</th>
-                            <th style="" scope="col">ภาคเรียน</th>
-                            <th style="" scope="col">รหัสข้อมูลเทคโนโลยีและสื่อการเรียนรู้</th>
-                            <th style="" scope="col">ชื่อเทคโนโลยีและสื่อการเรียนรู้</th>
-                            <th style="" scope="col">ประเภทเทคโนโลยีและสื่อการเรียนรู้</th>
-                            <th style="" scope="col">วันที่เผยแพร่</th>
-                            <th style="" scope="col">ผู้จัดทำ</th>
-                            <th style="text-align: center;" scope="col">ดูรายละเอียด</th>
-                            <th style="text-align: center;" scope="col" class="col-1">ปฏิบัติ</th>
+                            <th style="" scope="col-1">ปีการศึกษา</th>
+                            <th style="" scope="col-1">ภาคเรียน</th>
+                            <th style="" scope="col-1">รหัสเทคโนโลยี</th>
+                            <th style="" scope="col-2">ชื่อเทคโนโลยี</th>
+                            <th style="" scope="col">ประเภทเทคโนโลยี</th>
+                            <th style="" scope="col-1">วันที่เผยแพร่</th>
+                            <th style="" scope="col-2">ผู้จัดทำ</th>
+                            <th style="text-align: center;" scope="col-1">ดูรายละเอียด</th>
+                            <th style="text-align: center;" scope="col-1" class="col-1">ปฏิบัติ</th>
                         </tr>
 
                     </thead>
@@ -157,7 +157,7 @@
                         ?>
                                 <?php echo $sun_name; ?></td>
                                 <td style=""><?php echo $show->MediaID; ?></td>
-                            <td style=""><?php echo $show->MediaName; ?></td>
+                            <td style=""><p style="width: 250px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;"><?php echo $show->MediaName; ?></p ></td>
                             <td style=""><?php echo $shows->MEDIA_TYPE_NAME; ?></td>
                             <td style=""><?php echo DateThai($shows->PublishDate); ?></td>
                             <td scope="row " style="text-align: left;">
