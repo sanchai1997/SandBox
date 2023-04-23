@@ -8,36 +8,36 @@
     <?php $page = isset($_GET['page']) ? $_GET['page'] : '';  ?>
     <?php $name = isset($_GET['name']) ? $_GET['name'] : ''; ?>
     <?php $key = isset($_GET['key']) ? $_GET['key'] : ''; ?>
+    <?php $MediaID = isset($_GET['MediaID']) ? $_GET['MediaID'] : ''; ?>
     <?php 
 session_start(); // เริ่มต้น session
 if (isset( $_SESSION['success'])) { ?>
-        <div style="position: relative;">
-            <div class="alert alert-success" id="myAlert"
-                style="position: absolute; top: 0; left: 0; right: 0; z-index: 1;">
-                <strong>
-                    <?php
+    <div style="position: relative;">
+        <div class="alert alert-success" id="myAlert"
+            style="position: absolute; top: 0; left: 0; right: 0; z-index: 1;">
+            <strong>
+                <?php
                         echo $_SESSION['success'];
                         unset($_SESSION['success']);
                         ?>
-                </strong>
+            </strong>
 
-            </div>
         </div>
-        <?php  }
+    </div>
+    <?php  }
         if (isset( $_SESSION['false'])) { ?>
-        <div style="position: relative;">
-            <div class="alert alert-danger" id="myAlert"
-                style="position: absolute; top: 0; left: 0; right: 0; z-index: 1;">
-                <strong>
-                    <?php
+    <div style="position: relative;">
+        <div class="alert alert-danger" id="myAlert" style="position: absolute; top: 0; left: 0; right: 0; z-index: 1;">
+            <strong>
+                <?php
                         echo $_SESSION['false'];
                         unset($_SESSION['false']);
                         ?>
-                </strong>
+            </strong>
 
-            </div>
         </div>
-        <?php  } ?>
+    </div>
+    <?php  } ?>
     <div class="pagetitle">
         <?php switch ($page) {
                 case 'sh1':
@@ -103,19 +103,19 @@ if (isset( $_SESSION['success'])) { ?>
                         <!-- start Form ข้อมูลเทคโนโลยี และสื่อการเรียนรู้ -->
                         <form action="<?php echo site_url('LTM_forms_up_p1'); ?>" method="post"
                             enctype="multipart/form-data" onsubmit="return checkSelectedOption()">
-                            <!-- <div class="row mb-3">
+                            <div class="row mb-3">
                                 <div class="form-floating">
                                     <input type="text" class="form-control" id="floatingName"
                                         placeholder="รหัสข้อมูลเทคโนโลยีและสื่อการเรียนรู้" name="MediaID">
                                     <label for="Y"><?php echo nbs(2); ?>
                                         รหัสข้อมูลเทคโนโลยีและสื่อการเรียนรู้ </label>
                                 </div>
-                            </div> -->
+                            </div>
                             <div class="row mb-3">
                                 <div class="col">
                                     <div class="form-floating">
                                         <input type="number" class="form-control" id="floatingName"
-                                            placeholder="ปีการศึกษา" name="EducationYear">
+                                            placeholder="ปีการศึกษา" name="EducationYear" pattern="\d{1,4}">
                                         <label for="Y"><?php echo nbs(2); ?> ปีการศึกษา </label>
                                     </div>
                                 </div>
@@ -128,18 +128,17 @@ if (isset( $_SESSION['success'])) { ?>
                                     </div>
                                 </div> -->
                                 <div class="col">
-                                            <div class="form-floating">
-                                                <select class="form-select" id="Semester"
-                                                    name="Semester">
-                                                    <option value="-1">กรุณาเลือกภาคเรียนที่ทำการประเมิน</option>
-                                                    <option value="0">ตลอดปีการศึกษา</option>
-                                                    <option value="1">ภาคเรียนที่ 1</option>
-                                                    <option value="2">ภาคเรียนที่ 2</option>
-                                                    <option value="3">ภาคเรียนฤดูร้อน</option>
-                                                </select>
-                                                <label for="Semester">ภาคเรียน</label>
-                                            </div>
-                                        </div>
+                                    <div class="form-floating">
+                                        <select class="form-select" id="Semester" name="Semester">
+                                            <option value="-1">กรุณาเลือกภาคเรียนที่ทำการประเมิน</option>
+                                            <option value="0">ตลอดปีการศึกษา</option>
+                                            <option value="1">ภาคเรียนที่ 1</option>
+                                            <option value="2">ภาคเรียนที่ 2</option>
+                                            <option value="3">ภาคเรียนฤดูร้อน</option>
+                                        </select>
+                                        <label for="Semester">ภาคเรียน</label>
+                                    </div>
+                                </div>
                             </div>
                             <div class="row mb-3">
                                 <div class="form-floating">
@@ -292,7 +291,7 @@ if (isset( $_SESSION['success'])) { ?>
                                 alert('กรุณาเลือกภาคเรียน');
                                 return false;
                             }
-                            
+
                         }
                         </script>
                         <?php  } ?>
@@ -310,8 +309,8 @@ if (isset( $_SESSION['success'])) { ?>
                         <!-- start Form ข้อมูลเทคโนโลยี และสื่อการเรียนรู้ -->
                         <form action="<?php echo site_url('LTM_edit_p1'); ?>" method="post"
                             enctype="multipart/form-data">
-                            <input type="hidden" name="MediaID" value="<?php echo $show->MediaID ?>">
-                            <!-- <div class="row mb-3">
+                            <input type="hidden" name="Id_ltm" value="<?php echo $show->Id_ltm ?>">
+                            <div class="row mb-3">
                                 <div class="form-floating">
                                     <input type="text" class="form-control" id="floatingName"
                                         placeholder="รหัสข้อมูลเทคโนโลยีและสื่อการเรียนรู้" name="MediaID"
@@ -319,7 +318,7 @@ if (isset( $_SESSION['success'])) { ?>
                                     <label for="Y"><?php echo nbs(2); ?>
                                         รหัสข้อมูลเทคโนโลยีและสื่อการเรียนรู้ </label>
                                 </div>
-                            </div> -->
+                            </div>
 
                             <div class="row mb-3">
                                 <div class="col">
@@ -331,19 +330,18 @@ if (isset( $_SESSION['success'])) { ?>
                                     </div>
                                 </div>
 
-                                  <div class="col">
-                                            <div class="form-floating">
-                                                <select class="form-select" id="Semester"
-                                                    name="Semester">
-                                                    <option value="-1">กรุณาเลือกภาคเรียนที่ทำการประเมิน</option>
-                                                    <option value="0">ตลอดปีการศึกษา</option>
-                                                    <option value="1">ภาคเรียนที่ 1</option>
-                                                    <option value="2">ภาคเรียนที่ 2</option>
-                                                    <option value="3">ภาคเรียนฤดูร้อน</option>
-                                                </select>
-                                                <label for="Semester">ภาคเรียน</label>
-                                            </div>
-                                        </div>
+                                <div class="col">
+                                    <div class="form-floating">
+                                        <select class="form-select" id="Semester" name="Semester">
+                                            <option value="-1">กรุณาเลือกภาคเรียนที่ทำการประเมิน</option>
+                                            <option value="0">ตลอดปีการศึกษา</option>
+                                            <option value="1">ภาคเรียนที่ 1</option>
+                                            <option value="2">ภาคเรียนที่ 2</option>
+                                            <option value="3">ภาคเรียนฤดูร้อน</option>
+                                        </select>
+                                        <label for="Semester">ภาคเรียน</label>
+                                    </div>
+                                </div>
                             </div>
                             <div class="row mb-3">
                                 <div class="form-floating">
@@ -480,7 +478,7 @@ if (isset( $_SESSION['success'])) { ?>
                             </div>
                         </form><!-- End Form ข้อมูลเทคโนโลยี และสื่อการเรียนรู้ -->
                         <script>
-                            ///Semester
+                        ///Semester
                         var my_Semester = '<?php echo $show->Semester; ?>';
                         var selectoption_Semester = document.querySelector('#Semester');
                         var size_my_Semester = document.getElementById("Semester").options.length;
@@ -517,8 +515,22 @@ if (isset( $_SESSION['success'])) { ?>
                             <div class="row mb-3">
                                 <div class="form-floating">
                                     <input type="hidden" class="form-control" id="floatingName"
-                                        placeholder="รหัสข้อมูลเทคโนโลยีและสื่อการเรียนรู้" name="MediaID"
-                                        value="<?php echo $key; ?>">
+                                        placeholder="รหัสข้อมูลเทคโนโลยีและสื่อการเรียนรู้" name=""
+                                        value="<?php echo $MediaID; ?>">
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <div class="col">
+                                    <div class="form-floating">
+                                        <input type="text" class="form-control" id="floatingName"
+                                            placeholder="รหัสข้อมูลเทคโนโลยีและสื่อการเรียนรู้" name=""
+                                            value="<?php echo $MediaID ?>" disabled>
+                                        <input type="hidden" class="form-control" id="floatingName" placeholder=""
+                                            name="MediaID" value="<?php echo $key ?>">
+                                        <label for="Y">
+                                            รหัสข้อมูลเทคโนโลยีและสื่อการเรียนรู้ </label>
+                                    </div>
+
                                 </div>
                             </div>
                             <div class="row mb-3">
@@ -542,17 +554,15 @@ if (isset( $_SESSION['success'])) { ?>
                                 </div>
                             </div>
                             <div class="row mb-3">
-                            <div class="col">
-                                        <div class="form-floating" id="CreatorPersonalID">
-                                            <input type="text" class="form-control" id="my-auto"
-                                                placeholder="หมายเลขบัตรประจำตัวผู้จัดทำ" name=""
-                                                disabled>
-                                                <input type="hidden" class="form-control" id="my-autoo"
-                                                placeholder="" name="CreatorPersonalID"
-                                                >
-                                            <label for=""><?php echo nbs(2); ?> หมายเลขบัตรประจำตัวผู้จัดทำ </label>
-                                        </div>
+                                <div class="col">
+                                    <div class="form-floating" id="CreatorPersonalID">
+                                        <input type="number" class="form-control" id="my-auto"
+                                            placeholder="หมายเลขบัตรประจำตัวผู้จัดทำ" name="" disabled>
+                                        <input type="hidden" class="form-control" id="my-autoo" placeholder=""
+                                            name="CreatorPersonalID">
+                                        <label for=""><?php echo nbs(2); ?> หมายเลขบัตรประจำตัวผู้จัดทำ </label>
                                     </div>
+                                </div>
 
                                 <div class="col">
                                     <div class="form-floating">
@@ -670,28 +680,40 @@ if (isset( $_SESSION['success'])) { ?>
                             </div>
                         </form><!-- End Form ข้อมูลเทคโนโลยี และสื่อการเรียนรู้ -->
                         <script>
-                           const select = document.getElementById("CreatorPersonalIDTypeCode");
-                            const input = document.getElementById("my-auto");
-                            const input1 = document.getElementById("my-autoo");
+                        const select = document.getElementById("CreatorPersonalIDTypeCode");
+                        const input = document.getElementById("my-auto");
+                        const input1 = document.getElementById("my-autoo");
 
-                            select.addEventListener("change", function() {
-                                if (select.value === "N" || select.value === "-1") {
-                                    input.disabled = true;
+                        select.addEventListener("change", function() {
+                            if (select.value === "N" || select.value === "-1") {
+                                input.disabled = true;
 
-                                    input.value = '0';
-                                    input1.value = '0';
+                                input.value = '';
+                                input1.value = '';
 
-                                } else {
-                                    input.disabled = false;
+                            } else {
+                                input.disabled = false;
 
-                                    input.value = '';
-                                    input1.value = '';
-                                }
-                            });
-                            input.addEventListener("input", function() {
-                                input1.value = input.value;
-                            });
+                                input.value = '';
+                                input1.value = '';
+                            }
+                        });
+                        input.addEventListener("input", function() {
+                            input1.value = input.value;
+                        });
+
                         function checkSelectedOption() {
+                            if (select.value === "I" || select.value === "O") {
+                            const CreatorPersonalID = document.querySelector('#my-auto');
+                            const CreatorPersonalID_Value = CreatorPersonalID.value;
+
+                            if (CreatorPersonalID_Value.trim().length < 13 || CreatorPersonalID_Value.trim().length >
+                                13) {
+                                alert('กรุณาใส่เลข13หลักให้ถูกต้อง');
+                                return false;
+                            }
+                        }
+
                             const CLS_PERSONAL_ID_TYPE = document.querySelector('#CreatorPersonalIDTypeCode');
                             const CLS_PERSONAL_ID_TYPE_Value = CLS_PERSONAL_ID_TYPE.value;
 
@@ -714,40 +736,28 @@ if (isset( $_SESSION['success'])) { ?>
                         <?php
                             
                             $result = $this->db->query("SELECT * FROM LEARNING_TECHNOLOGY_MEDIA_CREATOR 
-                            WHERE Id = '".$key."' 
+                            INNER JOIN LEARNING_TECHNOLOGY_MEDIA
+                            ON LEARNING_TECHNOLOGY_MEDIA.Id_ltm = LEARNING_TECHNOLOGY_MEDIA_CREATOR.MediaID
+                            WHERE Id_ltmc = '".$key."' 
                             ");
  
                      foreach ($result->result() as $show) {
                      ?>
                         <form action="<?php echo site_url('LTMC_edit_p2'); ?>" method="post"
-                            enctype="multipart/form-data">
-                            <input type="hidden" name="Id" value="<?php echo $show->Id ?>">
+                            enctype="multipart/form-data" onsubmit="return checkSelectedOption()">
+                            <input type="hidden" name="Id_ltmc" value="<?php echo $show->Id_ltmc; ?>">
                             <div class="row mb-3">
-                                <!-- <div class="col">
-                                    <div class="form-floating">
-                                        <input type="text" class="form-control" id="floatingName"
-                                            placeholder="รหัสข้อมูลเทคโนโลยีและสื่อการเรียนรู้" name="MediaID"
-                                            value="<?php echo $show->MediaID ?>">
-                                        <label for="Y"><?php echo nbs(2); ?>
-                                            รหัสข้อมูลเทคโนโลยีและสื่อการเรียนรู้ </label>
-                                    </div> -->
                                 <div class="col">
                                     <div class="form-floating">
-                                        <select class="form-select" id="MediaID"
-                                            aria-label="Floating label select example" name="MediaID">
-
-                                            <?php
-                                            $result = $this->db->query('SELECT * FROM LEARNING_TECHNOLOGY_MEDIA WHERE DeleteStatus = 0');
-                                            foreach ($result->result() as $cls) {
-                                            ?>
-                                            <option value="<?= $cls->MediaID ; ?>">
-                                                <?= $cls->MediaName; ?></option>
-                                            <?php } ?>
-
-                                        </select>
-                                        <label
-                                            for="floatingSelect"><?php echo nbs(2); ?>รหัสข้อมูลเทคโนโลยีและสื่อการเรียนรู้</label>
+                                        <input type="text" class="form-control" id="floatingName"
+                                            placeholder="รหัสข้อมูลเทคโนโลยีและสื่อการเรียนรู้" name=""
+                                            value="<?php echo $show->MediaID ?>" disabled>
+                                        <input type="hidden" class="form-control" id="floatingName" placeholder=""
+                                            name="MediaID" value="<?php echo $show->Id_ltm ?>">
+                                        <label for="Y">
+                                            รหัสข้อมูลเทคโนโลยีและสื่อการเรียนรู้ </label>
                                     </div>
+
                                 </div>
                             </div>
 
@@ -774,17 +784,16 @@ if (isset( $_SESSION['success'])) { ?>
                                 </div>
                             </div>
                             <div class="row mb-3">
-                            <div class="col">
-                                        <div class="form-floating" id="CreatorPersonalID">
-                                            <input type="text" class="form-control" id="my-auto"
-                                                placeholder="หมายเลขบัตรประจำตัวผู้จัดทำ" name=""value="<?php echo $show->CreatorPersonalID; ?>"
-                                                >
-                                                <input type="hidden" class="form-control" id="my-autoo"
-                                                placeholder="" name="CreatorPersonalID"
-                                                >
-                                            <label for=""><?php echo nbs(2); ?> หมายเลขบัตรประจำตัวผู้จัดทำ </label>
-                                        </div>
+                                <div class="col">
+                                    <div class="form-floating" id="CreatorPersonalID">
+                                        <input type="number" class="form-control" id="my-auto"
+                                            placeholder="หมายเลขบัตรประจำตัวผู้จัดทำ" name=""
+                                            value="<?php echo $show->CreatorPersonalID; ?>" required>
+                                        <input type="hidden" class="form-control" id="my-autoo" placeholder=""
+                                            name="CreatorPersonalID">
+                                        <label for=""><?php echo nbs(2); ?> หมายเลขบัตรประจำตัวผู้จัดทำ </label>
                                     </div>
+                                </div>
 
                                 <div class="col">
                                     <div class="form-floating">
@@ -880,99 +889,104 @@ if (isset( $_SESSION['success'])) { ?>
                             <div class="text-center">
                                 <a href="Fm_lear_tech_media_das_p1?page=sh1" class="btn btn-danger"
                                     style="float: left;">ยกเลิก</a>
-                                    <button type="button" class="btn btn-warning" data-bs-toggle="modal"
-                                        data-bs-target="#edit_lean2<?php echo $show->Id; ?>" style="float: right;">แก้ไขข้อมูล</button>
+                                <button type="button" class="btn btn-warning" data-bs-toggle="modal"
+                                    data-bs-target="#edit_lean2<?php echo $show->Id_ltmc; ?>"
+                                    style="float: right;">แก้ไขข้อมูล</button>
                                 <button type="button" class="btn btn-danger" data-bs-toggle="modal"
                                     data-bs-target="#del_LTM">
                                     <i class="bi bi-trash"></i>
                                 </button>
                             </div>
-                            
+
                             <!-- Modal -->
-                            <div class="modal fade" id="edit_lean2<?php echo $show->Id; ?>" tabindex="-1" role="dialog"
-                            aria-labelledby="exampleModalLongTitle" aria-hidden="true">
-                            <div class="modal-dialog modal-dialog-centered" role="document">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title" id="exampleModalLongTitle">ยืนยันการแก้ไขข้อมูล <?php echo $show->CreatorNameThai; ?>-<?php echo $show->CreatorLastNameThai; ?></h5>
-                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                        aria-label="Close"></button>
-                                    </div>
-                                    <div class="modal-body">
-                                        <h6>
-                                            <p class="text-center">คุณต้องการแก้ไขข้อมูลใช่หรือไหม ?</p >
-                                        </h6>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary"
-                                        data-bs-dismiss="modal">ยกเลิก</button>
-                                        <form method="post" action="<?php echo site_url('LTMC_edit_p2'); ?>">
-                                            <input type="hidden" name="Id"
-                                            value="<?php echo $show->Id; ?>">
-                                            <div class="d-flex justify-content-center">
-                                                <button name="Submit" type="submit"
-                                                class="btn btn-warning">ยืนยันแก้ไขข้อมูล</button>
-                                            </div>
-                                                </form>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </form><!-- End Form ข้อมูลเทคโนโลยี และสื่อการเรียนรู้ -->
-                            <!-- Modal -->
-                            <div class="modal fade" id="del_LTM" tabindex="-1"
-                                aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                <div class="modal-dialog modal-dialog-centered">
+                            <div class="modal fade" id="edit_lean2<?php echo $show->Id_ltmc; ?>" tabindex="-1"
+                                role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered" role="document">
                                     <div class="modal-content">
                                         <div class="modal-header">
-                                            <h5 class="modal-title" id="exampleModalLabel">
-                                                ยืนยันการลบข้อมูล<?php echo nbs(2); ?><?php echo $show->CreatorNameThai; ?>-<?php echo $show->CreatorLastNameThai; ?>
+                                            <h5 class="modal-title" id="exampleModalLongTitle">ยืนยันการแก้ไขข้อมูล
+                                                <?php echo $show->CreatorNameThai; ?>-<?php echo $show->CreatorLastNameThai; ?>
                                             </h5>
-
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                aria-label="Close"></button>
                                         </div>
                                         <div class="modal-body">
-                                           <p class="text-center"> คุณต้องการลบข้อมูลใช่หรือไหม ?</p>
-
+                                            <h6>
+                                                <p class="text-center">คุณต้องการแก้ไขข้อมูลใช่หรือไหม ?</p>
+                                            </h6>
                                         </div>
-
-
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-secondary"
                                                 data-bs-dismiss="modal">ยกเลิก</button>
-                                            <form method="post" action="<?php echo site_url('LTMC_del_p2'); ?>">
-                                                <input type="hidden" name="Id"
-                                                    value="<?php echo $show->Id; ?>">
+                                            <form method="post" action="<?php echo site_url('LTMC_edit_p2'); ?>">
+                                                <input type="hidden" name="Id_ltmc"
+                                                    value="<?php echo $show->Id_ltmc; ?>">
                                                 <div class="d-flex justify-content-center">
                                                     <button name="Submit" type="submit"
-                                                        class="btn btn-danger">ยืนยันก่อนลบ</button>
+                                                        class="btn btn-warning">ยืนยันแก้ไขข้อมูล</button>
                                                 </div>
                                             </form>
                                         </div>
                                     </div>
                                 </div>
-                            </div> <!-- Modal -->
+                            </div>
+                        </form><!-- End Form ข้อมูลเทคโนโลยี และสื่อการเรียนรู้ -->
+                        <!-- Modal -->
+                        <div class="modal fade" id="del_LTM" tabindex="-1" aria-labelledby="exampleModalLabel"
+                            aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">
+                                            ยืนยันการลบข้อมูล
+                                        </h5>
+
+                                    </div>
+                                    <div class="modal-body">
+                                        <p class="text-center"> คุณต้องการลบข้อมูลใช่หรือไหม ?</p>
+
+                                    </div>
+
+
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary"
+                                            data-bs-dismiss="modal">ยกเลิก</button>
+                                        <form method="post" action="<?php echo site_url('LTMC_del_p2'); ?>">
+                                            <input type="hidden" name="Id_ltmc" value="<?php echo $show->Id_ltmc; ?>">
+                                            <div class="d-flex justify-content-center">
+                                                <button name="Submit" type="submit"
+                                                    class="btn btn-danger">ยืนยันก่อนลบ</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div> <!-- Modal -->
                         <script>
-                           const select = document.getElementById("CreatorPersonalIDTypeCode");
-                            const input = document.getElementById("my-auto");
-                            const input1 = document.getElementById("my-autoo");
+                        const select = document.getElementById("CreatorPersonalIDTypeCode");
+                        const input = document.getElementById("my-auto");
+                        const input1 = document.getElementById("my-autoo");
 
-                            select.addEventListener("change", function() {
-                                if (select.value === "N" || select.value === "-1") {
-                                    input.disabled = true;
+                        select.addEventListener("change", function() {
+                            if (select.value === "N" || select.value === "-1") {
+                                input.disabled = true;
+                                input.required = true;
 
-                                    input.value = '0';
-                                    input1.value = '0';
+                                input.value = '';
 
-                                } else {
-                                    input.disabled = false;
+                                input1.value = '';
 
-                                    input.value = '<?php echo $show->CreatorPersonalID; ?>';
-                                    input1.value = '<?php echo $show->CreatorPersonalID; ?>';
-                                }
-                            });
-                            input.addEventListener("input", function() {
-                                input1.value = input.value;
-                            });
+                            } else {
+                                input.disabled = false;
+                                input.required = false;
+
+                                input.value = '<?php echo $show->CreatorPersonalID; ?>';
+                                input1.value = '<?php echo $show->CreatorPersonalID; ?>';
+                            }
+                        });
+                        input.addEventListener("input", function() {
+                            input1.value = input.value;
+                        });
                         ///CLS_PERSONAL_ID_TYPE
                         var my_CLS_PERSONAL_ID_TYPE = '<?php echo $show->CreatorPersonalIDTypeCode; ?>';
                         var selectoption_CLS_PERSONAL_ID_TYPE = document.querySelector('#CreatorPersonalIDTypeCode');
@@ -999,6 +1013,33 @@ if (isset( $_SESSION['success'])) { ?>
                         for (let i = 0; i < size_my_LEARNING_TECHNOLOGY_MEDIA; i++) {
                             if (selectoption_LEARNING_TECHNOLOGY_MEDIA[i].value == my_LEARNING_TECHNOLOGY_MEDIA) {
                                 selectoption_LEARNING_TECHNOLOGY_MEDIA[i].selected = true;
+                            }
+                        }
+                        function checkSelectedOption() {
+                            if (select.value === "I" || select.value === "O") {
+                            const CreatorPersonalID = document.querySelector('#my-auto');
+                            const CreatorPersonalID_Value = CreatorPersonalID.value;
+
+                            if (CreatorPersonalID_Value.trim().length < 13 || CreatorPersonalID_Value.trim().length >
+                                13) {
+                                alert('กรุณาใส่เลข13หลักให้ถูกต้อง');
+                                return false;
+                            }
+                        }
+
+                            const CLS_PERSONAL_ID_TYPE = document.querySelector('#CreatorPersonalIDTypeCode');
+                            const CLS_PERSONAL_ID_TYPE_Value = CLS_PERSONAL_ID_TYPE.value;
+
+                            if (CLS_PERSONAL_ID_TYPE_Value === '-1') {
+                                alert('กรุณาเลือกประเภทบัตรประจำตัวผู้จัดทำ');
+                                return false;
+                            }
+                            const CLS_PREFIX = document.querySelector('#CreatorPrefixCode');
+                            const CLS_PREFIX_Value = CLS_PREFIX.value;
+
+                            if (CLS_PREFIX_Value === '-1') {
+                                alert('กรุณาเลือกคำนำหน้าชื่อผู้จัดทำ');
+                                return false;
                             }
                         }
                         </script>

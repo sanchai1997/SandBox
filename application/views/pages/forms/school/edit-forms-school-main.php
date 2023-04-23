@@ -194,7 +194,7 @@
 
             if (!frm.ImageSchool.value == "") {
                 var fty = new Array(".jpg", ".jpeg", ".png"); // ประเภทไฟล์ที่อนุญาตให้อัพโหลด   
-                var a = frm.ImageTeacher.value; //กำหนดค่าของไฟล์ใหกับตัวแปร a   
+                var a = frm.ImageSchool.value; //กำหนดค่าของไฟล์ใหกับตัวแปร a   
                 var permiss = 0; // เงื่อนไขไฟล์อนุญาต
                 a = a.toLowerCase();
                 if (a != "") {
@@ -224,14 +224,13 @@
                 return false;
             }
 
-            var NameEnglish = /^[A-Z,a-z]{1,255}$/;
+            var NameEnglish = /^[a-zA-Z0-9. -_]{1,255}$/;
             if (frm.SchoolNameEnglish.value == "") {
                 alert("กรุณากรอกชื่อโรงเรียน(ภาษาอังกฤษ)");
                 frm.SchoolNameEnglish.value = "";
                 return false;
             } else if (!frm.SchoolNameEnglish.value.match(NameEnglish)) {
                 alert("กรุณากรอกชื่อโรงเรียนเป็น(ภาษาอังกฤษ)และให้น้อยกว่า 255 อักษร");
-                frm.SchoolNameEnglish.value = "";
                 return false;
             }
 
@@ -259,18 +258,16 @@
                 return false;
             }
 
-            //JurisdictionCode
-            if (frm.JurisdictionCode.value == "") {
-                alert("กรุณาเลือกหน่วยงานต้นสังกัด");
-                return false;
-            }
-
             //MunicipalCode
             if (frm.MunicipalCode.value == "") {
                 alert("กรุณาเลือกประเภทเขตปกครอง");
                 return false;
             }
-
+            //JurisdictionCode
+            if (frm.JurisdictionCode.value == "") {
+                alert("กรุณาเลือกหน่วยงานต้นสังกัด");
+                return false;
+            }
             $('#Modal').modal('show');
 
         }

@@ -1,12 +1,12 @@
 <style>
     .page-content img {
-        max-width: 90px;
-        height: 100px;
+        max-width: 100%;
+        height: 100%;
     }
 
     .page-detail img {
-        max-width: 170px;
-        height: 200px;
+        max-width: 100%;
+        height: 100%;
     }
 </style>
 <main id="main" class="main">
@@ -101,14 +101,15 @@
                         <div class="col">
                             <?php if (isset($_GET['SchoolID'])) {
                             ?>
-                                <h5 style="float: right; padding: 15px;" class="card-title"><a href="forms-student?SchoolID=<?= $_GET['SchoolID'] ?>" class="btn btn-success"><i class="bi bi-person-plus"></i>เพิ่มข้อมูล</a></h5>
+                                <h5 style="float: right; padding: 15px;" class="card-title"><a href="forms-student?SchoolID=<?= $_GET['SchoolID'] ?>" class="btn btn-success"><i class="bi bi-person-plus"></i> เพิ่มข้อมูล</a></h5>
                             <?php } ?>
                         </div>
                     </div>
                     <table class="table table-borderless datatable">
                         <thead>
                             <tr>
-                                <th style="text-align: center;" width="160px">ตราสัญลักษณ์</th>
+                                <th style="text-align: center;" width="120px" hight="120px">ตราสัญลักษณ์</th>
+                                <th scope="col">รหัสสถานศึกษา</th>
                                 <th scope="col">ชื่อสถานศึกษา</th>
                                 <th scope="col">พื้นที่นวัตกรรม</th>
                                 <th style="text-align: center;" scope="col">รายละเอียด</th>
@@ -120,7 +121,8 @@
                             foreach ($result->result() as $SCHOOL) {
                             ?>
                                 <tr>
-                                    <td class="page-content" style="text-align: center;"><img src="assets/school/img/<?= $SCHOOL->ImageSchool; ?>" alt="" width="90px" height="80px"></td>
+                                    <td class="page-content" style="text-align: center;"><img src="assets/school/img/<?= $SCHOOL->ImageSchool; ?>" alt="" width="100%"></td>
+                                    <td style="padding-top: 40px;"><?= $SCHOOL->SchoolID; ?></td>
                                     <td style="padding-top: 40px;"><?= $SCHOOL->SchoolNameThai; ?></td>
                                     <td style="padding-top: 40px;"><?= $SCHOOL->INNOVATION_AREA_NAME; ?></td>
                                     <td style="padding-top: 35px; text-align: center;"><a href="?SchoolID=<?= $SCHOOL->SchoolID; ?>" class="btn btn-primary"><i class="bi bi-card-list"></i></a>

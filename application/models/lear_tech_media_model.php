@@ -40,7 +40,7 @@ class Lear_tech_media_model extends CI_Model
 						$data = $this->upload->data();
 						$filename = $data['file_name'];
 						$data = array(
-							// 'MediaID' => $this->input->post('MediaID'),
+							'MediaID' => $this->input->post('MediaID'),
 							'EducationYear' => $this->input->post('EducationYear'),
 							'Semester' => $this->input->post('Semester'),
 							'MediaName' => $this->input->post('MediaName'),
@@ -58,7 +58,7 @@ class Lear_tech_media_model extends CI_Model
 
 
 					$data = array(
-						// 'MediaID' => $this->input->post('MediaID'),
+						'MediaID' => $this->input->post('MediaID'),
 						'EducationYear' => $this->input->post('EducationYear'),
 						'Semester' => $this->input->post('Semester'),
 						'MediaName' => $this->input->post('MediaName'),
@@ -111,7 +111,7 @@ class Lear_tech_media_model extends CI_Model
 					$data = $this->upload->data();
 					$filename = $data['file_name'];
 					$data = array(
-						// 'MediaID' => $this->input->post('MediaID'),
+						'MediaID' => $this->input->post('MediaID'),
 						'EducationYear' => $this->input->post('EducationYear'),
 						'Semester' => $this->input->post('Semester'),
 						'MediaName' => $this->input->post('MediaName'),
@@ -127,7 +127,7 @@ class Lear_tech_media_model extends CI_Model
 				}
 			} else {
 				$data = array(
-					// 'MediaID' => $this->input->post('MediaID'),
+					'MediaID' => $this->input->post('MediaID'),
 					'EducationYear' => $this->input->post('EducationYear'),
 					'Semester' => $this->input->post('Semester'),
 					'MediaName' => $this->input->post('MediaName'),
@@ -141,7 +141,7 @@ class Lear_tech_media_model extends CI_Model
 				);
 			}
 		}
-		$this->db->where('MediaID', $this->input->post('MediaID'));
+		$this->db->where('Id_ltm', $this->input->post('Id_ltm'));
 		$query = $this->db->update('LEARNING_TECHNOLOGY_MEDIA', $data);
 		if ($query) {
 			session_start(); // เริ่มต้น session
@@ -165,7 +165,7 @@ class Lear_tech_media_model extends CI_Model
 			'DeleteStatus' => $value
 		);
 
-		$this->db->where('MediaID', $this->input->post('MediaID'));
+		$this->db->where('Id_ltm', $this->input->post('Id_ltm'));
 		$query = $this->db->update('LEARNING_TECHNOLOGY_MEDIA', $data);
 		if ($query) {
 			session_start(); // เริ่มต้น session
@@ -213,6 +213,7 @@ class Lear_tech_media_model extends CI_Model
 			$this->db->where('MediaID', $MediaID);
 			$this->db->where('CreatorPersonalID', $CreatorPersonalID);
 			$this->db->where('DeleteStatus=0');
+			$this->db->where('CreatorPersonalID!=0');
 			$query = $this->db->get('LEARNING_TECHNOLOGY_MEDIA_CREATOR');
 			$num_chk = $query->num_rows();
 			if ($num_chk <= 0) {
@@ -255,30 +256,53 @@ class Lear_tech_media_model extends CI_Model
 		// print_r($_POST);
 		// echo'</pre>';
 		// exit;
-		$data = array(
-			'MediaID' => $this->input->post('MediaID'),
-			'CreatorPersonalID' => $this->input->post('CreatorPersonalID'),
-			'CreatorPersonalIDTypeCode' => $this->input->post('CreatorPersonalIDTypeCode'),
-			'CreatorPrefixCode' => $this->input->post('CreatorPrefixCode'),
-			'CreatorNameThai' => $this->input->post('CreatorNameThai'),
-			'CreatorNameEnglish' => $this->input->post('CreatorNameEnglish'),
-			'CreatorMiddleNameThai' => $this->input->post('CreatorMiddleNameThai'),
-			'CreatorMiddleNameEnglish' => $this->input->post('CreatorMiddleNameEnglish'),
-			'CreatorLastNameThai' => $this->input->post('CreatorLastNameThai'),
-			'CreatorLastNameEnglish' => $this->input->post('CreatorLastNameEnglish'),
-			'ParticipantRatio' => $this->input->post('ParticipantRatio')
-		);
-		$this->db->where('Id', $this->input->post('Id'));
+		$CreatorPersonalID = $this->input->post('CreatorPersonalID');
+		$MediaID = $this->input->post('MediaID');
 
-		$query = $this->db->update('LEARNING_TECHNOLOGY_MEDIA_CREATOR', $data);
-		if ($query) {
-			session_start(); // เริ่มต้น session
-			$_SESSION['success'] = "แก้ไขข้อมูลสำเร็จ !"; // กำหนดค่า success ใน session เป็น true
-			header("Location: " . site_url('Fm_lear_tech_media_das_p1?page=sh1')); // ไปยังหน้าก่อนหน้านี้
+// นำค่า $id_name มาใช้ในการค้นหาข้อมูลในฐานข้อมูล
+$this->db->where('CreatorPersonalID', $CreatorPersonalID);
+$this->db->where('MediaID', $MediaID);
+$this->db->where('DeleteStatus=0');
+$this->db->where('CreatorPersonalID!=0');
+$query = $this->db->get('LEARNING_TECHNOLOGY_MEDIA_CREATOR');
 
-		} else {
-			echo 'false';
-		}
+// นับจำนวนแถวที่ค้นพบ
+$num_chk = $query->num_rows();
+
+// ตรวจสอบจำนวนแถวที่ค้นพบว่ามีมากกว่า 0 หรือไม่
+if ($num_chk <= 0 ) {
+  // ไม่พบข้อมูลในฐานข้อมูล
+  $data = array(
+	  'MediaID' => $this->input->post('MediaID'),
+	  'CreatorPersonalID' => $this->input->post('CreatorPersonalID'),
+	  'CreatorPersonalIDTypeCode' => $this->input->post('CreatorPersonalIDTypeCode'),
+	  'CreatorPrefixCode' => $this->input->post('CreatorPrefixCode'),
+	  'CreatorNameThai' => $this->input->post('CreatorNameThai'),
+	  'CreatorNameEnglish' => $this->input->post('CreatorNameEnglish'),
+	  'CreatorMiddleNameThai' => $this->input->post('CreatorMiddleNameThai'),
+	  'CreatorMiddleNameEnglish' => $this->input->post('CreatorMiddleNameEnglish'),
+	  'CreatorLastNameThai' => $this->input->post('CreatorLastNameThai'),
+	  'CreatorLastNameEnglish' => $this->input->post('CreatorLastNameEnglish'),
+	  'ParticipantRatio' => $this->input->post('ParticipantRatio')
+  );
+  $this->db->where('Id_ltmc', $this->input->post('Id_ltmc'));
+
+  $query = $this->db->update('LEARNING_TECHNOLOGY_MEDIA_CREATOR', $data);
+  if ($query) {
+	  session_start(); // เริ่มต้น session
+	  $_SESSION['success'] = "แก้ไขข้อมูลสำเร็จ !"; // กำหนดค่า success ใน session เป็น true
+	  header("Location: " . site_url('Fm_lear_tech_media_das_p1?page=sh1')); // ไปยังหน้าก่อนหน้านี้
+
+  } else {
+	  echo 'false';
+  }
+} else {
+  // พบข้อมูลในฐานข้อมูล
+  session_start(); // เริ่มต้น session
+				$_SESSION['false'] = "ไม่มามารถแก้ข้อมูลได้โปรดตรวจสอบข้อมูล (เลขบัตร ปชช.) ซ้ำกันในระบบ !"; // กำหนดค่า success ใน session เป็น true
+				header('Location: ' . $_SERVER['HTTP_REFERER']);
+				exit;
+}
 	}
 	public function del_LTMC()
 	{
@@ -292,7 +316,7 @@ class Lear_tech_media_model extends CI_Model
 
 			'DeleteStatus' => $value
 		);
-		$this->db->where('Id', $this->input->post('Id'));
+		$this->db->where('Id_ltmc', $this->input->post('Id_ltmc'));
 
 		$query = $this->db->update('LEARNING_TECHNOLOGY_MEDIA_CREATOR', $data);
 		if ($query) {

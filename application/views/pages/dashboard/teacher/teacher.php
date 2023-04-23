@@ -1,12 +1,12 @@
 <style>
     .page-content img {
-        max-width: 90px;
-        height: 100px;
+        max-width: 100%;
+        height: 100%;
     }
 
     .page-detail img {
-        max-width: 170px;
-        height: 200px;
+        max-width: 100%;
+        height: 100%;
     }
 </style>
 <main id="main" class="main">
@@ -109,7 +109,8 @@
                     <table class="table table-borderless datatable">
                         <thead>
                             <tr>
-                                <th style="text-align: center;" width="160px">ตราสัญลักษณ์</th>
+                                <th style="text-align: center;" width="120px" hight="120px">ตราสัญลักษณ์</th>
+                                <th scope="col">รหัสสถานศึกษา</th>
                                 <th scope="col">ชื่อสถานศึกษา</th>
                                 <th scope="col">พื้นที่นวัตกรรม</th>
                                 <th style="text-align: center;" scope="col">รายละเอียด</th>
@@ -121,7 +122,8 @@
                             foreach ($result->result() as $SCHOOL) {
                             ?>
                                 <tr>
-                                    <td class="page-content" style="text-align: center;"><img src="assets/school/img/<?= $SCHOOL->ImageSchool; ?>" alt="" width="100%" height="100%"></td>
+                                    <td class="page-content" style="text-align: center;"><img src="assets/school/img/<?= $SCHOOL->ImageSchool; ?>" alt="" width="100%"></td>
+                                    <td style="padding-top: 40px;"><?= $SCHOOL->SchoolID; ?></td>
                                     <td style="padding-top: 40px;"><?= $SCHOOL->SchoolNameThai; ?></td>
                                     <td style="padding-top: 40px;"><?= $SCHOOL->INNOVATION_AREA_NAME; ?></td>
                                     <td style="padding-top: 35px; text-align: center;"><a href="?SchoolID=<?= $SCHOOL->SchoolID; ?>" class="btn btn-primary"><i class="bi bi-card-list"></i></a>
@@ -421,35 +423,54 @@
 
                                         <div class="card">
                                             <div class="card-body">
-                                                <h5 style="text-align: left; padding-left: 25px; padding-top: 25px;" class="card-title">
-                                                    ข้อมูลคู่สมรส
-                                                    <a style="float: right;" href="edit-forms-teacher-marriage?SchoolID=<?= $TEACHER_DETAIL->SchoolID; ?>&&TeacherID=<?= $TEACHER_DETAIL->TeacherID ?>&&EducationYear=<?= $TEACHER_DETAIL->EducationYear; ?>&&Semester=<?= $TEACHER_DETAIL->Semester; ?>&&PersonnelTypeCode=<?= $TEACHER_DETAIL->PersonnelTypeCode; ?>&&PositionCode=<?= $TEACHER_DETAIL->PositionCode; ?>" class="btn btn-sm btn-warning"><i class="bi bi-pencil-square"></i></a>
-                                                </h5>
-                                                <?php
-                                                $result = $this->db->query('SELECT * FROM CLS_MARRIAGE_STATUS WHERE MARRIAGE_STATUS_CODE = "' . $TEACHER_DETAIL->MarriageStatusCode . '"');
-                                                foreach ($result->result() as $MARRIAGE_STATUS) {
-                                                    $MARRIAGE_STATUS_NAME = $MARRIAGE_STATUS->MARRIAGE_STATUS_NAME;
-                                                }
-                                                $result = $this->db->query('SELECT * FROM CLS_PREFIX WHERE PREFIX_CODE = "' . $TEACHER_DETAIL->SpousePrefixCode . '"');
-                                                foreach ($result->result() as $PREFIX) {
-                                                    $PREFIX_NAME = $PREFIX->PREFIX_NAME;
-                                                }
-                                                ?>
                                                 <div class="row">
-                                                    <div class="col-12" style="text-align: left; padding-left: 25px; padding-bottom: 5px;">
-                                                        <label style="padding-left: 25px;"> สถานภาพการสมรส: &nbsp;<?php if ($TEACHER_DETAIL->MarriageStatusCode == NULL) {
+                                                    <div class="col-6">
+                                                        <h5 style="text-align: left; padding-left: 25px; padding-top: 25px;" class="card-title">
+                                                            ข้อมูลลายเซ็น
+                                                            <a style="float: right;" href="edit-forms-teacher-signature?SchoolID=<?= $TEACHER_DETAIL->SchoolID; ?>&&TeacherID=<?= $TEACHER_DETAIL->TeacherID ?>&&EducationYear=<?= $TEACHER_DETAIL->EducationYear; ?>&&Semester=<?= $TEACHER_DETAIL->Semester; ?>&&PersonnelTypeCode=<?= $TEACHER_DETAIL->PersonnelTypeCode; ?>&&PositionCode=<?= $TEACHER_DETAIL->PositionCode; ?>" class="btn btn-sm btn-warning"><i class="bi bi-pencil-square"></i></a>
+                                                        </h5>
+                                                        <div class="row">
+                                                            <div class="col-12" style="text-align: left; padding-left: 30px; padding-bottom: 5px;">
+                                                                <label style="padding-left: 25px;"> ลายเซ็น : &nbsp;<?php if ($TEACHER_DETAIL->Signature == NULL) {
                                                                                                                         echo '-';
-                                                                                                                    } else echo $MARRIAGE_STATUS_NAME; ?></label>
-                                                        <label style="padding-left: 25px;"> หมายเลขบัตรประจำตัวประชาชน: &nbsp;<?php if ($TEACHER_DETAIL->SpousePersonalID == NULL) {
-                                                                                                                                    echo '-';
-                                                                                                                                } else echo $TEACHER_DETAIL->SpousePersonalID; ?></label>
-                                                        <label style="padding-left: 25px;"> ชื่อ-นามสกุล: &nbsp;<?php if ($TEACHER_DETAIL->SpouseNameThai == NULL) {
-                                                                                                                    echo '-';
-                                                                                                                } else echo $PREFIX_NAME . $TEACHER_DETAIL->SpouseNameThai . ' ' . $TEACHER_DETAIL->SpouseLastNameThai; ?>
-                                                            <?php if ($TEACHER_DETAIL->SpouseNameEnglish != NULL && $TEACHER_DETAIL->SpouseLastNameEnglish != NULL) {
-                                                                echo ' (' . $TEACHER_DETAIL->SpouseNameEnglish . ' ' . $TEACHER_DETAIL->SpouseLastNameEnglish . ')';
-                                                            } ?>
-                                                        </label>
+                                                                                                                    } else { ?>
+                                                                    <a href="assets/teacher/signature/<?= $TEACHER_DETAIL->Signature; ?>" target="_blank" class="btn btn-sm btn-success"><i class="bi bi-vector-pen"></i> แสดงข้อมูล</a> <?php } ?> </label>
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-6">
+                                                        <h5 style="text-align: left; padding-left: 25px; padding-top: 25px;" class="card-title">
+                                                            ข้อมูลคู่สมรส
+                                                            <a style="float: right;" href="edit-forms-teacher-marriage?SchoolID=<?= $TEACHER_DETAIL->SchoolID; ?>&&TeacherID=<?= $TEACHER_DETAIL->TeacherID ?>&&EducationYear=<?= $TEACHER_DETAIL->EducationYear; ?>&&Semester=<?= $TEACHER_DETAIL->Semester; ?>&&PersonnelTypeCode=<?= $TEACHER_DETAIL->PersonnelTypeCode; ?>&&PositionCode=<?= $TEACHER_DETAIL->PositionCode; ?>" class="btn btn-sm btn-warning"><i class="bi bi-pencil-square"></i></a>
+                                                        </h5>
+                                                        <?php
+                                                        $result = $this->db->query('SELECT * FROM CLS_MARRIAGE_STATUS WHERE MARRIAGE_STATUS_CODE = "' . $TEACHER_DETAIL->MarriageStatusCode . '"');
+                                                        foreach ($result->result() as $MARRIAGE_STATUS) {
+                                                            $MARRIAGE_STATUS_NAME = $MARRIAGE_STATUS->MARRIAGE_STATUS_NAME;
+                                                        }
+                                                        $result = $this->db->query('SELECT * FROM CLS_PREFIX WHERE PREFIX_CODE = "' . $TEACHER_DETAIL->SpousePrefixCode . '"');
+                                                        foreach ($result->result() as $PREFIX) {
+                                                            $PREFIX_NAME = $PREFIX->PREFIX_NAME;
+                                                        }
+                                                        ?>
+                                                        <div class="row">
+                                                            <div class="col-12" style="text-align: left; padding-left: 25px; padding-bottom: 5px;">
+                                                                <label style="padding-left: 25px;"> สถานภาพการสมรส: &nbsp;<?php if ($TEACHER_DETAIL->MarriageStatusCode == NULL) {
+                                                                                                                                echo '-';
+                                                                                                                            } else echo $MARRIAGE_STATUS_NAME; ?></label>
+                                                                <label style="padding-left: 25px;"> หมายเลขบัตรประจำตัวประชาชน: &nbsp;<?php if ($TEACHER_DETAIL->SpousePersonalID == NULL) {
+                                                                                                                                            echo '-';
+                                                                                                                                        } else echo $TEACHER_DETAIL->SpousePersonalID; ?></label>
+                                                                <label style="padding-left: 25px;"> ชื่อ-นามสกุล: &nbsp;<?php if ($TEACHER_DETAIL->SpouseNameThai == NULL) {
+                                                                                                                            echo '-';
+                                                                                                                        } else echo $PREFIX_NAME . $TEACHER_DETAIL->SpouseNameThai . ' ' . $TEACHER_DETAIL->SpouseLastNameThai; ?>
+                                                                    <?php if ($TEACHER_DETAIL->SpouseNameEnglish != NULL && $TEACHER_DETAIL->SpouseLastNameEnglish != NULL) {
+                                                                        echo ' (' . $TEACHER_DETAIL->SpouseNameEnglish . ' ' . $TEACHER_DETAIL->SpouseLastNameEnglish . ')';
+                                                                    } ?>
+                                                                </label>
+                                                            </div>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
