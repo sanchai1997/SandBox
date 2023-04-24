@@ -10,6 +10,7 @@ class Eportfolio_model  extends CI_Model {
 
 #######################eportfolio
      public function insert_eportfolio($eportfolio) {
+       
      $result_eportfolio = $this->db->insert('EPORTFOLIO', $eportfolio);
      return $result_eportfolio;
     }

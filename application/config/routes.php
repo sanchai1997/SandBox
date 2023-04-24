@@ -69,7 +69,7 @@ $route['delete-subject_std'] = 'CurriculumController/delete_subject_std';
 //eportfolio
 $route['list-eportfolio'] = 'EportfolioController/list_eportfolio';
 $route['forms_eportfolio'] = 'EportfolioController/forms_eportfolio';
-$route['add_eportfolio'] = 'EportfolioController/add_eportfolio';
+$route['add_eportfolio/(:any)/(:num)/(:num)/(:num)/(:num)']['post'] = 'EportfolioController/add_eportfolio/$1/$2/$3/$4/$5';
 $route['edit_forms_eportfolio'] = 'EportfolioController/edit_forms_eportfolio';
 $route['edit_eportfolio']['post'] = 'EportfolioController/edit_eportfolio';
 $route['delete-eportfolio/(:num)'] = 'EportfolioController/delete_eportfolio/$1';

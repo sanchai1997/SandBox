@@ -39,8 +39,11 @@ class EportfolioController extends CI_Controller{
         {
             show_404();
         }
-
-        $data['STUDENT'] = $this->Student_model->get_STUDENT_All();
+        $data['StudentReferenceID'] = $_GET['StudentReferenceID']; 
+        $data['SchoolID'] = $_GET['SchoolID']; 
+        $data['EducationYear'] = $_GET['EducationYear']; 
+        $data['Semester'] = $_GET['Semester']; 
+        $data['GradeLevelCode'] = $_GET['GradeLevelCode']; 
        
         $this->load->view('templates/header');
         $this->load->view('templates/sidebar');
@@ -49,10 +52,10 @@ class EportfolioController extends CI_Controller{
 
     }
 
-    public function add_eportfolio() {
+    public function add_eportfolio($StudentReferenceID, $SchoolID, $EducationYear, $Semester, $GradeLevelCode) {
         $eportfolio = [
-            'STUDENT_LIKE' => $this->input->post('STUDENT_LIKE'),
             'STUDENT_NO' => $this->input->post('STUDENT_NO'),
+            'STUDENT_LIKE' => $this->input->post('STUDENT_LIKE'),
             'STUDENT_DREAM' => $this->input->post('STUDENT_DREAM'),
             'STUDENT_HOPE' => $this->input->post('STUDENT_HOPE'),
             'STUDENT_TARGET' => $this->input->post('STUDENT_TARGET'),
@@ -64,16 +67,16 @@ class EportfolioController extends CI_Controller{
             'STUDENT_SUMMARY' => $this->input->post('STUDENT_SUMMARY'),
         ];
         $result_eportfolio = $this->Eportfolio_model->insert_eportfolio($eportfolio);
+       
 
         if($result_eportfolio == 1 ){    
             $this->session->set_flashdata('success',"บันทึกข้อมูลสำเร็จ");
-            redirect(base_url('list-eportfolio'));
+            redirect(base_url('student?StudentReferenceID=' . $StudentReferenceID . '&&SchoolID=' . $SchoolID . '&&EducationYear=' . $EducationYear . '&&Semester=' . $Semester . '&&GradeLevelCode=' . $GradeLevelCode . '&&ShowDetail='));
         }else{
-            redirect(base_url('forms_eportfolio'));
+            redirect(base_url('forms_eportfolio?StudentReferenceID=' . $StudentReferenceID . '&&SchoolID=' . $SchoolID . '&&EducationYear=' . $EducationYear . '&&Semester=' . $Semester . '&&GradeLevelCode=' . $GradeLevelCode));
         }
 
     }
-
     public function list_eportfolio() {
             
         if ( ! file_exists(APPPATH.'views/pages/dashboard/Eportfolio/list-eportfolio.php'))
