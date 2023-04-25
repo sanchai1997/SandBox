@@ -154,10 +154,7 @@
                                                 หน่วยกิต/น้ำหนัก : <?= $ls->Credit; ?>
                                                 </div>
                                                 <div class=" col-8" style="padding-bottom: 8px; padding-left: 40px;">
-                                                รหัสมาตรฐานการเรียนรู้ : <?= $ls->SUBJECT_STD_ID; ?>
-                                                </div>
-                                                <div class=" col-8" style="padding-bottom: 8px; padding-left: 40px;">
-                                                มาตรฐานการเรียนรู้ : <?= $ls->SUBJECT_STD_DETAILS; ?>
+                                                มาตรฐานการเรียนรู้ : <?= $ls->SUBJECT_STD_ID; ?> <?= $ls->SUBJECT_STD_DETAILS; ?>
                                                 </div>
                                                 <div class=" col-8" style="padding-bottom: 8px; padding-left: 40px;">
                                                 ตัวชี้วัด : <?= $ls->CriteriaID ; ?>

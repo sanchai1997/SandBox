@@ -11,6 +11,7 @@
             $this->load->library('form_validation');
             $this->load->library('session');
             $this->load->model('Student_model', 'forms_student');
+            $this->load->model('Eportfolio_model');
         }
 
         ///////////////////////////////////forms-student/////////////////////////////////

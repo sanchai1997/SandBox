@@ -307,6 +307,7 @@ class CurriculumController extends CI_Controller{
         $data['CurriculumID'] = $_GET['cid']; 
         $data['Curriculum'] = $this->Curriculum_model->get_Curriculum($data['CurriculumID']);
         $data['listCriteria'] = $this->Curriculum_model->get_ASSESSMENT_CRITERIA_All();
+        $data['listSTD'] = $this->Curriculum_model->get_STD_All();
 
 
         $this->load->view('templates/header', $data);
@@ -328,7 +329,7 @@ class CurriculumController extends CI_Controller{
             'Credit' => $this->input->post('Credit'),
             'LearningHour' => $this->input->post('LearningHour'),
             'SUBJECT_STD_ID' => $this->input->post('SUBJECT_STD_ID'),
-            'SUBJECT_STD_DETAILS' => $this->input->post('SUBJECT_STD_DETAILS'),
+            #'SUBJECT_STD_DETAILS' => $this->input->post('SUBJECT_STD_DETAILS'),
             'SUBJECT_KPI_ID' => $this->input->post('SUBJECT_KPI_ID'),
             'DeleteStatus' => 0 
         ];
@@ -361,6 +362,7 @@ class CurriculumController extends CI_Controller{
         $data['CurriculumSubject'] = $this->Curriculum_model->get_CurriculumSubject($data['CurriculumID'],$data['SubjectCode']);
         $data['Curriculum'] = $this->Curriculum_model->get_Curriculum($data['CurriculumID']);
         $data['listCriteria'] = $this->Curriculum_model->get_ASSESSMENT_CRITERIA_All();
+        $data['listSTD'] = $this->Curriculum_model->get_STD_All();
 
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
@@ -381,7 +383,7 @@ class CurriculumController extends CI_Controller{
             'Credit' => $this->input->post('Credit'),
             'LearningHour' => $this->input->post('LearningHour'),
             'SUBJECT_STD_ID' => $this->input->post('SUBJECT_STD_ID'),
-            'SUBJECT_STD_DETAILS' => $this->input->post('SUBJECT_STD_DETAILS'),
+            #'SUBJECT_STD_DETAILS' => $this->input->post('SUBJECT_STD_DETAILS'),
             'SUBJECT_KPI_ID' => $this->input->post('SUBJECT_KPI_ID'),
             'DeleteStatus' => 0 
         ];
@@ -410,6 +412,63 @@ class CurriculumController extends CI_Controller{
         
     }
 
+
+###### subject_std
+    public function forms_subject_std() {
+        
+        if ( ! file_exists(APPPATH.'views/pages/forms/Curriculum/forms-subject_std.php'))
+        {
+            // Whoops, we don't have a page for that!
+            show_404();
+        }
+
+        $data['CurriculumID'] = $_GET['cid']; 
+        $data['SubjectCode'] = $_GET['sid']; 
+        if( $data['SubjectCode']=='' ){
+            $data['SubjectCode'] =null; 
+        }
+       
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/sidebar', $data);
+        $this->load->view('pages/forms/Curriculum/forms-subject_std', $data);
+        $this->load->view('templates/footer', $data);
+
+    }
+
+    public function add_subject_std() {
+        // add_subject_std
+        $CurriculumID = $this->input->post('CurriculumID');
+        $SubjectCode = $this->input->post('SubjectCode');
+    
+        $subject_std = [          
+            'SUBJECT_GROUP_CODE' => $this->input->post('SubjectGroupCode'),
+            'SUBJECT_STD_ID' => $this->input->post('SUBJECT_STD_ID'),
+            'SUBJECT_STD_DETAILS' => $this->input->post('SUBJECT_STD_DETAILS'),
+            'DeleteStatus' => 0 
+        ];
+        $result = $this->Curriculum_model->insert_subject_std($subject_std);
+
+        if( $SubjectCode ==null){
+            if($result == 1 ){
+                $this->session->set_flashdata('success',"บันทึกข้อมูลสำเร็จ");
+                redirect(base_url('forms-curriculum_subject?cid='. $CurriculumID ));
+            }else{
+                $this->session->set_flashdata('errors',"เกิดข้อผิดพลาดในการบันทึกข้อมูล");
+                redirect(base_url('forms-subject_std?cid='. $CurriculumID ));
+            }
+        }else{
+            if($result == 1 ){
+                $this->session->set_flashdata('success',"บันทึกข้อมูลสำเร็จ");
+                redirect(base_url('edit_forms-curriculum_subject?cid='. $CurriculumID . '&&sid=' .  $SubjectCode));
+            }else{
+                $this->session->set_flashdata('errors',"เกิดข้อผิดพลาดในการบันทึกข้อมูล");
+                redirect(base_url('forms-subject_std?cid='. $CurriculumID . '&&sid=' .  $SubjectCode  ));
+            }
+
+        }
+
+
+    }
 
 
 ### curriculum_school_competency
@@ -470,7 +529,7 @@ class CurriculumController extends CI_Controller{
         $result_SCHOOl_COMPETENCY = $this->Curriculum_model->insert_curriculum_school_competency($CURRICULUM_SCHOOl_COMPETENCY);
 
         if($result_SCHOOl_COMPETENCY == 1){
-            $this->session->set_flashdata('success',"บันทึกข้อมูลสำเร็จ");
+            $this->session->set_flashdata('success',"บันทึกข้อมูลมาตรฐานสำเร็จ");
             redirect(base_url('list-curriculum_school_competency?cid='. $CurriculumID.'&&sid='.$SubjectCode));
         }else{
             $this->session->set_flashdata('errors',"เกิดข้อผิดพลาดในการบันทึกข้อมูล");
@@ -963,124 +1022,9 @@ class CurriculumController extends CI_Controller{
         }
 
     }
-    
-    
- #eportfolio   
-    public function forms_eportfolio() {
-        
-        if ( ! file_exists(APPPATH.'views/pages/forms/Curriculum/forms-eportfolio.php'))
-        {
-            show_404();
-        }
-
-        $data['STUDENT'] = $this->Student_model->get_STUDENT_All();
-       
-        $this->load->view('templates/header');
-        $this->load->view('templates/sidebar');
-        $this->load->view('pages/forms/Curriculum/forms-eportfolio',$data);
-        $this->load->view('templates/footer');
-
-    }
-
-    public function add_eportfolio() {
-        $eportfolio = [
-            'STUDENT_LIKE' => $this->input->post('STUDENT_LIKE'),
-            'STUDENT_NO' => $this->input->post('STUDENT_NO'),
-            'STUDENT_DREAM' => $this->input->post('STUDENT_DREAM'),
-            'STUDENT_HOPE' => $this->input->post('STUDENT_HOPE'),
-            'STUDENT_TARGET' => $this->input->post('STUDENT_TARGET'),
-            'STUDENT_LEARNING' => $this->input->post('STUDENT_LEARNING'),
-            'STUDENT_PROJECT' => $this->input->post('STUDENT_PROJECT'),
-            'STUDENT_GOODNESS' => $this->input->post('STUDENT_GOODNESS'),
-            'STUDENT_USEFULNESS' => $this->input->post('STUDENT_USEFULNESS'),
-            'STUDENT_PRIDE' => $this->input->post('STUDENT_PRIDE'),
-            'STUDENT_SUMMARY' => $this->input->post('STUDENT_SUMMARY'),
-        ];
-        $result_eportfolio = $this->Curriculum_model->insert_eportfolio($eportfolio);
-
-        if($result_eportfolio == 1 ){    
-            $this->session->set_flashdata('success',"บันทึกข้อมูลสำเร็จ");
-            redirect(base_url('list-eportfolio'));
-        }else{
-            redirect(base_url('forms_eportfolio'));
-        }
-
-    }
-
-    public function list_eportfolio() {
-            
-        if ( ! file_exists(APPPATH.'views/pages/dashboard/Curriculum/list-eportfolio.php'))
-        {
-            show_404();
-        }
-        $data["EPORTFOLIO"] = $this->Curriculum_model->get_EPORTFOLIO_ALL();
-        
-  
-        $this->load->view('templates/header');
-        $this->load->view('templates/sidebar');
-        $this->load->view('pages/dashboard/Curriculum/list-eportfolio',$data);
-        $this->load->view('templates/footer');
-
-    }
-    public function edit_forms_eportfolio() {
-        
-        if ( ! file_exists(APPPATH.'views/pages/forms/Curriculum/edit_forms-eportfolio.php'))
-        {
-            show_404();
-        }
-        $data['EPORTFOLIO_ID'] = $_GET['ep']; 
-        $data['STUDENT'] = $this->Student_model->get_STUDENT_All();
-        
-        $data["EPORTFOLIO"] = $this->Curriculum_model->get_EPORTFOLIO($data['EPORTFOLIO_ID']);
-       
-        $this->load->view('templates/header');
-        $this->load->view('templates/sidebar');
-        $this->load->view('pages/forms/Curriculum/edit_forms-eportfolio',$data);
-        $this->load->view('templates/footer');
 
 
 
-
-    }
-    public function edit_eportfolio() {
-        $EPORTFOLIO_ID = $this->input->post('EPORTFOLIO_ID');
-        
-        $eportfolio = [
-            'STUDENT_LIKE' => $this->input->post('STUDENT_LIKE'),
-            'STUDENT_NO' => $this->input->post('STUDENT_NO'),
-            'STUDENT_DREAM' => $this->input->post('STUDENT_DREAM'),
-            'STUDENT_HOPE' => $this->input->post('STUDENT_HOPE'),
-            'STUDENT_TARGET' => $this->input->post('STUDENT_TARGET'),
-            'STUDENT_LEARNING' => $this->input->post('STUDENT_LEARNING'),
-            'STUDENT_PROJECT' => $this->input->post('STUDENT_PROJECT'),
-            'STUDENT_GOODNESS' => $this->input->post('STUDENT_GOODNESS'),
-            'STUDENT_USEFULNESS' => $this->input->post('STUDENT_USEFULNESS'),
-            'STUDENT_PRIDE' => $this->input->post('STUDENT_PRIDE'),
-            'STUDENT_SUMMARY' => $this->input->post('STUDENT_SUMMARY'),
-        ];
-        $result_eportfolio = $this->Curriculum_model->update_EPORTFOLIO($EPORTFOLIO_ID ,$eportfolio);
-
-        if($result_eportfolio == 1 ){    
-            $this->session->set_flashdata('success',"บันทึกข้อมูลสำเร็จ");
-            redirect(base_url('list-eportfolio'));
-        }else{
-            redirect(base_url('forms_eportfolio'));
-        }
-
-    }
-    public function delete_eportfolio($EPORTFOLIO_ID){
-
-
-        $result =$this->Curriculum_model->delete_eportfolio($EPORTFOLIO_ID);
-
-        if($result == 1 ){
-            $this->session->set_flashdata('success',"ลบข้อมูลสำเร็จ");
-            redirect(base_url('list-curriculum_activity?pid='. $PLAN_ID.'&&sid='. $SubjectCode.'&&cid='. $CurriculumID ));
-        }else{
-            $this->session->set_flashdata('errors',"เกิดข้อผิดพลาดในการลบข้อมูล");
-            redirect(base_url('list-curriculum_activity?pid='. $PLAN_ID.'&&sid='. $SubjectCode.'&&cid='. $CurriculumID ));
-        }
-    }
 }
 
 ?>
