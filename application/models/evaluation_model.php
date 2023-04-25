@@ -984,4 +984,13 @@ public function edit_achie_ass() //sh8
 		$query = $this->db->get();
 		return $query->result();
 	}
+	public function get_data($option) {
+		//   echo '<pre>';
+		// print_r($_POST);
+		// echo'</pre>';
+		// exit;
+		$query = $this->db->get_where('ASSESSMENT_CRITERIA', array('Id' => $option));
+		$result = $query->row_array();
+		return $result['CriteriaPassingScorePercentage'];
+	  }
 }

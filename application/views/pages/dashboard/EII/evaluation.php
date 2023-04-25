@@ -685,6 +685,8 @@
                             $result_top = $this->db->query("SELECT * FROM SCHOOL_ASSESSMENT_CRITERIA 
                             INNER JOIN SCHOOL
                             ON SCHOOL_ASSESSMENT_CRITERIA.SchoolID = SCHOOL.SchoolID
+                            INNER JOIN SEMESTER
+                            ON  SEMESTER.SEMESTER_CODE = SCHOOL_ASSESSMENT_CRITERIA.SchoolAssessmentSemester
                             INNER JOIN ASSESSMENT_CRITERIA
                             ON  SCHOOL_ASSESSMENT_CRITERIA.CriteriaID = ASSESSMENT_CRITERIA.Id 
                             INNER JOIN CLS_EVALUATION
@@ -775,7 +777,7 @@
                                         $SchoolID = $show_top->SchoolID;
                                         $CriteriaID = $show_top->Id;
                                         $resultR= $this->db->query("SELECT * FROM SCHOOL_ASSESSMENT_RESULT 
-                                        
+                                       
                                         INNER JOIN ASSESSMENT_CRITERIA_LEVEL
                                         ON SCHOOL_ASSESSMENT_RESULT.LevelIndex =ASSESSMENT_CRITERIA_LEVEL.LevelIndex
                                         AND SCHOOL_ASSESSMENT_RESULT.CriteriaID =ASSESSMENT_CRITERIA_LEVEL.CriteriaID
@@ -834,10 +836,10 @@
 
                                             </div>
                                             <div class="modal-body">
-                                                คุณต้องการลบข้อมูลใช่หรือไหม <br>
-                                                ปีการศึกษา: <?php echo $show_top->SchoolAssessmentEducationYear; ?>
-                                                ภาคเรียน:<?php echo $show_top->SchoolAssessmentSemester; ?>
-                                                สถานศึกษา: <?php echo $show_top->SchoolNameThai; ?>
+                                              <p>  คุณต้องการลบข้อมูลใช่หรือไหม </p>
+                                               <p> ปีการศึกษา: <?php echo $show_top->SchoolAssessmentEducationYear; ?></p>
+                                               <p> ภาคเรียน:<?php echo $show_top->SEMESTER_NAME; ?></p>
+                                             <p>   สถานศึกษา: <?php echo $show_top->SchoolNameThai; ?></p>
 
                                             </div>
 
