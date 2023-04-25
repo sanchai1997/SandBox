@@ -155,10 +155,10 @@
                                     <li>
                                         <a class="dropdown-item"
                                             href="<?php echo site_url('Fm_evaluation_das_p1?page=sh1'); ?>">ตัวชี้วัด</a>
-                                        <a class="dropdown-item"
+                                            <a class="dropdown-item"
                                             href="<?php echo site_url('Fm_evaluation_das_p4?page=sh4'); ?>">การประเมินสถานศึกษา</a>
-                                        <a class="dropdown-item"
-                                            href="<?php echo site_url('Fm_evaluation_das_p5?page=sh5'); ?>">การประเมินตามตัวชี้วัด</a>
+                                            <a class="dropdown-item"
+                                                href="<?php echo site_url('Fm_evaluation_das_p5?page=sh5'); ?>">การประเมินตามตัวชี้วัด</a>
                                         <a class="dropdown-item"
                                             href="<?php echo site_url('Fm_evaluation_das_p8?page=sh8'); ?>">ผลการประเมินสถานศึกษา</a>
                                     </li>
@@ -427,10 +427,10 @@
                                     <li>
                                         <a class="dropdown-item"
                                             href="<?php echo site_url('Fm_evaluation_das_p1?page=sh1'); ?>">ตัวชี้วัด</a>
-                                        <a class="dropdown-item"
+                                            <a class="dropdown-item"
                                             href="<?php echo site_url('Fm_evaluation_das_p4?page=sh4'); ?>">การประเมินสถานศึกษา</a>
-                                        <a class="dropdown-item"
-                                            href="<?php echo site_url('Fm_evaluation_das_p5?page=sh5'); ?>">การประเมินตามตัวชี้วัด</a>
+                                            <a class="dropdown-item"
+                                                href="<?php echo site_url('Fm_evaluation_das_p5?page=sh5'); ?>">การประเมินตามตัวชี้วัด</a>
                                         <a class="dropdown-item"
                                             href="<?php echo site_url('Fm_evaluation_das_p8?page=sh8'); ?>">ผลการประเมินสถานศึกษา</a>
                                     </li>
@@ -492,13 +492,13 @@
                                         }
                                         ?>
                             </td>
-                            <td style=";">
+                            <td style="">
                                 <?php echo $show->SchoolNameThai; ?>
                             </td>
-                            <td style=";">
+                            <td style="">
                                 <?php echo $show->SchoolAssessmentName; ?>
                             </td>
-                            <td style=";">
+                            <td style="">
                                <p style="width: 150px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;"> <?php echo $show->SchoolAssessmentDescription; ?></p>
                             </td>
                             <td style="text-align: center;">
@@ -639,10 +639,10 @@
                                     <li>
                                         <a class="dropdown-item"
                                             href="<?php echo site_url('Fm_evaluation_das_p1?page=sh1'); ?>">ตัวชี้วัด</a>
-                                        <a class="dropdown-item"
+                                            <a class="dropdown-item"
                                             href="<?php echo site_url('Fm_evaluation_das_p4?page=sh4'); ?>">การประเมินสถานศึกษา</a>
-                                        <a class="dropdown-item"
-                                            href="<?php echo site_url('Fm_evaluation_das_p5?page=sh5'); ?>">การประเมินตามตัวชี้วัด</a>
+                                            <a class="dropdown-item"
+                                                href="<?php echo site_url('Fm_evaluation_das_p5?page=sh5'); ?>">การประเมินตามตัวชี้วัด</a>
                                         <a class="dropdown-item"
                                             href="<?php echo site_url('Fm_evaluation_das_p8?page=sh8'); ?>">ผลการประเมินสถานศึกษา</a>
                                     </li>
@@ -893,10 +893,10 @@
                                     <li>
                                         <a class="dropdown-item"
                                             href="<?php echo site_url('Fm_evaluation_das_p1?page=sh1'); ?>">ตัวชี้วัด</a>
-                                        <a class="dropdown-item"
+                                            <a class="dropdown-item"
                                             href="<?php echo site_url('Fm_evaluation_das_p4?page=sh4'); ?>">การประเมินสถานศึกษา</a>
-                                        <a class="dropdown-item"
-                                            href="<?php echo site_url('Fm_evaluation_das_p5?page=sh5'); ?>">การประเมินตามตัวชี้วัด</a>
+                                            <a class="dropdown-item"
+                                                href="<?php echo site_url('Fm_evaluation_das_p5?page=sh5'); ?>">การประเมินตามตัวชี้วัด</a>
                                         <a class="dropdown-item"
                                             href="<?php echo site_url('Fm_evaluation_das_p8?page=sh8'); ?>">ผลการประเมินสถานศึกษา</a>
                                     </li>
@@ -1028,10 +1028,10 @@
                                     <li>
                                         <a class="dropdown-item"
                                             href="<?php echo site_url('Fm_evaluation_das_p1?page=sh1'); ?>">ตัวชี้วัด</a>
-                                        <a class="dropdown-item"
+                                            <a class="dropdown-item"
                                             href="<?php echo site_url('Fm_evaluation_das_p4?page=sh4'); ?>">การประเมินสถานศึกษา</a>
-                                        <a class="dropdown-item"
-                                            href="<?php echo site_url('Fm_evaluation_das_p5?page=sh5'); ?>">การประเมินตามตัวชี้วัด</a>
+                                            <a class="dropdown-item"
+                                                href="<?php echo site_url('Fm_evaluation_das_p5?page=sh5'); ?>">การประเมินตามตัวชี้วัด</a>
                                         <a class="dropdown-item"
                                             href="<?php echo site_url('Fm_evaluation_das_p8?page=sh8'); ?>">ผลการประเมินสถานศึกษา</a>
                                     </li>
@@ -1172,10 +1172,10 @@
                                     <li>
                                         <a class="dropdown-item"
                                             href="<?php echo site_url('Fm_evaluation_das_p1?page=sh1'); ?>">ตัวชี้วัด</a>
-                                        <a class="dropdown-item"
+                                            <a class="dropdown-item"
                                             href="<?php echo site_url('Fm_evaluation_das_p4?page=sh4'); ?>">การประเมินสถานศึกษา</a>
-                                        <a class="dropdown-item"
-                                            href="<?php echo site_url('Fm_evaluation_das_p5?page=sh5'); ?>">การประเมินตามตัวชี้วัด</a>
+                                            <a class="dropdown-item"
+                                                href="<?php echo site_url('Fm_evaluation_das_p5?page=sh5'); ?>">การประเมินตามตัวชี้วัด</a>
                                         <a class="dropdown-item"
                                             href="<?php echo site_url('Fm_evaluation_das_p8?page=sh8'); ?>">ผลการประเมินสถานศึกษา</a>
                                     </li>
@@ -1480,19 +1480,28 @@
                             </tr>
                            
                                         <?php $resultT = $this->db->query("SELECT * FROM ASSESSMENT_CRITERIA_COMPOSITION_LEVEL
-                                  where CriteriaID = $Id  AND DeleteStatus = 0 
+                                        INNER  JOIN ASSESSMENT_CRITERIA_LEVEL
+                                        ON ASSESSMENT_CRITERIA_LEVEL.LevelIndex = ASSESSMENT_CRITERIA_COMPOSITION_LEVEL.LevelIndex
+                                        INNER  JOIN ASSESSMENT_CRITERIA_COMPOSITION
+                                        ON ASSESSMENT_CRITERIA_COMPOSITION.CompositionIndex =ASSESSMENT_CRITERIA_COMPOSITION_LEVEL.CompositionIndex 
+                                        where ASSESSMENT_CRITERIA_COMPOSITION_LEVEL.CriteriaID = $Id  
+                                        AND ASSESSMENT_CRITERIA_LEVEL.CriteriaID = $Id  
+                                        AND ASSESSMENT_CRITERIA_COMPOSITION.CriteriaID = $Id  
+                                        AND ASSESSMENT_CRITERIA_COMPOSITION_LEVEL.DeleteStatus = 0
+                                        AND ASSESSMENT_CRITERIA_LEVEL.DeleteStatus = 0
+                                        AND ASSESSMENT_CRITERIA_COMPOSITION.DeleteStatus = 0
                                 --   AND CompositionIndex = $CompositionIndex
                                   ");
                                         foreach ($resultT->result() as $showT) { ?>
                                        <tr>
                                                <td>
                                                     <p>
-                                                        <?php echo $showT->CompositionIndex; ?>
+                                                        <?php echo $showT->CompositionIndex; ?>.<?php echo $showT->CompositionName; ?>
                                                     </p>
                                                </td>
                                                <td>
                                                     <p>
-                                                        <?php echo $showT->LevelIndex; ?>
+                                                        <?php echo $showT->LevelIndex; ?>.<?php echo $showT->LevelName; ?>
                                                     </p>
                                                </td>
                                                <td>

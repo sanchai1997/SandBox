@@ -258,6 +258,15 @@ class Fm_evaluation extends CI_Controller
     {
         $this->Evaluation_model->del_achie_ass();
     }
-    
+    public function score() {
+        $selectedValue = $this->input->post('selectedValue');
+        $this->db->select('CriteriaPassingScorePercentage');
+        $this->db->from('ASSESSMENT_CRITERIA');
+        $this->db->where('CriteriaID', $selectedValue);
+        $my_model = $this->db->get();
+        $data = $this->my_model->score($selectedValue);
+        echo json_encode($data);
+       
+    }
 
 }
