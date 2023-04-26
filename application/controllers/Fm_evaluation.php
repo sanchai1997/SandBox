@@ -160,7 +160,7 @@ class Fm_evaluation extends CI_Controller
         $this->load->view('templates/sidebar');
         $this->load->view('pages/forms/EII/forms-evaluation');
         $this->load->view('templates/footer');
-        
+      
     }
     
     public function insert_ass_ria()
@@ -269,5 +269,24 @@ class Fm_evaluation extends CI_Controller
         echo $data;
         exit;
       }
+      public function get_ACHIEVEMENT_ASSESSMENT() {
+        $SchoolAssessmentEducationYear = $this->input->post('key1');
+        $SchoolAssessmentSemester = $this->input->post('key2');
+        $SchoolID = $this->input->post('key3');
+    
+        $data = $this->Evaluation_model->get_ACHIEVEMENT_ASSESSMENT($SchoolAssessmentEducationYear, $SchoolAssessmentSemester, $SchoolID);
+        $data1 = $this->Evaluation_model->get_ACHIEVEMENT_ASSESSMENT1($SchoolAssessmentEducationYear, $SchoolAssessmentSemester, $SchoolID);
+        $result = array(
+            'AssessmentorName' => $data['AssessmentorName'],
+            'SchoolAssessmentScore' => $data['SchoolAssessmentScore'],
+            'SchoolAssessmentName' => $data1['SchoolAssessmentName'],
+            'SchoolAssessmentDescription' => $data1['SchoolAssessmentDescription']
+        );
+        echo json_encode($result);
+        exit;
+    }
+    
+    
 
 }
+?>

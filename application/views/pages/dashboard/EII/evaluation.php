@@ -851,6 +851,12 @@
                                                     action="<?php echo site_url('sc_ass_ria_del_p6'); ?>">
                                                     <input type="hidden" name="Id_sac"
                                                         value="<?php echo $show_top->Id_sac; ?>">
+                                                        <input type="hidden" name="SchoolAssessmentEducationYear"
+                                                        value="<?php echo $show_top->SchoolAssessmentEducationYear; ?>">
+                                                        <input type="hidden" name="SchoolAssessmentSemester"
+                                                        value="<?php echo $show_top->SchoolAssessmentSemester; ?>">
+                                                        <input type="hidden" name="SchoolID"
+                                                        value="<?php echo $show_top->SchoolID; ?>">
                                                     <div class="d-flex justify-content-center">
                                                         <button name="Submit" type="submit"
                                                             class="btn btn-danger">ยืนยันก่อนลบ</button>
@@ -1198,7 +1204,8 @@
 
                         <tr>
 
-                            <th style="" scope="col" class="col-2">ปีการศึกษาที่ทำการประเมิน</th>
+                            <th style="" scope="col" class="col-2">ปีการศึกษา</th>
+                            <th style="" scope="col">ภาคเรียน</th>
                             <th style="" scope="col">สถานศึกษา</th>
                             <th style="" scope="col">ชื่อการประเมิน</th>
                             <th style="" scope="col">ผลการประเมิน</th>
@@ -1223,6 +1230,9 @@
                         <tr>
                             <td scope="row " style="">
                                 <?php echo $show->AchievementAssessmentYear; ?>
+                            </td>
+                            <td scope="row " style="">
+                                <?php echo $show->SchoolAssessmentSemester; ?>
                             </td>
 
                             <td scope="row">

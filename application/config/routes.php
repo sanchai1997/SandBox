@@ -540,5 +540,6 @@ $route['sc_ass_res_del_p7'] = 'Fm_evaluation/del_sc_ass_res';
 $route['achie_ass_del_p8'] = 'Fm_evaluation/del_achie_ass';
 
 $route['call_select'] = 'Fm_evaluation/get_data';
+$route['call_select_1'] = 'Fm_evaluation/get_ACHIEVEMENT_ASSESSMENT';
 
 ///////////////////// evaluation - END /////////////////////////

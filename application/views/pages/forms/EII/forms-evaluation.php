@@ -53,7 +53,7 @@
                 <?php break;
                     case 'sh7': ?> <h1>เกณฑ์การประเมินโรงเรียน</h1>
                 <?php break;
-                    case 'sh8': ?> <h1>การประเมินสถานศึกษา</h1>
+                    case 'sh8': ?> <h1>ผลการประเมินสถานศึกษา</h1>
                 <?php break;
                     case 'sh11': ?> <h1>การประกันคุณภาพด้วยตัวชี้วัดของพื้นที่</h1>
                 <?php break;
@@ -1899,8 +1899,9 @@ function checkSelectValues() {
                                     </div>
                                     <div class="row mb-3">
                                         <div class="form-floating">
-                                            <input type="number" max="100" class="form-control" id="SchoolAssessmentScore"
-                                                placeholder="คะแนน" name="SchoolAssessmentScore">
+                                            <input type="number" max="100" class="form-control"
+                                                id="SchoolAssessmentScore" placeholder="คะแนน"
+                                                name="SchoolAssessmentScore">
                                             <label for="floatingName"><?php echo nbs(2); ?> คะแนน </label>
                                         </div>
                                     </div>
@@ -1975,6 +1976,37 @@ function checkSelectValues() {
                                             } else {
                                                 selectOption.options[i].hidden = true;
                                             }
+                                        }
+                                    });
+
+                                    selectOption.addEventListener("change", function() {
+                                        let rank = selectOption.value;
+                                        let score = input.value;
+                                        if (rank == 1 && (score < 0 || score > 20)) {
+                                            alert("กรุณาเขียนคะแนน 0-20");
+                                            selectOption.selectedIndex = 0;
+                                            input.value = "";
+                                            return;
+                                        } else if (rank == 2 && (score < 21 || score > 40)) {
+                                            alert("กรุณาเขียนคะแนน 21-40");
+                                            selectOption.selectedIndex = 0;
+                                            input.value = "";
+                                            return;
+                                        } else if (rank == 3 && (score < 41 || score > 60)) {
+                                            alert("กรุณาเขียนคะแนน 41-60");
+                                            selectOption.selectedIndex = 0;
+                                            input.value = "";
+                                            return;
+                                        } else if (rank == 4 && (score < 61 || score > 80)) {
+                                            alert("กรุณาเขียนคะแนน 61-80");
+                                            selectOption.selectedIndex = 0;
+                                            input.value = "";
+                                            return;
+                                        } else if (rank == 5 && (score < 81 || score > 100)) {
+                                            alert("กรุณาเขียนคะแนน 81-100");
+                                            selectOption.selectedIndex = 0;
+                                            input.value = "";
+                                            return;
                                         }
                                     });
                                     </script>
@@ -2118,7 +2150,7 @@ function checkSelectValues() {
 
                                     $result = $this->db->query("SELECT * FROM SCHOOL_ASSESSMENT_CRITERIA 
                                     INNER JOIN SCHOOL
-                ON SCHOOL_ASSESSMENT_CRITERIA.SchoolID = SCHOOL.SchoolID
+                                    ON SCHOOL_ASSESSMENT_CRITERIA.SchoolID = SCHOOL.SchoolID 
                 
                             WHERE Id_sac = '" . $key . "' 
                             ");
@@ -2128,7 +2160,8 @@ function checkSelectValues() {
                                 <!-- start Form ข้อมูลผลการประเมินตามตัวชี้วัด -->
                                 <form action="<?php echo site_url(
                                             'sc_ass_ria_edit_p6'
-                                        ); ?>" method="post" enctype="multipart/form-data">
+                                        ); ?>" method="post" enctype="multipart/form-data"
+                                    onsubmit="return checkSelectedOption()">
                                     <h5 class="card-title"></h5>
                                     <input type="hidden" name="Id_sac" value="<?php echo $show->Id_sac ?>">
                                     <div class="row mb-3">
@@ -2174,9 +2207,9 @@ function checkSelectValues() {
 
                                         <div class="col">
                                             <div class="form-floating">
-                                                <input type="number" class="form-control" id="floatingName"
+                                                <input type="text" class="form-control" id="floatingName"
                                                     placeholder="ปีการศึกษาที่ทำการประเมิน" name=""
-                                                    value="<?php echo $show->SchoolNameThai ?>" disabled>
+                                                    value="<?php echo $show->SchoolNameThai;?>" disabled>
                                                 <input type="hidden" class="form-control" id="floatingName"
                                                     placeholder="" name="SchoolID"
                                                     value="<?php echo $show->SchoolID ?>">
@@ -2220,17 +2253,18 @@ function checkSelectValues() {
                                     </div>
                                     <div class="row mb-3">
                                         <div class="form-floating">
-                                            <input type="text" class="form-control" id="floatingName"
+                                            <input type="text" class="form-control" id="SchoolAssessmentScore"
                                                 placeholder="คะแนน" name="SchoolAssessmentScore"
                                                 value="<?php echo $show->SchoolAssessmentScore ?>">
                                             <label for="floatingName"><?php echo nbs(2); ?> คะแนน </label>
                                         </div>
                                     </div>
+
                                     <div class="row mb-3">
                                         <div class="form-floating">
                                             <select class="form-select" id="SchoolAssessmentCode"
                                                 aria-label="Floating label select example" name="SchoolAssessmentCode">
-                                                <option selected>เลือก</option>
+
                                                 <?php
                                                         $result = $this->db->query('SELECT * FROM CLS_EVALUATION');
                                                         foreach ($result->result() as $cls) {
@@ -2244,6 +2278,77 @@ function checkSelectValues() {
                                                     ); ?>ผลการประเมิน</label>
                                         </div>
                                     </div>
+                                    <script>
+                                    let inputs = document.getElementById("SchoolAssessmentScore");
+                                    let selectOptions = document.getElementById("SchoolAssessmentCode");
+
+                                    inputs.addEventListener("input", function() {
+                                        let score = inputs.value;
+
+                                        // คำนวนคะแนน
+                                        let rank;
+                                        if (score <= 20) {
+                                            rank = 1;
+                                        } else if (score <= 40) {
+                                            rank = 2;
+                                        } else if (score <= 60) {
+                                            rank = 3;
+                                        } else if (score <= 80) {
+                                            rank = 4;
+                                        } else if (score <= 100) {
+                                            rank = 5;
+                                        } else {
+                                            alert("กรุณาเขียนคะแนน 0 ถึง 100");
+                                            return;
+                                        }
+
+                                        // เปลี่ยนค่าใน select 
+                                        for (let i = 0; i < selectOptions.options.length; i++) {
+                                            if (selectOptions.options[i].value == rank) {
+                                                selectOptions.selectedIndex = i;
+                                            } else {
+                                                selectOptions.options[i].hidden = true;
+                                            }
+                                        }
+                                    });
+
+                                    selectOptions.addEventListener("change", function() {
+                                        let rank = selectOptions.value;
+                                        let score = inputs.value;
+                                        if (rank == 1 && (score < 0 || score > 20)) {
+                                            alert("กรุณาเขียนคะแนน 0-20");
+                                            selectOptions.selectedIndex =
+                                                <?php echo $show->SchoolAssessmentCode; ?>;
+
+                                            return;
+                                        } else if (rank == 2 && (score < 21 || score > 40)) {
+                                            alert("กรุณาเขียนคะแนน 21-40");
+                                            selectOptions.selectedIndex =
+                                                <?php echo $show->SchoolAssessmentCode; ?>;
+
+                                            return;
+                                        } else if (rank == 3 && (score < 41 || score > 60)) {
+                                            alert("กรุณาเขียนคะแนน 41-60");
+                                            selectOptions.selectedIndex =
+                                                <?php echo $show->SchoolAssessmentCode; ?>;
+
+                                            return;
+                                        } else if (rank == 4 && (score < 61 || score > 80)) {
+                                            alert("กรุณาเขียนคะแนน 61-80");
+                                            selectOptions.selectedIndex =
+                                                <?php echo $show->SchoolAssessmentCode; ?>;
+
+                                            return;
+                                        } else if (rank == 5 && (score < 81 || score > 100)) {
+                                            alert("กรุณาเขียนคะแนน 81-100");
+                                            selectOptions.selectedIndex =
+                                                <?php echo $show->SchoolAssessmentCode; ?>;
+
+                                            return;
+                                        }
+                                    });
+                                    </script>
+
                                     <input type="hidden" name="oil_file"
                                         value="<?php echo $show->SchoolAssessmentAttachmentURL ?>">
 
@@ -2334,6 +2439,7 @@ function checkSelectValues() {
                                 for (let i = 0; i < size_my_CLS_EVALUATION; i++) {
                                     if (selectoption_CLS_EVALUATION[i].value == my_CLS_EVALUATION) {
                                         selectoption_CLS_EVALUATION[i].selected = true;
+
                                     }
                                 }
                                 ///ASSESSMENT_CRITERIA
@@ -2895,26 +3001,71 @@ function checkSelectValues() {
                                     <!-- <h5 class="card-title">ฟอร์มข้อมูลการประเมินสถานศึกษา</h5> -->
                                     <?php echo br(2); ?>
                                     <div class="row mb-3">
-                                        <div class="form-floating">
-                                            <input type="number" class="form-control" id="floatingName"
-                                                placeholder="ปีการศึกษาที่ทำการประเมิน"
-                                                name="AchievementAssessmentYear">
-                                            <label for="floatingName"><?php echo nbs(2); ?> ปีการศึกษาที่ทำการประเมิน
-                                            </label>
-                                        </div>
-                                    </div>
 
-                                    <div class="row mb-3">
                                         <div class="col">
                                             <div class="form-floating">
-                                                <select class="form-select" id="floatingSelect"
-                                                    aria-label="Floating label select example" name="SchoolID">
-                                                    <option selected>เลือก</option>
+                                                <select class="form-select" id="AchievementAssessmentYear"
+                                                    aria-label="Floating label select example"
+                                                    name="AchievementAssessmentYear">
+                                                    <option value="-1" selected>เลือก</option>
                                                     <?php
-                                                        $result = $this->db->query('SELECT * FROM SCHOOL where DeleteStatus = 0');
+                $result = $this->db->query('SELECT * FROM SCHOOL_ASSESSMENT_CRITERIA where DeleteStatus = 0 GROUP BY SchoolAssessmentEducationYear');
+                foreach ($result->result() as $cls) {
+                    ?>
+                                                    <option value="<?= $cls->SchoolAssessmentEducationYear; ?>">
+                                                        <?= $cls->SchoolAssessmentEducationYear; ?></option>
+                                                    <?php } ?>
+                                                </select>
+                                                <label for="floatingSelect">ปีการศึกษาที่ทำการประเมิน</label>
+                                            </div>
+                                        </div>
+                                        <div class="col">
+                                            <div class="form-floating">
+                                                <select class="form-select" id="SchoolAssessmentSemester"
+                                                    aria-label="Floating label select example"
+                                                    name="SchoolAssessmentSemester">
+                                                    <option value="-1" selected>เลือก</option>
+                                                    <?php
+                                                        $result = $this->db->query('SELECT * FROM SCHOOL_ASSESSMENT_CRITERIA
+                                                        INNER JOIN SEMESTER
+                                                        ON SEMESTER.SEMESTER_CODE = SCHOOL_ASSESSMENT_CRITERIA.SchoolAssessmentSemester
+                                                        INNER JOIN SCHOOL
+                                                        ON SCHOOL.SchoolID = SCHOOL_ASSESSMENT_CRITERIA.SchoolID
+                                                         where SCHOOL_ASSESSMENT_CRITERIA.DeleteStatus = 0
+                                                         AND SCHOOL.DeleteStatus = 0
+                                                         GROUP BY SchoolAssessmentSemester
+                                                        ');
                                                         foreach ($result->result() as $cls) {
                                                             ?>
-                                                    <option value="<?= $cls->SchoolID; ?>">
+                                                    <option id="<?= $cls->SchoolAssessmentEducationYear; ?>"
+                                                        value="<?= $cls->SchoolAssessmentSemester; ?>">
+                                                        <?= $cls->SEMESTER_NAME; ?></option>
+                                                    <?php } ?>
+                                                </select>
+                                                <label for="floatingSelect"><?php echo nbs(
+                                                        2
+                                                    ); ?>ภาคเรียนที่ทำการประเมิน</label>
+                                            </div>
+                                        </div>
+
+                                        <div class="col">
+                                            <div class="form-floating">
+                                                <select class="form-select" id="SchoolID"
+                                                    aria-label="Floating label select example" name="SchoolID">
+                                                    <option value="-1" selected>เลือก</option>
+                                                    <?php
+                                                        $result = $this->db->query('SELECT * FROM SCHOOL_ASSESSMENT_CRITERIA 
+                                                        INNER JOIN SCHOOL
+                                                        ON SCHOOL_ASSESSMENT_CRITERIA.SchoolID = SCHOOL.SchoolID
+                                                       
+                                                        where SCHOOL_ASSESSMENT_CRITERIA.DeleteStatus = 0
+                                                        AND SCHOOL.DeleteStatus = 0
+                                                       
+                                                       ');
+                                                        foreach ($result->result() as $cls) {
+                                                            ?>
+                                                    <option id="<?= $cls->SchoolAssessmentSemester; ?>"
+                                                        value="<?= $cls->SchoolID; ?>">
                                                         <?= $cls->SchoolNameThai; ?></option>
                                                     <?php } ?>
                                                 </select>
@@ -2924,9 +3075,61 @@ function checkSelectValues() {
                                             </div>
                                         </div>
 
+                                    </div>
+                                    <script src="https://code.jquery.com/jquery-3.5.1.min.js%22%3E"></script>
+                                    <script>
+                                    $(document).ready(function() {
+                                        $("#SchoolAssessmentSemester").children('option:gt(0)').hide();
+                                        $("#SchoolID").children('option:gt(0)').hide();
+                                        $("#AchievementAssessmentYear").change(function() {
+                                            $("#SchoolAssessmentSemester").children('option').hide();
+                                            $("#SchoolAssessmentSemester").children("option[ id^=" + $(
+                                                    this)
+                                                .val() + "]").show();
+                                        })
+                                        $("#SchoolAssessmentSemester").change(function() {
+                                            $("#SchoolID").children('option').hide();
+                                            $("#SchoolID").children("option[ id^=" + $(this).val() +
+                                                    "]")
+                                                .show();
+                                        })
+                                    })
+                                    $(document).ready(function() {
+                                        $('#AchievementAssessmentYear,#SchoolAssessmentSemester,#SchoolID')
+                                            .change(function() {
+
+                                                var key1 = $('#AchievementAssessmentYear').val();
+                                                var key2 = $('#SchoolAssessmentSemester').val();
+                                                var key3 = $('#SchoolID').val();
+                                                if (key1 != '-1' && key2 != '-1' && key3 != '-1') {
+                                                    console.log(key1, key2, key3)
+                                                    $.ajax({
+                                                        url: "<?php echo base_url('call_select_1'); ?>",
+                                                        method: "POST",
+                                                        dataType: "json",
+                                                        data: {
+                                                            key1: key1,
+                                                            key2: key2,
+                                                            key3: key3
+                                                        },
+                                                        success: function(data) {
+                                                            console.log(data);
+                                                            $('#SchoolAssessmentName').val(data.SchoolAssessmentName);
+                                                            $('#SchoolAssessmentDescription').val(data.SchoolAssessmentDescription);
+                                                            $('#AssessmentorName').val(data.AssessmentorName);
+                                                        }
+
+                                                    });
+                                                }
+                                            });
+                                    });
+                                    </script>
+
+
+                                    <div class="row mb-3">
                                         <div class="col">
                                             <div class="form-floating">
-                                                <input type="text" class="form-control" id="floatingName"
+                                                <input type="text" class="form-control" id="SchoolAssessmentName"
                                                     placeholder="ชื่อการประเมิน" name="SchoolAssessmentName">
                                                 <label for="floatingName"><?php echo nbs(
                                                         2
@@ -2936,7 +3139,7 @@ function checkSelectValues() {
                                     </div>
                                     <div class="row mb-3">
                                         <div class="form-floating">
-                                            <input type="text" class="form-control" id="floatingName"
+                                            <input type="text" class="form-control" id="SchoolAssessmentDescription"
                                                 placeholder="คำอธิบายการประเมิน" name="SchoolAssessmentDescription">
                                             <label for="floatingName"><?php echo nbs(
                                                     2
@@ -2945,7 +3148,7 @@ function checkSelectValues() {
                                     </div>
                                     <div class="row mb-3">
                                         <div class="form-floating">
-                                            <input type="text" class="form-control" id="floatingName"
+                                            <input type="text" class="form-control" id="AssessmentorName"
                                                 placeholder="ชื่อผู้ประเมิน" name="AssessmentorName">
                                             <label for="floatingName"><?php echo nbs(
                                                     2
