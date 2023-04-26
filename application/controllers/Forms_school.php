@@ -159,9 +159,9 @@ class Forms_school extends CI_Controller
     }
 
     //Update Data Form School MAIN
-    public function update_school_main($SchoolID, $ImageSchool)
+    public function update_school_main($SchoolID, $ImgNull)
     {
-        $this->forms_school->update_school_main($SchoolID, $ImageSchool);
+        $this->forms_school->update_school_main($SchoolID, $ImgNull);
         $_SESSION['success'] = "แก้ไขข้อมูลเรียบร้อย";
         redirect(base_url('school?SchoolID=' . $SchoolID));
     }
@@ -442,4 +442,162 @@ class Forms_school extends CI_Controller
 
     //////////////////////////////////////Buildingฺ- END///////////////////////////////////////////////
 
+
+    //////////////////////////////////////UploadFILE///////////////////////////////////////////////
+    //Delete Data Form building
+    public function uploadfile_school()
+    {
+        if (isset($_FILES['FileSchoolUpload'])) {
+            $i = 1;
+            $count = 0;
+            $handle = fopen($_FILES['FileSchoolUpload']['tmp_name'], 'r');
+            ini_set('auto_detect_line_endings', TRUE);
+            while (($data = fgetcsv($handle)) !== FALSE) {
+                if ($i > 1 && $data[0] != '') {
+
+                    for ($x = 0; $x <= 43; $x++) {
+                        if ($data[$x] == '') {
+                            $_SESSION['danger'] = "ไม่สามารถบันทึกข้อมูลได้ โปรดกรอกข้อมูลให้ครบถ้วน ";
+                            redirect(base_url('school'));
+                        }
+                    }
+
+
+                    $result = $this->db->query('SELECT * FROM CLS_JURISDICTION WHERE JURISDICTION_NAME = "' . $data[1] . '"');
+                    foreach ($result->result() as $CLS_JURISDICTION) {
+                        $JurisdictionCode = $CLS_JURISDICTION->JURISDICTION_CODE;
+                    }
+                    $result = $this->db->query('SELECT * FROM CLS_INNOVATION_AREA WHERE INNOVATION_AREA_NAME = "' . $data[2] . '"');
+                    foreach ($result->result() as $CLS_INNOVATION_AREA) {
+                        $InnovationAreaCode = $CLS_INNOVATION_AREA->INNOVATION_AREA_CODE;
+                    }
+                    $result = $this->db->query('SELECT * FROM CLS_SCHOOL_TYPE WHERE SCHOOL_TYPE_NAME = "' . $data[6] . '"');
+                    foreach ($result->result() as $CLS_SCHOOL_TYPE) {
+                        $SchoolTypeCode = $CLS_SCHOOL_TYPE->SCHOOL_TYPE_CODE;
+                    }
+                    $result = $this->db->query('SELECT * FROM CLS_SCHOOL_STATUS WHERE SCHOOL_STATUS_NAME = "' . $data[7] . '"');
+                    foreach ($result->result() as $CLS_SCHOOL_STATUS) {
+                        $SchoolStatusCode = $CLS_SCHOOL_STATUS->SCHOOL_STATUS_CODE;
+                    }
+                    $result = $this->db->query('SELECT * FROM CLS_MUNICIPAL WHERE MUNICIPAL_NAME = "' . $data[8] . '"');
+                    foreach ($result->result() as $CLS_MUNICIPAL) {
+                        $MunicipalCode = $CLS_MUNICIPAL->MUNICIPAL_CODE;
+                    }
+                    $result = $this->db->query('SELECT * FROM CLS_SUBDISTRICT WHERE SUBDISTRICT_NAME = "' . $data[14] . '"');
+                    foreach ($result->result() as $CLS_SUBDISTRICT) {
+                        $SchoolAddressSubdistrictCode = $CLS_SUBDISTRICT->SUBDISTRICT_CODE;
+                    }
+                    $result = $this->db->query('SELECT * FROM CLS_DISTRICT WHERE DISTRICT_NAME = "' . $data[15] . '"');
+                    foreach ($result->result() as $CLS_DISTRICT) {
+                        $SchoolAddressDistrictCode = $CLS_DISTRICT->DISTRICT_CODE;
+                    }
+
+                    $result = $this->db->query('SELECT * FROM CLS_PREFIX WHERE PREFIX_NAME = "' . $data[28] . '"');
+                    foreach ($result->result() as $CLS_PREFIX) {
+                        $AdministratorPrefixCode = $CLS_PREFIX->PREFIX_CODE;
+                    }
+                    $result = $this->db->query('SELECT * FROM CLS_EDUCATION_LEVEL WHERE EDUCATION_LEVEL_NAME = "' . $data[31] . '"');
+                    foreach ($result->result() as $CLS_EDUCATION_LEVEL) {
+                        $EducationLevelCode = $CLS_EDUCATION_LEVEL->EDUCATION_LEVEL_CODE;
+                    }
+                    $result = $this->db->query('SELECT * FROM CLS_ELECTRIC_TYPE WHERE ELECTRIC_TYPE_NAME = "' . $data[32] . '"');
+                    foreach ($result->result() as $CLS_ELECTRIC_TYPE) {
+                        $ElectricTypeCode = $CLS_ELECTRIC_TYPE->ELECTRIC_TYPE_CODE;
+                    }
+                    $result = $this->db->query('SELECT * FROM CLS_INTERNET_TYPE WHERE INTERNET_TYPE_NAME = "' . $data[33] . '"');
+                    foreach ($result->result() as $CLS_INTERNET_TYPE) {
+                        $InternetTypeCode = $CLS_INTERNET_TYPE->INTERNET_TYPE_CODE;
+                    }
+                    $result = $this->db->query('SELECT * FROM CLS_WATER_TYPE WHERE WATER_TYPE_NAME = "' . $data[34] . '"');
+                    foreach ($result->result() as $CLS_WATER_TYPE) {
+                        $WaterTypeCode = $CLS_WATER_TYPE->WATER_TYPE_CODE;
+                    }
+                    $result = $this->db->query('SELECT * FROM CLS_EDUCATION_CONTENT WHERE EDUCATION_CONTENT_NAME = "' . $data[35] . '"');
+                    foreach ($result->result() as $CLS_EDUCATION_CONTENT) {
+                        $EducationContentCode = $CLS_EDUCATION_CONTENT->EDUCATION_CONTENT_CODE;
+                    }
+                    if ($data[36] == 'อยู่ในโครงการ') {
+                        $DLTVFlag = 1;
+                    } else $DLTVFlag = 0;
+
+
+                    $database = [
+
+                        'SchoolID' => $data[0],
+                        'JurisdictionCode' => $JurisdictionCode,
+                        'InnovationAreaCode' => $InnovationAreaCode,
+                        'SchoolNameThai' => $data[3],
+                        'SchoolNameEnglish' => $data[4],
+                        'SchoolEstablishedDate' => $data[5],
+                        'SchoolTypeCode' => $SchoolTypeCode,
+                        'SchoolStatusCode' => $SchoolStatusCode,
+                        'MunicipalCode' => $MunicipalCode,
+                        'SchoolAddressHouseNumber' => $data[9],
+                        'SchoolAddressMoo' => $data[10],
+                        'SchoolAddressStreet' => $data[11],
+                        'SchoolAddressSoi' => $data[12],
+                        'SchoolAddressTrok' => $data[13],
+                        'SchoolAddressSubdistrictCode' => $SchoolAddressSubdistrictCode,
+                        'SchoolAddressDistrictCode' => $SchoolAddressDistrictCode,
+                        'SchoolAddressProvinceCode' => 91,
+                        'SchoolAddressPostcode' => $data[17],
+                        'SchoolLatitude' => $data[18],
+                        'SchoolLongitude' => $data[19],
+                        'SchoolMapURL' => $data[20],
+                        'SchoolPhoneNumber' => $data[21],
+                        'SchoolSecondPhoneNumber' => $data[22],
+                        'SchoolFaxNumber' => $data[23],
+                        'SchoolSecondFaxNumber' => $data[24],
+                        'SchoolEmail' => $data[25],
+                        'SchoolWebsiteURL' => $data[26],
+                        'AdministratorPersonalID' => $data[27],
+                        'AdministratorPrefixCode' => $AdministratorPrefixCode,
+                        'AdministratorNameThai' => $data[29],
+                        'AdministratorLastNameThai' => $data[30],
+                        'EducationLevelCode' => $EducationLevelCode,
+                        'ElectricTypeCode' => $ElectricTypeCode,
+                        'InternetTypeCode' => $InternetTypeCode,
+                        'WaterTypeCode' => $WaterTypeCode,
+                        'EducationContentCode' => $EducationContentCode,
+                        'DLTVFlag' => $DLTVFlag,
+                        'ComputerOnlineNumber' => $data[37],
+                        'ComputerStandaloneNumber' => $data[38],
+                        'ComputerTeachNumber' => $data[39],
+                        'ComputerManageNumber' => $data[40],
+                        'ToiletMaleStudentNumber' => $data[41],
+                        'ToiletFemaleStudentNumber' => $data[42],
+                        'ToiletCombinationNumber' => $data[43]
+
+                    ];
+
+                    $Check = $this->db->query('SELECT * 
+                    FROM SCHOOL 
+                    WHERE SchoolID = "' . $data[0] . '" 
+                    ')->result();
+                    if ($Check != TRUE) {
+                        $insert = $this->db->insert('SCHOOL', $database);
+                    }
+                }
+
+                if ($i > 1 && $data[0] != '') {
+
+                    $_SESSION['UploadSchoolDetail'][$i][0] = $data[0];
+                    $_SESSION['UploadSchoolDetail'][$i][1] = $data[3];
+                    $_SESSION['UploadSchoolDetail'][$i][2] = $data[1];
+                    $_SESSION['UploadSchoolDetail'][$i][3] = $data[2];
+                    if ($Check != TRUE) {
+                        $_SESSION['StatusUpload'][$i] = 1;
+                    } else {
+                        $_SESSION['StatusUpload'][$i] = 0;
+                    }
+                    $count++;
+                }
+                $i++;
+            }
+            ini_set('auto_detect_line_endings', FALSE);
+            $_SESSION['CountUploadSchool'] = $count;
+            $_SESSION['success'] = "อัปโหลดไฟล์ข้อมูลสถานศึกษาเรียบร้อย";
+            redirect(base_url('school-uploaddetail'));
+        }
+    }
 }

@@ -3,7 +3,6 @@
 
     class Forms_student extends CI_Controller
     {
-
         public function __construct()
         {
             parent::__construct();
@@ -338,5 +337,162 @@
             }
 
             redirect(base_url('student?SchoolID=' . $SchoolID . '&&EducationYear=' . $EducationYear . '&&Semester=' . $Semester . '&&GradeLevelCode=' . $GradeLevelCode));
+        }
+
+        public function uploadfile_student()
+        {
+            if (isset($_FILES['FileStudentUpload'])) {
+                $i = 1;
+                $handle = fopen($_FILES['FileStudentUpload']['tmp_name'], 'r');
+                ini_set('auto_detect_line_endings', TRUE);
+                while (($data = fgetcsv($handle)) !== FALSE) {
+
+                    $result = $this->db->query('SELECT * 
+                    FROM STUDENT 
+                    WHERE StudentReferenceID = "' . $data[3] . $data[2] . '" 
+                    ')->result();
+                    if ($i > 1) {
+                        if ($result == TRUE) {
+                            $_SESSION['danger'] = "ไม่สามารถบันทึกข้อมูลได้ โปรดตรวจสอบข้อมูลสถานศึกษาอาจจะซ้ำในระบบ";
+                            redirect(base_url('school'));
+                        } else {
+
+
+                            $database = [
+
+                                'StudentReferenceID' =>  $data[3] . $data[2],
+                                'EducationYear' => $_POST['EducationYear'],
+                                'Semester' => $_POST['Semester'],
+                                'SchoolID' => $_POST['SchoolID'],
+                                'StudentID' => $data[0],
+                                'StudentStatusCode' => $data[1],
+                                'StudentPersonalID' => $data[2],
+                                'StudentPersonalIDTypeCode' => $data[3],
+                                'StudentPassportNumber' => $data[4],
+                                'StudentPrefixCode' => $data[5],
+                                'StudentNameThai' => $data[6],
+                                'StudentNameEnglish' => $data[7],
+                                'StudentMiddleNameThai' => $data[8],
+                                'StudentMiddleEnglish' => $data[9],
+                                'StudentLastNameThai' => $data[10],
+                                'StudentLastNameEnglish' => $data[11],
+                                'StudentGenderCode' => $data[12],
+                                'StudentBirthDate' => $data[13],
+                                'StudentBirthProvinceCode' => $data[14],
+                                'StudentNationalityCode' => $data[15],
+                                'StudentRaceCode' => $data[16],
+                                'StudentReligionCode' => $data[17],
+                                'StudentLanguageCode' => $data[18],
+                                'StudentOtherLanguageCode' => $data[19],
+                                'StudentBloodCode' => $data[20],
+                                'StudentWeight' => $data[21],
+                                'StudentHeight' => $data[22],
+                                'StudentOfficialAddressHouseRegisterID' => $data[23],
+                                'StudentOfficialAddressHouseNumber' => $data[24],
+                                'StudentOfficialAddressMoo' => $data[25],
+                                'StudentOfficialAddressStreet' => $data[26],
+                                'StudentOfficialAddressSoi' => $data[27],
+                                'StudentOfficialAddressTrok' => $data[28],
+                                'StudentOfficialAddressProvinceCode' => $data[29],
+                                'StudentOfficialAddressDistrictCode' => $data[30],
+                                'StudentOfficialAddressSubdistrictCode' => $data[31],
+                                'StudentOfficialAddressPostcode' => $data[32],
+                                'StudentOfficialAddressPhoneNumber ' => $data[33],
+                                'StudentCurrentAddressHouseRegisterID' => $data[34],
+                                'StudentCurrentAddressHouseNumber' => $data[35],
+                                'StudentCurrentAddressMoo' => $data[36],
+                                'StudentCurrentAddressStreet' => $data[37],
+                                'StudentCurrentAddressSoi' => $data[38],
+                                'StudentCurrentAddressTrok' => $data[39],
+                                'StudentCurrentAddressSubdistrictCode' => $data[40],
+                                'StudentCurrentAddressDistrictCode' => $data[41],
+                                'StudentCurrentAddressProvinceCode' => $data[42],
+                                'StudentCurrentAddressPostcode' => $data[43],
+                                'StudentCurrentAddressPhoneNumber' => $data[44],
+                                'FatherPersonalID' => $data[45],
+                                'FatherPersonalIDTypeCode' => $data[46],
+                                'FatherPassportNumber' => $data[47],
+                                'FatherPrefixCode' => $data[48],
+                                'FatherNameThai' => $data[49],
+                                'FatherNameEnglish' => $data[50],
+                                'FatherMiddleNameEnglish' => $data[51],
+                                'FatherMiddleNameThai' => $data[52],
+                                'FatherLastNameThai' => $data[53],
+                                'FatherLastNameEnglish' => $data[54],
+                                'FatherPersonStatusCode' => $data[55],
+                                'FatherPhoneNumber' => $data[56],
+                                'FatherOccupationCode' => $data[57],
+                                'FatherSalary' => $data[58],
+                                'MotherPersonalID' => $data[59],
+                                'MotherPersonalIDTypeCode' => $data[60],
+                                'MotherPassportNumber' => $data[61],
+                                'MotherPrefixCode' => $data[62],
+                                'MotherNameThai' => $data[63],
+                                'MotherNameEnglish' => $data[64],
+                                'MotherMiddleNameThai' => $data[65],
+                                'MotherMiddleNameEnglish' => $data[66],
+                                'MotherLastNameThai' => $data[67],
+                                'MotherLastNameEnglish' => $data[68],
+                                'MotherPersonStatusCode' => $data[69],
+                                'MotherPhoneNumber' => $data[70],
+                                'MotherOccupationCode' => $data[71],
+                                'MotherSalary' => $data[72],
+                                'GuardianPersonalID' => $data[73],
+                                'GuardianPersonalIDTypeCode' => $data[74],
+                                'GuardianPassportNumber' => $data[75],
+                                'GuardianPrefixCode' => $data[76],
+                                'GuardianNameThai' => $data[77],
+                                'GuardianNameEnglish' => $data[78],
+                                'GuardianMiddleNameThai' => $data[79],
+                                'GuardianMiddleNameEnglish' => $data[80],
+                                'GuardianLastNameThai' => $data[81],
+                                'GuardianLastNameEnglish' => $data[82],
+                                'GuardianRelationCode' => $data[83],
+                                'GuardianPhoneNumber' => $data[84],
+                                'GuardianOccupationCode' => $data[85],
+                                'GuardianSalary' => $data[86],
+                                'ParentMarriageStatusCode' => $data[87],
+                                'StudentBirthOrder' => $data[88],
+                                'StudentElderBrotherAmount' => $data[89],
+                                'StudentElderSisterAmount' => $data[90],
+                                'StudentYoungerBrotherAmount' => $data[91],
+                                'StudentYoungerSisterAmount' => $data[92],
+                                'CurrentEducationLevelAdmissionYear' => $data[93],
+                                'SchoolAdmissionYear' => $data[94],
+                                'EducationLevelCode' =>  $data[95],
+                                'GradeLevelCode' =>  $data[96],
+                                'Classroom' => $data[97],
+                                'PartSchoolFlag' => $data[98],
+                                'CurriculumID' => $data[99],
+                                'JourneyTypeCode' => $data[100],
+                                'JourneyTime' => $data[101],
+                                'RockJourneyDistance' => $data[102],
+                                'RubberJourneyDistance' => $data[103],
+                                'WaterJourneyDistance' => $data[104],
+                                'DisabilityCode' => $data[105],
+                                'DisabilityDetail' => $data[106],
+                                'DisabilityLevelCode' => $data[107],
+                                'DisadvantagedCode' => $data[108],
+                                'LackingBookFlag' => $data[109],
+                                'LackingFoodFlag' => $data[110],
+                                'LackingStationeryFlag' => $data[111],
+                                'LackingUniformFlag' => $data[112],
+                                'FamilyMonthlyIncome' => $data[113],
+                                'FamilyStatusCode' => $data[114],
+                                'StudentLiveWithCode' => $data[115],
+                                'StateWelfareFlag' => $data[116],
+                                'TalentCode' => $data[117]
+
+                            ];
+
+                            $result = $this->db->insert('STUDENT', $database);
+                        }
+                    }
+                    $i++;
+                }
+                ini_set('auto_detect_line_endings', FALSE);
+                $_SESSION['success'] = "อัปโหลดไฟล์ข้อมูลนักเรียนเรียบร้อย";
+                redirect(base_url('school'));
+            }
         }
     }

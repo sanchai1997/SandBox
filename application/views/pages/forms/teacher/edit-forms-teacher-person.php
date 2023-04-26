@@ -47,7 +47,7 @@
                             </div>
                             <div class="col-md-6">
                                 <div class="form-floating">
-                                    <input type="text" class="form-control" maxlength="13" name="TeacherPersonalID" id="TeacherPersonalID" value="<?= $TEACHER->TeacherPersonalID ?>">
+                                    <input type="text" class="form-control" maxlength="13" name="TeacherPersonalID" id="TeacherPersonalID" value="<?= base64_decode($TEACHER->TeacherPersonalID); ?>">
                                     <label for="TeacherPersonalID">หมายเลขบัตร<font color="red"> *</font></label>
                                 </div>
                             </div>

@@ -50,7 +50,7 @@ class School_model extends CI_Model
         $config['max_size']             = 50000;
         $config['max_width']            = 3402;
         $config['max_height']           = 1417;
-        $config['file_name']            = 'ImageSchool_' . $_POST['JurisdictionCode'] . $_POST['SchoolAddressProvinceCode'];
+        $config['file_name']            = 'ImageSchool_' . $_POST['SchoolID'];
 
         $this->load->library('upload', $config);
 
@@ -62,7 +62,7 @@ class School_model extends CI_Model
         }
 
         $type = substr($_FILES['ImageSchool']['name'], -4);
-        $new_name = 'ImageSchool_' . $_POST['JurisdictionCode'] . $_POST['SchoolAddressProvinceCode'] . $type;
+        $new_name = 'ImageSchool_' . $_POST['SchoolID'] . $type;
 
         $data = [
 
@@ -96,45 +96,87 @@ class School_model extends CI_Model
     }
 
     //Update Data Form School MAIN
-    public function update_school_main($SchoolID, $ImageSchool)
+    public function update_school_main($SchoolID, $ImgNull)
     {
+        if ($ImgNull == 1) {
 
-        $config['upload_path']          = 'assets/school/img/';
-        $config['allowed_types']        = 'gif|jpg|png';
-        $config['max_size']             = 50000;
-        $config['max_width']            = 3402;
-        $config['max_height']           = 1417;
-        $config['file_name']            = $ImageSchool;
+            $config['upload_path']          = 'assets/school/img/';
+            $config['allowed_types']        = 'gif|jpg|png';
+            $config['max_size']             = 50000;
+            $config['max_width']            = 3402;
+            $config['max_height']           = 1417;
+            $config['file_name']            = $_POST['ImageSchool'];
 
-        copy($config['upload_path'] . $config['file_name'], $config['upload_path'] . 'logoold.jpg');
-        unlink($config['upload_path'] . $config['file_name']);
+            copy($config['upload_path'] . $config['file_name'], $config['upload_path'] . 'logoold.jpg');
+            unlink($config['upload_path'] . $config['file_name']);
 
-        $this->load->library('upload', $config);
+            $this->load->library('upload', $config);
 
-        if (!$this->upload->do_upload('ImageSchool')) {
-            copy($config['upload_path'] . 'logoold.jpg', $config['upload_path'] . $config['file_name']);
-            echo str_replace("</p>", "", str_replace("<p>", "", $this->upload->display_errors()));
-        } else {
-            unlink($config['upload_path'] . 'logoold.jpg');
-            echo 'อัพโหลดไฟล์เรียบร้อยแล้ว';
+            if (!$this->upload->do_upload('ImageSchool')) {
+                copy($config['upload_path'] . 'logoold.jpg', $config['upload_path'] . $config['file_name']);
+                echo str_replace("</p>", "", str_replace("<p>", "", $this->upload->display_errors()));
+            } else {
+                unlink($config['upload_path'] . 'logoold.jpg');
+                echo 'อัพโหลดไฟล์เรียบร้อยแล้ว';
+            }
+
+            $data = [
+
+                'InnovationAreaCode' => $this->input->post('InnovationAreaCode'),
+                'SchoolNameThai' => $this->input->post('SchoolNameThai'),
+                'SchoolNameEnglish' => $this->input->post('SchoolNameEnglish'),
+                'SchoolEstablishedDate' => $this->input->post('SchoolEstablishedDate'),
+                'EducationLevelCode' => $this->input->post('EducationLevelCode'),
+                'SchoolTypeCode ' => $this->input->post('SchoolTypeCode'),
+                'SchoolStatusCode' => $this->input->post('SchoolStatusCode'),
+                'MunicipalCode' => $this->input->post('MunicipalCode'),
+                'JurisdictionCode' => $this->input->post('JurisdictionCode')
+
+            ];
+
+            $result = $this->db->where('SchoolID', $SchoolID)->update('SCHOOL', $data);
+            return $result;
+            
+        } elseif ($ImgNull == 0) {
+
+            $config['upload_path']          = 'assets/school/img/';
+            $config['allowed_types']        = 'gif|jpg|png';
+            $config['max_size']             = 50000;
+            $config['max_width']            = 3402;
+            $config['max_height']           = 1417;
+            $config['file_name']            = 'ImageSchool_' . $SchoolID;
+
+            $this->load->library('upload', $config);
+
+            if (!$this->upload->do_upload('ImageSchool')) {
+                copy($config['upload_path'] . 'logoold.jpg', $config['upload_path'] . $config['file_name']);
+                echo str_replace("</p>", "", str_replace("<p>", "", $this->upload->display_errors()));
+            } else {
+                echo 'อัพโหลดไฟล์เรียบร้อยแล้ว';
+            }
+
+            $type = substr($_FILES['ImageSchool']['name'], -4);
+            $new_name = 'ImageSchool_' . $SchoolID . $type;
+
+
+            $data = [
+
+                'InnovationAreaCode' => $this->input->post('InnovationAreaCode'),
+                'ImageSchool' => $new_name,
+                'SchoolNameThai' => $this->input->post('SchoolNameThai'),
+                'SchoolNameEnglish' => $this->input->post('SchoolNameEnglish'),
+                'SchoolEstablishedDate' => $this->input->post('SchoolEstablishedDate'),
+                'EducationLevelCode' => $this->input->post('EducationLevelCode'),
+                'SchoolTypeCode ' => $this->input->post('SchoolTypeCode'),
+                'SchoolStatusCode' => $this->input->post('SchoolStatusCode'),
+                'MunicipalCode' => $this->input->post('MunicipalCode'),
+                'JurisdictionCode' => $this->input->post('JurisdictionCode')
+
+            ];
+
+            $result = $this->db->where('SchoolID', $SchoolID)->update('SCHOOL', $data);
+            return $result;
         }
-
-        $data = [
-
-            'InnovationAreaCode' => $this->input->post('InnovationAreaCode'),
-            'SchoolNameThai' => $this->input->post('SchoolNameThai'),
-            'SchoolNameEnglish' => $this->input->post('SchoolNameEnglish'),
-            'SchoolEstablishedDate' => $this->input->post('SchoolEstablishedDate'),
-            'EducationLevelCode' => $this->input->post('EducationLevelCode'),
-            'SchoolTypeCode ' => $this->input->post('SchoolTypeCode'),
-            'SchoolStatusCode' => $this->input->post('SchoolStatusCode'),
-            'MunicipalCode' => $this->input->post('MunicipalCode'),
-            'JurisdictionCode' => $this->input->post('JurisdictionCode')
-
-        ];
-
-        $result = $this->db->where('SchoolID', $SchoolID)->update('SCHOOL', $data);
-        return $result;
     }
 
     //Update Data Form School Address
@@ -160,6 +202,8 @@ class School_model extends CI_Model
         $result = $this->db->where('SchoolID', $SchoolID)->update('SCHOOL', $data);
         return $result;
     }
+
+
 
     //Update Data Form School Contact
     public function update_school_contact($SchoolID)
