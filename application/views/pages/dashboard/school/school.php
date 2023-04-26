@@ -12,6 +12,8 @@
 <?php
 if (!empty($_SESSION['CountUploadSchool'])) {
     unset($_SESSION['CountUploadSchool']);
+    unset($_SESSION['UploadSchoolDetail']);
+    unset($_SESSION['StatusUpload']);
 }
 ?>
 <main id="main" class="main">

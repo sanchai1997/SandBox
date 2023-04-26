@@ -1,5 +1,5 @@
 <?php
-if ($_SESSION['CountUploadSchool'] == NULL) {
+if (empty($_SESSION['CountUploadSchool'])) {
     redirect(base_url('school'));
 }
 ?>
@@ -68,10 +68,7 @@ if ($_SESSION['CountUploadSchool'] == NULL) {
                                     <?php } ?>
                                 </td>
                             </tr>
-                        <?php if ($i >= $_SESSION['CountUploadSchool']) {
-                                unset($_SESSION['UploadSchoolDetail']);
-                                unset($_SESSION['StatusUpload']);
-                            }
+                        <?php
                         } ?>
                     </tbody>
                 </table>
