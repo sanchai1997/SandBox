@@ -42,7 +42,9 @@ class Area_identitty_model extends CI_Model
 
     public function delete_area_identitty($EducationYear, $Semester, $SchoolID){   
         $data = [
-            'DeleteStatus' => 1
+            'DeleteStatus' => 1,
+            'EducationYear' => random_string('numeric', 4) ,
+            'Semester' => random_string('numeric', 1) ,
         ];
          $this->db->where('EducationYear', $EducationYear )
                   ->where('Semester', $Semester )

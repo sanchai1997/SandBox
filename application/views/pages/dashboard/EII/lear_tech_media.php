@@ -109,13 +109,15 @@
 
                         <tr>
                             <!-- <th style="text-align: center;" scope="col">ข้อมูลเทคโนโลยีและสื่อการเรียนรู้</th> -->
-                            <th style="" scope="col">ปีการศึกษา</th>
-                            <th style="" scope="col">ภาคเรียน</th>
-                            <th style="" scope="col">ชื่อเทคโนโลยีและสื่อการเรียนรู้</th>
-                            <th style="" scope="col">ประเภทเทคโนโลยีและสื่อการเรียนรู้</th>
-                            <th style="" scope="col">ผู้จัดทำ</th>
-                            <th style="text-align: center;" scope="col">ดูรายละเอียด</th>
-                            <th style="text-align: center;" scope="col" class="col-1">ปฏิบัติ</th>
+                            <th style="" scope="col-1">ปีการศึกษา</th>
+                            <th style="" scope="col-1">ภาคเรียน</th>
+                            <th style="" scope="col-1">รหัสเทคโนโลยี</th>
+                            <th style="" scope="col-2">ชื่อเทคโนโลยี</th>
+                            <th style="" scope="col">ประเภทเทคโนโลยี</th>
+                            <th style="" scope="col-1">วันที่เผยแพร่</th>
+                            <th style="" scope="col-2">ผู้จัดทำ</th>
+                            <th style="text-align: center;" scope="col-1">ดูรายละเอียด</th>
+                            <th style="text-align: center;" scope="col-1" class="col-1">ปฏิบัติ</th>
                         </tr>
 
                     </thead>
@@ -124,7 +126,7 @@
                                 # code...
                             ?>
                         <?php
-                                $MediaID = $show->MediaID;
+                                $Id_ltm  = $show->Id_ltm;
                                 $results = $this->db->query("SELECT * FROM LEARNING_TECHNOLOGY_MEDIA 
                             INNER JOIN CLS_MEDIA_TYPE 
                             ON CLS_MEDIA_TYPE.MEDIA_TYPE_CODE = LEARNING_TECHNOLOGY_MEDIA.MediaTypeCode 
@@ -134,7 +136,7 @@
                             ON CLS_EDUCATION_LEVEL.EDUCATION_LEVEL_CODE = LEARNING_TECHNOLOGY_MEDIA.TargetEducationLevelCode 
                             -- TargetEducationLevelCode
                             -- EDUCATION_LEVEL_NAME
-                            WHERE MediaID = $MediaID
+                            WHERE Id_ltm  = $Id_ltm 
                             ");
 
                                 foreach ($results->result() as $shows) {
@@ -154,31 +156,40 @@
                           } 
                         ?>
                                 <?php echo $sun_name; ?></td>
-                            <td style=""><?php echo $show->MediaName; ?></td>
-                            <td style=""><?php echo $shows->MEDIA_TYPE_NAME; ?></td>
+                            <td style=""><?php echo $show->MediaID; ?></td>
+                            <td style="">
+                                <p
+                                    style="width: 250px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
+                                    <?php echo $show->MediaName; ?></p>
+                            </td>
+                            <td style="">
+                                <p
+                                    style="width: 150px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
+                                    <?php echo $shows->MEDIA_TYPE_NAME; ?></p>
+                            </td>
+                            <td style=""><?php echo DateThai($shows->PublishDate); ?></td>
                             <td scope="row " style="text-align: left;">
                                 <?php $resultc = $this->db->query("SELECT * FROM LEARNING_TECHNOLOGY_MEDIA_CREATOR 
                                         JOIN CLS_PERSONAL_ID_TYPE 
                                         ON LEARNING_TECHNOLOGY_MEDIA_CREATOR.CreatorPersonalIDTypeCode = CLS_PERSONAL_ID_TYPE.PERSONAL_ID_TYPE_CODE 
                                         JOIN CLS_PREFIX 
                                         ON LEARNING_TECHNOLOGY_MEDIA_CREATOR.CreatorPrefixCode = CLS_PREFIX.PREFIX_CODE  
-                                        WHERE MediaID='" . $MediaID . "' AND DeleteStatus = 0"); ?>
+                                        WHERE MediaID='" . $Id_ltm  . "' AND DeleteStatus = 0"); ?>
 
                                 <?php foreach ($resultc->result() as $showc) { ?>
                                 <div class="row">
                                     <div class="col">
-                                        <p>
 
 
-                                            <!-- Button trigger modal -->
-                                            <button type="button" class="btn " data-bs-toggle="modal"
-                                                data-bs-target="#lear<?php echo $showc->Id ?>">
-                                                <?php echo $showc->PREFIX_NAME; ?><?php echo nbs(2); ?>
-                                                <?php echo $showc->CreatorNameThai; ?>-
-                                                <?php echo $showc->CreatorLastNameThai; ?>
-                                            </button>
-                                            <!-- Modal -->
-                                        <div class="modal fade" id="lear<?php echo $showc->Id ?>" tabindex="-1"
+                                        <!-- Button trigger modal -->
+                                        <button type="button" class="btn " data-bs-toggle="modal"
+                                            data-bs-target="#lear<?php echo $showc->Id_ltmc  ?>">
+                                            <?php echo $showc->PREFIX_NAME; ?>
+                                            <?php echo $showc->CreatorNameThai; ?>
+                                            <?php echo $showc->CreatorLastNameThai; ?>
+                                        </button>
+                                        <!-- Modal -->
+                                        <div class="modal fade" id="lear<?php echo $showc->Id_ltmc  ?>" tabindex="-1"
                                             aria-labelledby="exampleModalLabel" aria-hidden="true">
                                             <div class="modal-dialog modal-xl  modal-dialog-centered">
                                                 <div class="modal-content">
@@ -191,35 +202,36 @@
                                                     <div class="modal-body">
                                                         <div class="row">
                                                             <div class="col">
-                                                                <h6>ประเภทบัตรประจำตัวผู้จัดทำ</h6>
+                                                                <h6 class="fw-bold">ประเภทบัตรประจำตัวผู้จัดทำ</h6>
                                                                 <p> <?php echo $showc->PERSONAL_ID_TYPE_NAME; ?></p>
 
                                                             </div>
                                                             <div class="col">
-                                                                <h6>หมายเลขบัตรประจำตัวผู้จัดการ</h6>
+                                                                <h6 class="fw-bold">หมายเลขบัตรประจำตัวผู้จัดทำ</h6>
                                                                 <p> <?php echo $showc->CreatorPersonalID; ?></p>
 
                                                             </div>
                                                         </div>
                                                         <div class="row">
                                                             <div class="col">
-                                                                <h6>ชื่อ-นามสกุล(ไทย)</h6>
-                                                                <p> <?php echo $showc->PREFIX_NAME; ?>
-                                                                    <?php echo $showc->CreatorNameThai; ?> -
+                                                                <h6 class="fw-bold">ชื่อ-นามสกุล(ไทย)</h6>
+                                                                <p><?php echo $showc->PREFIX_NAME; ?>
+                                                                    <?php echo $showc->CreatorNameThai; ?>
+                                                                    <?php echo $showc->CreatorMiddleNameThai; ?>
                                                                     <?php echo $showc->CreatorLastNameThai; ?></p>
 
                                                             </div>
                                                             <div class="col">
-                                                                <h6>ชื่อ-นามสกุล(อังกฤษ)</h6>
-                                                                <p> <?php echo $showc->CreatorNameEnglish; ?> -
+                                                                <h6 class="fw-bold">ชื่อ-นามสกุล(อังกฤษ)</h6>
+                                                                <p> <?php echo $showc->CreatorNameEnglish; ?>
+                                                                    <?php echo $showc->CreatorMiddleNameEnglish; ?>
                                                                     <?php echo $showc->CreatorLastNameEnglish; ?></p>
 
                                                             </div>
-                                                            
                                                         </div>
                                                         <div class="row">
                                                             <div class="col">
-                                                                <h6>สัดส่วนการมีส่วนร่วม</h6>
+                                                                <h6 class="fw-bold">สัดส่วนการมีส่วนร่วม</h6>
                                                                 <p> <?php echo $showc->ParticipantRatio ; ?></p>
 
                                                             </div>
@@ -227,7 +239,7 @@
                                                         </div>
                                                     </div>
                                                     <div class="modal-footer">
-                                                        <a href="<?php echo site_url('LTMC_forms_p2?page=sh22') ?>&&key=<?php echo $showc->Id; ?>&&name=<?php echo $show->MediaName; ?>"
+                                                        <a href="<?php echo site_url('LTMC_forms_p2?page=sh22') ?>&&key=<?php echo $showc->Id_ltmc ; ?>&&name=<?php echo $show->MediaName; ?>"
                                                             class="my-link btn btn-warning">
                                                             <i class="bi bi-pencil-square"></i> </a>
                                                         <button type="button" class="btn btn-secondary"
@@ -237,18 +249,18 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        </p>
+
                                     </div>
 
                                 </div>
                                 <?php } ?>
 
-                                <a href="<?php echo site_url('LTMC_forms_p2?page=sh2') ?>&&name=<?php echo $show->MediaName; ?>&&key=<?php echo $show->MediaID; ?>"
+                                <a href="<?php echo site_url('LTMC_forms_p2?page=sh2') ?>&&name=<?php echo $show->MediaName; ?>&&key=<?php echo $show->Id_ltm; ?>&&MediaID=<?php echo $show->MediaID; ?>"
                                     class="my-link fw-bold">>>เพิ่มผู้จัดทำ>>
                                 </a>
                             </td>
                             <td style="text-align: center;"><button type="button" class="btn btn-primary"
-                                    data-bs-toggle="modal" data-bs-target="#look<?php echo $show->MediaID; ?>"><i
+                                    data-bs-toggle="modal" data-bs-target="#look<?php echo $show->Id_ltm ; ?>"><i
                                         class="bi bi-card-list"></i></button></td>
                             <td style="text-align: center;">
                                 <a href="<?php echo site_url('LTM_forms_p1?page=sh11') ?>&&key=<?php echo $show->MediaID; ?>&&name=<?php echo $show->MediaName; ?>"
@@ -277,9 +289,9 @@
                                             <div class="modal-footer">
                                                 <button type="button" class="btn btn-secondary"
                                                     data-bs-dismiss="modal">ยกเลิก</button>
-                                                <form method="post" action="<?php echo site_url('del_p2'); ?>">
-                                                    <input type="hidden" name="MediaID"
-                                                        value="<?php echo $show->MediaID; ?>">
+                                                <form method="post" action="<?php echo site_url('LTM_del_p1'); ?>">
+                                                    <input type="hidden" name="Id_ltm"
+                                                        value="<?php echo $show->Id_ltm; ?>">
                                                     <div class="d-flex justify-content-center">
                                                         <button name="Submit" type="submit"
                                                             class="btn btn-danger">ยืนยันก่อนลบ</button>
@@ -321,17 +333,17 @@
                       ');
     foreach ($result->result() as $show) {
     ?>
-<div class="modal fade" id="look<?php echo $show->MediaID; ?>" tabindex="-1" aria-labelledby="exampleModalLabel"
+<div class="modal fade" id="look<?php echo $show->Id_ltm ; ?>" tabindex="-1" aria-labelledby="exampleModalLabel"
     aria-hidden="true">
     <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">นวัตกรรมการศึกษา</h5>
+                <h5 class="modal-title" id="exampleModalLabel">เทคโนโลยีและสื่อการเรียนรู้</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
                 <?php
-                        $MediaID = $show->MediaID;
+                        $Id_ltm  = $show->Id_ltm ;
                         $results = $this->db->query("SELECT * FROM LEARNING_TECHNOLOGY_MEDIA 
                             INNER JOIN CLS_MEDIA_TYPE 
                             ON CLS_MEDIA_TYPE.MEDIA_TYPE_CODE = LEARNING_TECHNOLOGY_MEDIA.MediaTypeCode 
@@ -341,17 +353,17 @@
                             ON CLS_EDUCATION_LEVEL.EDUCATION_LEVEL_CODE = LEARNING_TECHNOLOGY_MEDIA.TargetEducationLevelCode 
                             -- TargetEducationLevelCode
                             -- EDUCATION_LEVEL_NAME
-                            WHERE MediaID = $MediaID
+                            WHERE Id_ltm  = $Id_ltm 
                             ");
 
                         foreach ($results->result() as $shows) {
                         ?>
                 <div class="row">
                     <div class="col">
-                        <!-- <h5 class="fw-bold">ข้อมูลเทคโนโลยีและสื่อการเรียนรู้</h5>
-                                    <p><?php echo $show->MediaID; ?></p> -->
                         <h5 class="fw-bold">ปีการศึกษา</h5>
                         <p><?php echo $show->EducationYear; ?></p>
+                    </div>
+                    <div class="col">
                         <h5 class="fw-bold">ภาคเรียน</h5>
                         <?php $sum = $show->Semester;
                          if ($sum== 1) {
@@ -367,29 +379,70 @@
                         <p>
                             <?php echo  $sun_name; ?>
                         </p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+
                         <h5 class="fw-bold">ชื่อเทคโนโลยีและสื่อการเรียนรู้</h5>
                         <p><?php echo $show->MediaName; ?></p>
+                    </div>
+                    <div class="col">
                         <h5 class="fw-bold">ประเภทเทคโนโลยีและสื่อการเรียนรู้</h5>
                         <p><?php echo $shows->MEDIA_TYPE_NAME; ?></p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <h5 class="fw-bold">รหัสข้อมูลเทคโนโลยีและสื่อการเรียนรู้</h5>
+                        <p><?php echo $show->MediaID; ?></p>
+                    </div>
+                    <div class="col">
                         <h5 class="fw-bold">ระดับการศึกษาที่นำไปใช้</h5>
                         <p><?php echo $shows->EDUCATION_LEVEL_NAME; ?></p>
-                        <h5 class="fw-bold">คำค้นหา</h5>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                    <h5 class="fw-bold">คำค้นหา</h5>
                         <p><?php echo $show->SearchKeyword; ?></p>
                     </div>
-
-
                     <div class="col">
-                        <h5 class="fw-bold">ประโยชน์ของเทคโนโลยีและสื่อการเรียนรู้</h5>
-                        <p><?php echo $show->MediaBenefit; ?></p>
-                        <h5 class="fw-bold">บทคัดย่อ</h5>
-                        <p><?php echo $show->Abstract; ?></p>
-                        <h5 class="fw-bold">เอกสารแนบ</h5>
+                    <h5 class="fw-bold">แหล่งที่มา</h5>
+                        <p><?php echo $show->Source; ?></p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                    <h5 class="fw-bold">วันที่เผยแพร่</h5>
+                        <p><?php echo dateThai($show->PublishDate); ?></p>
+                    </div>
+                    <div class="col">
+                    <h5 class="fw-bold">เอกสารแนบ</h5>
                         <p><a href="<?php echo base_url('assets/EII/LEARNING_TECHNOLOGY_MEDIA') ?>/<?php echo $show->AttachmentURL; ?>"
                                 target="_blank"><i class="bi bi-file-earmark-text-fill"></i>รายละเอียดเอกสาร</a></p>
-                        <h5 class="fw-bold">แหล่งที่มา</h5>
-                        <p><?php echo $show->Source; ?></p>
-                        <h5 class="fw-bold">วันที่เผยแพร่</h5>
-                        <p><?php echo dateThai($show->PublishDate); ?></p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <div class="mb-3">
+                            <label for="exampleFormControlTextarea1" class="form-label">
+                                <h5 class="fw-bold">ประโยชน์ของเทคโนโลยีและสื่อการเรียนรู้</h5>
+                            </label>
+                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" disabled
+                                style="width:100%; background-color: #fff; border: 0px solid #ced4da; border-radius: 0.25rem;"><?php echo $show->MediaBenefit; ?></textarea>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <div class="mb-3">
+                            <label for="exampleFormControlTextarea1" class="form-label">
+                                <h5 class="fw-bold">บทคัดย่อ</h5>
+                            </label>
+                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" disabled
+                                style="width:100%; background-color: #fff; border: 0px solid #ced4da; border-radius: 0.25rem;"><?php echo $show->Abstract; ?></textarea>
+                        </div>
                     </div>
                 </div>
 
@@ -397,9 +450,9 @@
                     <h5 class="fw-bold">รายชื่อผู้จัดทำ</h5>
                     <?php $resultc = $this->db->query("SELECT * FROM LEARNING_TECHNOLOGY_MEDIA_CREATOR JOIN CLS_PERSONAL_ID_TYPE ON LEARNING_TECHNOLOGY_MEDIA_CREATOR.CreatorPersonalIDTypeCode = CLS_PERSONAL_ID_TYPE.PERSONAL_ID_TYPE_CODE 
 JOIN CLS_PREFIX ON LEARNING_TECHNOLOGY_MEDIA_CREATOR.CreatorPrefixCode = CLS_PREFIX.PREFIX_CODE  
-WHERE MediaID='" . $MediaID . "'"); ?>
+WHERE MediaID='" . $Id_ltm . "'"); ?>
 
-                    <table class="m-1 col-12">
+                    <table class="table table-bordered">
                         <tr>
                             <th style="">ประเภทบัตร</th>
                             <th style="" class="col-3">เลขบัตร ปชช.</th>
@@ -420,10 +473,13 @@ WHERE MediaID='" . $MediaID . "'"); ?>
                             </td>
                             <td>
                                 <p>
-                                    <?php echo $showc->PREFIX_NAME; ?>
-                                    <?php echo nbs(2); ?>
-                                    <?php echo $showc->CreatorNameThai; ?>-
+                                    <?php echo $showc->PREFIX_NAME; ?> <?php echo $showc->CreatorNameThai; ?>
+                                    <?php echo $showc->CreatorMiddleNameThai; ?>
                                     <?php echo $showc->CreatorLastNameThai; ?>
+                                    <br>
+                                    (<?php echo $showc->CreatorNameEnglish; ?>
+                                    <?php echo $showc->CreatorMiddleNameEnglish; ?>
+                                    <?php echo $showc->CreatorLastNameEnglish; ?>)
                                 </p>
                             </td>
                             <td style="text-align: center;">

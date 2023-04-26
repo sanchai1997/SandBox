@@ -57,13 +57,22 @@ $route['forms-curriculum_assessment'] = 'CurriculumController/forms_curriculum_a
 $route['add_curriculum_assessment']['post'] = 'CurriculumController/add_curriculum_assessment';
 $route['list_curriculum_assignment'] = 'CurriculumController/list_curriculum_assignment';
 $route['edit_forms-curriculum_assessment'] = 'CurriculumController/edit_forms_curriculum_assessment';
+
+//subject_std
+$route['forms-subject_std'] = 'CurriculumController/forms_subject_std';
+$route['add_subject_std']['post'] = 'CurriculumController/add_subject_std';
+$route['list_subject_stdt'] = 'CurriculumController/list_subject_std';
+$route['edit_forms-subject_std'] = 'CurriculumController/edit_forms_subject_std';
+$route['edit_subject_std']['post'] = 'CurriculumController/edit_subject_std';
+$route['delete-subject_std'] = 'CurriculumController/delete_subject_std';
+
 //eportfolio
-$route['list-eportfolio'] = 'CurriculumController/list_eportfolio';
-$route['forms_eportfolio'] = 'CurriculumController/forms_eportfolio';
-$route['add_eportfolio'] = 'CurriculumController/add_eportfolio';
-$route['edit_forms_eportfolio'] = 'CurriculumController/edit_forms_eportfolio';
-$route['edit_eportfolio']['post'] = 'CurriculumController/edit_eportfolio';
-$route['delete-eportfolio/(:num)'] = 'CurriculumController/delete_eportfolio/$1';
+$route['list-eportfolio'] = 'EportfolioController/list_eportfolio';
+$route['forms_eportfolio'] = 'EportfolioController/forms_eportfolio';
+$route['add_eportfolio/(:any)/(:num)/(:num)/(:num)/(:num)']['post'] = 'EportfolioController/add_eportfolio/$1/$2/$3/$4/$5';
+$route['edit_forms_eportfolio'] = 'EportfolioController/edit_forms_eportfolio';
+$route['edit_eportfolio']['post'] = 'EportfolioController/edit_eportfolio';
+$route['delete-eportfolio/(:num)'] = 'EportfolioController/delete_eportfolio/$1';
 
 
 
@@ -545,5 +554,8 @@ $route['sc_ass_del_p5'] = 'Fm_evaluation/del_sc_ass';
 $route['sc_ass_ria_del_p6'] = 'Fm_evaluation/del_sc_ass_ria';
 $route['sc_ass_res_del_p7'] = 'Fm_evaluation/del_sc_ass_res';
 $route['achie_ass_del_p8'] = 'Fm_evaluation/del_achie_ass';
+
+$route['call_select'] = 'Fm_evaluation/get_data';
+$route['call_select_1'] = 'Fm_evaluation/get_ACHIEVEMENT_ASSESSMENT';
 
 ///////////////////// evaluation - END /////////////////////////

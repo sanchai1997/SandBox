@@ -95,15 +95,16 @@ if (isset( $_SESSION['success'])) { ?>
                                                 'BP_forms_up_p1'
                                             ); ?>" method="post" enctype="multipart/form-data"
                             onsubmit="return checkSelectedOption()">
-                            <!-- 
+                            
                             <div class="row mb-3">
-                                <div class="form-floating">
-                                    <input type="text" class="form-control" id="floatingName"
-                                        placeholder="วิธีปฏิบัติที่เป็นเลิศในการจัดการศึกษา" name="BestPracticeID" required>
-                                    <label for="Y"><?php echo nbs(2); ?>
-                                        วิธีปฏิบัติที่เป็นเลิศในการจัดการศึกษา </label>
-                                </div>
-                            </div> -->
+                              <div class="col">
+                                    <div class="form-floating">
+                                        <input type="text" class="form-control" id="floatingName"
+                                            placeholder="วิธีปฏิบัติที่เป็นเลิศในการจัดการศึกษา" name="BestPracticeID" required >
+                                        <label for="Y">รหัสวิธีปฏิบัติที่เป็นเลิศในการจัดการศึกษา </label>
+                                    </div>
+                              </div>
+                            </div>
                             <div class="row mb-3">
                                 <div class="col">
                                     <div class="form-floating">
@@ -323,7 +324,7 @@ if (isset( $_SESSION['success'])) { ?>
                         <?php
 
                             $result = $this->db->query("SELECT * FROM BEST_PRACTICE 
-                            WHERE BestPracticeID = '" . $key . "' 
+                            WHERE Id_best = '" . $key . "' 
                             ");
 
                             foreach ($result->result() as $show) {
@@ -333,16 +334,16 @@ if (isset( $_SESSION['success'])) { ?>
                                                     'BP_edit_p1'
                                                 ); ?>" method="post" enctype="multipart/form-data" id="BP11"
                             name="BP11">
-                            <input type="hidden" name="BestPracticeID" value="<?php echo $show->BestPracticeID ?>">
-                            <!-- <div class="row mb-3">
+                            <input type="hidden" name="Id_best" value="<?php echo $show->Id_best ?>">
+                            <div class="row mb-3">
                                 <div class="form-floating">
                                     <input type="text" class="form-control" id="floatingName"
                                         placeholder="วิธีปฏิบัติที่เป็นเลิศในการจัดการศึกษา" name="BestPracticeID"
                                         value="<?php echo $show->BestPracticeID ?>" required>
                                     <label for="Y"><?php echo nbs(2); ?>
-                                        วิธีปฏิบัติที่เป็นเลิศในการจัดการศึกษา </label>
+                                        รหัสวิธีปฏิบัติที่เป็นเลิศในการจัดการศึกษา </label>
                                 </div>
-                            </div> -->
+                            </div>
                             <div class="row mb-3">
                                 <div class="col">
                                     <div class="form-floating">
@@ -586,18 +587,22 @@ if (isset( $_SESSION['success'])) { ?>
                             <div class="row mb-3">
                                 <!-- <div class="col"> -->
 
-                                <!-- <div class="form-floating"> -->
-                                <!-- <input type="text" class="form-control" id="floatingName"
-                                            placeholder="วิธีปฏิบัติที่เป็นเลิศในการจัดการศึกษา"
-                                            name="" value="<?php echo $key; ?>" disabled> -->
-                                <input type="hidden" class="form-control" id="floatingName"
-                                    placeholder="วิธีปฏิบัติที่เป็นเลิศในการจัดการศึกษา" name="BestPracticeID"
-                                    value="<?php echo $key; ?>">
-                                <!-- <label for="Y">
-                                            <?php echo nbs(2); ?> วิธีปฏิบัติที่เป็นเลิศในการจัดการศึกษา
-                                        </label> -->
-                                <!-- </div> -->
-                                <!-- </div> -->
+                          
+                             <div class="col">
+                             <div class="form-floating">
+                                 <input type="text" class="form-control" id="floatingName"
+                                                placeholder="วิธีปฏิบัติที่เป็นเลิศในการจัดการศึกษา"
+                                                name="" value="<?php echo $name; ?>" disabled> 
+                                                
+                                    <input type="hidden" class="form-control" id="floatingName"
+                                        placeholder="วิธีปฏิบัติที่เป็นเลิศในการจัดการศึกษา" name="BestPracticeID"
+                                        value="<?php echo $key; ?>">
+                                     <label for="Y">
+                                                 รหัสวิธีปฏิบัติที่เป็นเลิศในการจัดการศึกษา
+                                            </label> 
+                                     </div> 
+                             
+                             </div>
 
                                 <div class="col">
                                     <div class="form-floating">
@@ -619,7 +624,7 @@ if (isset( $_SESSION['success'])) { ?>
                                 </div>
                                 <div class="col">
                                         <div class="form-floating" id="CreatorPersonalID">
-                                            <input type="text" class="form-control" id="my-auto"
+                                            <input type="number" class="form-control" id="my-auto"
                                                 placeholder="หมายเลขบัตรประจำตัวผู้จัดทำ" name=""
                                                 disabled>
                                                 <input type="hidden" class="form-control" id="my-autoo"
@@ -628,7 +633,7 @@ if (isset( $_SESSION['success'])) { ?>
                                             <label for=""><?php echo nbs(2); ?> หมายเลขบัตรประจำตัวผู้จัดทำ </label>
                                         </div>
                                     </div>
-                            </div>
+                            
                             <div class="row mb-3">
                             </div>
                             <div class="row mb-3">
@@ -766,12 +771,14 @@ if (isset( $_SESSION['success'])) { ?>
                             select.addEventListener("change", function() {
                                 if (select.value === "N" || select.value === "-1") {
                                     input.disabled = true;
+                                  
 
-                                    input.value = '0';
-                                    input1.value = '0';
+                                    input.value = '';
+                                    input1.value = '';
 
                                 } else {
                                     input.disabled = false;
+                                    
 
                                     input.value = '';
                                     input1.value = '';
@@ -782,7 +789,16 @@ if (isset( $_SESSION['success'])) { ?>
                             });
 
                         function checkSelectedOption() {
+                            if (select.value === "I" || select.value === "O") {
+                            const CreatorPersonalID = document.querySelector('#my-auto');
+                            const CreatorPersonalID_Value = CreatorPersonalID.value;
 
+                            if (CreatorPersonalID_Value.trim().length < 13 || CreatorPersonalID_Value.trim().length >
+                                13) {
+                                alert('กรุณาใส่เลข13หลักให้ถูกต้อง');
+                                return false;
+                            }
+                        }
                             const CLS_PERSONAL_ID_TYPE = document.querySelector('#CreatorPersonalIDTypeCode');
                             const CLS_PERSONAL_ID_TYPE_Value = CLS_PERSONAL_ID_TYPE.value;
 
@@ -806,7 +822,9 @@ if (isset( $_SESSION['success'])) { ?>
                         <?php
 
                             $result = $this->db->query("SELECT * FROM BEST_PRACTICE_CREATOR 
-                            WHERE Id = '" . $key . "' 
+                            INNER JOIN BEST_PRACTICE
+                            ON BEST_PRACTICE.Id_best = BEST_PRACTICE_CREATOR.BestPracticeID
+                            WHERE Id_bestc = '" . $key . "' 
                             ");
 
                             foreach ($result->result() as $show) {
@@ -814,28 +832,24 @@ if (isset( $_SESSION['success'])) { ?>
                         <!-- start Form ข้อมูลแนวปฏิบัติที่เป็นเลิศในการจัดการศึกษา -->
                         <form action="<?php echo site_url(
                                                     'BPC_edit_p2'
-                                                ); ?>" method="post" enctype="multipart/form-data">
-                            <input type="hidden" name="Id" value="<?php echo $show->Id ?>">
+                                                ); ?>" method="post" enctype="multipart/form-data"  onsubmit="return checkSelectedOption()">
+                            <input type="hidden" name="Id_bestc" value="<?php echo $show->Id_bestc ?>">
                             <div class="row mb-3">
-                                <div class="col">
-                                    <div class="form-floating">
-                                        <select class="form-select" id="BestPracticeID"
-                                            aria-label="Floating label select example" name="BestPracticeID"
-                                            value="<?php echo $show->BestPracticeID ?>">
-
-                                            <?php
-                                                $result = $this->db->query('SELECT * FROM BEST_PRACTICE WHERE DeleteStatus = 0');
-                                                foreach ($result->result() as $cls) {
-                                                ?>
-                                            <option value="<?= $cls->BestPracticeID; ?>">
-                                                <?= $cls->BestPracticeName; ?></option>
-                                            <?php } ?>
-                                        </select>
-                                        <label for="floatingSelect">
-                                            <?php echo nbs(2); ?>วิธีปฏิบัติที่เป็นเลิศในการจัดการศึกษา
-                                        </label>
-                                    </div>
-                                </div>
+                            <div class="col">
+                             <div class="form-floating">
+                                 <input type="text" class="form-control" id="floatingName"
+                                                placeholder="วิธีปฏิบัติที่เป็นเลิศในการจัดการศึกษา"
+                                                name="" value="<?php echo $show->BestPracticeID; ?>" disabled> 
+                                                
+                                    <input type="hidden" class="form-control" id="floatingName"
+                                        placeholder="วิธีปฏิบัติที่เป็นเลิศในการจัดการศึกษา" name="BestPracticeID"
+                                        value="<?php echo $show->Id_best; ?>">
+                                     <label for="Y">
+                                                 รหัสวิธีปฏิบัติที่เป็นเลิศในการจัดการศึกษา
+                                            </label> 
+                                     </div> 
+                             
+                             </div>
 
 
 
@@ -862,9 +876,9 @@ if (isset( $_SESSION['success'])) { ?>
                                 </div>
                                 <div class="col">
                                         <div class="form-floating" id="CreatorPersonalID">
-                                            <input type="text" class="form-control" id="my-auto"
+                                            <input type="number" class="form-control" id="my-auto"
                                                 placeholder="หมายเลขบัตรประจำตัวผู้จัดทำ" name=""value="<?php echo $show->CreatorPersonalID ?>"
-                                                >
+                                                disabled>
                                                 <input type="hidden" class="form-control" id="my-autoo"
                                                 placeholder="" name="CreatorPersonalID"
                                                 value="<?php echo $show->CreatorPersonalID ?>">
@@ -973,7 +987,7 @@ if (isset( $_SESSION['success'])) { ?>
                                 <a href="Fm_best_practice_das_p1?page=sh1" class="btn btn-danger"
                                     style="float: left;">ยกเลิก</a>
                                 <button type="button" class="btn btn-danger" data-bs-toggle="modal"
-                                    data-bs-target="#del_BPC<?php echo $show->Id; ?>">
+                                    data-bs-target="#del_BPC<?php echo $show->Id_bestc; ?>">
                                     <i class="bi bi-trash"></i>
                                 </button>
                                 <button type="button" class="btn btn-warning" data-bs-toggle="modal"
@@ -1005,13 +1019,13 @@ if (isset( $_SESSION['success'])) { ?>
                             </div>
                         </form><!-- ข้อมูลแนวปฏิบัติที่เป็นเลิศในการจัดการศึกษา -->
                         <!-- Modal -->
-                        <div class="modal fade" id="del_BPC<?php echo $show->Id; ?>" tabindex="-1"
+                        <div class="modal fade" id="del_BPC<?php echo $show->Id_bestc; ?>" tabindex="-1"
                             aria-labelledby="exampleModalLabel" aria-hidden="true">
-                            <div class="modal-dialog">
+                            <div class="modal-dialog  modal-dialog-centered">
                                 <div class="modal-content">
                                     <div class="modal-header">
                                         <h5 class="modal-title" id="exampleModalLabel">
-                                            ยืนยันการลบข้อมูล<?php echo nbs(2); ?><?php echo $show->CreatorNameThai; ?>-<?php echo $show->CreatorLastNameThai; ?>
+                                            ยืนยันการลบข้อมูล
                                         </h5>
 
                                     </div>
@@ -1025,7 +1039,7 @@ if (isset( $_SESSION['success'])) { ?>
                                         <button type="button" class="btn btn-secondary"
                                             data-bs-dismiss="modal">ยกเลิก</button>
                                         <form method="post" action="<?php echo site_url('BPC_del_p2'); ?>">
-                                            <input type="hidden" name="Id" value="<?php echo $show->Id; ?>">
+                                            <input type="hidden" name="Id_bestc" value="<?php echo $show->Id_bestc; ?>">
                                             <div class="d-flex justify-content-center">
                                                 <button name="Submit" type="submit"
                                                     class="btn btn-danger">ยืนยันก่อนลบ</button>
@@ -1036,6 +1050,7 @@ if (isset( $_SESSION['success'])) { ?>
                             </div>
                         </div> <!-- Modal -->
                         <script>
+                           
                             const select = document.getElementById("CreatorPersonalIDTypeCode");
                             const input = document.getElementById("my-auto");
                             const input1 = document.getElementById("my-autoo");
@@ -1043,12 +1058,14 @@ if (isset( $_SESSION['success'])) { ?>
                             select.addEventListener("change", function() {
                                 if (select.value === "N" || select.value === "-1") {
                                     input.disabled = true;
+                                    input.required = true;
 
-                                    input.value = '0';
-                                    input1.value = '0';
+                                    input.value = '';
+                                    input1.value = '';
 
                                 } else {
-                                    input.disabled = false;
+                                     input.disabled = false;
+                                    input.required = false;
 
                                     input.value = '<?php echo $show->CreatorPersonalID; ?>';
                                     input1.value = '<?php echo $show->CreatorPersonalID; ?>';
@@ -1088,6 +1105,33 @@ if (isset( $_SESSION['success'])) { ?>
                         setTimeout(function() {
                             document.getElementById('myAlert').remove();
                         }, 2000); // นับถอยหลังให้แสดง 5 วินาที (5000 มิลลิวินาที)
+                         function checkSelectedOption() {
+                            if (select.value === "I" || select.value === "O") {
+                            const CreatorPersonalID = document.querySelector('#my-auto');
+                            const CreatorPersonalID_Value = CreatorPersonalID.value;
+
+                            if (CreatorPersonalID_Value.trim().length < 13 || CreatorPersonalID_Value.trim().length >
+                                13) {
+                                alert('กรุณาใส่เลข13หลักให้ถูกต้อง');
+                                return false;
+                            }
+                        }
+                            const CLS_PERSONAL_ID_TYPE = document.querySelector('#CreatorPersonalIDTypeCode');
+                            const CLS_PERSONAL_ID_TYPE_Value = CLS_PERSONAL_ID_TYPE.value;
+
+                            if (CLS_PERSONAL_ID_TYPE_Value === '-1') {
+                                alert('กรุณาเลือกประเภทบัตรประจำตัวผู้จัดทำ');
+                                return false;
+                            }
+                            const CLS_PREFIX = document.querySelector('#CreatorPrefixCode');
+                            const CLS_PREFIX_Value = CLS_PREFIX.value;
+
+                            if (CLS_PREFIX_Value === '-1') {
+                                alert('กรุณาเลือกคำนำหน้าชื่อผู้จัดทำ');
+                                return false;
+                            }
+
+                        }
                         </script>
 
                         <?php }

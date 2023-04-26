@@ -35,7 +35,7 @@ class Innovation_model extends CI_Model
 						$data = $this->upload->data();
 						$filename = $data['file_name'];
 						$data = array(
-							// 'InnovationID' => $this->input->post('InnovationID'),
+							'InnovationID' => $this->input->post('InnovationID'),
 							'EducationYear' => $this->input->post('EducationYear'),
 							'Semester' => $this->input->post('Semester'),
 							'InnovationName' => $this->input->post('InnovationName'),
@@ -61,7 +61,7 @@ class Innovation_model extends CI_Model
 					}
 				} else {
 					$data = array(
-						// 'InnovationID' => $this->input->post('InnovationID'),
+						'InnovationID' => $this->input->post('InnovationID'),
 						'EducationYear' => $this->input->post('EducationYear'),
 						'Semester' => $this->input->post('Semester'),
 						'InnovationName' => $this->input->post('InnovationName'),
@@ -120,7 +120,7 @@ class Innovation_model extends CI_Model
 					$data = $this->upload->data();
 					$filename = $data['file_name'];
 					$data = array(
-						// 'InnovationID' => $this->input->post('InnovationID'),
+						'InnovationID' => $this->input->post('InnovationID'),
 						'EducationYear' => $this->input->post('EducationYear'),
 						'Semester' => $this->input->post('Semester'),
 						'InnovationName' => $this->input->post('InnovationName'),
@@ -134,7 +134,7 @@ class Innovation_model extends CI_Model
 						'SearchKeyword' => $this->input->post('SearchKeyword')
 
 					);
-					$this->db->where('InnovationID', $this->input->post('InnovationID'));
+					$this->db->where('Id_in', $this->input->post('Id_in'));
 					$query = $this->db->update('INNOVATION', $data);
 					if ($query) {
 						session_start(); // เริ่มต้น session
@@ -147,7 +147,7 @@ class Innovation_model extends CI_Model
 				}
 			} else {
 				$data = array(
-					// 'InnovationID' => $this->input->post('InnovationID'),
+					'InnovationID' => $this->input->post('InnovationID'),
 					'EducationYear' => $this->input->post('EducationYear'),
 					'Semester' => $this->input->post('Semester'),
 					'InnovationName' => $this->input->post('InnovationName'),
@@ -160,7 +160,7 @@ class Innovation_model extends CI_Model
 					'SearchKeyword' => $this->input->post('SearchKeyword')
 
 				);
-				$this->db->where('InnovationID', $this->input->post('InnovationID'));
+				$this->db->where('Id_in', $this->input->post('Id_in'));
 				$query = $this->db->update('INNOVATION', $data);
 				if ($query) {
 					session_start(); // เริ่มต้น session
@@ -176,7 +176,10 @@ class Innovation_model extends CI_Model
 	}
 	public function del_in_model()
 	{
-
+// echo '<pre>';
+// 		print_r($_POST);
+// 		echo '</pre>';
+// 		exit;
 		$velue = "1";
 		$data = array(
 
@@ -184,7 +187,7 @@ class Innovation_model extends CI_Model
 			'DeleteStatus' => $velue
 
 		);
-		$this->db->where('InnovationID', $this->input->post('InnovationID'));
+		$this->db->where('Id_in', $this->input->post('Id_in'));
 		$query = $this->db->update('INNOVATION', $data);
 		if ($query) {
 			session_start(); // เริ่มต้น session
@@ -207,6 +210,7 @@ class Innovation_model extends CI_Model
 		$this->db->where('InnovationID', $InnovationID);
 		$this->db->where('CreatorPersonalID', $CreatorPersonalID);
 		$this->db->where('DeleteStatus=0');
+		$this->db->where('CreatorPersonalID!=0');
 		$query = $this->db->get('INNOVATION_CREATOR');
 		$num_rows = $query->num_rows();
 		if ($num_rows <= 0) {
@@ -252,30 +256,48 @@ class Innovation_model extends CI_Model
 		// echo'</pre>';
 		// exit;
 
-		$data = array(
-			'InnovationID' => $this->input->post('InnovationID'),
-			'CreatorPersonalID' => $this->input->post('CreatorPersonalID'),
-			'CreatorPersonalIDTypeCode' => $this->input->post('CreatorPersonalIDTypeCode'),
-			'CreatorPrefixCode' => $this->input->post('CreatorPrefixCode'),
-			'CreatorNameThai' => $this->input->post('CreatorNameThai'),
-			'CreatorNameEnglish' => $this->input->post('CreatorNameEnglish'),
-			'CreatorMiddleNameThai' => $this->input->post('CreatorMiddleNameThai'),
-			'CreatorMiddleNameEnglish' => $this->input->post('CreatorMiddleNameEnglish'),
-			'CreatorLastNameThai' => $this->input->post('CreatorLastNameThai'),
-			'CreatorLastNameEnglish' => $this->input->post('CreatorLastNameEnglish'),
-			'ParticipantRatio' => $this->input->post('ParticipantRatio')
+		$InnovationID = $this->input->post('InnovationID');
+		$CreatorPersonalID = $this->input->post('CreatorPersonalID');
+		$this->db->where('InnovationID', $InnovationID);
+		$this->db->where('CreatorPersonalID', $CreatorPersonalID);
+		$this->db->where('DeleteStatus=0');
+		$this->db->where('CreatorPersonalID!=0');
+		$query = $this->db->get('INNOVATION_CREATOR');
+		$num_rows = $query->num_rows();
+		if ($num_rows <= 0) {
+			// ไม่พบข้อมูลจากฐานข้อมูล
+			$data = array(
+				'InnovationID' => $this->input->post('InnovationID'),
+				'CreatorPersonalID' => $this->input->post('CreatorPersonalID'),
+				'CreatorPersonalIDTypeCode' => $this->input->post('CreatorPersonalIDTypeCode'),
+				'CreatorPrefixCode' => $this->input->post('CreatorPrefixCode'),
+				'CreatorNameThai' => $this->input->post('CreatorNameThai'),
+				'CreatorNameEnglish' => $this->input->post('CreatorNameEnglish'),
+				'CreatorMiddleNameThai' => $this->input->post('CreatorMiddleNameThai'),
+				'CreatorMiddleNameEnglish' => $this->input->post('CreatorMiddleNameEnglish'),
+				'CreatorLastNameThai' => $this->input->post('CreatorLastNameThai'),
+				'CreatorLastNameEnglish' => $this->input->post('CreatorLastNameEnglish'),
+				'ParticipantRatio' => $this->input->post('ParticipantRatio')
 
-		);
-		$this->db->where('Id', $this->input->post('Id'));
+			);
+			$this->db->where('Id_inc', $this->input->post('Id_inc'));
 		$query = $this->db->update('INNOVATION_CREATOR', $data);
-		if ($query) {
-			session_start(); // เริ่มต้น session
-			$_SESSION['success'] = "แก้ไขสำเร็จ !"; // กำหนดค่า success ใน session เป็น true
-			header("Location:" . site_url('Fm_innovation_das_p1?page=sh1')); // ไปยังหน้าก่อนหน้านี้. 
+			if ($query) {
+				session_start(); // เริ่มต้น session
+				$_SESSION['success'] = "เพิ่มข้อมูลนวัตกรรมการศึกษาสำเร็จ !"; // กำหนดค่า success ใน session เป็น true
+				header("Location:" . site_url('Fm_innovation_das_p1?page=sh1')); // ไปยังหน้าก่อนหน้านี้. 
 
+			} else {
+				echo 'false';
+			}
 		} else {
-			echo 'false';
+			// พบข้อมูลจากฐานข้อมูล
+			session_start(); // เริ่มต้น session
+			$_SESSION['false'] = "ไม่มามารถบันทึกข้อมูลได้โปรดตรวจสอบข้อมูล (เลขบัตร ปชช.) ซ้ำกันในระบบ !"; // กำหนดค่า success ใน session เป็น true
+			header('Location: ' . $_SERVER['HTTP_REFERER']);
+			exit;
 		}
+	
 	}
 	public function del_in_tor_model()
 	{
@@ -291,7 +313,7 @@ class Innovation_model extends CI_Model
 			'DeleteStatus' => $value
 
 		);
-		$this->db->where('Id', $this->input->post('Id'));
+		$this->db->where('Id_inc', $this->input->post('Id_inc'));
 		$query = $this->db->update('INNOVATION_CREATOR', $data);
 		if ($query) {
 			session_start(); // เริ่มต้น session

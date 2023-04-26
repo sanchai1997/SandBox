@@ -1236,6 +1236,49 @@
                                             </div>
                                         </div>
 
+                                        <div class="card">
+                                            <div class="card-body">
+                                                <div class="row">
+                                                    <div class="col-12">
+                                                        <h5 style="text-align: left; padding-left: 25px; padding-top: 25px;" class="card-title">
+                                                        แฟ้มสะสมผลงาน
+                                                            <?php $result =   $this->db->select('*')
+                                                                            ->where('DeleteStatus ', 0  ) 
+                                                                            ->where('STUDENT_NO ',$STUDENT_DETAIL->StudentReferenceID   ) 
+                                                                            ->from('EPORTFOLIO')
+                                                                            ->get();
+                                                                 $EPORTFOLIO =   $result->result();     
+                                                            ?>
+                                                            <?php if(count($EPORTFOLIO)>0 ) { ?>   
+                                                                <a style="float: right;" href="edit_forms_eportfolio?SchoolID=<?= $STUDENT_DETAIL->SchoolID; ?>&&StudentReferenceID=<?= $STUDENT_DETAIL->StudentReferenceID ?>&&EducationYear=<?= $STUDENT_DETAIL->EducationYear; ?>&&Semester=<?= $STUDENT_DETAIL->Semester; ?>&&GradeLevelCode=<?= $STUDENT_DETAIL->GradeLevelCode; ?>" class="btn btn-sm btn-warning"><i class="bi bi-pencil-square"></i></a>
+                                                            <?php } else { ?>   
+                                                                <a style="float: right;" href="forms_eportfolio?SchoolID=<?= $STUDENT_DETAIL->SchoolID; ?>&&StudentReferenceID=<?= $STUDENT_DETAIL->StudentReferenceID ?>&&EducationYear=<?= $STUDENT_DETAIL->EducationYear; ?>&&Semester=<?= $STUDENT_DETAIL->Semester; ?>&&GradeLevelCode=<?= $STUDENT_DETAIL->GradeLevelCode; ?>" class="btn btn-sm btn-success"><i class="bi bi-file-earmark-plus"></i></a>
+                                                            <?php } ?>   
+                                                        </h5>
+                                                        <div class="col-12" style="text-align: left; padding-left: 25px; padding-bottom: 5px;">
+                                                        <?php if(count($EPORTFOLIO)>0 ) { ?>   
+                                                            <a href="<?php echo base_url('assets/student/eportfolio/') ?>" ><i class="bi bi-file-earmark-text-fill"></i> แฟ้มสะสมผลงาน </a>   
+                                                            <?php } else { ?>   
+                                                                <label style="padding-left: 20px;"> -
+                                                            <?php } ?>   
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+
+
+                                    </div>
+                                </div>
+                            </div>
+                            
+                        </div>
+                    </div>
+
+
 
 
                                     </div>

@@ -13,6 +13,7 @@ class Student extends _sandboxcontroller
         $this->load->library('session');
         $this->load->model('School_model', 'school');
         $this->load->model('Student_model', 'student');
+        $this->load->model('Eportfolio_model');
     }
 
     public function index()
