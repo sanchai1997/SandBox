@@ -119,10 +119,11 @@
                             <?php
                             $result = $this->db->query('SELECT * FROM INNOVATION where DeleteStatus = 0');
                             foreach ($result->result() as $show) {
+                           
                             ?>
 
                                 <tr>
-                                    <!-- <th scope="row " style="text-align: center;"><?php echo $Id_in = $show->Id_in; ?></th> -->
+                                  
                                     <td scope="row " style="">
                                         <?php echo $show->EducationYear; ?>
                                     </td>
@@ -155,9 +156,11 @@
 
                                         $resultc = $this->db->query("SELECT * FROM INNOVATION_CREATOR JOIN CLS_PERSONAL_ID_TYPE ON INNOVATION_CREATOR.CreatorPersonalIDTypeCode = CLS_PERSONAL_ID_TYPE.PERSONAL_ID_TYPE_CODE 
                             JOIN CLS_PREFIX ON INNOVATION_CREATOR.CreatorPrefixCode = CLS_PREFIX.PREFIX_CODE  
-                            WHERE InnovationID='" . $Id_in . "' AND DeleteStatus = 0"); ?>
+                            WHERE InnovationID='" .$show->Id_in. "' AND DeleteStatus = 0"); ?>
 
-                                        <?php foreach ($resultc->result() as $showc) { ?>
+                                        <?php foreach ($resultc->result() as $showc) { 
+                                             $CreatorPersonalID = base64_decode($showc->CreatorPersonalID);
+                                             ?>
                                             <div class="row">
                                                 <div class="col">
                                                    
@@ -187,7 +190,7 @@
                                                                         </div>
                                                                         <div class="col">
                                                                             <h6 class="fw-bold">หมายเลขบัตรประจำตัวผู้จัดทำ</h6>
-                                                                            <p> <?php echo $showc->CreatorPersonalID; ?></p>
+                                                                            <p> <?php echo  $CreatorPersonalID; ?></p>
 
                                                                         </div>
                                                                     </div>
@@ -416,9 +419,9 @@
                             </div>
                             <div class="row m-2">
                                 <h5 class="fw-bold">รายชื่อผู้จัดทำ</h5>
-                                                                <?php $resultc = $this->db->query("SELECT * FROM INNOVATION_CREATOR JOIN CLS_PERSONAL_ID_TYPE ON INNOVATION_CREATOR.CreatorPersonalIDTypeCode = CLS_PERSONAL_ID_TYPE.PERSONAL_ID_TYPE_CODE 
+                                <?php $resultc = $this->db->query("SELECT * FROM INNOVATION_CREATOR JOIN CLS_PERSONAL_ID_TYPE ON INNOVATION_CREATOR.CreatorPersonalIDTypeCode = CLS_PERSONAL_ID_TYPE.PERSONAL_ID_TYPE_CODE 
                                 JOIN CLS_PREFIX ON INNOVATION_CREATOR.CreatorPrefixCode = CLS_PREFIX.PREFIX_CODE  
-                                WHERE InnovationID='" . $Id_in . "' AND  INNOVATION_CREATOR.DeleteStatus = '0'"); ?>
+                                WHERE InnovationID='" . $show->Id_in . "' AND  INNOVATION_CREATOR.DeleteStatus = '0'"); ?>
 
                                 <table class="table table-bordered">
                                     <tr>
@@ -436,7 +439,7 @@
                                             </td>
                                             <td>
                                                 <p>
-                                                    <?php echo $showc->CreatorPersonalID; ?>
+                                                    <?php echo  $CreatorPersonalID; ?>
                                                 </p>
                                             </td>
                                             <td>

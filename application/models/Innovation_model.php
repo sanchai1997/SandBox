@@ -207,6 +207,7 @@ class Innovation_model extends CI_Model
 
 		$InnovationID = $this->input->post('InnovationID');
 		$CreatorPersonalID = $this->input->post('CreatorPersonalID');
+		$encodedCreatorPersonalID = base64_encode($CreatorPersonalID);
 		$this->db->where('InnovationID', $InnovationID);
 		$this->db->where('CreatorPersonalID', $CreatorPersonalID);
 		$this->db->where('DeleteStatus=0');
@@ -217,7 +218,7 @@ class Innovation_model extends CI_Model
 			// ไม่พบข้อมูลจากฐานข้อมูล
 			$data = array(
 				'InnovationID' => $this->input->post('InnovationID'),
-				'CreatorPersonalID' => $this->input->post('CreatorPersonalID'),
+				'CreatorPersonalID' => $encodedCreatorPersonalID,
 				'CreatorPersonalIDTypeCode' => $this->input->post('CreatorPersonalIDTypeCode'),
 				'CreatorPrefixCode' => $this->input->post('CreatorPrefixCode'),
 				'CreatorNameThai' => $this->input->post('CreatorNameThai'),
@@ -258,6 +259,7 @@ class Innovation_model extends CI_Model
 
 		$InnovationID = $this->input->post('InnovationID');
 		$CreatorPersonalID = $this->input->post('CreatorPersonalID');
+		$encodedCreatorPersonalID = base64_encode($CreatorPersonalID);
 		$this->db->where('InnovationID', $InnovationID);
 		$this->db->where('CreatorPersonalID', $CreatorPersonalID);
 		$this->db->where('DeleteStatus=0');
@@ -268,7 +270,7 @@ class Innovation_model extends CI_Model
 			// ไม่พบข้อมูลจากฐานข้อมูล
 			$data = array(
 				'InnovationID' => $this->input->post('InnovationID'),
-				'CreatorPersonalID' => $this->input->post('CreatorPersonalID'),
+				'CreatorPersonalID' => $encodedCreatorPersonalID,
 				'CreatorPersonalIDTypeCode' => $this->input->post('CreatorPersonalIDTypeCode'),
 				'CreatorPrefixCode' => $this->input->post('CreatorPrefixCode'),
 				'CreatorNameThai' => $this->input->post('CreatorNameThai'),
