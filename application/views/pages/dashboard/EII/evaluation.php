@@ -213,7 +213,7 @@
                                             ?>
 
                                 <!-- Button trigger modal -->
-                                <button type="button" class="btn mt-2" data-bs-toggle="modal" data-bs-target="#LevelName<?php echo $cls->Id_acl; ?>">
+                                <button type="button" class="btn " data-bs-toggle="modal" data-bs-target="#LevelName<?php echo $cls->Id_acl; ?>">
                                     <?php echo $cls->LevelName; ?>
                                 </button>
                                 <br>
@@ -277,7 +277,7 @@
                                         foreach ($resultA3->result() as $showA3) { ?>
                                
                                     <!-- Button trigger modal -->
-                                <button type="button" class="btn mt-2" data-bs-toggle="modal" data-bs-target="#CompositionName<?php echo $showA3->Id_acc; ?>">
+                                <button type="button" class="btn " data-bs-toggle="modal" data-bs-target="#CompositionName<?php echo $showA3->Id_acc; ?>">
                                 <?php echo $showA3->CompositionName; ?>
                                 </button>
                                 <br>
