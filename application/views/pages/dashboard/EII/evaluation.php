@@ -198,10 +198,10 @@
                                 ?>
                         <tr>
                             <td scope="row " class="">
-                                <?php echo $CriteriaID = $show->CriteriaID; ?>
+                               <p class="mt-2"> <?php echo $CriteriaID = $show->CriteriaID; ?></p>
                             </td>
                             <td scope="row" class="">
-                                <?php echo $CriteriaName = $show->CriteriaName; ?>
+                               <p class="mt-2"> <?php echo $CriteriaName = $show->CriteriaName; ?></p>
                             </td>
                             <td style=";">
                                 <?php
@@ -213,7 +213,7 @@
                                             ?>
 
                                 <!-- Button trigger modal -->
-                                <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#LevelName<?php echo $cls->Id_acl; ?>">
+                                <button type="button" class="btn " data-bs-toggle="modal" data-bs-target="#LevelName<?php echo $cls->Id_acl; ?>">
                                     <?php echo $cls->LevelName; ?>
                                 </button>
                                 <br>
@@ -758,8 +758,8 @@
                                 <!-- Button trigger modal -->
                                 
                                     <?php 
-                                     foreach ($resultR->result() as $showR) {
-                                    echo $showR->CompositionIndex; ?>.<?php echo $showR->CompositionName; ?><br> <?php
+                                     foreach ($resultR->result() as $showR) { ?>
+                                   <p class="mt-2"><?php echo $showR->CompositionIndex; ?>.<?php echo $showR->CompositionName; ?></p><br> <?php
                                       }
                                        ?>
                                 <br>
@@ -795,11 +795,11 @@
                                 <!-- Button trigger modal -->
                                
                                     <?php 
-                                     foreach ($resultR->result() as $showR) {
-                                    echo $showR->LevelIndex; ?>.<?php echo $showR->LevelName; ?><br> <?php
+                                     foreach ($resultR->result() as $showR) { ?>
+                                  <p class="mt-2"> <?php echo $showR->LevelIndex; ?>.<?php echo $showR->LevelName; ?></p><br> <?php
                                       }
                                        ?>
-                                <br>
+                               
                                 <!-- Modal -->
                                 
                                

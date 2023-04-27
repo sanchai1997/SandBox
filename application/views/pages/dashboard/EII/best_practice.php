@@ -218,7 +218,7 @@
                                                             </div>
                                                             <div class="col">
                                                                 <h6 class="fw-bold">หมายเลขบัตรประจำตัวผู้จัดการ</h6>
-                                                                <p> <?php echo $showc->CreatorPersonalID; ?></p>
+                                                                <p> <?php echo base64_decode($showc->CreatorPersonalID); ?></p>
 
                                                             </div>
                                                         </div>
@@ -501,7 +501,7 @@
                             </td>
                             <td>
                                 <p>
-                                    <?php echo $showc->CreatorPersonalID; ?>
+                                    <?php echo base64_decode($showc->CreatorPersonalID); ?>
                                 </p>
                             </td>
                             <td>
