@@ -47,7 +47,7 @@
                 <?php break;
                     case 'sh4': ?> <h1>คำอธิบายแต่ละองค์ประกอบและลำดับตัวชี้วัด </h1>
                 <?php break;
-                    case 'sh5': ?> <h1>การประเมินผลสถานศึกษา</h1>
+                    case 'sh5': ?> <h1>การประเมินสถานศึกษา</h1>
                 <?php break;
                     case 'sh6': ?> <h1>การประเมินตามตัวชี้วัด</h1>
                 <?php break;
@@ -1575,7 +1575,7 @@ function checkSelectValues() {
                                         </div>
                                     </div>
                                     <div class="text-center">
-                                        <a href="Fm_evaluation_das_p5?page=sh5" class="btn btn-danger"
+                                        <a href="Fm_evaluation_das_p4?page=sh4" class="btn btn-danger"
                                             style="float: left;">ยกเลิก</a>
 
                                         <button type="button" class="btn btn-primary" data-bs-toggle="modal"
