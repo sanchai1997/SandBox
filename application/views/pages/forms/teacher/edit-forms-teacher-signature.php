@@ -22,9 +22,6 @@
         </h1>
         <a class="btn btn-light text-dark"><b><?= $SchoolName . ' - ' . $TEACHER->PREFIX_NAME . $TEACHER->TeacherNameThai . ' ' . $TEACHER->TeacherLastNameThai ?></b></a>
     </div><!-- End Page Title -->
-    <?php if ($TEACHER->Signature == NULL) {
-                        $Signature = '0';
-                    } ?>
     <section class="section">
         <div class="row">
             <div class="col-lg-9">
@@ -32,7 +29,7 @@
                 <div class="card">
                     <div class="card-body">
                         <!-- Floating Labels Form -->
-                        <form class="row g-3" action="<?php echo base_url('update-teacher-signature/' . $_GET['TeacherID'] . '/' . $_GET['SchoolID'] . '/' . $_GET['EducationYear'] . '/' . $_GET['Semester'] . '/' . $_GET['PersonnelTypeCode'] . '/' . $_GET['PositionCode'] . '/' . $Signature); ?>" method="POST" id="Teacher" enctype="multipart/form-data">
+                        <form class="row g-3" action="<?php echo base_url('update-teacher-signature/' . $_GET['TeacherID'] . '/' . $_GET['SchoolID'] . '/' . $_GET['EducationYear'] . '/' . $_GET['Semester'] . '/' . $_GET['PersonnelTypeCode'] . '/' . $_GET['PositionCode'] . '/' . $TEACHER->Signature); ?>" method="POST" id="Teacher" enctype="multipart/form-data">
                             <h6 style="padding-left: 15px;" class="card-title">ข้อมูลลายเซ็น</h6>
                             <div class="col-md-12">
                                 <div class="input-group">

@@ -45,7 +45,7 @@ class Personnel_model extends CI_Model
             'PositionLevelCode' => $this->input->post('PositionLevelCode'),
             'ImagePersonnel' => $new_name,
             'PersonnelPersonalIDTypeCode' => $this->input->post('PersonnelPersonalIDTypeCode'),
-            'PersonnelPersonalID' => $this->input->post('PersonnelPersonalID'),
+            'PersonnelPersonalID' => base64_encode($this->input->post('PersonnelPersonalID')),
             'PersonnelPassportNumber' => $this->input->post('PersonnelPassportNumber'),
             'PersonnelPrefixCode' => $this->input->post('PersonnelPrefixCode'),
             'PersonnelNameThai' => $this->input->post('PersonnelNameThai'),
@@ -116,7 +116,7 @@ class Personnel_model extends CI_Model
         $data = [
 
             'PersonnelPersonalIDTypeCode' => $this->input->post('PersonnelPersonalIDTypeCode'),
-            'PersonnelPersonalID' => $this->input->post('PersonnelPersonalID'),
+            'PersonnelPersonalID' => base64_encode($this->input->post('PersonnelPersonalID')),
             'PersonnelPassportNumber' => $this->input->post('PersonnelPassportNumber'),
             'PersonnelGenderCode' => $this->input->post('PersonnelGenderCode'),
             'PersonnelNationalityCode' => $this->input->post('PersonnelNationalityCode'),

@@ -178,6 +178,13 @@ $route['delete-building/(:num)/(:any)'] = 'forms_school/delete_building/$1/$2';
 
 ////////////////////// SCHOOL - END /////////////////////////
 
+//////////////////////UploadFile /////////////////////////
+$route['uploadfile-school'] = 'forms_school/uploadfile_school';
+$route['school-uploaddetail'] = 'school/school_uploaddetail';
+
+$route['uploadfile-student'] = 'forms_student/uploadfile_student';
+//////////////////////UploadFile - END //////////////////
+
 
 ////////////////////// ROUTE STUDENT ////////////////////////
 //student
@@ -225,8 +232,8 @@ $route['edit-forms-teacher-address'] = 'forms_teacher/edit_forms_teacher_address
 $route['edit-forms-teacher-contract'] = 'forms_teacher/edit_forms_teacher_contract';
 $route['edit-forms-teacher-talent'] = 'forms_teacher/edit_forms_teacher_talent';
 $route['edit-forms-teacher-signature'] = 'forms_teacher/edit_forms_teacher_signature';
-$route['update-teacher-main/(:any)/(:num)/(:num)/(:num)/(:num)/(:num)/(:any)']['post'] = 'forms_teacher/update_teacher_main/$1/$2/$3/$4/$5/$6/$7';
 $route['update-teacher-signature/(:any)/(:num)/(:num)/(:num)/(:num)/(:num)/(:any)']['post'] = 'forms_teacher/update_teacher_signature/$1/$2/$3/$4/$5/$6/$7';
+$route['update-teacher-main/(:any)/(:num)/(:num)/(:num)/(:num)/(:num)/(:any)']['post'] = 'forms_teacher/update_teacher_main/$1/$2/$3/$4/$5/$6/$7';
 $route['update-teacher-person/(:any)/(:num)/(:num)/(:num)/(:num)/(:num)']['post'] = 'forms_teacher/update_teacher_person/$1/$2/$3/$4/$5/$6';
 $route['update-teacher-marriage/(:any)/(:num)/(:num)/(:num)/(:num)/(:num)']['post'] = 'forms_teacher/update_teacher_marriage/$1/$2/$3/$4/$5/$6';
 $route['update-teacher-address/(:any)/(:num)/(:num)/(:num)/(:num)/(:num)']['post'] = 'forms_teacher/update_teacher_address/$1/$2/$3/$4/$5/$6';
@@ -282,6 +289,15 @@ $route['edit-forms-teacher-teaching'] = 'forms_teacher/edit_teacher_teaching';
 $route['add-teacher-teaching/(:any)/(:num)/(:num)/(:num)/(:num)/(:num)']['post'] = 'forms_teacher/add_teacher_teaching/$1/$2/$3/$4/$5/$6';
 $route['update-teacher-teaching/(:any)/(:num)/(:num)/(:num)/(:num)/(:num)/(:num)/(:num)/(:num)'] = 'forms_teacher/update_teacher_teaching/$1/$2/$3/$4/$5/$6/$7/$8/$9';
 $route['delete-teacher-teaching/(:any)/(:num)/(:num)/(:num)/(:num)/(:num)/(:num)/(:num)/(:num)'] = 'forms_teacher/delete_teacher_teaching/$1/$2/$3/$4/$5/$6/$7/$8/$9';
+
+//ClassRoom
+$route['teacher-classroom'] = 'teacher/teacher_classroom';
+$route['forms-teacher-classroom'] = 'forms_teacher/forms_teacher_classroom';
+$route['edit-forms-teacher-classroom'] = 'forms_teacher/edit_teacher_classroom';
+$route['add-teacher-classroom/(:any)/(:num)/(:num)/(:num)/(:num)/(:num)']['post'] = 'forms_teacher/add_teacher_classroom/$1/$2/$3/$4/$5/$6';
+$route['update-teacher-classroom/(:any)/(:num)/(:num)/(:num)/(:num)/(:num)/(:num)/(:any)']['post'] = 'forms_teacher/update_teacher_classroom/$1/$2/$3/$4/$5/$6/$7/$8';
+$route['delete-teacher-classroom/(:any)/(:num)/(:num)/(:num)/(:num)/(:num)/(:num)/(:num)'] = 'forms_teacher/delete_teacher_classroom/$1/$2/$3/$4/$5/$6/$7/$8';
+
 ///////////////////// TEACHER - END /////////////////////////
 
 

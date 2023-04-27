@@ -373,5 +373,3 @@ public function get_score($SCORE_ID) {
     
     
 }
-
-?>

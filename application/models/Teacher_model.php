@@ -52,7 +52,7 @@ class Teacher_model extends CI_Model
             'PositionLevelCode' => $this->input->post('PositionLevelCode'),
             'ImageTeacher' => $new_name,
             'TeacherPersonalIDTypeCode' => $this->input->post('TeacherPersonalIDTypeCode'),
-            'TeacherPersonalID' => $this->input->post('TeacherPersonalID'),
+            'TeacherPersonalID' => base64_encode($this->input->post('TeacherPersonalID')),
             'TeacherPassportNumber' => $this->input->post('TeacherPassportNumber'),
             'TeacherPrefixCode' => $this->input->post('TeacherPrefixCode'),
             'TeacherNameThai' => $this->input->post('TeacherNameThai'),
@@ -113,7 +113,7 @@ class Teacher_model extends CI_Model
             'PositionLevelCode' => $this->input->post('PositionLevelCode'),
             'ImageTeacher' => $new_name,
             'TeacherPersonalIDTypeCode' => $this->input->post('TeacherPersonalIDTypeCode'),
-            'TeacherPersonalID' => $this->input->post('TeacherPersonalID'),
+            'TeacherPersonalID' => base64_encode($this->input->post('TeacherPersonalID')),
             'TeacherPassportNumber' => $this->input->post('TeacherPassportNumber'),
             'TeacherPrefixCode' => $this->input->post('TeacherPrefixCode'),
             'TeacherNameThai' => $this->input->post('TeacherNameThai'),
@@ -186,7 +186,7 @@ class Teacher_model extends CI_Model
     //Update Data Teacher Signature
     public function update_teacher_signature($TeacherID, $SchoolID, $EducationYear, $Semester, $Signature)
     {
-        if ($Signature == '0') {
+        if ($Signature == NULL) {
             $config['upload_path']          = 'assets/teacher/signature/';
             $config['allowed_types']        = 'png';
             $config['max_size']             = 50000;
@@ -215,6 +215,7 @@ class Teacher_model extends CI_Model
             $result = $this->db->where('TeacherID', $TeacherID)->where('SchoolID', $SchoolID)->where('EducationYear', $EducationYear)->where('Semester', $Semester)->update('TEACHER', $data);
             return $result;
         } else {
+
             $config['upload_path']          = 'assets/teacher/signature/';
             $config['allowed_types']        = 'png';
             $config['max_size']             = 50000;
@@ -234,6 +235,7 @@ class Teacher_model extends CI_Model
                 unlink($config['upload_path'] . 'logoold.jpg');
                 echo 'อัพโหลดไฟล์เรียบร้อยแล้ว';
             }
+
             return;
         }
     }
@@ -246,7 +248,7 @@ class Teacher_model extends CI_Model
         $data = [
 
             'TeacherPersonalIDTypeCode' => $this->input->post('TeacherPersonalIDTypeCode'),
-            'TeacherPersonalID' => $this->input->post('TeacherPersonalID'),
+            'TeacherPersonalID' => base64_encode($this->input->post('TeacherPersonalID')),
             'TeacherPassportNumber' => $this->input->post('TeacherPassportNumber'),
             'TeacherGenderCode' => $this->input->post('TeacherGenderCode'),
             'TeacherNationalityCode' => $this->input->post('TeacherNationalityCode'),
@@ -864,6 +866,50 @@ class Teacher_model extends CI_Model
         ];
 
         $result = $this->db->where('TeacherID ', $TeacherID)->where('SchoolID ', $SchoolID)->where('TeachingEducationYear ', $TeachingEducationYear)->where('TeachingSemester ', $TeachingSemester)->where('TeachingSubjectCode ', $TeachingSubjectCode)->update('TEACHER_TEACHING', $data);
+        return $result;
+    }
+
+
+    //ADD Data Teacher classroom
+    public function add_teacher_classroom($TeacherID, $SchoolID)
+    {
+        $data = [
+
+            'SchoolID' => $SchoolID,
+            'TeacherID' => $TeacherID,
+            'GradeLevelCode' => $this->input->post('GradeLevelCode'),
+            'ClassRoom' => $this->input->post('ClassRoom')
+
+        ];
+
+        $result = $this->db->insert('TEACHER_CLASSROOM', $data);
+        return $result;
+    }
+
+    //Delete Data Form Teacher classroom
+    public function delete_teacher_classroom($TeacherID, $SchoolID, $GradeLevelCode, $ClassRoom)
+    {
+        $data = [
+
+            'DeleteStatus' => '1'
+
+        ];
+
+        $result = $this->db->where('TeacherID ', $TeacherID)->where('SchoolID ', $SchoolID)->where('GradeLevelCode ', $GradeLevelCode)->where('ClassRoom ', $ClassRoom)->update('TEACHER_CLASSROOM', $data);
+        return $result;
+    }
+
+    //Update Data Teacher classroom
+    public function update_teacher_classroom($TeacherID, $SchoolID, $GradeLevelCode, $ClassRoom)
+    {
+        $data = [
+
+            'GradeLevelCode' => $this->input->post('GradeLevelCode'),
+            'ClassRoom' => $this->input->post('ClassRoom')
+
+        ];
+
+        $result = $this->db->where('TeacherID ', $TeacherID)->where('SchoolID ', $SchoolID)->where('GradeLevelCode ', $GradeLevelCode)->where('ClassRoom ', $ClassRoom)->update('TEACHER_CLASSROOM', $data);
         return $result;
     }
 }

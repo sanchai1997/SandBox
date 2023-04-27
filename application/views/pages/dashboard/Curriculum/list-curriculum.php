@@ -33,19 +33,19 @@
 
     <!-- Alert -->
     <?php if (!empty($_SESSION['errors'])) { ?>
-      <div class="row">
-        <div class="col-lg-9">
-          <div class="alert alert-danger" id="myAlert" style="top: 0; left: 0; right: 0; z-index: 1;">
-              <strong>
-                  <?php
-                  echo '<i class="bi bi-exclamation-circle-fill"></i> '. $_SESSION['errors'];
-                  unset($_SESSION['errors']);
-                  ?>
-              </strong>
-          </div> 
+        <div class="row">
+            <div class="col-lg-9">
+                <div class="alert alert-danger" id="myAlert" style="top: 0; left: 0; right: 0; z-index: 1;">
+                    <strong>
+                        <?php
+                        echo '<i class="bi bi-exclamation-circle-fill"></i> ' . $_SESSION['errors'];
+                        unset($_SESSION['errors']);
+                        ?>
+                    </strong>
+                </div>
+            </div>
         </div>
-      </div>
-      <?php } ?>  
+    <?php } ?>
 
     <!-- Recent Sales -->
     <div class="col-12">
@@ -61,7 +61,7 @@
                             ?>
                                 <div class="dropdown">
                                     <button class="btn btn-dark dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                                    <?php echo $SchoolNameThai; ?>
+                                        <?php echo $SchoolNameThai; ?>
                                     </button>
                                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                                         <?php foreach ($School as $ls) { ?>
@@ -75,7 +75,7 @@
                             <?php } ?>
                         </h1>
                     </div>
-                     <?php if (!empty($School)) {?>
+                    <?php if (!empty($School)) { ?>
                         <div class="col">
                             <h5 style="float: right; padding: 15px;" class="card-title">&nbsp;&nbsp;<a href="forms-curriculum?sid=<?php echo $SchoolID; ?>" class="btn btn-success">เพิ่มข้อมูล</a></h5>
                         </div>
@@ -185,7 +185,7 @@
                                                     </div>
                                                     <div class=" col-8" style="padding-bottom: 8px; padding-left: 40px;">
                                                         เอกสารแนบหลักสูตร :
-                                                        <?php if($ls->CurriculumDocumentURL != null) { ?>
+                                                        <?php if ($ls->CurriculumDocumentURL != null) { ?>
                                                             <a href="<?php echo base_url('assets/curriculum/document/') ?><?php echo $ls->CurriculumDocumentURL; ?>"><i class="bi bi-file-earmark-text-fill"></i> เอกสารแนบหลักสูตร</a>
                                                         <?php  } ?>
                                                     </div>
@@ -203,18 +203,19 @@
                                                         ชื่อหลักสูตรท้องถิ่นที่อ้างอิง : <?= $ls->LocalCurriculumName; ?>
                                                     </div>
                                                     <div class=" col-8" style="padding-bottom: 8px; padding-left: 40px;">
-                                                        เอกสารแนบหลักสูตรท้องถิ่นที่อ้างอิง : 
-                                                        <?php if($ls->LocalCurriculumDocumentURL != null) { ?>
-                                                           <a href="<?php echo base_url('assets/curriculum/document/') ?><?php echo $ls->LocalCurriculumDocumentURL; ?>"><i class="bi bi-file-earmark-text-fill"></i> เอกสารแนบหลักสูตรท้องถิ่นที่อ้างอิง</a>
+                                                        เอกสารแนบหลักสูตรท้องถิ่นที่อ้างอิง :
+                                                        <?php if ($ls->LocalCurriculumDocumentURL != null) { ?>
+                                                            <a href="<?php echo base_url('assets/curriculum/document/') ?><?php echo $ls->LocalCurriculumDocumentURL; ?>"><i class="bi bi-file-earmark-text-fill"></i> เอกสารแนบหลักสูตรท้องถิ่นที่อ้างอิง</a>
                                                         <?php  } ?>
                                                     </div>
                                                 </div>
-                                               
-                                                
+
+
 
                                             </div>
                                             <div class="modal-footer">
-                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ปิด</button>                                            </div>
+                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ปิด</button>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -233,7 +234,7 @@
                                                 </h6>
                                             </div>
                                             <div class="modal-footer">
-                                                <a href="<?php echo base_url('delete-curriculum/' . $ls->CurriculumID . '/' .$SchoolID) ?>  " class="btn btn-danger">ลบ</a>
+                                                <a href="<?php echo base_url('delete-curriculum/' . $ls->CurriculumID . '/' . $SchoolID) ?>  " class="btn btn-danger">ลบ</a>
                                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ยกเลิก</button>
                                             </div>
                                         </div>

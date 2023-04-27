@@ -1,7 +1,8 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
+require_once '_sandboxcontroller.php';
 
-class Student extends CI_Controller
+class Student extends _sandboxcontroller
 {
 
     public function __construct()

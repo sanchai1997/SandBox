@@ -737,5 +737,173 @@ class Forms_teacher extends CI_Controller
 
     ////////////////////////////teacher_teaching-END//////////////////////////////
 
+    ///////////////////////////////teacher classroom/////////////////////////////////
+    //PageEdit classroom
+    public function forms_teacher_classroom()
+    {
 
+        if (!file_exists(APPPATH . 'views/pages/forms/teacher/forms-teacher-classroom.php')) {
+            //Whoops,wedon'thaveapageforthat!
+            show_404();
+        }
+
+        $data['title'] = 'Forms Teacher-academic'; //Capitalizethefirstletter
+
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/sidebar', $data);
+        $this->load->view('pages/forms/teacher/forms-teacher-classroom', $data);
+        $this->load->view('templates/footer', $data);
+    }
+
+    public function edit_teacher_classroom()
+    {
+
+        if (!file_exists(APPPATH . 'views/pages/forms/teacher/edit-forms-teacher-classroom.php')) {
+            //Whoops,wedon'thaveapageforthat!
+            show_404();
+        }
+
+        $data['title'] = 'Forms Teacher-select'; //Capitalizethefirstletter
+
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/sidebar', $data);
+        $this->load->view('pages/forms/teacher/edit-forms-teacher-classroom', $data);
+        $this->load->view('templates/footer', $data);
+    }
+
+    //Add_teacher_classroom
+    public function add_teacher_classroom($TeacherID, $SchoolID, $EducationYear, $Semester, $PersonnelTypeCode, $PositionCode)
+    {
+        $result = $this->db->query('SELECT * 
+         FROM TEACHER_CLASSROOM
+         WHERE DeleteStatus = 0
+         AND SchoolID = ' . $SchoolID . ' 
+         AND TeacherID = "' . $TeacherID . '"
+         AND GradeLevelCode  = ' . $_POST['GradeLevelCode'] . '
+         AND ClassRoom   = "' . $_POST['ClassRoom'] . '"
+         ')->result();
+
+        if ($result != TRUE) {
+            $this->forms_teacher->add_teacher_classroom($TeacherID, $SchoolID);
+            $_SESSION['success'] = "บันทึกข้อมูลเรียบร้อย";
+            redirect(base_url('teacher-classroom?SchoolID=' . $SchoolID . '&&TeacherID=' . $TeacherID . '&&EducationYear=' . $EducationYear . '&&Semester=' . $Semester . '&&PersonnelTypeCode=' . $PersonnelTypeCode . '&&PositionCode=' . $PositionCode . '&&ShowDetail='));
+        } else {
+            $_SESSION['danger'] = "ไม่สามารถบันทึกข้อมูลได้ โปรดตรวจสอบข้อมูลอาจจะซ้ำกันในระบบ";
+            redirect(base_url('forms-teacher-classroom?SchoolID=' . $SchoolID . '&&TeacherID=' . $TeacherID . '&&EducationYear=' . $EducationYear . '&&Semester=' . $Semester . '&&PersonnelTypeCode=' . $PersonnelTypeCode . '&&PositionCode=' . $PositionCode . '&&ShowDetail='));
+        }
+    }
+
+    //Delete Data Form teacher_classroom
+    public function delete_teacher_classroom($TeacherID, $SchoolID, $EducationYear, $Semester, $PersonnelTypeCode, $PositionCode, $GradeLevelCode, $ClassRoom)
+    {
+        $this->forms_teacher->delete_teacher_classroom($TeacherID, $SchoolID, $GradeLevelCode, $ClassRoom);
+        $_SESSION['success'] = "ลบข้อมูลเรียบร้อย";
+        redirect(base_url('teacher-classroom?SchoolID=' . $SchoolID . '&&TeacherID=' . $TeacherID . '&&EducationYear=' . $EducationYear . '&&Semester=' . $Semester . '&&PersonnelTypeCode=' . $PersonnelTypeCode . '&&PositionCode=' . $PositionCode));
+    }
+
+    //update_teacher_classroom
+    public function update_teacher_classroom($TeacherID, $SchoolID, $EducationYear, $Semester, $PersonnelTypeCode, $PositionCode, $GradeLevelCode, $ClassRoom)
+    {
+        $this->forms_teacher->update_teacher_classroom($TeacherID, $SchoolID, $GradeLevelCode, $ClassRoom);
+        $_SESSION['success'] = "บันทึกข้อมูลเรียบร้อย";
+        redirect(base_url('teacher-classroom?SchoolID=' . $SchoolID . '&&TeacherID=' . $TeacherID . '&&EducationYear=' . $EducationYear . '&&Semester=' . $Semester . '&&PersonnelTypeCode=' . $PersonnelTypeCode . '&&PositionCode=' . $PositionCode . '&&ShowDetail='));
+    }
+
+    public function uploadfile_teacher()
+    {
+        if (isset($_FILES['FileTeacherUpload'])) {
+            $i = 0;
+            if (($handle = fopen($_FILES['FileTeacherUpload']['tmp_name'], "r")) !== FALSE) {
+                while (($DataTeacher = fgetcsv($handle, 1000, ",")) == TRUE) {
+                    $i++;
+                    if ($i > 1) {
+
+                        $data = [
+
+                            `TeacherID` => $DataTeacher[1] . $DataTeacher[0],
+                            `SchoolID` => $_POST['SchoolID'],
+                            `TeacherPersonalID` => $DataTeacher[0],
+                            `TeacherPersonalIDTypeCode` => $DataTeacher[1],
+                            `TeacherPassportNumber` => $DataTeacher[2],
+                            `TeacherPrefixCode` => $DataTeacher[1],
+                            `TeacherNameThai` => $DataTeacher[1],
+                            `TeacherNameEnglish` => $DataTeacher[1],
+                            `TeacherMiddleNameThai` => $DataTeacher[1],
+                            `TeacherMiddleNameEnglish` => $DataTeacher[1],
+                            `TeacherLastNameThai` => $DataTeacher[1],
+                            `TeacherLastNameEnglish` => $DataTeacher[1],
+                            `TeacherGenderCode` => $DataTeacher[1],
+                            `TeacherBirthDate` => $DataTeacher[1],
+                            `TeacherNationalityCode` => $DataTeacher[1],
+                            `TeacherRaceCode` => $DataTeacher[1],
+                            `TeacherReligionCode` => $DataTeacher[1],
+                            `TeacherBloodCode` => $DataTeacher[1],
+                            `TeacherOfficialAddressHouseRegisterID` => $DataTeacher[1],
+                            `TeacherOfficialAddressHouseNumber` => $DataTeacher[1],
+                            `TeacherOfficialAddressMoo` => $DataTeacher[1],
+                            `TeacherOfficialAddressStreet` => $DataTeacher[1],
+                            `TeacherOfficialAddressSoi` => $DataTeacher[1],
+                            `TeacherOfficialAddressTrok` => $DataTeacher[1],
+                            `TeacherOfficialAddressSubdistrictCode` => $DataTeacher[1],
+                            `TeacherOfficialAddressDistrictCode` => $DataTeacher[1],
+                            `TeacherOfficialAddressProvinceCode` => $DataTeacher[1],
+                            `TeacherOfficialAddressPostcode` => $DataTeacher[1],
+                            `TeacherOfficialAddressPhoneNumber` => $DataTeacher[1],
+                            `TeacherCurrentAddressHouseRegisterID` => $DataTeacher[1],
+                            `TeacherCurrentAddressHouseNumber` => $DataTeacher[1],
+                            `TeacherCurrentAddressMoo` => $DataTeacher[1],
+                            `TeacherCurrentAddressStreet` => $DataTeacher[1],
+                            `TeacherCurrentAddressSoi` => $DataTeacher[1],
+                            `TeacherCurrentAddressTrok` => $DataTeacher[1],
+                            `TeacherCurrentAddressSubdistrictCode` => $DataTeacher[1],
+                            `TeacherCurrentAddressDistrictCode` => $DataTeacher[1],
+                            `TeacherCurrentAddressProvinceCode` => $DataTeacher[1],
+                            `TeacherCurrentAddressPostcode` => $DataTeacher[1],
+                            `TeacherCurrentAddressPhoneNumber` => $DataTeacher[1],
+                            `TeacherEmail` => $DataTeacher[1],
+                            `MarriageStatusCode` => $DataTeacher[1],
+                            `SpousePersonalID` => $DataTeacher[1],
+                            `SpousePrefixCode` => $DataTeacher[1],
+                            `SpouseNameThai` => $DataTeacher[1],
+                            `SpouseNameEnglish` => $DataTeacher[1],
+                            `SpouseMiddleNameThai` => $DataTeacher[1],
+                            `SpouseMiddleNameEnglish` => $DataTeacher[1],
+                            `SpouseLastNameThai` => $DataTeacher[1],
+                            `SpouseLastNameEnglish` => $DataTeacher[1],
+                            `PersonnelStatusCode` => $DataTeacher[1],
+                            `EntryEducationLevelCode` => $DataTeacher[1],
+                            `EntryDegreeCode` => $DataTeacher[1],
+                            `EntryMajorCode` => $DataTeacher[1],
+                            `EntryProgramCode` => $DataTeacher[1],
+                            `PersonnelStartDate` => $DataTeacher[1],
+                            `PersonnelRetireDate` => $DataTeacher[1],
+                            `PersonnelTypeCode` => $DataTeacher[1],
+                            `PositionCode` => $DataTeacher[1],
+                            `PositionLevelCode` => $DataTeacher[1],
+                            `PositionStartDate` => $DataTeacher[1],
+                            `ContractNumber` => $DataTeacher[1],
+                            `ContractTimes` => $DataTeacher[1],
+                            `ContractTypeCode` => $DataTeacher[1],
+                            `ContractYear` => $DataTeacher[1],
+                            `ContractStartDate` => $DataTeacher[1],
+                            `ContractEndDate` => $DataTeacher[1],
+                            `SalaryTypeCode` => $DataTeacher[1],
+                            `CurrentSalary` => $DataTeacher[1],
+                            `AcademicSalary` => $DataTeacher[1],
+                            `CompensationSalary` => $DataTeacher[1],
+                            `EmolumentsSalary` => $DataTeacher[1],
+                            `TeacherQualificationCode` => $DataTeacher[1],
+                            `TeacherTalentCode` => $DataTeacher[1],
+
+                        ];
+
+                        $result = $this->db->insert('TEACHER', $data);
+                    }
+                }
+                fclose($handle);
+                $_SESSION['success'] = "อัปโหลดไฟล์ข้อมูลครูและบุคลากรเรียบร้อย";
+                redirect(base_url('school'));
+            }
+        }
+    }
 }

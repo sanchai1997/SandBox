@@ -69,6 +69,7 @@
             </div>
         </div>
     <?php } ?>
+
     <!-- Recent Sales -->
     <div class="col-12">
         <div class="card recent-sales overflow-auto">
@@ -121,11 +122,24 @@
                             foreach ($result->result() as $SCHOOL) {
                             ?>
                                 <tr>
-                                    <td class="page-content" style="text-align: center;"><img src="assets/school/img/<?= $SCHOOL->ImageSchool; ?>" alt="" width="100%"></td>
-                                    <td style="padding-top: 40px;"><?= $SCHOOL->SchoolID; ?></td>
-                                    <td style="padding-top: 40px;"><?= $SCHOOL->SchoolNameThai; ?></td>
-                                    <td style="padding-top: 40px;"><?= $SCHOOL->INNOVATION_AREA_NAME; ?></td>
-                                    <td style="padding-top: 35px; text-align: center;"><a href="?SchoolID=<?= $SCHOOL->SchoolID; ?>" class="btn btn-primary"><i class="bi bi-card-list"></i></a>
+                                    <?php if ($SCHOOL->ImageSchool != NULL) { ?>
+                                        <td class="page-content" style="text-align: center;">
+
+                                            <img src="assets/school/img/<?= $SCHOOL->ImageSchool; ?>" width="100%" height="100%" alt="">
+                                        </td>
+
+                                    <?php } else { ?>
+                                        <td style="padding-top: 40px; text-align: center;">-ไม่มีรูปภาพ- </td>
+                                    <?php  } ?>
+                                    <td <?php if ($SCHOOL->ImageSchool == NULL) { ?> style="padding-top: 30px;" <?php
+                                                                                                            } else { ?> style="padding-top: 40px;" <?php } ?>><?= $SCHOOL->SchoolID; ?></td>
+                                    <td <?php if ($SCHOOL->ImageSchool == NULL) { ?> style="padding-top: 30px;" <?php
+                                                                                                            } else { ?> style="padding-top: 40px;" <?php } ?>><?= $SCHOOL->SchoolNameThai; ?></td>
+                                    <td <?php if ($SCHOOL->ImageSchool == NULL) { ?> style="padding-top: 30px;" <?php
+                                                                                                            } else { ?> style="padding-top: 40px;" <?php } ?>><?= $SCHOOL->INNOVATION_AREA_NAME; ?></td>
+                                    <td <?php if ($SCHOOL->ImageSchool == NULL) { ?> style="padding-top: 25px; text-align: center;" <?php
+                                                                                                                                } else { ?> style="padding-top: 35px; text-align: center;" <?php } ?>>
+                                        <a href="?SchoolID=<?= $SCHOOL->SchoolID; ?>" class="btn btn-primary"><i class="bi bi-card-list"></i></a>
                                     </td>
                                 </tr>
                             <?php } ?>
@@ -252,7 +266,11 @@
                             foreach ($result->result() as $STUDENT) {
                             ?>
                                 <tr>
-                                    <td class="page-content" style="text-align: center;"><img src="assets/student/img/<?= $STUDENT->ImageStudent; ?>" alt="" width="100%" height="100%"></td>
+                                    <td class="page-content" style="text-align: center;">
+                                        <?php if ($STUDENT->ImageStudent != NULL) { ?>
+                                            <img src="assets/student/img/<?= $STUDENT->ImageStudent; ?>" alt="" width="100%" height="100%">
+                                        <?php } else { ?><img src="assets/img/ImgDefault.jpg" alt="" width="100%" height="100%"> <?php  } ?>
+                                    </td>
                                     <td style="padding-top: 40px;"><?= $STUDENT->StudentID; ?></td>
                                     <td style="padding-top: 40px;"><?= $STUDENT->PREFIX_NAME; ?></td>
                                     <td style="padding-top: 40px;"><?= $STUDENT->StudentNameThai; ?></td>
@@ -313,10 +331,10 @@
                                         </div>
                                     </div>
                                 <?php } else { ?>
-                                    <div class="col-2" style="padding-bottom: 8px; padding-left: 60px; padding-top: 60px;">
+                                    <div class="col-2" style="padding-bottom: 8px; padding-left: 60px; padding-top: 0px;">
                                         <div class="card">
                                             <h6 style="text-align: center; padding: 15px;">
-                                                - ไม่พบรูปภาพ -
+                                                <img style=" text-align: center; padding: 15px;" src="assets/img/ImgDefault.jpg" alt="" width="100%" style="padding-top: 20px;">
                                             </h6>
                                         </div>
                                     </div>
@@ -382,7 +400,7 @@
                                                 <div class="row">
                                                     <div class="col-4" style="text-align: left; padding-left: 25px; padding-bottom: 5px;">
                                                         <label style="padding-left: 25px;"> ประเภทบัตรประจำตัว: &nbsp;<?= $STUDENT_DETAIL->CITIZEN_ID_TYPE_NAME ?></label><br>
-                                                        <label style="padding-left: 25px;"> หมายเลขบัตร: &nbsp;<?= $STUDENT_DETAIL->StudentPersonalID ?></label><br>
+                                                        <label style="padding-left: 25px;"> หมายเลขบัตร: &nbsp;<?php echo base64_decode($STUDENT_DETAIL->StudentPersonalID); ?></label><br>
                                                         <label style="padding-left: 25px;"> เลขที่หนังสือเดินทาง: &nbsp;<?php if ($STUDENT_DETAIL->StudentPassportNumber == NULL) {
                                                                                                                             echo '-';
                                                                                                                         } else echo $STUDENT_DETAIL->StudentPassportNumber; ?></label><br>
