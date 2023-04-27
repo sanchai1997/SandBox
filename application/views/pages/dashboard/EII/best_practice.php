@@ -85,22 +85,7 @@
 
             <div class="card-body">
                 <div class="row">
-                    <div class="col">
-                        <h5 class="card-title">
-                            <div class="dropdown">
-                                <button class="btn btn-white dropdown-toggle" type="button" id="dropdownMenuButton1"
-                                    data-bs-toggle="dropdown" aria-expanded="false">
-                                    ประเภทข้อมูล
-                                </button>
-                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                                    <li><a class="dropdown-item"
-                                            href="<?php echo site_url('Fm_best_practice_das_p1?page=sh1') ?>">แนวปฏิบัติที่เป็นเลิศในการจัดการศึกษา</a>
-                                    </li>
-
-                                </ul>
-                            </div>
-                        </h5>
-                    </div>
+                    
                     <div class="col">
                         <h5 style="float: right; padding: 15px;" class="card-title"><a
                                 href="<?php echo site_url('BP_forms_p1?page=sh1') ?>"
