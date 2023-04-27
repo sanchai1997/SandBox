@@ -176,7 +176,9 @@
                                         ON LEARNING_TECHNOLOGY_MEDIA_CREATOR.CreatorPrefixCode = CLS_PREFIX.PREFIX_CODE  
                                         WHERE MediaID='" . $Id_ltm  . "' AND DeleteStatus = 0"); ?>
 
-                                <?php foreach ($resultc->result() as $showc) { ?>
+                                <?php foreach ($resultc->result() as $showc) { 
+                                     $CreatorPersonalID = base64_decode($showc->CreatorPersonalID);
+                                     ?>
                                 <div class="row">
                                     <div class="col">
 
@@ -208,7 +210,7 @@
                                                             </div>
                                                             <div class="col">
                                                                 <h6 class="fw-bold">หมายเลขบัตรประจำตัวผู้จัดทำ</h6>
-                                                                <p> <?php echo $showc->CreatorPersonalID; ?></p>
+                                                                <p> <?php echo  $CreatorPersonalID; ?></p>
 
                                                             </div>
                                                         </div>
@@ -468,7 +470,7 @@ WHERE MediaID='" . $Id_ltm . "'"); ?>
                             </td>
                             <td>
                                 <p>
-                                    <?php echo $showc->CreatorPersonalID; ?>
+                                    <?php echo  $CreatorPersonalID; ?>
                                 </p>
                             </td>
                             <td>

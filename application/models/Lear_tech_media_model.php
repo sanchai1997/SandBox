@@ -185,11 +185,12 @@ class Lear_tech_media_model extends CI_Model
 		// exit;
 
 		$CreatorPersonalID = $this->input->post('CreatorPersonalID');
+		$encodedCreatorPersonalID = base64_encode($CreatorPersonalID);
 		$MediaID = $this->input->post('MediaID');
 		if ($CreatorPersonalID == '') {
 			$data = array(
 				'MediaID' => $this->input->post('MediaID'),
-				'CreatorPersonalID' => $this->input->post('CreatorPersonalID'),
+				'CreatorPersonalID' => $encodedCreatorPersonalID,
 				'CreatorPersonalIDTypeCode' => $this->input->post('CreatorPersonalIDTypeCode'),
 				'CreatorPrefixCode' => $this->input->post('CreatorPrefixCode'),
 				'CreatorNameThai' => $this->input->post('CreatorNameThai'),
@@ -257,6 +258,7 @@ class Lear_tech_media_model extends CI_Model
 		// echo'</pre>';
 		// exit;
 		$CreatorPersonalID = $this->input->post('CreatorPersonalID');
+		$encodedCreatorPersonalID = base64_encode($CreatorPersonalID);
 		$MediaID = $this->input->post('MediaID');
 
 // นำค่า $id_name มาใช้ในการค้นหาข้อมูลในฐานข้อมูล
@@ -274,7 +276,7 @@ if ($num_chk <= 0 ) {
   // ไม่พบข้อมูลในฐานข้อมูล
   $data = array(
 	  'MediaID' => $this->input->post('MediaID'),
-	  'CreatorPersonalID' => $this->input->post('CreatorPersonalID'),
+	  'CreatorPersonalID' => $encodedCreatorPersonalID,
 	  'CreatorPersonalIDTypeCode' => $this->input->post('CreatorPersonalIDTypeCode'),
 	  'CreatorPrefixCode' => $this->input->post('CreatorPrefixCode'),
 	  'CreatorNameThai' => $this->input->post('CreatorNameThai'),
