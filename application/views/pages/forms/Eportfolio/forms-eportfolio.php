@@ -81,11 +81,11 @@
 
                 <div  class=" div_PROJECT"></div>
 
-                <input type="hidden" value="1" id="total_PROJECT">
+                <input type="hidden" value="1" id="total_PROJECT" name="total_PROJECT">
 
                 <div style="text-align: right; padding: 0px; ">
-                  <input type="button" onclick="add()" value="เพิ่มผลงาน" class="btn btn-success" >
-                  <input type="button" onclick="remove(eportfolio)" value="ลบผลงาน" class="btn btn-danger" >
+                  <input type="button" onclick="add_PROJECT()" value="เพิ่มผลงาน" class="btn btn-success" >
+                  <input type="button" onclick="remove_PROJECT(eportfolio)" value="ลบผลงาน" class="btn btn-danger" >
                 </div> 
 
                 <div class="col-md-16">
@@ -94,6 +94,15 @@
                         <input type="file" class="form-control" name="STUDENT_GOODNESS" id="STUDENT_GOODNESS" placeholder="ความดี">
                     </div>
                 </div>
+
+                <div  class=" div_GOODNESS"></div>
+
+                <input type="hidden" value="1" id="total_GOODNESS" name="total_GOODNESS">
+
+                <div style="text-align: right; padding: 0px; ">
+                  <input type="button" onclick="add_GOODNESS()" value="เพิ่มความดี " class="btn btn-success" >
+                  <input type="button" onclick="remove_GOODNESS(eportfolio)" value="ลบความดี" class="btn btn-danger" >
+                </div> 
 
 
                 <div class="col-md-16">
@@ -153,13 +162,13 @@
     </section>
 
 <script type="text/javascript">
-
-  function add(){
+////PROJECT
+  function add_PROJECT(){
     var new_PROJECT_no = parseInt($('#total_PROJECT').val())+1;
     var new_input= //"<input type='file' id='new_PROJECT"+new_PROJECT_no+"'>";
     "<div  class='col-md-16 div_PROJECT"+new_PROJECT_no+"'"+" style='padding-bottom: 1rem;'>" +
     "<div class='input-group div_PROJECT"+new_PROJECT_no+"'>"+
-                      "  <label class='input-group-text' >ผลงาน <font color='red'> *</font></label> " +
+                      "  <label class='input-group-text' >ผลงาน </label> " +
                       "  <input type='file' class='form-control' id='new_PROJECT"+new_PROJECT_no+"'"+" name='new_PROJECT"+new_PROJECT_no+"'"+  "placeholder='ผลงาน' > " +
                   "  </div> " +
                   "  </div> " ;
@@ -170,11 +179,36 @@
     return false;
   }
 
-  function remove(){
+  function remove_PROJECT(){
     var last_PROJECT_no = $('#total_PROJECT').val();
     if(last_PROJECT_no>1){
       $('.div_PROJECT'+last_PROJECT_no).remove();
       $('#total_PROJECT').val(last_PROJECT_no-1);
+    }
+    return false;
+  }
+
+//////GOODNESS
+  function add_GOODNESS(){
+    var new_GOODNESS_no = parseInt($('#total_GOODNESS').val())+1;
+    var new_input= "<div  class='col-md-16 div_GOODNESS"+new_GOODNESS_no+"'"+" style='padding-bottom: 1rem;'>" +
+    "<div class='input-group div_GOODNESS"+new_GOODNESS_no+"'>"+
+                      "  <label class='input-group-text' >ความดี </label> " +
+                      "  <input type='file' class='form-control' id='new_GOODNESS"+new_GOODNESS_no+"'"+" name='new_GOODNESS"+new_GOODNESS_no+"'"+  "placeholder='ความดี' > " +
+                  "  </div> " +
+                  "  </div> " ;
+                
+    
+    $('.div_GOODNESS').append(new_input);
+    $('#total_GOODNESS').val(new_GOODNESS_no)
+    return false;
+  }
+
+  function remove_GOODNESS(){
+    var last_GOODNESS_no = $('#total_GOODNESS').val();
+    if(last_GOODNESS_no>1){
+      $('.div_GOODNESS'+last_GOODNESS_no).remove();
+      $('#total_GOODNESS').val(last_GOODNESS_no-1);
     }
     return false;
   }
@@ -204,11 +238,11 @@
    }
    ///////////////
    if(frm.STUDENT_PROJECT.value==""){
-      alert("กรุณากรอกผลงาน")
+      alert("กรุณาแนบผลงาน")
       return false;
    }
    if(frm.STUDENT_GOODNESS.value==""){
-      alert("กรุณาความดี ")
+      alert("กรุณาแนบความดี ")
       return false;
    }
    /////
