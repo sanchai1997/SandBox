@@ -117,4 +117,19 @@ class Teacher extends CI_Controller
         $this->load->view('pages/dashboard/teacher/teacher-teaching', $data);
         $this->load->view('templates/footer', $data);
     }
+
+    public function teacher_classroom()
+    {
+
+        if (!file_exists(APPPATH . 'views/pages/dashboard/teacher/teacher-classroom.php')) {
+            // Whoops, we don't have a page for that!
+            show_404();
+        }
+
+        $data['title'] = 'teacher-classroom'; // Capitalize the first letter
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/sidebar', $data);
+        $this->load->view('pages/dashboard/teacher/teacher-classroom', $data);
+        $this->load->view('templates/footer', $data);
+    }
 }

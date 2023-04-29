@@ -17,9 +17,13 @@
                 <div class="card">
                     <div class="card-body">
                         <!-- Floating Labels Form -->
-                        <form class="row g-3" action="<?php echo base_url('update-school-main/' . $SCHOOL->SchoolID . '/' . $SCHOOL->ImageSchool); ?>" method="POST" id="School" enctype="multipart/form-data">
+                        <?php if ($SCHOOL->ImageSchool == NULL) {
+                            $ImgNull = 0;
+                        } else $ImgNull = 1; ?>
+                        <form class="row g-3" action="<?php echo base_url('update-school-main/' . $SCHOOL->SchoolID . '/' . $ImgNull); ?>" method="POST" id="School" enctype="multipart/form-data">
                             <div class="col-md-12">
                                 <h6 class="card-title"></h6>
+                                <input type="hidden" value="<?= $SCHOOL->ImageSchool ?>" name="ImageSchool">
                                 <div class="form-floating">
                                     <select class="form-select" name="InnovationAreaCode" id="InnovationAreaCode" aria-label="InnovationAreaCode">
                                         <?php

@@ -202,6 +202,8 @@ class Best_practice_model extends CI_Model
 		// echo'</pre>';
 		// exit;
 		$CreatorPersonalID = $this->input->post('CreatorPersonalID');
+		$encodedCreatorPersonalID = base64_encode($CreatorPersonalID);
+		
 		$BestPracticeID = $this->input->post('BestPracticeID');
 		if ($CreatorPersonalID == '') {
 			$data = array(
@@ -237,7 +239,7 @@ class Best_practice_model extends CI_Model
 				// ไม่พบข้อมูลในฐานข้อมูล
 				$data = array(
 					'BestPracticeID' => $this->input->post('BestPracticeID'),
-					'CreatorPersonalID' => $this->input->post('CreatorPersonalID'),
+					'CreatorPersonalID' => $encodedCreatorPersonalID,
 					'CreatorPersonalIDTypeCode' => $this->input->post('CreatorPersonalIDTypeCode'),
 					'CreatorPrefixCode' => $this->input->post('CreatorPrefixCode'),
 					'CreatorNameThai' => $this->input->post('CreatorNameThai'),
@@ -275,6 +277,7 @@ class Best_practice_model extends CI_Model
 		// exit;
 		// สร้างตัวแปร $id_name มาเก็บค่าไว้ก่อน
 		$CreatorPersonalID = $this->input->post('CreatorPersonalID');
+		$encodedCreatorPersonalID = base64_encode($CreatorPersonalID);
 		$BestPracticeID = $this->input->post('BestPracticeID');
 
 // นำค่า $id_name มาใช้ในการค้นหาข้อมูลในฐานข้อมูล
@@ -291,7 +294,7 @@ if ($num_chk <= 0 ) {
   // ไม่พบข้อมูลในฐานข้อมูล
   $data = array(
 	  'BestPracticeID' => $this->input->post('BestPracticeID'),
-	  'CreatorPersonalID' => $this->input->post('CreatorPersonalID'),
+	  'CreatorPersonalID' => $encodedCreatorPersonalID,
 	  'CreatorPersonalIDTypeCode' => $this->input->post('CreatorPersonalIDTypeCode'),
 	  'CreatorPrefixCode' => $this->input->post('CreatorPrefixCode'),
 	  'CreatorNameThai' => $this->input->post('CreatorNameThai'),

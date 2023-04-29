@@ -47,7 +47,7 @@ class Student_model extends CI_Model
             'ImageStudent' => $new_name,
             'StudentStatusCode' => $this->input->post('StudentStatusCode'),
             'StudentPersonalIDTypeCode' => $this->input->post('StudentPersonalIDTypeCode'),
-            'StudentPersonalID' => $this->input->post('StudentPersonalID'),
+            'StudentPersonalID' => base64_encode($this->input->post('StudentPersonalID')),
             'StudentPassportNumber' => $this->input->post('StudentPassportNumber'),
             'StudentPrefixCode' => $this->input->post('StudentPrefixCode'),
             'StudentNameThai' => $this->input->post('StudentNameThai'),
@@ -94,8 +94,9 @@ class Student_model extends CI_Model
 
         $data = [
 
-            'StudentReferenceID ' => $_POST['StudentPersonalIDTypeCode'] . $_POST['StudentPersonalID'],
-            'SchoolID ' => $SchoolID,
+
+            'StudentReferenceID' => $_POST['StudentPersonalIDTypeCode'] . $_POST['StudentPersonalID'],
+            'SchoolID' => $SchoolID,
             'SchoolAdmissionYear' => $this->input->post('SchoolAdmissionYear'),
             'CurrentEducationLevelAdmissionYear' => $this->input->post('CurrentEducationLevelAdmissionYear'),
             'EducationLevelCode' => $this->input->post('EducationLevelCode'),
@@ -106,7 +107,7 @@ class Student_model extends CI_Model
             'ImageStudent' => $new_name,
             'StudentStatusCode' => $this->input->post('StudentStatusCode'),
             'StudentPersonalIDTypeCode' => $this->input->post('StudentPersonalIDTypeCode'),
-            'StudentPersonalID' => $this->input->post('StudentPersonalID'),
+            'StudentPersonalID' => base64_encode($this->input->post('StudentPersonalID')),
             'StudentPassportNumber' => $this->input->post('StudentPassportNumber'),
             'StudentPrefixCode' => $this->input->post('StudentPrefixCode'),
             'StudentNameThai' => $this->input->post('StudentNameThai'),
@@ -132,49 +133,97 @@ class Student_model extends CI_Model
     public function update_student_main($StudentReferenceID, $SchoolID, $ImageStudent)
     {
 
+        if ($ImageStudent == 1) {
 
-        $config['upload_path']          = 'assets/student/img/';
-        $config['allowed_types']        = 'gif|jpg|png';
-        $config['max_size']             = 50000;
-        $config['max_width']            = 3402;
-        $config['max_height']           = 1417;
-        $config['file_name']            = $ImageStudent;
+            $config['upload_path']          = 'assets/student/img/';
+            $config['allowed_types']        = 'gif|jpg|png';
+            $config['max_size']             = 50000;
+            $config['max_width']            = 3402;
+            $config['max_height']           = 1417;
+            $config['file_name']            = $_POST['ImageStudent'];
 
-        copy($config['upload_path'] . $config['file_name'], $config['upload_path'] . 'logoold.jpg');
-        unlink($config['upload_path'] . $config['file_name']);
+            copy($config['upload_path'] . $config['file_name'], $config['upload_path'] . 'logoold.jpg');
+            unlink($config['upload_path'] . $config['file_name']);
 
-        $this->load->library('upload', $config);
+            $this->load->library('upload', $config);
 
-        if (!$this->upload->do_upload('ImageStudent')) {
-            copy($config['upload_path'] . 'logoold.jpg', $config['upload_path'] . $config['file_name']);
-            echo str_replace("</p>", "", str_replace("<p>", "", $this->upload->display_errors()));
-        } else {
-            unlink($config['upload_path'] . 'logoold.jpg');
-            echo 'อัพโหลดไฟล์เรียบร้อยแล้ว';
+            if (!$this->upload->do_upload('ImageStudent')) {
+                copy($config['upload_path'] . 'logoold.jpg', $config['upload_path'] . $config['file_name']);
+                echo str_replace("</p>", "", str_replace("<p>", "", $this->upload->display_errors()));
+            } else {
+                unlink($config['upload_path'] . 'logoold.jpg');
+                echo 'อัพโหลดไฟล์เรียบร้อยแล้ว';
+            }
+
+
+            $data = [
+
+                'SchoolAdmissionYear' => $this->input->post('SchoolAdmissionYear'),
+                'CurrentEducationLevelAdmissionYear' => $this->input->post('CurrentEducationLevelAdmissionYear'),
+                'EducationLevelCode' => $this->input->post('EducationLevelCode'),
+                'EducationYear' => $this->input->post('EducationYear'),
+                'Semester' => $this->input->post('Semester'),
+                'GradeLevelCode' => $this->input->post('GradeLevelCode'),
+                'Classroom' => $this->input->post('Classroom'),
+                'CurriculumID' => $this->input->post('CurriculumID'),
+                'StudentID' => $this->input->post('StudentID'),
+                'StudentStatusCode' => $this->input->post('StudentStatusCode'),
+                'StudentPrefixCode' => $this->input->post('StudentPrefixCode'),
+                'StudentNameThai' => $this->input->post('StudentNameThai'),
+                'StudentLastNameThai' => $this->input->post('StudentLastNameThai'),
+                'StudentNameEnglish' => $this->input->post('StudentNameEnglish'),
+                'StudentLastNameEnglish' => $this->input->post('StudentLastNameEnglish')
+
+            ];
+
+            $result = $this->db->where('StudentReferenceID', $StudentReferenceID)->where('SchoolID', $SchoolID)->update('STUDENT', $data);
+            return $result;
+        } elseif ($ImageStudent == 0) {
+
+            $config['upload_path']          = 'assets/student/img/';
+            $config['allowed_types']        = 'gif|jpg|png';
+            $config['max_size']             = 50000;
+            $config['max_width']            = 3402;
+            $config['max_height']           = 1417;
+            $config['file_name']            = 'ImageStudent_' . $StudentReferenceID;
+
+            $this->load->library('upload', $config);
+
+            if (!$this->upload->do_upload('ImageStudent')) {
+                copy($config['upload_path'] . 'logoold.jpg', $config['upload_path'] . $config['file_name']);
+                echo str_replace("</p>", "", str_replace("<p>", "", $this->upload->display_errors()));
+            } else {
+                echo 'อัพโหลดไฟล์เรียบร้อยแล้ว';
+            }
+
+            $type = substr($_FILES['ImageStudent']['name'], -4);
+            $new_name = 'ImageStudent_' . $StudentReferenceID . $type;
+
+
+            $data = [
+
+                'SchoolAdmissionYear' => $this->input->post('SchoolAdmissionYear'),
+                'CurrentEducationLevelAdmissionYear' => $this->input->post('CurrentEducationLevelAdmissionYear'),
+                'EducationLevelCode' => $this->input->post('EducationLevelCode'),
+                'EducationYear' => $this->input->post('EducationYear'),
+                'Semester' => $this->input->post('Semester'),
+                'GradeLevelCode' => $this->input->post('GradeLevelCode'),
+                'Classroom' => $this->input->post('Classroom'),
+                'CurriculumID' => $this->input->post('CurriculumID'),
+                'StudentID' => $this->input->post('StudentID'),
+                'ImageStudent' => $new_name,
+                'StudentStatusCode' => $this->input->post('StudentStatusCode'),
+                'StudentPrefixCode' => $this->input->post('StudentPrefixCode'),
+                'StudentNameThai' => $this->input->post('StudentNameThai'),
+                'StudentLastNameThai' => $this->input->post('StudentLastNameThai'),
+                'StudentNameEnglish' => $this->input->post('StudentNameEnglish'),
+                'StudentLastNameEnglish' => $this->input->post('StudentLastNameEnglish')
+
+            ];
+
+            $result = $this->db->where('StudentReferenceID', $StudentReferenceID)->where('SchoolID', $SchoolID)->update('STUDENT', $data);
+            return $result;
         }
-
-        $data = [
-
-            'SchoolAdmissionYear' => $this->input->post('SchoolAdmissionYear'),
-            'CurrentEducationLevelAdmissionYear' => $this->input->post('CurrentEducationLevelAdmissionYear'),
-            'EducationLevelCode' => $this->input->post('EducationLevelCode'),
-            'EducationYear' => $this->input->post('EducationYear'),
-            'Semester' => $this->input->post('Semester'),
-            'GradeLevelCode' => $this->input->post('GradeLevelCode'),
-            'Classroom' => $this->input->post('Classroom'),
-            'CurriculumID' => $this->input->post('CurriculumID'),
-            'StudentID' => $this->input->post('StudentID'),
-            'StudentStatusCode' => $this->input->post('StudentStatusCode'),
-            'StudentPrefixCode' => $this->input->post('StudentPrefixCode'),
-            'StudentNameThai' => $this->input->post('StudentNameThai'),
-            'StudentLastNameThai' => $this->input->post('StudentLastNameThai'),
-            'StudentNameEnglish' => $this->input->post('StudentNameEnglish'),
-            'StudentLastNameEnglish' => $this->input->post('StudentLastNameEnglish')
-
-        ];
-
-        $result = $this->db->where('StudentReferenceID', $StudentReferenceID)->where('SchoolID', $SchoolID)->update('STUDENT', $data);
-        return $result;
     }
 
 
@@ -185,7 +234,7 @@ class Student_model extends CI_Model
         $data = [
 
             'StudentPersonalIDTypeCode' => $this->input->post('StudentPersonalIDTypeCode'),
-            'StudentPersonalID' => $this->input->post('StudentPersonalID'),
+            'StudentPersonalID' => base64_encode($this->input->post('StudentPersonalID')),
             'StudentPassportNumber' => $this->input->post('StudentPassportNumber'),
             'StudentGenderCode' => $this->input->post('StudentGenderCode'),
             'StudentNationalityCode' => $this->input->post('StudentNationalityCode'),

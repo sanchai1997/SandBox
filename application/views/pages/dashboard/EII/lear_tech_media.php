@@ -156,9 +156,17 @@
                           } 
                         ?>
                                 <?php echo $sun_name; ?></td>
-                                <td style=""><?php echo $show->MediaID; ?></td>
-                            <td style=""><p style="width: 250px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;"><?php echo $show->MediaName; ?></p ></td>
-                            <td style=""><?php echo $shows->MEDIA_TYPE_NAME; ?></td>
+                            <td style=""><?php echo $show->MediaID; ?></td>
+                            <td style="">
+                                <p
+                                    style="width: 250px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
+                                    <?php echo $show->MediaName; ?></p>
+                            </td>
+                            <td style="">
+                                <p
+                                    style="width: 150px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
+                                    <?php echo $shows->MEDIA_TYPE_NAME; ?></p>
+                            </td>
                             <td style=""><?php echo DateThai($shows->PublishDate); ?></td>
                             <td scope="row " style="text-align: left;">
                                 <?php $resultc = $this->db->query("SELECT * FROM LEARNING_TECHNOLOGY_MEDIA_CREATOR 
@@ -168,20 +176,21 @@
                                         ON LEARNING_TECHNOLOGY_MEDIA_CREATOR.CreatorPrefixCode = CLS_PREFIX.PREFIX_CODE  
                                         WHERE MediaID='" . $Id_ltm  . "' AND DeleteStatus = 0"); ?>
 
-                                <?php foreach ($resultc->result() as $showc) { ?>
+                                <?php foreach ($resultc->result() as $showc) { 
+                                     $CreatorPersonalID = base64_decode($showc->CreatorPersonalID);
+                                     ?>
                                 <div class="row">
                                     <div class="col">
-                                        <p>
 
 
-                                            <!-- Button trigger modal -->
-                                            <button type="button" class="btn " data-bs-toggle="modal"
-                                                data-bs-target="#lear<?php echo $showc->Id_ltmc  ?>">
-                                                <?php echo $showc->PREFIX_NAME; ?>
-                                                <?php echo $showc->CreatorNameThai; ?>
-                                                <?php echo $showc->CreatorLastNameThai; ?>
-                                            </button>
-                                            <!-- Modal -->
+                                        <!-- Button trigger modal -->
+                                        <button type="button" class="btn " data-bs-toggle="modal"
+                                            data-bs-target="#lear<?php echo $showc->Id_ltmc  ?>">
+                                            <?php echo $showc->PREFIX_NAME; ?>
+                                            <?php echo $showc->CreatorNameThai; ?>
+                                            <?php echo $showc->CreatorLastNameThai; ?>
+                                        </button>
+                                        <!-- Modal -->
                                         <div class="modal fade" id="lear<?php echo $showc->Id_ltmc  ?>" tabindex="-1"
                                             aria-labelledby="exampleModalLabel" aria-hidden="true">
                                             <div class="modal-dialog modal-xl  modal-dialog-centered">
@@ -201,7 +210,7 @@
                                                             </div>
                                                             <div class="col">
                                                                 <h6 class="fw-bold">หมายเลขบัตรประจำตัวผู้จัดทำ</h6>
-                                                                <p> <?php echo $showc->CreatorPersonalID; ?></p>
+                                                                <p> <?php echo  $CreatorPersonalID; ?></p>
 
                                                             </div>
                                                         </div>
@@ -216,7 +225,9 @@
                                                             </div>
                                                             <div class="col">
                                                                 <h6 class="fw-bold">ชื่อ-นามสกุล(อังกฤษ)</h6>
-                                                                <p>    <?php echo $showc->CreatorNameEnglish; ?> <?php echo $showc->CreatorMiddleNameEnglish; ?> <?php echo $showc->CreatorLastNameEnglish; ?></p>
+                                                                <p> <?php echo $showc->CreatorNameEnglish; ?>
+                                                                    <?php echo $showc->CreatorMiddleNameEnglish; ?>
+                                                                    <?php echo $showc->CreatorLastNameEnglish; ?></p>
 
                                                             </div>
                                                         </div>
@@ -240,7 +251,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        </p>
+
                                     </div>
 
                                 </div>
@@ -351,10 +362,10 @@
                         ?>
                 <div class="row">
                     <div class="col">
-                        <!-- <h5 class="fw-bold">ข้อมูลเทคโนโลยีและสื่อการเรียนรู้</h5>
-                                    <p><?php echo $show->MediaID; ?></p> -->
                         <h5 class="fw-bold">ปีการศึกษา</h5>
                         <p><?php echo $show->EducationYear; ?></p>
+                    </div>
+                    <div class="col">
                         <h5 class="fw-bold">ภาคเรียน</h5>
                         <?php $sum = $show->Semester;
                          if ($sum== 1) {
@@ -370,32 +381,70 @@
                         <p>
                             <?php echo  $sun_name; ?>
                         </p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+
                         <h5 class="fw-bold">ชื่อเทคโนโลยีและสื่อการเรียนรู้</h5>
                         <p><?php echo $show->MediaName; ?></p>
+                    </div>
+                    <div class="col">
                         <h5 class="fw-bold">ประเภทเทคโนโลยีและสื่อการเรียนรู้</h5>
                         <p><?php echo $shows->MEDIA_TYPE_NAME; ?></p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <h5 class="fw-bold">รหัสข้อมูลเทคโนโลยีและสื่อการเรียนรู้</h5>
+                        <p><?php echo $show->MediaID; ?></p>
+                    </div>
+                    <div class="col">
                         <h5 class="fw-bold">ระดับการศึกษาที่นำไปใช้</h5>
                         <p><?php echo $shows->EDUCATION_LEVEL_NAME; ?></p>
-                        <h5 class="fw-bold">คำค้นหา</h5>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                    <h5 class="fw-bold">คำค้นหา</h5>
                         <p><?php echo $show->SearchKeyword; ?></p>
                     </div>
-
-
                     <div class="col">
-                        <h5 class="fw-bold">ประโยชน์ของเทคโนโลยีและสื่อการเรียนรู้</h5>
-                        <p><?php echo $show->MediaBenefit; ?></p>
-                        <div class="mb-3">
-                            <label for="exampleFormControlTextarea1" class="form-label"><h5 class="fw-bold">บทคัดย่อ</h5></label>
-                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" disabled
-                                style="width: 75%; background-color: #fff; border: 0px solid #ced4da; border-radius: 0.25rem;"><?php echo $show->Abstract; ?></textarea>
-                        </div>
-                        <h5 class="fw-bold">เอกสารแนบ</h5>
+                    <h5 class="fw-bold">แหล่งที่มา</h5>
+                        <p><?php echo $show->Source; ?></p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                    <h5 class="fw-bold">วันที่เผยแพร่</h5>
+                        <p><?php echo dateThai($show->PublishDate); ?></p>
+                    </div>
+                    <div class="col">
+                    <h5 class="fw-bold">เอกสารแนบ</h5>
                         <p><a href="<?php echo base_url('assets/EII/LEARNING_TECHNOLOGY_MEDIA') ?>/<?php echo $show->AttachmentURL; ?>"
                                 target="_blank"><i class="bi bi-file-earmark-text-fill"></i>รายละเอียดเอกสาร</a></p>
-                        <h5 class="fw-bold">แหล่งที่มา</h5>
-                        <p><?php echo $show->Source; ?></p>
-                        <h5 class="fw-bold">วันที่เผยแพร่</h5>
-                        <p><?php echo dateThai($show->PublishDate); ?></p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <div class="mb-3">
+                            <label for="exampleFormControlTextarea1" class="form-label">
+                                <h5 class="fw-bold">ประโยชน์ของเทคโนโลยีและสื่อการเรียนรู้</h5>
+                            </label>
+                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" disabled
+                                style="width:100%; background-color: #fff; border: 0px solid #ced4da; border-radius: 0.25rem;"><?php echo $show->MediaBenefit; ?></textarea>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <div class="mb-3">
+                            <label for="exampleFormControlTextarea1" class="form-label">
+                                <h5 class="fw-bold">บทคัดย่อ</h5>
+                            </label>
+                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" disabled
+                                style="width:100%; background-color: #fff; border: 0px solid #ced4da; border-radius: 0.25rem;"><?php echo $show->Abstract; ?></textarea>
+                        </div>
                     </div>
                 </div>
 
@@ -421,16 +470,20 @@ WHERE MediaID='" . $Id_ltm . "'"); ?>
                             </td>
                             <td>
                                 <p>
-                                    <?php echo $showc->CreatorPersonalID; ?>
+                                    <?php echo  $CreatorPersonalID; ?>
                                 </p>
                             </td>
                             <td>
-                                    <p>
-                                        <?php echo $showc->PREFIX_NAME; ?> <?php echo $showc->CreatorNameThai; ?> <?php echo $showc->CreatorMiddleNameThai; ?> <?php echo $showc->CreatorLastNameThai; ?>
+                                <p>
+                                    <?php echo $showc->PREFIX_NAME; ?> <?php echo $showc->CreatorNameThai; ?>
+                                    <?php echo $showc->CreatorMiddleNameThai; ?>
+                                    <?php echo $showc->CreatorLastNameThai; ?>
                                     <br>
-                                        (<?php echo $showc->CreatorNameEnglish; ?> <?php echo $showc->CreatorMiddleNameEnglish; ?> <?php echo $showc->CreatorLastNameEnglish; ?>)
-                                    </p>
-                                </td>
+                                    (<?php echo $showc->CreatorNameEnglish; ?>
+                                    <?php echo $showc->CreatorMiddleNameEnglish; ?>
+                                    <?php echo $showc->CreatorLastNameEnglish; ?>)
+                                </p>
+                            </td>
                             <td style="text-align: center;">
                                 <p>
                                     <?php echo $showc->ParticipantRatio; ?>

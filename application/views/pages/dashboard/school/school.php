@@ -9,21 +9,31 @@
         height: 100%;
     }
 </style>
+<?php
+if (!empty($_SESSION['CountUploadSchool'])) {
+    unset($_SESSION['CountUploadSchool']);
+    unset($_SESSION['UploadSchoolDetail']);
+    unset($_SESSION['StatusUpload']);
+}
+?>
 <main id="main" class="main">
 
     <div class="pagetitle">
         <div class="row">
             <div class="col-6">
                 <?php if (!isset($_GET['SchoolID'])) { ?>
-                    <h1>ข้อมูลสถานศึกษา</h1>
+                    <h1>ข้อมูลสถานศึกษา
+
+                    </h1>
                 <?php } ?>
+
             </div>
             <div class="col-6" style="padding-right: 25px;">
+
             </div>
         </div>
     </div>
 
-    <!-- End Page Title -->
     <?php if (!empty($_SESSION['success'])) { ?>
         <script>
             setTimeout(function() {
@@ -60,6 +70,24 @@
             </div>
         </div>
     <?php } ?>
+    <?php if (!empty($_SESSION['warning'])) { ?>
+        <script>
+            setTimeout(function() {
+                document.getElementById('myAlert').remove();
+            }, 4000); // นับถอยหลังให้แสดง 5 วินาที (5000 มิลลิวินาที)
+        </script>
+        <div style="position: relative;">
+            <div class="alert alert-warning" id="myAlert" style="position: absolute; top: 0; left: 0; right: 0; z-index: 1;">
+                <strong>
+                    <?php
+                    echo '<i class="bi bi-exclamation-triangle-fill"></i> ' . $_SESSION['warning'];
+                    unset($_SESSION['warning']);
+                    ?>
+                </strong>
+
+            </div>
+        </div>
+    <?php } ?>
     <!-- Recent Sales -->
     <div class="col-12">
         <div class="card recent-sales overflow-auto">
@@ -80,9 +108,270 @@
                                             }
                                         } ?>
                                     </button>&nbsp;
-                                    <a href="" class="btn btn-success">อัปโหลดสถานศึกษา</a>&nbsp;
-                                    <a href="" class="btn btn-success">อัปโหลดนักเรียน</a>&nbsp;
-                                    <a href="" class="btn btn-success">อัปโหลดครูและบุคลากร</a>
+                                    <a class="btn btn-success" data-bs-toggle="modal" data-bs-target="#SchoolModel"><i class="bi bi-file-earmark-arrow-up"></i> อัปโหลดสถานศึกษา</a>&nbsp;
+
+                                    <!-- Modal -->
+                                    <div class="modal fade" id="SchoolModel" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                                        <div class="modal-dialog modal-dialog-centered modal-lg">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="staticBackdropLabel"><i class="bi bi-file-earmark-arrow-up"></i> อัปโหลดสถานศึกษา</h5>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <form action="<?php echo base_url('uploadfile-school'); ?>" method="POST" id="UploadSchool" enctype="multipart/form-data">
+                                                        <div class="col-md-12" style="padding-bottom: 15px;">
+                                                            <div class="row">
+                                                                <div class="col-6">
+                                                                    <label>คู่มือขั้นตอนการอัปโหลด : &nbsp;</label>
+                                                                    <a href="assets/school/GuideUpload.pdf" class="btn btn-info" target="_blank"><i class="bi bi-file-earmark-text"></i> รายละเอียด</a>
+                                                                </div>
+                                                                <div class="col-6">
+                                                                    <label>ฟอร์มกรอกข้อมูล : &nbsp;</label>
+                                                                    <a href="assets/school/FormsSchool.xlsx" class="btn btn-success" download target="_blank"><i class="bi bi-file-earmark-arrow-down"></i> ดาวน์โหลด</a>
+                                                                </div>
+
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-12">
+                                                            <div class="input-group">
+                                                                <label class="input-group-text" for="inputGroupFile01">แนบไฟล์ .CSV</label>
+                                                                <input type="file" class="form-control" name="FileSchoolUpload" id="FileSchoolUpload" placeholder="เอกสารแนบไฟล์" required>
+                                                            </div>
+                                                        </div>
+                                                        <script type="text/javascript">
+                                                            function check(frm) {
+                                                                if (!frm.FileSchoolUpload.value == "") {
+                                                                    var fty = new Array(".csv"); // ประเภทไฟล์ที่อนุญาตให้อัพโหลด   
+                                                                    var a = frm.FileSchoolUpload.value; //กำหนดค่าของไฟล์ใหกับตัวแปร a   
+                                                                    var permiss = 0; // เงื่อนไขไฟล์อนุญาต
+                                                                    a = a.toLowerCase();
+                                                                    if (a != "") {
+                                                                        for (i = 0; i < fty.length; i++) { // วน Loop ตรวจสอบไฟล์ที่อนุญาต   
+                                                                            if (a.lastIndexOf(fty[i]) >= 0) { // เงื่อนไขไฟล์ที่อนุญาต   
+                                                                                permiss = 1;
+                                                                                break;
+                                                                            } else {
+                                                                                continue;
+                                                                            }
+                                                                        }
+                                                                        if (permiss == 0) {
+                                                                            alert("กรุณาอัพโหลดไฟล์ได้เฉพาะไฟล์ csv");
+                                                                            return false;
+                                                                        }
+                                                                    }
+                                                                }
+                                                            }
+                                                        </script>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="submit" class="btn btn-primary" onclick="return check(UploadSchool)">อัปโหลด</button>
+                                                    </form>
+                                                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">ยกเลิก</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <a data-bs-toggle="modal" data-bs-target="#StudentModel" class="btn btn-success"><i class="bi bi-file-earmark-arrow-up"></i> อัปโหลดนักเรียน</a>&nbsp;
+
+                                    <!-- Modal -->
+                                    <div class="modal fade" id="StudentModel" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                                        <div class="modal-dialog modal-dialog-centered modal-lg">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="staticBackdropLabel"><i class="bi bi-file-earmark-arrow-up"></i> อัปโหลดนักเรียน</h5>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <form action="<?php echo base_url('uploadfile-student'); ?>" method="POST" id="UploadStudent" enctype="multipart/form-data">
+                                                        <div class="col-md-12" style="padding-bottom: 15px;">
+                                                            <div class="row">
+                                                                <div class="col-6">
+                                                                    <label>คู่มือขั้นตอนการอัปโหลด : &nbsp;</label>
+                                                                    <a href="assets/school/GuideUpload.pdf" class="btn btn-info" target="_blank"><i class="bi bi-file-earmark-text"></i> รายละเอียด</a>
+                                                                </div>
+                                                                <div class="col-6">
+                                                                    <label>ฟอร์มกรอกข้อมูล : &nbsp;</label>
+                                                                    <a href="assets/school/FormsSchool.xlsx" class="btn btn-success" download target="_blank"><i class="bi bi-file-earmark-arrow-down"></i> ดาวน์โหลด</a>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row" style="padding-bottom: 15px;">
+                                                            <div class="col-md-6">
+                                                                <div class="form-floating">
+                                                                    <select class="form-select" name="SchoolID" id="SchoolID" aria-label="SchoolID" required>
+                                                                        <option value="" selected>เลือก</option>
+
+                                                                        <?php
+                                                                        $result = $this->db->query('SELECT * FROM SCHOOL');
+
+                                                                        foreach ($result->result() as $SCHOOL) {
+                                                                        ?>
+                                                                            <option value="<?= $SCHOOL->SchoolID; ?>"><?= $SCHOOL->SchoolNameThai; ?></option>
+                                                                        <?php
+                                                                        }
+                                                                        ?>
+                                                                    </select>
+                                                                    <label for="EducationLevelCode">สถานศึกษา <font color="red"> *</font></label>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-3">
+                                                                <div class="form-floating">
+                                                                    <input type="text" class="form-control" minlength="4" maxlength="4" name="EducationYear" id="EducationYear" value="<?= date('Y') + 543; ?>" required>
+                                                                    <label for="EducationYear">ปีการศึกษา <font color="red"> *</font></label>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-3">
+                                                                <div class="form-floating">
+                                                                    <input type="text" class="form-control" minlength="1" maxlength="1" name="Semester" id="Semester" value="1" required>
+                                                                    <label for="Semester">ภาคเรียน <font color="red"> *</font></label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-12">
+                                                            <div class="input-group">
+                                                                <label class="input-group-text" for="inputGroupFile01">แนบไฟล์</label>
+                                                                <input type="file" class="form-control" name="FileStudentUpload" id="FileStudentUpload" placeholder="เอกสารแนบไฟล์" required>
+                                                            </div>
+                                                        </div>
+                                                        <script type="text/javascript">
+                                                            function check(frm) {
+
+                                                                var Year = /^[0-9]{4,4}$/;
+                                                                if (frm.EducationYear.value == "") {
+                                                                    alert("กรุณากรอกปีการศึกษา");
+                                                                    return false;
+                                                                } else if (!frm.EducationYear.value.match(Year)) {
+                                                                    alert("กรุณากรอกปีการศึกษาให้ครบ 4 หลัก");
+                                                                    frm.EducationYear.value = "";
+                                                                    return false;
+                                                                }
+
+                                                                if (frm.Semester.value == "") {
+                                                                    alert("กรุณากรอกภาคเรียน");
+                                                                    return false;
+                                                                }
+
+                                                                if (frm.SchoolID.value == "") {
+                                                                    alert("กรุณาเลือกสถานศึกษา");
+                                                                    return false;
+                                                                }
+
+                                                                if (!frm.FileTeacherUpload.value == "") {
+                                                                    var fty = new Array(".csv"); // ประเภทไฟล์ที่อนุญาตให้อัพโหลด   
+                                                                    var a = frm.FileTeacherUpload.value; //กำหนดค่าของไฟล์ใหกับตัวแปร a   
+                                                                    var permiss = 0; // เงื่อนไขไฟล์อนุญาต
+                                                                    a = a.toLowerCase();
+                                                                    if (a != "") {
+                                                                        for (i = 0; i < fty.length; i++) { // วน Loop ตรวจสอบไฟล์ที่อนุญาต   
+                                                                            if (a.lastIndexOf(fty[i]) >= 0) { // เงื่อนไขไฟล์ที่อนุญาต   
+                                                                                permiss = 1;
+                                                                                break;
+                                                                            } else {
+                                                                                continue;
+                                                                            }
+                                                                        }
+                                                                        if (permiss == 0) {
+                                                                            alert("กรุณาอัพโหลดไฟล์ได้เฉพาะไฟล์ csv");
+                                                                            return false;
+                                                                        }
+                                                                    }
+                                                                }
+                                                            }
+                                                        </script>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="submit" class="btn btn-primary" onclick="return check(UploadTeacher)">อัปโหลด</button>
+                                                    </form>
+                                                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">ยกเลิก</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <a data-bs-toggle="modal" data-bs-target="#TeacherModel" class="btn btn-success"><i class="bi bi-file-earmark-arrow-up"></i> อัปโหลดครูและบุคลากร</a>
+                                    <!-- Modal -->
+                                    <div class="modal fade" id="TeacherModel" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                                        <div class="modal-dialog modal-dialog-centered modal-lg">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="staticBackdropLabel"><i class="bi bi-file-earmark-arrow-up"></i> อัปโหลดครูและบุคลากร</h5>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <form action="<?php echo base_url('uploadfile-teacher'); ?>" method="POST" id="UploadTeacher" enctype="multipart/form-data">
+                                                        <div class="col-md-12" style="padding-bottom: 15px;">
+                                                            <div class="row">
+                                                                <div class="col-6">
+                                                                    <label>ฟอร์มกรอกข้อมูล : &nbsp;</label>
+                                                                    <a href="assets/school/FormsTeacher.csv" class="btn btn-success" download target="_blank"><i class="bi bi-file-earmark-arrow-down"></i> ดาวน์โหลด</a>
+                                                                </div>
+                                                                <div class="col-6">
+                                                                    <label>เอกสารอ้างอิงใช้กรอกข้อมูล : &nbsp;</label>
+                                                                    <a href="assets/school/CLS_Teacher.xlsx" class="btn btn-success" download target="_blank"><i class="bi bi-file-earmark-arrow-down"></i> ดาวน์โหลด</a>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row" style="padding-bottom: 15px;">
+                                                            <div class="col-md-12">
+                                                                <div class="form-floating">
+                                                                    <select class="form-select" name="SchoolID" id="SchoolID" aria-label="SchoolID" required>
+                                                                        <option value="" selected>เลือก</option>
+
+                                                                        <?php
+                                                                        $result = $this->db->query('SELECT * FROM SCHOOL');
+
+                                                                        foreach ($result->result() as $SCHOOL) {
+                                                                        ?>
+                                                                            <option value="<?= $SCHOOL->SchoolID; ?>"><?= $SCHOOL->SchoolNameThai; ?></option>
+                                                                        <?php
+                                                                        }
+                                                                        ?>
+                                                                    </select>
+                                                                    <label for="EducationLevelCode">สถานศึกษา <font color="red"> *</font></label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-12">
+                                                            <div class="input-group">
+                                                                <label class="input-group-text" for="inputGroupFile01">แนบไฟล์</label>
+                                                                <input type="file" class="form-control" name="FileTeacherUpload" id="FileTeacherUpload" placeholder="เอกสารแนบไฟล์" required>
+                                                            </div>
+                                                        </div>
+                                                        <script type="text/javascript">
+                                                            function check(frm) {
+                                                                if (!frm.FileTeacherUpload.value == "") {
+                                                                    var fty = new Array(".csv"); // ประเภทไฟล์ที่อนุญาตให้อัพโหลด   
+                                                                    var a = frm.FileTeacherUpload.value; //กำหนดค่าของไฟล์ใหกับตัวแปร a   
+                                                                    var permiss = 0; // เงื่อนไขไฟล์อนุญาต
+                                                                    a = a.toLowerCase();
+                                                                    if (a != "") {
+                                                                        for (i = 0; i < fty.length; i++) { // วน Loop ตรวจสอบไฟล์ที่อนุญาต   
+                                                                            if (a.lastIndexOf(fty[i]) >= 0) { // เงื่อนไขไฟล์ที่อนุญาต   
+                                                                                permiss = 1;
+                                                                                break;
+                                                                            } else {
+                                                                                continue;
+                                                                            }
+                                                                        }
+                                                                        if (permiss == 0) {
+                                                                            alert("กรุณาอัพโหลดไฟล์ได้เฉพาะไฟล์ csv");
+                                                                            return false;
+                                                                        }
+                                                                    }
+                                                                }
+                                                            }
+                                                        </script>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="submit" class="btn btn-primary" onclick="return check(UploadTeacher)">อัปโหลด</button>
+                                                    </form>
+                                                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">ยกเลิก</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                                         <?php
                                         $result = $this->db->query('SELECT * FROM SCHOOL WHERE DeleteStatus = 0');
@@ -119,7 +408,15 @@
                             foreach ($result->result() as $SCHOOL) {
                             ?>
                                 <tr>
-                                    <td class="page-content" style="text-align: center;"><img src="assets/school/img/<?= $SCHOOL->ImageSchool; ?>" alt=""></td>
+                                    <?php if ($SCHOOL->ImageSchool != NULL) { ?>
+                                        <td class="page-content" style="text-align: center;">
+
+                                            <img src="assets/school/img/<?= $SCHOOL->ImageSchool; ?>" width="100%" height="100%" alt="">
+                                        </td>
+
+                                    <?php } else { ?>
+                                        <td style="padding-top: 40px; padding-bottom: 40px; text-align: center;">-ไม่มีรูปภาพ- </td>
+                                    <?php  } ?>
                                     <td style="padding-top: 40px;"><?= $SCHOOL->SchoolID; ?></td>
                                     <td style="padding-top: 40px;"><?= $SCHOOL->SchoolNameThai; ?></td>
                                     <td style="padding-top: 40px;"><?= $SCHOOL->INNOVATION_AREA_NAME; ?></td>
@@ -129,7 +426,6 @@
                                     <td style="padding-top: 35px; text-align: center;">
                                         <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#Delete<?= $SCHOOL->SchoolID; ?>"><i class=" bi bi-trash"></i></button>
                                     </td>
-
                                 </tr>
                             <?php } ?>
 
@@ -183,7 +479,7 @@ WHERE SCHOOL.SchoolID = ' . $_GET['SchoolID'] . '
                                 <div class="col-2" style="padding-bottom: 8px; padding-left: 60px; padding-top: 60px;">
                                     <div class="card">
                                         <h6 style="text-align: center; padding: 15px;">
-                                            - ไม่พบรูปภาพ -
+                                            - ไม่มีรูปภาพ -
                                         </h6>
                                     </div>
                                 </div>
@@ -296,7 +592,7 @@ WHERE SCHOOL.SchoolID = ' . $_GET['SchoolID'] . '
                                                 echo '-';
                                             } else {
                                             ?>
-                                                <a href="<?= $SCHOOL_DETAIL->SchoolMapURL ?>" target="_blank" class="btn  btn-light"><i class="bi bi-geo-alt"></i> ลิ้งแผนที่</a>
+                                                <a href="<?= $SCHOOL_DETAIL->SchoolMapURL ?>" target="_blank" class="btn btn-sm btn-light"><i class="bi bi-geo-alt"></i> แสดงตำแหน่ง</a>
                                             <?php
                                             } ?>
                                         </label><br>
@@ -353,7 +649,7 @@ WHERE SCHOOL.SchoolID = ' . $_GET['SchoolID'] . '
                                                         echo '-';
                                                     } else {
                                                     ?>
-                                                        <a href="<?= $SCHOOL_DETAIL->SchoolWebsiteURL ?>" target="_blank" class="btn btn-light"><i class="bi bi-browser-edge"></i> ลิ้งเว็บไซด์</a>
+                                                        <a href="<?= $SCHOOL_DETAIL->SchoolWebsiteURL ?>" target="_blank" class="btn btn-sm btn-light"><i class="bi bi-browser-edge"></i> ลิ้งเว็บไซด์</a>
                                                     <?php
                                                     } ?>
                                                 </label>
@@ -527,9 +823,9 @@ WHERE SCHOOL.SchoolID = ' . $_GET['SchoolID'] . '
                                 <div class=" card">
                                     <div class="card-body">
                                         <h5 class="card-title">ข้อมูลรางวัล
-                                            <a style="float: right;" href="school-award?SchoolID=<?= $SCHOOL_DETAIL->SchoolID; ?>" class="btn btn-sm btn-warning"><i class="bi bi-pencil-square"></i></a>
+                                            <a style="float: right;" href="school-award?SchoolID=<?= $SCHOOL_DETAIL->SchoolID; ?>" class="btn btn-sm btn-info"><i class="bi bi-eye-fill"></i></a>
                                         </h5>
-                                        <table class="table">
+                                        <table class="table table-bordered">
                                             <thead>
                                                 <tr>
                                                     <td class="col-2" scope="col">ปีที่ได้รับรางวัล</td>
@@ -574,9 +870,9 @@ WHERE SCHOOL.SchoolID = ' . $_GET['SchoolID'] . '
                                 <div class=" card">
                                     <div class="card-body">
                                         <h5 class="card-title">ข้อมูลห้องเรียน
-                                            <a style="float: right;" href="school-classroom?SchoolID=<?= $SCHOOL_DETAIL->SchoolID; ?>" class="btn btn-sm btn-warning"><i class="bi bi-pencil-square"></i></a>
+                                            <a style="float: right;" href="school-classroom?SchoolID=<?= $SCHOOL_DETAIL->SchoolID; ?>" class="btn btn-sm btn-info"><i class="bi bi-eye-fill"></i></a>
                                         </h5>
-                                        <table class="table">
+                                        <table class="table table-bordered">
                                             <thead>
                                                 <tr>
                                                     <td scope="col">ชื่อระดับชั้น</td>
@@ -617,9 +913,9 @@ WHERE SCHOOL.SchoolID = ' . $_GET['SchoolID'] . '
                                 <div class=" card">
                                     <div class="card-body">
                                         <h5 class="card-title">ข้อมูลอาคาร
-                                            <a style="float: right;" href="school-building?SchoolID=<?= $SCHOOL_DETAIL->SchoolID; ?>" class="btn btn-sm btn-warning"><i class="bi bi-pencil-square"></i></a>
+                                            <a style="float: right;" href="school-building?SchoolID=<?= $SCHOOL_DETAIL->SchoolID; ?>" class="btn btn-sm btn-info"><i class="bi bi-eye-fill"></i></a>
                                         </h5>
-                                        <table class="table">
+                                        <table class="table table-bordered">
                                             <thead>
                                                 <tr>
                                                     <td class="col-4" scope="col">ชื่ออาคาร</td>

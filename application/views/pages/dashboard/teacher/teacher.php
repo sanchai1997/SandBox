@@ -386,7 +386,7 @@
                                                 <div class="row">
                                                     <div class="col-4" style="text-align: left; padding-left: 25px; padding-bottom: 5px;">
                                                         <label style="padding-left: 25px;"> ประเภทบัตรประจำตัว: &nbsp;<?= $TEACHER_DETAIL->CITIZEN_ID_TYPE_NAME ?></label><br>
-                                                        <label style="padding-left: 25px;"> หมายเลขบัตร: &nbsp;<?= $TEACHER_DETAIL->TeacherPersonalID ?></label><br>
+                                                        <label style="padding-left: 25px;"> หมายเลขบัตร: &nbsp;<?= base64_decode($TEACHER_DETAIL->TeacherPersonalID); ?></label><br>
                                                         <label style="padding-left: 25px;"> เลขที่หนังสือเดินทาง: &nbsp;<?php if ($TEACHER_DETAIL->TeacherPassportNumber == NULL) {
                                                                                                                             echo '-';
                                                                                                                         } else echo $TEACHER_DETAIL->TeacherPassportNumber; ?></label><br>
@@ -434,8 +434,43 @@
                                                                 <label style="padding-left: 25px;"> ลายเซ็น : &nbsp;<?php if ($TEACHER_DETAIL->Signature == NULL) {
                                                                                                                         echo '-';
                                                                                                                     } else { ?>
-                                                                    <a href="assets/teacher/signature/<?= $TEACHER_DETAIL->Signature; ?>" target="_blank" class="btn btn-sm btn-success"><i class="bi bi-vector-pen"></i> แสดงข้อมูล</a> <?php } ?> </label>
+                                                                    <button type="button" class="btn btn-sm btn-light" data-toggle="modal" data-target="#Signature"><i class="bi bi-vector-pen"></i> แสดงข้อมูล</button> <?php } ?> </label>
 
+                                                                <script language="JavaScript">
+                                                                    var isNS = (navigator.appName == "Netscape") ? 1 : 0;
+
+                                                                    if (navigator.appName == "Netscape") document.captureEvents(Event.MOUSEDOWN || Event.MOUSEUP);
+
+                                                                    function mischandler() {
+                                                                        return false;
+                                                                    }
+
+                                                                    function mousehandler(e) {
+                                                                        var myevent = (isNS) ? e : event;
+                                                                        var eventbutton = (isNS) ? myevent.which : myevent.button;
+                                                                        if ((eventbutton == 2) || (eventbutton == 3)) return false;
+                                                                    }
+                                                                    document.oncontextmenu = mischandler;
+                                                                    document.onmousedown = mousehandler;
+                                                                    document.onmouseup = mousehandler;
+                                                                </script>
+
+                                                                <!-- Modal -->
+                                                                <div class="modal fade" id="Signature" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                                                                    <div class="modal-dialog modal-dialog-centered" role="document">
+                                                                        <div class="modal-content">
+                                                                            <div class="modal-header">
+                                                                                <h5 class="modal-title" id="exampleModalLongTitle"><i class="bi bi-vector-pen"></i> ลายเซ็น</h5>
+                                                                            </div>
+                                                                            <div class="modal-body">
+                                                                                <center><img src="assets /teacher/signature/<?= $TEACHER_DETAIL->Signature; ?>" alt="" width="50%"></center>
+                                                                            </div>
+                                                                            <div class="modal-footer">
+                                                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">ปิด</button>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -835,14 +870,74 @@
                                                 </div>
                                             </div>
                                         </div>
+                                        <div class="card">
+                                            <div class="card-body">
+                                                <div class="row">
+                                                    <div class="col-12">
+                                                        <h5 style="text-align: left; padding-left: 25px; padding-top: 25px;" class="card-title">
+                                                            ข้อมูลครูประจำชั้นเรียน
+                                                            <a style="float: right;" href="teacher-classroom?SchoolID=<?= $TEACHER_DETAIL->SchoolID; ?>&&TeacherID=<?= $TEACHER_DETAIL->TeacherID ?>&&EducationYear=<?= $TEACHER_DETAIL->EducationYear; ?>&&Semester=<?= $TEACHER_DETAIL->Semester; ?>&&PersonnelTypeCode=<?= $TEACHER_DETAIL->PersonnelTypeCode; ?>&&PositionCode=<?= $TEACHER_DETAIL->PositionCode; ?>" class="btn btn-sm btn-info"><i class="bi bi-eye-fill"></i></a>
+                                                        </h5>
+                                                        <div class="col-12" style="text-align: left; padding-left: 25px; padding-bottom: 5px;">
+                                                            <table class="table table-bordered">
+                                                                <thead>
+                                                                    <tr>
+                                                                        <td class="col-2" scope="col">ชั้นปี</td>
+                                                                        <td class="col-2" scope="col">ห้องเรียน</td>
+                                                                    </tr>
+                                                                </thead>
+                                                                <tbody>
+                                                                    <?php
+                                                                    $result = $this->db->query('SELECT * 
+                                                                FROM TEACHER_CLASSROOM
+                                                                INNER JOIN CLS_GRADE_LEVEL ON TEACHER_CLASSROOM.GradeLevelcode = CLS_GRADE_LEVEL.GRADE_LEVEL_CODE
+                                                                WHERE DeleteStatus = 0 AND SchoolID = ' . $TEACHER_DETAIL->SchoolID . ' AND TeacherID = "' . $TEACHER_DETAIL->TeacherID . '"
+                                                                ');
+                                                                    if ($result->result() != TRUE) {
+                                                                    ?>
+                                                                        <tr>
+                                                                            <td style="text-align: center;" colspan="3">- ไม่พบข้อมูล -</td>
+                                                                        </tr>
+                                                                        <?php
+                                                                    } else {
+                                                                        foreach ($result->result() as $TEACHER_CLASSROOM) {
 
+                                                                        ?>
+
+                                                                            <tr>
+                                                                                <td>
+                                                                                    <?php if ($TEACHER_CLASSROOM->GRADE_LEVEL_NAME == "") {
+                                                                                        echo '-';
+                                                                                    } else {
+                                                                                        echo $TEACHER_CLASSROOM->GRADE_LEVEL_NAME;
+                                                                                    } ?>
+                                                                                </td>
+                                                                                <td>
+                                                                                    <?php if ($TEACHER_CLASSROOM->ClassRoom == "") {
+                                                                                        echo '-';
+                                                                                    } else {
+                                                                                        echo $TEACHER_CLASSROOM->ClassRoom;
+                                                                                    } ?>
+                                                                                </td>
+                                                                            </tr>
+                                                                    <?php
+                                                                        }
+                                                                    }
+                                                                    ?>
+                                                                </tbody>
+                                                            </table>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                         <div class="card">
                                             <div class="card-body">
                                                 <div class="row">
                                                     <div class="col-12">
                                                         <h5 style="text-align: left; padding-left: 25px; padding-top: 25px;" class="card-title">
                                                             ข้อมูลการสอน
-                                                            <a style="float: right;" href="teacher-teaching?SchoolID=<?= $TEACHER_DETAIL->SchoolID; ?>&&TeacherID=<?= $TEACHER_DETAIL->TeacherID ?>&&EducationYear=<?= $TEACHER_DETAIL->EducationYear; ?>&&Semester=<?= $TEACHER_DETAIL->Semester; ?>&&PersonnelTypeCode=<?= $TEACHER_DETAIL->PersonnelTypeCode; ?>&&PositionCode=<?= $TEACHER_DETAIL->PositionCode; ?>" class="btn btn-sm btn-warning"><i class="bi bi-pencil-square"></i></a>
+                                                            <a style="float: right;" href="teacher-teaching?SchoolID=<?= $TEACHER_DETAIL->SchoolID; ?>&&TeacherID=<?= $TEACHER_DETAIL->TeacherID ?>&&EducationYear=<?= $TEACHER_DETAIL->EducationYear; ?>&&Semester=<?= $TEACHER_DETAIL->Semester; ?>&&PersonnelTypeCode=<?= $TEACHER_DETAIL->PersonnelTypeCode; ?>&&PositionCode=<?= $TEACHER_DETAIL->PositionCode; ?>" class="btn btn-sm btn-info"><i class="bi bi-eye-fill"></i></a>
                                                         </h5>
                                                         <div class="col-12" style="text-align: left; padding-left: 25px; padding-bottom: 5px;">
                                                             <table class="table table-bordered">
@@ -930,7 +1025,7 @@
                                                     <div class="col-12">
                                                         <h5 style="text-align: left; padding-left: 25px; padding-top: 25px;" class="card-title">
                                                             ข้อมูลวุฒิการศึกษา
-                                                            <a style="float: right;" href="teacher-education?SchoolID=<?= $TEACHER_DETAIL->SchoolID; ?>&&TeacherID=<?= $TEACHER_DETAIL->TeacherID ?>&&EducationYear=<?= $TEACHER_DETAIL->EducationYear; ?>&&Semester=<?= $TEACHER_DETAIL->Semester; ?>&&PersonnelTypeCode=<?= $TEACHER_DETAIL->PersonnelTypeCode; ?>&&PositionCode=<?= $TEACHER_DETAIL->PositionCode; ?>" class="btn btn-sm btn-warning"><i class="bi bi-pencil-square"></i></a>
+                                                            <a style="float: right;" href="teacher-education?SchoolID=<?= $TEACHER_DETAIL->SchoolID; ?>&&TeacherID=<?= $TEACHER_DETAIL->TeacherID ?>&&EducationYear=<?= $TEACHER_DETAIL->EducationYear; ?>&&Semester=<?= $TEACHER_DETAIL->Semester; ?>&&PersonnelTypeCode=<?= $TEACHER_DETAIL->PersonnelTypeCode; ?>&&PositionCode=<?= $TEACHER_DETAIL->PositionCode; ?>" class="btn btn-sm btn-info"><i class="bi bi-eye-fill"></i></a>
                                                         </h5>
                                                         <div class="col-12" style="text-align: left; padding-left: 25px; padding-bottom: 5px;">
                                                             <table class="table table-bordered">
@@ -1004,7 +1099,7 @@
                                                     <div class="col-12">
                                                         <h5 style="text-align: left; padding-left: 25px; padding-top: 25px;" class="card-title">
                                                             ข้อมูลใบประกอบวิชาชีพ
-                                                            <a style="float: right;" href="teacher-certificate?SchoolID=<?= $TEACHER_DETAIL->SchoolID; ?>&&TeacherID=<?= $TEACHER_DETAIL->TeacherID ?>&&EducationYear=<?= $TEACHER_DETAIL->EducationYear; ?>&&Semester=<?= $TEACHER_DETAIL->Semester; ?>&&PersonnelTypeCode=<?= $TEACHER_DETAIL->PersonnelTypeCode; ?>&&PositionCode=<?= $TEACHER_DETAIL->PositionCode; ?>" class="btn btn-sm btn-warning"><i class="bi bi-pencil-square"></i></a>
+                                                            <a style="float: right;" href="teacher-certificate?SchoolID=<?= $TEACHER_DETAIL->SchoolID; ?>&&TeacherID=<?= $TEACHER_DETAIL->TeacherID ?>&&EducationYear=<?= $TEACHER_DETAIL->EducationYear; ?>&&Semester=<?= $TEACHER_DETAIL->Semester; ?>&&PersonnelTypeCode=<?= $TEACHER_DETAIL->PersonnelTypeCode; ?>&&PositionCode=<?= $TEACHER_DETAIL->PositionCode; ?>" class="btn btn-sm btn-info"><i class="bi bi-eye-fill"></i></a>
                                                         </h5>
                                                         <div class="col-12" style="text-align: left; padding-left: 25px; padding-bottom: 5px;">
                                                             <table class="table table-bordered">
@@ -1080,7 +1175,7 @@
                                                     <div class="col-12">
                                                         <h5 style="text-align: left; padding-left: 25px; padding-top: 25px;" class="card-title">
                                                             ข้อมูลหน้าที่เพิ่มเติม
-                                                            <a style="float: right;" href="teacher-position?SchoolID=<?= $TEACHER_DETAIL->SchoolID; ?>&&TeacherID=<?= $TEACHER_DETAIL->TeacherID ?>&&EducationYear=<?= $TEACHER_DETAIL->EducationYear; ?>&&Semester=<?= $TEACHER_DETAIL->Semester; ?>&&PersonnelTypeCode=<?= $TEACHER_DETAIL->PersonnelTypeCode; ?>&&PositionCode=<?= $TEACHER_DETAIL->PositionCode; ?>" class="btn btn-sm btn-warning"><i class="bi bi-pencil-square"></i></a>
+                                                            <a style="float: right;" href="teacher-position?SchoolID=<?= $TEACHER_DETAIL->SchoolID; ?>&&TeacherID=<?= $TEACHER_DETAIL->TeacherID ?>&&EducationYear=<?= $TEACHER_DETAIL->EducationYear; ?>&&Semester=<?= $TEACHER_DETAIL->Semester; ?>&&PersonnelTypeCode=<?= $TEACHER_DETAIL->PersonnelTypeCode; ?>&&PositionCode=<?= $TEACHER_DETAIL->PositionCode; ?>" class="btn btn-sm btn-info"><i class="bi bi-eye-fill"></i></a>
                                                         </h5>
                                                         <div class="col-12" style="text-align: left; padding-left: 25px; padding-bottom: 5px;">
                                                             <table class="table table-bordered">
@@ -1160,7 +1255,7 @@
                                                     <div class="col-12">
                                                         <h5 style="text-align: left; padding-left: 25px; padding-top: 25px;" class="card-title">
                                                             ข้อมูลการช่วยราชการ
-                                                            <a style="float: right;" href="teacher-assistance?SchoolID=<?= $TEACHER_DETAIL->SchoolID; ?>&&TeacherID=<?= $TEACHER_DETAIL->TeacherID ?>&&EducationYear=<?= $TEACHER_DETAIL->EducationYear; ?>&&Semester=<?= $TEACHER_DETAIL->Semester; ?>&&PersonnelTypeCode=<?= $TEACHER_DETAIL->PersonnelTypeCode; ?>&&PositionCode=<?= $TEACHER_DETAIL->PositionCode; ?>" class="btn btn-sm btn-warning"><i class="bi bi-pencil-square"></i></a>
+                                                            <a style="float: right;" href="teacher-assistance?SchoolID=<?= $TEACHER_DETAIL->SchoolID; ?>&&TeacherID=<?= $TEACHER_DETAIL->TeacherID ?>&&EducationYear=<?= $TEACHER_DETAIL->EducationYear; ?>&&Semester=<?= $TEACHER_DETAIL->Semester; ?>&&PersonnelTypeCode=<?= $TEACHER_DETAIL->PersonnelTypeCode; ?>&&PositionCode=<?= $TEACHER_DETAIL->PositionCode; ?>" class="btn btn-sm btn-info"><i class="bi bi-eye-fill"></i></a>
                                                         </h5>
                                                         <div class="col-12" style="text-align: left; padding-left: 25px; padding-bottom: 5px;">
                                                             <table class="table table-bordered">
@@ -1238,7 +1333,7 @@
                                                     <div class="col-12">
                                                         <h5 style="text-align: left; padding-left: 25px; padding-top: 25px;" class="card-title">
                                                             ข้อมูลวิทยฐานะ
-                                                            <a style="float: right;" href="teacher-academic?SchoolID=<?= $TEACHER_DETAIL->SchoolID; ?>&&TeacherID=<?= $TEACHER_DETAIL->TeacherID ?>&&EducationYear=<?= $TEACHER_DETAIL->EducationYear; ?>&&Semester=<?= $TEACHER_DETAIL->Semester; ?>&&PersonnelTypeCode=<?= $TEACHER_DETAIL->PersonnelTypeCode; ?>&&PositionCode=<?= $TEACHER_DETAIL->PositionCode; ?>" class="btn btn-sm btn-warning"><i class="bi bi-pencil-square"></i></a>
+                                                            <a style="float: right;" href="teacher-academic?SchoolID=<?= $TEACHER_DETAIL->SchoolID; ?>&&TeacherID=<?= $TEACHER_DETAIL->TeacherID ?>&&EducationYear=<?= $TEACHER_DETAIL->EducationYear; ?>&&Semester=<?= $TEACHER_DETAIL->Semester; ?>&&PersonnelTypeCode=<?= $TEACHER_DETAIL->PersonnelTypeCode; ?>&&PositionCode=<?= $TEACHER_DETAIL->PositionCode; ?>" class="btn btn-sm btn-info"><i class="bi bi-eye-fill"></i></a>
                                                         </h5>
                                                         <div class="col-12" style="text-align: left; padding-left: 25px; padding-bottom: 5px;">
                                                             <table class="table ">

@@ -781,6 +781,7 @@ if (select.value === "I" || select.value === "O") {
                             ");
  
                      foreach ($result->result() as $show) {
+                        $CreatorPersonalID = base64_decode($show->CreatorPersonalID);
                      ?>
                             <?php  echo br(2); ?>
                             <!-- start Form ข้อมูลนวัตกรรมการศึกษา -->
@@ -841,10 +842,10 @@ if (select.value === "I" || select.value === "O") {
                                             <div class="form-floating" id="CreatorPersonalID">
                                                 <input type="number" class="form-control" id="my-auto"
                                                     placeholder="หมายเลขบัตรประจำตัวผู้จัดทำ" name=""
-                                                    value="<?php echo $show->CreatorPersonalID ?>" disabled >
+                                                    value="<?php echo  $CreatorPersonalID ?>" disabled >
                                                 <input type="hidden" class="form-control" id="my-autoo" placeholder=""
                                                     name="CreatorPersonalID"
-                                                    value="<?php echo $show->CreatorPersonalID ?>">
+                                                    value="<?php echo  $CreatorPersonalID ?>">
                                                 <label for=""><?php echo nbs(2); ?> หมายเลขบัตรประจำตัวผู้จัดทำ </label>
                                             </div>
                                         </div>
@@ -1028,8 +1029,8 @@ if (select.value === "I" || select.value === "O") {
                                         input.disabled = false;
                                        
 
-                                        input.value = '<?php echo $show->CreatorPersonalID; ?>';
-                                        input1.value = '<?php echo $show->CreatorPersonalID; ?>';
+                                        input.value = '<?php echo  $CreatorPersonalID; ?>';
+                                        input1.value = '<?php echo  $CreatorPersonalID; ?>';
                                     }
                                 });
                                 input.addEventListener("input", function() {

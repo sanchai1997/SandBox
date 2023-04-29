@@ -742,6 +742,7 @@ if (isset( $_SESSION['success'])) { ?>
                             ");
  
                      foreach ($result->result() as $show) {
+                        $CreatorPersonalID = base64_decode($show->CreatorPersonalID);
                      ?>
                         <form action="<?php echo site_url('LTMC_edit_p2'); ?>" method="post"
                             enctype="multipart/form-data" onsubmit="return checkSelectedOption()">
@@ -788,7 +789,7 @@ if (isset( $_SESSION['success'])) { ?>
                                     <div class="form-floating" id="CreatorPersonalID">
                                         <input type="number" class="form-control" id="my-auto"
                                             placeholder="หมายเลขบัตรประจำตัวผู้จัดทำ" name=""
-                                            value="<?php echo $show->CreatorPersonalID; ?>" required>
+                                            value="<?php echo $CreatorPersonalID; ?>" required>
                                         <input type="hidden" class="form-control" id="my-autoo" placeholder=""
                                             name="CreatorPersonalID">
                                         <label for=""><?php echo nbs(2); ?> หมายเลขบัตรประจำตัวผู้จัดทำ </label>
@@ -980,8 +981,8 @@ if (isset( $_SESSION['success'])) { ?>
                                 input.disabled = false;
                                 input.required = false;
 
-                                input.value = '<?php echo $show->CreatorPersonalID; ?>';
-                                input1.value = '<?php echo $show->CreatorPersonalID; ?>';
+                                input.value = '<?php echo $CreatorPersonalID; ?>';
+                                input1.value = '<?php echo $CreatorPersonalID; ?>';
                             }
                         });
                         input.addEventListener("input", function() {

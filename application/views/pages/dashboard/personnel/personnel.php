@@ -339,7 +339,7 @@
                                         <div class="row">
                                             <div class="col-4" style="text-align: left; padding-left: 25px; padding-bottom: 5px;">
                                                 <label style="padding-left: 25px;"> ประเภทบัตรประจำตัว: &nbsp;<?= $PERSONNEL_DETAIL->CITIZEN_ID_TYPE_NAME ?></label><br>
-                                                <label style="padding-left: 25px;"> หมายเลขบัตร: &nbsp;<?= $PERSONNEL_DETAIL->PersonnelPersonalID ?></label><br>
+                                                <label style="padding-left: 25px;"> หมายเลขบัตร: &nbsp;<?= base64_decode($PERSONNEL_DETAIL->PersonnelPersonalID); ?></label><br>
                                                 <label style="padding-left: 25px;"> เลขที่หนังสือเดินทาง: &nbsp;<?php if ($PERSONNEL_DETAIL->PersonnelPassportNumber == NULL) {
                                                                                                                     echo '-';
                                                                                                                 } else echo $PERSONNEL_DETAIL->PersonnelPassportNumber; ?></label><br>
@@ -745,7 +745,7 @@
                                             <div class="col-12">
                                                 <h5 style="text-align: left; padding-left: 25px; padding-top: 25px;" class="card-title">
                                                     ข้อมูลวุฒิการศึกษา
-                                                    <a style="float: right;" href="personnel-education?PersonnelID=<?= $_GET['PersonnelID'] ?>&&JurisdictionCode=<?= $_GET['JurisdictionCode'] ?>&&PersonnelTypeCode=<?= $_GET['PersonnelTypeCode'] ?>&&PositionCode=<?= $_GET['PositionCode'] ?>" class="btn btn-sm btn-warning"><i class="bi bi-pencil-square"></i></a>
+                                                    <a style="float: right;" href="personnel-education?PersonnelID=<?= $_GET['PersonnelID'] ?>&&JurisdictionCode=<?= $_GET['JurisdictionCode'] ?>&&PersonnelTypeCode=<?= $_GET['PersonnelTypeCode'] ?>&&PositionCode=<?= $_GET['PositionCode'] ?>" class="btn btn-sm btn-info"><i class="bi bi-eye-fill"></i></a>
                                                 </h5>
                                                 <div class="col-12" style="text-align: left; padding-left: 25px; padding-bottom: 5px;">
                                                     <table class="table table-bordered">
@@ -815,7 +815,7 @@
                                             <div class="col-12">
                                                 <h5 style="text-align: left; padding-left: 25px; padding-top: 25px;" class="card-title">
                                                     ข้อมูลหน้าที่เพิ่มเติม
-                                                    <a style="float: right;" href="personnel-position?PersonnelID=<?= $_GET['PersonnelID'] ?>&&JurisdictionCode=<?= $_GET['JurisdictionCode'] ?>&&PersonnelTypeCode=<?= $_GET['PersonnelTypeCode'] ?>&&PositionCode=<?= $_GET['PositionCode'] ?>" class="btn btn-sm btn-warning"><i class="bi bi-pencil-square"></i></a>
+                                                    <a style="float: right;" href="personnel-position?PersonnelID=<?= $_GET['PersonnelID'] ?>&&JurisdictionCode=<?= $_GET['JurisdictionCode'] ?>&&PersonnelTypeCode=<?= $_GET['PersonnelTypeCode'] ?>&&PositionCode=<?= $_GET['PositionCode'] ?>" class="btn btn-sm btn-info"><i class="bi bi-eye-fill"></i></a>
                                                 </h5>
                                                 <div class="col-12" style="text-align: left; padding-left: 25px; padding-bottom: 5px;">
                                                     <table class="table table-bordered">
@@ -886,7 +886,7 @@
                                             <div class="col-12">
                                                 <h5 style="text-align: left; padding-left: 25px; padding-top: 25px;" class="card-title">
                                                     ข้อมูลการช่วยราชการ
-                                                    <a style="float: right;" href="personnel-assistance?PersonnelID=<?= $_GET['PersonnelID'] ?>&&JurisdictionCode=<?= $_GET['JurisdictionCode'] ?>&&PersonnelTypeCode=<?= $_GET['PersonnelTypeCode'] ?>&&PositionCode=<?= $_GET['PositionCode'] ?>" class="btn btn-sm btn-warning"><i class="bi bi-pencil-square"></i></a>
+                                                    <a style="float: right;" href="personnel-assistance?PersonnelID=<?= $_GET['PersonnelID'] ?>&&JurisdictionCode=<?= $_GET['JurisdictionCode'] ?>&&PersonnelTypeCode=<?= $_GET['PersonnelTypeCode'] ?>&&PositionCode=<?= $_GET['PositionCode'] ?>" class="btn btn-sm btn-info"><i class="bi bi-eye-fill"></i></a>
                                                 </h5>
                                                 <div class="col-12" style="text-align: left; padding-left: 25px; padding-bottom: 5px;">
                                                     <table class="table table-bordered">
@@ -964,7 +964,7 @@
                                             <div class="col-12">
                                                 <h5 style="text-align: left; padding-left: 25px; padding-top: 25px;" class="card-title">
                                                     ข้อมูลวิทยฐานะ
-                                                    <a style="float: right;" href="personnel-academic?PersonnelID=<?= $_GET['PersonnelID'] ?>&&JurisdictionCode=<?= $_GET['JurisdictionCode'] ?>&&PersonnelTypeCode=<?= $_GET['PersonnelTypeCode'] ?>&&PositionCode=<?= $_GET['PositionCode'] ?>" class="btn btn-sm btn-warning"><i class="bi bi-pencil-square"></i></a>
+                                                    <a style="float: right;" href="personnel-academic?PersonnelID=<?= $_GET['PersonnelID'] ?>&&JurisdictionCode=<?= $_GET['JurisdictionCode'] ?>&&PersonnelTypeCode=<?= $_GET['PersonnelTypeCode'] ?>&&PositionCode=<?= $_GET['PositionCode'] ?>" class="btn btn-sm btn-info"><i class="bi bi-eye-fill"></i></a>
                                                 </h5>
                                                 <div class="col-12" style="text-align: left; padding-left: 25px; padding-bottom: 5px;">
                                                     <table class="table ">

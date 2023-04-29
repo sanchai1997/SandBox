@@ -21,6 +21,9 @@
                 ?>
 
         </h1>
+        <?php if ($STUDENT->ImageStudent == NULL) {
+                        $ImgNull = 0;
+                    } else $ImgNull = 1; ?>
         <a class="btn btn-light text-dark"><b><?= $SchoolName . ' - ' . $STUDENT->PREFIX_NAME . $STUDENT->StudentNameThai . ' ' . $STUDENT->StudentLastNameThai ?></b></a>
 <?php }
             } ?>
@@ -33,9 +36,10 @@
                 <div class="card">
                     <div class="card-body">
                         <!-- Floating Labels Form -->
-                        <form class="row g-3" action="<?php echo base_url('update-student-main/' . $_GET['StudentReferenceID'] . '/' . $_GET['SchoolID'] . '/' . $_GET['EducationYear'] . '/' . $_GET['Semester'] . '/' . $_GET['GradeLevelCode'] . '/' . $STUDENT->ImageStudent); ?>" method="POST" id="Student" enctype="multipart/form-data">
+                        <form class="row g-3" action="<?php echo base_url('update-student-main/' . $_GET['StudentReferenceID'] . '/' . $_GET['SchoolID'] . '/' . $_GET['EducationYear'] . '/' . $_GET['Semester'] . '/' . $_GET['GradeLevelCode'] . '/' . $ImgNull); ?>" method="POST" id="Student" enctype="multipart/form-data">
                             <h6 style="padding-left: 15px;" class="card-title">ข้อมูลการศึกษา</h6>
                             <div class="col-md-3">
+                                <input type="hidden" value="<?= $STUDENT->ImageStudent ?>" name="ImageStudent">
                                 <div class="form-floating">
                                     <input type="number" class="form-control" minlength="4" maxlength="4" name="SchoolAdmissionYear" id="SchoolAdmissionYear" value="<?= $STUDENT->SchoolAdmissionYear ?>">
                                     <label for="SchoolAdmissionYear">ปีการศึกษาที่เริ่มเข้าเรียน <font color="red"> *</font></label>
