@@ -876,6 +876,7 @@ class Evaluation_model extends CI_Model
 					$filename = $data['file_name'];
 					$data = array(
 						'AchievementAssessmentYear' => $this->input->post('AchievementAssessmentYear'),
+						'SchoolAssessmentSemester' => $this->input->post('SchoolAssessmentSemester'),
 						'SchoolID' => $this->input->post('SchoolID'),
 						'SchoolAssessmentName' => $this->input->post('SchoolAssessmentName'),
 						'SchoolAssessmentDescription' => $this->input->post('SchoolAssessmentDescription'),
@@ -888,6 +889,7 @@ class Evaluation_model extends CI_Model
 			} else {
 				$data = array(
 					'AchievementAssessmentYear' => $this->input->post('AchievementAssessmentYear'),
+					'SchoolAssessmentSemester' => $this->input->post('SchoolAssessmentSemester'),
 					'SchoolID' => $this->input->post('SchoolID'),
 					'SchoolAssessmentName' => $this->input->post('SchoolAssessmentName'),
 					'SchoolAssessmentDescription' => $this->input->post('SchoolAssessmentDescription'),

@@ -71,66 +71,10 @@
 
             <div class="col-3">
 
-                <!-- <nav>
-                    <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="main">Home</a></li>
-                        <li class="breadcrumb-item">Form</li>
-                        <li class="breadcrumb-item active">ตัวชี้วัด</li>
-                    </ol>
-                </nav> -->
+              
             </div>
             <div class="col-lg-9" style="padding-right: 25px;">
-                <!-- <a href="<?php echo site_url(
-                    'Fm_evaluation_das_p1?page=sh1'
-                ); ?>" style="float: right;" class="btn btn-sm btn-light"
-                    data-mdb-ripple-color="dark">ตัวชี้วัด</a> -->
-                <!-- <h5 style="float: right;"> | </h5>
-                <a href="<?php echo site_url(
-                    'Fm_evaluation_das_p2?page=sh2'
-                ); ?>" style="float: right;" class="btn btn-sm btn-light"
-                    data-mdb-ripple-color="dark">ข้อมูลระดับตัวชี้วัด
-                </a> -->
-                <!-- <h5 style="float: right;"> | </h5>
-                <a href="<?php echo site_url(
-                    'Fm_evaluation_das_p3?page=sh3'
-                ); ?>" style="float: right;" class="btn btn-sm btn-light"
-                    data-mdb-ripple-color="dark">ข้อมูลองค์ประกอบตัวชี้วัด
-                </a> -->
-                <!-- <h5 style="float: right;"> | </h5>
-                <a href="<?php echo site_url(
-                    'Fm_evaluation_das_p4?page=sh4'
-                ); ?>" style="float: right;" class="btn btn-sm btn-light"
-                    data-mdb-ripple-color="dark">ข้อมูลคำอธิบายระดับของแต่ละองค์ประกอบ
-                </a> -->
-                <!-- <h5 style="float: right;"> | </h5>
-                <a href="<?php echo site_url(
-                    'Fm_evaluation_das_p5?page=sh5'
-                ); ?>" style="float: right;" class="btn btn-sm btn-light"
-                    data-mdb-ripple-color="dark">ข้อมูลการประเมินผลสถานศึกษา
-                </a> -->
-                <!-- <h5 style="float: right;"> | </h5>
-                <a href="<?php echo site_url(
-                    'Fm_evaluation_das_p6?page=sh6'
-                ); ?>" style="float: right;" class="btn btn-sm btn-light"
-                    data-mdb-ripple-color="dark">ข้อมูลการประเมินตามตัวชี้วัด
-                </a> -->
-                <!-- <h5 style="float: right;"> | </h5>
-                <a href="<?php echo site_url(
-                    'Fm_evaluation_das_p7?page=sh7'
-                ); ?>" style="float: right;" class="btn btn-sm btn-light"
-                    data-mdb-ripple-color="dark">ระดับตัวชี้วัดที่ได้ในแต่ละองค์ประกอบ
-                </a> -->
-                <!-- <h5 style="float: right;"> | </h5>
-                <a href="<?php echo site_url(
-                    'Fm_evaluation_das_p8?page=sh8'
-                ); ?>" style="float: right;" class="btn btn-sm btn-light"
-                    data-mdb-ripple-color="dark">ข้อมูลการประเมินสถานศึกษา
-                </a> -->
-                <!-- <h5 style="float: right;"> | </h5>
-                <a href="<?php echo site_url(
-                    'Fm_evaluation'
-                ); ?>" style="float: right;" class="btn btn-sm btn-light" data-mdb-ripple-color="dark">หน้าหลัก
-                </a> -->
+              
             </div>
         </div>
     </div>
@@ -149,7 +93,9 @@
                             <div class="dropdown">
                                 <button class="btn btn-dark dropdown-toggle" type="button" id="dropdownMenuButton1"
                                     data-bs-toggle="dropdown" aria-expanded="false">
-                                    ประเภทข้อมูล
+                                   <?php if($page == 'sh1' ){
+                                        echo 'ตัวชี้วัด';
+                                   } ?>
                                 </button>
                                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                                     <li>
@@ -421,7 +367,9 @@
                             <div class="dropdown">
                                 <button class="btn btn-dark dropdown-toggle" type="button" id="dropdownMenuButton1"
                                     data-bs-toggle="dropdown" aria-expanded="false">
-                                    ประเภทข้อมูล
+                                    <?php if($page == 'sh4' ){
+                                        echo 'การประเมินสถานศึกษา';
+                                   } ?>
                                 </button>
                                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                                     <li>
@@ -633,7 +581,9 @@
                             <div class="dropdown">
                                 <button class="btn btn-dark dropdown-toggle" type="button" id="dropdownMenuButton1"
                                     data-bs-toggle="dropdown" aria-expanded="false">
-                                    ประเภทข้อมูล
+                                    <?php if($page == 'sh5' ){
+                                        echo 'การประเมินตามตัวชี้วัด';
+                                   } ?>
                                 </button>
                                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                                     <li>
@@ -884,285 +834,6 @@
     ?>
     <?php
     $page = isset($_GET['page']) ? $_GET['page'] : '';
-    if ($page == 'sh6') { ?>
-    <div class="col-12">
-        <div class="card recent-sales overflow-auto">
-
-            <div class="card-body">
-                <div class="row">
-                    <div class="col">
-                        <h5 class="card-title">
-                            <div class="dropdown">
-                                <button class="btn btn-white dropdown-toggle" type="button" id="dropdownMenuButton1"
-                                    data-bs-toggle="dropdown" aria-expanded="false">
-                                    ประเภทข้อมูล
-                                </button>
-                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                                    <li>
-                                        <a class="dropdown-item"
-                                            href="<?php echo site_url('Fm_evaluation_das_p1?page=sh1'); ?>">ตัวชี้วัด</a>
-                                            <a class="dropdown-item"
-                                            href="<?php echo site_url('Fm_evaluation_das_p4?page=sh4'); ?>">การประเมินสถานศึกษา</a>
-                                            <a class="dropdown-item"
-                                                href="<?php echo site_url('Fm_evaluation_das_p5?page=sh5'); ?>">การประเมินตามตัวชี้วัด</a>
-                                        <a class="dropdown-item"
-                                            href="<?php echo site_url('Fm_evaluation_das_p8?page=sh8'); ?>">ผลการประเมินสถานศึกษา</a>
-                                    </li>
-
-                                </ul>
-                            </div>
-                        </h5>
-                    </div>
-                    <div class="col">
-                        <h5 style="float: right; padding: 15px;" class="card-title"><a href="<?php echo site_url(
-                                'sc_ass_ria_forms_p6?page=sh6'
-                            ); ?>" class="btn btn-success">เพิ่มข้อมูล</a></h5>
-                    </div>
-                </div>
-
-                <table class="table table-borderless datatable">
-                    <thead>
-
-                        <tr>
-
-                            <th style="text-align: center;" scope="col">ปีการศึกษาที่ทำการประเมิน</th>
-                            <th style="text-align: center;" scope="col">ภาคเรียนที่ทำการประเมิน</th>
-                            <th style="text-align: center;" scope="col">รหัสสถานศึกษา</th>
-                            <th style="text-align: center;" scope="col">รหัสตัวชี้วัด</th>
-                            <th style="text-align: center;" scope="col">ปฎิบัติ</th>
-
-                        </tr>
-
-                    </thead>
-                    <tbody>
-
-
-
-
-
-                        <?php
-                            $result = $this->db->query("SELECT * FROM SCHOOL_ASSESSMENT_CRITERIA 
-                
-                WHERE  DeleteStatus = '0'");
-                            foreach ($result->result() as $show) { ?>
-                        <tr>
-                            <th scope="row " style="text-align: center;">
-                                <?php echo $show->SchoolAssessmentEducationYear; ?>
-                            </th>
-                            <th scope="row " style="text-align: center;">
-                                <?php echo $show->SchoolAssessmentSemester; ?>
-                            </th>
-                            <th scope="row" style="text-align: center;">
-                                <?php echo $show->SchoolID; ?>
-                            </th>
-                            <td style="text-align: center;">
-                                <?php echo $show->CriteriaID; ?>
-                            </td>
-
-
-                            <!-- แก้ไข -->
-                            <td style="text-align: center;">
-                                <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                                    data-bs-target="#look6<?php echo $show->Id; ?>"><i
-                                        class="bi bi-card-list"></i></button>
-                                <button type="button" class="btn btn-danger" data-bs-toggle="modal"
-                                    data-bs-target="#del_sc_ass_ria<?php echo $show->Id; ?>">
-                                    <i class="bi bi-trash"></i>
-                                </button>
-                                <!-- Modal -->
-                                <div class="modal fade" id="del_sc_ass_ria<?php echo $show->Id; ?>" tabindex="-1"
-                                    aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                    <div class="modal-dialog">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h5 class="modal-title" id="exampleModalLabel">
-                                                    ยืนยันการลบข้อมูลรหัส
-                                                    <?php echo nbs(2); ?>
-                                                    <?php echo $show->CriteriaID; ?>
-                                                </h5>
-
-                                            </div>
-                                            <div class="modal-body">
-                                                คุณต้องการลบข้อมูลใช่หรือไหม
-
-                                            </div>
-
-
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-secondary"
-                                                    data-bs-dismiss="modal">ยกเลิก</button>
-                                                <form method="post"
-                                                    action="<?php echo site_url('sc_ass_ria_del_p6'); ?>">
-                                                    <input type="hidden" name="Id" value="<?php echo $show->Id; ?>">
-                                                    <div class="d-flex justify-content-center">
-                                                        <button name="Submit" type="submit"
-                                                            class="btn btn-primary">ยืนยันก่อนลบ</button>
-                                                    </div>
-                                                </form>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div> <!-- Modal -->
-                            </td>
-
-                        </tr>
-                        <?php } ?>
-
-                    </tbody>
-                </table>
-
-            </div>
-
-        </div>
-    </div><!-- End Recent Sales -->
-    <?php }
-    ?>
-    <?php
-    $page = isset($_GET['page']) ? $_GET['page'] : '';
-    if ($page == 'sh7') { ?>
-    <div class="col-12">
-        <div class="card recent-sales overflow-auto">
-
-            <div class="card-body">
-                <div class="row">
-                    <div class="col">
-                        <h5 class="card-title">
-                            <div class="dropdown">
-                                <button class="btn btn-white dropdown-toggle" type="button" id="dropdownMenuButton1"
-                                    data-bs-toggle="dropdown" aria-expanded="false">
-                                    ประเภทข้อมูล
-                                </button>
-                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                                    <li>
-                                        <a class="dropdown-item"
-                                            href="<?php echo site_url('Fm_evaluation_das_p1?page=sh1'); ?>">ตัวชี้วัด</a>
-                                            <a class="dropdown-item"
-                                            href="<?php echo site_url('Fm_evaluation_das_p4?page=sh4'); ?>">การประเมินสถานศึกษา</a>
-                                            <a class="dropdown-item"
-                                                href="<?php echo site_url('Fm_evaluation_das_p5?page=sh5'); ?>">การประเมินตามตัวชี้วัด</a>
-                                        <a class="dropdown-item"
-                                            href="<?php echo site_url('Fm_evaluation_das_p8?page=sh8'); ?>">ผลการประเมินสถานศึกษา</a>
-                                    </li>
-
-                                </ul>
-                            </div>
-                        </h5>
-                    </div>
-                    <div class="col">
-                        <h5 style="float: right; padding: 15px;" class="card-title"><a href="<?php echo site_url(
-                                'sc_ass_res_forms_p7?page=sh7'
-                            ); ?>" class="btn btn-success">เพิ่มข้อมูล</a></h5>
-                    </div>
-                </div>
-
-                <table class="table table-borderless datatable">
-                    <thead>
-
-                        <tr>
-
-                            <th style="text-align: center;" scope="col">ปีการศึกษาที่ทำการประเมิน</th>
-                            <th style="text-align: center;" scope="col">ภาคเรียนที่ทำการประเมิน</th>
-                            <th style="text-align: center;" scope="col">รหัสสถานศึกษา</th>
-                            <th style="text-align: center;" scope="col">รหัสตัวชี้วัด</th>
-                            <th style="text-align: center;" scope="col">ลำดับองค์ประกอบตัวชี้วัด</th>
-                            <th style="text-align: center;" scope="col">ลำดับของระดับตัวชี้วัดที่ได้</th>
-                            <th style="text-align: center;" scope="col">ปฎิบัติ</th>
-
-                        </tr>
-
-                    </thead>
-                    <tbody>
-
-
-
-
-                        <?php $key = isset($_GET['key']) ? $_GET['key'] : ''; ?>
-                        <?php
-                            $result = $this->db->query("SELECT * FROM SCHOOL_ASSESSMENT_RESULT 
-                
-                WHERE CriteriaID='" . $key . "' AND DeleteStatus = '0'");
-                            foreach ($result->result() as $show) { ?>
-                        <tr>
-
-                            <td style="text-align: center;">
-                                <?php echo $show->SchoolAssessmentEducationYear; ?>
-                            </td>
-                            <th scope="row " style="text-align: center;">
-                                <?php echo $show->SchoolAssessmentSemester; ?>
-                            </th>
-                            <th scope="row" style="text-align: center;">
-                                <?php echo $show->SchoolID; ?>
-                            </th>
-                            <td style="text-align: center;">
-                                <?php echo $show->CriteriaID; ?>
-                            </td>
-                            <th scope="row " style="text-align: center;">
-                                <?php echo $show->CompositionIndex; ?>
-                            </th>
-                            <th scope="row" style="text-align: center;">
-                                <?php echo $show->LevelIndex; ?>
-                            </th>
-
-
-                            <!-- แก้ไข -->
-                            <td style="text-align: center;">
-                                <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                                    data-bs-target="#look7<?php echo $show->Id; ?>"><i
-                                        class="bi bi-card-list"></i></button>
-                                <button type="button" class="btn btn-danger" data-bs-toggle="modal"
-                                    data-bs-target="#del_sc_ass_res<?php echo $show->Id; ?>">
-                                    <i class="bi bi-trash"></i>
-                                </button>
-                                <!-- Modal -->
-                                <div class="modal fade" id="del_sc_ass_res<?php echo $show->Id; ?>" tabindex="-1"
-                                    aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                    <div class="modal-dialog">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h5 class="modal-title" id="exampleModalLabel">
-                                                    ยืนยันการลบข้อมูลรหัส
-                                                    <?php echo nbs(2); ?>
-                                                    <?php echo $show->CriteriaID; ?>
-                                                </h5>
-
-                                            </div>
-                                            <div class="modal-body">
-                                                คุณต้องการลบข้อมูลใช่หรือไหม
-
-                                            </div>
-
-
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-secondary"
-                                                    data-bs-dismiss="modal">ยกเลิก</button>
-                                                <form method="post"
-                                                    action="<?php echo site_url('sc_ass_res_del_p7'); ?>">
-                                                    <input type="hidden" name="Id" value="<?php echo $show->Id; ?>">
-                                                    <div class="d-flex justify-content-center">
-                                                        <button name="Submit" type="submit"
-                                                            class="btn btn-primary">ยืนยันก่อนลบ</button>
-                                                    </div>
-                                                </form>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div> <!-- Modal -->
-                            </td>
-
-                        </tr>
-                        <?php } ?>
-
-                    </tbody>
-                </table>
-
-            </div>
-
-        </div>
-    </div><!-- End Recent Sales -->
-    <?php }
-    ?>
-    <?php
-    $page = isset($_GET['page']) ? $_GET['page'] : '';
     if ($page == 'sh8') { ?>
     <div class="col-12">
         <div class="card recent-sales overflow-auto">
@@ -1174,7 +845,9 @@
                             <div class="dropdown">
                                 <button class="btn btn-dark dropdown-toggle" type="button" id="dropdownMenuButton1"
                                     data-bs-toggle="dropdown" aria-expanded="false">
-                                    ประเภทข้อมูล
+                                    <?php if($page == 'sh8' ){
+                                        echo 'ผลการประเมินสถานศึกษา';
+                                   } ?>
                                 </button>
                                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                                     <li>
@@ -1222,8 +895,12 @@
 
                         <?php
                             $result = $this->db->query("SELECT * FROM ACHIEVEMENT_ASSESSMENT 
+                            INNER JOIN SEMESTER
+                            ON SEMESTER.SEMESTER_CODE = ACHIEVEMENT_ASSESSMENT.SchoolAssessmentSemester
                 
-                WHERE  DeleteStatus = '0'");
+                WHERE  ACHIEVEMENT_ASSESSMENT.DeleteStatus = '0'
+                AND  DeleteStatus = '0' 
+                ");
                             foreach ($result->result() as $show) {
                                 $Id = $show->Id
                                     ?>
@@ -1232,7 +909,7 @@
                                 <?php echo $show->AchievementAssessmentYear; ?>
                             </td>
                             <td scope="row " style="">
-                                <?php echo $show->SchoolAssessmentSemester; ?>
+                                <?php echo $show->SEMESTER_NAME; ?>
                             </td>
 
                             <td scope="row">

@@ -63,7 +63,7 @@
                 <?php break;
                     case 'sh44': ?> <h1>คำอธิบายแต่ละองค์ประกอบและลำดับตัวชี้วัด </h1>
                 <?php break;
-                    case 'sh55': ?> <h1>การประเมินผลสถานศึกษา</h1>
+                    case 'sh55': ?> <h1>การประเมินสถานศึกษา</h1>
                 <?php break;
                     case 'sh66': ?> <h1>การประเมินตามตัวชี้วัด</h1>
                 <?php break;
@@ -1712,7 +1712,7 @@ function checkSelectValues() {
                                         </div>
                                     </div>
                                     <div class="text-center">
-                                        <a href="Fm_evaluation_das_p5?page=sh5" class="btn btn-danger"
+                                        <a href="Fm_evaluation_das_p4?page=sh4" class="btn btn-danger"
                                             style="float: left;">ยกเลิก</a>
 
                                         <button type="button" class="btn btn-warning" data-bs-toggle="modal"
@@ -3236,38 +3236,133 @@ function checkSelectValues() {
                                     <h5 class="card-title"></h5>
                                     <input type="hidden" name="Id" value="<?php echo $show->Id ?>">
                                     <div class="row mb-3">
-                                        <div class="form-floating">
-                                            <input type="number" class="form-control" id="floatingName"
-                                                placeholder="ปีการศึกษาที่ทำการประเมิน" name="AchievementAssessmentYear"
-                                                value="<?php echo $show->AchievementAssessmentYear ?>">
-                                            <label for="floatingName"><?php echo nbs(2); ?> ปีการศึกษาที่ทำการประเมิน
-                                            </label>
+                                       <div class="col">
+                                       <div class="col">
+                                            <div class="form-floating">
+                                                <select class="form-select" id="AchievementAssessmentYear"
+                                                    aria-label="Floating label select example"
+                                                    name="AchievementAssessmentYear">
+                                                   
+                                                    <?php
+                $result = $this->db->query('SELECT * FROM SCHOOL_ASSESSMENT_CRITERIA where DeleteStatus = 0 GROUP BY SchoolAssessmentEducationYear');
+                foreach ($result->result() as $cls) {
+                    ?>
+                                                    <option value="<?= $cls->SchoolAssessmentEducationYear; ?>">
+                                                        <?= $cls->SchoolAssessmentEducationYear; ?></option>
+                                                    <?php } ?>
+                                                </select>
+                                                <label for="floatingSelect">ปีการศึกษาที่ทำการประเมิน</label>
+                                            </div>
                                         </div>
-                                    </div>
-
-                                    <div class="row mb-3">
+                                       </div>
+                                       <div class="col">
+                                            <div class="form-floating">
+                                                <select class="form-select" id="SchoolAssessmentSemester"
+                                                    aria-label="Floating label select example"
+                                                    name="SchoolAssessmentSemester">
+                                                   
+                                                    <?php
+                                                        $result = $this->db->query('SELECT * FROM SCHOOL_ASSESSMENT_CRITERIA
+                                                        INNER JOIN SEMESTER
+                                                        ON SEMESTER.SEMESTER_CODE = SCHOOL_ASSESSMENT_CRITERIA.SchoolAssessmentSemester
+                                                        INNER JOIN SCHOOL
+                                                        ON SCHOOL.SchoolID = SCHOOL_ASSESSMENT_CRITERIA.SchoolID
+                                                         where SCHOOL_ASSESSMENT_CRITERIA.DeleteStatus = 0
+                                                         AND SCHOOL.DeleteStatus = 0
+                                                         GROUP BY SchoolAssessmentSemester
+                                                        ');
+                                                        foreach ($result->result() as $cls) {
+                                                            ?>
+                                                    <option id="<?= $cls->SchoolAssessmentEducationYear; ?>"
+                                                        value="<?= $cls->SchoolAssessmentSemester; ?>">
+                                                        <?= $cls->SEMESTER_NAME; ?></option>
+                                                    <?php } ?>
+                                                </select>
+                                                <label for="floatingSelect"><?php echo nbs(
+                                                        2
+                                                    ); ?>ภาคเรียนที่ทำการประเมิน</label>
+                                            </div>
+                                        </div>
+                                   
                                         <div class="col">
                                             <div class="form-floating">
                                                 <select class="form-select" id="SchoolID"
                                                     aria-label="Floating label select example" name="SchoolID">
-                                                    <option selected>เลือก</option>
+                                                    
                                                     <?php
-                                                            $result = $this->db->query('SELECT * FROM SCHOOL');
-                                                            foreach ($result->result() as $cls) {
-                                                                ?>
-                                                    <option value="<?= $cls->SchoolID; ?>">
+                                                        $result = $this->db->query('SELECT * FROM SCHOOL_ASSESSMENT_CRITERIA 
+                                                        INNER JOIN SCHOOL
+                                                        ON SCHOOL_ASSESSMENT_CRITERIA.SchoolID = SCHOOL.SchoolID
+                                                       
+                                                        where SCHOOL_ASSESSMENT_CRITERIA.DeleteStatus = 0
+                                                        AND SCHOOL.DeleteStatus = 0
+                                                       
+                                                       ');
+                                                        foreach ($result->result() as $cls) {
+                                                            ?>
+                                                    <option id="<?= $cls->SchoolAssessmentSemester; ?>"
+                                                        value="<?= $cls->SchoolID; ?>">
                                                         <?= $cls->SchoolNameThai; ?></option>
                                                     <?php } ?>
                                                 </select>
                                                 <label for="floatingSelect"><?php echo nbs(
-                                                            2
-                                                        ); ?>รหัสสถานศึกษา</label>
+                                                        2
+                                                    ); ?>สถานศึกษา</label>
                                             </div>
                                         </div>
 
+                                    </div>
+                                    <script>
+                                    // $(document).ready(function() {
+                                    //     $("#SchoolAssessmentSemester").children('option:gt(0)').hide();
+                                    //     $("#SchoolID").children('option:gt(0)').hide();
+                                    //     $("#AchievementAssessmentYear").change(function() {
+                                    //         $("#SchoolAssessmentSemester").children('option').hide();
+                                    //         $("#SchoolAssessmentSemester").children("option[ id^=" + $(
+                                    //                 this)
+                                    //             .val() + "]").show();
+                                    //     })
+                                    //     $("#SchoolAssessmentSemester").change(function() {
+                                    //         $("#SchoolID").children('option').hide();
+                                    //         $("#SchoolID").children("option[ id^=" + $(this).val() +
+                                    //                 "]")
+                                    //             .show();
+                                    //     })
+                                    // })
+                                    $(document).ready(function() {
+                                        $('#AchievementAssessmentYear,#SchoolAssessmentSemester,#SchoolID')
+                                            .change(function() {
+
+                                                var key1 = $('#AchievementAssessmentYear').val();
+                                                var key2 = $('#SchoolAssessmentSemester').val();
+                                                var key3 = $('#SchoolID').val();
+                                                if (key1 != '-1' && key2 != '-1' && key3 != '-1') {
+                                                    console.log(key1, key2, key3)
+                                                    $.ajax({
+                                                        url: "<?php echo base_url('call_select_1'); ?>",
+                                                        method: "POST",
+                                                        dataType: "json",
+                                                        data: {
+                                                            key1: key1,
+                                                            key2: key2,
+                                                            key3: key3
+                                                        },
+                                                        success: function(data) {
+                                                            console.log(data);
+                                                            $('#SchoolAssessmentName').val(data.SchoolAssessmentName);
+                                                            $('#SchoolAssessmentDescription').val(data.SchoolAssessmentDescription);
+                                                            $('#AssessmentorName').val(data.AssessmentorName);
+                                                        }
+
+                                                    });
+                                                }
+                                            });
+                                    });
+                                    </script>
+                                    <div class="row mb-3">
                                         <div class="col">
                                             <div class="form-floating">
-                                                <input type="text" class="form-control" id="floatingName"
+                                                <input type="text" class="form-control" id="SchoolAssessmentName"
                                                     placeholder="ชื่อการประเมิน" name="SchoolAssessmentName"
                                                     value="<?php echo $show->SchoolAssessmentName ?>">
                                                 <label for="floatingName"><?php echo nbs(
@@ -3278,7 +3373,7 @@ function checkSelectValues() {
                                     </div>
                                     <div class="row mb-3">
                                         <div class="form-floating">
-                                            <input type="text" class="form-control" id="floatingName"
+                                            <input type="text" class="form-control" id="SchoolAssessmentDescription"
                                                 placeholder="คำอธิบายการประเมิน" name="SchoolAssessmentDescription"
                                                 value="<?php echo $show->SchoolAssessmentDescription ?>">
                                             <label for="floatingName"><?php echo nbs(
@@ -3288,7 +3383,7 @@ function checkSelectValues() {
                                     </div>
                                     <div class="row mb-3">
                                         <div class="form-floating">
-                                            <input type="text" class="form-control" id="floatingName"
+                                            <input type="text" class="form-control" id="AssessmentorName"
                                                 placeholder="ชื่อผู้ประเมิน" name="AssessmentorName"
                                                 value="<?php echo $show->AssessmentorName ?>">
                                             <label for="floatingName"><?php echo nbs(
@@ -3386,6 +3481,24 @@ function checkSelectValues() {
                                 for (let i = 0; i < size_my_SCHOOL; i++) {
                                     if (selectoption_SCHOOL[i].value == my_SCHOOL) {
                                         selectoption_SCHOOL[i].selected = true;
+                                    }
+                                }
+                                ///SchoolAssessmentSemester
+                                var my_SchoolAssessmentSemester = "<?php echo $show->SchoolAssessmentSemester; ?>";
+                                var selectoption_SchoolAssessmentSemester = document.querySelector('#SchoolAssessmentSemester');
+                                var size_my_SchoolAssessmentSemester = document.getElementById("SchoolAssessmentSemester").options.length;
+                                for (let i = 0; i < size_my_SchoolAssessmentSemester; i++) {
+                                    if (selectoption_SchoolAssessmentSemester[i].value == my_SchoolAssessmentSemester) {
+                                        selectoption_SchoolAssessmentSemester[i].selected = true;
+                                    }
+                                }
+                                ///AchievementAssessmentYear
+                                var my_AchievementAssessmentYear = "<?php echo $show->AchievementAssessmentYear; ?>";
+                                var selectoption_AchievementAssessmentYear = document.querySelector('#AchievementAssessmentYear');
+                                var size_my_AchievementAssessmentYear = document.getElementById("AchievementAssessmentYear").options.length;
+                                for (let i = 0; i < size_my_AchievementAssessmentYear; i++) {
+                                    if (selectoption_AchievementAssessmentYear[i].value == my_AchievementAssessmentYear) {
+                                        selectoption_AchievementAssessmentYear[i].selected = true;
                                     }
                                 }
                                 </script>
