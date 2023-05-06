@@ -116,7 +116,7 @@
                     <div class="col">
                         <h5 style="float: right; padding: 15px;" class="card-title"><a href="<?php echo site_url(
                                 'ass_ria_forms_p1?page=sh1'
-                            ); ?>" class="btn btn-success">เพิ่มข้อมูล</a></h5>
+                            ); ?>" class="btn btn-success"><i class="bi bi-file-earmark-plus"></i> เพิ่มข้อมูล</a></h5>
                     </div>
                 </div>
 
@@ -391,7 +391,7 @@
                     <div class="col">
                         <h5 style="float: right; padding: 15px;" class="card-title"><a href="<?php echo site_url(
                                 'sc_ass_forms_p5?page=sh5'
-                            ); ?>" class="btn btn-success">เพิ่มข้อมูล</a></h5>
+                            ); ?>" class="btn btn-success"><i class="bi bi-file-earmark-plus"></i> เพิ่มข้อมูล</a></h5>
                     </div>
                 </div>
 
@@ -604,7 +604,7 @@
                     <div class="col">
                         <h5 style="float: right; padding: 15px;" class="card-title"><a href="<?php echo site_url(
                                 'sc_ass_ria_forms_p6?page=sh6'
-                            ); ?>" class="btn btn-success">เพิ่มข้อมูล</a></h5>
+                            ); ?>" class="btn btn-success"><i class="bi bi-file-earmark-plus"></i> เพิ่มข้อมูล</a></h5>
                     </div>
                 </div>
 
@@ -868,7 +868,7 @@
                     <div class="col">
                         <h5 style="float: right; padding: 15px;" class="card-title"><a href="<?php echo site_url(
                                 'achie_ass_forms_p8?page=sh8'
-                            ); ?>" class="btn btn-success">เพิ่มข้อมูล</a></h5>
+                            ); ?>" class="btn btn-success"><i class="bi bi-file-earmark-plus"></i> เพิ่มข้อมูล</a></h5>
                     </div>
                 </div>
 

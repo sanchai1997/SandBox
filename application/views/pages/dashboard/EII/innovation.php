@@ -91,7 +91,7 @@
                             </h5>
                         </div>
                         <div class="col">
-                            <h5 style="float: right; padding: 15px;" class="card-title"><a href="<?php echo site_url('forms_p1?page=sh1') ?>" class="btn btn-success">เพิ่มข้อมูล
+                            <h5 style="float: right; padding: 15px;" class="card-title"><a href="<?php echo site_url('forms_p1?page=sh1') ?>" class="btn btn-success"><i class="bi bi-file-earmark-plus"></i> เพิ่มข้อมูล
                                 </a></h5>
                         </div>
                     </div>
