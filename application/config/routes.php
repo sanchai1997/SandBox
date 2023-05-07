@@ -558,4 +558,8 @@ $route['achie_ass_del_p8'] = 'Fm_evaluation/del_achie_ass';
 $route['call_select'] = 'Fm_evaluation/get_data';
 $route['call_select_1'] = 'Fm_evaluation/get_ACHIEVEMENT_ASSESSMENT';
 
+$route['down_csv_criteria'] = 'Fm_evaluation/down_csv_criteria';
+$route['uplod_criteria'] = 'Fm_evaluation/uplod_criteria';
+
+
 ///////////////////// evaluation - END /////////////////////////
