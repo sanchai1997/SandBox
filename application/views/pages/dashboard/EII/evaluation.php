@@ -144,7 +144,7 @@
                                                             <div class="row">
                                                                 <div class="col-6">
                                                                     <label>คู่มือขั้นตอนการอัปโหลด : &nbsp;</label>
-                                                                    <a href="assets/school/GuideUpload.pdf" class="btn btn-info" target="_blank"><i class="bi bi-file-earmark-text"></i> รายละเอียด</a>
+                                                                    <a href="assets/EII/ASSESSMENT_CRITERIA/Guide.pdf" class="btn btn-info" target="_blank"><i class="bi bi-file-earmark-text"></i> รายละเอียด</a>
                                                                 </div>
                                                                 <div class="col-6">
                                                                     <label>ฟอร์มกรอกข้อมูล : &nbsp;</label>
