@@ -128,22 +128,22 @@
                                     <div class="row mb-3">
                                         <div class="col">
                                             <div class="form-floating">
-                                                <input type="number" class="form-control" id="floatingName"
+                                                <input type="number" min="3"  class="form-control" id="floatingName"
                                                     placeholder="จำนวนระดับของตัวชี้วัด" name="CriteriaLevelAmount">
                                                 <label for="Y"><?php echo nbs(
                                                         2
-                                                    ); ?> จำนวนระดับของตัวชี้วัด</label>
+                                                    ); ?> จำนวนระดับของตัวชี้วัด(ไม่น้อยกว่า 3)</label>
                                             </div>
                                         </div>
 
                                         <div class="col">
                                             <div class="form-floating">
-                                                <input type="number" class="form-control" id="floatingName"
+                                                <input type="number" min="3" class="form-control" id="floatingName"
                                                     placeholder="จำนวนระดับของตัวชี้วัด"
                                                     name="CriteriaCompositionAmount">
                                                 <label for="Y"><?php echo nbs(
                                                         2
-                                                    ); ?> จำนวนองค์ประกอบของตัวชี้วัด</label>
+                                                    ); ?> จำนวนองค์ประกอบของตัวชี้วัด(ไม่น้อยกว่า 3)</label>
                                             </div>
                                         </div>
                                         <div class="col">
@@ -197,6 +197,7 @@
 
                                     $result = $this->db->query("SELECT * FROM ASSESSMENT_CRITERIA 
                             WHERE CriteriaID = '" . $key . "' 
+                            AND DeleteStatus = '0'
                             ");
 
                                     foreach ($result->result() as $show) {
@@ -2153,6 +2154,8 @@ function checkSelectValues() {
                                     ON SCHOOL_ASSESSMENT_CRITERIA.SchoolID = SCHOOL.SchoolID 
                 
                             WHERE Id_sac = '" . $key . "' 
+                             AND SCHOOL.DeleteStatus = '0'
+                             AND SCHOOL_ASSESSMENT_CRITERIA.DeleteStatus = '0'
                             ");
 
                                     foreach ($result->result() as $show) {
@@ -2712,7 +2715,7 @@ function checkSelectValues() {
                                 <?php
 
                                     $result = $this->db->query("SELECT * FROM SCHOOL_ASSESSMENT_RESULT 
-                            WHERE Id_sar = '" . $key . "' 
+                            WHERE Id_sar = '" . $key . "'  AND DeleteStatus = '0' 
                             ");
 
                                     foreach ($result->result() as $show) {
@@ -3225,7 +3228,7 @@ function checkSelectValues() {
                                 <?php
 
                                     $result = $this->db->query("SELECT * FROM ACHIEVEMENT_ASSESSMENT 
-                            WHERE Id = '" . $key . "' 
+                            WHERE Id = '" . $key . "'  AND DeleteStatus = '0'
                             ");
 
                                     foreach ($result->result() as $show) {

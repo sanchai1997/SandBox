@@ -3,10 +3,10 @@ class Evaluation_model extends CI_Model
 {
 
 	public function __construct()
-    {
-        parent::__construct();
-        $this->load->database();
-    }
+	{
+		parent::__construct();
+		$this->load->database();
+	}
 
 	public function insert_ass_ria() //sh1
 	{
@@ -1048,106 +1048,125 @@ class Evaluation_model extends CI_Model
 	public function down_csv_criteria()
 	{
 
-    $filename = 'ตัวชี้วัด.csv'; // ชื่อไฟล์ CSV
-    $header = array('รหัสตัวชี้วัด', 'ชื่อเกณฑ์', 'คำอธิบายเกณฑ์', 'จำนวนระดับของตัวชี้วัด', 'จำนวนองค์ประกอบของตัวชี้วัด', 'คะแนนการผ่านเกณฑ์ (%)'); // กำหนดหัวคอลัมน์
+		$filename = 'ตัวชี้วัด.csv'; // ชื่อไฟล์ CSV
+		$header = array('รหัสตัวชี้วัด', 'ชื่อเกณฑ์', 'จำนวนระดับของตัวชี้วัด', 'จำนวนองค์ประกอบของตัวชี้วัด', 'คะแนนการผ่านเกณฑ์ (%)'); // กำหนดหัวคอลัมน์
 
-    // ดึงข้อมูลจากฐานข้อมูล
-	$query = $this->db->select('CriteriaID, CriteriaName, CriteriaDescription, CriteriaLevelAmount, CriteriaCompositionAmount, CriteriaPassingScorePercentage')
-    ->where('DeleteStatus', 0)
-    ->get('ASSESSMENT_CRITERIA');
+		// ดึงข้อมูลจากฐานข้อมูล
+		$query = $this->db->select('CriteriaID, CriteriaName, CriteriaDescription, CriteriaLevelAmount, CriteriaCompositionAmount, CriteriaPassingScorePercentage')
+			->where('DeleteStatus', 0)
+			->get('ASSESSMENT_CRITERIA');
 
 
-    // เปิด buffer เพื่อเขียนไฟล์ CSV
-    $fp = fopen('php://output', 'w');
+		// เปิด buffer เพื่อเขียนไฟล์ CSV
+		$fp = fopen('php://output', 'w');
 
-    // ใส่ UTF-8 BOM เพื่อให้ Excel อ่านภาษาไทยได้ถูกต้อง
-    fputs($fp, "\xEF\xBB\xBF");
+		// ใส่ UTF-8 BOM เพื่อให้ Excel อ่านภาษาไทยได้ถูกต้อง
+		fputs($fp, "\xEF\xBB\xBF");
 
-    // เขียนหัวคอลัมน์ในไฟล์ CSV
-    fputcsv($fp, $header);
+		// เขียนหัวคอลัมน์ในไฟล์ CSV
+		fputcsv($fp, $header);
 
-    // เขียนข้อมูลในไฟล์ CSV
-    foreach ($query->result() as $row) {
-        $data = array($row->CriteriaID, $row->CriteriaName, $row->CriteriaDescription, $row->CriteriaLevelAmount, $row->CriteriaCompositionAmount, $row->CriteriaPassingScorePercentage);
-        fputcsv($fp, $data);
-    }
+		// เขียนข้อมูลในไฟล์ CSV
+		foreach ($query->result() as $row) {
+			$data = array($row->CriteriaID, $row->CriteriaName, $row->CriteriaLevelAmount, $row->CriteriaCompositionAmount, $row->CriteriaPassingScorePercentage);
+			fputcsv($fp, $data);
+		}
 
-    // ปิด buffer เพื่อสร้างไฟล์ CSV และส่งให้ใช้งาน
-    fclose($fp);
+		// ปิด buffer เพื่อสร้างไฟล์ CSV และส่งให้ใช้งาน
+		fclose($fp);
 
-    // เรียกใช้ helper download เพื่อดาวน์โหลดไฟล์
-    $this->load->helper('download');
-    force_download($filename, ob_get_clean());
+		// เรียกใช้ helper download เพื่อดาวน์โหลดไฟล์
+		$this->load->helper('download');
+		force_download($filename, ob_get_clean());
 	}
 	public function uplod_criteria()
 	{
-		session_start(); 
+		session_start();
 		if (isset($_FILES['document_criteria'])) {
 			$i = 1;
 			$count = 0;
 			$done = 0;
 			$cancel = 0;
-			$broken = 0;
+			$loop = 0;
+			$data_get = array();
 			$handle = fopen($_FILES['document_criteria']['tmp_name'], 'r');
 			ini_set('auto_detect_line_endings', TRUE);
-		
+
 			// อ่าน header row
 			$header_row = fgetcsv($handle);
-		
+
 			while (($data = fgetcsv($handle)) !== FALSE && $data[0] != '') {
 				// เพิ่มเงื่อนไขเช็คว่าต้องเริ่ม insert จาก row ที่ 2 เป็นต้นไป
-				if ($i >= 2 && ($data[0] != '' || $data[1] != '' || $data[2] != '' || $data[3] != '' || $data[5] != '')) {
+				if ($i >= 1 && ($data[0] != '' && $data[1] != '' &&  $data[2] > '3' && $data[3] > '3' && $data[4] != '')) {//ถ้าข้อมูลไม่ว่างหรืออง+ลำไม่ต่ำกว่า3
 					$all_data = [
 						'CriteriaID' => $data[0],
 						'CriteriaName' => $data[1],
-						'CriteriaDescription' => $data[2],
-						'CriteriaLevelAmount' => $data[3],
-						'CriteriaCompositionAmount' => $data[4],
-						'CriteriaPassingScorePercentage' => $data[5]
+						'CriteriaLevelAmount' => $data[2],
+						'CriteriaCompositionAmount' => $data[3],
+						'CriteriaPassingScorePercentage' => $data[4]
 					];
-		
+
+					
+
 					// ตรวจสอบว่าข้อมูลซ้ำหรือไม่
 					$Check = $this->db->query("SELECT * 
-						FROM ASSESSMENT_CRITERIA 
-						WHERE CriteriaID = '" . $data[0] . "' 
-						AND DeleteStatus = '0'
-					")->result();
+					FROM ASSESSMENT_CRITERIA 
+					WHERE CriteriaID = '" . $data[0] . "' 
+					AND DeleteStatus = '0'
+				")->result();
+				
 
-		
 					if ($Check != TRUE) {
 						$insert = $this->db->insert('ASSESSMENT_CRITERIA', $all_data);
-						if ($insert == TRUE) {
-							
+						$note = 'สำเร็จ';
+						$status = '1';
 							$done++;
+						}else{
+							$note = 'ข้อมูลซ้ำ';
+						$status = '0';
+							$loop++;
 						}
-					} else {
-					
-						$cancel++;
 						
-					}
-				}
-		
-		
-				if ($i >= 2 && ($data[0] == '' || $data[1] == '' || $data[2] == '' || $data[3] == '' || $data[5] == '')) {
 					
-					$broken++;
+						
+				} elseif ($i >= 2 && ($data[0] == '' || $data[1] == '' || $data[2] == '' || $data[3] == '' || $data[4] == '')) { //ถ้าข้อมูลอันไหนว่าง
+					$note = 'ข้อมูลไม่ครบ';
+					$status = '0';
+					$cancel++;
+					
+					
+				} elseif ($i >= 2 && ($data[2] <= '3' || $data[3] <= '3' || $data[2] <= '3' && $data[3] <= '3')) { // ถ้าองค์+ลำดับ ต่ำกว่า3
+					$note = 'ระดับของตัวชี้วัด และ องค์ประกอบของตัวชี้วัด  อย่างน้อย  3 ลำดับ';
+					$status = '0';
+					$cancel++;
 				}
 				$count++;
 				$i++;
+
+				$data_get[] = [
+					'CriteriaID' => $data[0],
+					'CriteriaName' => $data[1],
+					'CriteriaLevelAmount' => $data[2],	
+					'CriteriaCompositionAmount' => $data[3],
+					'CriteriaPassingScorePercentage' => $data[4],
+					'note' => $note,
+					'status' => $status
+
+				];
+				
 			}
 
 
 			ini_set('auto_detect_line_endings', FALSE);
-			
-			$_SESSION['count'] = $count - 1;
+		   	$txt =  $data_get;
+			$_SESSION['txt'] = $txt;
+			$_SESSION['count'] = $count;
 			$_SESSION['done'] = $done;
 			$_SESSION['cancel'] = $cancel;
-			$_SESSION['broken'] = $broken;
-			$_SESSION['success_up'] = "อัปโหลดไฟล์ข้อมูลสถานศึกษาเรียบร้อย";
+			$_SESSION['loop'] = $loop ;
+			$_SESSION['success_up'] = "อัปโหลดไฟล์ข้อมูลตัวชี้วัดเรียบร้อย";
 			header("Location: " . site_url('Fm_evaluation_das_p1?page=sh1'));
-			exit;
+			
 		}
-
-		}
-
+	}
 }
