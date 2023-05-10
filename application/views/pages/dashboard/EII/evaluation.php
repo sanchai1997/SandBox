@@ -82,7 +82,8 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <?php $data_get =  $_SESSION['txt']; ?>
+                        <?php $data_get =  $_SESSION['txt']; 
+                          unset($_SESSION['txt']);?>
                         <table class="table table-bordered">
                             <thead>
                                 <tr>
@@ -101,7 +102,7 @@
 
                                         <td><?php if ($row['status'] == '1') { ?>
                                                <button class="btn btn-success">สำเร็จ</button>
-                                         <?php   } else {  ?>
+                                         <?php   } elseif($row['status'] == '0') {  ?>
                                             <button class="btn btn-danger">ไม่สำเร็จ</button>
                                             <?php }  ?></td>
                                         <td><?= $row['note'] ?></td>
@@ -187,12 +188,12 @@
                                                             <div class="row">
                                                                 <div class="col-6">
                                                                     <label>คู่มือขั้นตอนการอัปโหลด : &nbsp;</label>
-                                                                    <a href="assets/EII/ASSESSMENT_CRITERIA/Guide.pdf" class="btn btn-info" target="_blank"><i class="bi bi-file-earmark-text"></i>
+                                                                    <a href="assets/EII/ASSESSMENT_CRITERIA/Indicator_Guide.pdf" class="btn btn-info" target="_blank"><i class="bi bi-file-earmark-text"></i>
                                                                         รายละเอียด</a>
                                                                 </div>
                                                                 <div class="col-6">
                                                                     <label>ฟอร์มกรอกข้อมูล : &nbsp;</label>
-                                                                    <a href="<?php echo site_url('down_csv_criteria'); ?>" class="btn btn-success" download target="_blank"><i class="bi bi-file-earmark-arrow-down"></i>
+                                                                    <a href="assets/EII/ASSESSMENT_CRITERIA/Indicator_Template.xlsx"class="btn btn-success" download target="_blank"><i class="bi bi-file-earmark-arrow-down"></i>
                                                                         ดาวน์โหลด</a>
                                                                 </div>
 

@@ -1045,40 +1045,40 @@ class Evaluation_model extends CI_Model
 			'SchoolAssessmentDescription' => $result['SchoolAssessmentDescription']
 		);
 	}
-	public function down_csv_criteria()
-	{
+	// public function down_csv_criteria()
+	// {
+	// 	require_once 'path/to/PHPExcel.php';
+	// 	$filename = 'Indicator_Template.csv'; // ชื่อไฟล์ CSV
+	// 	$header = array("รหัสตัวชี้วัด", "ชื่อเกณฑ์", "ระดับของตัวชี้วัด", "องค์ประกอบของตัวชี้วัด", "คะแนนการผ่านเกณฑ์ (%)"); // กำหนดหัวคอลัมน์
 
-		$filename = 'ตัวชี้วัด.csv'; // ชื่อไฟล์ CSV
-		$header = array('รหัสตัวชี้วัด', 'ชื่อเกณฑ์', 'จำนวนระดับของตัวชี้วัด', 'จำนวนองค์ประกอบของตัวชี้วัด', 'คะแนนการผ่านเกณฑ์ (%)'); // กำหนดหัวคอลัมน์
-
-		// ดึงข้อมูลจากฐานข้อมูล
-		$query = $this->db->select('CriteriaID, CriteriaName, CriteriaDescription, CriteriaLevelAmount, CriteriaCompositionAmount, CriteriaPassingScorePercentage')
-			->where('DeleteStatus', 0)
-			->get('ASSESSMENT_CRITERIA');
+	// 	// ดึงข้อมูลจากฐานข้อมูล
+	// 	$query = $this->db->select('CriteriaID, CriteriaName, CriteriaDescription, CriteriaLevelAmount, CriteriaCompositionAmount, CriteriaPassingScorePercentage')
+	// 		->where('DeleteStatus', 0)
+	// 		->get('ASSESSMENT_CRITERIA');
 
 
-		// เปิด buffer เพื่อเขียนไฟล์ CSV
-		$fp = fopen('php://output', 'w');
+	// 	// เปิด buffer เพื่อเขียนไฟล์ CSV
+	// 	$fp = fopen('php://output', 'w');
 
-		// ใส่ UTF-8 BOM เพื่อให้ Excel อ่านภาษาไทยได้ถูกต้อง
-		fputs($fp, "\xEF\xBB\xBF");
+	// 	// ใส่ UTF-8 BOM เพื่อให้ Excel อ่านภาษาไทยได้ถูกต้อง
+	// 	fputs($fp, "\xEF\xBB\xBF");
 
-		// เขียนหัวคอลัมน์ในไฟล์ CSV
-		fputcsv($fp, $header);
+	// 	// เขียนหัวคอลัมน์ในไฟล์ CSV
+	// 	fputcsv($fp, $header);
 
-		// เขียนข้อมูลในไฟล์ CSV
-		foreach ($query->result() as $row) {
-			$data = array($row->CriteriaID, $row->CriteriaName, $row->CriteriaLevelAmount, $row->CriteriaCompositionAmount, $row->CriteriaPassingScorePercentage);
-			fputcsv($fp, $data);
-		}
+	// 	// เขียนข้อมูลในไฟล์ CSV
+	// 	foreach ($query->result() as $row) {
+	// 		$data = array($row->CriteriaID, $row->CriteriaName, $row->CriteriaLevelAmount, $row->CriteriaCompositionAmount, $row->CriteriaPassingScorePercentage);
+	// 		fputcsv($fp, $data);
+	// 	}
 
-		// ปิด buffer เพื่อสร้างไฟล์ CSV และส่งให้ใช้งาน
-		fclose($fp);
+	// 	// ปิด buffer เพื่อสร้างไฟล์ CSV และส่งให้ใช้งาน
+	// 	fclose($fp);
 
-		// เรียกใช้ helper download เพื่อดาวน์โหลดไฟล์
-		$this->load->helper('download');
-		force_download($filename, ob_get_clean());
-	}
+	// 	// เรียกใช้ helper download เพื่อดาวน์โหลดไฟล์
+	// 	$this->load->helper('download');
+	// 	force_download($filename, ob_get_clean());
+	// }
 	public function uplod_criteria()
 	{
 		session_start();
@@ -1097,7 +1097,7 @@ class Evaluation_model extends CI_Model
 
 			while (($data = fgetcsv($handle)) !== FALSE && $data[0] != '') {
 				// เพิ่มเงื่อนไขเช็คว่าต้องเริ่ม insert จาก row ที่ 2 เป็นต้นไป
-				if ($i >= 1 && ($data[0] != '' && $data[1] != '' &&  $data[2] > '3' && $data[3] > '3' && $data[4] != '')) {//ถ้าข้อมูลไม่ว่างหรืออง+ลำไม่ต่ำกว่า3
+				if ($i >= 1 && ($data[0] != '' && $data[1] != '' &&  $data[2] >= '3' && $data[3] >= '3' && $data[4] != '')) {//ถ้าข้อมูลไม่ว่างหรืออง+ลำไม่ต่ำกว่า3
 					$all_data = [
 						'CriteriaID' => $data[0],
 						'CriteriaName' => $data[1],
@@ -1122,24 +1122,43 @@ class Evaluation_model extends CI_Model
 						$status = '1';
 							$done++;
 						}else{
-							$note = 'ข้อมูลซ้ำ';
+							$note = 'ข้อมูลซ้ำ รหัสตัวชี้วัดห้ามซ้ำ';
 						$status = '0';
 							$loop++;
 						}
 						
 					
 						
-				} elseif ($i >= 2 && ($data[0] == '' || $data[1] == '' || $data[2] == '' || $data[3] == '' || $data[4] == '')) { //ถ้าข้อมูลอันไหนว่าง
+				} elseif ($i >= 1 && ($data[0] == '' || $data[1] == '' || $data[2] == '' || $data[3] == '' || $data[4] == '')) { //ถ้าข้อมูลอันไหนว่าง
 					$note = 'ข้อมูลไม่ครบ';
 					$status = '0';
 					$cancel++;
 					
 					
-				} elseif ($i >= 2 && ($data[2] <= '3' || $data[3] <= '3' || $data[2] <= '3' && $data[3] <= '3')) { // ถ้าองค์+ลำดับ ต่ำกว่า3
-					$note = 'ระดับของตัวชี้วัด และ องค์ประกอบของตัวชี้วัด  อย่างน้อย  3 ลำดับ';
-					$status = '0';
-					$cancel++;
+				} elseif ($i >= 1 && ( $data[2] <= '2' || $data[3] <= '2' )) { // ถ้าองค์+ลำดับ ต่ำกว่า3
+					switch (true) {
+						case ($data[2] <= '2' && $data[3] <= '2'):
+						  $note = 'ระดับของตัวชี้วัด และ องค์ประกอบของตัวชี้วัด อย่างน้อย 3 ลำดับ';
+						  $status = '0';
+						  $cancel++;
+						  break;
+						case ($data[2] <= '2' && $data[3] != ''):
+						  $note = 'ระดับของตัวชี้วัด ต้องไม่น้อยกว่า 3';
+						  $status = '0';
+						  $cancel++;
+						  break;
+						case ($data[2] != '' && $data[3] <= '2'):
+						  $note = 'องค์ประกอบของตัวชี้วัด ต้องไม่น้อยกว่า 3';
+						  $status = '0';
+						  $cancel++;
+						  break;
+						default:
+						  // กรณีไม่ตรงกับเงื่อนไขใดๆ
+						  break;
+					  }
+					  
 				}
+				
 				$count++;
 				$i++;
 
