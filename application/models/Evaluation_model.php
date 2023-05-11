@@ -1302,8 +1302,8 @@ class Evaluation_model extends CI_Model
 						$note = 'ข้อมูลซ้ำ รหัสตัวชี้วัดห้ามซ้ำ';
 						$status = '0';
 						$loop++;
-						$status2 = '';
-					$status3 = '';
+						$status2 = '0';
+					$status3 = '0';
 					$path2 = '';
 					$path3 = '';
 					}
@@ -1311,8 +1311,8 @@ class Evaluation_model extends CI_Model
 					$note = 'ข้อมูลไม่ครบ';
 					$status = '0';
 					$cancel++;
-					$status2 = '';
-					$status3 = '';
+					$status2 = '0';
+					$status3 = '0';
 					$path2 = '';
 					$path3 = '';
 					
