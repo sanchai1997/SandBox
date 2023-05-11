@@ -237,7 +237,7 @@
                                             <textarea class="form-control" placeholder="Leave a comment here"
                                                 id="floatingTextarea2" style="height: 100px"
                                                 name="CriteriaDescription"><?php echo $show->CriteriaDescription ?></textarea>
-                                            <label for="floatingTextarea2"><?php echo nbs(2); ?>คำฮธิบายเกณฑ์ </label>
+                                            <label for="floatingTextarea2"><?php echo nbs(2); ?>คำอธิบายเกณฑ์ </label>
                                         </div>
                                     </div>
 

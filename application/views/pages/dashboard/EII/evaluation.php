@@ -113,7 +113,7 @@
                     </div>
                     <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#Clook_txt">รายละเอียดเพิ่มเติม ระดับของตัวชี้วัด และ องค์ประกอบของตัวชี้วัด</button>
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ปิด</button>
+                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">ปิด</button>
                        
                     </div>
                 </div>
