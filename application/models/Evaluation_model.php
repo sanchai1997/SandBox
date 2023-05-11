@@ -1302,6 +1302,10 @@ class Evaluation_model extends CI_Model
 						$note = 'ข้อมูลซ้ำ รหัสตัวชี้วัดห้ามซ้ำ';
 						$status = '0';
 						$loop++;
+						$status2 = '';
+					$status3 = '';
+					$path2 = '';
+					$path3 = '';
 					}
 				} elseif ($i >= 1 && ($data[0] == '' || $data[1] == '' || $data[2] == '' || $data[3] == '' || $data[4] == '')) { //ถ้าข้อมูลอันไหนว่าง
 					$note = 'ข้อมูลไม่ครบ';
