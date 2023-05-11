@@ -83,7 +83,7 @@
                     </div>
                     <div class="modal-body">
                         <?php $data_get =  $_SESSION['txt']; 
-                          unset($_SESSION['txt']);?>
+                         ?>
                         <table class="table table-bordered">
                             <thead>
                                 <tr>
@@ -106,6 +106,55 @@
                                             <button class="btn btn-danger">ไม่สำเร็จ</button>
                                             <?php }  ?></td>
                                         <td><?= $row['note'] ?></td>
+                                    </tr>
+                                <?php endforeach; ?>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#Clook_txt">รายละเอียดเพิ่มเติม ระดับของตัวชี้วัด และ องค์ประกอบของตัวชี้วัด</button>
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ปิด</button>
+                       
+                    </div>
+                </div>
+            </div>
+        </div>
+         <!-- Modal -->
+         <div class="modal fade" id="Clook_txt" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-xl modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">ระดับของตัวชี้วัด และ องค์ประกอบของตัวชี้วัด</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <?php $data_get =  $_SESSION['txt']; 
+                          unset($_SESSION['txt']);?>
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>รหัสตัวชี้วัด</th>
+                                    <th>ระดับของตัวชี้วัด</th>
+                                    <th>องค์ประกอบของตัวชี้วัด</th>
+                                    <th>หมายเหต</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php foreach ($data_get as $row) : ?>
+                                    <tr>
+                                        <td><?= $row['CriteriaID'] ?></td>
+                                        <td><?php if ($row['status2'] == '1') { ?>
+                                               <button class="btn btn-success">สำเร็จ</button>
+                                         <?php   } elseif($row['status2'] == '0') {  ?>
+                                            <button class="btn btn-danger">ไม่สำเร็จ</button>
+                                            <?php }  ?></td>
+
+                                        <td><?php if ($row['status3'] == '1') { ?>
+                                               <button class="btn btn-success">สำเร็จ</button>
+                                         <?php   } elseif($row['status3'] == '0') {  ?>
+                                            <button class="btn btn-danger">ไม่สำเร็จ</button>
+                                            <?php }  ?></td>
+                                        <td><?= $row['path2'] ?> <?php  echo br(1); ?><?= $row['path3'] ?></td>
                                     </tr>
                                 <?php endforeach; ?>
                             </tbody>

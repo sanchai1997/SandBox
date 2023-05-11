@@ -1082,6 +1082,7 @@ class Evaluation_model extends CI_Model
 	public function uplod_criteria()
 	{
 		session_start();
+		$this->db->trans_start();
 		if (isset($_FILES['document_criteria'])) {
 			$i = 1;
 			$count = 0;
@@ -1097,16 +1098,17 @@ class Evaluation_model extends CI_Model
 
 			while (($data = fgetcsv($handle)) !== FALSE && $data[0] != '') {
 				// เพิ่มเงื่อนไขเช็คว่าต้องเริ่ม insert จาก row ที่ 2 เป็นต้นไป
-				if ($i >= 1 && ($data[0] != '' && $data[1] != '' &&  $data[2] >= '3' && $data[3] >= '3' && $data[4] != '')) {//ถ้าข้อมูลไม่ว่างหรืออง+ลำไม่ต่ำกว่า3
+				if ($i >= 1 && ($data[0] != '' && $data[1] != '' &&  $data[2] != '' && $data[3] != '' && $data[4] != '' && $data[5] != '')) { //ถ้าข้อมูลไม่ว่างหรืออง+ลำไม่ต่ำกว่า3
 					$all_data = [
 						'CriteriaID' => $data[0],
 						'CriteriaName' => $data[1],
-						'CriteriaLevelAmount' => $data[2],
-						'CriteriaCompositionAmount' => $data[3],
-						'CriteriaPassingScorePercentage' => $data[4]
+						'CriteriaDescription' => $data[2],
+						'CriteriaLevelAmount' => $data[3],
+						'CriteriaCompositionAmount' => $data[4],
+						'CriteriaPassingScorePercentage' => $data[5]
 					];
 
-					
+
 
 					// ตรวจสอบว่าข้อมูลซ้ำหรือไม่
 					$Check = $this->db->query("SELECT * 
@@ -1114,78 +1116,230 @@ class Evaluation_model extends CI_Model
 					WHERE CriteriaID = '" . $data[0] . "' 
 					AND DeleteStatus = '0'
 				")->result();
-				
+
+
 
 					if ($Check != TRUE) {
 						$insert = $this->db->insert('ASSESSMENT_CRITERIA', $all_data);
+						$last_id = $this->db->insert_id();
 						$note = 'สำเร็จ';
 						$status = '1';
-							$done++;
-						}else{
-							$note = 'ข้อมูลซ้ำ รหัสตัวชี้วัดห้ามซ้ำ';
-						$status = '0';
-							$loop++;
+						$done++;
+
+
+						switch ($data[3]) {
+
+							case ($data[3] == '1'):
+							if($data[6] == ''||$data[7]==''){
+								$path2 = "ระดับของตัวชี้วัด".$data[3].'แต่ข้อมูลในลำดับระดับของตัวชี้วัด 1 ข้อมูลไม่ครบ';
+								$status2 = '0';
+							}else{
+								$path_two = [
+									'CriteriaID' => $last_id,
+									'LevelIndex' => 1,
+									'LevelName' => $data[6],
+									'LevelScore' => $data[7]
+
+								];
+
+								$insert = $this->db->insert('ASSESSMENT_CRITERIA_LEVEL', $path_two);
+								$status2 = '1';
+								$path2 = '';
+							}
+								break;
+							case ($data[3] == '2'):
+							if($data[6] == ''||$data[7]==''||$data[8] == ''||$data[9]==''){
+								$path2 = "ระดับของตัวชี้วัด".$data[3].'แต่ข้อมูลในลำดับระดับของตัวชี้วัด 1-2 ข้อมูลไม่ครบ';
+								$status2 = '0';
+							}else{
+								$path_two = [
+									'CriteriaID' => $last_id,
+									'LevelIndex' => 1,
+									'LevelName' => $data[6],
+									'LevelScore' => $data[7]
+
+								];
+								$insert = $this->db->insert('ASSESSMENT_CRITERIA_LEVEL', $path_two);
+								$path_two = [
+									'CriteriaID' => $last_id,
+									'LevelIndex' => 2,
+									'LevelName' => $data[8],
+									'LevelScore' => $data[9]
+
+								];
+								$insert = $this->db->insert('ASSESSMENT_CRITERIA_LEVEL', $path_two);
+								$status2 = '1';
+								$path2 = '';
+							}
+								break;
+							case ($data[3] >= '3'):
+							if($data[6] == ''||$data[7]==''||$data[8] == ''||$data[9]==''||$data[10] == ''||$data[11]==''){
+								$path2 = "ระดับของตัวชี้วัด".$data[3].'แต่ข้อมูลในลำดับระดับของตัวชี้วัด 1-3 ข้อมูลไม่ครบ';
+								$status2 = '0';
+							}else{
+								$path_two = [
+									'CriteriaID' => $last_id,
+									'LevelIndex' => 1,
+									'LevelName' => $data[6],
+									'LevelScore' => $data[7]
+
+								];
+								$insert = $this->db->insert('ASSESSMENT_CRITERIA_LEVEL', $path_two);
+								$path_two = [
+									'CriteriaID' => $last_id,
+									'LevelIndex' => 2,
+									'LevelName' => $data[8],
+									'LevelScore' => $data[9]
+
+								];
+								$insert = $this->db->insert('ASSESSMENT_CRITERIA_LEVEL', $path_two);
+								$path_two = [
+									'CriteriaID' => $last_id,
+									'LevelIndex' => 3,
+									'LevelName' => $data[10],
+									'LevelScore' => $data[11]
+
+								];
+								$insert = $this->db->insert('ASSESSMENT_CRITERIA_LEVEL', $path_two);
+								$status2 = '1';
+								$path2 = '';
+							}
+								break;
 						}
-						
-					
-						
+
+						switch ($data[4]) {
+
+							case ($data[4] == '1'):
+							if($data[12] == ''||$data[13]==''||$data[14] == ''){
+								$path3 = "องค์ประกอบของตัวชี้วัดมี".$data[4].'แต่ข้อมูลในลำดับองค์ประกอบของตัวชี้วัดมี 1 ข้อมูลไม่ครบ';
+								$status3 = '0';
+							}else{
+								$path_three = [
+									'CriteriaID' => $last_id,
+									'CompositionIndex' => 1,
+									'CompositionName' => $data[12],
+									'CompositionWeightScore' => $data[13],
+									'CompositionGuideline' => $data[14]
+
+								];
+								$insert = $this->db->insert('ASSESSMENT_CRITERIA_COMPOSITION', $path_three);
+								$status3 = '1';
+								$path3 = '';
+							}
+								break;
+							case ($data[4] == '2'):
+							if($data[12] == ''||$data[13]==''||$data[14] == ''||$data[15]==''||$data[16] == ''||$data[17]==''){
+								$path3 = "องค์ประกอบของตัวชี้วัดมี".$data[4].'แต่ข้อมูลในลำดับองค์ประกอบของตัวชี้วัดมี 1-2 ข้อมูลไม่ครบ';
+								$status3 = '0';
+								
+							}else{
+								$path_three = [
+									'CriteriaID' => $last_id,
+									'CompositionIndex' => 1,
+									'CompositionName' => $data[12],
+									'CompositionWeightScore' => $data[13],
+									'CompositionGuideline' => $data[14]
+
+
+								];
+								$insert = $this->db->insert('ASSESSMENT_CRITERIA_COMPOSITION', $path_three);
+								$path_three = [
+									'CriteriaID' => $last_id,
+									'CompositionIndex' => 2,
+									'CompositionName' => $data[15],
+									'CompositionWeightScore' => $data[16],
+									'CompositionGuideline' => $data[17]
+
+
+								];
+								$insert = $this->db->insert('ASSESSMENT_CRITERIA_COMPOSITION', $path_three);
+								$status3 = '1';
+								$path3 = '';
+							}
+								break;
+							case ($data[4] >= '3'):
+							if($data[12] == ''||$data[13]==''||$data[14] == ''||$data[15]==''||$data[16] == ''||$data[17]==''||$data[18]==''||$data[19] == ''||$data[20]==''){
+								$path3 = "องค์ประกอบของตัวชี้วัดมี".$data[4].'แต่ข้อมูลในลำดับองค์ประกอบของตัวชี้วัดมี 1-3 ข้อมูลไม่ครบ';
+								$status3 = '0';
+								
+							}else{
+								$path_three = [
+									'CriteriaID' => $last_id,
+									'CompositionIndex' => 1,
+									'CompositionName' => $data[12],
+									'CompositionWeightScore' => $data[13],
+									'CompositionGuideline' => $data[14]
+
+
+								];
+								$insert = $this->db->insert('ASSESSMENT_CRITERIA_COMPOSITION', $path_three);
+								$path_three = [
+									'CriteriaID' => $last_id,
+									'CompositionIndex' => 2,
+									'CompositionName' => $data[15],
+									'CompositionWeightScore' => $data[16],
+									'CompositionGuideline' => $data[17]
+
+
+								];
+								$insert = $this->db->insert('ASSESSMENT_CRITERIA_COMPOSITION', $path_three);
+								$path_three = [
+									'CriteriaID' => $last_id,
+									'CompositionIndex' => 3,
+									'CompositionName' => $data[18],
+									'CompositionWeightScore' => $data[19],
+									'CompositionGuideline' => $data[20]
+
+
+								];
+								$insert = $this->db->insert('ASSESSMENT_CRITERIA_COMPOSITION', $path_three);
+								$status3 = '1';
+								$path3 = '';
+							}
+								break;
+						}
+					} else {
+						$note = 'ข้อมูลซ้ำ รหัสตัวชี้วัดห้ามซ้ำ';
+						$status = '0';
+						$loop++;
+					}
 				} elseif ($i >= 1 && ($data[0] == '' || $data[1] == '' || $data[2] == '' || $data[3] == '' || $data[4] == '')) { //ถ้าข้อมูลอันไหนว่าง
 					$note = 'ข้อมูลไม่ครบ';
 					$status = '0';
 					$cancel++;
-					
-					
-				} elseif ($i >= 1 && ( $data[2] <= '2' || $data[3] <= '2' )) { // ถ้าองค์+ลำดับ ต่ำกว่า3
-					switch (true) {
-						case ($data[2] <= '2' && $data[3] <= '2'):
-						  $note = 'ระดับของตัวชี้วัด และ องค์ประกอบของตัวชี้วัด อย่างน้อย 3 ลำดับ';
-						  $status = '0';
-						  $cancel++;
-						  break;
-						case ($data[2] <= '2' && $data[3] != ''):
-						  $note = 'ระดับของตัวชี้วัด ต้องไม่น้อยกว่า 3';
-						  $status = '0';
-						  $cancel++;
-						  break;
-						case ($data[2] != '' && $data[3] <= '2'):
-						  $note = 'องค์ประกอบของตัวชี้วัด ต้องไม่น้อยกว่า 3';
-						  $status = '0';
-						  $cancel++;
-						  break;
-						default:
-						  // กรณีไม่ตรงกับเงื่อนไขใดๆ
-						  break;
-					  }
-					  
 				}
-				
+
 				$count++;
 				$i++;
 
 				$data_get[] = [
 					'CriteriaID' => $data[0],
 					'CriteriaName' => $data[1],
-					'CriteriaLevelAmount' => $data[2],	
+					'CriteriaLevelAmount' => $data[2],
 					'CriteriaCompositionAmount' => $data[3],
 					'CriteriaPassingScorePercentage' => $data[4],
 					'note' => $note,
-					'status' => $status
+					'status' => $status,
+					'status2' => $status2,
+					'status3' => $status3,
+					'path2' => $path2,
+					'path3' => $path3
 
 				];
-				
 			}
-
-
+			print_r($path_two);
+			print_r($path_three);
+			// exit;
 			ini_set('auto_detect_line_endings', FALSE);
-		   	$txt =  $data_get;
+			$txt =  $data_get;
 			$_SESSION['txt'] = $txt;
 			$_SESSION['count'] = $count;
 			$_SESSION['done'] = $done;
 			$_SESSION['cancel'] = $cancel;
-			$_SESSION['loop'] = $loop ;
+			$_SESSION['loop'] = $loop;
 			$_SESSION['success_up'] = "อัปโหลดไฟล์ข้อมูลตัวชี้วัดเรียบร้อย";
 			header("Location: " . site_url('Fm_evaluation_das_p1?page=sh1'));
-			
 		}
+		$this->db->trans_complete();
 	}
 }
