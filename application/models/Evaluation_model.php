@@ -1304,8 +1304,8 @@ class Evaluation_model extends CI_Model
 						$loop++;
 						$status2 = '0';
 					$status3 = '0';
-					$path2 = '';
-					$path3 = '';
+					$path2 = 'ข้อมูลซ้ำ';
+					$path3 = 'ข้อมูลซ้ำ';
 					}
 				} elseif ($i >= 1 && ($data[0] == '' || $data[1] == '' || $data[2] == '' || $data[3] == '' || $data[4] == '')) { //ถ้าข้อมูลอันไหนว่าง
 					$note = 'ข้อมูลไม่ครบ';
