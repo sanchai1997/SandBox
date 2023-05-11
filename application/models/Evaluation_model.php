@@ -1307,6 +1307,11 @@ class Evaluation_model extends CI_Model
 					$note = 'ข้อมูลไม่ครบ';
 					$status = '0';
 					$cancel++;
+					$status2 = '';
+					$status3 = '';
+					$path2 = '';
+					$path3 = '';
+					
 				}
 
 				$count++;
