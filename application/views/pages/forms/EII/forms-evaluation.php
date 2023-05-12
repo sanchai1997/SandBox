@@ -121,29 +121,29 @@
                                             <textarea class="form-control" placeholder="Leave a comment here"
                                                 id="floatingTextarea2" style="height: 100px"
                                                 name="CriteriaDescription"></textarea>
-                                            <label for="Y"><?php echo nbs(5); ?>คำฮธิบายเกณฑ์ </label>
+                                            <label for="Y"><?php echo nbs(5); ?>คำอธิบายเกณฑ์ </label>
                                         </div>
                                     </div>
 
                                     <div class="row mb-3">
                                         <div class="col">
                                             <div class="form-floating">
-                                                <input type="number" min="3"  class="form-control" id="floatingName"
+                                                <input type="number"   class="form-control" id="floatingName"
                                                     placeholder="จำนวนระดับของตัวชี้วัด" name="CriteriaLevelAmount">
                                                 <label for="Y"><?php echo nbs(
                                                         2
-                                                    ); ?> จำนวนระดับของตัวชี้วัด(ไม่น้อยกว่า 3)</label>
+                                                    ); ?> จำนวนระดับของตัวชี้วัด</label>
                                             </div>
                                         </div>
 
                                         <div class="col">
                                             <div class="form-floating">
-                                                <input type="number" min="3" class="form-control" id="floatingName"
+                                                <input type="number"  class="form-control" id="floatingName"
                                                     placeholder="จำนวนระดับของตัวชี้วัด"
                                                     name="CriteriaCompositionAmount">
                                                 <label for="Y"><?php echo nbs(
                                                         2
-                                                    ); ?> จำนวนองค์ประกอบของตัวชี้วัด(ไม่น้อยกว่า 3)</label>
+                                                    ); ?> จำนวนองค์ประกอบของตัวชี้วัด</label>
                                             </div>
                                         </div>
                                         <div class="col">
