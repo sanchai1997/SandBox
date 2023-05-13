@@ -75,8 +75,15 @@
                 <div class="col-md-16">
                     <div class="input-group">
                         <label class="input-group-text" for="inputGroupFile01">ผลงาน <font color="red"> *</font></label>
-                        <input type="file" class="form-control" name="STUDENT_PROJECT" id="STUDENT_PROJECT" placeholder="ผลงาน" >
+                        <input type="file" class="form-control" accept="image/*" name="STUDENT_PROJECT_DOCUMENT" id="STUDENT_PROJECT_DOCUMENT" placeholder="ผลงาน" >
                     </div>
+                </div>
+
+                <div class="col-md-16">
+                  <div class="form-floating">
+                    <textarea type="text" class="form-control" name="STUDENT_PROJECT_DESCRIPTION" id="STUDENT_PROJECT_DESCRIPTION" placeholder="คำอธิบายผลงาน"></textarea>
+                    <label >คำอธิบายผลงาน<font color="red"> *</font></label>
+                  </div>
                 </div>
 
                 <div  class=" div_PROJECT"></div>
@@ -91,8 +98,15 @@
                 <div class="col-md-16">
                     <div class="input-group">
                         <label class="input-group-text" for="inputGroupFile01">ความดี <font color="red"> *</font></label>
-                        <input type="file" class="form-control" name="STUDENT_GOODNESS" id="STUDENT_GOODNESS" placeholder="ความดี">
+                        <input type="file" class="form-control" accept="image/*" name="STUDENT_GOODNESS_DOCUMENT" id="STUDENT_GOODNESS_DOCUMENT" placeholder="ความดี">
                     </div>
+                </div>
+
+                <div class="col-md-16">
+                  <div class="form-floating">
+                    <textarea type="text" class="form-control" name="STUDENT_GOODNESS_DESCRIPTION" id="STUDENT_GOODNESS_DESCRIPTION" placeholder="คำอธิบายความดี"></textarea>
+                    <label >คำอธิบายความดี<font color="red"> *</font></label>
+                  </div>
                 </div>
 
                 <div  class=" div_GOODNESS"></div>
@@ -121,7 +135,7 @@
 
                 <div class="col-md-16">
                   <div class="form-floating">
-                    <input type="text" class="form-control" name="STUDENT_SUMMARY" id="STUDENT_SUMMARY" placeholder="สรุป" ></textarea>
+                    <textarea type="text" class="form-control" name="STUDENT_SUMMARY" id="STUDENT_SUMMARY" placeholder="สรุป" ></textarea>
                     <label >สรุป<font color="red"> *</font></label>
                   </div>
                 </div>
@@ -167,13 +181,18 @@
     var new_PROJECT_no = parseInt($('#total_PROJECT').val())+1;
     var new_input= //"<input type='file' id='new_PROJECT"+new_PROJECT_no+"'>";
     "<div  class='col-md-16 div_PROJECT"+new_PROJECT_no+"'"+" style='padding-bottom: 1rem;'>" +
-    "<div class='input-group div_PROJECT"+new_PROJECT_no+"'>"+
+      "<div class='input-group' style='padding-bottom: 1rem;'>"+
                       "  <label class='input-group-text' >ผลงาน </label> " +
-                      "  <input type='file' class='form-control' id='new_PROJECT"+new_PROJECT_no+"'"+" name='new_PROJECT"+new_PROJECT_no+"'"+  "placeholder='ผลงาน' > " +
-                  "  </div> " +
-                  "  </div> " ;
+                      "  <input type='file' class='form-control' accept='image/*' id='STUDENT_PROJECT_DOCUMENT"+new_PROJECT_no+"'"+" name='STUDENT_PROJECT_DOCUMENT"+new_PROJECT_no+"'"+  "placeholder='ผลงาน' > " +
+      "  </div> " +
+      "<div class='col-md-16'>"+
+                  "<div class='form-floating'>"+
+                   " <textarea type='text' class='form-control' name='STUDENT_PROJECT_DESCRIPTION"+new_PROJECT_no+"' id='STUDENT_PROJECT_DESCRIPTION"+new_PROJECT_no+"' placeholder='คำอธิบายผลงาน'></textarea> " +
+                   " <label >คำอธิบายผลงาน<font color='red'> </font></label> " +
+                    "  </div> " +
+      "  </div> " +
+  "</div> " ;
                 
-    
     $('.div_PROJECT').append(new_input);
     $('#total_PROJECT').val(new_PROJECT_no)
     return false;
@@ -191,14 +210,20 @@
 //////GOODNESS
   function add_GOODNESS(){
     var new_GOODNESS_no = parseInt($('#total_GOODNESS').val())+1;
-    var new_input= "<div  class='col-md-16 div_GOODNESS"+new_GOODNESS_no+"'"+" style='padding-bottom: 1rem;'>" +
-    "<div class='input-group div_GOODNESS"+new_GOODNESS_no+"'>"+
+    var new_input= 
+    "<div  class='col-md-16 div_GOODNESS"+new_GOODNESS_no+"'"+" style='padding-bottom: 1rem;'>" +
+      "<div class='input-group' style='padding-bottom: 1rem;'>"+
                       "  <label class='input-group-text' >ความดี </label> " +
-                      "  <input type='file' class='form-control' id='new_GOODNESS"+new_GOODNESS_no+"'"+" name='new_GOODNESS"+new_GOODNESS_no+"'"+  "placeholder='ความดี' > " +
-                  "  </div> " +
-                  "  </div> " ;
+                      "  <input type='file' class='form-control' accept='image/*' id='STUDENT_GOODNESS_DOCUMENT"+new_GOODNESS_no+"'"+" name='STUDENT_GOODNESS_DOCUMENT"+new_GOODNESS_no+"'"+  "placeholder='ความดี' > " +
+      "  </div> " +
+      "<div class='col-md-16'>"+
+                  "<div class='form-floating'>"+
+                   " <textarea type='text' class='form-control' name='STUDENT_GOODNESS_DESCRIPTION"+new_GOODNESS_no+"' id='STUDENT_GOODNESS_DESCRIPTION"+new_GOODNESS_no+"' placeholder='คำอธิบายความดี'></textarea> " +
+                   " <label >คำอธิบายความดี<font color='red'> </font></label> " +
+                    "  </div> " +
+      "  </div> " +
+    "  </div> " ;
                 
-    
     $('.div_GOODNESS').append(new_input);
     $('#total_GOODNESS').val(new_GOODNESS_no)
     return false;
@@ -237,12 +262,21 @@
       return false;
    }
    ///////////////
-   if(frm.STUDENT_PROJECT.value==""){
+   if(frm.STUDENT_PROJECT_DOCUMENT.value==""){
       alert("กรุณาแนบผลงาน")
       return false;
    }
-   if(frm.STUDENT_GOODNESS.value==""){
+   if(frm.STUDENT_PROJECT_DESCRIPTION.value==""){
+      alert("กรุณากรอกคำอธิบายผลงาน")
+      return false;
+   }
+   
+   if(frm.STUDENT_GOODNESS_DOCUMENT.value==""){
       alert("กรุณาแนบความดี ")
+      return false;
+   }
+   if(frm.STUDENT_GOODNESS_DESCRIPTION.value==""){
+      alert("กรุณากรอกคำอธิบายความดี")
       return false;
    }
    /////

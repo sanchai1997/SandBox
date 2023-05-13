@@ -1,7 +1,7 @@
 <style>
     .page-content img {
         max-width: 100%;
-        height: 100%;
+        height: 97px;
     }
 
     .page-detail img {
@@ -9,6 +9,13 @@
         height: 100%;
     }
 </style>
+<?php
+if (!empty($_SESSION['CountUploadSchool'])) {
+    unset($_SESSION['CountUploadSchool']);
+    unset($_SESSION['UploadSchoolDetail']);
+    unset($_SESSION['StatusUpload']);
+}
+?>
 <main id="main" class="main">
     <div class="pagetitle">
         <div class="row">
@@ -69,7 +76,6 @@
             </div>
         </div>
     <?php } ?>
-
     <!-- Recent Sales -->
     <div class="col-12">
         <div class="card recent-sales overflow-auto">
@@ -122,23 +128,19 @@
                             foreach ($result->result() as $SCHOOL) {
                             ?>
                                 <tr>
-                                    <?php if ($SCHOOL->ImageSchool != NULL) { ?>
-                                        <td class="page-content" style="text-align: center;">
-
+                                    <td class="page-content" style="text-align: center;">
+                                        <?php if ($SCHOOL->ImageSchool != NULL) { ?>
                                             <img src="assets/school/img/<?= $SCHOOL->ImageSchool; ?>" width="100%" height="100%" alt="">
-                                        </td>
 
-                                    <?php } else { ?>
-                                        <td style="padding-top: 40px; text-align: center;">-ไม่มีรูปภาพ- </td>
-                                    <?php  } ?>
-                                    <td <?php if ($SCHOOL->ImageSchool == NULL) { ?> style="padding-top: 30px;" <?php
-                                                                                                            } else { ?> style="padding-top: 40px;" <?php } ?>><?= $SCHOOL->SchoolID; ?></td>
-                                    <td <?php if ($SCHOOL->ImageSchool == NULL) { ?> style="padding-top: 30px;" <?php
-                                                                                                            } else { ?> style="padding-top: 40px;" <?php } ?>><?= $SCHOOL->SchoolNameThai; ?></td>
-                                    <td <?php if ($SCHOOL->ImageSchool == NULL) { ?> style="padding-top: 30px;" <?php
-                                                                                                            } else { ?> style="padding-top: 40px;" <?php } ?>><?= $SCHOOL->INNOVATION_AREA_NAME; ?></td>
-                                    <td <?php if ($SCHOOL->ImageSchool == NULL) { ?> style="padding-top: 25px; text-align: center;" <?php
-                                                                                                                                } else { ?> style="padding-top: 35px; text-align: center;" <?php } ?>>
+                                        <?php } else { ?>
+                                            <img src="assets/school/img/ImgDefaultSchool.png" width="100%" height="100%" alt="">
+                                        <?php  } ?>
+                                    </td>
+
+                                    <td style="padding-top: 40px;"><?= $SCHOOL->SchoolID; ?></td>
+                                    <td style="padding-top: 40px;"><?= $SCHOOL->SchoolNameThai; ?></td>
+                                    <td style="padding-top: 40px;"><?= $SCHOOL->INNOVATION_AREA_NAME; ?></td>
+                                    <td style="padding-top: 35px; text-align: center;">
                                         <a href="?SchoolID=<?= $SCHOOL->SchoolID; ?>" class="btn btn-primary"><i class="bi bi-card-list"></i></a>
                                     </td>
                                 </tr>
@@ -196,25 +198,22 @@
                         </thead>
                         <tbody>
                             <?php
-                            $result = $this->db->query('SELECT * FROM STUDENT 
+                            $result = $this->db->query('SELECT * , COUNT(StudentReferenceID) AS Count FROM STUDENT 
                             INNER JOIN CLS_GRADE_LEVEL  ON STUDENT.GradeLevelCode = CLS_GRADE_LEVEL.GRADE_LEVEL_CODE
                             WHERE DeleteStatus = 0 AND SchoolID = ' . $_GET['SchoolID'] . '
                             GROUP BY EducationYear, Semester, GradeLevelCode
                             ');
-                            $CountStudent = 0;
                             foreach ($result->result() as $STUDENT) {
-                                $CountStudent++;
                             ?>
                                 <tr>
                                     <td style="text-align: center;"><?= $STUDENT->EducationYear; ?></td>
                                     <td><?= $STUDENT->Semester; ?></td>
                                     <td><?= $STUDENT->GRADE_LEVEL_NAME; ?></td>
-                                    <td style="text-align: center;"><?= $CountStudent; ?></td>
+                                    <td style="text-align: center;"><?= $STUDENT->Count; ?></td>
                                     <td style="text-align: center;"><a href="?SchoolID=<?= $SCHOOL->SchoolID; ?>&&EducationYear=<?= $STUDENT->EducationYear; ?>&&Semester=<?= $STUDENT->Semester; ?>&&GradeLevelCode=<?= $STUDENT->GradeLevelCode; ?>" class="btn btn-primary"><i class="bi bi-card-list"></i></a>
                                     </td>
                                 </tr>
                             <?php
-                                $CountStudent = 0;
                             } ?>
 
                         </tbody>
@@ -267,9 +266,16 @@
                             ?>
                                 <tr>
                                     <td class="page-content" style="text-align: center;">
-                                        <?php if ($STUDENT->ImageStudent != NULL) { ?>
-                                            <img src="assets/student/img/<?= $STUDENT->ImageStudent; ?>" alt="" width="100%" height="100%">
-                                        <?php } else { ?><img src="assets/img/ImgDefault.jpg" alt="" width="100%" height="100%"> <?php  } ?>
+                                        <?php if ($STUDENT->ImageStudent == NULL) {
+                                            if ($STUDENT->StudentPrefixCode == 001) {
+                                        ?>
+                                                <img src="assets/student/img/ImageStudentBoy.png" alt="" width="100%" height="100%">
+                                            <?php } elseif ($STUDENT->StudentPrefixCode == 002) {
+                                            ?>
+                                                <img src="assets/student/img/ImageStudentGirl.png" alt="" width="100%" height="100%">
+                                            <?php
+                                            }
+                                        } else { ?><img src="assets/student/img/<?= $STUDENT->ImageStudent; ?>" alt="" width="100%" height="100%"> <?php  } ?>
                                     </td>
                                     <td style="padding-top: 40px;"><?= $STUDENT->StudentID; ?></td>
                                     <td style="padding-top: 40px;"><?= $STUDENT->PREFIX_NAME; ?></td>
@@ -334,7 +340,16 @@
                                     <div class="col-2" style="padding-bottom: 8px; padding-left: 60px; padding-top: 0px;">
                                         <div class="card">
                                             <h6 style="text-align: center; padding: 15px;">
-                                                <img style=" text-align: center; padding: 15px;" src="assets/img/ImgDefault.jpg" alt="" width="100%" style="padding-top: 20px;">
+                                                <?php
+                                                if ($STUDENT->StudentPrefixCode == 001) {
+                                                ?>
+                                                    <img src="assets/student/img/ImageStudentBoy.png" alt="" width="100%" style="padding-top: 20px;">
+                                                <?php } elseif ($STUDENT->StudentPrefixCode == 002) {
+                                                ?>
+                                                    <img src="assets/student/img/ImageStudentGirl.png" alt="" width="100%" style="padding-top: 20px;">
+                                                <?php
+                                                }
+                                                ?>
                                             </h6>
                                         </div>
                                     </div>
@@ -400,10 +415,10 @@
                                                 <div class="row">
                                                     <div class="col-4" style="text-align: left; padding-left: 25px; padding-bottom: 5px;">
                                                         <label style="padding-left: 25px;"> ประเภทบัตรประจำตัว: &nbsp;<?= $STUDENT_DETAIL->CITIZEN_ID_TYPE_NAME ?></label><br>
-                                                        <label style="padding-left: 25px;"> หมายเลขบัตร: &nbsp;<?php echo base64_decode($STUDENT_DETAIL->StudentPersonalID); ?></label><br>
+                                                        <label style="padding-left: 25px;"> หมายเลขบัตร: &nbsp;<?php echo $StudentPersonalID; ?></label><br>
                                                         <label style="padding-left: 25px;"> เลขที่หนังสือเดินทาง: &nbsp;<?php if ($STUDENT_DETAIL->StudentPassportNumber == NULL) {
                                                                                                                             echo '-';
-                                                                                                                        } else echo $STUDENT_DETAIL->StudentPassportNumber; ?></label><br>
+                                                                                                                        } else echo $StudentPassportNumber; ?></label><br>
                                                         <label style="padding-left: 25px;"> เพศ: &nbsp;<?php if ($STUDENT_DETAIL->StudentGenderCode == NULL) {
                                                                                                             echo '-';
                                                                                                         } else echo $STUDENT_DETAIL->GENDER_NAME; ?></label><br>
@@ -418,7 +433,7 @@
                                                     <div class="col-4" style="text-align: left; padding-left: 25px; padding-bottom: 5px;">
                                                         <label style="padding-left: 25px;"> วันที่เกิด: &nbsp;<?php if ($STUDENT_DETAIL->StudentBirthDate == NULL) {
                                                                                                                     echo '-';
-                                                                                                                } else echo DateThai($STUDENT_DETAIL->StudentBirthDate); ?></label><br>
+                                                                                                                } else echo DateThai($StudentBirthDate); ?></label><br>
                                                         <label style="padding-left: 25px;"> สัญชาติ: &nbsp;<?php if ($STUDENT_DETAIL->StudentNationalityCode == NULL) {
                                                                                                                 echo '-';
                                                                                                             } else echo $STUDENT_DETAIL->NATIONALITY_NAME; ?></label><br>
@@ -685,18 +700,24 @@
                                                                 } ?>
 
                                                             </label><br>
-                                                            <label style="padding-left: 20px;">หมายเลขบัตรประจำตัวประชาชน:
+                                                            <label style="padding-left: 20px;"> ประเภทบัตรประจำตัว: &nbsp;<?php if ($STUDENT_DETAIL->FatherPersonalIDTypeCode != "") {
+                                                                                                                                $result = $this->db->query('SELECT * FROM CLS_CITIZEN_ID_TYPE WHERE CITIZEN_ID_TYPE_CODE = "' . $STUDENT_DETAIL->FatherPersonalIDTypeCode . '"');
+                                                                                                                                foreach ($result->result() as $CITIZEN_ID_TYPE) {
+                                                                                                                                    echo $CITIZEN_ID_TYPE->CITIZEN_ID_TYPE_NAME;
+                                                                                                                                }
+                                                                                                                            } ?></label><br>
+                                                            <label style="padding-left: 20px;">หมายเลขบัตร:
                                                                 <?php if ($STUDENT_DETAIL->FatherPersonalID == "") {
                                                                     echo '-';
                                                                 } else {
-                                                                    echo $STUDENT_DETAIL->FatherPersonalID;
+                                                                    echo $FatherPersonalID;
                                                                 } ?>
                                                             </label><br>
                                                             <label style="padding-left: 20px;">เลขที่หนังสือเดินทาง:
                                                                 <?php if ($STUDENT_DETAIL->FatherPassportNumber == "") {
                                                                     echo '-';
                                                                 } else {
-                                                                    echo $STUDENT_DETAIL->FatherPassportNumber;
+                                                                    echo $FatherPassportNumber;
                                                                 } ?>
                                                             </label><br>
                                                             <?php
@@ -769,18 +790,24 @@
                                                                 } ?>
 
                                                             </label><br>
-                                                            <label style="padding-left: 20px;">หมายเลขบัตรประจำตัวประชาชน:
+                                                            <label style="padding-left: 20px;"> ประเภทบัตรประจำตัว: &nbsp;<?php if ($STUDENT_DETAIL->MotherPersonalIDTypeCode != "") {
+                                                                                                                                $result = $this->db->query('SELECT * FROM CLS_CITIZEN_ID_TYPE WHERE CITIZEN_ID_TYPE_CODE = "' . $STUDENT_DETAIL->MotherPersonalIDTypeCode . '"');
+                                                                                                                                foreach ($result->result() as $CITIZEN_ID_TYPE) {
+                                                                                                                                    echo $CITIZEN_ID_TYPE->CITIZEN_ID_TYPE_NAME;
+                                                                                                                                }
+                                                                                                                            } ?></label><br>
+                                                            <label style="padding-left: 20px;">หมายเลขบัตร:
                                                                 <?php if ($STUDENT_DETAIL->MotherPersonalID == "") {
                                                                     echo '-';
                                                                 } else {
-                                                                    echo $STUDENT_DETAIL->MotherPersonalID;
+                                                                    echo $MotherPersonalID;
                                                                 } ?>
                                                             </label><br>
                                                             <label style="padding-left: 20px;">เลขที่หนังสือเดินทาง:
                                                                 <?php if ($STUDENT_DETAIL->MotherPassportNumber == "") {
                                                                     echo '-';
                                                                 } else {
-                                                                    echo $STUDENT_DETAIL->MotherPassportNumber;
+                                                                    echo $MotherPassportNumber;
                                                                 } ?>
                                                             </label><br>
                                                             <?php
@@ -859,18 +886,24 @@
                                                                 } ?>
 
                                                             </label><br>
-                                                            <label style="padding-left: 20px;">หมายเลขบัตรประจำตัวประชาชน:
+                                                            <label style="padding-left: 20px;"> ประเภทบัตรประจำตัว: &nbsp;<?php if ($STUDENT_DETAIL->GuardianPersonalIDTypeCode != "") {
+                                                                                                                                $result = $this->db->query('SELECT * FROM CLS_CITIZEN_ID_TYPE WHERE CITIZEN_ID_TYPE_CODE = "' . $STUDENT_DETAIL->GuardianPersonalIDTypeCode . '"');
+                                                                                                                                foreach ($result->result() as $CITIZEN_ID_TYPE) {
+                                                                                                                                    echo $CITIZEN_ID_TYPE->CITIZEN_ID_TYPE_NAME;
+                                                                                                                                }
+                                                                                                                            } ?></label><br>
+                                                            <label style="padding-left: 20px;">หมายเลขบัตร:
                                                                 <?php if ($STUDENT_DETAIL->GuardianPersonalID == "") {
                                                                     echo '-';
                                                                 } else {
-                                                                    echo $STUDENT_DETAIL->GuardianPersonalID;
+                                                                    echo $GuardianPersonalID;
                                                                 } ?>
                                                             </label><br>
                                                             <label style="padding-left: 20px;">เลขที่หนังสือเดินทาง:
                                                                 <?php if ($STUDENT_DETAIL->GuardianPassportNumber == "") {
                                                                     echo '-';
                                                                 } else {
-                                                                    echo $STUDENT_DETAIL->GuardianPassportNumber;
+                                                                    echo $GuardianPassportNumber;
                                                                 } ?>
                                                             </label><br>
                                                             <?php
@@ -1235,7 +1268,7 @@
                                                 </div>
                                             </div>
                                         </div>
-
+                                        
                                         <div class="card">
                                             <div class="card-body">
                                                 <div class="row">
@@ -1257,7 +1290,7 @@
                                                         </h5>
                                                         <div class="col-12" style="text-align: left; padding-left: 25px; padding-bottom: 5px;">
                                                         <?php if(count($EPORTFOLIO)>0 ) { ?>   
-                                                            <a href="<?php echo base_url('assets/student/eportfolio/') ?>" ><i class="bi bi-file-earmark-text-fill"></i> แฟ้มสะสมผลงาน </a>   
+                                                            <label style="padding-left: 20px;"><a href="show-eportfolio?StudentReferenceID=<?= $STUDENT_DETAIL->StudentReferenceID ?>" ><i class="bi bi-file-earmark-text-fill"></i> แฟ้มสะสมผลงาน </a>   
                                                             <?php } else { ?>   
                                                                 <label style="padding-left: 20px;"> -
                                                             <?php } ?>   
@@ -1267,17 +1300,6 @@
                                                 </div>
                                             </div>
                                         </div>
-
-
-
-
-                                    </div>
-                                </div>
-                            </div>
-                            
-                        </div>
-                    </div>
-
 
 
 

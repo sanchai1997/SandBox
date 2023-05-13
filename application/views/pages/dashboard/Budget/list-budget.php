@@ -79,7 +79,8 @@
                             <?php } ?>
                     </div>
                     <div class="col">
-                        <h5 style="float: right; padding: 15px;" class="card-title"><a href="" class="btn btn-success">อัพโหลดไฟล์</a>&nbsp;&nbsp;<a href="forms-budget?sid=<?php echo $SchoolID; ?>" class="btn btn-success">เพิ่มข้อมูล</a></h5>
+                        <h5 style="float: right; padding: 15px;" class="card-title"><a href="" class="btn btn-success"><i class="bi bi-file-earmark-arrow-up"></i> อัพโหลดไฟล์</a>
+                        &nbsp;&nbsp;<a href="forms-budget?sid=<?php echo $SchoolID; ?>" class="btn btn-success"><i class="bi bi-file-earmark-plus"></i> เพิ่มข้อมูล</a></h5>
                     </div>
                 </div>
                 <table class="table table-borderless datatable">

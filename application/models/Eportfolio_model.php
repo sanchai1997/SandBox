@@ -9,10 +9,17 @@ class Eportfolio_model  extends CI_Model {
     }
 
 #######################eportfolio
-     public function insert_eportfolio($eportfolio) {
+    public function insert_eportfolio($eportfolio) {
        
-     $result_eportfolio = $this->db->insert('EPORTFOLIO', $eportfolio);
-     return $result_eportfolio;
+        $result_eportfolio = $this->db->insert('EPORTFOLIO', $eportfolio);
+
+        if($result_eportfolio == 1){
+            $eportfolio_id = $this->db->insert_id();
+            return $eportfolio_id;
+        }else{
+            return -1;
+        }
+
     }
     
     public function get_EPORTFOLIO_ALL() {
@@ -55,7 +62,17 @@ class Eportfolio_model  extends CI_Model {
         return $query->result();
     }
 
+################ project
+    public function insert_STUDENT_PROJECT($STUDENT_PROJECT) {
+        $result = $this->db->insert('STUDENT_PROJECT', $STUDENT_PROJECT);
+        return $result;
+    }   
     
+############### Goodness
+    public function insert_STUDENT_GOODNESS($STUDENT_GOODNESS) {
+        $result = $this->db->insert('STUDENT_GOODNESS', $STUDENT_GOODNESS);
+        return $result;
+    }  
     
 }
 

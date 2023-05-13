@@ -77,7 +77,7 @@
                     </div>
                     <?php if (!empty($School)) { ?>
                         <div class="col">
-                            <h5 style="float: right; padding: 15px;" class="card-title">&nbsp;&nbsp;<a href="forms-curriculum?sid=<?php echo $SchoolID; ?>" class="btn btn-success">เพิ่มข้อมูล</a></h5>
+                            <h5 style="float: right; padding: 15px;" class="card-title">&nbsp;&nbsp;<a href="forms-curriculum?sid=<?php echo $SchoolID; ?>" class="btn btn-success"><i class="bi bi-file-earmark-plus"></i> เพิ่มข้อมูล</a></h5>
                         </div>
                     <?php } ?>
                 </div>

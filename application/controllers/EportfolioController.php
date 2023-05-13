@@ -14,7 +14,7 @@ class EportfolioController extends CI_Controller{
     public function do_upload($fileName , $field_name ) {
         $config['upload_path'] = 'assets/Eportfolio/document/';   // โฟลเดอร์ ตำแหน่งเดียวกับ root ของโปรเจ็ค
         
-        $config['allowed_types'] = 'jpg|jpeg|png|iso|dmg|zip|rar|doc|docx|xls|xlsx|ppt|pptx|csv|ods|odt|odp|pdf|rtf|sxc|sxi|txt|exe|avi|mpeg|3gp'; // ปรเเภทไฟล์ 
+        $config['allowed_types'] = 'jpg|jpeg|png'; // ปรเเภทไฟล์ 
         $config['max_size']     = '0';  // ขนาดไฟล์ (kb)  0 คือไม่จำกัด ขึ้นกับกำหนดใน php.ini ปกติไม่เกิน 2MB
         $config['file_name'] = $fileName;  // ชื่อไฟล์ ถ้าไม่กำหนดจะเป็นตามชื่อเดิม
 
@@ -59,9 +59,7 @@ class EportfolioController extends CI_Controller{
             'STUDENT_DREAM' => $this->input->post('STUDENT_DREAM'),
             'STUDENT_HOPE' => $this->input->post('STUDENT_HOPE'),
             'STUDENT_TARGET' => $this->input->post('STUDENT_TARGET'),
-            'STUDENT_LEARNING' => $this->input->post('STUDENT_LEARNING'),
-            'STUDENT_PROJECT' => $this->input->post('STUDENT_PROJECT'),
-            'STUDENT_GOODNESS' => $this->input->post('STUDENT_GOODNESS'),
+            'STUDENT_LEARNING' => $this->input->post('STUDENT_LEARNING'), 
             'STUDENT_USEFULNESS' => $this->input->post('STUDENT_USEFULNESS'),
             'STUDENT_PRIDE' => $this->input->post('STUDENT_PRIDE'),
             'STUDENT_SUMMARY' => $this->input->post('STUDENT_SUMMARY'),
@@ -69,7 +67,24 @@ class EportfolioController extends CI_Controller{
         $result_eportfolio = $this->Eportfolio_model->insert_eportfolio($eportfolio);
        
 
-        if($result_eportfolio == 1 ){    
+        if($result_eportfolio != -1 ){    
+            $STUDENT_PROJECT_DOCUMENT = $this->do_upload('STUDENT_PROJECT_DOCUMENT',"STUDENT_PROJECT_DOCUMENT");
+            $STUDENT_PROJECT = [
+                'EPORTFOLIO_ID' => $result_eportfolio,
+                'STUDENT_PROJECT_DOCUMENT' => $STUDENT_PROJECT_DOCUMENT,
+                'STUDENT_PROJECT_DESCRIPTION' => $this->input->post('STUDENT_PROJECT_DESCRIPTION'),
+            ];
+            $result_STUDENT_PROJECT = $this->Eportfolio_model->insert_STUDENT_PROJECT($STUDENT_PROJECT) ;
+
+            $STUDENT_GOODNESS_DOCUMENT = $this->do_upload('STUDENT_GOODNESS_DOCUMENT',"STUDENT_GOODNESS_DOCUMENT");
+            $STUDENT_GOODNESS = [
+                'EPORTFOLIO_ID' => $result_eportfolio,
+                'STUDENT_GOODNESS_DOCUMENT' => $STUDENT_GOODNESS_DOCUMENT,
+                'STUDENT_GOODNESS_DESCRIPTION' => $this->input->post('STUDENT_GOODNESS_DESCRIPTION'),
+            ];
+            $result_STUDENT_GOODNESS = $this->Eportfolio_model->insert_STUDENT_GOODNESS($STUDENT_GOODNESS) ;
+            
+
             $this->session->set_flashdata('success',"บันทึกข้อมูลสำเร็จ");
             redirect(base_url('student?StudentReferenceID=' . $StudentReferenceID . '&&SchoolID=' . $SchoolID . '&&EducationYear=' . $EducationYear . '&&Semester=' . $Semester . '&&GradeLevelCode=' . $GradeLevelCode . '&&ShowDetail='));
         }else{
@@ -77,17 +92,18 @@ class EportfolioController extends CI_Controller{
         }
 
     }
-    public function list_eportfolio() {
+    public function show_eportfolio() {
             
-        if ( ! file_exists(APPPATH.'views/pages/dashboard/Eportfolio/list-eportfolio.php'))
+        if ( ! file_exists(APPPATH.'views/pages/dashboard/Eportfolio/eportfolio.php'))
         {
             show_404();
         }
-        $data["EPORTFOLIO"] = $this->Eportfolio_model->get_EPORTFOLIO_ALL();        
+        $data['StudentReferenceID'] = $_GET['StudentReferenceID'];     
+        $data["EPORTFOLIO"] = $this->Eportfolio_model->get_EPORTFOLIO_by_STUDENT_NO($data['StudentReferenceID']);
   
         $this->load->view('templates/header');
         $this->load->view('templates/sidebar');
-        $this->load->view('pages/dashboard/Curriculum/list-eportfolio',$data);
+        $this->load->view('pages/dashboard/Eportfolio/eportfolio',$data);
         $this->load->view('templates/footer');
 
     }
@@ -97,11 +113,15 @@ class EportfolioController extends CI_Controller{
         {
             show_404();
         }
-        $data['EPORTFOLIO_ID'] = $_GET['ep']; 
-        $data['STUDENT'] = $this->Student_model->get_STUDENT_All();
-        
-        $data["EPORTFOLIO"] = $this->Eportfolio_model->get_EPORTFOLIO($data['EPORTFOLIO_ID']);
-       
+
+        $data['StudentReferenceID'] = $_GET['StudentReferenceID']; 
+        $data['SchoolID'] = $_GET['SchoolID']; 
+        $data['EducationYear'] = $_GET['EducationYear']; 
+        $data['Semester'] = $_GET['Semester']; 
+        $data['GradeLevelCode'] = $_GET['GradeLevelCode']; 
+
+        $data["EPORTFOLIO"] = $this->Eportfolio_model->get_EPORTFOLIO_by_STUDENT_NO($data['StudentReferenceID']);
+               
         $this->load->view('templates/header');
         $this->load->view('templates/sidebar');
         $this->load->view('pages/forms/Eportfolio/edit_forms-eportfolio',$data);
@@ -111,18 +131,15 @@ class EportfolioController extends CI_Controller{
 
 
     }
-    public function edit_eportfolio() {
-        $EPORTFOLIO_ID = $this->input->post('EPORTFOLIO_ID');
-        
+    public function edit_eportfolio($StudentReferenceID, $SchoolID, $EducationYear, $Semester, $GradeLevelCode,$EPORTFOLIO_ID) {
+             
         $eportfolio = [
-            'STUDENT_LIKE' => $this->input->post('STUDENT_LIKE'),
             'STUDENT_NO' => $this->input->post('STUDENT_NO'),
+            'STUDENT_LIKE' => $this->input->post('STUDENT_LIKE'),
             'STUDENT_DREAM' => $this->input->post('STUDENT_DREAM'),
             'STUDENT_HOPE' => $this->input->post('STUDENT_HOPE'),
             'STUDENT_TARGET' => $this->input->post('STUDENT_TARGET'),
-            'STUDENT_LEARNING' => $this->input->post('STUDENT_LEARNING'),
-            'STUDENT_PROJECT' => $this->input->post('STUDENT_PROJECT'),
-            'STUDENT_GOODNESS' => $this->input->post('STUDENT_GOODNESS'),
+            'STUDENT_LEARNING' => $this->input->post('STUDENT_LEARNING'), 
             'STUDENT_USEFULNESS' => $this->input->post('STUDENT_USEFULNESS'),
             'STUDENT_PRIDE' => $this->input->post('STUDENT_PRIDE'),
             'STUDENT_SUMMARY' => $this->input->post('STUDENT_SUMMARY'),
@@ -130,10 +147,10 @@ class EportfolioController extends CI_Controller{
         $result_eportfolio = $this->Eportfolio_model->update_EPORTFOLIO($EPORTFOLIO_ID ,$eportfolio);
 
         if($result_eportfolio == 1 ){    
-            $this->session->set_flashdata('success',"บันทึกข้อมูลสำเร็จ");
-            redirect(base_url('list-eportfolio'));
+            $this->session->set_flashdata('success',"แก้ไขข้อมูลสำเร็จ");
+            redirect(base_url('student?StudentReferenceID=' . $StudentReferenceID . '&&SchoolID=' . $SchoolID . '&&EducationYear=' . $EducationYear . '&&Semester=' . $Semester . '&&GradeLevelCode=' . $GradeLevelCode . '&&ShowDetail='));
         }else{
-            redirect(base_url('forms_eportfolio'));
+            redirect(base_url('edit_forms_eportfolio?StudentReferenceID=' . $StudentReferenceID . '&&SchoolID=' . $SchoolID . '&&EducationYear=' . $EducationYear . '&&Semester=' . $Semester . '&&GradeLevelCode=' . $GradeLevelCode));
         }
 
     }
