@@ -285,8 +285,13 @@ class Fm_evaluation extends CI_Controller
         echo json_encode($result);
         exit;
     }
-    
-    
+    public function down_csv_criteria() {
+        $this->Evaluation_model->down_csv_criteria();
+    }
+
+    public function uplod_criteria() {
+        $this->Evaluation_model->uplod_criteria();
+    }
 
 }
 ?>

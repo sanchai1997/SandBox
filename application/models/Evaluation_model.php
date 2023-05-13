@@ -2,6 +2,12 @@
 class Evaluation_model extends CI_Model
 {
 
+	public function __construct()
+	{
+		parent::__construct();
+		$this->load->database();
+	}
+
 	public function insert_ass_ria() //sh1
 	{
 
@@ -876,6 +882,7 @@ class Evaluation_model extends CI_Model
 					$filename = $data['file_name'];
 					$data = array(
 						'AchievementAssessmentYear' => $this->input->post('AchievementAssessmentYear'),
+						'SchoolAssessmentSemester' => $this->input->post('SchoolAssessmentSemester'),
 						'SchoolID' => $this->input->post('SchoolID'),
 						'SchoolAssessmentName' => $this->input->post('SchoolAssessmentName'),
 						'SchoolAssessmentDescription' => $this->input->post('SchoolAssessmentDescription'),
@@ -888,6 +895,7 @@ class Evaluation_model extends CI_Model
 			} else {
 				$data = array(
 					'AchievementAssessmentYear' => $this->input->post('AchievementAssessmentYear'),
+					'SchoolAssessmentSemester' => $this->input->post('SchoolAssessmentSemester'),
 					'SchoolID' => $this->input->post('SchoolID'),
 					'SchoolAssessmentName' => $this->input->post('SchoolAssessmentName'),
 					'SchoolAssessmentDescription' => $this->input->post('SchoolAssessmentDescription'),
@@ -1012,28 +1020,335 @@ class Evaluation_model extends CI_Model
 		return $query->result();
 	}
 	public function get_ACHIEVEMENT_ASSESSMENT($SchoolAssessmentEducationYear, $SchoolAssessmentSemester, $SchoolID)
-{
-    $query = $this->db->get_where('SCHOOL_ASSESSMENT_CRITERIA', array(
-        'SchoolAssessmentEducationYear' => $SchoolAssessmentEducationYear,
-        'SchoolAssessmentSemester' => $SchoolAssessmentSemester,
-        'SchoolID' => $SchoolID
-    ));
-    $result = $query->row_array();
-    return array('AssessmentorName' => $result['AssessmentorName'], 
-	'SchoolAssessmentScore' => $result['SchoolAssessmentScore']);
+	{
+		$query = $this->db->get_where('SCHOOL_ASSESSMENT_CRITERIA', array(
+			'SchoolAssessmentEducationYear' => $SchoolAssessmentEducationYear,
+			'SchoolAssessmentSemester' => $SchoolAssessmentSemester,
+			'SchoolID' => $SchoolID
+		));
+		$result = $query->row_array();
+		return array(
+			'AssessmentorName' => $result['AssessmentorName'],
+			'SchoolAssessmentScore' => $result['SchoolAssessmentScore']
+		);
+	}
+	public function get_ACHIEVEMENT_ASSESSMENT1($SchoolAssessmentEducationYear, $SchoolAssessmentSemester, $SchoolID)
+	{
+		$query = $this->db->get_where('SCHOOL_ASSESSMENT', array(
+			'SchoolAssessmentEducationYear' => $SchoolAssessmentEducationYear,
+			'SchoolAssessmentSemester' => $SchoolAssessmentSemester,
+			'SchoolID' => $SchoolID
+		));
+		$result = $query->row_array();
+		return array(
+			'SchoolAssessmentName' => $result['SchoolAssessmentName'],
+			'SchoolAssessmentDescription' => $result['SchoolAssessmentDescription']
+		);
+	}
+	// public function down_csv_criteria()
+	// {
+	// 	require_once 'path/to/PHPExcel.php';
+	// 	$filename = 'Indicator_Template.csv'; // ชื่อไฟล์ CSV
+	// 	$header = array("รหัสตัวชี้วัด", "ชื่อเกณฑ์", "ระดับของตัวชี้วัด", "องค์ประกอบของตัวชี้วัด", "คะแนนการผ่านเกณฑ์ (%)"); // กำหนดหัวคอลัมน์
 
-}
-public function get_ACHIEVEMENT_ASSESSMENT1($SchoolAssessmentEducationYear, $SchoolAssessmentSemester, $SchoolID)
-{
-    $query = $this->db->get_where('SCHOOL_ASSESSMENT', array(
-        'SchoolAssessmentEducationYear' => $SchoolAssessmentEducationYear,
-        'SchoolAssessmentSemester' => $SchoolAssessmentSemester,
-        'SchoolID' => $SchoolID
-    ));
-    $result = $query->row_array();
-    return array('SchoolAssessmentName' => $result['SchoolAssessmentName'], 
-	'SchoolAssessmentDescription' => $result['SchoolAssessmentDescription']);
+	// 	// ดึงข้อมูลจากฐานข้อมูล
+	// 	$query = $this->db->select('CriteriaID, CriteriaName, CriteriaDescription, CriteriaLevelAmount, CriteriaCompositionAmount, CriteriaPassingScorePercentage')
+	// 		->where('DeleteStatus', 0)
+	// 		->get('ASSESSMENT_CRITERIA');
 
-}
 
+	// 	// เปิด buffer เพื่อเขียนไฟล์ CSV
+	// 	$fp = fopen('php://output', 'w');
+
+	// 	// ใส่ UTF-8 BOM เพื่อให้ Excel อ่านภาษาไทยได้ถูกต้อง
+	// 	fputs($fp, "\xEF\xBB\xBF");
+
+	// 	// เขียนหัวคอลัมน์ในไฟล์ CSV
+	// 	fputcsv($fp, $header);
+
+	// 	// เขียนข้อมูลในไฟล์ CSV
+	// 	foreach ($query->result() as $row) {
+	// 		$data = array($row->CriteriaID, $row->CriteriaName, $row->CriteriaLevelAmount, $row->CriteriaCompositionAmount, $row->CriteriaPassingScorePercentage);
+	// 		fputcsv($fp, $data);
+	// 	}
+
+	// 	// ปิด buffer เพื่อสร้างไฟล์ CSV และส่งให้ใช้งาน
+	// 	fclose($fp);
+
+	// 	// เรียกใช้ helper download เพื่อดาวน์โหลดไฟล์
+	// 	$this->load->helper('download');
+	// 	force_download($filename, ob_get_clean());
+	// }
+	public function uplod_criteria()
+	{
+		session_start();
+		$this->db->trans_start();
+		if (isset($_FILES['document_criteria'])) {
+			$i = 1;
+			$count = 0;
+			$done = 0;
+			$cancel = 0;
+			$loop = 0;
+			$data_get = array();
+			$handle = fopen($_FILES['document_criteria']['tmp_name'], 'r');
+			ini_set('auto_detect_line_endings', TRUE);
+
+			// อ่าน header row
+			$header_row = fgetcsv($handle);
+
+			while (($data = fgetcsv($handle)) !== FALSE && $data[0] != '') {
+				// เพิ่มเงื่อนไขเช็คว่าต้องเริ่ม insert จาก row ที่ 2 เป็นต้นไป
+				if ($i >= 1 && ($data[0] != '' && $data[1] != '' &&  $data[2] != '' && $data[3] != '' && $data[4] != '' && $data[5] != '')) { //ถ้าข้อมูลไม่ว่างหรืออง+ลำไม่ต่ำกว่า3
+					$all_data = [
+						'CriteriaID' => $data[0],
+						'CriteriaName' => $data[1],
+						'CriteriaDescription' => $data[2],
+						'CriteriaLevelAmount' => $data[3],
+						'CriteriaCompositionAmount' => $data[4],
+						'CriteriaPassingScorePercentage' => $data[5]
+					];
+
+
+
+					// ตรวจสอบว่าข้อมูลซ้ำหรือไม่
+					$Check = $this->db->query("SELECT * 
+					FROM ASSESSMENT_CRITERIA 
+					WHERE CriteriaID = '" . $data[0] . "' 
+					AND DeleteStatus = '0'
+				")->result();
+
+
+
+					if ($Check != TRUE) {
+						$insert = $this->db->insert('ASSESSMENT_CRITERIA', $all_data);
+						$last_id = $this->db->insert_id();
+						$note = 'สำเร็จ';
+						$status = '1';
+						$done++;
+
+
+						switch ($data[3]) {
+
+							case ($data[3] == '1'):
+							if($data[6] == ''||$data[7]==''){
+								$path2 = "ระดับของตัวชี้วัด".$data[3].'แต่ข้อมูลในลำดับระดับของตัวชี้วัด 1 ข้อมูลไม่ครบ';
+								$status2 = '0';
+							}else{
+								$path_two = [
+									'CriteriaID' => $last_id,
+									'LevelIndex' => 1,
+									'LevelName' => $data[6],
+									'LevelScore' => $data[7]
+
+								];
+
+								$insert = $this->db->insert('ASSESSMENT_CRITERIA_LEVEL', $path_two);
+								$status2 = '1';
+								$path2 = '';
+							}
+								break;
+							case ($data[3] == '2'):
+							if($data[6] == ''||$data[7]==''||$data[8] == ''||$data[9]==''){
+								$path2 = "ระดับของตัวชี้วัด".$data[3].'แต่ข้อมูลในลำดับระดับของตัวชี้วัด 1-2 ข้อมูลไม่ครบ';
+								$status2 = '0';
+							}else{
+								$path_two = [
+									'CriteriaID' => $last_id,
+									'LevelIndex' => 1,
+									'LevelName' => $data[6],
+									'LevelScore' => $data[7]
+
+								];
+								$insert = $this->db->insert('ASSESSMENT_CRITERIA_LEVEL', $path_two);
+								$path_two = [
+									'CriteriaID' => $last_id,
+									'LevelIndex' => 2,
+									'LevelName' => $data[8],
+									'LevelScore' => $data[9]
+
+								];
+								$insert = $this->db->insert('ASSESSMENT_CRITERIA_LEVEL', $path_two);
+								$status2 = '1';
+								$path2 = '';
+							}
+								break;
+							case ($data[3] >= '3'):
+							if($data[6] == ''||$data[7]==''||$data[8] == ''||$data[9]==''||$data[10] == ''||$data[11]==''){
+								$path2 = "ระดับของตัวชี้วัด".$data[3].'แต่ข้อมูลในลำดับระดับของตัวชี้วัด 1-3 ข้อมูลไม่ครบ';
+								$status2 = '0';
+							}else{
+								$path_two = [
+									'CriteriaID' => $last_id,
+									'LevelIndex' => 1,
+									'LevelName' => $data[6],
+									'LevelScore' => $data[7]
+
+								];
+								$insert = $this->db->insert('ASSESSMENT_CRITERIA_LEVEL', $path_two);
+								$path_two = [
+									'CriteriaID' => $last_id,
+									'LevelIndex' => 2,
+									'LevelName' => $data[8],
+									'LevelScore' => $data[9]
+
+								];
+								$insert = $this->db->insert('ASSESSMENT_CRITERIA_LEVEL', $path_two);
+								$path_two = [
+									'CriteriaID' => $last_id,
+									'LevelIndex' => 3,
+									'LevelName' => $data[10],
+									'LevelScore' => $data[11]
+
+								];
+								$insert = $this->db->insert('ASSESSMENT_CRITERIA_LEVEL', $path_two);
+								$status2 = '1';
+								$path2 = '';
+							}
+								break;
+						}
+
+						switch ($data[4]) {
+
+							case ($data[4] == '1'):
+							if($data[12] == ''||$data[13]==''||$data[14] == ''){
+								$path3 = "องค์ประกอบของตัวชี้วัดมี".$data[4].'แต่ข้อมูลในลำดับองค์ประกอบของตัวชี้วัดมี 1 ข้อมูลไม่ครบ';
+								$status3 = '0';
+							}else{
+								$path_three = [
+									'CriteriaID' => $last_id,
+									'CompositionIndex' => 1,
+									'CompositionName' => $data[12],
+									'CompositionWeightScore' => $data[13],
+									'CompositionGuideline' => $data[14]
+
+								];
+								$insert = $this->db->insert('ASSESSMENT_CRITERIA_COMPOSITION', $path_three);
+								$status3 = '1';
+								$path3 = '';
+							}
+								break;
+							case ($data[4] == '2'):
+							if($data[12] == ''||$data[13]==''||$data[14] == ''||$data[15]==''||$data[16] == ''||$data[17]==''){
+								$path3 = "องค์ประกอบของตัวชี้วัดมี".$data[4].'แต่ข้อมูลในลำดับองค์ประกอบของตัวชี้วัดมี 1-2 ข้อมูลไม่ครบ';
+								$status3 = '0';
+								
+							}else{
+								$path_three = [
+									'CriteriaID' => $last_id,
+									'CompositionIndex' => 1,
+									'CompositionName' => $data[12],
+									'CompositionWeightScore' => $data[13],
+									'CompositionGuideline' => $data[14]
+
+
+								];
+								$insert = $this->db->insert('ASSESSMENT_CRITERIA_COMPOSITION', $path_three);
+								$path_three = [
+									'CriteriaID' => $last_id,
+									'CompositionIndex' => 2,
+									'CompositionName' => $data[15],
+									'CompositionWeightScore' => $data[16],
+									'CompositionGuideline' => $data[17]
+
+
+								];
+								$insert = $this->db->insert('ASSESSMENT_CRITERIA_COMPOSITION', $path_three);
+								$status3 = '1';
+								$path3 = '';
+							}
+								break;
+							case ($data[4] >= '3'):
+							if($data[12] == ''||$data[13]==''||$data[14] == ''||$data[15]==''||$data[16] == ''||$data[17]==''||$data[18]==''||$data[19] == ''||$data[20]==''){
+								$path3 = "องค์ประกอบของตัวชี้วัดมี".$data[4].'แต่ข้อมูลในลำดับองค์ประกอบของตัวชี้วัดมี 1-3 ข้อมูลไม่ครบ';
+								$status3 = '0';
+								
+							}else{
+								$path_three = [
+									'CriteriaID' => $last_id,
+									'CompositionIndex' => 1,
+									'CompositionName' => $data[12],
+									'CompositionWeightScore' => $data[13],
+									'CompositionGuideline' => $data[14]
+
+
+								];
+								$insert = $this->db->insert('ASSESSMENT_CRITERIA_COMPOSITION', $path_three);
+								$path_three = [
+									'CriteriaID' => $last_id,
+									'CompositionIndex' => 2,
+									'CompositionName' => $data[15],
+									'CompositionWeightScore' => $data[16],
+									'CompositionGuideline' => $data[17]
+
+
+								];
+								$insert = $this->db->insert('ASSESSMENT_CRITERIA_COMPOSITION', $path_three);
+								$path_three = [
+									'CriteriaID' => $last_id,
+									'CompositionIndex' => 3,
+									'CompositionName' => $data[18],
+									'CompositionWeightScore' => $data[19],
+									'CompositionGuideline' => $data[20]
+
+
+								];
+								$insert = $this->db->insert('ASSESSMENT_CRITERIA_COMPOSITION', $path_three);
+								$status3 = '1';
+								$path3 = '';
+							}
+								break;
+						}
+					} else {
+						$note = 'ข้อมูลซ้ำ รหัสตัวชี้วัดห้ามซ้ำ';
+						$status = '0';
+						$loop++;
+						$status2 = '0';
+					$status3 = '0';
+					$path2 = 'ข้อมูลซ้ำ';
+					$path3 = 'ข้อมูลซ้ำ';
+					}
+				} elseif ($i >= 1 && ($data[0] == '' || $data[1] == '' || $data[2] == '' || $data[3] == '' || $data[4] == '')) { //ถ้าข้อมูลอันไหนว่าง
+					$note = 'ข้อมูลไม่ครบ';
+					$status = '0';
+					$cancel++;
+					$status2 = '0';
+					$status3 = '0';
+					$path2 = '';
+					$path3 = '';
+					
+				}
+
+				$count++;
+				$i++;
+
+				$data_get[] = [
+					'CriteriaID' => $data[0],
+					'CriteriaName' => $data[1],
+					'CriteriaLevelAmount' => $data[2],
+					'CriteriaCompositionAmount' => $data[3],
+					'CriteriaPassingScorePercentage' => $data[4],
+					'note' => $note,
+					'status' => $status,
+					'status2' => $status2,
+					'status3' => $status3,
+					'path2' => $path2,
+					'path3' => $path3
+
+				];
+			}
+			print_r($path_two);
+			print_r($path_three);
+			// exit;
+			ini_set('auto_detect_line_endings', FALSE);
+			$txt =  $data_get;
+			$_SESSION['txt'] = $txt;
+			$_SESSION['count'] = $count;
+			$_SESSION['done'] = $done;
+			$_SESSION['cancel'] = $cancel;
+			$_SESSION['loop'] = $loop;
+			$_SESSION['success_up'] = "อัปโหลดไฟล์ข้อมูลตัวชี้วัดเรียบร้อย";
+			header("Location: " . site_url('Fm_evaluation_das_p1?page=sh1'));
+		}
+		$this->db->trans_complete();
+	}
 }
