@@ -11,7 +11,9 @@
     <?php $year = isset($_GET['year']) ? $_GET['year'] : ''; ?>
     <?php $Province = isset($_GET['Province']) ? $_GET['Province'] : ''; ?>
     <?php
-    session_start(); // เริ่มต้น session
+    if (session_status() == PHP_SESSION_NONE) {
+        session_start();
+    } // เริ่มต้น session
     if (isset($_SESSION['success'])) { ?>
         <div style="position: relative;">
             <div class="alert alert-success" id="myAlert"

@@ -22,6 +22,17 @@ class School extends CI_Controller
             show_404();
         }
 
+        $data = array();
+		$data = $this->session->userdata();
+
+		if(!empty($data['UserRights'])){
+			//'103000', 'ข้อมูลสถานศึกษา'
+			$R_103000 = $data['UserRights'][array_search('103000', array_column($data['UserRights'], 'UR_Code'))];		
+			$data['R_103000'] = $R_103000;
+		}else{
+			$data['R_103000'] = NULL;
+		}
+
         $data['title'] = 'School'; // Capitalize the first letter
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);

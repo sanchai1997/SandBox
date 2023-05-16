@@ -14,7 +14,9 @@
 </style>
 <main id="main" class="main">
     <?php
-    session_start(); // เริ่มต้น session
+    if (session_status() == PHP_SESSION_NONE) {
+        session_start();
+    }// เริ่มต้น session
     if (isset($_SESSION['success'])) { ?>
         <div style="position: relative;">
             <div class="alert alert-success" id="myAlert" style="position: absolute; top: 0; left: 0; right: 0; z-index: 1;">
@@ -219,9 +221,10 @@
                         <div class="col">
                             <div class="row">
                                 <div class="col">
+                                <?php if ($R_701000 <> NULL && $R_701000['UR_Add'] == "1") { ?>
                                     <h5 style="float: right; padding: 15px;" class="card-title"> <a href="" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="bi bi-file-earmark-plus"></i>
                                             อัปโหลดตัวชี้วัด</a></h5>
-
+                                            <?php } ?>
 
                                     <!-- Modal -->
                                     <div class="modal fade" id="exampleModal" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
@@ -292,17 +295,24 @@
                                         </div>
                                     </div>
                                     <div class="col">
+                                    <?php if ($R_701000 <> NULL && $R_701000['UR_Add'] == "1") { ?>
                                         <h5 style="float: right; padding: 15px;" class="card-title"><a href="<?php echo site_url(
                                                                                                                     'ass_ria_forms_p1?page=sh1'
                                                                                                                 ); ?>" class="btn btn-success"><i class="bi bi-file-earmark-plus"></i>
                                                 เพิ่มข้อมูล</a></h5>
+                                                <?php } ?>
                                     </div>
                                 </div>
                             </div>
                         </div>
 
-                        <table class="table table-borderless datatable">
-                            <thead>
+                        
+                    <table class="table  <?php if ($R_701000 <> NULL && $R_701000['UR_Add'] == "1") {
+                                                                echo 'table-borderless datatable';
+                                                            }else {
+                                                                echo 'table-bordered';
+                                                            } ?>  col-12">
+                        <thead>
 
                                 <tr>
                                     <th style="" scope="col">รหัสตัวชี้วัด</th>
@@ -311,8 +321,9 @@
                                     <th style="" scope="col">องค์ประกอบ</th>
                                     <!-- <th style="" scope="col">คำอธิบาย</th> -->
                                     <th style="text-align: center;" scope="col">ดูรายละเอียด</th>
+                                    <?php if ($R_701000 <> NULL && $R_701000['UR_Add'] == "1") { ?>
                                     <th style="text-align: center;" scope="col">ปฎิบัติ</th>
-
+                                    <?php } ?>
 
                                 </tr>
 
@@ -376,8 +387,10 @@
                                                                 </div>
                                                             </div>
                                                             <div class="modal-footer">
+                                                            <?php if ($R_701000 <> NULL && $R_701000['UR_Add'] == "1") { ?>
                                                                 <a href="<?php echo site_url('ass_ria_lvl_forms_p2?page=sh22') ?>&&lvl=<?php echo $show->CriteriaLevelAmount ?>&&CriteriaID=<?php echo $show->Id ?>&&CriteriaLevelAmount=<?php echo $show->CriteriaLevelAmount ?>&&key=<?php echo $cls->Id_acl; ?>&&name=<?php echo $show->CriteriaName; ?>" class="my-link btn btn-warning"><i class="bi bi-pencil-square"></i>
                                                                 </a>
+                                                                <?php } ?>
                                                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ปิด</button>
                                                             </div>
                                                         </div>
@@ -385,8 +398,10 @@
                                                 </div>
 
                                             <?php } ?>
+                                            <?php if ($R_701000 <> NULL && $R_701000['UR_Add'] == "1") { ?>
                                             <a href="<?php echo site_url('ass_ria_lvl_forms_p2?page=sh2') ?>&&name=<?php echo $show->CriteriaName; ?>&&Id=<?php echo $show->Id; ?>&&key=<?php echo $show->CriteriaID; ?>&&lvl=<?php echo $show->CriteriaLevelAmount ?>" class="my-link fw-bold">>>เพิ่มระดับตัวชี้วัด>>
                                             </a>
+                                            <?php } ?>
 
                                         </td>
 
@@ -442,8 +457,10 @@
                                                                 </div>
                                                             </div>
                                                             <div class="modal-footer">
+                                                            <?php if ($R_701000 <> NULL && $R_701000['UR_Add'] == "1") { ?>
                                                                 <a href="<?php echo site_url('ass_ria_com_forms_p3?page=sh33') ?>&&lvl=<?php echo $show->CriteriaCompositionAmount ?>&&Id_acc=<?php echo $showA3->Id_acc; ?>&&Id=<?php echo $show->Id; ?>&&name=<?php echo $show->CriteriaName; ?>&&CriteriaID=<?php echo $show->CriteriaID; ?>" class="my-link btn btn-warning"><i class="bi bi-pencil-square">
                                                                     </i></a>
+                                                                    <?php } ?>
                                                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ปิด</button>
 
                                                             </div>
@@ -451,9 +468,10 @@
                                                     </div>
                                                 </div>
                                             <?php } ?>
+                                            <?php if ($R_701000 <> NULL && $R_701000['UR_Add'] == "1") { ?>
                                             <a href="<?php echo site_url('ass_ria_com_forms_p3?page=sh3') ?>&&Id=<?php echo $show->Id; ?>&&name=<?php echo $show->CriteriaName; ?>&&key=<?php echo $show->CriteriaID; ?>&&lvl=<?php echo $show->CriteriaCompositionAmount ?>" class="my-link fw-bold">>>เพิ่มองค์ประกอบ>>
                                             </a>
-
+                                            <?php } ?>
                                         </td>
                                         <!-- </td>
                                     <td style="text-align: center;">
@@ -467,6 +485,7 @@
 
                                         </td>
                                         <!-- แก้ไขลบ -->
+                                        <?php if ($R_701000 <> NULL && $R_701000['UR_Add'] == "1") { ?>
                                         <td style="text-align: center;">
                                             <a href="<?php echo site_url('ass_ria_forms_p1?page=sh11') ?>&&key=<?php echo $show->CriteriaID; ?>" class="btn btn-warning"> <i class="bi bi-pencil-square"></i></a>
 
@@ -504,6 +523,7 @@
                                                 </div>
                                             </div> <!-- Modal -->
                                         </td>
+                                        <?php } ?>
 
                                     </tr>
                                 <?php } ?>
@@ -550,14 +570,20 @@
                                 </h5>
                             </div>
                             <div class="col">
+                            <?php if ($R_701000 <> NULL && $R_701000['UR_Add'] == "1") { ?>
                                 <h5 style="float: right; padding: 15px;" class="card-title"><a href="<?php echo site_url(
                                                                                                             'sc_ass_forms_p5?page=sh5'
                                                                                                         ); ?>" class="btn btn-success"><i class="bi bi-file-earmark-plus"></i> เพิ่มข้อมูล</a></h5>
+                                                                                                         <?php } ?>
                             </div>
                         </div>
 
-                        <table class="table table-borderless datatable">
-                            <thead>
+                        <table class="table  <?php if ($R_701000 <> NULL && $R_701000['UR_Add'] == "1") {
+                                                                echo 'table-borderless datatable';
+                                                            }else {
+                                                                echo 'table-bordered';
+                                                            } ?>  col-12">
+                        <thead>
 
                                 <tr>
 
@@ -567,8 +593,9 @@
                                     <th style="" scope="col" class="col-2">ชื่อการประเมิน</th>
                                     <th style="" scope="col" class="col-">คำอธิบายการประเมิน</th>
                                     <th style="text-align: center;" scope="col">ดูรายละเอียด</th>
+                                    <?php if ($R_701000 <> NULL && $R_701000['UR_Add'] == "1") { ?>
                                     <th style="text-align: center;" scope="col">ปฎิบัติ</th>
-
+                                    <?php } ?>
                                 </tr>
 
                             </thead>
@@ -617,6 +644,7 @@
                                             </button>
                                         </td>
                                         <!-- แก้ไข -->
+                                        <?php if ($R_701000 <> NULL && $R_701000['UR_Add'] == "1") { ?>
                                         <td style="text-align: center;">
                                             <a href="<?php echo site_url('sc_ass_forms_p5?page=sh55') ?>&&key=<?php echo $show->Id_sa; ?>" class="btn btn-warning"> <i class="bi bi-pencil-square"></i></a>
                                             <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#del_ass_ria_com_lvl<?php echo $show->Id_sa; ?>">
@@ -654,6 +682,7 @@
                                                 </div>
                                             </div> <!-- Modal -->
                                         </td>
+                                        <?php } ?>
                                         <div class="modal fade" id="SchoolAssessmentDescription<?php echo $show->Id_sa; ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                             <div class="modal-dialog modal-dialog-centered modal-lg">
                                                 <div class="modal-content">
@@ -750,14 +779,20 @@
                                 </h5>
                             </div>
                             <div class="col">
+                            <?php if ($R_701000 <> NULL && $R_701000['UR_Add'] == "1") { ?>
                                 <h5 style="float: right; padding: 15px;" class="card-title"><a href="<?php echo site_url(
                                                                                                             'sc_ass_ria_forms_p6?page=sh6'
                                                                                                         ); ?>" class="btn btn-success"><i class="bi bi-file-earmark-plus"></i> เพิ่มข้อมูล</a></h5>
-                            </div>
+                            <?php } ?> 
+                        </div>
                         </div>
 
-                        <table class="table table-borderless datatable">
-                            <thead>
+                        <table class="table  <?php if ($R_701000 <> NULL && $R_701000['UR_Add'] == "1") {
+                                                                echo 'table-borderless datatable';
+                                                            }else {
+                                                                echo 'table-bordered';
+                                                            } ?>  col-12">
+                        <thead>
 
                                 <tr>
 
@@ -769,7 +804,9 @@
                                     <th style="" scope="col">ลำดับองค์ประกอบ</th>
                                     <th style="" scope="col">ลำดับของระดับที่ได้</th>
                                     <th style="text-align: center;" scope="col">ดูรายละเอียด</th>
+                                    <?php if ($R_701000 <> NULL && $R_701000['UR_Add'] == "1") { ?>
                                     <th style="text-align: center;" scope="col">ปฎิบัติ</th>
+                                    <?php } ?>
 
                                 </tr>
 
@@ -917,6 +954,7 @@
                                             <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#look5<?php echo $show_top->Id; ?>"><i class="bi bi-card-list"></i></button>
                                         </td>
                                         <!-- แก้ไข -->
+                                        <?php if ($R_701000 <> NULL && $R_701000['UR_Add'] == "1") { ?>
                                         <td style="text-align: center;">
                                             <a href="<?php echo site_url('sc_ass_ria_forms_p6?page=sh66') ?>&&key=<?php echo $show_top->Id_sac; ?>" class="btn btn-warning"> <i class="bi bi-pencil-square"></i></a>
                                             <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#del_sc_ass<?php echo $show_top->Id_sac; ?>">
@@ -962,6 +1000,7 @@
                                                 </div>
                                             </div> <!-- Modal -->
                                         </td>
+                                        <?php } ?>
                                     </tr>
                                 <?php } ?>
 
@@ -1006,14 +1045,20 @@
                                 </h5>
                             </div>
                             <div class="col">
+                            <?php if ($R_701000 <> NULL && $R_701000['UR_Add'] == "1") { ?>
                                 <h5 style="float: right; padding: 15px;" class="card-title"><a href="<?php echo site_url(
                                                                                                             'achie_ass_forms_p8?page=sh8'
                                                                                                         ); ?>" class="btn btn-success"><i class="bi bi-file-earmark-plus"></i> เพิ่มข้อมูล</a></h5>
-                            </div>
+                             <?php } ?>
+                        </div>
                         </div>
 
-                        <table class="table table-borderless datatable">
-                            <thead>
+                        <table class="table  <?php if ($R_701000 <> NULL && $R_701000['UR_Add'] == "1") {
+                                                                echo 'table-borderless datatable';
+                                                            }else {
+                                                                echo 'table-bordered';
+                                                            } ?>  col-12">
+                        <thead>
 
                                 <tr>
 
@@ -1023,7 +1068,9 @@
                                     <th style="" scope="col">ชื่อการประเมิน</th>
                                     <th style="" scope="col">ผลการประเมิน</th>
                                     <th style="text-align: center;" scope="col">ดูรายละเอียด</th>
+                                    <?php if ($R_701000 <> NULL && $R_701000['UR_Add'] == "1") { ?>
                                     <th style="text-align: center;" scope="col">ปฎิบัติ</th>
+                                    <?php } ?>
 
 
                                 </tr>
@@ -1083,6 +1130,7 @@
 
                                         </td>
                                         <!-- แก้ไข -->
+                                        <?php if ($R_701000 <> NULL && $R_701000['UR_Add'] == "1") { ?>
                                         <td style="text-align: center;">
                                             <a href="<?php echo site_url('achie_ass_forms_p8?page=sh88') ?>&&key=<?php echo $show->Id; ?>" class="btn btn-warning"> <i class="bi bi-pencil-square"></i></a>
 
@@ -1120,6 +1168,7 @@
                                                 </div>
                                             </div> <!-- Modal -->
                                         </td>
+                                        <?php } ?>
 
                                     </tr>
                                 <?php } ?>
@@ -1291,8 +1340,12 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td><a href="<?php echo site_url('ass_ria_com_lvl_forms_p4?page=sh4') ?>" class="my-link fw-bold">>>เพิ่มคำอธิบาย>>
-                                    </a></td>
+                                <td>
+                                <?php if ($R_701000 <> NULL && $R_701000['UR_Add'] == "1") { ?>
+                                    <a href="<?php echo site_url('ass_ria_com_lvl_forms_p4?page=sh4') ?>" class="my-link fw-bold">>>เพิ่มคำอธิบาย>>
+                                    </a>
+                                    <?php } ?>
+                                </td>
                             </tr>
                             <tr>
                                 <table class="table table-bordered">
@@ -1329,7 +1382,13 @@
                                             </td>
                                             <td>
                                                 <p>
+                                                <?php if ($R_701000 <> NULL && $R_701000['UR_Add'] == "1") { ?>
                                                     <a href="<?php echo site_url('ass_ria_com_lvl_forms_p4?page=sh44'); ?>&&Id_accl=<?php echo $showT->Id_accl; ?>" class="my-link"><?php echo $showT->CompositionLevelDescription; ?></a>
+
+                                                    <?php }else{?>
+                                                        <?php echo $showT->CompositionLevelDescription; ?>
+
+                                                        <?php } ?>
                                                 </p>
                                             </td>
                                         </tr>
@@ -1549,8 +1608,9 @@
                             </tr>
                             <tr>
                                 <td>
+                                <?php if ($R_701000 <> NULL && $R_701000['UR_Add'] == "1") { ?>
                                     <a class="my-link" href="<?php echo site_url('sc_ass_res_forms_p7?page=sh7') ?>&&summer=<?php echo $SchoolAssessmentSemester; ?>&&SchoolID=<?php echo $SchoolID; ?>&&CriteriaID=<?php echo $CriteriaID; ?>&&year=<?php echo $SchoolAssessmentEducationYear; ?>">>>เพิ่มลำดับองค์ประกอบและลำดับตัวชี้วัด>></a>
-
+                                    <?php } ?>
                                     <table class="table table-bordered">
                                         <tr>
                                             <td class="col-1">ตัวชี้วัด</td>
@@ -1586,10 +1646,18 @@
                                         ");
                                                     foreach ($resultR->result() as $showR) {
                                                     ?>
-                                                        <a href="<?php echo site_url('sc_ass_res_forms_p7?page=sh77') ?>&&key=<?php echo $showR->Id_sar; ?>&&year=<?php echo $showR->SchoolAssessmentEducationYear; ?>&&summer=<?php echo $showR->SchoolAssessmentSemester; ?>&&SchoolID=<?php echo $showR->SchoolID; ?>&&CriteriaID=<?php echo $show_top->Id; ?>" class="my-link">
+                                                        
+
+                                                        <?php if ($R_701000 <> NULL && $R_701000['UR_Add'] == "1") { ?>
+                                                        
+                                                            <a href="<?php echo site_url('sc_ass_res_forms_p7?page=sh77') ?>&&key=<?php echo $showR->Id_sar; ?>&&year=<?php echo $showR->SchoolAssessmentEducationYear; ?>&&summer=<?php echo $showR->SchoolAssessmentSemester; ?>&&SchoolID=<?php echo $showR->SchoolID; ?>&&CriteriaID=<?php echo $show_top->Id; ?>" class="my-link">
                                                             <?php echo $showR->CompositionIndex; ?>.
                                                             <?php echo $showR->CompositionName; ?><br>
                                                         </a>
+                                                        <?php }else{ ?> 
+                                                            <?php echo $showR->CompositionIndex; ?>.
+                                                            <?php echo $showR->CompositionName; ?><br>
+                                                            <?php } ?>
                                                     <?php } ?>
                                                 </p>
                                             </td>
@@ -1609,9 +1677,14 @@
                                         ");
                                                     foreach ($resultR->result() as $showR) {
                                                     ?>
+                                                      <?php if ($R_701000 <> NULL && $R_701000['UR_Add'] == "1") { ?>
+                                                        
                                                         <a href="<?php echo site_url('sc_ass_res_forms_p7?page=sh77') ?>&&key=<?php echo $showR->Id_sar; ?>&&year=<?php echo $showR->SchoolAssessmentEducationYear; ?>&&summer=<?php echo $showR->SchoolAssessmentSemester; ?>&&SchoolID=<?php echo $showR->SchoolID; ?>&&CriteriaID=<?php echo $show_top->Id; ?>" class="my-link">
                                                             <?php echo $showR->LevelIndex; ?>.<?php echo $showR->LevelName; ?><br>
                                                         </a>
+                                                        <?php }else{ ?> 
+                                                            <?php echo $showR->LevelIndex; ?>.<?php echo $showR->LevelName; ?><br>
+                                                            <?php } ?>
                                                     <?php } ?>
                                                 </p>
                                             </td>

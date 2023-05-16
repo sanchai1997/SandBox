@@ -1,7 +1,8 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
+require_once '_sandboxcontroller.php';
 
-class Teacher extends CI_Controller
+class Teacher extends _sandboxcontroller
 {
 
     public function __construct()
@@ -19,6 +20,16 @@ class Teacher extends CI_Controller
         if (!file_exists(APPPATH . 'views/pages/dashboard/teacher/teacher.php')) {
             // Whoops, we don't have a page for that!
             show_404();
+        }
+
+        if (isset($_GET['TeacherID'])) {
+            $result = $this->db->query('SELECT * FROM TEACHER
+            WHERE DeleteStatus = 0 AND TeacherID = "' . $_GET['TeacherID'] . '"');
+            foreach ($result->result() as $DETAIL) {
+                $data['TeacherPersonalID'] = $this->sandb_decode($DETAIL->TeacherPersonalID);
+                $data['TeacherPassportNumber'] = $this->sandb_decode($DETAIL->TeacherPassportNumber);
+                $data['TeacherBirthDate'] = $this->sandb_decode($DETAIL->TeacherBirthDate);
+            }
         }
 
         $data['title'] = 'teacher'; // Capitalize the first letter
@@ -130,6 +141,22 @@ class Teacher extends CI_Controller
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
         $this->load->view('pages/dashboard/teacher/teacher-classroom', $data);
+        $this->load->view('templates/footer', $data);
+    }
+
+    public function teacher_uploaddetail()
+    {
+
+        if (!file_exists(APPPATH . 'views/pages/dashboard/teacher/teacher-uploaddetail.php')) {
+            // Whoops, we don't have a page for that!
+            show_404();
+        }
+
+        $data['title'] = 'teacher-uploaddetail'; // Capitalize the first letter
+
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/sidebar', $data);
+        $this->load->view('pages/dashboard/teacher/teacher-uploaddetail', $data);
         $this->load->view('templates/footer', $data);
     }
 }

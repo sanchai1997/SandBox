@@ -13,54 +13,55 @@ defined('BASEPATH') or exit('No direct script access allowed');
   <meta content="" name="keywords">
 
   <!-- Favicons -->
-  <link href="assets/img/mini.png" rel="icon">
-  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+  <link href="<?php echo base_url(); ?>assets/img/mini.png" rel="icon">
+  <link href="<?php echo base_url(); ?>assets/img/apple-touch-icon.png" rel="apple-touch-icon">
 
   <!-- Google Fonts -->
   <link href='https://fonts.googleapis.com/css?family=Sarabun' rel='stylesheet'>
 
   <!-- Vendor CSS Files -->
-  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
-  <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
-  <link href="assets/vendor/quill/quill.snow.css" rel="stylesheet">
-  <link href="assets/vendor/quill/quill.bubble.css" rel="stylesheet">
-  <link href="assets/vendor/remixicon/remixicon.css" rel="stylesheet">
-  <link href="assets/vendor/simple-datatables/style.css" rel="stylesheet">s
+  <link href="<?php echo base_url(); ?>assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="<?php echo base_url(); ?>assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="<?php echo base_url(); ?>assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+  <link href="<?php echo base_url(); ?>assets/vendor/quill/quill.snow.css" rel="stylesheet">
+  <link href="<?php echo base_url(); ?>assets/vendor/quill/quill.bubble.css" rel="stylesheet">
+  <link href="<?php echo base_url(); ?>assets/vendor/remixicon/remixicon.css" rel="stylesheet">
+  <link href="<?php echo base_url(); ?>assets/vendor/simple-datatables/style.css" rel="stylesheet">
 
-  <!-- jquery -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <!-- Template Main CSS File -->
-  <link href="assets/css/style.css" rel="stylesheet">
+  <link href="<?php echo base_url(); ?>assets/css/style.css" rel="stylesheet">
+
+  <script src="<?php echo base_url(); ?>assets/vendor/jquery/js/jquery.min.js"></script>
+  <script src="<?php echo base_url(); ?>assets/vendor/jquery/js/jquery-ui.min.js"></script>
+  <script src="<?php echo base_url(); ?>assets/vendor/bootstrap/js/bootstrap.min.js"></script>
+
+  <!-- Notify -->
+  <script src="<?php echo base_url(); ?>assets/vendor/notify/js/notify.js"></script>
+
   <!-- =======================================================
   * Template Name: NiceAdmin - v2.4.1
   * Template URL: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/
   * Author: BootstrapMade.com
   * License: https://bootstrapmade.com/license/
+  
+  if(!empty($UserID)){ ?> class="toggle-sidebar"
   ======================================================== -->
-  <!-- <style>
-    label[for="Y"]:after {
-  content: " *";
-  color: red;
-}
-  </style> -->
 </head>
 
 <body>
-<script>
-      setTimeout(function() {
-          document.getElementById('myAlert').remove();
-      }, 2000); // นับถอยหลังให้แสดง 5 วินาที (5000 มิลลิวินาที)
-</script>
   <!-- ======= Header ======= -->
   <header id="header" class="header fixed-top d-flex align-items-center">
 
     <div class="d-flex align-items-center justify-content-between">
-      <a href="index.html" class="logo d-flex align-items-center">
-        <img src="<?php echo base_url('assets/img/logo.png'); ?>" alt="">
+      <a href="<?php echo base_url(); ?>Main" class="logo d-flex align-items-center">
+        <img src="<?php echo base_url('assets/img/uploads/logo.png'); ?>" alt="">
         <span class="d-none d-lg-block"></span>
       </a>
+      <?php //if(!empty($UserID) && !empty($UserName)){ 
+      ?>
       <i class="bi bi-list toggle-sidebar-btn"></i>
+      <?php //} 
+      ?>
     </div><!-- End Logo -->
 
     <div class="search-bar">
@@ -79,206 +80,198 @@ defined('BASEPATH') or exit('No direct script access allowed');
           </a>
         </li><!-- End Search Icon-->
 
-        <li class="nav-item dropdown">
 
-          <a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown">
-            <i class="bi bi-bell"></i>
-            <span class="badge bg-primary badge-number">4</span>
-          </a><!-- End Notification Icon -->
+        <?php
+        if (!empty($UserID) && !empty($UserName)) {
+        ?>
 
-          <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow notifications">
-            <li class="dropdown-header">
-              คุณมี 4 ประกาศใหม่
-              <a href="#"><span class="badge rounded-pill bg-primary p-2 ms-2">แสดงทั้งหมด</span></a>
-            </li>
-            <li>
-              <hr class="dropdown-divider">
-            </li>
+          <li class="nav-item dropdown">
 
-            <li class="notification-item">
-              <i class="bi bi-exclamation-circle text-warning"></i>
-              <div>
-                <h4>กิจกรรมเด็กดี</h4>
-                <p>กิจกรรมเด็กดี โรงเรียนอนุบาลสตูล</p>
-                <p>30 นาทีที่แล้ว</p>
-              </div>
-            </li>
+          </li><!-- End Notification Nav -->
 
-            <li>
-              <hr class="dropdown-divider">
-            </li>
+          <li class="nav-item dropdown">
 
-            <li class="notification-item">
-              <i class="bi bi-x-circle text-danger"></i>
-              <div>
-                <h4>พลเมืองนวัตกรในพื้นที่นวัตกรรม</h4>
-                <p>กิจกรรมน่าสนใจบ่ายนี้ที่ ม.ทักษิณ “พลเมืองนวัตกรในพื้นที่นวัตกรรม”
-                  เวลา 13:00 น. เป็นต้นไป หอประชุมปาริชาต มหาวิทยาลัยทักษิณ วิทยาเขตสงขลา</p>
-                <p>1 ชั่วโมงที่แล้ว</p>
-              </div>
-            </li>
+            <a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown">
+              <i class="bi bi-chat-left-text"></i>
+              <span class="badge bg-success badge-number">3</span>
+            </a><!-- End Messages Icon -->
 
-            <li>
-              <hr class="dropdown-divider">
-            </li>
+            <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow messages">
+              <li class="dropdown-header">
+                คุณมี 3 ข้อความใหม่
+                <a href="#"><span class="badge rounded-pill bg-primary p-2 ms-2">แสดงทั้งหมด</span></a>
+              </li>
+              <li>
+                <hr class="dropdown-divider">
+              </li>
 
-            <li class="notification-item">
-              <i class="bi bi-check-circle text-success"></i>
-              <div>
-                <h4>สมัชชาการศึกษาจังหวัดสตูล</h4>
-                <p>สมัชชาการศึกษาจังหวัดสตูล #3 ฐานสมรรถนะ = ฐานชีวิต ระหว่างวันที่ 22 – 23 กันยายน 2565 ณ มหาวิทยาลัยราชภัฏสงขลา วิทยาเขตสตูล</p>
-                <p>2 ชั่วโมงที่แล้ว</p>
-              </div>
-            </li>
+              <li class="message-item">
+                <a href="#">
+                  <img src="<?php echo base_url(); ?>assets/img/messages-1.jpg" alt="" class="rounded-circle">
+                  <div>
+                    <h4>ไพลิน สุวรรณมาลา</h4>
+                    <p>สอบถามเกี่ยวกับการร่วมกิจกรรม Workshop นวัตกรรมการศึกษาคนสตูล:...</p>
+                    <p>4 ชั่วโมงที่แล้ว</p>
+                  </div>
+                </a>
+              </li>
+              <li>
+                <hr class="dropdown-divider">
+              </li>
 
-            <li>
-              <hr class="dropdown-divider">
-            </li>
+              <li class="message-item">
+                <a href="#">
+                  <img src="<?php echo base_url(); ?>assets/img/messages-2.jpg" alt="" class="rounded-circle">
+                  <div>
+                    <h4>ศศลักษณ์ ทองขาว</h4>
+                    <p>สอบถามเกี่ยวกับการลงบทความความร่วมมือเชิงรุกในการสร้างนวัตกรรมการศึกษาและบริหารจัดการพื้นที่นวัตกรรมการศึกษาจังหวัดสตูล...</p>
+                    <p>6 ชั่วโมงที่แล้ว</p>
+                  </div>
+                </a>
+              </li>
+              <li>
+                <hr class="dropdown-divider">
+              </li>
 
-            <li class="notification-item">
-              <i class="bi bi-info-circle text-primary"></i>
-              <div>
-                <h4>สมัชชาการศึกษาจังหวัดสตูล ครั้งที่3</h4>
-                <p>สมัชชาการศึกษาจังหวัดสตูล ครั้งที่3 8760 โรงเรียนเป็นส่วนหนึ่งของระบบการศึกษา เราเชื่อว่าการศึกษาเป็นเรื่องของทุกคน</p>
-                <p>3 วันที่แล้ว</p>
-              </div>
-            </li>
+              <li class="message-item">
+                <a href="#">
+                  <img src="<?php echo base_url(); ?>assets/img/messages-3.jpg" alt="" class="rounded-circle">
+                  <div>
+                    <h4>สมคิด ทองสง</h4>
+                    <p>สอบถามเกี่ยวกับการนำวิดีโอที่จะประกอบการเรียนการสอนขึ้นระบบครับ...</p>
+                    <p>8 ชั่วโมงที่แล้ว</p>
+                  </div>
+                </a>
+              </li>
+              <li>
+                <hr class="dropdown-divider">
+              </li>
 
-            <li>
-              <hr class="dropdown-divider">
-            </li>
-            <li class="dropdown-footer">
-              <a href="#">แสดงประกาศทั้งหมด</a>
-            </li>
+              <li class="dropdown-footer">
+                <a href="#">แสดงข้อความทั้งหมด</a>
+              </li>
 
-          </ul><!-- End Notification Dropdown Items -->
+            </ul><!-- End Messages Dropdown Items -->
 
-        </li><!-- End Notification Nav -->
+          </li><!-- End Messages Nav -->
 
-        <li class="nav-item dropdown">
+          <li class="nav-item dropdown pe-3">
 
-          <a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown">
-            <i class="bi bi-chat-left-text"></i>
-            <span class="badge bg-success badge-number">3</span>
-          </a><!-- End Messages Icon -->
+            <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
+              <img src="<?php echo base_url('assets/img/profile-default.png" alt="Profile" class="rounded-circle'); ?>">
+              <span class="d-none d-md-block dropdown-toggle ps-2"><?= $UserName ?></span>
+            </a><!-- End Profile Iamge Icon -->
 
-          <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow messages">
-            <li class="dropdown-header">
-              คุณมี 3 ข้อความใหม่
-              <a href="#"><span class="badge rounded-pill bg-primary p-2 ms-2">แสดงทั้งหมด</span></a>
-            </li>
-            <li>
-              <hr class="dropdown-divider">
-            </li>
+            <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
+              <li class="dropdown-header">
+                <h6><?= $UserFullName ?></h6>
+                <?php
+                if ($UserSchoolID == "-99999") {
+                ?>
+                  <span>ส่วนกลาง</span>
+                <?php
+                } else {
+                ?>
+                  <span><?= $UserTypeName ?></span>
+                <?php
+                }
+                ?>
+              </li>
+              <li>
+                <hr class="dropdown-divider">
+              </li>
+              <li>
+                <a class="dropdown-item d-flex align-items-center" href="#" data-id="<?= $UserID; ?>" data-name="<?= $UserFullName; ?>" data-groupid="<?= $UserGroupID; ?>" data-schoolid="<?= $UserSchoolID; ?>" data-email="<?= $UserEmail; ?>" data-birthdate="<?= $UserBirthDate; ?>" data-phone="<?= $UserPhone; ?>" data-type="<?= $UserType; ?>" data-cardtype="<?= $UserCardType; ?>" data-cardno="<?= $UserCardNo; ?>" data-bs-toggle="modal" data-bs-target="#UserFRMModal">
+                  <i class="bi bi-person"></i>
+                  <span>ข้อมูลส่วนตัว</span>
+                </a>
+              </li>
+              <li>
+                <hr class="dropdown-divider">
+              </li>
 
-            <li class="message-item">
-              <a href="#">
-                <img src="assets/img/messages-1.jpg" alt="" class="rounded-circle">
-                <div>
-                  <h4>ไพลิน สุวรรณมาลา</h4>
-                  <p>สอบถามเกี่ยวกับการร่วมกิจกรรม Workshop นวัตกรรมการศึกษาคนสตูล:...</p>
-                  <p>4 ชั่วโมงที่แล้ว</p>
-                </div>
-              </a>
-            </li>
-            <li>
-              <hr class="dropdown-divider">
-            </li>
+              <?php
+              if ($GroupTypeCode == "Admin") {
+              ?>
+                <li>
+                  <a class="dropdown-item d-flex align-items-center" href="<?php echo base_url(); ?>Admin/ConfigSystem">
+                    <i class="bi bi-gear"></i>
+                    <span>จัดการระบบ</span>
+                  </a>
+                </li>
+              <?php
+              }
+              ?>
+              <li>
+                <hr class="dropdown-divider">
+              </li>
 
-            <li class="message-item">
-              <a href="#">
-                <img src="assets/img/messages-2.jpg" alt="" class="rounded-circle">
-                <div>
-                  <h4>ศศลักษณ์ ทองขาว</h4>
-                  <p>สอบถามเกี่ยวกับการลงบทความความร่วมมือเชิงรุกในการสร้างนวัตกรรมการศึกษาและบริหารจัดการพื้นที่นวัตกรรมการศึกษาจังหวัดสตูล...</p>
-                  <p>6 ชั่วโมงที่แล้ว</p>
-                </div>
-              </a>
-            </li>
-            <li>
-              <hr class="dropdown-divider">
-            </li>
+              <li>
+                <a class="dropdown-item d-flex align-items-center" href="<?php echo base_url(); ?>logout">
+                  <i class="bi bi-box-arrow-right"></i>
+                  <span>ออกจากระบบ</span>
+                </a>
+              </li>
 
-            <li class="message-item">
-              <a href="#">
-                <img src="assets/img/messages-3.jpg" alt="" class="rounded-circle">
-                <div>
-                  <h4>สมคิด ทองสง</h4>
-                  <p>สอบถามเกี่ยวกับการนำวิดีโอที่จะประกอบการเรียนการสอนขึ้นระบบครับ...</p>
-                  <p>8 ชั่วโมงที่แล้ว</p>
-                </div>
-              </a>
-            </li>
-            <li>
-              <hr class="dropdown-divider">
-            </li>
+            </ul><!-- End Profile Dropdown Items -->
+          </li><!-- End Profile Nav -->
 
-            <li class="dropdown-footer">
-              <a href="#">แสดงข้อความทั้งหมด</a>
-            </li>
+        <?php
+        } else {
+        ?>
 
-          </ul><!-- End Messages Dropdown Items -->
+          <li class="nav-item dropdown">
+          </li><!-- End Notification Nav -->
 
-        </li><!-- End Messages Nav -->
+          <li class="nav-item dropdown">
+          </li><!-- End Messages Nav -->
 
-        <li class="nav-item dropdown pe-3">
+          <li class="nav-item dropdown pe-3">
 
-          <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
-            <img src="<?php echo base_url('assets/img/profile-img.jpg" alt="Profile" class="rounded-circle'); ?>">
-            <span class="d-none d-md-block dropdown-toggle ps-2">K. Anderson</span>
-          </a><!-- End Profile Iamge Icon -->
+            <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
+              <img src="<?php echo base_url('assets/img/member-18-48.png" alt="Profile" class="rounded-circle'); ?>">
+              <span class="d-none d-md-block ps-2">เข้าสู่ระบบ</span>
+            </a><!-- End Profile Iamge Icon -->
 
-          <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
-            <li class="dropdown-header">
-              <h6>อำนาจ ทองขาว</h6>
-              <span>ครู</span>
-            </li>
-            <li>
-              <hr class="dropdown-divider">
-            </li>
+            <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
+              <li class="dropdown-header">
+                <form id="logForm" class="row g-3 needs-validation" method="post" action="<?php echo base_url(); ?>login">
+                  <div class="col-12">
+                    <label for="yourUsername" class="form-label float-start">ชื่อผู้ใช้งาน</label>
+                    <div class="input-group has-validation">
+                      <input type="text" name="username" class="form-control" id="username" autocomplete="off" required>
+                      <div class="invalid-feedback">Please enter your username.</div>
+                    </div>
+                  </div>
 
-            <li>
-              <a class="dropdown-item d-flex align-items-center" href="users-profile.html">
-                <i class="bi bi-person"></i>
-                <span>ประวัติ</span>
-              </a>
-            </li>
-            <li>
-              <hr class="dropdown-divider">
-            </li>
+                  <div class="col-12">
+                    <label for="yourPassword" class="form-label float-start">รหัสผ่าน</label>
+                    <input type="password" name="password" class="form-control" id="password" autocomplete="off" required>
+                    <div class="invalid-feedback">Please enter your password!</div>
+                  </div>
 
-            <li>
-              <a class="dropdown-item d-flex align-items-center" href="users-profile.html">
-                <i class="bi bi-gear"></i>
-                <span>ตั้งค่าส่วนตัว</span>
-              </a>
-            </li>
-            <li>
-              <hr class="dropdown-divider">
-            </li>
+                  <div class="col-12">
+                    <label class="form-label" for="forgetpassword"><a href="#">ลืมรหัสผ่าน</a></label>
+                  </div>
+                  <div class="col-12">
+                    <button class="btn btn-primary w-100" type="submit" name="submit">ลงชื่อเข้าใช้งาน</button>
+                  </div>
+                  <div class="col-12">
+                    <p class="small mb-0">ยังไม่เป็นสมาชิก? <a href="#" data-bs-toggle="modal" data-bs-target="#UserPrivacyPolicyFRMModal">ลงทะเบียนใหม่</a></p>
+                  </div>
+                </form>
+              </li>
+            </ul><!-- End Profile Dropdown Items -->
+          </li><!-- End Profile Nav -->
 
-            <li>
-              <a class="dropdown-item d-flex align-items-center" href="pages-faq.html">
-                <i class="bi bi-question-circle"></i>
-                <span>ช่วยเหลือ</span>
-              </a>
-            </li>
-            <li>
-              <hr class="dropdown-divider">
-            </li>
-
-            <li>
-              <a class="dropdown-item d-flex align-items-center" href="#">
-                <i class="bi bi-box-arrow-right"></i>
-                <span>ออกจากระบบ</span>
-              </a>
-            </li>
-
-          </ul><!-- End Profile Dropdown Items -->
-        </li><!-- End Profile Nav -->
+        <?php
+        }
+        ?>
 
       </ul>
     </nav><!-- End Icons Navigation -->
+
+
 
   </header><!-- End Header -->
 
@@ -301,3 +294,25 @@ defined('BASEPATH') or exit('No direct script access allowed');
     echo "ThaiCreate.Com Time now : " . DateThai($strDate);
     ?>
   <!-------------------- format Thai - END ---------------------!>
+  <?php
+  // Function to get the client IP address
+  function get_client_ip()
+  {
+    $ipaddress = '';
+    if (getenv('HTTP_CLIENT_IP'))
+      $ipaddress = getenv('HTTP_CLIENT_IP');
+    else if (getenv('HTTP_X_FORWARDED_FOR'))
+      $ipaddress = getenv('HTTP_X_FORWARDED_FOR');
+    else if (getenv('HTTP_X_FORWARDED'))
+      $ipaddress = getenv('HTTP_X_FORWARDED');
+    else if (getenv('HTTP_FORWARDED_FOR'))
+      $ipaddress = getenv('HTTP_FORWARDED_FOR');
+    else if (getenv('HTTP_FORWARDED'))
+      $ipaddress = getenv('HTTP_FORWARDED');
+    else if (getenv('REMOTE_ADDR'))
+      $ipaddress = getenv('REMOTE_ADDR');
+    else
+      $ipaddress = 'UNKNOWN';
+    return $ipaddress;
+  }
+  ?>

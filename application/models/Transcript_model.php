@@ -89,23 +89,234 @@ class Transcript_model extends CI_Model
         $result = $this->db->where('StudentReferenceID ', $StudentReferenceID)->where('TranscriptSeriesNumber ', $TranscriptSeriesNumber)->where('TranscriptNumber ', $TranscriptNumber)->update('TRANSCRIPT', $data);
 
         //อนุบาล 
-        if ($GradeLevelCode == '111' || $GradeLevelCode == '112' || $GradeLevelCode == '211' || $GradeLevelCode == '212' || $GradeLevelCode == '214' || $GradeLevelCode == '215' || $GradeLevelCode == '311' || $GradeLevelCode == '312' || ($GradeLevelCode == '113' || $GradeLevelCode == '213' || $GradeLevelCode == '216' || $GradeLevelCode == '313') && $Semester != 2) {
+        if ($GradeLevelCode == '111' || $GradeLevelCode == '112' || $GradeLevelCode == '211' || $GradeLevelCode == '212' || $GradeLevelCode == '214' || $GradeLevelCode == '215' || $GradeLevelCode == '311' || $GradeLevelCode == '312' || (($GradeLevelCode == '113' || $GradeLevelCode == '213' || $GradeLevelCode == '216' || $GradeLevelCode == '313') && $Semester != 2)) {
             if ($Semester == 1) {
+
+                $result = $this->db->query('SELECT * FROM STUDENT
+                            WHERE DeleteStatus = 0 AND StudentReferenceID = "' . $StudentReferenceID . '"');
+                foreach ($result->result() as $STUDENT) {
+
+                    $data_ST = [
+
+                        'StudentReferenceID' => 'STN2566',
+                        'SchoolID' => $STUDENT->SchoolID,
+                        'SchoolAdmissionYear' => $STUDENT->SchoolAdmissionYear,
+                        'CurrentEducationLevelAdmissionYear' => $STUDENT->CurrentEducationLevelAdmissionYear,
+                        'EducationLevelCode' => $STUDENT->EducationLevelCode,
+                        'EducationYear' => $STUDENT->EducationYear,
+                        'Semester' => $STUDENT->Semester + 1,
+                        'GradeLevelCode' => $STUDENT->GradeLevelCode,
+                        'Classroom' => $STUDENT->Classroom,
+                        'StudentID' => $STUDENT->StudentID,
+                        'StudentStatusCode' => $STUDENT->StudentStatusCode,
+                        'StudentPersonalIDTypeCode' => $STUDENT->StudentPersonalIDTypeCode,
+                        'StudentPersonalID' => $STUDENT->StudentPersonalID,
+                        'StudentPassportNumber' => $STUDENT->StudentPassportNumber,
+                        'StudentPrefixCode' => $STUDENT->StudentPrefixCode,
+                        'StudentNameThai' => $STUDENT->StudentNameThai,
+                        'StudentLastNameThai' => $STUDENT->StudentLastNameThai,
+                        'StudentGenderCode' => $STUDENT->StudentGenderCode,
+                        'StudentNationalityCode' => $STUDENT->StudentNationalityCode,
+                        'StudentRaceCode' => $STUDENT->StudentRaceCode,
+                        'StudentReligionCode' => $STUDENT->StudentReligionCode,
+                        'StudentLanguageCode' => $STUDENT->StudentLanguageCode,
+                        'StudentBirthDate' => $STUDENT->StudentBirthDate,
+                        'StudentBirthProvinceCode' => $STUDENT->StudentBirthProvinceCode,
+                        'StudentBloodCode' => $STUDENT->StudentBloodCode,
+                        'StudentWeight' => $STUDENT->StudentWeight,
+                        'StudentHeight' => $STUDENT->StudentHeight,
+                        'StudentOfficialAddressHouseNumber' => $STUDENT->StudentOfficialAddressHouseNumber,
+                        'StudentOfficialAddressMoo' => $STUDENT->StudentOfficialAddressMoo,
+                        'StudentOfficialAddressStreet' => $STUDENT->StudentOfficialAddressStreet,
+                        'StudentOfficialAddressSoi' => $STUDENT->StudentOfficialAddressSoi,
+                        'StudentOfficialAddressTrok' => $STUDENT->StudentOfficialAddressTrok,
+                        'StudentOfficialAddressSubdistrictCode' => $STUDENT->StudentOfficialAddressSubdistrictCode,
+                        'StudentOfficialAddressDistrictCode' => $STUDENT->StudentOfficialAddressDistrictCode,
+                        'StudentOfficialAddressProvinceCode' => $STUDENT->StudentOfficialAddressProvinceCode,
+                        'StudentOfficialAddressPostcode' => $STUDENT->StudentOfficialAddressPostcode,
+                        'StudentOfficialAddressPhoneNumber' => $STUDENT->StudentOfficialAddressPhoneNumber,
+                        'StudentCurrentAddressHouseNumber' => $STUDENT->StudentCurrentAddressHouseNumber,
+                        'StudentCurrentAddressMoo' => $STUDENT->StudentCurrentAddressMoo,
+                        'StudentCurrentAddressStreet' => $STUDENT->StudentCurrentAddressStreet,
+                        'StudentCurrentAddressSoi' => $STUDENT->StudentCurrentAddressSoi,
+                        'StudentCurrentAddressTrok' => $STUDENT->StudentCurrentAddressTrok,
+                        'StudentCurrentAddressSubdistrictCode' => $STUDENT->StudentCurrentAddressSubdistrictCode,
+                        'StudentCurrentAddressDistrictCode' => $STUDENT->StudentCurrentAddressDistrictCode,
+                        'StudentCurrentAddressProvinceCode' => $STUDENT->StudentCurrentAddressProvinceCode,
+                        'StudentCurrentAddressPostcode' => $STUDENT->StudentCurrentAddressPostcode,
+                        'StudentCurrentAddressPhoneNumber' => $STUDENT->StudentCurrentAddressPhoneNumber,
+                        'FatherPersonalID' => $STUDENT->FatherPersonalID,
+                        'FatherPassportNumber' => $STUDENT->FatherPassportNumber,
+                        'FatherPrefixCode' => $STUDENT->FatherPrefixCode,
+                        'FatherNameThai' => $STUDENT->FatherNameThai,
+                        'FatherLastNameThai' => $STUDENT->FatherLastNameThai,
+                        'FatherNameEnglish' => $STUDENT->FatherNameEnglish,
+                        'FatherLastNameEnglish' => $STUDENT->FatherLastNameEnglish,
+                        'FatherPersonStatusCode' => $STUDENT->FatherPersonStatusCode,
+                        'FatherPhoneNumber' => $STUDENT->FatherPhoneNumber,
+                        'FatherOccupationCode' => $STUDENT->FatherOccupationCode,
+                        'FatherSalary' => $STUDENT->FatherSalary,
+                        'MotherPersonalID' => $STUDENT->MotherPersonalID,
+                        'MotherPassportNumber' => $STUDENT->MotherPassportNumber,
+                        'MotherPrefixCode' => $STUDENT->MotherPrefixCode,
+                        'MotherNameThai' => $STUDENT->MotherNameThai,
+                        'MotherLastNameThai' => $STUDENT->MotherLastNameThai,
+                        'MotherNameEnglish' => $STUDENT->MotherNameEnglish,
+                        'MotherLastNameEnglish' => $STUDENT->MotherLastNameEnglish,
+                        'MotherPersonStatusCode' => $STUDENT->MotherPersonStatusCode,
+                        'MotherPhoneNumber' => $STUDENT->MotherPhoneNumber,
+                        'MotherOccupationCode' => $STUDENT->MotherOccupationCode,
+                        'MotherSalary' => $STUDENT->MotherSalary,
+                        'JourneyTypeCode' => $STUDENT->JourneyTypeCode,
+                        'JourneyTime' => $STUDENT->JourneyTime,
+                        'RockJourneyDistance' => $STUDENT->RockJourneyDistance,
+                        'RubberJourneyDistance' => $STUDENT->RubberJourneyDistance,
+                        'WaterJourneyDistance' => $STUDENT->WaterJourneyDistance,
+                        'DisabilityCode' => $STUDENT->DisabilityCode,
+                        'DisabilityDetail' => $STUDENT->DisabilityDetail,
+                        'DisabilityLevelCode' => $STUDENT->DisabilityLevelCode,
+                        'DisadvantagedCode' => $STUDENT->DisadvantagedCode,
+                        'LackingBookFlag' => $STUDENT->LackingBookFlag,
+                        'LackingFoodFlag' => $STUDENT->LackingFoodFlag,
+                        'LackingStationeryFlag' => $STUDENT->LackingStationeryFlag,
+                        'LackingUniformFlag' => $STUDENT->LackingUniformFlag,
+                        'FamilyMonthlyIncome' => $STUDENT->FamilyMonthlyIncome,
+                        'FamilyStatusCode' => $STUDENT->FamilyStatusCode,
+                        'StudentLiveWithCode' => $STUDENT->StudentLiveWithCode,
+                        'StateWelfareFlag' => $STUDENT->StateWelfareFlag,
+                        'TalentCode' => $STUDENT->TalentCode
+
+                    ];
+
+                    $result = $this->db->insert('STUDENT', $data_ST);
+                }
+
                 $data_ST = [
 
-                    'Semester' => $Semester + 1,
-
+                    'StudentReferenceID' => Date('YmdHis')
                 ];
+
                 $result = $this->db->where('StudentReferenceID ', $StudentReferenceID)->update('STUDENT', $data_ST);
+
+                $data_ST = [
+
+                    'StudentReferenceID' => $StudentReferenceID
+                ];
+
+                $result = $this->db->where('StudentReferenceID ', 'STN2566')->update('STUDENT', $data_ST);
             } elseif ($Semester == 2) {
 
-                $data_ST = [
-                    'EducationYear' => $EducationYear + 1,
-                    'Semester' => $Semester - 1,
-                    'GradeLevelCode' => $GradeLevelCode + 1,
+                $result = $this->db->query('SELECT * FROM STUDENT
+                            WHERE DeleteStatus = 0 AND StudentReferenceID = "' . $StudentReferenceID . '"');
 
+                foreach ($result->result() as $STUDENT) {
+
+                    $data_ST = [
+
+                        'StudentReferenceID' => 'STN2566',
+                        'SchoolID' => $STUDENT->SchoolID,
+                        'SchoolAdmissionYear' => $STUDENT->SchoolAdmissionYear,
+                        'CurrentEducationLevelAdmissionYear' => $STUDENT->CurrentEducationLevelAdmissionYear,
+                        'EducationLevelCode' => $STUDENT->EducationLevelCode,
+                        'EducationYear' => $STUDENT->EducationYear + 1,
+                        'Semester' => $STUDENT->Semester - 1,
+                        'GradeLevelCode' => $STUDENT->GradeLevelCode + 1,
+                        'Classroom' => $STUDENT->Classroom,
+                        'StudentID' => $STUDENT->StudentID,
+                        'StudentStatusCode' => $STUDENT->StudentStatusCode,
+                        'StudentPersonalIDTypeCode' => $STUDENT->StudentPersonalIDTypeCode,
+                        'StudentPersonalID' => $STUDENT->StudentPersonalID,
+                        'StudentPassportNumber' => $STUDENT->StudentPassportNumber,
+                        'StudentPrefixCode' => $STUDENT->StudentPrefixCode,
+                        'StudentNameThai' => $STUDENT->StudentNameThai,
+                        'StudentLastNameThai' => $STUDENT->StudentLastNameThai,
+                        'StudentGenderCode' => $STUDENT->StudentGenderCode,
+                        'StudentNationalityCode' => $STUDENT->StudentNationalityCode,
+                        'StudentRaceCode' => $STUDENT->StudentRaceCode,
+                        'StudentReligionCode' => $STUDENT->StudentReligionCode,
+                        'StudentLanguageCode' => $STUDENT->StudentLanguageCode,
+                        'StudentBirthDate' => $STUDENT->StudentBirthDate,
+                        'StudentBirthProvinceCode' => $STUDENT->StudentBirthProvinceCode,
+                        'StudentBloodCode' => $STUDENT->StudentBloodCode,
+                        'StudentWeight' => $STUDENT->StudentWeight,
+                        'StudentHeight' => $STUDENT->StudentHeight,
+                        'StudentOfficialAddressHouseNumber' => $STUDENT->StudentOfficialAddressHouseNumber,
+                        'StudentOfficialAddressMoo' => $STUDENT->StudentOfficialAddressMoo,
+                        'StudentOfficialAddressStreet' => $STUDENT->StudentOfficialAddressStreet,
+                        'StudentOfficialAddressSoi' => $STUDENT->StudentOfficialAddressSoi,
+                        'StudentOfficialAddressTrok' => $STUDENT->StudentOfficialAddressTrok,
+                        'StudentOfficialAddressSubdistrictCode' => $STUDENT->StudentOfficialAddressSubdistrictCode,
+                        'StudentOfficialAddressDistrictCode' => $STUDENT->StudentOfficialAddressDistrictCode,
+                        'StudentOfficialAddressProvinceCode' => $STUDENT->StudentOfficialAddressProvinceCode,
+                        'StudentOfficialAddressPostcode' => $STUDENT->StudentOfficialAddressPostcode,
+                        'StudentOfficialAddressPhoneNumber' => $STUDENT->StudentOfficialAddressPhoneNumber,
+                        'StudentCurrentAddressHouseNumber' => $STUDENT->StudentCurrentAddressHouseNumber,
+                        'StudentCurrentAddressMoo' => $STUDENT->StudentCurrentAddressMoo,
+                        'StudentCurrentAddressStreet' => $STUDENT->StudentCurrentAddressStreet,
+                        'StudentCurrentAddressSoi' => $STUDENT->StudentCurrentAddressSoi,
+                        'StudentCurrentAddressTrok' => $STUDENT->StudentCurrentAddressTrok,
+                        'StudentCurrentAddressSubdistrictCode' => $STUDENT->StudentCurrentAddressSubdistrictCode,
+                        'StudentCurrentAddressDistrictCode' => $STUDENT->StudentCurrentAddressDistrictCode,
+                        'StudentCurrentAddressProvinceCode' => $STUDENT->StudentCurrentAddressProvinceCode,
+                        'StudentCurrentAddressPostcode' => $STUDENT->StudentCurrentAddressPostcode,
+                        'StudentCurrentAddressPhoneNumber' => $STUDENT->StudentCurrentAddressPhoneNumber,
+                        'FatherPersonalID' => $STUDENT->FatherPersonalID,
+                        'FatherPassportNumber' => $STUDENT->FatherPassportNumber,
+                        'FatherPrefixCode' => $STUDENT->FatherPrefixCode,
+                        'FatherNameThai' => $STUDENT->FatherNameThai,
+                        'FatherLastNameThai' => $STUDENT->FatherLastNameThai,
+                        'FatherNameEnglish' => $STUDENT->FatherNameEnglish,
+                        'FatherLastNameEnglish' => $STUDENT->FatherLastNameEnglish,
+                        'FatherPersonStatusCode' => $STUDENT->FatherPersonStatusCode,
+                        'FatherPhoneNumber' => $STUDENT->FatherPhoneNumber,
+                        'FatherOccupationCode' => $STUDENT->FatherOccupationCode,
+                        'FatherSalary' => $STUDENT->FatherSalary,
+                        'MotherPersonalID' => $STUDENT->MotherPersonalID,
+                        'MotherPassportNumber' => $STUDENT->MotherPassportNumber,
+                        'MotherPrefixCode' => $STUDENT->MotherPrefixCode,
+                        'MotherNameThai' => $STUDENT->MotherNameThai,
+                        'MotherLastNameThai' => $STUDENT->MotherLastNameThai,
+                        'MotherNameEnglish' => $STUDENT->MotherNameEnglish,
+                        'MotherLastNameEnglish' => $STUDENT->MotherLastNameEnglish,
+                        'MotherPersonStatusCode' => $STUDENT->MotherPersonStatusCode,
+                        'MotherPhoneNumber' => $STUDENT->MotherPhoneNumber,
+                        'MotherOccupationCode' => $STUDENT->MotherOccupationCode,
+                        'MotherSalary' => $STUDENT->MotherSalary,
+                        'JourneyTypeCode' => $STUDENT->JourneyTypeCode,
+                        'JourneyTime' => $STUDENT->JourneyTime,
+                        'RockJourneyDistance' => $STUDENT->RockJourneyDistance,
+                        'RubberJourneyDistance' => $STUDENT->RubberJourneyDistance,
+                        'WaterJourneyDistance' => $STUDENT->WaterJourneyDistance,
+                        'DisabilityCode' => $STUDENT->DisabilityCode,
+                        'DisabilityDetail' => $STUDENT->DisabilityDetail,
+                        'DisabilityLevelCode' => $STUDENT->DisabilityLevelCode,
+                        'DisadvantagedCode' => $STUDENT->DisadvantagedCode,
+                        'LackingBookFlag' => $STUDENT->LackingBookFlag,
+                        'LackingFoodFlag' => $STUDENT->LackingFoodFlag,
+                        'LackingStationeryFlag' => $STUDENT->LackingStationeryFlag,
+                        'LackingUniformFlag' => $STUDENT->LackingUniformFlag,
+                        'FamilyMonthlyIncome' => $STUDENT->FamilyMonthlyIncome,
+                        'FamilyStatusCode' => $STUDENT->FamilyStatusCode,
+                        'StudentLiveWithCode' => $STUDENT->StudentLiveWithCode,
+                        'StateWelfareFlag' => $STUDENT->StateWelfareFlag,
+                        'TalentCode' => $STUDENT->TalentCode
+
+                    ];
+
+                    $result = $this->db->insert('STUDENT', $data_ST);
+                }
+
+                $data_ST = [
+
+                    'StudentReferenceID' => Date('YmdHis')
                 ];
+
                 $result = $this->db->where('StudentReferenceID ', $StudentReferenceID)->update('STUDENT', $data_ST);
+
+                $data_ST = [
+
+                    'StudentReferenceID' => $StudentReferenceID
+                ];
             }
         } elseif (($GradeLevelCode == '113' || $GradeLevelCode == '213' || $GradeLevelCode == '216' || $GradeLevelCode == '313') && $Semester == 2) { ///สำเร็จการศึกษาา
 
@@ -115,21 +326,18 @@ class Transcript_model extends CI_Model
 
             ];
 
-            $result = $this->db->where('StudentReferenceID ', $StudentReferenceID)->update('STUDENT', $data);
+            $this->db->where('StudentReferenceID ', $StudentReferenceID)->update('STUDENT', $data);
 
-            $result = $this->db->query('SELECT * FROM STUDENT WHERE DeleteStatus = 0  
-                AND StudentReferenceID  = "' . $StudentReferenceID . '" 
-        ');
+            $result = $this->db->query('SELECT * FROM STUDENT WHERE StudentReferenceID  = "' . $StudentReferenceID . '" ');
+
             foreach ($result->result() as $STUDENT) {
-                $SchoolID = $STUDENT->SchoolID;
+
                 $data_ST = [
 
-                    'EducationYear' =>  $EducationYear,
-                    'Semester' =>  $Semester,
-                    'GraduatedSchoolID' =>  $STUDENT->SchoolID,
+                    'EducationYear' => $STUDENT->EducationYear,
+                    'Semester' => $STUDENT->Semester,
                     'StudentReferenceID' => $STUDENT->StudentReferenceID,
-                    'ImageGraduated' => $STUDENT->ImageStudent,
-                    'GraduatedPersonalID' =>  $STUDENT->StudentPersonalID,
+                    'GraduatedPersonalID' => $STUDENT->StudentPersonalID,
                     'GraduatedPersonalIDTypeCode' => $STUDENT->StudentPersonalIDTypeCode,
                     'GraduatedStudentID' => $STUDENT->StudentID,
                     'GraduatedPrefixCode' => $STUDENT->StudentPrefixCode,
@@ -137,24 +345,35 @@ class Transcript_model extends CI_Model
                     'GraduatedNameEnglish' => $STUDENT->StudentNameEnglish,
                     'GraduatedLastNameThai' => $STUDENT->StudentLastNameThai,
                     'GraduatedLastNameEnglish' => $STUDENT->StudentLastNameEnglish,
-                    'GraduatedEducationYear' => $STUDENT->EducationYear,
+                    'FatherPersonalID' => $STUDENT->FatherPersonalID,
+                    'FatherPersonalIDTypeCode' => $STUDENT->FatherPersonalIDTypeCode,
+                    'FatherPrefixCode' => $STUDENT->FatherPrefixCode,
+                    'FatherNameThai' => $STUDENT->FatherNameThai,
+                    'FatherNameEnglish' => $STUDENT->FatherNameEnglish,
+                    'FatherLastNameThai' => $STUDENT->FatherLastNameThai,
+                    'FatherLastNameEnglish' => $STUDENT->FatherLastNameEnglish,
+                    'MotherPersonalID' => $STUDENT->MotherPersonalID,
+                    'MotherPersonalIDTypeCode' => $STUDENT->MotherPersonalIDTypeCode,
+                    'MotherPrefixCode' => $STUDENT->MotherPrefixCode,
+                    'MotherNameThai' => $STUDENT->MotherNameThai,
+                    'MotherNameEnglish' => $STUDENT->MotherNameEnglish,
+                    'MotherLastNameThai' => $STUDENT->MotherLastNameThai,
+                    'FatherLastNameEnglish' => $STUDENT->FatherLastNameEnglish,
+                    'GraduatedSchoolID ' => $STUDENT->SchoolID,
                     'GraduatedEducationLevelCode' => $STUDENT->EducationLevelCode,
                     'GraduatedGradeLevelCode' => $STUDENT->GradeLevelCode,
+                    'GraduatedEducationYear' => $STUDENT->EducationYear,
                     'GraduatedTranscriptNumber' => $TranscriptNumber,
                     'GraduatedTranscriptSeriesNumber' => $TranscriptSeriesNumber
 
                 ];
 
-                $result = $this->db->insert('GRADUATED', $data_ST);
+                $this->db->insert('GRADUATED', $data_ST);
             }
         }
 
-
-
-
         return $result;
     }
-
 
     //ADD Data transcript - subject
     public function add_transcript_subject($TranscriptSeriesNumber, $TranscriptNumber, $TranscriptEducationYear, $TranscriptSemester)

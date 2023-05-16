@@ -12,7 +12,9 @@
     <?php $key = isset($_GET['key']) ? $_GET['key'] : ''; ?>
     <?php $name = isset($_GET['name']) ? $_GET['name'] : ''; ?>
     <?php
-    session_start(); // เริ่มต้น session
+    if (session_status() == PHP_SESSION_NONE) {
+        session_start();
+    } // เริ่มต้น session
     if (isset($_SESSION['success'])) { ?>
         <div style="position: relative;">
             <div class="alert alert-success" id="myAlert" style="position: absolute; top: 0; left: 0; right: 0; z-index: 1;">
@@ -91,14 +93,20 @@
                             </h5>
                         </div>
                         <div class="col">
-                            <h5 style="float: right; padding: 15px;" class="card-title"><a href="<?php echo site_url('forms_p1?page=sh1') ?>" class="btn btn-success"><i class="bi bi-file-earmark-plus"></i> เพิ่มข้อมูล
+                     <?php    if($R_502000 <> NULL && $R_502000['UR_Add']== "1"){ ?>
+                            <h5 style="float: right; padding: 15px;" class="card-title"><a href="<?php echo site_url('forms_p1?page=sh1') ?>" class="btn btn-success">เพิ่มข้อมูล
                                 </a></h5>
+                                <?php  } ?>
                         </div>
                     </div>
 
 
 
-                    <table class="table table-borderless datatable col-12">
+                    <table class="table  <?php if ($R_502000 <> NULL && $R_502000['UR_Add'] == "1") {
+                                                                echo 'table-borderless datatable';
+                                                            }else {
+                                                                echo 'table-bordered';
+                                                            } ?>  col-12">
                         <thead>
 
                             <tr>
@@ -110,8 +118,9 @@
                                 <th style="" scope="col" class="col-1">วันที่เผยแพร่</th>
                                 <th style="" scope="col" class="col-2">ผู้จัดทำ</th>
                                 <th style="text-align: center;" scope="col" class="col-1">ดูรายละเอียด</th>
-                                <th style="text-align: center;" scope="col" class="col-1">ปฏิบัติ</th>
-
+                                <?php if ($R_502000 <> NULL && $R_502000['UR_Add'] == "1") { ?>
+                                    <th style="text-align: center;" scope="col" class="col-1">ปฏิบัติ</th>
+                                <?php } ?>
                             </tr>
 
                         </thead>
@@ -119,11 +128,11 @@
                             <?php
                             $result = $this->db->query('SELECT * FROM INNOVATION where DeleteStatus = 0');
                             foreach ($result->result() as $show) {
-                           
+
                             ?>
 
                                 <tr>
-                                  
+
                                     <td scope="row " style="">
                                         <?php echo $show->EducationYear; ?>
                                     </td>
@@ -156,23 +165,23 @@
 
                                         $resultc = $this->db->query("SELECT * FROM INNOVATION_CREATOR JOIN CLS_PERSONAL_ID_TYPE ON INNOVATION_CREATOR.CreatorPersonalIDTypeCode = CLS_PERSONAL_ID_TYPE.PERSONAL_ID_TYPE_CODE 
                             JOIN CLS_PREFIX ON INNOVATION_CREATOR.CreatorPrefixCode = CLS_PREFIX.PREFIX_CODE  
-                            WHERE InnovationID='" .$show->Id_in. "' AND DeleteStatus = 0"); ?>
+                            WHERE InnovationID='" . $show->Id_in . "' AND DeleteStatus = 0"); ?>
 
-                                        <?php foreach ($resultc->result() as $showc) { 
-                                             $CreatorPersonalID = base64_decode($showc->CreatorPersonalID);
-                                             ?>
+                                        <?php foreach ($resultc->result() as $showc) {
+                                            $CreatorPersonalID = base64_decode($showc->CreatorPersonalID);
+                                        ?>
                                             <div class="row">
                                                 <div class="col">
-                                                   
 
 
-                                                        <!-- Button trigger modal -->
-                                                        <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#inno_mem<?php echo $showc->Id_inc ?>" style="text-align: left;">
-                                                            <?php echo $showc->PREFIX_NAME; ?>
-                                                            <?php echo $showc->CreatorNameThai; ?>
-                                                            <?php echo $showc->CreatorLastNameThai; ?></a>
-                                                        </button>
-                                                        <!-- Modal -->
+
+                                                    <!-- Button trigger modal -->
+                                                    <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#inno_mem<?php echo $showc->Id_inc ?>" style="text-align: left;">
+                                                        <?php echo $showc->PREFIX_NAME; ?>
+                                                        <?php echo $showc->CreatorNameThai; ?>
+                                                        <?php echo $showc->CreatorLastNameThai; ?></a>
+                                                    </button>
+                                                    <!-- Modal -->
                                                     <div class="modal fade" id="inno_mem<?php echo $showc->Id_inc ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                                         <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable">
                                                             <div class="modal-content">
@@ -221,27 +230,30 @@
                                                                     </div>
                                                                 </div>
                                                                 <div class="modal-footer">
+                                                                <?php   if($R_502000 <> NULL && $R_502000['UR_Add']== "1"){ ?>
                                                                     <a href="<?php echo site_url('forms_p1?page=sh22') ?>&&key=<?php echo $showc->Id_inc; ?>&&name=<?php echo $show->InnovationName; ?>" class="my-link btn btn-warning"> <i class="bi bi-pencil-square"></i> </a>
+                                                                    <?php } ?>
                                                                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ปิด</button>
                                                                 </div>
                                                             </div>
                                                         </div>
                                                     </div>
-                                                   
+
                                                 </div>
 
                                             </div>
                                         <?php } ?>
-
-                                        <a href="<?php echo site_url('forms_p2?page=sh2') ?>&&InnovationID=<?php echo $show->InnovationID; ?>&&name=<?php echo $show->InnovationName; ?>&&key=<?php echo $show->Id_in; ?>" class="fw-bold my-link">
-                                            >>เพิ่มผู้จัดทำ>>
-                                        </a>
-
+                                        <?php if ($R_502000 <> NULL && $R_502000['UR_Add'] == "1") { ?>
+                                            <a href="<?php echo site_url('forms_p2?page=sh2') ?>&&InnovationID=<?php echo $show->InnovationID; ?>&&name=<?php echo $show->InnovationName; ?>&&key=<?php echo $show->Id_in; ?>" class="fw-bold my-link">
+                                                >>เพิ่มผู้จัดทำ>>
+                                            </a>
+                                        <?php } ?>
                                     </td>
                                     <td style="text-align: center;">
                                         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#das<?php echo $show->Id_in; ?>"><i class="bi bi-card-list"></i></button>
 
                                     </td>
+                                    <?php   if($R_502000 <> NULL && $R_502000['UR_Add']== "1"){ ?>
                                     <td style="text-align: center;">
                                         <a href="<?php echo site_url('forms_p1?page=sh11') ?>&&key=<?php echo $show->Id_in; ?>&&name=<?php echo $show->InnovationName; ?>" class="btn btn-warning"> <i class="bi bi-pencil-square"></i></a>
                                         <?php echo nbs(1); ?> <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#del_ass_ria<?php echo $show->InnovationID; ?>">
@@ -277,7 +289,7 @@
                                             </div>
                                         </div> <!-- Modal -->
                                     </td>
-
+                                            <?php } ?>
                                 </tr>
                             <?php } ?>
                         </tbody>

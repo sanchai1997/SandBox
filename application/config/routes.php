@@ -8,6 +8,8 @@ $route['translate_uri_dashes'] = FALSE;
 
 //////////////////////// ROUTE LOIN ////////////////////////
 $route['login'] = 'login';
+$route['Admin/ConfigSystem'] = 'Admin/ConfigSystem';
+
 /////////////////////// LOIN - END /////////////////////////
 
 

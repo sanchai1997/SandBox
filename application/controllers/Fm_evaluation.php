@@ -1,17 +1,28 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
-
-class Fm_evaluation extends CI_Controller
+require_once '_sandboxcontroller.php';
+class Fm_evaluation extends _sandboxcontroller
 {
 
     public function __construct()
     {
         parent::__construct();
         $this->load->model('Evaluation_model');
-
+        $this->load->library('session');
+        $this->load->library('form_validation');
     }
     public function index()
     {
+        $data = array();
+$data = $this->session->userdata();
+
+        if(!empty($data['UserRights'])){
+            //'701000', 'ข้อมูลแนวปฏิบัติที่เป็นเลิศการจัดการศึกษา'
+            $R_701000 = $data['UserRights'][array_search('701000', array_column($data['UserRights'], 'UR_Code'))];		
+            $data['R_701000'] = $R_701000;
+        }else{
+            $data['R_701000'] = NULL;
+        }
         $data['query']=$this->Evaluation_model->show_index();
 
         // 		echo '<pre>';
@@ -19,14 +30,24 @@ class Fm_evaluation extends CI_Controller
         // echo '</pre>';
         // exit;
        
-        $this->load->view('templates/header');
-        $this->load->view('templates/sidebar');
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/sidebar', $data);
         $this->load->view('pages/dashboard/EII/evaluation',$data);
-        $this->load->view('templates/footer');
+        $this->load->view('templates/footer', $data);
         
     }
     public function sh1()
     {
+        $data = array();
+        $data = $this->session->userdata();
+        
+                if(!empty($data['UserRights'])){
+                    //'701000', 'ข้อมูลแนวปฏิบัติที่เป็นเลิศการจัดการศึกษา'
+                    $R_701000 = $data['UserRights'][array_search('701000', array_column($data['UserRights'], 'UR_Code'))];		
+                    $data['R_701000'] = $R_701000;
+                }else{
+                    $data['R_701000'] = NULL;
+                }
         $data['query']=$this->Evaluation_model->show_ass_ria();
 
         // 		echo '<pre>';
@@ -34,14 +55,24 @@ class Fm_evaluation extends CI_Controller
         // echo '</pre>';
         // exit;
        
-        $this->load->view('templates/header');
-        $this->load->view('templates/sidebar');
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/sidebar', $data);
         $this->load->view('pages/dashboard/EII/evaluation',$data);
-        $this->load->view('templates/footer');
+        $this->load->view('templates/footer', $data);
         
     }
     public function sh2()
     {
+        $data = array();
+        $data = $this->session->userdata();
+        
+                if(!empty($data['UserRights'])){
+                    //'701000', 'ข้อมูลแนวปฏิบัติที่เป็นเลิศการจัดการศึกษา'
+                    $R_701000 = $data['UserRights'][array_search('701000', array_column($data['UserRights'], 'UR_Code'))];		
+                    $data['R_701000'] = $R_701000;
+                }else{
+                    $data['R_701000'] = NULL;
+                }
         $data['query']=$this->Evaluation_model->show_ass_ria_lvl();//sh2
 
         // 		echo '<pre>';
@@ -49,15 +80,25 @@ class Fm_evaluation extends CI_Controller
         // echo '</pre>';
         // exit;
        
-        $this->load->view('templates/header');
-        $this->load->view('templates/sidebar');
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/sidebar', $data);
         $this->load->view('pages/dashboard/EII/evaluation',$data);
-        $this->load->view('templates/footer');
+        $this->load->view('templates/footer', $data);
         
     }
 
     public function sh3()
     {
+        $data = array();
+        $data = $this->session->userdata();
+        
+                if(!empty($data['UserRights'])){
+                    //'701000', 'ข้อมูลแนวปฏิบัติที่เป็นเลิศการจัดการศึกษา'
+                    $R_701000 = $data['UserRights'][array_search('701000', array_column($data['UserRights'], 'UR_Code'))];		
+                    $data['R_701000'] = $R_701000;
+                }else{
+                    $data['R_701000'] = NULL;
+                }
         $data['query']=$this->Evaluation_model->show_ass_ria_com();//sh3
 
         // 		echo '<pre>';
@@ -65,14 +106,24 @@ class Fm_evaluation extends CI_Controller
         // echo '</pre>';
         // exit;
        
-        $this->load->view('templates/header');
-        $this->load->view('templates/sidebar');
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/sidebar', $data);
         $this->load->view('pages/dashboard/EII/evaluation',$data);
-        $this->load->view('templates/footer');
+        $this->load->view('templates/footer', $data);
         
     }
     public function sh4()
     {
+        $data = array();
+        $data = $this->session->userdata();
+        
+                if(!empty($data['UserRights'])){
+                    //'701000', 'ข้อมูลแนวปฏิบัติที่เป็นเลิศการจัดการศึกษา'
+                    $R_701000 = $data['UserRights'][array_search('701000', array_column($data['UserRights'], 'UR_Code'))];		
+                    $data['R_701000'] = $R_701000;
+                }else{
+                    $data['R_701000'] = NULL;
+                }
         $data['query']=$this->Evaluation_model->show_ass_ria_com_lvl();//sh4
 
         // 		echo '<pre>';
@@ -80,14 +131,24 @@ class Fm_evaluation extends CI_Controller
         // echo '</pre>';
         // exit;
        
-        $this->load->view('templates/header');
-        $this->load->view('templates/sidebar');
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/sidebar', $data);
         $this->load->view('pages/dashboard/EII/evaluation',$data);
-        $this->load->view('templates/footer');
+        $this->load->view('templates/footer', $data);
         
     }
     public function sh5()
     {
+        $data = array();
+        $data = $this->session->userdata();
+        
+                if(!empty($data['UserRights'])){
+                    //'701000', 'ข้อมูลแนวปฏิบัติที่เป็นเลิศการจัดการศึกษา'
+                    $R_701000 = $data['UserRights'][array_search('701000', array_column($data['UserRights'], 'UR_Code'))];		
+                    $data['R_701000'] = $R_701000;
+                }else{
+                    $data['R_701000'] = NULL;
+                }
         $data['query']=$this->Evaluation_model->show_sc_ass();//sh5
 
         // 		echo '<pre>';
@@ -95,14 +156,24 @@ class Fm_evaluation extends CI_Controller
         // echo '</pre>';
         // exit;
        
-        $this->load->view('templates/header');
-        $this->load->view('templates/sidebar');
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/sidebar', $data);
         $this->load->view('pages/dashboard/EII/evaluation',$data);
-        $this->load->view('templates/footer');
+        $this->load->view('templates/footer', $data);
         
     }
     public function sh6()
     {
+        $data = array();
+        $data = $this->session->userdata();
+        
+                if(!empty($data['UserRights'])){
+                    //'701000', 'ข้อมูลแนวปฏิบัติที่เป็นเลิศการจัดการศึกษา'
+                    $R_701000 = $data['UserRights'][array_search('701000', array_column($data['UserRights'], 'UR_Code'))];		
+                    $data['R_701000'] = $R_701000;
+                }else{
+                    $data['R_701000'] = NULL;
+                }
         $data['query']=$this->Evaluation_model->show_sc_ass_ria();//sh6
 
         // 		echo '<pre>';
@@ -110,14 +181,24 @@ class Fm_evaluation extends CI_Controller
         // echo '</pre>';
         // exit;
        
-        $this->load->view('templates/header');
-        $this->load->view('templates/sidebar');
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/sidebar', $data);
         $this->load->view('pages/dashboard/EII/evaluation',$data);
-        $this->load->view('templates/footer');
+        $this->load->view('templates/footer', $data);
         
     }
     public function sh7()
     {
+        $data = array();
+        $data = $this->session->userdata();
+        
+                if(!empty($data['UserRights'])){
+                    //'701000', 'ข้อมูลแนวปฏิบัติที่เป็นเลิศการจัดการศึกษา'
+                    $R_701000 = $data['UserRights'][array_search('701000', array_column($data['UserRights'], 'UR_Code'))];		
+                    $data['R_701000'] = $R_701000;
+                }else{
+                    $data['R_701000'] = NULL;
+                }
         $data['query']=$this->Evaluation_model->show_sc_ass_res();//sh7
 
         // 		echo '<pre>';
@@ -125,14 +206,24 @@ class Fm_evaluation extends CI_Controller
         // echo '</pre>';
         // exit;
        
-        $this->load->view('templates/header');
-        $this->load->view('templates/sidebar');
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/sidebar', $data);
         $this->load->view('pages/dashboard/EII/evaluation',$data);
-        $this->load->view('templates/footer');
+        $this->load->view('templates/footer', $data);
         
     }
     public function sh8()
     {
+        $data = array();
+        $data = $this->session->userdata();
+        
+                if(!empty($data['UserRights'])){
+                    //'701000', 'ข้อมูลแนวปฏิบัติที่เป็นเลิศการจัดการศึกษา'
+                    $R_701000 = $data['UserRights'][array_search('701000', array_column($data['UserRights'], 'UR_Code'))];		
+                    $data['R_701000'] = $R_701000;
+                }else{
+                    $data['R_701000'] = NULL;
+                }
         $data['query']=$this->Evaluation_model->show_achie_ass();//sh8
 
         // 		echo '<pre>';
@@ -140,26 +231,35 @@ class Fm_evaluation extends CI_Controller
         // echo '</pre>';
         // exit;
        
-        $this->load->view('templates/header');
-        $this->load->view('templates/sidebar');
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/sidebar', $data);
         $this->load->view('pages/dashboard/EII/evaluation',$data);
-        $this->load->view('templates/footer');
+        $this->load->view('templates/footer', $data);
         
     }
     
     public function forms()
     {
+        $data = array();
+        $data = $this->session->userdata();
         
+                if(!empty($data['UserRights'])){
+                    //'701000', 'ข้อมูลแนวปฏิบัติที่เป็นเลิศการจัดการศึกษา'
+                    $R_701000 = $data['UserRights'][array_search('701000', array_column($data['UserRights'], 'UR_Code'))];		
+                    $data['R_701000'] = $R_701000;
+                }else{
+                    $data['R_701000'] = NULL;
+                }
         // 		echo '<pre>';
         // print_r($data_q_member . $data_q_committee);
         // echo '</pre>';
         // exit;
         
        
-        $this->load->view('templates/header');
-        $this->load->view('templates/sidebar');
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/sidebar', $data);
         $this->load->view('pages/forms/EII/forms-evaluation');
-        $this->load->view('templates/footer');
+        $this->load->view('templates/footer', $data);
       
     }
     

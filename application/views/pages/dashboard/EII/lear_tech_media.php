@@ -12,7 +12,9 @@
     }
     </style>
     <?php
-    session_start(); // เริ่มต้น session
+     if (session_status() == PHP_SESSION_NONE) {
+        session_start();
+    } // เริ่มต้น session
     if (isset($_SESSION['success'])) { ?>
     <div style="position: relative;">
         <div class="alert alert-success" id="myAlert"
@@ -97,14 +99,20 @@
                         </h5>
                     </div>
                     <div class="col">
+                        <?php   if($R_503000 <> NULL && $R_503000['UR_Add']== "1"){ ?>
                         <h5 style="float: right; padding: 15px;" class="card-title"><a
                                 href="<?php echo site_url('LTM_forms_p1?page=sh1') ?>"
-                                class="btn btn-success"><i class="bi bi-file-earmark-plus"></i> เพิ่มข้อมูล
+                                class="btn btn-success">เพิ่มข้อมูล
                             </a></h5>
+                        <?php } ?>
                     </div>
                 </div>
 
-                <table class="table table-borderless datatable">
+                <table class="table  <?php if ($R_503000 <> NULL && $R_503000['UR_Add'] == "1") {
+                                                                echo 'table-borderless datatable';
+                                                            }else {
+                                                                echo 'table-bordered';
+                                                            } ?>  col-12">
                     <thead>
 
                         <tr>
@@ -117,7 +125,9 @@
                             <th style="" scope="col-1">วันที่เผยแพร่</th>
                             <th style="" scope="col-2">ผู้จัดทำ</th>
                             <th style="text-align: center;" scope="col-1">ดูรายละเอียด</th>
+                            <?php   if($R_503000 <> NULL && $R_503000['UR_Add']== "1"){ ?>
                             <th style="text-align: center;" scope="col-1" class="col-1">ปฏิบัติ</th>
+                            <?php } ?>
                         </tr>
 
                     </thead>
@@ -241,9 +251,11 @@
                                                         </div>
                                                     </div>
                                                     <div class="modal-footer">
+                                                    <?php   if($R_503000 <> NULL && $R_503000['UR_Add']== "1"){ ?>
                                                         <a href="<?php echo site_url('LTMC_forms_p2?page=sh22') ?>&&key=<?php echo $showc->Id_ltmc ; ?>&&name=<?php echo $show->MediaName; ?>"
                                                             class="my-link btn btn-warning">
                                                             <i class="bi bi-pencil-square"></i> </a>
+                                                            <?php } ?>
                                                         <button type="button" class="btn btn-secondary"
                                                             data-bs-dismiss="modal">ปิด</button>
 
@@ -256,15 +268,17 @@
 
                                 </div>
                                 <?php } ?>
-
+                                <?php   if($R_503000 <> NULL && $R_503000['UR_Add']== "1"){ ?>
                                 <a href="<?php echo site_url('LTMC_forms_p2?page=sh2') ?>&&name=<?php echo $show->MediaName; ?>&&key=<?php echo $show->Id_ltm; ?>&&MediaID=<?php echo $show->MediaID; ?>"
                                     class="my-link fw-bold">>>เพิ่มผู้จัดทำ>>
                                 </a>
+                                <?php } ?>
                             </td>
                             <td style="text-align: center;"><button type="button" class="btn btn-primary"
                                     data-bs-toggle="modal" data-bs-target="#look<?php echo $show->Id_ltm ; ?>"><i
                                         class="bi bi-card-list"></i></button></td>
-                            <td style="text-align: center;">
+                                        <?php   if($R_503000 <> NULL && $R_503000['UR_Add']== "1"){ ?>
+                                        <td style="text-align: center;">
                                 <a href="<?php echo site_url('LTM_forms_p1?page=sh11') ?>&&key=<?php echo $show->MediaID; ?>&&name=<?php echo $show->MediaName; ?>"
                                     class="btn btn-warning"> <i class="bi bi-pencil-square"></i></a>
                                 <button type="button" class="btn btn-danger" data-bs-toggle="modal"
@@ -304,7 +318,7 @@
                                     </div>
                                 </div> <!-- Modal -->
                             </td>
-
+                            <?php } ?>
                         </tr>
                         <?php  }
                             } ?>

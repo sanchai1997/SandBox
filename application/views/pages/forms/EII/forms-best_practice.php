@@ -9,7 +9,9 @@
     <?php $key = isset($_GET['key']) ? $_GET['key'] : '';  ?>
     <?php $name = isset($_GET['name']) ? $_GET['name'] : '';  ?>
     <?php 
-session_start(); // เริ่มต้น session
+ if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}// เริ่มต้น session
 if (isset( $_SESSION['success'])) { ?>
     <div style="position: relative;">
         <div class="alert alert-success" id="myAlert"

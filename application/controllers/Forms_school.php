@@ -289,18 +289,18 @@ class Forms_school extends CI_Controller
     }
 
     //Add Data Form ClassRoom
-    public function update_classroom($SchoolID, $ClassID)
+    public function update_classroom($SchoolID, $GradeLevelCode)
     {
 
-        $this->forms_school->update_classroom($SchoolID, $ClassID);
+        $this->forms_school->update_classroom($SchoolID, $GradeLevelCode);
         $_SESSION['success'] = "แก้ไขข้อมูลเรียบร้อย";
         redirect(base_url('school-classroom?SchoolID=' . $SchoolID));
     }
 
     //Delete Data Form ClassRoom
-    public function delete_classroom($SchoolID, $ClassID)
+    public function delete_classroom($SchoolID, $GradeLevelCode)
     {
-        $this->forms_school->delete_classroom($SchoolID, $ClassID);
+        $this->forms_school->delete_classroom($SchoolID, $GradeLevelCode);
         $_SESSION['success'] = "ลบข้อมูลเรียบร้อย";
         redirect(base_url('school-classroom?SchoolID=' . $SchoolID));
     }
@@ -356,19 +356,19 @@ class Forms_school extends CI_Controller
     }
 
     //Add Data Form Award
-    public function update_award($ID, $SchoolID, $AwardYear)
+    public function update_award($SchoolID, $AwardYear)
     {
 
-        $this->forms_school->update_award($ID, $SchoolID, $AwardYear);
+        $this->forms_school->update_award($SchoolID, $AwardYear);
         $_SESSION['success'] = "แก้ไขข้อมูลเรียบร้อย";
         redirect(base_url('school-award?SchoolID=' . $SchoolID));
     }
 
     //Delete Data Form Award
-    public function delete_award($ID, $SchoolID, $AwardYear)
+    public function delete_award($SchoolID, $AwardYear)
     {
 
-        $this->forms_school->delete_award($ID, $SchoolID, $AwardYear);
+        $this->forms_school->delete_award($SchoolID, $AwardYear);
         $_SESSION['success'] = "ลบข้อมูลเรียบร้อย";
         redirect(base_url('school-award?SchoolID=' . $SchoolID));
     }
@@ -400,7 +400,7 @@ class Forms_school extends CI_Controller
         FROM SCHOOL_BUILDING 
         WHERE DeleteStatus = 0
         AND SchoolID = ' . $SchoolID . ' 
-        AND BuildingName   = "' . $_POST['BuildingName '] . '"
+        AND BuildingName   = "' . $_POST['BuildingName'] . '"
         ')->result();
         if ($result != TRUE) {
             $this->forms_school->add_building();
@@ -424,18 +424,18 @@ class Forms_school extends CI_Controller
     }
 
     //Add Data Form building
-    public function update_building($SchoolID, $ID)
+    public function update_building($SchoolID)
     {
 
-        $this->forms_school->update_building($ID);
+        $this->forms_school->update_building($SchoolID);
         $_SESSION['success'] = "แก้ไขข้อมูลเรียบร้อย";
         redirect(base_url('school-building?SchoolID=' . $SchoolID));
     }
 
     //Delete Data Form building
-    public function delete_building($SchoolID, $ID)
+    public function delete_building($SchoolID)
     {
-        $this->forms_school->delete_building($ID);
+        $this->forms_school->delete_building($SchoolID);
         $_SESSION['success'] = "ลบข้อมูลเรียบร้อย";
         redirect(base_url('school-building?SchoolID=' . $SchoolID));
     }
@@ -452,74 +452,120 @@ class Forms_school extends CI_Controller
             $count = 0;
             $handle = fopen($_FILES['FileSchoolUpload']['tmp_name'], 'r');
             ini_set('auto_detect_line_endings', TRUE);
-            while (($data = fgetcsv($handle)) !== FALSE) {
-                if ($i > 1 && $data[0] != '') {
+            while (($data = fgetcsv($handle)) !== FALSE && $data[0] != '') {
 
-                    for ($x = 0; $x <= 43; $x++) {
-                        if ($data[$x] == '') {
-                            $_SESSION['danger'] = "ไม่สามารถบันทึกข้อมูลได้ โปรดกรอกข้อมูลให้ครบถ้วน ";
-                            redirect(base_url('school'));
-                        }
-                    }
-
-
-                    $result = $this->db->query('SELECT * FROM CLS_JURISDICTION WHERE JURISDICTION_NAME = "' . $data[1] . '"');
-                    foreach ($result->result() as $CLS_JURISDICTION) {
-                        $JurisdictionCode = $CLS_JURISDICTION->JURISDICTION_CODE;
-                    }
-                    $result = $this->db->query('SELECT * FROM CLS_INNOVATION_AREA WHERE INNOVATION_AREA_NAME = "' . $data[2] . '"');
-                    foreach ($result->result() as $CLS_INNOVATION_AREA) {
-                        $InnovationAreaCode = $CLS_INNOVATION_AREA->INNOVATION_AREA_CODE;
-                    }
-                    $result = $this->db->query('SELECT * FROM CLS_SCHOOL_TYPE WHERE SCHOOL_TYPE_NAME = "' . $data[6] . '"');
-                    foreach ($result->result() as $CLS_SCHOOL_TYPE) {
-                        $SchoolTypeCode = $CLS_SCHOOL_TYPE->SCHOOL_TYPE_CODE;
-                    }
-                    $result = $this->db->query('SELECT * FROM CLS_SCHOOL_STATUS WHERE SCHOOL_STATUS_NAME = "' . $data[7] . '"');
-                    foreach ($result->result() as $CLS_SCHOOL_STATUS) {
-                        $SchoolStatusCode = $CLS_SCHOOL_STATUS->SCHOOL_STATUS_CODE;
-                    }
-                    $result = $this->db->query('SELECT * FROM CLS_MUNICIPAL WHERE MUNICIPAL_NAME = "' . $data[8] . '"');
-                    foreach ($result->result() as $CLS_MUNICIPAL) {
-                        $MunicipalCode = $CLS_MUNICIPAL->MUNICIPAL_CODE;
-                    }
-                    $result = $this->db->query('SELECT * FROM CLS_SUBDISTRICT WHERE SUBDISTRICT_NAME = "' . $data[14] . '"');
-                    foreach ($result->result() as $CLS_SUBDISTRICT) {
-                        $SchoolAddressSubdistrictCode = $CLS_SUBDISTRICT->SUBDISTRICT_CODE;
-                    }
-                    $result = $this->db->query('SELECT * FROM CLS_DISTRICT WHERE DISTRICT_NAME = "' . $data[15] . '"');
-                    foreach ($result->result() as $CLS_DISTRICT) {
-                        $SchoolAddressDistrictCode = $CLS_DISTRICT->DISTRICT_CODE;
-                    }
-
+                if ($data[28] != '') {
                     $result = $this->db->query('SELECT * FROM CLS_PREFIX WHERE PREFIX_NAME = "' . $data[28] . '"');
-                    foreach ($result->result() as $CLS_PREFIX) {
-                        $AdministratorPrefixCode = $CLS_PREFIX->PREFIX_CODE;
-                    }
-                    $result = $this->db->query('SELECT * FROM CLS_EDUCATION_LEVEL WHERE EDUCATION_LEVEL_NAME = "' . $data[31] . '"');
-                    foreach ($result->result() as $CLS_EDUCATION_LEVEL) {
-                        $EducationLevelCode = $CLS_EDUCATION_LEVEL->EDUCATION_LEVEL_CODE;
-                    }
+                    if ($result == TRUE) {
+                        foreach ($result->result() as $CLS_PREFIX) {
+                            $AdministratorPrefixCode = $CLS_PREFIX->PREFIX_CODE;
+                        }
+                    } else $AdministratorPrefixCode = $data[28];
+                } else $AdministratorPrefixCode = $data[28];
+
+                if ($data[32] != '') {
                     $result = $this->db->query('SELECT * FROM CLS_ELECTRIC_TYPE WHERE ELECTRIC_TYPE_NAME = "' . $data[32] . '"');
-                    foreach ($result->result() as $CLS_ELECTRIC_TYPE) {
-                        $ElectricTypeCode = $CLS_ELECTRIC_TYPE->ELECTRIC_TYPE_CODE;
-                    }
+                    if ($result == TRUE) {
+                        foreach ($result->result() as $CLS_ELECTRIC_TYPE) {
+                            $ElectricTypeCode = $CLS_ELECTRIC_TYPE->ELECTRIC_TYPE_CODE;
+                        }
+                    } else $ElectricTypeCode = $data[32];
+                } else $ElectricTypeCode = $data[32];
+
+                if ($data[33] != '') {
                     $result = $this->db->query('SELECT * FROM CLS_INTERNET_TYPE WHERE INTERNET_TYPE_NAME = "' . $data[33] . '"');
-                    foreach ($result->result() as $CLS_INTERNET_TYPE) {
-                        $InternetTypeCode = $CLS_INTERNET_TYPE->INTERNET_TYPE_CODE;
-                    }
+                    if ($result == TRUE) {
+                        foreach ($result->result() as $CLS_INTERNET_TYPE) {
+                            $InternetTypeCode = $CLS_INTERNET_TYPE->INTERNET_TYPE_CODE;
+                        }
+                    } else $InternetTypeCode = $data[33];
+                } else $InternetTypeCode = $data[33];
+
+                if ($data[34] != '') {
                     $result = $this->db->query('SELECT * FROM CLS_WATER_TYPE WHERE WATER_TYPE_NAME = "' . $data[34] . '"');
-                    foreach ($result->result() as $CLS_WATER_TYPE) {
-                        $WaterTypeCode = $CLS_WATER_TYPE->WATER_TYPE_CODE;
-                    }
+                    if ($result == TRUE) {
+                        foreach ($result->result() as $CLS_WATER_TYPE) {
+                            $WaterTypeCode = $CLS_WATER_TYPE->WATER_TYPE_CODE;
+                        }
+                    } else $WaterTypeCode = $data[34];
+                } else $WaterTypeCode = $data[34];
+
+                if ($data[35] != '') {
                     $result = $this->db->query('SELECT * FROM CLS_EDUCATION_CONTENT WHERE EDUCATION_CONTENT_NAME = "' . $data[35] . '"');
-                    foreach ($result->result() as $CLS_EDUCATION_CONTENT) {
-                        $EducationContentCode = $CLS_EDUCATION_CONTENT->EDUCATION_CONTENT_CODE;
-                    }
+                    if ($result == TRUE) {
+                        foreach ($result->result() as $CLS_EDUCATION_CONTENT) {
+                            $EducationContentCode = $CLS_EDUCATION_CONTENT->EDUCATION_CONTENT_CODE;
+                        }
+                    } else $EducationContentCode = $data[35];
+                } else $EducationContentCode = $data[35];
+
+                if ($data[36] != '') {
                     if ($data[36] == 'อยู่ในโครงการ') {
                         $DLTVFlag = 1;
-                    } else $DLTVFlag = 0;
+                    } elseif ($data[36] == 'ไม่อยู่ในโครงการ') {
+                        $DLTVFlag = 0;
+                    } else $DLTVFlag = $data[36];
+                } else $DLTVFlag = $data[36];
 
+
+
+                if ($i > 1 && $data[0] != '' && $data[1] != '' && $data[2] != '' && $data[3] != '' && $data[5] != '' && $data[6] != '' && $data[7] != '' && $data[8] != '' && $data[14] != '' && $data[15] != '' && $data[16] != '' && $data[31] != '') {
+
+                    $result = $this->db->query('SELECT * FROM CLS_JURISDICTION WHERE JURISDICTION_NAME = "' . $data[1] . '"');
+                    if ($result == TRUE) {
+                        foreach ($result->result() as $CLS_JURISDICTION) {
+                            $JurisdictionCode = $CLS_JURISDICTION->JURISDICTION_CODE;
+                        }
+                    } else $JurisdictionCode = $data[1];
+
+                    $result = $this->db->query('SELECT * FROM CLS_INNOVATION_AREA WHERE INNOVATION_AREA_NAME = "' . $data[2] . '"');
+                    if ($result == TRUE) {
+                        foreach ($result->result() as $CLS_INNOVATION_AREA) {
+                            $InnovationAreaCode = $CLS_INNOVATION_AREA->INNOVATION_AREA_CODE;
+                        }
+                    } else $InnovationAreaCode = $data[2];
+
+                    $result = $this->db->query('SELECT * FROM CLS_SCHOOL_TYPE WHERE SCHOOL_TYPE_NAME = "' . $data[6] . '"');
+                    if ($result == TRUE) {
+                        foreach ($result->result() as $CLS_SCHOOL_TYPE) {
+                            $SchoolTypeCode = $CLS_SCHOOL_TYPE->SCHOOL_TYPE_CODE;
+                        }
+                    } else $SchoolTypeCode = $data[6];
+
+                    $result = $this->db->query('SELECT * FROM CLS_SCHOOL_STATUS WHERE SCHOOL_STATUS_NAME = "' . $data[7] . '"');
+                    if ($result == TRUE) {
+                        foreach ($result->result() as $CLS_SCHOOL_STATUS) {
+                            $SchoolStatusCode = $CLS_SCHOOL_STATUS->SCHOOL_STATUS_CODE;
+                        }
+                    } else $SchoolStatusCode = $data[7];
+
+                    $result = $this->db->query('SELECT * FROM CLS_MUNICIPAL WHERE MUNICIPAL_NAME = "' . $data[8] . '"');
+                    if ($result == TRUE) {
+                        foreach ($result->result() as $CLS_MUNICIPAL) {
+                            $MunicipalCode = $CLS_MUNICIPAL->MUNICIPAL_CODE;
+                        }
+                    } else $MunicipalCode = $data[8];
+
+                    $result = $this->db->query('SELECT * FROM CLS_SUBDISTRICT WHERE SUBDISTRICT_NAME = "' . $data[14] . '"');
+                    if ($result == TRUE) {
+                        foreach ($result->result() as $CLS_SUBDISTRICT) {
+                            $SchoolAddressSubdistrictCode = $CLS_SUBDISTRICT->SUBDISTRICT_CODE;
+                        }
+                    } else $SchoolAddressSubdistrictCode = $data[14];
+
+                    $result = $this->db->query('SELECT * FROM CLS_DISTRICT WHERE DISTRICT_NAME = "' . $data[15] . '"');
+                    if ($result == TRUE) {
+                        foreach ($result->result() as $CLS_DISTRICT) {
+                            $SchoolAddressDistrictCode = $CLS_DISTRICT->DISTRICT_CODE;
+                        }
+                    } else $SchoolAddressDistrictCode = $data[15];
+
+                    $result = $this->db->query('SELECT * FROM CLS_EDUCATION_LEVEL WHERE EDUCATION_LEVEL_NAME = "' . $data[31] . '"');
+                    if ($result == TRUE) {
+                        foreach ($result->result() as $CLS_EDUCATION_LEVEL) {
+                            $EducationLevelCode = $CLS_EDUCATION_LEVEL->EDUCATION_LEVEL_CODE;
+                        }
+                    } else $EducationLevelCode = $data[31];
 
                     $database = [
 
@@ -574,24 +620,29 @@ class Forms_school extends CI_Controller
                     FROM SCHOOL 
                     WHERE SchoolID = "' . $data[0] . '" 
                     ')->result();
+
                     if ($Check != TRUE) {
                         $insert = $this->db->insert('SCHOOL', $database);
-                    }
-                }
-
-                if ($i > 1 && $data[0] != '') {
-
-                    $_SESSION['UploadSchoolDetail'][$i][0] = $data[0];
-                    $_SESSION['UploadSchoolDetail'][$i][1] = $data[3];
-                    $_SESSION['UploadSchoolDetail'][$i][2] = $data[1];
-                    $_SESSION['UploadSchoolDetail'][$i][3] = $data[2];
-                    if ($Check != TRUE) {
+                        $_SESSION['Detail'][$i] = '-';
                         $_SESSION['StatusUpload'][$i] = 1;
                     } else {
+                        $_SESSION['Detail'][$i] = 'ข้อมูลซ้ำในระบบ';
                         $_SESSION['StatusUpload'][$i] = 0;
                     }
-                    $count++;
                 }
+
+                $_SESSION['UploadSchoolDetail'][$i][0] = $data[0];
+                $_SESSION['UploadSchoolDetail'][$i][1] = $data[3];
+                $_SESSION['UploadSchoolDetail'][$i][2] = $data[2];
+                $_SESSION['UploadSchoolDetail'][$i][3] = $data[6];
+
+
+                if ($i > 1 && $data[0] == '' || $data[1] == '' || $data[2] == '' || $data[3] == '' || $data[5] == '' || $data[6] == '' || $data[7] == '' || $data[8] == '' || $data[14] == '' || $data[15] == '' || $data[16] == '' || $data[31] == '') {
+                    $_SESSION['Detail'][$i] = 'กรอกข้อมูลจำเป็นไม่ครบถ้วน';
+                    $_SESSION['StatusUpload'][$i] = 0;
+                }
+
+                $count++;
                 $i++;
             }
             ini_set('auto_detect_line_endings', FALSE);

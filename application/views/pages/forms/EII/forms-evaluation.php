@@ -19,7 +19,9 @@
     </style>
     <?php $page = isset($_GET['page']) ? $_GET['page'] : ''; ?>
     <div class="pagetitle">
-        <?php session_start();
+        <?php  if (session_status() == PHP_SESSION_NONE) {
+        session_start();
+    }
         if (isset($_SESSION['false'])) { ?>
         <div style="position: relative;">
             <div class="alert alert-danger" id="myAlert"

@@ -12,7 +12,9 @@
     <?php $name = isset($_GET['name']) ? $_GET['name'] : ''; ?>
     <?php $key = isset($_GET['key']) ? $_GET['key'] : ''; ?>
     <?php
-    session_start(); // เริ่มต้น session
+     if (session_status() == PHP_SESSION_NONE) {
+        session_start();
+    }// เริ่มต้น session
     if (isset($_SESSION['success'])) { ?>
     <div style="position: relative;">
         <div class="alert alert-success" id="myAlert"
@@ -103,13 +105,19 @@
                         </h5>
                     </div>
                     <div class="col">
+                        <?php    if($R_601000 <> NULL && $R_601000['UR_Add']== "1"){ ?>
                         <h5 style="float: right; padding: 15px;" class="card-title"><a
                                 href="<?php echo site_url('par_forms_p1?page=sh1') ?>"
-                                class="btn btn-success"><i class="bi bi-file-earmark-plus"></i> เพิ่มข้อมูล</a></h5>
+                                class="btn btn-success">เพิ่มข้อมูล</a></h5>
+                                  <?php  } ?>
                     </div>
                 </div>
 
-                <table class="table table-borderless datatable">
+               <table class="table  <?php if ($R_601000 <> NULL && $R_601000['UR_Add'] == "1") {
+                                                                echo 'table-borderless datatable';
+                                                            }else {
+                                                                echo 'table-bordered';
+                                                            } ?>  col-12">
                     <thead>
 
                         <tr>
@@ -119,7 +127,9 @@
                             <th style="" scope="col" class="col-2">การมีส่วนร่วม</th>
                             <th style="" scope="col" class="col-3">บันทึกเพิ่มเติม</th>
                             <th style="text-align: center;" scope="col">ดูรายละเอียด</th>
-                            <th style="text-align: center;" scope="col">ปฎิบัติ</th>
+                           <?php if ($R_601000 <> NULL && $R_601000['UR_Add'] == "1") { ?>
+                                    <th style="text-align: center;" scope="col" class="col-1">ปฏิบัติ</th>
+                                <?php } ?>
                         </tr>
 
                     </thead>
@@ -204,10 +214,13 @@ foreach ($result->result() as $shows) { ?>
                                                         </div>
                                                     </div>
                                                     <div class="modal-footer">
-                                                        <a href="<?php echo site_url('pc_forms_p2?page=sh22') ?>&&key=<?php echo $shows->Id; ?>&&name=<?php echo $show->ParticipantName; ?>"
-                                                            class="my-link btn btn-warning"> <i
-                                                                class="bi bi-pencil-square"></i>
-                                                        </a>
+                                                        <?php if ($R_601000 <> NULL && $R_601000['UR_Add'] == "1") { ?>
+                                  
+                                                            <a href="<?php echo site_url('pc_forms_p2?page=sh22') ?>&&key=<?php echo $shows->Id; ?>&&name=<?php echo $show->ParticipantName; ?>"
+                                                                class="my-link btn btn-warning"> <i
+                                                                    class="bi bi-pencil-square"></i>
+                                                            </a>
+                                <?php } ?>
                                                         <button type="button" class="btn btn-secondary"
                                                             data-bs-dismiss="modal">ปิด</button>
 
@@ -222,9 +235,11 @@ foreach ($result->result() as $shows) { ?>
                                 </div>
 
                                 <?php } ?>
+                                 <?php if ($R_601000 <> NULL && $R_601000['UR_Add'] == "1") { ?>
                                 <a href="<?php echo site_url('pc_forms_p2?page=sh2') ?>&&name=<?php echo $show->ParticipantName; ?>&&key=<?php echo $show->ParticipantID; ?>"
                                     class="my-link fw-bold">>>เพิ่มติดต่อ>>
                                 </a>
+                                  <?php } ?>
                             </td>
                             <td scope="row " style="text-align: left; ">
                                 <?php
@@ -302,9 +317,11 @@ foreach ($result2->result() as $show2) { ?>
                                                         </div>
                                                     </div>
                                                     <div class="modal-footer">
+ <?php if ($R_601000 <> NULL && $R_601000['UR_Add'] == "1") { ?>
                                                         <a href="<?php echo site_url('pcp_forms_p3?page=sh33') ?>&&key=<?php echo $show2->Id; ?>&&name=<?php echo $show->ParticipantName; ?>"
                                                             class="my-link btn btn-warning"> <i
                                                                 class="bi bi-pencil-square"></i></a>
+  <?php } ?>
                                                         <button type="button" class="btn btn-secondary"
                                                             data-bs-dismiss="modal">ปิด</button>
 
@@ -318,9 +335,11 @@ foreach ($result2->result() as $show2) { ?>
                                 </div>
 
                                 <?php } ?>
+                                 <?php if ($R_601000 <> NULL && $R_601000['UR_Add'] == "1") { ?>
                                 <a href="<?php echo site_url('pcp_forms_p3?page=sh3') ?>&&name=<?php echo $show->ParticipantName; ?>&&key=<?php echo $show->ParticipantID; ?>"
                                     class="my-link fw-bold">>>เพิ่มการมีส่วนร่วม>>
                                 </a>
+                                  <?php } ?>
                             </td>
                             <td scope="row " style="">
                                 <?php
@@ -388,9 +407,11 @@ foreach ($result3->result() as $show3) { ?>
                                                         </div><!-- p1 -->
                                                     </div>
                                                     <div class="modal-footer">
+ <?php if ($R_601000 <> NULL && $R_601000['UR_Add'] == "1") { ?>
                                                         <a href="<?php echo site_url('pn_forms_p4?page=sh44') ?>&&key=<?php echo $show3->Id; ?>&&name=<?php echo $ParticipantName = $show->ParticipantName; ?>"
                                                             class="my-link btn btn-warning"><i
                                                                 class="bi bi-pencil-square"></i></a>
+  <?php } ?>
                                                         <button type="button" class="btn btn-secondary"
                                                             data-bs-dismiss="modal">ปิด</button>
 
@@ -403,16 +424,18 @@ foreach ($result3->result() as $show3) { ?>
 
                                 </div>
                                 <?php } ?>
-
+ <?php if ($R_601000 <> NULL && $R_601000['UR_Add'] == "1") { ?>
                                 <a href="<?php echo site_url('pn_forms_p4?page=sh4') ?>&&name=<?php echo $show->ParticipantName; ?>&&key=<?php echo $show->ParticipantID; ?>"
                                     class="my-link fw-bold">>>บันทึกเพิ่มเติม>>
                                 </a>
+                                  <?php } ?>
                             </td>
                             <td style="text-align: center;">
                                 <button type="button" class="btn btn-primary" data-bs-toggle="modal"
                                     data-bs-target="#look1<?php echo $show->ParticipantID; ?>"><i
                                         class="bi bi-card-list"></i></button>
                             </td>
+                             <?php if ($R_601000 <> NULL && $R_601000['UR_Add'] == "1") { ?>
                             <!-- แก้ไข+ลบ -->
                             <td style="text-align: center;">
                                 <a href="<?php echo site_url('par_forms_p1?page=sh11') ?>&&key=<?php echo $show->ParticipantID; ?>&&name=<?php echo  $show->ParticipantName; ?>"
@@ -454,6 +477,7 @@ foreach ($result3->result() as $show3) { ?>
                                     </div>
                                 </div> <!-- Modal -->
                             </td>
+                              <?php } ?>
                         </tr>
                         <?php
                         //  }
