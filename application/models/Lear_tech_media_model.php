@@ -4,7 +4,14 @@ class Lear_tech_media_model extends CI_Model
 
 	public function add_LTM()
 	{
-
+	$ip_address = '';
+			if (!empty($_SERVER['HTTP_CLIENT_IP'])) {
+				$ip_address = $_SERVER['HTTP_CLIENT_IP'];
+			} elseif (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
+				$ip_address = $_SERVER['HTTP_X_FORWARDED_FOR'];
+			} else {
+				$ip_address = $_SERVER['REMOTE_ADDR'];
+			}
 		// echo '<pre>';
 		// print_r($_POST);
 		// echo'</pre>';
@@ -73,6 +80,16 @@ class Lear_tech_media_model extends CI_Model
 				}
 			}
 			$query = $this->db->insert('LEARNING_TECHNOLOGY_MEDIA', $data);
+			if ($query == TRUE) {
+				$UserID = $this->session->userdata('UserID');
+				$log = [
+				'LogMessage' => 'Insert MediaID = "' . $this->input->post('MediaID') . '" MediaName = "' . $this->input->post('MediaName') . '"',
+				'LogUserID' => $UserID,
+				'LogIpAddress' => $ip_address,
+				'LogCreation' => date('Y-m-d H:i:s')
+				];
+				$logresult = $this->db->insert('SYS_LOG', $log);
+										}
 			if ($query) {
 				session_start(); // เริ่มต้น session
 				$_SESSION['success'] = "เพิ่มข้อมูลเรียบร้อย !"; // กำหนดค่า success ใน session เป็น true
@@ -91,7 +108,14 @@ class Lear_tech_media_model extends CI_Model
 	}
 	public function edit_LTM()
 	{
-
+	$ip_address = '';
+			if (!empty($_SERVER['HTTP_CLIENT_IP'])) {
+				$ip_address = $_SERVER['HTTP_CLIENT_IP'];
+			} elseif (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
+				$ip_address = $_SERVER['HTTP_X_FORWARDED_FOR'];
+			} else {
+				$ip_address = $_SERVER['REMOTE_ADDR'];
+			}
 		// echo '<pre>';
 		// print_r($_POST);
 		// echo'</pre>';
@@ -143,6 +167,16 @@ class Lear_tech_media_model extends CI_Model
 		}
 		$this->db->where('Id_ltm', $this->input->post('Id_ltm'));
 		$query = $this->db->update('LEARNING_TECHNOLOGY_MEDIA', $data);
+		if ($query == TRUE) {
+			$UserID = $this->session->userdata('UserID');
+			$log = [
+			'LogMessage' => 'Update MediaID = "' . $this->input->post('MediaID') . '" MediaName = "' . $this->input->post('MediaName') . '"',
+			'LogUserID' => $UserID,
+			'LogIpAddress' => $ip_address,
+			'LogCreation' => date('Y-m-d H:i:s')
+			];
+			$logresult = $this->db->insert('SYS_LOG', $log);
+			}
 		if ($query) {
 			session_start(); // เริ่มต้น session
 			$_SESSION['success'] = "แก้ไขข้อมูลสำเร็จ !"; // กำหนดค่า success ใน session เป็น true
@@ -154,7 +188,14 @@ class Lear_tech_media_model extends CI_Model
 	}
 	public function del_LTM()
 	{
-
+	$ip_address = '';
+			if (!empty($_SERVER['HTTP_CLIENT_IP'])) {
+				$ip_address = $_SERVER['HTTP_CLIENT_IP'];
+			} elseif (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
+				$ip_address = $_SERVER['HTTP_X_FORWARDED_FOR'];
+			} else {
+				$ip_address = $_SERVER['REMOTE_ADDR'];
+			}
 		// echo '<pre>';
 		// print_r($_POST);
 		// echo'</pre>';
@@ -167,6 +208,17 @@ class Lear_tech_media_model extends CI_Model
 
 		$this->db->where('Id_ltm', $this->input->post('Id_ltm'));
 		$query = $this->db->update('LEARNING_TECHNOLOGY_MEDIA', $data);
+		if ($query == TRUE) {
+			$UserID = $this->session->userdata('UserID');
+			$log = [
+			'LogMessage' => 'Delete MediaID = "' . $this->input->post('MediaID') . '" MediaName = "' . $this->input->post('MediaName') . '"',
+			'LogUserID' => $UserID,
+			'LogIpAddress' => $ip_address,
+			'LogCreation' => date('Y-m-d H:i:s')
+			];
+						
+			$logresult = $this->db->insert('SYS_LOG', $log);
+			}
 		if ($query) {
 			session_start(); // เริ่มต้น session
 			$_SESSION['success'] = "ลบข้อมูลสำเร็จ !"; // กำหนดค่า success ใน session เป็น true
@@ -178,7 +230,14 @@ class Lear_tech_media_model extends CI_Model
 	}
 	public function add_LTMC()
 	{
-
+	$ip_address = '';
+			if (!empty($_SERVER['HTTP_CLIENT_IP'])) {
+				$ip_address = $_SERVER['HTTP_CLIENT_IP'];
+			} elseif (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
+				$ip_address = $_SERVER['HTTP_X_FORWARDED_FOR'];
+			} else {
+				$ip_address = $_SERVER['REMOTE_ADDR'];
+			}
 		// echo '<pre>';
 		// print_r($_POST);
 		// echo'</pre>';
@@ -202,6 +261,16 @@ class Lear_tech_media_model extends CI_Model
 				'ParticipantRatio' => $this->input->post('ParticipantRatio')
 			);
 			$query = $this->db->insert('LEARNING_TECHNOLOGY_MEDIA_CREATOR', $data);
+			if ($query == TRUE) {
+				$UserID = $this->session->userdata('UserID');
+				$log = [
+				'LogMessage' => 'Insert MediaID = "' . $this->input->post('MediaID') . '" CreatorNameThai = "' . $this->input->post('CreatorNameThai') . '"',
+				'LogUserID' => $UserID,
+				'LogIpAddress' => $ip_address,
+				'LogCreation' => date('Y-m-d H:i:s')
+				];
+				$logresult = $this->db->insert('SYS_LOG', $log);
+										}
 			if ($query) {
 				session_start(); // เริ่มต้น session
 				$_SESSION['success'] = "เพิ่มข้อมูลเรียบร้อย !"; // กำหนดค่า success ใน session เป็น true
@@ -233,6 +302,16 @@ class Lear_tech_media_model extends CI_Model
 					'ParticipantRatio' => $this->input->post('ParticipantRatio')
 				);
 				$query = $this->db->insert('LEARNING_TECHNOLOGY_MEDIA_CREATOR', $data);
+				if ($query == TRUE) {
+					$UserID = $this->session->userdata('UserID');
+					$log = [
+					'LogMessage' => 'Insert MediaID = "' . $this->input->post('MediaID') . '" CreatorNameThai = "' . $this->input->post('CreatorNameThai') . '"',
+					'LogUserID' => $UserID,
+					'LogIpAddress' => $ip_address,
+					'LogCreation' => date('Y-m-d H:i:s')
+					];
+					$logresult = $this->db->insert('SYS_LOG', $log);
+											}
 				if ($query) {
 					session_start(); // เริ่มต้น session
 					$_SESSION['success'] = "เพิ่มข้อมูลเรียบร้อย !"; // กำหนดค่า success ใน session เป็น true
@@ -252,7 +331,14 @@ class Lear_tech_media_model extends CI_Model
 	}
 	public function edit_LTMC()
 	{
-
+	$ip_address = '';
+			if (!empty($_SERVER['HTTP_CLIENT_IP'])) {
+				$ip_address = $_SERVER['HTTP_CLIENT_IP'];
+			} elseif (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
+				$ip_address = $_SERVER['HTTP_X_FORWARDED_FOR'];
+			} else {
+				$ip_address = $_SERVER['REMOTE_ADDR'];
+			}
 		// echo '<pre>';
 		// print_r($_POST);
 		// echo'</pre>';
@@ -290,6 +376,16 @@ if ($num_chk <= 0 ) {
   $this->db->where('Id_ltmc', $this->input->post('Id_ltmc'));
 
   $query = $this->db->update('LEARNING_TECHNOLOGY_MEDIA_CREATOR', $data);
+  if ($query == TRUE) {
+	$UserID = $this->session->userdata('UserID');
+	$log = [
+	'LogMessage' => 'Update MediaID = "' . $this->input->post('MediaID') . '" CreatorNameThai = "' . $this->input->post('CreatorNameThai') . '"',
+	'LogUserID' => $UserID,
+	'LogIpAddress' => $ip_address,
+	'LogCreation' => date('Y-m-d H:i:s')
+	];
+	$logresult = $this->db->insert('SYS_LOG', $log);
+	}
   if ($query) {
 	  session_start(); // เริ่มต้น session
 	  $_SESSION['success'] = "แก้ไขข้อมูลสำเร็จ !"; // กำหนดค่า success ใน session เป็น true
@@ -308,7 +404,14 @@ if ($num_chk <= 0 ) {
 	}
 	public function del_LTMC()
 	{
-
+	$ip_address = '';
+			if (!empty($_SERVER['HTTP_CLIENT_IP'])) {
+				$ip_address = $_SERVER['HTTP_CLIENT_IP'];
+			} elseif (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
+				$ip_address = $_SERVER['HTTP_X_FORWARDED_FOR'];
+			} else {
+				$ip_address = $_SERVER['REMOTE_ADDR'];
+			}
 		// echo '<pre>';
 		// print_r($_POST);
 		// echo'</pre>';
@@ -321,6 +424,17 @@ if ($num_chk <= 0 ) {
 		$this->db->where('Id_ltmc', $this->input->post('Id_ltmc'));
 
 		$query = $this->db->update('LEARNING_TECHNOLOGY_MEDIA_CREATOR', $data);
+		if ($query == TRUE) {
+			$UserID = $this->session->userdata('UserID');
+			$log = [
+			'LogMessage' => 'Delete MediaID = "' . $this->input->post('MediaID') . '" CreatorNameThai = "' . $this->input->post('CreatorNameThai') . '"',
+			'LogUserID' => $UserID,
+			'LogIpAddress' => $ip_address,
+			'LogCreation' => date('Y-m-d H:i:s')
+			];
+						
+			$logresult = $this->db->insert('SYS_LOG', $log);
+			}
 		if ($query) {
 			session_start(); // เริ่มต้น session
 			$_SESSION['success'] = "ลบข้อมูลสำเร็จ !"; // กำหนดค่า success ใน session เป็น true

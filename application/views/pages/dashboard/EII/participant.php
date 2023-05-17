@@ -467,6 +467,9 @@ foreach ($result3->result() as $show3) { ?>
                                                 <form method="post" action="<?php echo site_url('par_del_p1'); ?>">
                                                     <input type="hidden" name="ParticipantID"
                                                         value="<?php echo $show->ParticipantID; ?>">
+                                                        <input type="hidden" name="ParticipantName"
+                                                        value="<?php echo $show->ParticipantName; ?>">
+                                                        
                                                     <div class="d-flex justify-content-center">
                                                         <button name="Submit" type="submit"
                                                             class="btn btn-danger">ยืนยันก่อนลบ</button>

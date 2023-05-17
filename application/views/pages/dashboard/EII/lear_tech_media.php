@@ -279,14 +279,14 @@
                                         class="bi bi-card-list"></i></button></td>
                                         <?php   if($R_503000 <> NULL && $R_503000['UR_Add']== "1"){ ?>
                                         <td style="text-align: center;">
-                                <a href="<?php echo site_url('LTM_forms_p1?page=sh11') ?>&&key=<?php echo $show->MediaID; ?>&&name=<?php echo $show->MediaName; ?>"
+                                <a href="<?php echo site_url('LTM_forms_p1?page=sh11') ?>&&key=<?php echo $show->Id_ltm; ?>&&name=<?php echo $show->MediaName; ?>"
                                     class="btn btn-warning"> <i class="bi bi-pencil-square"></i></a>
                                 <button type="button" class="btn btn-danger" data-bs-toggle="modal"
-                                    data-bs-target="#del_LTM<?php echo $show->MediaID; ?>">
+                                    data-bs-target="#del_LTM<?php echo $show->Id_ltm; ?>">
                                     <i class="bi bi-trash"></i>
                                 </button>
                                 <!-- Modal -->
-                                <div class="modal fade" id="del_LTM<?php echo $show->MediaID; ?>" tabindex="-1"
+                                <div class="modal fade" id="del_LTM<?php echo $show->Id_ltm; ?>" tabindex="-1"
                                     aria-labelledby="exampleModalLabel" aria-hidden="true">
                                     <div class="modal-dialog modal-dialog-centered">
                                         <div class="modal-content">
@@ -308,6 +308,10 @@
                                                 <form method="post" action="<?php echo site_url('LTM_del_p1'); ?>">
                                                     <input type="hidden" name="Id_ltm"
                                                         value="<?php echo $show->Id_ltm; ?>">
+                                                        <input type="hidden" name="MediaID"
+                                                        value="<?php echo $show->MediaID; ?>">
+                                                        <input type="hidden" name="MediaName"
+                                                        value="<?php echo $show->MediaName; ?>">
                                                     <div class="d-flex justify-content-center">
                                                         <button name="Submit" type="submit"
                                                             class="btn btn-danger">ยืนยันก่อนลบ</button>

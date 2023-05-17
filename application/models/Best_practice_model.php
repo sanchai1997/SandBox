@@ -4,6 +4,16 @@ class Best_practice_model extends CI_Model
 
 	public function add_BP()
 	{
+	$ip_address = '';
+			if (!empty($_SERVER['HTTP_CLIENT_IP'])) {
+				$ip_address = $_SERVER['HTTP_CLIENT_IP'];
+			} elseif (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
+				$ip_address = $_SERVER['HTTP_X_FORWARDED_FOR'];
+			} else {
+				$ip_address = $_SERVER['REMOTE_ADDR'];
+			}
+
+
 
 		// echo '<pre>';
 		// print_r($_POST);
@@ -72,6 +82,16 @@ class Best_practice_model extends CI_Model
 				}
 			}
 			$query = $this->db->insert('BEST_PRACTICE', $data);
+			if ($query == TRUE) {
+				$UserID = $this->session->userdata('UserID');
+				$log = [
+				'LogMessage' => 'Insert BestPracticeID = "' . $this->input->post('BestPracticeID') . '" BestPracticeName = "' . $this->input->post('BestPracticeName') . '"',
+				'LogUserID' => $UserID,
+				'LogIpAddress' => $ip_address,
+				'LogCreation' => date('Y-m-d H:i:s')
+				];
+				$logresult = $this->db->insert('SYS_LOG', $log);
+										}
 			if ($query) {
 				session_start(); // เริ่มต้น session
 				$_SESSION['success'] = "เพิ่มข้อมูลเรียบร้อย !"; // กำหนดค่า success ใน session เป็น true
@@ -91,6 +111,16 @@ class Best_practice_model extends CI_Model
 
 	public function edit_BP()
 	{
+	$ip_address = '';
+			if (!empty($_SERVER['HTTP_CLIENT_IP'])) {
+				$ip_address = $_SERVER['HTTP_CLIENT_IP'];
+			} elseif (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
+				$ip_address = $_SERVER['HTTP_X_FORWARDED_FOR'];
+			} else {
+				$ip_address = $_SERVER['REMOTE_ADDR'];
+			}
+
+
 
 		// echo '<pre>';
 		// print_r($_POST);
@@ -160,6 +190,16 @@ class Best_practice_model extends CI_Model
 			}
 			$this->db->where('Id_best', $this->input->post('Id_best'));
 					$query = $this->db->update('BEST_PRACTICE', $data);
+					if ($query == TRUE) {
+						$UserID = $this->session->userdata('UserID');
+						$log = [
+						'LogMessage' => 'Update BestPracticeID = "' . $this->input->post('BestPracticeID') . '" BestPracticeName = "' . $this->input->post('BestPracticeName') . '"',
+						'LogUserID' => $UserID,
+						'LogIpAddress' => $ip_address,
+						'LogCreation' => date('Y-m-d H:i:s')
+						];
+						$logresult = $this->db->insert('SYS_LOG', $log);
+						}
 			if ($query) {
 				session_start(); // เริ่มต้น session
 				$_SESSION['success'] = "เพิ่มข้อมูลเรียบร้อย !"; // กำหนดค่า success ใน session เป็น true
@@ -178,6 +218,16 @@ class Best_practice_model extends CI_Model
 	}
 	public function del_BP()
 	{
+	$ip_address = '';
+			if (!empty($_SERVER['HTTP_CLIENT_IP'])) {
+				$ip_address = $_SERVER['HTTP_CLIENT_IP'];
+			} elseif (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
+				$ip_address = $_SERVER['HTTP_X_FORWARDED_FOR'];
+			} else {
+				$ip_address = $_SERVER['REMOTE_ADDR'];
+			}
+
+
 		$status = '1';
 		$data = array(
 
@@ -185,6 +235,17 @@ class Best_practice_model extends CI_Model
 		);
 		$this->db->where('Id_best', $this->input->post('Id_best'));
 		$query = $this->db->update('BEST_PRACTICE', $data);
+		if ($query == TRUE) {
+			$UserID = $this->session->userdata('UserID');
+			$log = [
+			'LogMessage' => 'Delete BestPracticeID = "' . $this->input->post('BestPracticeID') . '" BestPracticeName = "' . $this->input->post('BestPracticeName') . '"',
+			'LogUserID' => $UserID,
+			'LogIpAddress' => $ip_address,
+			'LogCreation' => date('Y-m-d H:i:s')
+			];
+						
+			$logresult = $this->db->insert('SYS_LOG', $log);
+			}
 		if ($query) {
 			session_start(); // เริ่มต้น session
 			$_SESSION['success'] = "ลบสำเร็จ !"; // กำหนดค่า success ใน session เป็น true
@@ -196,6 +257,16 @@ class Best_practice_model extends CI_Model
 	}
 	public function add_BPC()
 	{
+	$ip_address = '';
+			if (!empty($_SERVER['HTTP_CLIENT_IP'])) {
+				$ip_address = $_SERVER['HTTP_CLIENT_IP'];
+			} elseif (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
+				$ip_address = $_SERVER['HTTP_X_FORWARDED_FOR'];
+			} else {
+				$ip_address = $_SERVER['REMOTE_ADDR'];
+			}
+
+
 
 		// echo '<pre>';
 		// print_r($_POST);
@@ -220,6 +291,16 @@ class Best_practice_model extends CI_Model
 				'ParticipantRatio' => $this->input->post('ParticipantRatio')
 			);
 			$query = $this->db->insert('BEST_PRACTICE_CREATOR', $data);
+			if ($query == TRUE) {
+				$UserID = $this->session->userdata('UserID');
+				$log = [
+				'LogMessage' => 'Insert BestPracticeID = "' . $this->input->post('BestPracticeID') . '" CreatorNameThai = "' . $this->input->post('CreatorNameThai') . '"',
+				'LogUserID' => $UserID,
+				'LogIpAddress' => $ip_address,
+				'LogCreation' => date('Y-m-d H:i:s')
+				];
+				$logresult = $this->db->insert('SYS_LOG', $log);
+										}
 			if ($query) {
 				session_start(); // เริ่มต้น session
 				$_SESSION['success'] = "เพิ่มข้อมูลเรียบร้อย !"; // กำหนดค่า success ใน session เป็น true
@@ -251,6 +332,16 @@ class Best_practice_model extends CI_Model
 					'ParticipantRatio' => $this->input->post('ParticipantRatio')
 				);
 				$query = $this->db->insert('BEST_PRACTICE_CREATOR', $data);
+				if ($query == TRUE) {
+					$UserID = $this->session->userdata('UserID');
+					$log = [
+					'LogMessage' => 'Insert BestPracticeID = "' . $this->input->post('BestPracticeID') . '" CreatorNameThai = "' . $this->input->post('CreatorNameThai') . '"',
+					'LogUserID' => $UserID,
+					'LogIpAddress' => $ip_address,
+					'LogCreation' => date('Y-m-d H:i:s')
+					];
+					$logresult = $this->db->insert('SYS_LOG', $log);
+											}
 				if ($query) {
 					session_start(); // เริ่มต้น session
 					$_SESSION['success'] = "เพิ่มข้อมูลเรียบร้อย !"; // กำหนดค่า success ใน session เป็น true
@@ -270,6 +361,16 @@ class Best_practice_model extends CI_Model
 	}
 	public function edit_BPC()
 	{
+	$ip_address = '';
+			if (!empty($_SERVER['HTTP_CLIENT_IP'])) {
+				$ip_address = $_SERVER['HTTP_CLIENT_IP'];
+			} elseif (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
+				$ip_address = $_SERVER['HTTP_X_FORWARDED_FOR'];
+			} else {
+				$ip_address = $_SERVER['REMOTE_ADDR'];
+			}
+
+
 
 		// echo '<pre>';
 		// print_r($_POST);
@@ -307,6 +408,16 @@ if ($num_chk <= 0 ) {
   );
   $this->db->where('Id_bestc', $this->input->post('Id_bestc'));
   $query = $this->db->update('BEST_PRACTICE_CREATOR', $data);
+  if ($query == TRUE) {
+	$UserID = $this->session->userdata('UserID');
+	$log = [
+	'LogMessage' => 'Update BestPracticeID = "' . $this->input->post('BestPracticeID') . '" CreatorNameThai = "' . $this->input->post('CreatorNameThai') . '"',
+	'LogUserID' => $UserID,
+	'LogIpAddress' => $ip_address,
+	'LogCreation' => date('Y-m-d H:i:s')
+	];
+	$logresult = $this->db->insert('SYS_LOG', $log);
+	}
   if ($query) {
 	  session_start(); // เริ่มต้น session
 	  $_SESSION['success'] = "แก้ไขสำเร็จ !"; // กำหนดค่า success ใน session เป็น true
@@ -325,6 +436,16 @@ if ($num_chk <= 0 ) {
 	}
 	public function del_BPC()
 	{
+	$ip_address = '';
+			if (!empty($_SERVER['HTTP_CLIENT_IP'])) {
+				$ip_address = $_SERVER['HTTP_CLIENT_IP'];
+			} elseif (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
+				$ip_address = $_SERVER['HTTP_X_FORWARDED_FOR'];
+			} else {
+				$ip_address = $_SERVER['REMOTE_ADDR'];
+			}
+
+
 		$status = '1';
 		$data = array(
 
@@ -332,6 +453,17 @@ if ($num_chk <= 0 ) {
 		);
 		$this->db->where('Id_bestc', $this->input->post('Id_bestc'));
 		$query = $this->db->update('BEST_PRACTICE_CREATOR', $data);
+		if ($query == TRUE) {
+			$UserID = $this->session->userdata('UserID');
+			$log = [
+			'LogMessage' => 'Delete BestPracticeID = "' . $this->input->post('BestPracticeID') . '" CreatorNameThai = "' . $this->input->post('CreatorNameThai') . '"',
+			'LogUserID' => $UserID,
+			'LogIpAddress' => $ip_address,
+			'LogCreation' => date('Y-m-d H:i:s')
+			];
+						
+			$logresult = $this->db->insert('SYS_LOG', $log);
+			}
 		if ($query) {
 			session_start(); // เริ่มต้น session
 			$_SESSION['success'] = "ลบสำเร็จ !"; // กำหนดค่า success ใน session เป็น true

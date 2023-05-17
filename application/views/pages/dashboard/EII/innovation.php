@@ -256,11 +256,11 @@
                                     <?php   if($R_502000 <> NULL && $R_502000['UR_Add']== "1"){ ?>
                                     <td style="text-align: center;">
                                         <a href="<?php echo site_url('forms_p1?page=sh11') ?>&&key=<?php echo $show->Id_in; ?>&&name=<?php echo $show->InnovationName; ?>" class="btn btn-warning"> <i class="bi bi-pencil-square"></i></a>
-                                        <?php echo nbs(1); ?> <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#del_ass_ria<?php echo $show->InnovationID; ?>">
+                                        <?php echo nbs(1); ?> <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#del_ass_ria<?php echo $show->Id_in; ?>">
                                             <i class="bi bi-trash"></i>
                                         </button>
                                         <!-- Modal -->
-                                        <div class="modal fade" id="del_ass_ria<?php echo $show->InnovationID; ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal fade" id="del_ass_ria<?php echo $show->Id_in; ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                             <div class="modal-dialog modal-dialog-centered">
                                                 <div class="modal-content">
                                                     <div class="modal-header">
@@ -280,6 +280,8 @@
                                                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ยกเลิก</button>
                                                         <form method="post" action="<?php echo site_url('del_p1'); ?>">
                                                             <input type="hidden" name="Id_in" value="<?php echo $show->Id_in; ?>">
+                                                            <input type="hidden" name="InnovationID" value="<?php echo $show->InnovationID; ?>">
+                                                            <input type="hidden" name="InnovationName" value="<?php echo $show->InnovationName; ?>">
                                                             <div class="d-flex justify-content-center">
                                                                 <button name="Submit" type="submit" class="btn btn-danger">ยืนยันก่อนลบ</button>
                                                             </div>

@@ -303,7 +303,8 @@ if (isset( $_SESSION['success'])) { ?>
                         <?php
                             
                             $result = $this->db->query("SELECT * FROM LEARNING_TECHNOLOGY_MEDIA 
-                            WHERE MediaID = '".$key."' 
+                            WHERE Id_ltm = '".$key."' 
+                            AND DeleteStatus = 0 
                             ");
  
                      foreach ($result->result() as $show) {
@@ -741,6 +742,8 @@ if (isset( $_SESSION['success'])) { ?>
                             INNER JOIN LEARNING_TECHNOLOGY_MEDIA
                             ON LEARNING_TECHNOLOGY_MEDIA.Id_ltm = LEARNING_TECHNOLOGY_MEDIA_CREATOR.MediaID
                             WHERE Id_ltmc = '".$key."' 
+                            AND LEARNING_TECHNOLOGY_MEDIA_CREATOR.DeleteStatus = 0 
+                            AND LEARNING_TECHNOLOGY_MEDIA.DeleteStatus = 0 
                             ");
  
                      foreach ($result->result() as $show) {
@@ -956,6 +959,8 @@ if (isset( $_SESSION['success'])) { ?>
                                             data-bs-dismiss="modal">ยกเลิก</button>
                                         <form method="post" action="<?php echo site_url('LTMC_del_p2'); ?>">
                                             <input type="hidden" name="Id_ltmc" value="<?php echo $show->Id_ltmc; ?>">
+                                            <input type="hidden" name="MediaID" value="<?php echo $show->MediaID; ?>">
+                                            <input type="hidden" name="CreatorNameThai" value="<?php echo $show->CreatorNameThai; ?>">
                                             <div class="d-flex justify-content-center">
                                                 <button name="Submit" type="submit"
                                                     class="btn btn-danger">ยืนยันก่อนลบ</button>

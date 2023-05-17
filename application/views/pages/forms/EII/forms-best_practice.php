@@ -1043,6 +1043,8 @@ if (isset( $_SESSION['success'])) { ?>
                                             data-bs-dismiss="modal">ยกเลิก</button>
                                         <form method="post" action="<?php echo site_url('BPC_del_p2'); ?>">
                                             <input type="hidden" name="Id_bestc" value="<?php echo $show->Id_bestc; ?>">
+                                            <input type="hidden" name="BestPracticeID" value="<?php echo $show->BestPracticeID; ?>">
+                                            <input type="hidden" name="CreatorNameThai" value="<?php echo $show->CreatorNameThai; ?>">
                                             <div class="d-flex justify-content-center">
                                                 <button name="Submit" type="submit"
                                                     class="btn btn-danger">ยืนยันก่อนลบ</button>

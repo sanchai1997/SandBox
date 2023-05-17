@@ -538,6 +538,8 @@ if (isset( $_SESSION['success'])) { ?>
                                                     data-bs-dismiss="modal">ยกเลิก</button>
                                                 <form method="post" action="<?php echo site_url('pc_del_p2'); ?>">
                                                     <input type="hidden" name="Id" value="<?php echo $show->Id; ?>">
+                                                    <input type="hidden" name="ParticipantID" value="<?php echo $show->ParticipantID; ?>">
+                                                    <input type="hidden" name="ContactName" value="<?php echo $show->ContactName; ?>">
                                                     <div class="d-flex justify-content-center">
                                                         <button name="Submit" type="submit"
                                                             class="btn btn-danger">ยืนยันก่อนลบ</button>
@@ -921,6 +923,8 @@ if (isset( $_SESSION['success'])) { ?>
                                                     data-bs-dismiss="modal">ยกเลิก</button>
                                                 <form method="post" action="<?php echo site_url('pcp_del_p3'); ?>">
                                                     <input type="hidden" name="Id" value="<?php echo $show->Id; ?>">
+                                                    <input type="hidden" name="ParticipantID" value="<?php echo $show->ParticipantID; ?>">
+                                                    <input type="hidden" name="CooperationStartDate" value="<?php echo DateThai($show->CooperationStartDate); ?>">
                                                     <div class="d-flex justify-content-center">
                                                         <button name="Submit" type="submit"
                                                             class="btn btn-danger">ยืนยันก่อนลบ</button>
@@ -1224,6 +1228,8 @@ if (isset( $_SESSION['success'])) { ?>
                                                     data-bs-dismiss="modal">ยกเลิก</button>
                                                 <form method="post" action="<?php echo site_url('pn_del_p4'); ?>">
                                                     <input type="hidden" name="Id" value="<?php echo $show->Id; ?>">
+                                                    <input type="hidden" name="ParticipantID" value="<?php echo $show->ParticipantID; ?>">
+                                                    <input type="hidden" name="NoteReporterName" value="<?php echo $show->NoteReporterName; ?>">
                                                     <div class="d-flex justify-content-center">
                                                         <button name="Submit" type="submit"
                                                             class="btn btn-danger">ยืนยันก่อนลบ</button>
