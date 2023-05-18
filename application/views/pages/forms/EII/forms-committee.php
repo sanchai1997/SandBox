@@ -966,6 +966,8 @@ where COMMITTEE.CommitteeProvinceCode = $CommitteeProvinceCode AND  COMMITTEE.De
                                                 data-bs-dismiss="modal">ยกเลิก</button>
                                             <form method="post" action="<?php echo site_url('cm_del_p2'); ?>">
                                                 <input type="hidden" name="Id" value="<?php echo $show->Id; ?>">
+                                                <input type="hidden" name="CommitteeAppointmentNumber" value="<?php echo $show->CommitteeAppointmentNumber; ?>">
+                                                <input type="hidden" name="CommitteeMemberNameThai" value="<?php echo $show->CommitteeMemberNameThai; ?>">
                                                 <div class="d-flex justify-content-center">
                                                     <button name="Submit" type="submit"
                                                         class="btn btn-danger">ยืนยันก่อนลบ</button>

@@ -296,6 +296,8 @@
                                                     data-bs-dismiss="modal">ยกเลิก</button>
                                                 <form method="post" action="<?php echo site_url('c_del_p1'); ?>">
                                                     <input type="hidden" name="Id" value="<?php echo $show->Id; ?>">
+                                                    <input type="hidden" name="CommitteeAppointmentNumber" value="<?php echo $show->CommitteeAppointmentNumber; ?>">
+                                                    
                                                     <div class="d-flex justify-content-center">
                                                         <button name="Submit" type="submit"
                                                             class="btn btn-danger">ยืนยันก่อนลบ</button>
