@@ -235,7 +235,7 @@
                                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                 </div>
                                                 <div class="modal-body">
-                                                    <form action="<?php echo site_url('uplod_criteria'); ?>" method="POST" id="UploadSchool" enctype="multipart/form-data">
+                                                    <form action="<?php echo site_url('uplod_criteria/'.$Username); ?>" method="POST" id="UploadSchool" enctype="multipart/form-data">
                                                         <div class="col-md-12" style="padding-bottom: 15px;">
                                                             <div class="row">
                                                                 <div class="col-6">
@@ -513,8 +513,9 @@
     
                                                             <div class="modal-footer">
                                                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ยกเลิก</button>
-                                                                <form method="post" action="<?php echo site_url('ass_ria_del_p1'); ?>">
+                                                                <form method="post" action="<?php echo site_url('ass_ria_del_p1/'); ?>">
                                                                     <input type="hidden" name="Id" value="<?php echo $show->Id; ?>">
+                                                                    <input type="hidden" name="UserName" value="<?php echo $UserName; ?>">
                                                                     <input type="hidden" name="CriteriaID" value="<?php echo $show->CriteriaID; ?>">
                                                                     <input type="hidden" name="CriteriaName" value="<?php echo $show->CriteriaName; ?>">
                                                                     <div class="d-flex justify-content-center">
@@ -686,7 +687,8 @@
                                                                 <input type="hidden" name="Id_sa" value="<?php echo $show->Id_sa; ?>">
                                                                 <input type="hidden" name="SchoolAssessmentEducationYear" value="<?php echo $show->SchoolAssessmentEducationYear ; ?>">
                                                                 <input type="hidden" name="SchoolAssessmentSemester" value="<?php echo $show->SchoolAssessmentSemester; ?>">
-                                                                <input type="hidden" name="SchoolID" value="<?php echo $show->SchoolID; ?>">
+                                                                <input type="hidden" name="SchoolID" value="<?php echo $show->SchoolNameThai; ?>">
+                                                                <input type="hidden" name="UserName" value="<?php echo $UserName; ?>">
                                                                 <div class="d-flex justify-content-center">
                                                                     <button name="Submit" type="submit" class="btn btn-danger">ยืนยันก่อนลบ</button>
                                                                 </div>
@@ -1011,7 +1013,8 @@
                                                                 <input type="hidden" name="Id_sac" value="<?php echo $show_top->Id_sac; ?>">
                                                                 <input type="hidden" name="SchoolAssessmentEducationYear" value="<?php echo $show_top->SchoolAssessmentEducationYear; ?>">
                                                                 <input type="hidden" name="SchoolAssessmentSemester" value="<?php echo $show_top->SchoolAssessmentSemester; ?>">
-                                                                <input type="hidden" name="SchoolID" value="<?php echo $show_top->SchoolID; ?>">
+                                                                <input type="hidden" name="SchoolID" value="<?php echo $show_top->SchoolNameThai; ?>">
+                                                                <input type="hidden" name="UserName" value="<?php echo $UserName; ?>">
                                                                 <div class="d-flex justify-content-center">
                                                                     <button name="Submit" type="submit" class="btn btn-danger">ยืนยันก่อนลบ</button>
                                                                 </div>
@@ -1188,8 +1191,9 @@
                                                                 <input type="hidden" name="Id" value="<?php echo $show->Id; ?>">
                                                                 <input type="hidden" name="AchievementAssessmentYear" value="<?php echo $show->AchievementAssessmentYear; ?>">
                                                                 <input type="hidden" name="SchoolAssessmentSemester" value="<?php echo $show->SchoolAssessmentSemester; ?>">
-                                                                <input type="hidden" name="SchoolID" value="<?php echo $show->SchoolID; ?>">
+                                                                <input type="hidden" name="SchoolID" value="<?php echo $show->SchoolNameThai; ?>">
                                                                 <input type="hidden" name="SchoolAssessmentName" value="<?php echo $show->SchoolAssessmentName; ?>">
+                                                                <input type="hidden" name="UserName" value="<?php echo $UserName; ?>">
                                                                 <div class="d-flex justify-content-center">
                                                                     <button name="Submit" type="submit" class="btn btn-danger">ยืนยันก่อนลบ</button>
                                                                 </div>

@@ -97,6 +97,7 @@
                                     <form action="<?php echo site_url(
                                                         'ass_ria_forms_up_p1'
                                                     ); ?>" method="post">
+                                                     <input type="hidden" name="UserName" value="<?php echo $UserName; ?>">
                                         <h5 class="card-title"></h5>
                                         <div class="row mb-3">
                                             <div class="col">
@@ -190,7 +191,7 @@
 
                                         <!-- start Form การประกันคุณภาพด้วยตัวชี้วัดของพื้นที่ -->
                                         <form action="<?php echo site_url('ass_ria_edit_p1'); ?>" method="post">
-
+                                        <input type="hidden" name="UserName" value="<?php echo $UserName; ?>">
                                             <!-- <h5 class="card-title">ฟอร์มการประกันคุณภาพด้วยตัวชี้วัดของพื้นที่</h5> -->
                                             <?php echo br(2); ?>
                                             <div class="row mb-3">
@@ -279,6 +280,7 @@
                                     <form action="<?php echo site_url(
                                                         'ass_ria_lvl_forms_up_p2'
                                                     ); ?>" method="post" onsubmit="return checkSelectedOption()">
+                                                     <input type="hidden" name="UserName" value="<?php echo $UserName; ?>">
                                         <?php echo br(2); ?>
 
 
@@ -408,7 +410,7 @@
                                                             'ass_ria_lvl_edit_p2'
                                                         ); ?>" method="post">
                                             <?php echo br(2); ?>
-
+                                            <input type="hidden" name="UserName" value="<?php echo $UserName; ?>">
                                             <div class="row mb-3">
                                                 <div class="col">
                                                     <div class="form-floating">
@@ -525,6 +527,7 @@
                                                     <div class="modal-footer">
                                                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ยกเลิก</button>
                                                         <form method="post" action="<?php echo site_url('ass_ria_lvl_del_p2'); ?>">
+                                                        <input type="hidden" name="UserName" value="<?php echo $UserName; ?>">
                                                             <input type="hidden" name="Id_acl" value="<?php echo $show->Id_acl; ?>">
                                                             <input type="hidden" name="index" value="<?php echo $clsC->CriteriaID; ?>">
                                                             <input type="hidden" name="LevelIndex" value="<?php echo $show->LevelIndex; ?>">
@@ -588,7 +591,7 @@
                                         <!-- <h5 class="card-title">ฟอร์มข้อมูลองค์ประกอบตัวชี้วัด</h5> -->
                                         <?php echo br(2); ?>
 
-
+                                        <input type="hidden" name="UserName" value="<?php echo $UserName; ?>">
                                         <div class="row mb-3">
                                             <div class="col">
                                                 <div class="form-floating">
@@ -701,7 +704,7 @@
                                                             'ass_ria_com_edit_p3'
                                                         ); ?>" method="post">
                                             <h5 class="card-title"></h5>
-
+                                            <input type="hidden" name="UserName" value="<?php echo $UserName; ?>">
 
                                             <input type="hidden" class="form-control" id="Id_acc" placeholder="" name="Id_acc" value="<?php echo $Id_acc ?>">
                                             <div class="row mb-3">
@@ -829,6 +832,7 @@
                                                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ยกเลิก</button>
                                                         <form method="post" action="<?php echo site_url('ass_ria_com_del_p3'); ?>">
                                                             <input type="hidden" name="Id" value="<?php echo $show->Id_acc; ?>">
+                                                            <input type="hidden" name="UserName" value="<?php echo $UserName; ?>">
                                                             <input type="hidden" name="CompositionIndex" value="<?php echo $show->CompositionIndex; ?>">
                                                             <input type="hidden" name="index" value="<?php echo $clsC->CriteriaID; ?>">
                                                             <div class="d-flex justify-content-center">
@@ -875,7 +879,7 @@
                                                         'ass_ria_com_lvl_forms_up_p4'
                                                     ); ?>" method="post" onsubmit="return checkSelectedOption()">
                                         <h5 class="card-title"></h5>
-
+                                        <input type="hidden" name="UserName" value="<?php echo $UserName; ?>">
                                         <div class="row mb-3">
                                             <div class="col">
                                                 <div class="form-floating">
@@ -1107,6 +1111,7 @@
                                         <form action="<?php echo site_url(
                                                             'ass_ria_com_lvl_edit_p4'
                                                         ); ?>" method="post">
+                                                         <input type="hidden" name="UserName" value="<?php echo $UserName; ?>">
                                             <h5 class="card-title"></h5>
                                             <input type="hidden" name="Id_accl" value="<?php echo $show->Id_accl ?>">
                                             <div class="row mb-3">
@@ -1242,6 +1247,7 @@
                                                     <div class="modal-footer">
                                                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ยกเลิก</button>
                                                         <form method="post" action="<?php echo site_url('ass_ria_com_lvl_del_p4'); ?>">
+                                                        <input type="hidden" name="UserName" value="<?php echo $UserName; ?>">
                                                             <input type="hidden" name="Id_accl" value="<?php echo $show->Id_accl; ?>">
                                                             <input type="hidden" name="LevelIndex" value="<?php echo $show->LevelIndex; ?>">
                                                             <input type="hidden" name="CompositionIndex" value="<?php echo $show->CompositionIndex; ?>">
@@ -1362,7 +1368,7 @@ function checkSelectValues() {
                                     <form action="<?php echo site_url(
                                                         'sc_ass_forms_up_p5'
                                                     ); ?>" method="post">
-                                        <h5 class="card-title"></h5>
+                                        <h5 class="card-title"></h5> <input type="hidden" name="UserName" value="<?php echo $UserName; ?>">
 
                                         <div class="row mb-3">
                                             <div class="col">
@@ -1466,7 +1472,7 @@ function checkSelectValues() {
                                             <h5 class="card-title"></h5>
                                             <input type="hidden" name="Id_sa" value="<?php echo $show->Id_sa ?>">
                                             <div class="row mb-3">
-
+                                            <input type="hidden" name="UserName" value="<?php echo $UserName; ?>">
 
                                                 <div class="col">
                                                     <div class="form-floating">
@@ -1593,7 +1599,7 @@ function checkSelectValues() {
                                                         'sc_ass_ria_forms_up_p6'
                                                     ); ?>" method="post" enctype="multipart/form-data" onsubmit="return checkSelectedOption()">
                                         <h5 class="card-title"></h5>
-
+                                        <input type="hidden" name="UserName" value="<?php echo $UserName; ?>">
                                         <div class="row mb-3">
 
                                             <div class="col">
@@ -1962,6 +1968,7 @@ function checkSelectValues() {
                                                             'sc_ass_ria_edit_p6'
                                                         ); ?>" method="post" enctype="multipart/form-data" onsubmit="return checkSelectedOption()">
                                             <h5 class="card-title"></h5>
+                                            <input type="hidden" name="UserName" value="<?php echo $UserName; ?>">
                                             <input type="hidden" name="Id_sac" value="<?php echo $show->Id_sac ?>">
                                             <div class="row mb-3">
                                                 <div class="form-floating">
@@ -2186,6 +2193,7 @@ function checkSelectValues() {
                                                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ยกเลิก</button>
                                                         <form method="post" action="<?php echo site_url('sc_ass_ria_del_p6'); ?>">
                                                             <input type="hidden" name="Id" value="<?php echo $show->Id; ?>">
+                                                            <input type="hidden" name="UserName" value="<?php echo $UserName; ?>">
                                                             <div class="d-flex justify-content-center">
                                                                 <button name="Submit" type="submit" class="btn btn-danger">ยืนยันก่อนลบ</button>
                                                             </div>
@@ -2239,6 +2247,7 @@ function checkSelectValues() {
                                 <?php if ($page == 'sh7') { ?>
                                     <!-- start Form ข้อมูลผลการประเมินตามตัวชี้วัด -->
                                     <form action="<?php echo site_url('sc_ass_res_forms_up_p7'); ?>" method="post" enctype="multipart/form-data" onsubmit="return checkSelectedOption()">
+                                    <input type="hidden" name="UserName" value="<?php echo $UserName; ?>">
                                         <h5 class="card-title"></h5>
                                         <div class="row mb-3">
                                             <div class="col">
@@ -2459,6 +2468,7 @@ function checkSelectValues() {
                                         <!-- start Form ข้อมูลผลการประเมินตามตัวชี้วัด -->
                                         <form action="<?php echo site_url('sc_ass_res_edit_p7'); ?>" method="post" enctype="multipart/form-data">
                                             <input type="hidden" name="Id_sar" value="<?php echo $show->Id_sar ?>">
+                                            <input type="hidden" name="UserName" value="<?php echo $UserName; ?>">
                                             <h5 class="card-title"></h5>
                                             <div class="row mb-3">
                                                 <div class="col">
@@ -2662,6 +2672,7 @@ function checkSelectValues() {
                                                     <div class="modal-footer">
                                                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ยกเลิก</button>
                                                         <form method="post" action="<?php echo site_url('sc_ass_res_del_p7'); ?>">
+                                                        <input type="hidden" name="UserName" value="<?php echo $UserName; ?>">
                                                             <input type="hidden" name="Id_sar" value="<?php echo $show->Id_sar; ?>">
                                                             <input type="hidden" name="SchoolAssessmentEducationYear" value="<?php echo $show->SchoolAssessmentEducationYear ; ?>">
                                                             <input type="hidden" name="SchoolAssessmentSemester" value="<?php echo $show->SchoolAssessmentSemester ; ?>">
@@ -2711,7 +2722,7 @@ function checkSelectValues() {
                                         <!-- <h5 class="card-title">ฟอร์มข้อมูลการประเมินสถานศึกษา</h5> -->
                                         <?php echo br(2); ?>
                                         <div class="row mb-3">
-
+                                        <input type="hidden" name="UserName" value="<?php echo $UserName; ?>">
                                             <div class="col">
                                                 <div class="form-floating">
                                                     <select class="form-select" id="AchievementAssessmentYear" aria-label="Floating label select example" name="AchievementAssessmentYear">
@@ -2924,6 +2935,7 @@ function checkSelectValues() {
                                         <!-- start Form ข้อมูลผลการประเมินตามตัวชี้วัด -->
                                         <form action="<?php echo site_url('achie_ass_edit_p8'); ?>" method="post" enctype="multipart/form-data">
                                             <h5 class="card-title"></h5>
+                                            <input type="hidden" name="UserName" value="<?php echo $UserName; ?>">
                                             <input type="hidden" name="Id" value="<?php echo $show->Id ?>">
                                             <div class="row mb-3">
                                                 <div class="col">

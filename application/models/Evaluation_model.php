@@ -34,9 +34,12 @@ class Evaluation_model extends CI_Model
 		$query = $this->db->insert('ASSESSMENT_CRITERIA', $data);
 		if ($query == TRUE) {
 			$UserID = $this->session->userdata('UserID');
+			
+			
 			$log = [
-				'LogMessage' => 'Insert CriteriaID = "' .  $this->input->post('CriteriaID')  . '" CriteriaName = "' . $this->input->post('CriteriaName') . '"',
+				'LogMessage' => 'เพิ่ม ตัวชี้วัด รหัส "' .  $this->input->post('CriteriaID')  . '" ชื่อ "' . $this->input->post('CriteriaName') . '"',
 				'LogUserID' => $UserID,
+				'LogUsername' => $this->input->post('UserName'),
 				'LogIpAddress' => $ip_address,
 				'LogCreation' => date('Y-m-d H:i:s')
 			];
@@ -79,9 +82,11 @@ class Evaluation_model extends CI_Model
 		$query = $this->db->update('ASSESSMENT_CRITERIA', $data);
 		if ($query == TRUE) {
 			$UserID = $this->session->userdata('UserID');
+			
 			$log = [
-				'LogMessage' => 'Update CriteriaID =  "' .  $this->input->post('CriteriaID')  . '" CriteriaName = "' . $this->input->post('CriteriaName') . '"',
+				'LogMessage' => 'แก้ไข ตัวชี้วัด รหัส  "' .  $this->input->post('CriteriaID')  . '" ชื่อ  "' . $this->input->post('CriteriaName') . '"',
 				'LogUserID' => $UserID,
+				'LogUsername' => $this->input->post('UserName'),
 				'LogIpAddress' => $ip_address,
 				'LogCreation' => date('Y-m-d H:i:s')
 			];
@@ -120,9 +125,11 @@ class Evaluation_model extends CI_Model
 		$query = $this->db->update('ASSESSMENT_CRITERIA', $data);
 		if ($query == TRUE) {
 			$UserID = $this->session->userdata('UserID');
+			
 			$log = [
-				'LogMessage' => 'Delete CriteriaID = "' .  $this->input->post('CriteriaID')  . '" CriteriaName = "' . $this->input->post('CriteriaName') . '"',
+				'LogMessage' => 'ลบ ตัวชี้วัด รหัส "' .  $this->input->post('CriteriaID')  . '" ชื่อ "' . $this->input->post('CriteriaName') . '"',
 				'LogUserID' => $UserID,
+				'LogUsername' => $this->input->post('UserName'),
 				'LogIpAddress' => $ip_address,
 				'LogCreation' => date('Y-m-d H:i:s')
 			];
@@ -164,9 +171,11 @@ class Evaluation_model extends CI_Model
 		$query = $this->db->insert('ASSESSMENT_CRITERIA_LEVEL', $data);
 		if ($query == TRUE) {
 			$UserID = $this->session->userdata('UserID');
+			
 			$log = [
-				'LogMessage' => 'Insert CriteriaID = "' .  $this->input->post('index')  . '" LevelIndex = "' . $this->input->post('LevelIndex') . '"',
+				'LogMessage' => 'เพิ่ม ตัวชี้วัด รหัส "' .  $this->input->post('index')  . '" ระดับที่ "' . $this->input->post('LevelIndex') . '"',
 				'LogUserID' => $UserID,
+				'LogUsername' => $this->input->post('UserName'),
 				'LogIpAddress' => $ip_address,
 				'LogCreation' => date('Y-m-d H:i:s')
 			];
@@ -227,9 +236,11 @@ class Evaluation_model extends CI_Model
 			$query = $this->db->update('ASSESSMENT_CRITERIA_LEVEL', $data);
 			if ($query == TRUE) {
 				$UserID = $this->session->userdata('UserID');
+				
 				$log = [
-					'LogMessage' => 'Update CriteriaID =  "' .  $this->input->post('index')  . '" LevelIndex = "' . $this->input->post('LevelIndex') . '"',
+					'LogMessage' => 'แก้ไข ตัวชี้วัด รหัส =  "' .  $this->input->post('index')  . '"  ระดับที่ "' . $this->input->post('LevelIndex') . '"',
 					'LogUserID' => $UserID,
+					'LogUsername' => $this->input->post('UserName'),
 					'LogIpAddress' => $ip_address,
 					'LogCreation' => date('Y-m-d H:i:s')
 				];
@@ -276,9 +287,11 @@ class Evaluation_model extends CI_Model
 		$query = $this->db->update('ASSESSMENT_CRITERIA_LEVEL', $data);
 		if ($query == TRUE) {
 			$UserID = $this->session->userdata('UserID');
+			
 			$log = [
-				'LogMessage' => 'Delete CriteriaID = "' .  $this->input->post('index')  . '" LevelIndex = "' . $this->input->post('LevelIndex') . '"',
+				'LogMessage' => 'ลบ ตัวชี้วัด รหัส "' .  $this->input->post('index')  . '"  ระดับที่ "' . $this->input->post('LevelIndex') . '"',
 				'LogUserID' => $UserID,
+				'LogUsername' => $this->input->post('UserName'),
 				'LogIpAddress' => $ip_address,
 				'LogCreation' => date('Y-m-d H:i:s')
 			];
@@ -322,9 +335,11 @@ class Evaluation_model extends CI_Model
 		$query = $this->db->insert('ASSESSMENT_CRITERIA_COMPOSITION', $data);
 		if ($query == TRUE) {
 			$UserID = $this->session->userdata('UserID');
+			
 			$log = [
-				'LogMessage' => 'Insert CriteriaID = "' .  $this->input->post('index')  . '" CompositionIndex = "' . $this->input->post('CompositionIndex') . '"',
+				'LogMessage' => 'เพิ่ม ตัวชี้วัด รหัส "' .  $this->input->post('index')  . '" องค์ประกอบที่"' . $this->input->post('CompositionIndex') . '"',
 				'LogUserID' => $UserID,
+				'LogUsername' => $this->input->post('UserName'),
 				'LogIpAddress' => $ip_address,
 				'LogCreation' => date('Y-m-d H:i:s')
 			];
@@ -385,9 +400,11 @@ class Evaluation_model extends CI_Model
 			$query = $this->db->update('ASSESSMENT_CRITERIA_COMPOSITION', $data);
 			if ($query == TRUE) {
 				$UserID = $this->session->userdata('UserID');
+				
 				$log = [
-					'LogMessage' => 'Update CriteriaID =  "' .  $this->input->post('index')  . '" CompositionIndex = "' . $this->input->post('CompositionIndex') . '"',
+					'LogMessage' => 'แก้ไข ตัวชี้วัด รหัส  "' .  $this->input->post('index')  . '" องค์ประกอบที่ "' . $this->input->post('CompositionIndex') . '"',
 					'LogUserID' => $UserID,
+					'LogUsername' => $this->input->post('UserName'),
 					'LogIpAddress' => $ip_address,
 					'LogCreation' => date('Y-m-d H:i:s')
 				];
@@ -433,9 +450,11 @@ class Evaluation_model extends CI_Model
 		$query = $this->db->update('ASSESSMENT_CRITERIA_COMPOSITION', $data);
 		if ($query == TRUE) {
 			$UserID = $this->session->userdata('UserID');
+			
 			$log = [
-				'LogMessage' => 'Delete CriteriaID = "' .  $this->input->post('index')  . '" CompositionIndex = "' . $this->input->post('CompositionIndex') . '"',
+				'LogMessage' => 'ลบ ตัวชี้วัด รหัส "' .  $this->input->post('index')  . '" องค์ประกอบที่ "' . $this->input->post('CompositionIndex') . '"',
 				'LogUserID' => $UserID,
+				'LogUsername' => $this->input->post('UserName'),
 				'LogIpAddress' => $ip_address,
 				'LogCreation' => date('Y-m-d H:i:s')
 			];
@@ -478,9 +497,11 @@ class Evaluation_model extends CI_Model
 		$query = $this->db->insert('ASSESSMENT_CRITERIA_COMPOSITION_LEVEL', $data);
 		if ($query == TRUE) {
 			$UserID = $this->session->userdata('UserID');
+			
 			$log = [
-				'LogMessage' => 'Insert CriteriaID = "' . $this->input->post('CriteriaID') . '" LevelIndex = "' . $this->input->post('LevelIndex') . '", CompositionIndex = "' . $this->input->post('CompositionIndex') . '"',
+				'LogMessage' => 'เพิ่ม ตัวชี้วัด รหัส "' . $this->input->post('CriteriaID') . '"  ระดับที่ "' . $this->input->post('LevelIndex') . '", องค์ประกอบที่ "' . $this->input->post('CompositionIndex') . '"',
 				'LogUserID' => $UserID,
+				'LogUsername' => $this->input->post('UserName'),
 				'LogIpAddress' => $ip_address,
 				'LogCreation' => date('Y-m-d H:i:s')
 			];
@@ -523,9 +544,11 @@ class Evaluation_model extends CI_Model
 		$query = $this->db->update('ASSESSMENT_CRITERIA_COMPOSITION_LEVEL', $data);
 		if ($query == TRUE) {
 			$UserID = $this->session->userdata('UserID');
+			
 			$log = [
-				'LogMessage' => 'Update CriteriaID = "' . $this->input->post('CriteriaID') . '" LevelIndex = "' . $this->input->post('LevelIndex') . '", CompositionIndex = "' . $this->input->post('CompositionIndex') . '"',
+				'LogMessage' => 'แก้ไข ตัวชี้วัด รหัส "' . $this->input->post('CriteriaID') . '"  ระดับที่ "' . $this->input->post('LevelIndex') . '", องค์ประกอบที่' . $this->input->post('CompositionIndex') . '"',
 				'LogUserID' => $UserID,
+				'LogUsername' => $this->input->post('UserName'),
 				'LogIpAddress' => $ip_address,
 				'LogCreation' => date('Y-m-d H:i:s')
 			];
@@ -564,9 +587,11 @@ class Evaluation_model extends CI_Model
 		$query = $this->db->update('ASSESSMENT_CRITERIA_COMPOSITION_LEVEL', $data);
 		if ($query == TRUE) {
 			$UserID = $this->session->userdata('UserID');
+			
 			$log = [
-				'LogMessage' => 'Delete CriteriaID = "' . $this->input->post('CriteriaID') . '" LevelIndex = "' . $this->input->post('LevelIndex') . '", CompositionIndex = "' . $this->input->post('CompositionIndex') . '"',
+				'LogMessage' => 'ลบ ตัวชี้วัด รหัส "' . $this->input->post('CriteriaID') . '"  ระดับที่ "' . $this->input->post('LevelIndex') . '",องค์ประกอบที่ "' . $this->input->post('CompositionIndex') . '"',
 				'LogUserID' => $UserID,
+				'LogUsername' => $this->input->post('UserName'),
 				'LogIpAddress' => $ip_address,
 				'LogCreation' => date('Y-m-d H:i:s')
 			];
@@ -628,9 +653,11 @@ class Evaluation_model extends CI_Model
 
 			if ($query == TRUE) {
 				$UserID = $this->session->userdata('UserID');
+				
 				$log = [
-					'LogMessage' => 'Insert [SCHOOL_ASSESSMENT] SchoolAssessmentEducationYear = "' . $this->input->post('SchoolAssessmentEducationYear') . '" SchoolAssessmentSemester = "' . $this->input->post('SchoolAssessmentSemester') . '", SchoolID = "' . $this->input->post('SchoolID') . '"',
+					'LogMessage' => 'เพิ่ม การประเมินโรงเรียน ปีการศึกษา = "' . $this->input->post('SchoolAssessmentEducationYear') . '" ภาคเรียนที่ "' . $this->input->post('SchoolAssessmentSemester') . '", ชื่อสถานศึกษา "' . $this->input->post('SchoolID') . '"',
 					'LogUserID' => $UserID,
+					'LogUsername' => $this->input->post('UserName'),
 					'LogIpAddress' => $ip_address,
 					'LogCreation' => date('Y-m-d H:i:s')
 				];
@@ -680,9 +707,11 @@ class Evaluation_model extends CI_Model
 		$query = $this->db->update('SCHOOL_ASSESSMENT', $data);
 		if ($query == TRUE) {
 			$UserID = $this->session->userdata('UserID');
+			
 			$log = [
-				'LogMessage' => 'Update  [SCHOOL_ASSESSMENT] SchoolAssessmentEducationYear = "' . $this->input->post('SchoolAssessmentEducationYear') . '" SchoolAssessmentSemester = "' . $this->input->post('SchoolAssessmentSemester') . '", SchoolID = "' . $this->input->post('SchoolID') . '"',
+				'LogMessage' => 'แก้ไข  การประเมินโรงเรียน "' . $this->input->post('SchoolAssessmentEducationYear') . '"ภาคเรียนที่ "' . $this->input->post('SchoolAssessmentSemester') . '", ชื่อสถานศึกษา "' . $this->input->post('SchoolID') . '"',
 				'LogUserID' => $UserID,
+				'LogUsername' => $this->input->post('UserName'),
 				'LogIpAddress' => $ip_address,
 				'LogCreation' => date('Y-m-d H:i:s')
 			];
@@ -721,9 +750,11 @@ class Evaluation_model extends CI_Model
 		$query = $this->db->update('SCHOOL_ASSESSMENT', $data);
 		if ($query == TRUE) {
 			$UserID = $this->session->userdata('UserID');
+			
 			$log = [
-				'LogMessage' => 'Delete  [SCHOOL_ASSESSMENT] SchoolAssessmentEducationYear = "' . $this->input->post('SchoolAssessmentEducationYear') . '" SchoolAssessmentSemester = "' . $this->input->post('SchoolAssessmentSemester') . '", SchoolID = "' . $this->input->post('SchoolID') . '"',
+				'LogMessage' => 'ลบ  การประเมินโรงเรียน "' . $this->input->post('SchoolAssessmentEducationYear') . '" ภาคเรียนที่ "' . $this->input->post('SchoolAssessmentSemester') . '", ชื่อสถานศึกษา "' . $this->input->post('SchoolID') . '"',
 				'LogUserID' => $UserID,
+				'LogUsername' => $this->input->post('UserName'),
 				'LogIpAddress' => $ip_address,
 				'LogCreation' => date('Y-m-d H:i:s')
 			];
@@ -818,9 +849,11 @@ class Evaluation_model extends CI_Model
 			$query = $this->db->insert('SCHOOL_ASSESSMENT_CRITERIA', $data);
 			if ($query == TRUE) {
 				$UserID = $this->session->userdata('UserID');
+				
 				$log = [
-					'LogMessage' => 'Insert [SCHOOL_ASSESSMENT_CRITERIA] SchoolAssessmentEducationYear = "' . $this->input->post('SchoolAssessmentEducationYear') . '" SchoolAssessmentSemester = "' . $this->input->post('SchoolAssessmentSemester') . '", SchoolID = "' . $this->input->post('SchoolID') . '"',
+					'LogMessage' => 'เพิ่ม เกณฑ์การประเมินโรงเรียน ปีการศึกษาที่ "' . $this->input->post('SchoolAssessmentEducationYear') . '" ภาคเรียนที่ "' . $this->input->post('SchoolAssessmentSemester') . '",ชื่อสถานศึกษา "' . $this->input->post('SchoolID') . '"',
 					'LogUserID' => $UserID,
+					'LogUsername' => $this->input->post('UserName'),
 					'LogIpAddress' => $ip_address,
 					'LogCreation' => date('Y-m-d H:i:s')
 				];
@@ -904,9 +937,11 @@ class Evaluation_model extends CI_Model
 		$query = $this->db->update('SCHOOL_ASSESSMENT_CRITERIA', $data);
 		if ($query == TRUE) {
 			$UserID = $this->session->userdata('UserID');
+			
 			$log = [
-				'LogMessage' => 'Update  [SCHOOL_ASSESSMENT_CRITERIA] SchoolAssessmentEducationYear = "' . $this->input->post('SchoolAssessmentEducationYear') . '" SchoolAssessmentSemester = "' . $this->input->post('SchoolAssessmentSemester') . '", SchoolID = "' . $this->input->post('SchoolID') . '"',
+				'LogMessage' => 'แก้ไข  เกณฑ์การประเมินโรงเรียน ปีการศึกษาที่ "' . $this->input->post('SchoolAssessmentEducationYear') . '" ภาคเรียนที่ "' . $this->input->post('SchoolAssessmentSemester') . '",ชื่อสถานศึกษา "' . $this->input->post('SchoolID') . '"',
 				'LogUserID' => $UserID,
+				'LogUsername' => $this->input->post('UserName'),
 				'LogIpAddress' => $ip_address,
 				'LogCreation' => date('Y-m-d H:i:s')
 			];
@@ -951,9 +986,11 @@ class Evaluation_model extends CI_Model
 			$querys = $this->db->update('SCHOOL_ASSESSMENT_RESULT', $data);
 			if ($query == TRUE) {
 				$UserID = $this->session->userdata('UserID');
+				
 				$log = [
-					'LogMessage' => 'Delete  [SCHOOL_ASSESSMENT_CRITERIA] SchoolAssessmentEducationYear = "' . $this->input->post('SchoolAssessmentEducationYear') . '" SchoolAssessmentSemester = "' . $this->input->post('SchoolAssessmentSemester') . '", SchoolID = "' . $this->input->post('SchoolID') . '"',
+					'LogMessage' => 'ลบ  เกณฑ์การประเมินโรงเรียน ปีการศึกษาที่ "' . $this->input->post('SchoolAssessmentEducationYear') . '" ภาคเรียนที่ "' . $this->input->post('SchoolAssessmentSemester') . '",ชื่อสถานศึกษา "' . $this->input->post('SchoolID') . '"',
 					'LogUserID' => $UserID,
+					'LogUsername' => $this->input->post('UserName'),
 					'LogIpAddress' => $ip_address,
 					'LogCreation' => date('Y-m-d H:i:s')
 				];
@@ -1035,9 +1072,11 @@ class Evaluation_model extends CI_Model
 				$query = $this->db->insert('SCHOOL_ASSESSMENT_RESULT', $data);
 				if ($query == TRUE) {
 					$UserID = $this->session->userdata('UserID');
+					
 					$log = [
-						'LogMessage' => 'Insert [SCHOOL_ASSESSMENT_RESULT] SchoolAssessmentEducationYear = "' . $this->input->post('SchoolAssessmentEducationYear') . '" SchoolAssessmentSemester = "' . $this->input->post('SchoolAssessmentSemester') . '", SchoolID = "' . $this->input->post('SchoolID') . '"',
+						'LogMessage' => 'เพิ่ม ผลการประเมินโรงเรียน ปีการศึกษาที่ "' . $this->input->post('SchoolAssessmentEducationYear') . '" ภาคเรียนที่ "' . $this->input->post('SchoolAssessmentSemester') . '",ชื่อสถานศึกษา "' . $this->input->post('SchoolID') . '"',
 						'LogUserID' => $UserID,
+						'LogUsername' => $this->input->post('UserName'),
 						'LogIpAddress' => $ip_address,
 						'LogCreation' => date('Y-m-d H:i:s')
 					];
@@ -1097,9 +1136,11 @@ class Evaluation_model extends CI_Model
 		$query = $this->db->update('SCHOOL_ASSESSMENT_RESULT', $data);
 		if ($query == TRUE) {
 			$UserID = $this->session->userdata('UserID');
+			
 			$log = [
-				'LogMessage' => 'Update  [SCHOOL_ASSESSMENT_RESULT] SchoolAssessmentEducationYear = "' . $this->input->post('SchoolAssessmentEducationYear') . '" SchoolAssessmentSemester = "' . $this->input->post('SchoolAssessmentSemester') . '", SchoolID = "' . $this->input->post('SchoolID') . '"',
+				'LogMessage' => 'แก้ไข  ผลการประเมินโรงเรียน ปีการศึกษาที่ "' . $this->input->post('SchoolAssessmentEducationYear') . '" ภาคเรียนที่ "' . $this->input->post('SchoolAssessmentSemester') . '",ชื่อสถานศึกษา "' . $this->input->post('SchoolID') . '"',
 				'LogUserID' => $UserID,
+				'LogUsername' => $this->input->post('UserName'),
 				'LogIpAddress' => $ip_address,
 				'LogCreation' => date('Y-m-d H:i:s')
 			];
@@ -1153,9 +1194,11 @@ class Evaluation_model extends CI_Model
 		$query = $this->db->update('SCHOOL_ASSESSMENT_RESULT', $data);
 		if ($query == TRUE) {
 			$UserID = $this->session->userdata('UserID');
+			
 			$log = [
-				'LogMessage' => 'Delete  [SCHOOL_ASSESSMENT_RESULT] SchoolAssessmentEducationYear = "' . $this->input->post('SchoolAssessmentEducationYear') . '" SchoolAssessmentSemester = "' . $this->input->post('SchoolAssessmentSemester') . '", SchoolID = "' . $this->input->post('SchoolID') . '"',
+				'LogMessage' => 'ลบ  ผลการประเมินโรงเรียน ปีการศึกษาที่ "' . $this->input->post('SchoolAssessmentEducationYear') . '" ภาคเรียนที่ "' . $this->input->post('SchoolAssessmentSemester') . '",ชื่อสถานศึกษา "' . $this->input->post('SchoolID') . '"',
 				'LogUserID' => $UserID,
+				'LogUsername' => $this->input->post('UserName'),
 				'LogIpAddress' => $ip_address,
 				'LogCreation' => date('Y-m-d H:i:s')
 			];
@@ -1227,9 +1270,11 @@ class Evaluation_model extends CI_Model
 		$query = $this->db->insert('ACHIEVEMENT_ASSESSMENT', $data);
 		if ($query == TRUE) {
 			$UserID = $this->session->userdata('UserID');
+			
 			$log = [
-				'LogMessage' => 'Insert [ACHIEVEMENT_ASSESSMENT] AchievementAssessmentYear = "' . $this->input->post('AchievementAssessmentYear') . '" SchoolAssessmentSemester = "' . $this->input->post('SchoolAssessmentSemester') . '", SchoolID = "' . $this->input->post('SchoolID') . '", SchoolAssessmentName = "' . $this->input->post('SchoolAssessmentName') . '"',
+				'LogMessage' => 'เพิ่ม ผลการประเมินสถานศึกษา ปีการศึกษา "' . $this->input->post('AchievementAssessmentYear') . '" ภาคเรียนที่ "' . $this->input->post('SchoolAssessmentSemester') . '",ชื่อสถานศึกษา "' . $this->input->post('SchoolID') . '", SchoolAssessmentName = "' . $this->input->post('SchoolAssessmentName') . '"',
 				'LogUserID' => $UserID,
+				'LogUsername' => $this->input->post('UserName'),
 				'LogIpAddress' => $ip_address,
 				'LogCreation' => date('Y-m-d H:i:s')
 			];
@@ -1301,9 +1346,11 @@ class Evaluation_model extends CI_Model
 		$query = $this->db->update('ACHIEVEMENT_ASSESSMENT', $data);
 		if ($query == TRUE) {
 			$UserID = $this->session->userdata('UserID');
+			
 			$log = [
-				'LogMessage' => 'Update [ACHIEVEMENT_ASSESSMENT] AchievementAssessmentYear = "' . $this->input->post('AchievementAssessmentYear') . '" SchoolAssessmentSemester = "' . $this->input->post('SchoolAssessmentSemester') . '", SchoolID = "' . $this->input->post('SchoolID') . '", SchoolAssessmentName = "' . $this->input->post('SchoolAssessmentName') . '"',
+				'LogMessage' => 'แก้ไข ผลการประเมินสถานศึกษา ปีการศึกษา "' . $this->input->post('AchievementAssessmentYear') . '" ภาคเรียนที่ "' . $this->input->post('SchoolAssessmentSemester') . '",ชื่อสถานศึกษา "' . $this->input->post('SchoolID') . '", SchoolAssessmentName = "' . $this->input->post('SchoolAssessmentName') . '"',
 				'LogUserID' => $UserID,
+				'LogUsername' => $this->input->post('UserName'),
 				'LogIpAddress' => $ip_address,
 				'LogCreation' => date('Y-m-d H:i:s')
 			];
@@ -1318,7 +1365,7 @@ class Evaluation_model extends CI_Model
 		} else {
 			echo 'false';
 		}
-	}
+	} 
 	public function del_achie_ass() //sh8
 	{
 		$ip_address = '';
@@ -1343,9 +1390,11 @@ class Evaluation_model extends CI_Model
 		$query = $this->db->update('ACHIEVEMENT_ASSESSMENT', $data);
 		if ($query == TRUE) {
 			$UserID = $this->session->userdata('UserID');
+			
 			$log = [
-				'LogMessage' => 'Delete  [ACHIEVEMENT_ASSESSMENT] AchievementAssessmentYear = "' . $this->input->post('AchievementAssessmentYear') . '" SchoolAssessmentSemester = "' . $this->input->post('SchoolAssessmentSemester') . '", SchoolID = "' . $this->input->post('SchoolID') . '", SchoolAssessmentName = "' . $this->input->post('SchoolAssessmentName') . '"',
+				'LogMessage' => 'ลบ  ผลการประเมินสถานศึกษา ปีการศึกษา "' . $this->input->post('AchievementAssessmentYear') . '" ภาคเรียนที่ "' . $this->input->post('SchoolAssessmentSemester') . '",ชื่อสถานศึกษา "' . $this->input->post('SchoolID') . '", SchoolAssessmentName = "' . $this->input->post('SchoolAssessmentName') . '"',
 				'LogUserID' => $UserID,
+				'LogUsername' => $this->input->post('UserName'),
 				'LogIpAddress' => $ip_address,
 				'LogCreation' => date('Y-m-d H:i:s')
 			];
@@ -1558,9 +1607,11 @@ class Evaluation_model extends CI_Model
 						}
 						if ($insert == TRUE) {
 							$UserID = $this->session->userdata('UserID');
+							
 							$log = [
-								'LogMessage' => 'insert CriteriaID =  "' .  $data[0]  . '" CriteriaName = "' . $data[1]. '"',
+								'LogMessage' => 'เพิ่ม ตัวชี้วัด รหัส  "' .  $data[0]  . '" ชื่อ "' . $data[1]. '"',
 								'LogUserID' => $UserID,
+								'LogUsername' => $this->input->post('UserName'),
 								'LogIpAddress' => $ip_address,
 								'LogCreation' => date('Y-m-d H:i:s')
 							];
