@@ -1008,7 +1008,7 @@
                                         <div class="row mb-3">
                                             <div class="col">
                                                 <div class="form-floating">
-                                                    <select class="form-select" id="CriteriaID" aria-label="Floating label select example" name="CriteriaID">
+                                                    <select class="form-select" id="CriteriaID" aria-label="Floating label select example" name="CriteriaID" onchange="updateInput(this)">
                                                         <option value="-1" selected>เลือก</option>
                                                         <?php
                                                         $result = $this->db->query('SELECT * FROM ASSESSMENT_CRITERIA where DeleteStatus = 0
@@ -1016,7 +1016,7 @@
                                                         foreach ($result->result() as $cls) {
                                                         ?>
                                                             <option value="<?php echo $cls->Id; ?>">
-                                                                <?= $cls->CriteriaID; ?> <?php echo $cls->Id; ?></option>
+                                                                <?= $cls->CriteriaID; ?> </option>
                                                           
                                                         <?php } ?>
                                                     </select>
@@ -1026,6 +1026,15 @@
                                             </div>
                                         </div>
                                     </div>
+                                    <input type="hidden" id="myInput" name="CriteriaID_index">
+                                    <script>
+                                        function updateInput(selectElement) {
+  var selectedOption = selectElement.options[selectElement.selectedIndex];
+  var selectedText = selectedOption.text;
+  var inputElement = document.getElementById('myInput');
+  inputElement.value = selectedText;
+}
+                                    </script>
                                     <div class="row mb-3">
 
                                         <div class="col">
