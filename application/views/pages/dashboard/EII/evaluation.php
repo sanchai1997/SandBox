@@ -630,18 +630,18 @@
                                             <?php $sum = $show->SchoolAssessmentSemester; ?>
                                             <?php
                                             if ($sum == 1) {
-                                                echo "ภาคเรียนที่ 1";
+                                                 echo  $sum = "ภาคเรียนที่ 1";
                                             } elseif ($sum == 2) {
-                                                echo "ภาคเรียนที่ 2";
+                                                echo  $sum = "ภาคเรียนที่ 2";
                                             } elseif ($sum == 0) {
-                                                echo "ตลอดปีการศึกษา";
+                                                echo  $sum = "ตลอดปีการศึกษา";
                                             } elseif ($sum == 3) {
-                                                echo "ภาคเรียนฤดูร้อน";
+                                                echo  $sum = "ภาคเรียนฤดูร้อน";
                                             }
                                             ?>
                                         </td>
                                         <td style="">
-                                            <?php echo $show->SchoolNameThai; ?>
+                                            <?php echo $SchoolID_index = $show->SchoolNameThai; ?>
                                         </td>
                                         <td style="">
                                             <?php echo $show->SchoolAssessmentName; ?>
@@ -686,8 +686,8 @@
                                                             <form method="post" action="<?php echo site_url('sc_ass_del_p5'); ?>">
                                                                 <input type="hidden" name="Id_sa" value="<?php echo $show->Id_sa; ?>">
                                                                 <input type="hidden" name="SchoolAssessmentEducationYear" value="<?php echo $show->SchoolAssessmentEducationYear ; ?>">
-                                                                <input type="hidden" name="SchoolAssessmentSemester" value="<?php echo $show->SchoolAssessmentSemester; ?>">
-                                                                <input type="hidden" name="SchoolID" value="<?php echo $show->SchoolNameThai; ?>">
+                                                                <input type="hidden" name="SchoolID_index" value="<?php echo $SchoolID_index; ?>">
+                                                                <input type="hidden" name="sum_index" value="<?php echo $sum; ?>">
                                                                 <input type="hidden" name="UserName" value="<?php echo $UserName; ?>">
                                                                 <div class="d-flex justify-content-center">
                                                                     <button name="Submit" type="submit" class="btn btn-danger">ยืนยันก่อนลบ</button>
@@ -867,13 +867,13 @@
                                             <p class="mt-2">
                                                 <?php
                                                 if ($sum == 1) {
-                                                    echo "ภาคเรียนที่ 1";
+                                                    echo $sum = "ภาคเรียนที่ 1";
                                                 } elseif ($sum == 2) {
-                                                    echo "ภาคเรียนที่ 2";
+                                                    echo $sum = "ภาคเรียนที่ 2";
                                                 } elseif ($sum == 0) {
-                                                    echo "ตลอดปีการศึกษา";
+                                                    echo $sum = "ตลอดปีการศึกษา";
                                                 } elseif ($sum == 3) {
-                                                    echo "ภาคเรียนฤดูร้อน";
+                                                    echo $sum = "ภาคเรียนฤดูร้อน";
                                                 }
                                                 ?>
                                             </p>
@@ -1001,8 +1001,8 @@
                                                             <p> ปีการศึกษา:
                                                                 <?php echo $show_top->SchoolAssessmentEducationYear; ?>
                                                             </p>
-                                                            <p> ภาคเรียน:<?php echo $show_top->SEMESTER_NAME; ?></p>
-                                                            <p> สถานศึกษา: <?php echo $show_top->SchoolNameThai; ?></p>
+                                                            <p> ภาคเรียน:<?php echo $sum_index = $show_top->SEMESTER_NAME; ?></p>
+                                                            <p> สถานศึกษา: <?php echo $SchoolID_index = $show_top->SchoolNameThai; ?></p>
 
                                                         </div>
 
@@ -1012,8 +1012,8 @@
                                                             <form method="post" action="<?php echo site_url('sc_ass_ria_del_p6'); ?>">
                                                                 <input type="hidden" name="Id_sac" value="<?php echo $show_top->Id_sac; ?>">
                                                                 <input type="hidden" name="SchoolAssessmentEducationYear" value="<?php echo $show_top->SchoolAssessmentEducationYear; ?>">
-                                                                <input type="hidden" name="SchoolAssessmentSemester" value="<?php echo $show_top->SchoolAssessmentSemester; ?>">
-                                                                <input type="hidden" name="SchoolID" value="<?php echo $show_top->SchoolNameThai; ?>">
+                                                                <input type="hidden" name="sum_index" value="<?php echo $sum_index; ?>">
+                                                                <input type="hidden" name="SchoolID_index" value="<?php echo $SchoolID_index; ?>">
                                                                 <input type="hidden" name="UserName" value="<?php echo $UserName; ?>">
                                                                 <div class="d-flex justify-content-center">
                                                                     <button name="Submit" type="submit" class="btn btn-danger">ยืนยันก่อนลบ</button>
@@ -1126,7 +1126,7 @@
                                             <?php echo $show->AchievementAssessmentYear; ?>
                                         </td>
                                         <td scope="row " style="">
-                                            <?php echo $show->SEMESTER_NAME; ?>
+                                            <?php echo $sum_index = $show->SEMESTER_NAME; ?>
                                         </td>
 
                                         <td scope="row">
@@ -1190,9 +1190,8 @@
                                                             <form method="post" action="<?php echo site_url('achie_ass_del_p8'); ?>">
                                                                 <input type="hidden" name="Id" value="<?php echo $show->Id; ?>">
                                                                 <input type="hidden" name="AchievementAssessmentYear" value="<?php echo $show->AchievementAssessmentYear; ?>">
-                                                                <input type="hidden" name="SchoolAssessmentSemester" value="<?php echo $show->SchoolAssessmentSemester; ?>">
-                                                                <input type="hidden" name="SchoolID" value="<?php echo $show->SchoolNameThai; ?>">
-                                                                <input type="hidden" name="SchoolAssessmentName" value="<?php echo $show->SchoolAssessmentName; ?>">
+                                                                <input type="hidden" name="sum_index" value="<?php echo  $sum_index; ?>">
+                                                                <input type="hidden" name="SchoolID_index" value="<?php echo $show->SchoolNameThai; ?>">
                                                                 <input type="hidden" name="UserName" value="<?php echo $UserName; ?>">
                                                                 <div class="d-flex justify-content-center">
                                                                     <button name="Submit" type="submit" class="btn btn-danger">ยืนยันก่อนลบ</button>
