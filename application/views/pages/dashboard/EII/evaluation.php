@@ -536,7 +536,9 @@
                             if (!$hasItems) { ?>
                                 <tr> <td>ไม่มีข้อมูล</td><td>ไม่มีข้อมูล</td><td>ไม่มีข้อมูล</td><td>ไม่มีข้อมูล</td><td>ไม่มีข้อมูล</td></tr>
                                 <tr class="no-border"><td> <?php  echo br(2); ?></td></tr>
-                            <?php    }?>
+                                <?php    }else { ?>
+                                 <tr class="no-border"><td> <?php  echo br(2); ?></td></tr>
+                          <?php  }?>
     
     
                                 </tbody>
@@ -762,7 +764,9 @@
                             if (!$hasItems) { ?>
                                 <tr> <td>ไม่มีข้อมูล</td><td>ไม่มีข้อมูล</td><td>ไม่มีข้อมูล</td><td>ไม่มีข้อมูล</td><td>ไม่มีข้อมูล</td><td>ไม่มีข้อมูล</td></tr>
                                 <tr class="no-border"><td> <?php  echo br(2); ?></td></tr>
-                            <?php    }?>
+                                <?php    }else { ?>
+                                 <tr class="no-border"><td> <?php  echo br(2); ?></td></tr>
+                          <?php  }?>
 
                             </tbody>
                         </table>
@@ -1032,7 +1036,9 @@
                                 if (!$hasItems) { ?>
                                   <tr> <td>ไม่มีข้อมูล</td><td>ไม่มีข้อมูล</td><td>ไม่มีข้อมูล</td><td>ไม่มีข้อมูล</td><td>ไม่มีข้อมูล</td><td>ไม่มีข้อมูล</td><td>ไม่มีข้อมูล</td><td>ไม่มีข้อมูล</td></tr>
                                   <tr class="no-border"><td> <?php  echo br(2); ?></td></tr>
-                            <?php    }?>
+                            <?php    }else { ?>
+                                 <tr class="no-border"><td> <?php  echo br(2); ?></td></tr>
+                          <?php  }?>
 
 
 
@@ -1210,7 +1216,9 @@
                             } if (!$hasItems) { ?>
                                 <tr> <td>ไม่มีข้อมูล</td><td>ไม่มีข้อมูล</td><td>ไม่มีข้อมูล</td><td>ไม่มีข้อมูล</td><td>ไม่มีข้อมูล</td><td>ไม่มีข้อมูล</td></tr>
                                 <tr class="no-border"><td> <?php  echo br(2); ?></td></tr>
-                            <?php    }?>
+                                <?php    }else { ?>
+                                 <tr class="no-border"><td> <?php  echo br(2); ?></td></tr>
+                          <?php  }?>
 
 
 
