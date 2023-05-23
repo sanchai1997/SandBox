@@ -65,8 +65,9 @@ class Innovation_model extends CI_Model
 							$UserID = $this->session->userdata('UserID');
 							
 							$log = [
-								'LogMessage' => 'Insert InnovationID = "' . $this->input->post('InnovationID') . '" InnovationName = "' . $this->input->post('InnovationName') . '"',
+								'LogMessage' => 'เพิ่มข้อมูล นวัตกรรมการศึกษา = "' . $this->input->post('InnovationName') . '"',
 								'LogUserID' => $UserID,
+								'LogUsername' => $this->input->post('UserName'),
 								'LogIpAddress' => $ip_address,
 								'LogCreation' => date('Y-m-d H:i:s')
 							];
@@ -106,8 +107,9 @@ class Innovation_model extends CI_Model
 						
 						$UserID = $this->session->userdata('UserID');
 						$log = [
-							'LogMessage' => 'Insert InnovationID = "' . $this->input->post('InnovationID') . '" InnovationName = "' . $this->input->post('InnovationName') . '"',
+							'LogMessage' => 'เพิ่มข้อมูล นวัตกรรมการศึกษา = "' . $this->input->post('InnovationName') . '"',
 							'LogUserID' => $UserID,
+							'LogUsername' => $this->input->post('UserName'),
 							'LogIpAddress' => $ip_address,
 							'LogCreation' => date('Y-m-d H:i:s')
 						];
@@ -186,8 +188,9 @@ class Innovation_model extends CI_Model
 						
 						$UserID = $this->session->userdata('UserID');
 						$log = [
-							'LogMessage' => 'Update InnovationID = "' . $this->input->post('InnovationID') . '" InnovationName = "' . $this->input->post('InnovationName') . '"',
+							'LogMessage' => 'แก้ไขข้อมูล นวัตกรรมการศึกษา = "' . $this->input->post('InnovationName') . '"',
 							'LogUserID' => $UserID,
+							'LogUsername' => $this->input->post('UserName'),
 							'LogIpAddress' => $ip_address,
 							'LogCreation' => date('Y-m-d H:i:s')
 						];
@@ -224,8 +227,9 @@ class Innovation_model extends CI_Model
 						
 					$UserID = $this->session->userdata('UserID');
 					$log = [
-						'LogMessage' => 'Update InnovationID = "' . $this->input->post('InnovationID') . '" InnovationName = "' . $this->input->post('InnovationName') . '"',
+						'LogMessage' => 'แก้ไขข้อมูล นวัตกรรมการศึกษา = "' . $this->input->post('InnovationName') . '"',
 						'LogUserID' => $UserID,
+						'LogUsername' => $this->input->post('UserName'),
 						'LogIpAddress' => $ip_address,
 						'LogCreation' => date('Y-m-d H:i:s')
 					];
@@ -271,8 +275,9 @@ class Innovation_model extends CI_Model
 						
 			$UserID = $this->session->userdata('UserID');
 			$log = [
-				'LogMessage' => 'Delete InnovationID = "' . $this->input->post('InnovationID') . '" InnovationName = "' . $this->input->post('InnovationName') . '"',
+				'LogMessage' => 'ลบข้อมูล นวัตกรรมการศึกษา = "' . $this->input->post('name') . '"',
 				'LogUserID' => $UserID,
+				'LogUsername' => $this->input->post('UserName'),
 				'LogIpAddress' => $ip_address,
 				'LogCreation' => date('Y-m-d H:i:s')
 			];
@@ -334,8 +339,9 @@ class Innovation_model extends CI_Model
 						
 			$UserID = $this->session->userdata('UserID');
 			$log = [
-				'LogMessage' => 'Insert InnovationID = "' . $this->input->post('InnovationID') . '" CreatorNameThai = "' . $this->input->post('CreatorNameThai') . '"',
+				'LogMessage' => 'เพิ่มข้อมูล ผู้จัดทำนวัตกรรมการศึกษา = "' . $this->input->post('name') . '"',
 				'LogUserID' => $UserID,
+				'LogUsername' => $this->input->post('UserName'),
 				'LogIpAddress' => $ip_address,
 				'LogCreation' => date('Y-m-d H:i:s')
 			];
@@ -406,8 +412,9 @@ class Innovation_model extends CI_Model
 						
 				$UserID = $this->session->userdata('UserID');
 				$log = [
-					'LogMessage' => 'Update InnovationID = "' . $this->input->post('InnovationID') . '" CreatorNameThai = "' . $this->input->post('CreatorNameThai') . '"',
+					'LogMessage' => 'แก้ไขข้อมูล ผู้จัดทำนวัตกรรมการศึกษา = "' . $this->input->post('name') . '"',
 					'LogUserID' => $UserID,
+					'LogUsername' => $this->input->post('UserName'),
 					'LogIpAddress' => $ip_address,
 					'LogCreation' => date('Y-m-d H:i:s')
 				];
@@ -459,8 +466,9 @@ class Innovation_model extends CI_Model
 						
 			$UserID = $this->session->userdata('UserID');
 			$log = [
-				'LogMessage' => 'Delete InnovationID = "' . $this->input->post('InnovationID') . '" CreatorNameThai = "' . $this->input->post('CreatorNameThai') . '"',
+				'LogMessage' => 'ลบข้อมูล ผู้จัดทำนวัตกรรมการศึกษา = "' . $this->input->post('name') . '"',
 				'LogUserID' => $UserID,
+				'LogUsername' => $this->input->post('UserName'),
 				'LogIpAddress' => $ip_address,
 				'LogCreation' => date('Y-m-d H:i:s')
 			];

@@ -85,8 +85,9 @@ class Best_practice_model extends CI_Model
 			if ($query == TRUE) {
 				$UserID = $this->session->userdata('UserID');
 				$log = [
-				'LogMessage' => 'Insert BestPracticeID = "' . $this->input->post('BestPracticeID') . '" BestPracticeName = "' . $this->input->post('BestPracticeName') . '"',
+				'LogMessage' => 'เพิ่มข้อมูล แนวปฏิบัติที่เป็นเลิศ "' . $this->input->post('BestPracticeName') . '"',
 				'LogUserID' => $UserID,
+				'LogUsername' => $this->input->post('UserName'),
 				'LogIpAddress' => $ip_address,
 				'LogCreation' => date('Y-m-d H:i:s')
 				];
@@ -127,12 +128,14 @@ class Best_practice_model extends CI_Model
 		// echo'</pre>';
 		// exit;
 		// สร้างตัวแปร $id_name มาเก็บค่าไว้ก่อน
+		$Id_best = $this->input->post('Id_best');
 		$EducationYear = $this->input->post('EducationYear');
 		$BestPracticeID = $this->input->post('BestPracticeID');
 		$Semester = $this->input->post('Semester');
 		$BestPracticeName = $this->input->post('BestPracticeName');
 		$this->db->where('EducationYear', $EducationYear);
 		$this->db->where('Semester', $Semester);
+		$this->db->where('Id_best !=', $Id_best);
 		$this->db->where('BestPracticeID', $BestPracticeID);
 		$this->db->where('DeleteStatus=0');
 		$query = $this->db->get('BEST_PRACTICE');
@@ -193,8 +196,9 @@ class Best_practice_model extends CI_Model
 					if ($query == TRUE) {
 						$UserID = $this->session->userdata('UserID');
 						$log = [
-						'LogMessage' => 'Update BestPracticeID = "' . $this->input->post('BestPracticeID') . '" BestPracticeName = "' . $this->input->post('BestPracticeName') . '"',
+						'LogMessage' => 'แก้ไขข้อมูล แนวปฏิบัติที่เป็นเลิศ "' . $this->input->post('BestPracticeName') . '"',
 						'LogUserID' => $UserID,
+						'LogUsername' => $this->input->post('UserName'),
 						'LogIpAddress' => $ip_address,
 						'LogCreation' => date('Y-m-d H:i:s')
 						];
@@ -238,8 +242,9 @@ class Best_practice_model extends CI_Model
 		if ($query == TRUE) {
 			$UserID = $this->session->userdata('UserID');
 			$log = [
-			'LogMessage' => 'Delete BestPracticeID = "' . $this->input->post('BestPracticeID') . '" BestPracticeName = "' . $this->input->post('BestPracticeName') . '"',
+			'LogMessage' => 'ลบข้อมูล แนวปฏิบัติที่เป็นเลิศ "' . $this->input->post('BestPracticeName') . '"',
 			'LogUserID' => $UserID,
+			'LogUsername' => $this->input->post('UserName'),
 			'LogIpAddress' => $ip_address,
 			'LogCreation' => date('Y-m-d H:i:s')
 			];
@@ -294,8 +299,9 @@ class Best_practice_model extends CI_Model
 			if ($query == TRUE) {
 				$UserID = $this->session->userdata('UserID');
 				$log = [
-				'LogMessage' => 'Insert BestPracticeID = "' . $this->input->post('BestPracticeID') . '" CreatorNameThai = "' . $this->input->post('CreatorNameThai') . '"',
+				'LogMessage' => 'เพิ่มข้อมูล ผู้จัดทำแนวปฏิบัติที่เป็นเลิศ  "'. $this->input->post('name') . '"',
 				'LogUserID' => $UserID,
+				'LogUsername' => $this->input->post('UserName'),
 				'LogIpAddress' => $ip_address,
 				'LogCreation' => date('Y-m-d H:i:s')
 				];
@@ -335,8 +341,9 @@ class Best_practice_model extends CI_Model
 				if ($query == TRUE) {
 					$UserID = $this->session->userdata('UserID');
 					$log = [
-					'LogMessage' => 'Insert BestPracticeID = "' . $this->input->post('BestPracticeID') . '" CreatorNameThai = "' . $this->input->post('CreatorNameThai') . '"',
+					'LogMessage' => 'เพิ่มข้อมูล ผู้จัดทำแนวปฏิบัติที่เป็นเลิศ  "'. $this->input->post('name') . '"',
 					'LogUserID' => $UserID,
+					'LogUsername' => $this->input->post('UserName'),
 					'LogIpAddress' => $ip_address,
 					'LogCreation' => date('Y-m-d H:i:s')
 					];
@@ -411,8 +418,9 @@ if ($num_chk <= 0 ) {
   if ($query == TRUE) {
 	$UserID = $this->session->userdata('UserID');
 	$log = [
-	'LogMessage' => 'Update BestPracticeID = "' . $this->input->post('BestPracticeID') . '" CreatorNameThai = "' . $this->input->post('CreatorNameThai') . '"',
+	'LogMessage' => 'แก้ไขข้อมูล ผู้จัดทำแนวปฏิบัติที่เป็นเลิศ  "'. $this->input->post('name') . '"',
 	'LogUserID' => $UserID,
+	'LogUsername' => $this->input->post('UserName'),
 	'LogIpAddress' => $ip_address,
 	'LogCreation' => date('Y-m-d H:i:s')
 	];
@@ -456,8 +464,9 @@ if ($num_chk <= 0 ) {
 		if ($query == TRUE) {
 			$UserID = $this->session->userdata('UserID');
 			$log = [
-			'LogMessage' => 'Delete BestPracticeID = "' . $this->input->post('BestPracticeID') . '" CreatorNameThai = "' . $this->input->post('CreatorNameThai') . '"',
+			'LogMessage' => 'ลบข้อมูล ผู้จัดทำแนวปฏิบัติที่เป็นเลิศ  "'. $this->input->post('name') . '"',
 			'LogUserID' => $UserID,
+			'LogUsername' => $this->input->post('UserName'),
 			'LogIpAddress' => $ip_address,
 			'LogCreation' => date('Y-m-d H:i:s')
 			];

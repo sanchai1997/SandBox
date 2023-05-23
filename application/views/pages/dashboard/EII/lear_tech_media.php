@@ -170,7 +170,7 @@
                             <td style="">
                                 <p
                                     style="width: 250px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
-                                    <?php echo $show->MediaName; ?></p>
+                                    <?php echo $name = $show->MediaName; ?></p>
                             </td>
                             <td style="">
                                 <p
@@ -306,6 +306,8 @@
                                                 <button type="button" class="btn btn-secondary"
                                                     data-bs-dismiss="modal">ยกเลิก</button>
                                                 <form method="post" action="<?php echo site_url('LTM_del_p1'); ?>">
+                                                <input type="hidden" name="name" value="<?php echo $name; ?>">
+                                                <input type="hidden" name="UserName" value="<?php echo $UserName; ?>">
                                                     <input type="hidden" name="Id_ltm"
                                                         value="<?php echo $show->Id_ltm; ?>">
                                                         <input type="hidden" name="MediaID"

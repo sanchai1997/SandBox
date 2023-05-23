@@ -319,6 +319,8 @@
                                                 <button type="button" class="btn btn-secondary"
                                                     data-bs-dismiss="modal">ยกเลิก</button>
                                                 <form method="post" action="<?php echo site_url('BP_del_p1'); ?>">
+                                                <input type="hidden" name="name" value="<?php echo $name; ?>">
+                                                <input type="hidden" name="UserName" value="<?php echo $UserName; ?>">
                                                     <input type="hidden" name="Id_best"
                                                         value="<?php echo $show->Id_best; ?>">
                                                         <input type="hidden" name="BestPracticeID"

@@ -451,7 +451,9 @@ foreach ($result3->result() as $show3) { ?>
                                         <div class="modal-content">
                                             <div class="modal-header">
                                                 <h5 class="modal-title" id="exampleModalLabel">
-                                                    ยืนยันการลบข้อมูล<?php echo nbs(2); ?><?php echo $show->ParticipantID; ?>
+                                                    ยืนยันการลบข้อมูล<?php echo nbs(2); ?><?php 
+                                                    // echo $show->ParticipantID; 
+                                                    ?>
                                                 </h5>
 
                                             </div>
@@ -465,6 +467,7 @@ foreach ($result3->result() as $show3) { ?>
                                                 <button type="button" class="btn btn-secondary"
                                                     data-bs-dismiss="modal">ยกเลิก</button>
                                                 <form method="post" action="<?php echo site_url('par_del_p1'); ?>">
+                                                <input type="hidden" name="UserName" value="<?php echo $UserName; ?>">
                                                     <input type="hidden" name="ParticipantID"
                                                         value="<?php echo $show->ParticipantID; ?>">
                                                         <input type="hidden" name="ParticipantName"

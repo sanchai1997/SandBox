@@ -72,8 +72,9 @@ $ip_address = '';
 			if ($query == TRUE) {
 				$UserID = $this->session->userdata('UserID');
 				$log = [
-						'LogMessage' => 'Insert CommitteeAppointmentNumber = "' . $this->input->post('CommitteeAppointmentNumber') . '"',
+						'LogMessage' => 'เพิ่มข้อมูล ผู้อำนาจและหน้าที่ เลขที่คำสั่ง = "' . $this->input->post('CommitteeAppointmentNumber') . '"',
 				'LogUserID' => $UserID,
+				'LogUsername' => $this->input->post('UserName'),
 				'LogIpAddress' => $ip_address,
 				'LogCreation' => date('Y-m-d H:i:s')
 				];
@@ -140,8 +141,9 @@ $ip_address = '';
 					if ($query == TRUE) {
 						$UserID = $this->session->userdata('UserID');
 						$log = [
-						'LogMessage' => 'Update CommitteeAppointmentNumber = "' . $this->input->post('CommitteeAppointmentNumber') . '"',
+						'LogMessage' => 'แก้ไขข้อมูล ผู้อำนาจและหน้าที่ เลขที่คำสั่ง = "' . $this->input->post('CommitteeAppointmentNumber') . '"',
 						'LogUserID' => $UserID,
+						'LogUsername' => $this->input->post('UserName'),
 						'LogIpAddress' => $ip_address,
 						'LogCreation' => date('Y-m-d H:i:s')
 						];
@@ -170,8 +172,9 @@ $ip_address = '';
 				if ($query == TRUE) {
 					$UserID = $this->session->userdata('UserID');
 					$log = [
-					'LogMessage' => 'Update CommitteeAppointmentNumber = "' . $this->input->post('CommitteeAppointmentNumber'). '"',
+					'LogMessage' => 'แก้ไขข้อมูล ผู้อำนาจและหน้าที่ เลขที่คำสั่ง = "' . $this->input->post('CommitteeAppointmentNumber') . '"',
 					'LogUserID' => $UserID,
+					'LogUsername' => $this->input->post('UserName'),
 					'LogIpAddress' => $ip_address,
 					'LogCreation' => date('Y-m-d H:i:s')
 					];
@@ -215,8 +218,9 @@ $ip_address = '';
 		if ($query == TRUE) {
 			$UserID = $this->session->userdata('UserID');
 			$log = [
-			'LogMessage' => 'Delete CommitteeAppointmentNumber = "' .$this->input->post('CommitteeAppointmentNumber') . '"',
+			'LogMessage' => 'ลบข้อมูล ผู้อำนาจและหน้าที่ เลขที่คำสั่ง = "' . $this->input->post('CommitteeAppointmentNumber') . '"',
 			'LogUserID' => $UserID,
+			'LogUsername' => $this->input->post('UserName'),
 			'LogIpAddress' => $ip_address,
 			'LogCreation' => date('Y-m-d H:i:s')
 			];
@@ -284,8 +288,9 @@ $ip_address = '';
 			if ($query == TRUE) {
 				$UserID = $this->session->userdata('UserID');
 				$log = [
-				'LogMessage' => 'Insert CommitteeAppointmentNumber = "' . $this->input->post('CommitteeAppointmentNumber')  . '" CommitteeMemberNameThai = "' . $this->input->post('CommitteeMemberNameThai') . '"',
+				'LogMessage' => 'เพิ่มข้อมูล คณะกรรมการ เลขที่คำสั่ง = "' . $this->input->post('CommitteeAppointmentNumber')  . '"',
 				'LogUserID' => $UserID,
+				'LogUsername' => $this->input->post('UserName'),
 				'LogIpAddress' => $ip_address,
 				'LogCreation' => date('Y-m-d H:i:s')
 				];
@@ -345,8 +350,9 @@ $ip_address = '';
 		if ($query == TRUE) {
 			$UserID = $this->session->userdata('UserID');
 			$log = [
-			'LogMessage' => 'Update CommitteeAppointmentNumber = "' . $this->input->post('CommitteeAppointmentNumber')  . '" CommitteeMemberNameThai = "' . $this->input->post('CommitteeMemberNameThai') . '"',
+			'LogMessage' => 'แก้ไขข้อมูล  คณะกรรมการ เลขที่คำสั่ง = "' . $this->input->post('CommitteeAppointmentNumber')  . '"',
 			'LogUserID' => $UserID,
+			'LogUsername' => $this->input->post('UserName'),
 			'LogIpAddress' => $ip_address,
 			'LogCreation' => date('Y-m-d H:i:s')
 			];
@@ -387,8 +393,9 @@ $ip_address = '';
 		if ($query == TRUE) {
 			$UserID = $this->session->userdata('UserID');
 			$log = [
-			'LogMessage' => 'Delete CommitteeAppointmentNumber = "' . $this->input->post('CommitteeAppointmentNumber') . '" CommitteeMemberNameThai = "' . $this->input->post('CommitteeMemberNameThai') . '"',
+			'LogMessage' => 'ลบข้อมูล  คณะกรรมการ เลขที่คำสั่ง = "' . $this->input->post('CommitteeAppointmentNumber')  . '"',
 			'LogUserID' => $UserID,
+			'LogUsername' => $this->input->post('UserName'),
 			'LogIpAddress' => $ip_address,
 			'LogCreation' => date('Y-m-d H:i:s')
 			];

@@ -155,7 +155,7 @@
                                     </td>
                                     <td scope="row " style="">
                                         <p style="width: 250px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
-                                            <?php echo $show->InnovationName; ?></p>
+                                            <?php echo $name = $show->InnovationName; ?></p>
                                     </td>
                                     <td scope="row " style="">
                                         <?php echo DateThai($show->PublishDate); ?>
@@ -279,7 +279,9 @@
                                                     <div class="modal-footer">
                                                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ยกเลิก</button>
                                                         <form method="post" action="<?php echo site_url('del_p1'); ?>">
+                                                        <input type="hidden" name="UserName" value="<?php echo $UserName; ?>">
                                                             <input type="hidden" name="Id_in" value="<?php echo $show->Id_in; ?>">
+                                                            <input type="hidden" name="name" value="<?php echo $name; ?>">
                                                             <input type="hidden" name="InnovationID" value="<?php echo $show->InnovationID; ?>">
                                                             <input type="hidden" name="InnovationName" value="<?php echo $show->InnovationName; ?>">
                                                             <div class="d-flex justify-content-center">

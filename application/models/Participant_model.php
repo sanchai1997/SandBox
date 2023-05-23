@@ -37,8 +37,9 @@ if ($num_chk <= 0 ) {
   if ($query == TRUE) {
 	$UserID = $this->session->userdata('UserID');
 	$log = [
-	'LogMessage' => 'Insert ParticipantID = "' .  $last_id  . '" ParticipantName = "' . $this->input->post('ParticipantName') . '"',
+	'LogMessage' => 'เพิ่มข้อมูล หน่วยงานที่เข้ามามีส่วนร่วม  ชื่อภาครัฐ "' . $this->input->post('ParticipantName') . '"',
 	'LogUserID' => $UserID,
+	'LogUsername' => $this->input->post('UserName'),
 	'LogIpAddress' => $ip_address,
 	'LogCreation' => date('Y-m-d H:i:s')
 	];
@@ -85,8 +86,9 @@ if ($num_chk <= 0 ) {
 		if ($query == TRUE) {
 			$UserID = $this->session->userdata('UserID');
 			$log = [
-			'LogMessage' => 'Update ParticipantID = "' . $this->input->post('ParticipantID') . '" ParticipantName = "' . $this->input->post('ParticipantName') . '"',
+			'LogMessage' => 'แก้ไขข้อมูล หน่วยงานที่เข้ามามีส่วนร่วม  ชื่อภาครัฐ "' . $this->input->post('ParticipantName') . '"',
 			'LogUserID' => $UserID,
+			'LogUsername' => $this->input->post('UserName'),
 			'LogIpAddress' => $ip_address,
 			'LogCreation' => date('Y-m-d H:i:s')
 			];
@@ -126,8 +128,9 @@ if ($num_chk <= 0 ) {
 		if ($query == TRUE) {
 			$UserID = $this->session->userdata('UserID');
 			$log = [
-			'LogMessage' => 'Delete ParticipantID = "' . $this->input->post('ParticipantID') . '" ParticipantName = "' . $this->input->post('ParticipantName') . '"',
+			'LogMessage' => 'ลบข้อมูล หน่วยงานที่เข้ามามีส่วนร่วม  ชื่อภาครัฐ "' . $this->input->post('ParticipantName') . '"',
 			'LogUserID' => $UserID,
+			'LogUsername' => $this->input->post('UserName'),
 			'LogIpAddress' => $ip_address,
 			'LogCreation' => date('Y-m-d H:i:s')
 			];
@@ -170,8 +173,9 @@ if ($num_chk <= 0 ) {
 		if ($query == TRUE) {
 			$UserID = $this->session->userdata('UserID');
 			$log = [
-			'LogMessage' => 'Insert ParticipantID = "' . $this->input->post('ParticipantID') . '" ContactPhone = "' . $this->input->post('ContactPhone') . '"',
+			'LogMessage' => 'เพิ่มข้อมูล ติดต่อผู้มีส่วนร่วมของหน่วยงานที่เข้ามามีส่วนร่วม = "' . $this->input->post('name') . '"',
 			'LogUserID' => $UserID,
+			'LogUsername' => $this->input->post('UserName'),
 			'LogIpAddress' => $ip_address,
 			'LogCreation' => date('Y-m-d H:i:s')
 			];
@@ -214,8 +218,9 @@ if ($num_chk <= 0 ) {
 		if ($query == TRUE) {
 			$UserID = $this->session->userdata('UserID');
 			$log = [
-			'LogMessage' => 'Update ParticipantID = "' . $this->input->post('ParticipantID') . '" ContactPhone = "' . $this->input->post('ContactPhone') . '"',
+			'LogMessage' => 'แก้ไขข้อมูล ติดต่อผู้มีส่วนร่วมของหน่วยงานที่เข้ามามีส่วนร่วม = "' . $this->input->post('name') . '"',
 			'LogUserID' => $UserID,
+			'LogUsername' => $this->input->post('UserName'),
 			'LogIpAddress' => $ip_address,
 			'LogCreation' => date('Y-m-d H:i:s')
 			];
@@ -255,8 +260,9 @@ if ($num_chk <= 0 ) {
 		if ($query == TRUE) {
 			$UserID = $this->session->userdata('UserID');
 			$log = [
-			'LogMessage' => 'Delete ParticipantID = "' . $this->input->post('ParticipantID') . '" ContactPhone = "' . $this->input->post('ContactPhone') . '"',
+			'LogMessage' => 'ลบข้อมูล ติดต่อผู้มีส่วนร่วมของหน่วยงานที่เข้ามามีส่วนร่วม = "' . $this->input->post('name') . '"',
 			'LogUserID' => $UserID,
+			'LogUsername' => $this->input->post('UserName'),
 			'LogIpAddress' => $ip_address,
 			'LogCreation' => date('Y-m-d H:i:s')
 			];
@@ -331,8 +337,9 @@ if ($num_chk <= 0 ) {
 		if ($query == TRUE) {
 			$UserID = $this->session->userdata('UserID');
 			$log = [
-			'LogMessage' => 'Insert ParticipantID = "' . $this->input->post('ParticipantID') . '" CooperationStartDate = "' . $this->input->post('CooperationStartDate') . '"',
+			'LogMessage' => 'เพิ่มข้อมูล การมีส่วนร่วมของหน่วยงานที่เข้ามามีส่วนร่วม = "' . $this->input->post('name') . '"',
 			'LogUserID' => $UserID,
+			'LogUsername' => $this->input->post('UserName'),
 			'LogIpAddress' => $ip_address,
 			'LogCreation' => date('Y-m-d H:i:s')
 			];
@@ -411,8 +418,9 @@ $this->db->where('Id',$this->input->post('Id'));
 if ($query == TRUE) {
 	$UserID = $this->session->userdata('UserID');
 	$log = [
-	'LogMessage' => 'Update ParticipantID = "' . $this->input->post('ParticipantID') . '" CooperationStartDate = "' . $this->input->post('CooperationStartDate') . '"',
+	'LogMessage' => 'แก้ไขข้อมูล ของหน่วยงานที่เข้ามามีส่วนร่วม = "' . $this->input->post('name') . '"',
 	'LogUserID' => $UserID,
+	'LogUsername' => $this->input->post('UserName'),
 	'LogIpAddress' => $ip_address,
 	'LogCreation' => date('Y-m-d H:i:s')
 	];
@@ -458,8 +466,9 @@ if ($query == TRUE) {
 if ($query == TRUE) {
 	$UserID = $this->session->userdata('UserID');
 	$log = [
-	'LogMessage' => 'Delete ParticipantID = "' . $this->input->post('ParticipantID') . '" CooperationStartDate = "' . $this->input->post('CooperationStartDate') . '"',
+	'LogMessage' => 'ลบข้อมูล ของหน่วยงานที่เข้ามามีส่วนร่วม = "' . $this->input->post('name') . '"',
 	'LogUserID' => $UserID,
+	'LogUsername' => $this->input->post('UserName'),
 	'LogIpAddress' => $ip_address,
 	'LogCreation' => date('Y-m-d H:i:s')
 	];
@@ -503,8 +512,9 @@ if ($query == TRUE) {
 if ($query == TRUE) {
 	$UserID = $this->session->userdata('UserID');
 	$log = [
-	'LogMessage' => 'Insert ParticipantID = "' . $this->input->post('ParticipantID') . '" NoteReporterName = "' . $this->input->post('NoteReporterName') . '"',
+	'LogMessage' => 'เพิ่มข้อมูล บันทึกเพิ่มเติมของหน่วยงานที่เข้ามามีส่วนร่วม = "' . $this->input->post('name') . '"',
 	'LogUserID' => $UserID,
+	'LogUsername' => $this->input->post('UserName'),
 	'LogIpAddress' => $ip_address,
 	'LogCreation' => date('Y-m-d H:i:s')
 	];
@@ -549,8 +559,9 @@ if ($query == TRUE) {
 if ($query == TRUE) {
 	$UserID = $this->session->userdata('UserID');
 	$log = [
-	'LogMessage' => 'Update ParticipantID = "' . $this->input->post('ParticipantID') . '" NoteReporterName = "' . $this->input->post('NoteReporterName') . '"',
+	'LogMessage' => 'แก้ไขข้อมูล บันทึกเพิ่มเติมของหน่วยงานที่เข้ามามีส่วนร่วม = "' . $this->input->post('name') . '"',
 	'LogUserID' => $UserID,
+	'LogUsername' => $this->input->post('UserName'),
 	'LogIpAddress' => $ip_address,
 	'LogCreation' => date('Y-m-d H:i:s')
 	];
@@ -592,8 +603,9 @@ if ($query == TRUE) {
 if ($query == TRUE) {
 	$UserID = $this->session->userdata('UserID');
 	$log = [
-	'LogMessage' => 'Delete ParticipantID = "' . $this->input->post('ParticipantID') . '" NoteReporterName = "' . $this->input->post('NoteReporterName') . '"',
+	'LogMessage' => 'ลบข้อมูล บันทึกเพิ่มเติมของหน่วยงานที่เข้ามามีส่วนร่วม = "' . $this->input->post('name') . '"',
 	'LogUserID' => $UserID,
+	'LogUsername' => $this->input->post('UserName'),
 	'LogIpAddress' => $ip_address,
 	'LogCreation' => date('Y-m-d H:i:s')
 	];

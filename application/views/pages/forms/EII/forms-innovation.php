@@ -85,7 +85,7 @@
 
                                 <body>
                                     <form action="<?php echo site_url('forms_up_p1'); ?>" method="POST" enctype="multipart/form-data" onsubmit="return checkSelectedOption()">
-
+                                    <input type="hidden" name="UserName" value="<?php echo $UserName; ?>">
                                         <div class="row mb-3">
                                             <div class="form-floating">
                                                 <input type="text" class="form-control" id="floatingName" placeholder="รหัสนวัตกรรมการศึกษา" name="InnovationID" required aria-label="รหัสนวัตกรรมการศึกษา">
@@ -284,8 +284,8 @@
 
                                     <body>
                                         <form action="<?php echo site_url('edit_p1'); ?>" method="post" enctype="multipart/form-data">
-
-
+                                        <input type="hidden" name="UserName" value="<?php echo $UserName; ?>">
+                                        <input type="hidden" name="name" value="<?php echo $name; ?>">
                                             <input type="hidden" class="form-control" id="floatingName" placeholder="รหัสนวัตกรรมการศึกษา" name="Id_in" required max="16" value="<?php echo $show->Id_in; ?>">
 
 
@@ -484,8 +484,8 @@
                                 <?php echo br(2); ?>
                                 <!-- start Form ข้อมูลนวัตกรรมการศึกษา -->
                                 <form action="<?php echo site_url('forms_up_p2'); ?>" method="post" onsubmit="return checkSelectedOption()">
-
-
+                                <input type="hidden" name="UserName" value="<?php echo $UserName; ?>">
+                                <input type="hidden" name="name" value="<?php echo $name; ?>">
 
                                     <input type="hidden" class="form-control" id="floatingName" placeholder="รหัสนวัตกรรมการศึกษา" name="InnovationID" value="<?php echo $key; ?>" required>
 
@@ -705,10 +705,11 @@
                                     <body>
 
                                         <form action="<?php echo site_url('edit_p2'); ?>" method="post" onsubmit="return checkSelectedOption()">
+                                        <input type="hidden" name="UserName" value="<?php echo $UserName; ?>">
                                             <input type="hidden" name="Id_inc" value="<?php echo $show->Id_inc ?>">
                                             <div class="row mb-3">
 
-
+                                            <input type="hidden" name="name" value="<?php echo $name; ?>">
 
 
                                                 <div class="col">
@@ -875,6 +876,8 @@
                                                     <div class="modal-footer">
                                                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ยกเลิก</button>
                                                         <form method="post" action="<?php echo site_url('del_p2'); ?>">
+                                                        <input type="hidden" name="UserName" value="<?php echo $UserName; ?>">
+                                                        <input type="hidden" name="name" value="<?php echo $name; ?>">
                                                             <input type="hidden" name="Id_inc" value="<?php echo $show->Id_inc; ?>">
                                                             <input type="hidden" name="InnovationID" value="<?php echo $show->InnovationID; ?>">
                                                             <input type="hidden" name="CreatorNameThai" value="<?php echo $show->CreatorNameThai; ?>">
