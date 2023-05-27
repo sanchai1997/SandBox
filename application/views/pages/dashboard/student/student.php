@@ -1290,7 +1290,13 @@ if (!empty($_SESSION['CountUploadSchool'])) {
                                                         </h5>
                                                         <div class="col-12" style="text-align: left; padding-left: 25px; padding-bottom: 5px;">
                                                         <?php if(count($EPORTFOLIO)>0 ) { ?>   
-                                                            <label style="padding-left: 20px;"><a href="show-eportfolio?StudentReferenceID=<?= $STUDENT_DETAIL->StudentReferenceID ?>" ><i class="bi bi-file-earmark-text-fill"></i> แฟ้มสะสมผลงาน </a>   
+                                                            <label style="padding-left: 20px;">
+                                                                <a href="show-eportfolio?StudentReferenceID=<?= $STUDENT_DETAIL->StudentReferenceID ?>" ><i class="bi bi-file-earmark-text-fill"></i> แฟ้มสะสมผลงาน </a>   
+                                                            </label>
+                                                            <br> <br>
+                                                            <label style="padding-left: 20px;">
+                                                                <a  href="eportfolio-download?StudentReferenceID=<?= $STUDENT_DETAIL->StudentReferenceID ?>" class="btn btn-success btn-sm"><i class="bi bi-download"></i> ดาวน์โหลด</a>
+                                                            </label>
                                                             <?php } else { ?>   
                                                                 <label style="padding-left: 20px;"> -
                                                             <?php } ?>   

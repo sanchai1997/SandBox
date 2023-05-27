@@ -73,6 +73,7 @@ $route['add_eportfolio/(:any)/(:num)/(:num)/(:num)/(:num)']['post'] = 'Eportfoli
 $route['edit_forms_eportfolio'] = 'EportfolioController/edit_forms_eportfolio';
 $route['edit_eportfolio/(:any)/(:num)/(:num)/(:num)/(:num)/(:num)']['post'] = 'EportfolioController/edit_eportfolio/$1/$2/$3/$4/$5/$6';
 $route['delete-eportfolio/(:num)'] = 'EportfolioController/delete_eportfolio/$1';
+$route['eportfolio-download'] = 'EportfolioController/eportfolio_download';
 
 
 
@@ -232,14 +233,14 @@ $route['edit-forms-teacher-address'] = 'forms_teacher/edit_forms_teacher_address
 $route['edit-forms-teacher-contract'] = 'forms_teacher/edit_forms_teacher_contract';
 $route['edit-forms-teacher-talent'] = 'forms_teacher/edit_forms_teacher_talent';
 $route['edit-forms-teacher-signature'] = 'forms_teacher/edit_forms_teacher_signature';
-$route['update-teacher-signature/(:any)/(:num)/(:num)/(:num)/(:num)/(:num)/(:any)']['post'] = 'forms_teacher/update_teacher_signature/$1/$2/$3/$4/$5/$6/$7';
-$route['update-teacher-main/(:any)/(:num)/(:num)/(:num)/(:num)/(:num)/(:any)']['post'] = 'forms_teacher/update_teacher_main/$1/$2/$3/$4/$5/$6/$7';
-$route['update-teacher-person/(:any)/(:num)/(:num)/(:num)/(:num)/(:num)']['post'] = 'forms_teacher/update_teacher_person/$1/$2/$3/$4/$5/$6';
-$route['update-teacher-marriage/(:any)/(:num)/(:num)/(:num)/(:num)/(:num)']['post'] = 'forms_teacher/update_teacher_marriage/$1/$2/$3/$4/$5/$6';
-$route['update-teacher-address/(:any)/(:num)/(:num)/(:num)/(:num)/(:num)']['post'] = 'forms_teacher/update_teacher_address/$1/$2/$3/$4/$5/$6';
-$route['update-teacher-contract/(:any)/(:num)/(:num)/(:num)/(:num)/(:num)']['post'] = 'forms_teacher/update_teacher_contract/$1/$2/$3/$4/$5/$6';
-$route['update-teacher-talent/(:any)/(:num)/(:num)/(:num)/(:num)/(:num)']['post'] = 'forms_teacher/update_teacher_talent/$1/$2/$3/$4/$5/$6';
-$route['delete-teacher/(:any)/(:num)/(:num)/(:num)/(:num)/(:num)'] = 'forms_teacher/delete_teacher/$1/$2/$3/$4/$5/$6';
+$route['update-teacher-signature/(:any)/(:num)/(:num)/(:num)/(:any)']['post'] = 'forms_teacher/update_teacher_signature/$1/$2/$3/$4/$5';
+$route['update-teacher-main/(:any)/(:num)/(:num)/(:num)/(:any)']['post'] = 'forms_teacher/update_teacher_main/$1/$2/$3/$4/$5';
+$route['update-teacher-person/(:any)/(:num)/(:num)/(:num)']['post'] = 'forms_teacher/update_teacher_person/$1/$2/$3/$4';
+$route['update-teacher-marriage/(:any)/(:num)/(:num)/(:num)']['post'] = 'forms_teacher/update_teacher_marriage/$1/$2/$3/$4';
+$route['update-teacher-address/(:any)/(:num)/(:num)/(:num)']['post'] = 'forms_teacher/update_teacher_address/$1/$2/$3/$4';
+$route['update-teacher-contract/(:any)/(:num)/(:num)/(:num)']['post'] = 'forms_teacher/update_teacher_contract/$1/$2/$3/$4';
+$route['update-teacher-talent/(:any)/(:num)/(:num)/(:num)']['post'] = 'forms_teacher/update_teacher_talent/$1/$2/$3/$4';
+$route['delete-teacher/(:any)/(:num)/(:num)/(:num)'] = 'forms_teacher/delete_teacher/$1/$2/$3/$4';
 
 
 //Certificate
@@ -306,8 +307,9 @@ $route['delete-teacher-classroom/(:any)/(:num)/(:num)/(:num)/(:num)/(:num)/(:num
 //GRADUATED 
 $route['graduated'] = 'graduated';
 $route['graduated-download'] = 'graduated/graduated_download';
-
 $route['delete-graduated/(:any)/(:num)/(:num)/(:num)/(:num)'] = 'forms_graduated/delete_graduated/$1/$2/$3/$4/$5';
+$route['forms-graduated'] = 'forms_graduated/forms_main';
+$route['update-graduated/(:any)/(:any)/(:num)/(:num)/(:num)'] = 'forms_graduated/update_graduated/$1/$2/$3/$4/$5';
 
 ///////////////////// GRADUATED - END /////////////////////////
 

@@ -107,6 +107,7 @@ if (!empty($_SESSION['CountUploadSchool'])) {
                                                 echo $SHOW_SCHOOL->SchoolNameThai;
                                             }
                                         } ?>
+                                        
                                     </button>&nbsp;
                                     <a class="btn btn-success" data-bs-toggle="modal" data-bs-target="#SchoolModel"><i class="bi bi-file-earmark-arrow-up"></i> อัปโหลดสถานศึกษา</a>&nbsp;
 

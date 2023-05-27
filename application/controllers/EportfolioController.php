@@ -99,6 +99,7 @@ class EportfolioController extends CI_Controller{
             show_404();
         }
         $data['StudentReferenceID'] = $_GET['StudentReferenceID'];     
+        $data['SchoolID'] = $_GET['SchoolID']; 
         $data["EPORTFOLIO"] = $this->Eportfolio_model->get_EPORTFOLIO_by_STUDENT_NO($data['StudentReferenceID']);
   
         $this->load->view('templates/header');
@@ -107,6 +108,22 @@ class EportfolioController extends CI_Controller{
         $this->load->view('templates/footer');
 
     }
+
+    public function eportfolio_download()
+    {
+
+        if (!file_exists(APPPATH . 'views/pages/dashboard/Eportfolio/eportfolio-download.php')) {
+            // Whoops, we don't have a page for that!
+            show_404();
+        }
+
+        $data['StudentReferenceID'] = $_GET['StudentReferenceID'];     
+        $data["EPORTFOLIO"] = $this->Eportfolio_model->get_EPORTFOLIO_by_STUDENT_NO($data['StudentReferenceID']);
+
+        $data['title'] = 'eportfolio-download'; // Capitalize the first letter
+        $this->load->view('pages/dashboard/Eportfolio/eportfolio-download', $data);
+    }
+
     public function edit_forms_eportfolio() {
         
         if ( ! file_exists(APPPATH.'views/pages/forms/Eportfolio/edit_forms-eportfolio.php'))
