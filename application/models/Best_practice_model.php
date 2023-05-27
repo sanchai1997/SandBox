@@ -4,14 +4,7 @@ class Best_practice_model extends CI_Model
 
 	public function add_BP()
 	{
-	$ip_address = '';
-			if (!empty($_SERVER['HTTP_CLIENT_IP'])) {
-				$ip_address = $_SERVER['HTTP_CLIENT_IP'];
-			} elseif (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
-				$ip_address = $_SERVER['HTTP_X_FORWARDED_FOR'];
-			} else {
-				$ip_address = $_SERVER['REMOTE_ADDR'];
-			}
+	
 
 
 
@@ -84,11 +77,12 @@ class Best_practice_model extends CI_Model
 			$query = $this->db->insert('BEST_PRACTICE', $data);
 			if ($query == TRUE) {
 				$UserID = $this->session->userdata('UserID');
+$UserIPAddress = $this->session->userdata('UserIPAddress');
 				$log = [
 				'LogMessage' => 'เพิ่มข้อมูล แนวปฏิบัติที่เป็นเลิศ "' . $this->input->post('BestPracticeName') . '"',
 				'LogUserID' => $UserID,
 				'LogUsername' => $this->input->post('UserName'),
-				'LogIpAddress' => $ip_address,
+				'LogIpAddress' => $UserIPAddress,
 				'LogCreation' => date('Y-m-d H:i:s')
 				];
 				$logresult = $this->db->insert('SYS_LOG', $log);
@@ -112,14 +106,7 @@ class Best_practice_model extends CI_Model
 
 	public function edit_BP()
 	{
-	$ip_address = '';
-			if (!empty($_SERVER['HTTP_CLIENT_IP'])) {
-				$ip_address = $_SERVER['HTTP_CLIENT_IP'];
-			} elseif (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
-				$ip_address = $_SERVER['HTTP_X_FORWARDED_FOR'];
-			} else {
-				$ip_address = $_SERVER['REMOTE_ADDR'];
-			}
+	
 
 
 
@@ -195,11 +182,12 @@ class Best_practice_model extends CI_Model
 					$query = $this->db->update('BEST_PRACTICE', $data);
 					if ($query == TRUE) {
 						$UserID = $this->session->userdata('UserID');
+$UserIPAddress = $this->session->userdata('UserIPAddress');
 						$log = [
 						'LogMessage' => 'แก้ไขข้อมูล แนวปฏิบัติที่เป็นเลิศ "' . $this->input->post('BestPracticeName') . '"',
 						'LogUserID' => $UserID,
 						'LogUsername' => $this->input->post('UserName'),
-						'LogIpAddress' => $ip_address,
+						'LogIpAddress' => $UserIPAddress,
 						'LogCreation' => date('Y-m-d H:i:s')
 						];
 						$logresult = $this->db->insert('SYS_LOG', $log);
@@ -222,14 +210,7 @@ class Best_practice_model extends CI_Model
 	}
 	public function del_BP()
 	{
-	$ip_address = '';
-			if (!empty($_SERVER['HTTP_CLIENT_IP'])) {
-				$ip_address = $_SERVER['HTTP_CLIENT_IP'];
-			} elseif (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
-				$ip_address = $_SERVER['HTTP_X_FORWARDED_FOR'];
-			} else {
-				$ip_address = $_SERVER['REMOTE_ADDR'];
-			}
+	
 
 
 		$status = '1';
@@ -241,11 +222,12 @@ class Best_practice_model extends CI_Model
 		$query = $this->db->update('BEST_PRACTICE', $data);
 		if ($query == TRUE) {
 			$UserID = $this->session->userdata('UserID');
+$UserIPAddress = $this->session->userdata('UserIPAddress');
 			$log = [
 			'LogMessage' => 'ลบข้อมูล แนวปฏิบัติที่เป็นเลิศ "' . $this->input->post('BestPracticeName') . '"',
 			'LogUserID' => $UserID,
 			'LogUsername' => $this->input->post('UserName'),
-			'LogIpAddress' => $ip_address,
+			'LogIpAddress' => $UserIPAddress,
 			'LogCreation' => date('Y-m-d H:i:s')
 			];
 						
@@ -262,14 +244,7 @@ class Best_practice_model extends CI_Model
 	}
 	public function add_BPC()
 	{
-	$ip_address = '';
-			if (!empty($_SERVER['HTTP_CLIENT_IP'])) {
-				$ip_address = $_SERVER['HTTP_CLIENT_IP'];
-			} elseif (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
-				$ip_address = $_SERVER['HTTP_X_FORWARDED_FOR'];
-			} else {
-				$ip_address = $_SERVER['REMOTE_ADDR'];
-			}
+	
 
 
 
@@ -298,11 +273,12 @@ class Best_practice_model extends CI_Model
 			$query = $this->db->insert('BEST_PRACTICE_CREATOR', $data);
 			if ($query == TRUE) {
 				$UserID = $this->session->userdata('UserID');
+$UserIPAddress = $this->session->userdata('UserIPAddress');
 				$log = [
 				'LogMessage' => 'เพิ่มข้อมูล ผู้จัดทำแนวปฏิบัติที่เป็นเลิศ  "'. $this->input->post('name') . '"',
 				'LogUserID' => $UserID,
 				'LogUsername' => $this->input->post('UserName'),
-				'LogIpAddress' => $ip_address,
+				'LogIpAddress' => $UserIPAddress,
 				'LogCreation' => date('Y-m-d H:i:s')
 				];
 				$logresult = $this->db->insert('SYS_LOG', $log);
@@ -340,11 +316,12 @@ class Best_practice_model extends CI_Model
 				$query = $this->db->insert('BEST_PRACTICE_CREATOR', $data);
 				if ($query == TRUE) {
 					$UserID = $this->session->userdata('UserID');
+$UserIPAddress = $this->session->userdata('UserIPAddress');
 					$log = [
 					'LogMessage' => 'เพิ่มข้อมูล ผู้จัดทำแนวปฏิบัติที่เป็นเลิศ  "'. $this->input->post('name') . '"',
 					'LogUserID' => $UserID,
 					'LogUsername' => $this->input->post('UserName'),
-					'LogIpAddress' => $ip_address,
+					'LogIpAddress' => $UserIPAddress,
 					'LogCreation' => date('Y-m-d H:i:s')
 					];
 					$logresult = $this->db->insert('SYS_LOG', $log);
@@ -368,14 +345,7 @@ class Best_practice_model extends CI_Model
 	}
 	public function edit_BPC()
 	{
-	$ip_address = '';
-			if (!empty($_SERVER['HTTP_CLIENT_IP'])) {
-				$ip_address = $_SERVER['HTTP_CLIENT_IP'];
-			} elseif (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
-				$ip_address = $_SERVER['HTTP_X_FORWARDED_FOR'];
-			} else {
-				$ip_address = $_SERVER['REMOTE_ADDR'];
-			}
+	
 
 
 
@@ -417,11 +387,12 @@ if ($num_chk <= 0 ) {
   $query = $this->db->update('BEST_PRACTICE_CREATOR', $data);
   if ($query == TRUE) {
 	$UserID = $this->session->userdata('UserID');
+$UserIPAddress = $this->session->userdata('UserIPAddress');
 	$log = [
 	'LogMessage' => 'แก้ไขข้อมูล ผู้จัดทำแนวปฏิบัติที่เป็นเลิศ  "'. $this->input->post('name') . '"',
 	'LogUserID' => $UserID,
 	'LogUsername' => $this->input->post('UserName'),
-	'LogIpAddress' => $ip_address,
+	'LogIpAddress' => $UserIPAddress,
 	'LogCreation' => date('Y-m-d H:i:s')
 	];
 	$logresult = $this->db->insert('SYS_LOG', $log);
@@ -444,14 +415,7 @@ if ($num_chk <= 0 ) {
 	}
 	public function del_BPC()
 	{
-	$ip_address = '';
-			if (!empty($_SERVER['HTTP_CLIENT_IP'])) {
-				$ip_address = $_SERVER['HTTP_CLIENT_IP'];
-			} elseif (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
-				$ip_address = $_SERVER['HTTP_X_FORWARDED_FOR'];
-			} else {
-				$ip_address = $_SERVER['REMOTE_ADDR'];
-			}
+	
 
 
 		$status = '1';
@@ -463,11 +427,12 @@ if ($num_chk <= 0 ) {
 		$query = $this->db->update('BEST_PRACTICE_CREATOR', $data);
 		if ($query == TRUE) {
 			$UserID = $this->session->userdata('UserID');
+$UserIPAddress = $this->session->userdata('UserIPAddress');
 			$log = [
 			'LogMessage' => 'ลบข้อมูล ผู้จัดทำแนวปฏิบัติที่เป็นเลิศ  "'. $this->input->post('name') . '"',
 			'LogUserID' => $UserID,
 			'LogUsername' => $this->input->post('UserName'),
-			'LogIpAddress' => $ip_address,
+			'LogIpAddress' => $UserIPAddress,
 			'LogCreation' => date('Y-m-d H:i:s')
 			];
 						
