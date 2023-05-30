@@ -22,6 +22,7 @@ class Main extends _sandboxcontroller {
 
 		$this->load->model('Summary_model');	
 		$this->load->model('Config_model');	
+        $this->load->model('Syslog_model');	
 		
 		/*
 		User Common variable
@@ -42,7 +43,11 @@ class Main extends _sandboxcontroller {
 
 		$config_privacy_policy = $this->Config_model->getitem(array('service' => 'privacy_policy', 'x' => 'privacy_policy'));
 		$data['privacy_policy'] = $config_privacy_policy['y'];
-		
+
+		$select = 'LogID, LogMessage, LogUserID, LogUserName, LogIpAddress, LogCreation ';
+		$SystemLogs = $this->Syslog_model->getitems_limit10(array(), $select);
+		$data['SystemLogs'] = $SystemLogs;
+				
 		//var_dump($data['UserRights']);
 		//student Manage
 		// $R_101000 = $data['UserRights'][array_search('101000', array_column($data['UserRights'], 'UR_Code'))];

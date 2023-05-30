@@ -235,7 +235,7 @@
                                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                 </div>
                                                 <div class="modal-body">
-                                                    <form action="<?php echo site_url('uplod_criteria/'.$Username); ?>" method="POST" id="UploadSchool" enctype="multipart/form-data">
+                                                    <form action="<?php echo site_url('uplod_criteria/'.$UserName); ?>" method="POST" id="UploadSchool" enctype="multipart/form-data">
                                                         <div class="col-md-12" style="padding-bottom: 15px;">
                                                             <div class="row">
                                                                 <div class="col-6">
