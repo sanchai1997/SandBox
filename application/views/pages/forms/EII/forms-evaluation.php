@@ -213,8 +213,13 @@
                                         <div class="col">
                                             <div class="form-floating">
                                                 <input type="text" class="form-control" id="floatingName"
+                                                    placeholder="รหัสตัวชี้วัด" name=""
+                                                    value="<?php echo $show->CriteriaID ?>" disabled>
+
+                                                    <input type="hidden" class="form-control" id="floatingName"
                                                     placeholder="รหัสตัวชี้วัด" name="CriteriaID"
                                                     value="<?php echo $show->CriteriaID ?>">
+
                                                 <input type="hidden" class="form-control" id="floatingName"
                                                     placeholder="รหัสตัวชี้วัด" name="Id"
                                                     value="<?php echo $show->Id ?>">
@@ -229,7 +234,7 @@
                                                 <input type="text" class="form-control" id="floatingName"
                                                     placeholder="ชื่อเกณฑ์" name="CriteriaName"
                                                     value="<?php echo $show->CriteriaName ?>">
-                                                <label for="floatingName"><?php echo nbs(2); ?> ชื่อเกณฑ์ </label>
+                                                <label for="Y"><?php echo nbs(2); ?> ชื่อเกณฑ์ </label>
                                             </div>
                                         </div>
                                     </div>
@@ -347,7 +352,7 @@
 
 
 
-                                                    <?php
+                                                    <?php $k = 0;
                                                         $result = $this->db->query("SELECT LevelIndex FROM ASSESSMENT_CRITERIA_LEVEL WHERE CriteriaID = $Id AND DeleteStatus = 0");
                                                         foreach ($result->result() as $show) {
                                                             $columnValues[] = $show->LevelIndex;
@@ -362,14 +367,11 @@
                                                             }
                                                         ?>
                                                     <option value="<?php echo $i ?>"><?php echo $i ?></option>
-                                                    <?php
-
-                                                        }
-                                                        ?>
+                                                    <?php $k++; } ?>
 
                                                 </select>
                                                 <label
-                                                    for="floatingSelect"><?php echo nbs(2); ?>ลำดับของระดับตัวชี้วัด</label>
+                                                    for="Y"><?php echo nbs(2); ?>ลำดับของระดับตัวชี้วัด</label>
                                             </div>
                                         </div>
 
@@ -398,9 +400,9 @@
                                     <div class="text-center">
                                         <a href="Fm_evaluation_das_p1?page=sh1" class="btn btn-danger"
                                             style="float: left;">ยกเลิก</a>
-
+                                            <?php if($k !='0'){ ?>  
                                         <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                                            data-bs-target="#exampleModal" style="float: right;">บันทึกข้อมูล</button>
+                                            data-bs-target="#exampleModal" style="float: right;">บันทึกข้อมูล</button>  <?php } ?>
                                     </div>
 
                                     <!-- Modal -->
@@ -490,7 +492,8 @@
                                                     aria-label="Floating label select example" name="LevelIndex">
                                                     <option value="<?php echo $show->LevelIndex ?>">
                                                         <?php echo $show->LevelIndex ?></option>
-                                                    <?php $columnValues = array();
+                                                    <?php
+                                                     $columnValues = array();
                                                             $result = $this->db->query("SELECT LevelIndex FROM ASSESSMENT_CRITERIA_LEVEL WHERE CriteriaID = $CriteriaID AND DeleteStatus = 0");
                                                             foreach ($result->result() as $shows) {
                                                                 $columnValues[] = $shows->LevelIndex;
@@ -709,7 +712,7 @@
 
                                                 </select>
                                                 <label
-                                                    for="floatingSelect"><?php echo nbs(2); ?>ลำดับองค์ประกอบตัวชี้วัด</label>
+                                                    for="Y"><?php echo nbs(2); ?>ลำดับองค์ประกอบตัวชี้วัด</label>
                                             </div>
                                         </div>
 
@@ -717,7 +720,7 @@
                                             <div class="form-floating">
                                                 <input type="text" class="form-control" id="floatingName"
                                                     placeholder="หัวข้อองค์ประกอบตัวชี้วัด" name="CompositionName" required>
-                                                <label for="floatingName"><?php echo nbs(
+                                                <label for="Y"><?php echo nbs(
                                                                                     2
                                                                                 ); ?> หัวข้อองค์ประกอบตัวชี้วัด
                                                 </label>
@@ -730,7 +733,7 @@
                                             <input type="number" class="form-control" id="floatingName"
                                                 placeholder="ค่าน้ำหนักการประเมินตัวชี้วัด"
                                                 name="CompositionWeightScore" step="0.01" required>
-                                            <label for="floatingName"><?php echo nbs(
+                                            <label for="Y"><?php echo nbs(
                                                                                 2
                                                                             ); ?> ค่าน้ำหนักการประเมินตัวชี้วัด
                                             </label>
@@ -1059,7 +1062,7 @@
                                                     <?php } ?>
                                                     <option value="0">เลือก</option>
                                                 </select>
-                                                <label for="LevelIndex"><?php echo nbs(
+                                                <label for="Y"><?php echo nbs(
                                                                                 2
                                                                             ); ?>ลำดับของระดับตัวชี้วัด</label>
                                             </div>
@@ -2878,7 +2881,7 @@ function checkSelectValues() {
 
                                                 </select>
                                                 <label
-                                                    for="LevelIndex"><?php echo nbs(
+                                                    for="Y"><?php echo nbs(
                                                                                     2
                                                                                 ); ?>ลำดับของระดับตัวชี้วัด(ถ้าไม่มีหมายความว่าถูกใช้ไปแล้ว)</label>
                                             </div>
