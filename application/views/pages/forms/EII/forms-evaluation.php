@@ -379,7 +379,7 @@
                                     <div class="row mb-3">
                                         <div class="form-floating">
                                             <input type="text" class="form-control" id="floatingName"
-                                                placeholder="หัวข้อระดับตัวชี้วัด" name="LevelName">
+                                                placeholder="หัวข้อระดับตัวชี้วัด" name="LevelName" required>
                                             <label for="Y"><?php echo nbs(
                                                                     2
                                                                 ); ?> หัวข้อระดับตัวชี้วัด </label>
@@ -389,7 +389,7 @@
                                     <div class="row mb-3">
                                         <div class="form-floating">
                                             <input type="text" class="form-control" id="floatingName"
-                                                placeholder="คะแนนระดับตัวชี้วัด" name="LevelScore">
+                                                placeholder="คะแนนระดับตัวชี้วัด" name="LevelScore" required>
                                             <label for="Y"><?php echo nbs(
                                                                     2
                                                                 ); ?> คะแนนระดับตัวชี้วัด </label>
@@ -519,7 +519,7 @@
                                         <div class="form-floating">
                                             <input type="text" class="form-control" id="floatingName"
                                                 placeholder="หัวข้อระดับตัวชี้วัด" name="LevelName"
-                                                value="<?php echo $show->LevelName ?>">
+                                                value="<?php echo $show->LevelName ?>" required>
                                             <label for="floatingName"><?php echo nbs(
                                                                                     2
                                                                                 ); ?> หัวข้อระดับตัวชี้วัด </label>
@@ -530,7 +530,7 @@
                                         <div class="form-floating">
                                             <input type="text" class="form-control" id="floatingName"
                                                 placeholder="คะแนนระดับตัวชี้วัด" name="LevelScore"
-                                                value="<?php echo $show->LevelScore ?>">
+                                                value="<?php echo $show->LevelScore ?>" required>
                                             <label for="floatingName"><?php echo nbs(
                                                                                     2
                                                                                 ); ?> คะแนนระดับตัวชี้วัด </label>
@@ -688,7 +688,9 @@
                                                 <select class="form-select" id="floatingSelect"
                                                     aria-label="Floating label select example" name="CompositionIndex">
 
-                                                    <?php $columnValues = array();
+                                                    <?php
+                                                    $k = 0;
+                                                    $columnValues = array();
                                                         $result3 = $this->db->query("SELECT * FROM ASSESSMENT_CRITERIA_COMPOSITION WHERE CriteriaID='" . $Id . "' AND DeleteStatus = '0'");
                                                         foreach ($result3->result() as $shows3) {
                                                             $columnValues[] = $shows3->CompositionIndex;
@@ -703,7 +705,7 @@
                                                             }
                                                         ?>
                                                     <option value="<?php echo $i ?>"><?php echo $i ?></option>
-                                                    <?php } ?>
+                                                    <?php $k++; } ?>
 
                                                 </select>
                                                 <label
@@ -714,7 +716,7 @@
                                         <div class="col">
                                             <div class="form-floating">
                                                 <input type="text" class="form-control" id="floatingName"
-                                                    placeholder="หัวข้อองค์ประกอบตัวชี้วัด" name="CompositionName">
+                                                    placeholder="หัวข้อองค์ประกอบตัวชี้วัด" name="CompositionName" required>
                                                 <label for="floatingName"><?php echo nbs(
                                                                                     2
                                                                                 ); ?> หัวข้อองค์ประกอบตัวชี้วัด
@@ -725,9 +727,9 @@
 
                                     <div class="row mb-3">
                                         <div class="form-floating">
-                                            <input type="text" class="form-control" id="floatingName"
+                                            <input type="number" class="form-control" id="floatingName"
                                                 placeholder="ค่าน้ำหนักการประเมินตัวชี้วัด"
-                                                name="CompositionWeightScore">
+                                                name="CompositionWeightScore" step="0.01" required>
                                             <label for="floatingName"><?php echo nbs(
                                                                                 2
                                                                             ); ?> ค่าน้ำหนักการประเมินตัวชี้วัด
@@ -750,9 +752,10 @@
                                     <div class="text-center">
                                         <a href="Fm_evaluation_das_p1?page=sh1" class="btn btn-danger"
                                             style="float: left;">ยกเลิก</a>
-
+                                          <?php if($k !='0'){ ?>                                      
                                         <button type="button" class="btn btn-primary" data-bs-toggle="modal"
                                             data-bs-target="#exampleModal" style="float: right;">บันทึกข้อมูล</button>
+                                            <?php } ?>
                                     </div>
 
                                     <!-- Modal -->
@@ -856,7 +859,7 @@
                                             <div class="form-floating">
                                                 <input type="text" class="form-control" id="floatingName"
                                                     placeholder="หัวข้อองค์ประกอบตัวชี้วัด" name="CompositionName"
-                                                    value="<?php echo $show->CompositionName ?>">
+                                                    value="<?php echo $show->CompositionName ?>" required>
                                                 <label for="floatingName"><?php echo nbs(
                                                                                         2
                                                                                     ); ?> หัวข้อองค์ประกอบตัวชี้วัด
@@ -867,10 +870,10 @@
 
                                     <div class="row mb-3">
                                         <div class="form-floating">
-                                            <input type="text" class="form-control" id="floatingName"
+                                            <input type="number" class="form-control" id="floatingName"
                                                 placeholder="ค่าน้ำหนักการประเมินตัวชี้วัด"
                                                 name="CompositionWeightScore"
-                                                value="<?php echo $show->CompositionWeightScore ?>">
+                                                value="<?php echo $show->CompositionWeightScore ?>" step="0.01" required>
                                             <label for="floatingName"><?php echo nbs(
                                                                                     2
                                                                                 ); ?> ค่าน้ำหนักการประเมินตัวชี้วัด
