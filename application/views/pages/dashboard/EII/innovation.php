@@ -408,7 +408,9 @@
                                 </div>
                                 <div class="col">
                                     <h5 class="fw-bold">เอกสารแนบ</h5>
+                                    <?php if($show->AttachmentURL != '') { ?>
                                     <p><a href="<?php echo base_url('assets/EII/INNOVATION') ?>/<?php echo $show->AttachmentURL; ?>" target="_blank"><i class="bi bi-file-earmark-text-fill"></i>รายละเอียดเอกสาร</a></p>
+                                    <?php } ?>
                                 </div>
                             </div>
 

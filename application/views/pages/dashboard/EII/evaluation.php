@@ -1639,8 +1639,9 @@
                             </div>
                             <div class="col">
                                 <h6 class="fw-bold">ลิงก์เอกสารแนบรายละเอียดการประเมิน</h6>
+                                <?php if($show->SchoolAssessmentAttachmentURL != '') { ?>
                                 <p><a href="<?php echo base_url('assets/EII/SCHOOL_ASSESSMENT_CRITERIA/') ?>/<?php echo $show->SchoolAssessmentAttachmentURL; ?>" target="_blank"><i class="bi bi-file-earmark-text-fill"></i>เอกสารการประเมิน</i></a></p>
-
+<?php } ?>
 
 
                             </div>
@@ -1817,8 +1818,9 @@
                                 <h6 class="fw-bold">ลิงก์เอกสารแนบรายละเอียดการประเมินผลสัมฤทธิ์การศึกษา</h6>
                                 <p>
                                     <th scope="row " style="text-align: center;">
+                                    <?php if($show->AchievementAssessmentAttachmentURL != '') { ?>
                                         <a href="<?php echo base_url('assets/EII/ACHIEVEMENT_ASSESSMENT/') ?>/<?php echo $show->AchievementAssessmentAttachmentURL; ?>" target="_blank"><i class="bi bi-file-earmark-text-fill"></i>รายละเอียดเอกสาร</i></a>
-
+                                        <?php } ?>
                                     </th>
                                 </p>
 

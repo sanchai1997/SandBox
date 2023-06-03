@@ -452,8 +452,10 @@
                     </div>
                     <div class="col">
                     <h6 class="fw-bold">เอกสารแนบ</h6>
+                    <?php if($show->AttachmentURL != '') { ?>
                         <p><a href="<?php echo base_url('assets/EII/BEST_PRACTICE') ?>/<?php echo $show->AttachmentURL; ?>"
                                 target="_blank"><i class="bi bi-file-earmark-text-fill"></i>รายละเอียดเอกสาร</a></p>
+                                <?php  } ?>
                     </div>
                 </div>
                 <div class="row">
