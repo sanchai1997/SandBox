@@ -31,10 +31,12 @@ class Participant_model extends CI_Model
 			if ($query == TRUE) {
 				$UserID = $this->session->userdata('UserID');
 				$UserIPAddress = $this->session->userdata('UserIPAddress');
+				$UserName = $this->session->userdata('UserName');
+
 				$log = [
 					'LogMessage' => 'เพิ่มข้อมูล หน่วยงานที่เข้ามามีส่วนร่วม  ชื่อภาครัฐ "' . $this->input->post('ParticipantName') . '"',
 					'LogUserID' => $UserID,
-					'LogUsername' => $this->input->post('UserName'),
+					'LogUsername' => $UserName ,
 					'LogIpAddress' => $UserIPAddress,
 					'LogCreation' => date('Y-m-d H:i:s')
 				];
@@ -74,10 +76,12 @@ class Participant_model extends CI_Model
 		if ($query == TRUE) {
 			$UserID = $this->session->userdata('UserID');
 			$UserIPAddress = $this->session->userdata('UserIPAddress');
+			$UserName = $this->session->userdata('UserName');
+
 			$log = [
 				'LogMessage' => 'แก้ไขข้อมูล หน่วยงานที่เข้ามามีส่วนร่วม  ชื่อภาครัฐ "' . $this->input->post('ParticipantName') . '"',
 				'LogUserID' => $UserID,
-				'LogUsername' => $this->input->post('UserName'),
+				'LogUsername' => $UserName ,
 				'LogIpAddress' => $UserIPAddress,
 				'LogCreation' => date('Y-m-d H:i:s')
 			];
@@ -110,10 +114,12 @@ class Participant_model extends CI_Model
 		if ($query == TRUE) {
 			$UserID = $this->session->userdata('UserID');
 			$UserIPAddress = $this->session->userdata('UserIPAddress');
+			$UserName = $this->session->userdata('UserName');
+
 			$log = [
 				'LogMessage' => 'ลบข้อมูล หน่วยงานที่เข้ามามีส่วนร่วม  ชื่อภาครัฐ "' . $this->input->post('ParticipantName') . '"',
 				'LogUserID' => $UserID,
-				'LogUsername' => $this->input->post('UserName'),
+				'LogUsername' => $UserName ,
 				'LogIpAddress' => $UserIPAddress,
 				'LogCreation' => date('Y-m-d H:i:s')
 			];
@@ -149,10 +155,12 @@ class Participant_model extends CI_Model
 		if ($query == TRUE) {
 			$UserID = $this->session->userdata('UserID');
 			$UserIPAddress = $this->session->userdata('UserIPAddress');
+			$UserName = $this->session->userdata('UserName');
+
 			$log = [
 				'LogMessage' => 'เพิ่มข้อมูล ติดต่อผู้มีส่วนร่วมของหน่วยงานที่เข้ามามีส่วนร่วม = "' . $this->input->post('name') . '"',
 				'LogUserID' => $UserID,
-				'LogUsername' => $this->input->post('UserName'),
+				'LogUsername' => $UserName ,
 				'LogIpAddress' => $UserIPAddress,
 				'LogCreation' => date('Y-m-d H:i:s')
 			];
@@ -188,10 +196,12 @@ class Participant_model extends CI_Model
 		if ($query == TRUE) {
 			$UserID = $this->session->userdata('UserID');
 			$UserIPAddress = $this->session->userdata('UserIPAddress');
+			$UserName = $this->session->userdata('UserName');
+
 			$log = [
 				'LogMessage' => 'แก้ไขข้อมูล ติดต่อผู้มีส่วนร่วมของหน่วยงานที่เข้ามามีส่วนร่วม = "' . $this->input->post('name') . '"',
 				'LogUserID' => $UserID,
-				'LogUsername' => $this->input->post('UserName'),
+				'LogUsername' => $UserName ,
 				'LogIpAddress' => $UserIPAddress,
 				'LogCreation' => date('Y-m-d H:i:s')
 			];
@@ -224,10 +234,12 @@ class Participant_model extends CI_Model
 		if ($query == TRUE) {
 			$UserID = $this->session->userdata('UserID');
 			$UserIPAddress = $this->session->userdata('UserIPAddress');
+			$UserName = $this->session->userdata('UserName');
+
 			$log = [
 				'LogMessage' => 'ลบข้อมูล ติดต่อผู้มีส่วนร่วมของหน่วยงานที่เข้ามามีส่วนร่วม = "' . $this->input->post('name') . '"',
 				'LogUserID' => $UserID,
-				'LogUsername' => $this->input->post('UserName'),
+				'LogUsername' => $UserName ,
 				'LogIpAddress' => $UserIPAddress,
 				'LogCreation' => date('Y-m-d H:i:s')
 			];
@@ -294,10 +306,12 @@ class Participant_model extends CI_Model
 		if ($query == TRUE) {
 			$UserID = $this->session->userdata('UserID');
 			$UserIPAddress = $this->session->userdata('UserIPAddress');
+			$UserName = $this->session->userdata('UserName');
+
 			$log = [
 				'LogMessage' => 'เพิ่มข้อมูล การมีส่วนร่วมของหน่วยงานที่เข้ามามีส่วนร่วม = "' . $this->input->post('name') . '"',
 				'LogUserID' => $UserID,
-				'LogUsername' => $this->input->post('UserName'),
+				'LogUsername' => $UserName ,
 				'LogIpAddress' => $UserIPAddress,
 				'LogCreation' => date('Y-m-d H:i:s')
 			];
@@ -367,10 +381,12 @@ class Participant_model extends CI_Model
 		if ($query == TRUE) {
 			$UserID = $this->session->userdata('UserID');
 			$UserIPAddress = $this->session->userdata('UserIPAddress');
+			$UserName = $this->session->userdata('UserName');
+
 			$log = [
 				'LogMessage' => 'แก้ไขข้อมูล ของหน่วยงานที่เข้ามามีส่วนร่วม = "' . $this->input->post('name') . '"',
 				'LogUserID' => $UserID,
-				'LogUsername' => $this->input->post('UserName'),
+				'LogUsername' => $UserName ,
 				'LogIpAddress' => $UserIPAddress,
 				'LogCreation' => date('Y-m-d H:i:s')
 			];
@@ -407,10 +423,12 @@ class Participant_model extends CI_Model
 		if ($query == TRUE) {
 			$UserID = $this->session->userdata('UserID');
 			$UserIPAddress = $this->session->userdata('UserIPAddress');
+			$UserName = $this->session->userdata('UserName');
+
 			$log = [
 				'LogMessage' => 'ลบข้อมูล ของหน่วยงานที่เข้ามามีส่วนร่วม = "' . $this->input->post('name') . '"',
 				'LogUserID' => $UserID,
-				'LogUsername' => $this->input->post('UserName'),
+				'LogUsername' => $UserName ,
 				'LogIpAddress' => $UserIPAddress,
 				'LogCreation' => date('Y-m-d H:i:s')
 			];
@@ -447,10 +465,12 @@ class Participant_model extends CI_Model
 		if ($query == TRUE) {
 			$UserID = $this->session->userdata('UserID');
 			$UserIPAddress = $this->session->userdata('UserIPAddress');
+			$UserName = $this->session->userdata('UserName');
+
 			$log = [
 				'LogMessage' => 'เพิ่มข้อมูล บันทึกเพิ่มเติมของหน่วยงานที่เข้ามามีส่วนร่วม = "' . $this->input->post('name') . '"',
 				'LogUserID' => $UserID,
-				'LogUsername' => $this->input->post('UserName'),
+				'LogUsername' => $UserName ,
 				'LogIpAddress' => $UserIPAddress,
 				'LogCreation' => date('Y-m-d H:i:s')
 			];
@@ -488,10 +508,12 @@ class Participant_model extends CI_Model
 		if ($query == TRUE) {
 			$UserID = $this->session->userdata('UserID');
 			$UserIPAddress = $this->session->userdata('UserIPAddress');
+			$UserName = $this->session->userdata('UserName');
+
 			$log = [
 				'LogMessage' => 'แก้ไขข้อมูล บันทึกเพิ่มเติมของหน่วยงานที่เข้ามามีส่วนร่วม = "' . $this->input->post('name') . '"',
 				'LogUserID' => $UserID,
-				'LogUsername' => $this->input->post('UserName'),
+				'LogUsername' => $UserName ,
 				'LogIpAddress' => $UserIPAddress,
 				'LogCreation' => date('Y-m-d H:i:s')
 			];
@@ -526,10 +548,12 @@ class Participant_model extends CI_Model
 		if ($query == TRUE) {
 			$UserID = $this->session->userdata('UserID');
 			$UserIPAddress = $this->session->userdata('UserIPAddress');
+			$UserName = $this->session->userdata('UserName');
+
 			$log = [
 				'LogMessage' => 'ลบข้อมูล บันทึกเพิ่มเติมของหน่วยงานที่เข้ามามีส่วนร่วม = "' . $this->input->post('name') . '"',
 				'LogUserID' => $UserID,
-				'LogUsername' => $this->input->post('UserName'),
+				'LogUsername' => $UserName ,
 				'LogIpAddress' => $UserIPAddress,
 				'LogCreation' => date('Y-m-d H:i:s')
 			];

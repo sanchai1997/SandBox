@@ -65,10 +65,11 @@ class Committee_model extends CI_Model
 			if ($query == TRUE) {
 				$UserID = $this->session->userdata('UserID');
 $UserIPAddress = $this->session->userdata('UserIPAddress');
+$UserName = $this->session->userdata('UserName');
 				$log = [
 						'LogMessage' => 'เพิ่มข้อมูล ผู้อำนาจและหน้าที่ เลขที่คำสั่ง = "' . $this->input->post('CommitteeAppointmentNumber') . '"',
 				'LogUserID' => $UserID,
-				'LogUsername' => $this->input->post('UserName'),
+				'LogUsername' => $UserName ,
 				'LogIpAddress' => $UserIPAddress,
 				'LogCreation' => date('Y-m-d H:i:s')
 				];
@@ -128,10 +129,11 @@ $UserIPAddress = $this->session->userdata('UserIPAddress');
 					if ($query == TRUE) {
 						$UserID = $this->session->userdata('UserID');
 $UserIPAddress = $this->session->userdata('UserIPAddress');
+$UserName = $this->session->userdata('UserName');
 						$log = [
 						'LogMessage' => 'แก้ไขข้อมูล ผู้อำนาจและหน้าที่ เลขที่คำสั่ง = "' . $this->input->post('CommitteeAppointmentNumber') . '"',
 						'LogUserID' => $UserID,
-						'LogUsername' => $this->input->post('UserName'),
+						'LogUsername' => $UserName ,
 						'LogIpAddress' => $UserIPAddress,
 						'LogCreation' => date('Y-m-d H:i:s')
 						];
@@ -160,10 +162,11 @@ $UserIPAddress = $this->session->userdata('UserIPAddress');
 				if ($query == TRUE) {
 					$UserID = $this->session->userdata('UserID');
 $UserIPAddress = $this->session->userdata('UserIPAddress');
+$UserName = $this->session->userdata('UserName');
 					$log = [
 					'LogMessage' => 'แก้ไขข้อมูล ผู้อำนาจและหน้าที่ เลขที่คำสั่ง = "' . $this->input->post('CommitteeAppointmentNumber') . '"',
 					'LogUserID' => $UserID,
-					'LogUsername' => $this->input->post('UserName'),
+					'LogUsername' => $UserName ,
 					'LogIpAddress' => $UserIPAddress,
 					'LogCreation' => date('Y-m-d H:i:s')
 					];
@@ -200,10 +203,11 @@ $UserIPAddress = $this->session->userdata('UserIPAddress');
 		if ($query == TRUE) {
 			$UserID = $this->session->userdata('UserID');
 $UserIPAddress = $this->session->userdata('UserIPAddress');
+$UserName = $this->session->userdata('UserName');
 			$log = [
 			'LogMessage' => 'ลบข้อมูล ผู้อำนาจและหน้าที่ เลขที่คำสั่ง = "' . $this->input->post('CommitteeAppointmentNumber') . '"',
 			'LogUserID' => $UserID,
-			'LogUsername' => $this->input->post('UserName'),
+			'LogUsername' => $UserName ,
 			'LogIpAddress' => $UserIPAddress,
 			'LogCreation' => date('Y-m-d H:i:s')
 			];
@@ -264,10 +268,11 @@ $UserIPAddress = $this->session->userdata('UserIPAddress');
 			if ($query == TRUE) {
 				$UserID = $this->session->userdata('UserID');
 $UserIPAddress = $this->session->userdata('UserIPAddress');
+$UserName = $this->session->userdata('UserName');
 				$log = [
 				'LogMessage' => 'เพิ่มข้อมูล คณะกรรมการ เลขที่คำสั่ง = "' . $this->input->post('CommitteeAppointmentNumber')  . '"',
 				'LogUserID' => $UserID,
-				'LogUsername' => $this->input->post('UserName'),
+				'LogUsername' => $UserName ,
 				'LogIpAddress' => $UserIPAddress,
 				'LogCreation' => date('Y-m-d H:i:s')
 				];
@@ -320,10 +325,11 @@ $UserIPAddress = $this->session->userdata('UserIPAddress');
 		if ($query == TRUE) {
 			$UserID = $this->session->userdata('UserID');
 $UserIPAddress = $this->session->userdata('UserIPAddress');
+$UserName = $this->session->userdata('UserName');
 			$log = [
 			'LogMessage' => 'แก้ไขข้อมูล  คณะกรรมการ เลขที่คำสั่ง = "' . $this->input->post('CommitteeAppointmentNumber')  . '"',
 			'LogUserID' => $UserID,
-			'LogUsername' => $this->input->post('UserName'),
+			'LogUsername' => $UserName ,
 			'LogIpAddress' => $UserIPAddress,
 			'LogCreation' => date('Y-m-d H:i:s')
 			];
@@ -357,10 +363,11 @@ $UserIPAddress = $this->session->userdata('UserIPAddress');
 		if ($query == TRUE) {
 			$UserID = $this->session->userdata('UserID');
 $UserIPAddress = $this->session->userdata('UserIPAddress');
+$UserName = $this->session->userdata('UserName');
 			$log = [
 			'LogMessage' => 'ลบข้อมูล  คณะกรรมการ เลขที่คำสั่ง = "' . $this->input->post('CommitteeAppointmentNumber')  . '"',
 			'LogUserID' => $UserID,
-			'LogUsername' => $this->input->post('UserName'),
+			'LogUsername' => $UserName ,
 			'LogIpAddress' => $UserIPAddress,
 			'LogCreation' => date('Y-m-d H:i:s')
 			];

@@ -235,7 +235,8 @@
                                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                 </div>
                                                 <div class="modal-body">
-                                                    <form action="<?php echo site_url('uplod_criteria/'.$UserName); ?>" method="POST" id="UploadSchool" enctype="multipart/form-data">
+                                                    <form action="<?php echo site_url('uplod_criteria'); ?>" method="POST" id="UploadSchool" enctype="multipart/form-data">
+                                                  
                                                         <div class="col-md-12" style="padding-bottom: 15px;">
                                                             <div class="row">
                                                                 <div class="col-6">
@@ -316,10 +317,10 @@
                             <thead>
     
                                     <tr>
-                                        <th style="" scope="col">รหัสตัวชี้วัด</th>
-                                        <th style="" scope="col">ชื่อเกณฑ์</th>
-                                        <th style="" scope="col">ระดับตัวชี้วัด</th>
-                                        <th style="" scope="col">องค์ประกอบ</th>
+                                        <th class="col-1" scope="col">รหัสตัวชี้วัด</th>
+                                        <th class="" scope="col">ชื่อเกณฑ์</th>
+                                        <th class="col-2" scope="col">ระดับตัวชี้วัด</th>
+                                        <th class="col-" scope="col">องค์ประกอบ</th>
                                         <!-- <th style="" scope="col">คำอธิบาย</th> -->
                                         <th style="text-align: center;" scope="col">ดูรายละเอียด</th>
                                         <?php if ($R_701000 <> NULL && $R_701000['UR_Add'] == "1") { ?>
@@ -339,8 +340,8 @@
                                             <td scope="row " class="">
                                                 <p class="mt-2"> <?php echo $CriteriaID = $show->CriteriaID; ?></p>
                                             </td>
-                                            <td scope="row" class="">
-                                                <p class="mt-2"> <?php echo $CriteriaName = $show->CriteriaName; ?></p>
+                                            <td scope="row" class="" >
+                                                <p class="mt-1" style="width: 300px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;"> <?php echo $CriteriaName = $show->CriteriaName; ?></p>
                                             </td>
                                             <td style=";">
                                                 <?php

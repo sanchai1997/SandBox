@@ -390,6 +390,7 @@ $data = $this->session->userdata();
     }
 
     public function uplod_criteria() {
+       
         $this->Evaluation_model->uplod_criteria();
     }
 

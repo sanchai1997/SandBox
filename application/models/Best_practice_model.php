@@ -78,10 +78,11 @@ class Best_practice_model extends CI_Model
 			if ($query == TRUE) {
 				$UserID = $this->session->userdata('UserID');
 $UserIPAddress = $this->session->userdata('UserIPAddress');
+$UserName = $this->session->userdata('UserName');
 				$log = [
 				'LogMessage' => 'เพิ่มข้อมูล แนวปฏิบัติที่เป็นเลิศ "' . $this->input->post('BestPracticeName') . '"',
 				'LogUserID' => $UserID,
-				'LogUsername' => $this->input->post('UserName'),
+				'LogUsername' => $UserName ,
 				'LogIpAddress' => $UserIPAddress,
 				'LogCreation' => date('Y-m-d H:i:s')
 				];
@@ -183,10 +184,11 @@ $UserIPAddress = $this->session->userdata('UserIPAddress');
 					if ($query == TRUE) {
 						$UserID = $this->session->userdata('UserID');
 $UserIPAddress = $this->session->userdata('UserIPAddress');
+$UserName = $this->session->userdata('UserName');
 						$log = [
 						'LogMessage' => 'แก้ไขข้อมูล แนวปฏิบัติที่เป็นเลิศ "' . $this->input->post('BestPracticeName') . '"',
 						'LogUserID' => $UserID,
-						'LogUsername' => $this->input->post('UserName'),
+						'LogUsername' => $UserName ,
 						'LogIpAddress' => $UserIPAddress,
 						'LogCreation' => date('Y-m-d H:i:s')
 						];
@@ -223,10 +225,11 @@ $UserIPAddress = $this->session->userdata('UserIPAddress');
 		if ($query == TRUE) {
 			$UserID = $this->session->userdata('UserID');
 $UserIPAddress = $this->session->userdata('UserIPAddress');
+$UserName = $this->session->userdata('UserName');
 			$log = [
 			'LogMessage' => 'ลบข้อมูล แนวปฏิบัติที่เป็นเลิศ "' . $this->input->post('BestPracticeName') . '"',
 			'LogUserID' => $UserID,
-			'LogUsername' => $this->input->post('UserName'),
+			'LogUsername' => $UserName ,
 			'LogIpAddress' => $UserIPAddress,
 			'LogCreation' => date('Y-m-d H:i:s')
 			];
@@ -274,10 +277,11 @@ $UserIPAddress = $this->session->userdata('UserIPAddress');
 			if ($query == TRUE) {
 				$UserID = $this->session->userdata('UserID');
 $UserIPAddress = $this->session->userdata('UserIPAddress');
+$UserName = $this->session->userdata('UserName');
 				$log = [
 				'LogMessage' => 'เพิ่มข้อมูล ผู้จัดทำแนวปฏิบัติที่เป็นเลิศ  "'. $this->input->post('name') . '"',
 				'LogUserID' => $UserID,
-				'LogUsername' => $this->input->post('UserName'),
+				'LogUsername' => $UserName ,
 				'LogIpAddress' => $UserIPAddress,
 				'LogCreation' => date('Y-m-d H:i:s')
 				];
@@ -317,10 +321,11 @@ $UserIPAddress = $this->session->userdata('UserIPAddress');
 				if ($query == TRUE) {
 					$UserID = $this->session->userdata('UserID');
 $UserIPAddress = $this->session->userdata('UserIPAddress');
+$UserName = $this->session->userdata('UserName');
 					$log = [
 					'LogMessage' => 'เพิ่มข้อมูล ผู้จัดทำแนวปฏิบัติที่เป็นเลิศ  "'. $this->input->post('name') . '"',
 					'LogUserID' => $UserID,
-					'LogUsername' => $this->input->post('UserName'),
+					'LogUsername' => $UserName ,
 					'LogIpAddress' => $UserIPAddress,
 					'LogCreation' => date('Y-m-d H:i:s')
 					];
@@ -388,10 +393,11 @@ if ($num_chk <= 0 ) {
   if ($query == TRUE) {
 	$UserID = $this->session->userdata('UserID');
 $UserIPAddress = $this->session->userdata('UserIPAddress');
+$UserName = $this->session->userdata('UserName');
 	$log = [
 	'LogMessage' => 'แก้ไขข้อมูล ผู้จัดทำแนวปฏิบัติที่เป็นเลิศ  "'. $this->input->post('name') . '"',
 	'LogUserID' => $UserID,
-	'LogUsername' => $this->input->post('UserName'),
+	'LogUsername' => $UserName ,
 	'LogIpAddress' => $UserIPAddress,
 	'LogCreation' => date('Y-m-d H:i:s')
 	];
@@ -428,10 +434,11 @@ $UserIPAddress = $this->session->userdata('UserIPAddress');
 		if ($query == TRUE) {
 			$UserID = $this->session->userdata('UserID');
 $UserIPAddress = $this->session->userdata('UserIPAddress');
+$UserName = $this->session->userdata('UserName');
 			$log = [
 			'LogMessage' => 'ลบข้อมูล ผู้จัดทำแนวปฏิบัติที่เป็นเลิศ  "'. $this->input->post('name') . '"',
 			'LogUserID' => $UserID,
-			'LogUsername' => $this->input->post('UserName'),
+			'LogUsername' => $UserName ,
 			'LogIpAddress' => $UserIPAddress,
 			'LogCreation' => date('Y-m-d H:i:s')
 			];
