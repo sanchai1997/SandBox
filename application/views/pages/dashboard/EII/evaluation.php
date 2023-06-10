@@ -14,6 +14,7 @@
     .my-link:hover {
         color: blue;
     }
+    
 </style>
 <main id="main" class="main">
     <?php
@@ -354,7 +355,7 @@
     
                                                     <!-- Button trigger modal -->
                                                     <button type="button" class="btn " data-bs-toggle="modal" data-bs-target="#LevelName<?php echo $cls->Id_acl; ?>">
-                                                        <?php echo $cls->LevelName; ?>
+                                                        <p ><?php echo $cls->LevelName; ?></p>
                                                     </button>
                                                     <br>
                                                     <!-- Modal -->
@@ -416,8 +417,8 @@
                                                 foreach ($resultA3->result() as $showA3) { ?>
     
                                                     <!-- Button trigger modal -->
-                                                    <button type="button" class="btn " data-bs-toggle="modal" data-bs-target="#CompositionName<?php echo $showA3->Id_acc; ?>">
-                                                        <?php echo $showA3->CompositionName; ?>
+                                                    <button style="width: 300px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; text-align: left;" type="button" class="btn " data-bs-toggle="modal" data-bs-target="#CompositionName<?php echo $showA3->Id_acc; ?>">
+                                                       <p > <?php echo $showA3->CompositionName; ?></p>
                                                     </button>
                                                     <br>
                                                     <!-- Modal -->
@@ -1840,3 +1841,14 @@
     <?php } ?>
 
 <?php } ?>
+<script>
+  window.addEventListener('DOMContentLoaded', function() {
+  var textContainer = document.getElementById('textContainer');
+  var originalText = textContainer.innerHTML;
+  if (originalText.length > 50) {
+    var shortenedText = originalText.substring(0, 50) + '...';
+    textContainer.innerHTML = shortenedText;
+  }
+});
+
+ </script>

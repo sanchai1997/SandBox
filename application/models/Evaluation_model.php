@@ -1486,14 +1486,8 @@ $UserName = $this->session->userdata('UserName');
 
 					if ($Check != TRUE) {
 						$insert = $this->db->insert('ASSESSMENT_CRITERIA', $all_data);
-						$ip_address = '';
-						if (!empty($_SERVER['HTTP_CLIENT_IP'])) {
-							$ip_address = $_SERVER['HTTP_CLIENT_IP'];
-						} elseif (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
-							$ip_address = $_SERVER['HTTP_X_FORWARDED_FOR'];
-						} else {
-							$ip_address = $_SERVER['REMOTE_ADDR'];
-						}
+						$last_id = $this->db->insert_id();
+						
 						if ($insert == TRUE) {
 							$UserID = $this->session->userdata('UserID');
 $UserIPAddress = $this->session->userdata('UserIPAddress');
@@ -1508,7 +1502,7 @@ $UserName = $this->session->userdata('UserName');
 							];
 							$logresult = $this->db->insert('SYS_LOG', $log);
 						}
-						$last_id = $this->db->insert_id();
+						
 						$note = 'สำเร็จ';
 						$status = '1';
 						$done++;
@@ -1517,6 +1511,7 @@ $UserName = $this->session->userdata('UserName');
 						switch ($data[3]) {
 
 							case ($data[3] == '1'):
+							
 								if ($data[6] == '' || $data[7] == '') {
 									$path2 = "ระดับของตัวชี้วัด" . $data[3] . 'แต่ข้อมูลในลำดับระดับของตัวชี้วัด 1 ข้อมูลไม่ครบ';
 									$status2 = '0';
@@ -1528,8 +1523,11 @@ $UserName = $this->session->userdata('UserName');
 										'LevelScore' => $data[7]
 
 									];
-
-									$insert = $this->db->insert('ASSESSMENT_CRITERIA_LEVEL', $path_two);
+									
+									
+									 $insert = $this->db->insert('ASSESSMENT_CRITERIA_LEVEL', $path_two);
+								
+									
 									$status2 = '1';
 									$path2 = '';
 								}
