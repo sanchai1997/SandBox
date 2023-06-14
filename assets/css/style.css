@@ -1259,3 +1259,38 @@ h6 {
   font-size: 13px;
   color: #012970;
 }
+
+
+/*
+*
+* ==========================================
+* TABLE Rights Fix Header
+* ==========================================
+*
+*/
+.table-rights-fixed tbody {
+    height: 340px;
+    overflow-y: auto;
+    width: 100%;
+}
+
+.table-rights-fixed thead,
+.table-rights-fixed tbody,
+.table-rights-fixed tr,
+.table-rights-fixed td,
+.table-rights-fixed th {
+    display: block;
+}
+
+.table-rights-fixed tbody td,
+.table-rights-fixed tbody th,
+.table-rights-fixed thead > tr > th {
+    float: left;
+    position: relative;
+
+    &::after {
+        content: '';
+        clear: both;
+        display: block;
+    }
+}

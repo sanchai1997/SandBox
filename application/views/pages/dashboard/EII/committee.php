@@ -14,7 +14,9 @@
     <?php $year = isset($_GET['year']) ? $_GET['year'] : ''; ?>
     <?php $province = isset($_GET['province']) ? $_GET['province'] : ''; ?>
     <?php
-    session_start(); // เริ่มต้น session
+    if (session_status() == PHP_SESSION_NONE) {
+        session_start();
+    } // เริ่มต้น session
     if (isset($_SESSION['success'])) { ?>
     <div style="position: relative;">
         <div class="alert alert-success" id="myAlert"
@@ -86,15 +88,21 @@
                         </h6>
                     </div>
                     <div class="col">
+                        <?php    if($R_602000 <> NULL && $R_602000['UR_Add']== "1"){ ?>
                         <h6 style="float: right; padding: 15px;" class="card-title"><a
                                 href="<?php echo site_url('c_forms_p1?page=sh1'); ?>"
-                                class="btn btn-success"><i class="bi bi-file-earmark-plus"></i> เพิ่มข้อมูล</a>
+                                class="btn btn-success">เพิ่มข้อมูล</a>
                         </h6>
+                          <?php } ?>
                     </div>
                 </div>
 
-                <table class="table table-borderless datatable">
-                    <thead>
+                 <table class="table  <?php if ($R_602000 <> NULL && $R_602000['UR_Add'] == "1") {
+                                                                echo 'table-borderless datatable';
+                                                            }else {
+                                                                echo 'table-bordered';
+                                                            } ?>  col-12">
+                        <thead>
 
                         <tr>
                         <th style="" scope="col">จังหวัด</th>
@@ -102,7 +110,9 @@
                         <th style="" scope="col">เลขที่คำสั่ง</th>
                             <th style="" scope="col">คณะกรรมการ</th>
                             <th style="text-align: center;" scope="col">ดูรายละเอียด</th>
-                            <th style="text-align: center;" scope="col">ปฎิบัติ</th>
+                             <?php if ($R_602000 <> NULL && $R_602000['UR_Add'] == "1") { ?>
+                                    <th style="text-align: center;" scope="col" class="col-1">ปฏิบัติ</th>
+                                <?php } ?>
                         </tr>
 
                     </thead>
@@ -222,10 +232,13 @@
                                                         </div><!-- p1 -->
                                                     </div>
                                                     <div class="modal-footer">
-                                                    <a href="<?php echo site_url('cm_forms_p2?page=sh22') ?>&&key=<?php echo $showc->Id; ?>&&name=<?php echo $show->CommitteeAppointmentNumber; ?>"
-                                                    class="my-link btn btn-warning"> <i
-                                                                class="bi bi-pencil-square"></i>
-                                               </a>
+                                                    <?php if ($R_602000 <> NULL && $R_602000['UR_Add'] == "1") { ?>
+                                 
+                                                        <a href="<?php echo site_url('cm_forms_p2?page=sh22') ?>&&key=<?php echo $showc->Id; ?>&&name=<?php echo $show->CommitteeAppointmentNumber; ?>"
+                                                        class="my-link btn btn-warning"> <i
+                                                                    class="bi bi-pencil-square"></i>
+                                                   </a>
+                                <?php } ?>
                                                         <button type="button" class="btn btn-secondary"
                                                             data-bs-dismiss="modal">ปิด</button>
                                                         
@@ -238,9 +251,11 @@
 
                                 </div>
                                 <?php } ?>
+                                 <?php if ($R_602000 <> NULL && $R_602000['UR_Add'] == "1") { ?>
                                 <a href="<?php echo site_url('cm_forms_p2?page=sh2') ?>&&name=<?php echo $show->CommitteeAppointmentNumber; ?>&&key=<?php echo $show->Id; ?>&&year=<?php echo $show->CommitteeYear; ?>&&Province=<?php echo  $show->CommitteeProvinceCode; ?>"
                                     class="my-link fw-bold">>>เพิ่มคณะกรรมการ>>
                                 </a>
+                                 <?php } ?>
                             </td>
                             <td style="text-align: center;">
 
@@ -250,6 +265,7 @@
 
                             </td>
                             <!-- แก้ไขลบ -->
+                             <?php if ($R_602000 <> NULL && $R_602000['UR_Add'] == "1") { ?>
                             <td style="text-align: center;">
                                 <a href="<?php echo site_url('c_forms_p1?page=sh11') ?>&&key=<?php echo $show->Id; ?>&&name=<?php echo $show->CommitteeAppointmentNumber; ?>"
                                     class="btn btn-warning"> <i class="bi bi-pencil-square"></i></a>
@@ -279,7 +295,10 @@
                                                 <button type="button" class="btn btn-secondary"
                                                     data-bs-dismiss="modal">ยกเลิก</button>
                                                 <form method="post" action="<?php echo site_url('c_del_p1'); ?>">
+                                                <input type="hidden" name="UserName" value="<?php echo $UserName; ?>">
                                                     <input type="hidden" name="Id" value="<?php echo $show->Id; ?>">
+                                                    <input type="hidden" name="CommitteeAppointmentNumber" value="<?php echo $show->CommitteeAppointmentNumber; ?>">
+                                                    
                                                     <div class="d-flex justify-content-center">
                                                         <button name="Submit" type="submit"
                                                             class="btn btn-danger">ยืนยันก่อนลบ</button>
@@ -290,7 +309,7 @@
                                     </div>
                                 </div> <!-- Modal -->
                             </td>
-
+ <?php } ?>
 
                         </tr>
                         <?php }

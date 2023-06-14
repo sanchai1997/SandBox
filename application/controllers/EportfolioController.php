@@ -99,7 +99,6 @@ class EportfolioController extends CI_Controller{
             show_404();
         }
         $data['StudentReferenceID'] = $_GET['StudentReferenceID'];     
-        $data['SchoolID'] = $_GET['SchoolID']; 
         $data["EPORTFOLIO"] = $this->Eportfolio_model->get_EPORTFOLIO_by_STUDENT_NO($data['StudentReferenceID']);
   
         $this->load->view('templates/header');

@@ -3,6 +3,14 @@ class Participant_model extends CI_Model {
 
     public function add_par()
     {
+		$ip_address = '';
+			if (!empty($_SERVER['HTTP_CLIENT_IP'])) {
+				$ip_address = $_SERVER['HTTP_CLIENT_IP'];
+			} elseif (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
+				$ip_address = $_SERVER['HTTP_X_FORWARDED_FOR'];
+			} else {
+				$ip_address = $_SERVER['REMOTE_ADDR'];
+			}
 
         // echo '<pre>';
 		// print_r($_POST);
@@ -22,7 +30,21 @@ if ($num_chk <= 0 ) {
 	  'ParticipantName' => $this->input->post('ParticipantName'),
 	  'ParticipantTypeCode' => $this->input->post('ParticipantTypeCode')
   );
+  $this->db->trans_start();
   $query=$this->db->insert('PARTICIPANT',$data);
+  $last_id = $this->db->insert_id();
+  $this->db->trans_complete();
+  if ($query == TRUE) {
+	$UserID = $this->session->userdata('UserID');
+	$log = [
+	'LogMessage' => 'เพิ่มข้อมูล หน่วยงานที่เข้ามามีส่วนร่วม  ชื่อภาครัฐ "' . $this->input->post('ParticipantName') . '"',
+	'LogUserID' => $UserID,
+	'LogUsername' => $this->input->post('UserName'),
+	'LogIpAddress' => $ip_address,
+	'LogCreation' => date('Y-m-d H:i:s')
+	];
+	$logresult = $this->db->insert('SYS_LOG', $log);
+							}
   if($query){
 	  session_start(); // เริ่มต้น session
 	  $_SESSION['success'] = "เพิ่มข้อมูลเรียบร้อย !"; // กำหนดค่า success ใน session เป็น true
@@ -41,6 +63,14 @@ if ($num_chk <= 0 ) {
     }
 	public function edit_par()
     {
+		$ip_address = '';
+			if (!empty($_SERVER['HTTP_CLIENT_IP'])) {
+				$ip_address = $_SERVER['HTTP_CLIENT_IP'];
+			} elseif (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
+				$ip_address = $_SERVER['HTTP_X_FORWARDED_FOR'];
+			} else {
+				$ip_address = $_SERVER['REMOTE_ADDR'];
+			}
 
         // echo '<pre>';
 		// print_r($_POST);
@@ -53,6 +83,17 @@ if ($num_chk <= 0 ) {
         );
 		$this->db->where('ParticipantID',$this->input->post('ParticipantID'));
 		$query=$this->db->update('PARTICIPANT',$data);
+		if ($query == TRUE) {
+			$UserID = $this->session->userdata('UserID');
+			$log = [
+			'LogMessage' => 'แก้ไขข้อมูล หน่วยงานที่เข้ามามีส่วนร่วม  ชื่อภาครัฐ "' . $this->input->post('ParticipantName') . '"',
+			'LogUserID' => $UserID,
+			'LogUsername' => $this->input->post('UserName'),
+			'LogIpAddress' => $ip_address,
+			'LogCreation' => date('Y-m-d H:i:s')
+			];
+			$logresult = $this->db->insert('SYS_LOG', $log);
+			}
 		if($query){
 			session_start(); // เริ่มต้น session
 			$_SESSION['success'] = "แก้ไขข้อมูลสำเร็จ !"; // กำหนดค่า success ใน session เป็น true
@@ -64,6 +105,14 @@ if ($num_chk <= 0 ) {
     }
 	public function del_par()
     {
+		$ip_address = '';
+			if (!empty($_SERVER['HTTP_CLIENT_IP'])) {
+				$ip_address = $_SERVER['HTTP_CLIENT_IP'];
+			} elseif (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
+				$ip_address = $_SERVER['HTTP_X_FORWARDED_FOR'];
+			} else {
+				$ip_address = $_SERVER['REMOTE_ADDR'];
+			}
 
         // echo '<pre>';
 		// print_r($_POST);
@@ -76,6 +125,18 @@ if ($num_chk <= 0 ) {
         );
 		$this->db->where('ParticipantID',$this->input->post('ParticipantID'));
 		$query=$this->db->update('PARTICIPANT',$data);
+		if ($query == TRUE) {
+			$UserID = $this->session->userdata('UserID');
+			$log = [
+			'LogMessage' => 'ลบข้อมูล หน่วยงานที่เข้ามามีส่วนร่วม  ชื่อภาครัฐ "' . $this->input->post('ParticipantName') . '"',
+			'LogUserID' => $UserID,
+			'LogUsername' => $this->input->post('UserName'),
+			'LogIpAddress' => $ip_address,
+			'LogCreation' => date('Y-m-d H:i:s')
+			];
+						
+			$logresult = $this->db->insert('SYS_LOG', $log);
+			}
 		if($query){
 			session_start(); // เริ่มต้น session
 			$_SESSION['success'] = "ลบข้อมูลสำเร็จ !"; // กำหนดค่า success ใน session เป็น true
@@ -87,6 +148,14 @@ if ($num_chk <= 0 ) {
     }
 	public function add_par_con()
     {
+		$ip_address = '';
+			if (!empty($_SERVER['HTTP_CLIENT_IP'])) {
+				$ip_address = $_SERVER['HTTP_CLIENT_IP'];
+			} elseif (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
+				$ip_address = $_SERVER['HTTP_X_FORWARDED_FOR'];
+			} else {
+				$ip_address = $_SERVER['REMOTE_ADDR'];
+			}
 
         // echo '<pre>';
 		// print_r($_POST);
@@ -101,6 +170,17 @@ if ($num_chk <= 0 ) {
             'ContactOrganizationPosition' => $this->input->post('ContactOrganizationPosition')
         );
 		$query=$this->db->insert('PARTICIPANT_CONTACT',$data);
+		if ($query == TRUE) {
+			$UserID = $this->session->userdata('UserID');
+			$log = [
+			'LogMessage' => 'เพิ่มข้อมูล ติดต่อผู้มีส่วนร่วมของหน่วยงานที่เข้ามามีส่วนร่วม = "' . $this->input->post('name') . '"',
+			'LogUserID' => $UserID,
+			'LogUsername' => $this->input->post('UserName'),
+			'LogIpAddress' => $ip_address,
+			'LogCreation' => date('Y-m-d H:i:s')
+			];
+			$logresult = $this->db->insert('SYS_LOG', $log);
+									}
 		if($query){
 			session_start(); // เริ่มต้น session
 			$_SESSION['success'] = "เพิ่มข้อมูลสำเร็จ !"; // กำหนดค่า success ใน session เป็น true
@@ -112,6 +192,14 @@ if ($num_chk <= 0 ) {
     }
 	public function edit_par_con()
     {
+		$ip_address = '';
+			if (!empty($_SERVER['HTTP_CLIENT_IP'])) {
+				$ip_address = $_SERVER['HTTP_CLIENT_IP'];
+			} elseif (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
+				$ip_address = $_SERVER['HTTP_X_FORWARDED_FOR'];
+			} else {
+				$ip_address = $_SERVER['REMOTE_ADDR'];
+			}
 
         // echo '<pre>';
 		// print_r($_POST);
@@ -127,6 +215,17 @@ if ($num_chk <= 0 ) {
         );
 		$this->db->where('Id',$this->input->post('Id'));
 		$query=$this->db->update('PARTICIPANT_CONTACT',$data);
+		if ($query == TRUE) {
+			$UserID = $this->session->userdata('UserID');
+			$log = [
+			'LogMessage' => 'แก้ไขข้อมูล ติดต่อผู้มีส่วนร่วมของหน่วยงานที่เข้ามามีส่วนร่วม = "' . $this->input->post('name') . '"',
+			'LogUserID' => $UserID,
+			'LogUsername' => $this->input->post('UserName'),
+			'LogIpAddress' => $ip_address,
+			'LogCreation' => date('Y-m-d H:i:s')
+			];
+			$logresult = $this->db->insert('SYS_LOG', $log);
+			}
 		if($query){
 			session_start(); // เริ่มต้น session
 			$_SESSION['success'] = "แก้ไขข้อมูลสำเร็จ !"; // กำหนดค่า success ใน session เป็น true
@@ -138,6 +237,14 @@ if ($num_chk <= 0 ) {
     }
 	public function del_par_con()
     {
+		$ip_address = '';
+			if (!empty($_SERVER['HTTP_CLIENT_IP'])) {
+				$ip_address = $_SERVER['HTTP_CLIENT_IP'];
+			} elseif (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
+				$ip_address = $_SERVER['HTTP_X_FORWARDED_FOR'];
+			} else {
+				$ip_address = $_SERVER['REMOTE_ADDR'];
+			}
 
         // echo '<pre>';
 		// print_r($_POST);
@@ -150,6 +257,18 @@ if ($num_chk <= 0 ) {
         );
 		$this->db->where('Id',$this->input->post('Id'));
 		$query=$this->db->update('PARTICIPANT_CONTACT',$data);
+		if ($query == TRUE) {
+			$UserID = $this->session->userdata('UserID');
+			$log = [
+			'LogMessage' => 'ลบข้อมูล ติดต่อผู้มีส่วนร่วมของหน่วยงานที่เข้ามามีส่วนร่วม = "' . $this->input->post('name') . '"',
+			'LogUserID' => $UserID,
+			'LogUsername' => $this->input->post('UserName'),
+			'LogIpAddress' => $ip_address,
+			'LogCreation' => date('Y-m-d H:i:s')
+			];
+						
+			$logresult = $this->db->insert('SYS_LOG', $log);
+			}
 		if($query){
 			session_start(); // เริ่มต้น session
 			$_SESSION['success'] = "ลบข้อมูลสำเร็จ !"; // กำหนดค่า success ใน session เป็น true
@@ -161,6 +280,14 @@ if ($num_chk <= 0 ) {
     }
 	public function add_par_coop()
     {
+		$ip_address = '';
+			if (!empty($_SERVER['HTTP_CLIENT_IP'])) {
+				$ip_address = $_SERVER['HTTP_CLIENT_IP'];
+			} elseif (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
+				$ip_address = $_SERVER['HTTP_X_FORWARDED_FOR'];
+			} else {
+				$ip_address = $_SERVER['REMOTE_ADDR'];
+			}
 
         // echo '<pre>';
 		// print_r($_POST);
@@ -207,6 +334,17 @@ if ($num_chk <= 0 ) {
 }
 }
 		$query=$this->db->insert('PARTICIPANT_COOPERATION',$data);
+		if ($query == TRUE) {
+			$UserID = $this->session->userdata('UserID');
+			$log = [
+			'LogMessage' => 'เพิ่มข้อมูล การมีส่วนร่วมของหน่วยงานที่เข้ามามีส่วนร่วม = "' . $this->input->post('name') . '"',
+			'LogUserID' => $UserID,
+			'LogUsername' => $this->input->post('UserName'),
+			'LogIpAddress' => $ip_address,
+			'LogCreation' => date('Y-m-d H:i:s')
+			];
+			$logresult = $this->db->insert('SYS_LOG', $log);
+									}
 		if($query){
 			session_start(); // เริ่มต้น session
 			$_SESSION['success'] = "เพิ่มข้อมูลเรียบร้อย !"; // กำหนดค่า success ใน session เป็น true
@@ -219,6 +357,14 @@ if ($num_chk <= 0 ) {
     
 	public function edit_par_coop()
     {
+		$ip_address = '';
+			if (!empty($_SERVER['HTTP_CLIENT_IP'])) {
+				$ip_address = $_SERVER['HTTP_CLIENT_IP'];
+			} elseif (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
+				$ip_address = $_SERVER['HTTP_X_FORWARDED_FOR'];
+			} else {
+				$ip_address = $_SERVER['REMOTE_ADDR'];
+			}
 
         // echo '<pre>';
 		// print_r($_POST);
@@ -268,6 +414,18 @@ if ($num_chk <= 0 ) {
 }
 $this->db->where('Id',$this->input->post('Id'));
 		$query=$this->db->update('PARTICIPANT_COOPERATION',$data);
+		
+if ($query == TRUE) {
+	$UserID = $this->session->userdata('UserID');
+	$log = [
+	'LogMessage' => 'แก้ไขข้อมูล ของหน่วยงานที่เข้ามามีส่วนร่วม = "' . $this->input->post('name') . '"',
+	'LogUserID' => $UserID,
+	'LogUsername' => $this->input->post('UserName'),
+	'LogIpAddress' => $ip_address,
+	'LogCreation' => date('Y-m-d H:i:s')
+	];
+	$logresult = $this->db->insert('SYS_LOG', $log);
+	}
 		if($query){
 			session_start(); // เริ่มต้น session
 			$_SESSION['success'] = "แก้ไขข้อมูลสำเร็จ !"; // กำหนดค่า success ใน session เป็น true
@@ -281,6 +439,16 @@ $this->db->where('Id',$this->input->post('Id'));
     }
 	public function del_par_coop()
 {
+	$ip_address = '';
+			if (!empty($_SERVER['HTTP_CLIENT_IP'])) {
+				$ip_address = $_SERVER['HTTP_CLIENT_IP'];
+			} elseif (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
+				$ip_address = $_SERVER['HTTP_X_FORWARDED_FOR'];
+			} else {
+				$ip_address = $_SERVER['REMOTE_ADDR'];
+			}
+
+
 
 	// echo '<pre>';
 	// print_r($_POST);
@@ -294,6 +462,19 @@ $this->db->where('Id',$this->input->post('Id'));
 		
 			$this->db->where('Id',$this->input->post('Id'));
 			$query=$this->db->update('PARTICIPANT_COOPERATION',$data);
+			
+if ($query == TRUE) {
+	$UserID = $this->session->userdata('UserID');
+	$log = [
+	'LogMessage' => 'ลบข้อมูล ของหน่วยงานที่เข้ามามีส่วนร่วม = "' . $this->input->post('name') . '"',
+	'LogUserID' => $UserID,
+	'LogUsername' => $this->input->post('UserName'),
+	'LogIpAddress' => $ip_address,
+	'LogCreation' => date('Y-m-d H:i:s')
+	];
+				
+	$logresult = $this->db->insert('SYS_LOG', $log);
+	}
 			if($query){
 				session_start(); // เริ่มต้น session
 				$_SESSION['success'] = "ลบข้อมูลสำเร็จ !"; // กำหนดค่า success ใน session เป็น true
@@ -305,6 +486,14 @@ $this->db->where('Id',$this->input->post('Id'));
 	}
 	public function add_par_note()
     {
+		$ip_address = '';
+			if (!empty($_SERVER['HTTP_CLIENT_IP'])) {
+				$ip_address = $_SERVER['HTTP_CLIENT_IP'];
+			} elseif (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
+				$ip_address = $_SERVER['HTTP_X_FORWARDED_FOR'];
+			} else {
+				$ip_address = $_SERVER['REMOTE_ADDR'];
+			}
 
         // echo '<pre>';
 		// print_r($_POST);
@@ -319,6 +508,18 @@ $this->db->where('Id',$this->input->post('Id'));
             'NoteReporterEmail' => $this->input->post('NoteReporterEmail')
         );
 		$query=$this->db->insert('PARTICIPANT_NOTE',$data);
+		
+if ($query == TRUE) {
+	$UserID = $this->session->userdata('UserID');
+	$log = [
+	'LogMessage' => 'เพิ่มข้อมูล บันทึกเพิ่มเติมของหน่วยงานที่เข้ามามีส่วนร่วม = "' . $this->input->post('name') . '"',
+	'LogUserID' => $UserID,
+	'LogUsername' => $this->input->post('UserName'),
+	'LogIpAddress' => $ip_address,
+	'LogCreation' => date('Y-m-d H:i:s')
+	];
+	$logresult = $this->db->insert('SYS_LOG', $log);
+							}
 		if($query){
 			session_start(); // เริ่มต้น session
 			$_SESSION['success'] = "เพิ่มข้อมูลเรียบร้อย !"; // กำหนดค่า success ใน session เป็น true
@@ -330,6 +531,14 @@ $this->db->where('Id',$this->input->post('Id'));
     }
 	public function edit_par_note()
     {
+		$ip_address = '';
+			if (!empty($_SERVER['HTTP_CLIENT_IP'])) {
+				$ip_address = $_SERVER['HTTP_CLIENT_IP'];
+			} elseif (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
+				$ip_address = $_SERVER['HTTP_X_FORWARDED_FOR'];
+			} else {
+				$ip_address = $_SERVER['REMOTE_ADDR'];
+			}
 
         // echo '<pre>';
 		// print_r($_POST);
@@ -346,6 +555,18 @@ $this->db->where('Id',$this->input->post('Id'));
 		$this->db->where('Id',$this->input->post('Id'));
 
 		$query=$this->db->update('PARTICIPANT_NOTE',$data);
+		
+if ($query == TRUE) {
+	$UserID = $this->session->userdata('UserID');
+	$log = [
+	'LogMessage' => 'แก้ไขข้อมูล บันทึกเพิ่มเติมของหน่วยงานที่เข้ามามีส่วนร่วม = "' . $this->input->post('name') . '"',
+	'LogUserID' => $UserID,
+	'LogUsername' => $this->input->post('UserName'),
+	'LogIpAddress' => $ip_address,
+	'LogCreation' => date('Y-m-d H:i:s')
+	];
+	$logresult = $this->db->insert('SYS_LOG', $log);
+	}
 		if($query){
 			session_start(); // เริ่มต้น session
 			$_SESSION['success'] = "แก้ไขข้อมูลสำเร็จ !"; // กำหนดค่า success ใน session เป็น true
@@ -357,6 +578,14 @@ $this->db->where('Id',$this->input->post('Id'));
     }
 	public function del_par_note()
     {
+		$ip_address = '';
+			if (!empty($_SERVER['HTTP_CLIENT_IP'])) {
+				$ip_address = $_SERVER['HTTP_CLIENT_IP'];
+			} elseif (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
+				$ip_address = $_SERVER['HTTP_X_FORWARDED_FOR'];
+			} else {
+				$ip_address = $_SERVER['REMOTE_ADDR'];
+			}
 
         // echo '<pre>';
 		// print_r($_POST);
@@ -370,6 +599,19 @@ $this->db->where('Id',$this->input->post('Id'));
 		$this->db->where('Id',$this->input->post('Id'));
 
 		$query=$this->db->update('PARTICIPANT_NOTE',$data);
+		
+if ($query == TRUE) {
+	$UserID = $this->session->userdata('UserID');
+	$log = [
+	'LogMessage' => 'ลบข้อมูล บันทึกเพิ่มเติมของหน่วยงานที่เข้ามามีส่วนร่วม = "' . $this->input->post('name') . '"',
+	'LogUserID' => $UserID,
+	'LogUsername' => $this->input->post('UserName'),
+	'LogIpAddress' => $ip_address,
+	'LogCreation' => date('Y-m-d H:i:s')
+	];
+				
+	$logresult = $this->db->insert('SYS_LOG', $log);
+	}
 		if($query){
 			session_start(); // เริ่มต้น session
 			$_SESSION['success'] = "ลบข้อมูลสำเร็จ !"; // กำหนดค่า success ใน session เป็น true

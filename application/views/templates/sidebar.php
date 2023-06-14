@@ -41,7 +41,7 @@
            </a>
          </li>
          <li>
-           <a href="craduated">
+           <a href="graduated">
              <i class="bi bi-circle"></i><span>ข้อมูลผู้สำเร็จการศึกษา</span>
            </a>
          </li>

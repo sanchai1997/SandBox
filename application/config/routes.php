@@ -8,6 +8,8 @@ $route['translate_uri_dashes'] = FALSE;
 
 //////////////////////// ROUTE LOIN ////////////////////////
 $route['login'] = 'login';
+$route['Admin/ConfigSystem'] = 'Admin/ConfigSystem';
+
 /////////////////////// LOIN - END /////////////////////////
 
 
@@ -564,4 +566,4 @@ $route['down_csv_criteria'] = 'Fm_evaluation/down_csv_criteria';
 $route['uplod_criteria'] = 'Fm_evaluation/uplod_criteria';
 
 
-///////////////////// evaluation - END /////////////////////////
+///////////////////// evaluation - END  26107403/////////////////////////

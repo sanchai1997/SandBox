@@ -10,7 +10,14 @@ class Evaluation_model extends CI_Model
 
 	public function insert_ass_ria() //sh1
 	{
-
+		$ip_address = '';
+		if (!empty($_SERVER['HTTP_CLIENT_IP'])) {
+			$ip_address = $_SERVER['HTTP_CLIENT_IP'];
+		} elseif (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
+			$ip_address = $_SERVER['HTTP_X_FORWARDED_FOR'];
+		} else {
+			$ip_address = $_SERVER['REMOTE_ADDR'];
+		}
 		// echo '<pre>';
 		// print_r($_POST);
 		// echo'</pre>';
@@ -25,6 +32,19 @@ class Evaluation_model extends CI_Model
 
 		);
 		$query = $this->db->insert('ASSESSMENT_CRITERIA', $data);
+		if ($query == TRUE) {
+			$UserID = $this->session->userdata('UserID');
+			
+			
+			$log = [
+				'LogMessage' => 'เพิ่ม ตัวชี้วัด รหัส "' .  $this->input->post('CriteriaID')  . '" ชื่อ "' . $this->input->post('CriteriaName') . '"',
+				'LogUserID' => $UserID,
+				'LogUsername' => $this->input->post('UserName'),
+				'LogIpAddress' => $ip_address,
+				'LogCreation' => date('Y-m-d H:i:s')
+			];
+			$logresult = $this->db->insert('SYS_LOG', $log);
+		}
 		if ($query) {
 			session_start(); // เริ่มต้น session
 			$_SESSION['success'] = "เพิ่มข้อมูลสำเร็จ!"; // กำหนดค่า success ใน session เป็น true
@@ -37,7 +57,14 @@ class Evaluation_model extends CI_Model
 	}
 	public function edit_ass_ria() //sh1
 	{
-
+		$ip_address = '';
+		if (!empty($_SERVER['HTTP_CLIENT_IP'])) {
+			$ip_address = $_SERVER['HTTP_CLIENT_IP'];
+		} elseif (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
+			$ip_address = $_SERVER['HTTP_X_FORWARDED_FOR'];
+		} else {
+			$ip_address = $_SERVER['REMOTE_ADDR'];
+		}
 		// echo '<pre>';
 		// print_r($_POST);
 		// echo'</pre>';
@@ -53,6 +80,18 @@ class Evaluation_model extends CI_Model
 		);
 		$this->db->where('Id', $this->input->post('Id'));
 		$query = $this->db->update('ASSESSMENT_CRITERIA', $data);
+		if ($query == TRUE) {
+			$UserID = $this->session->userdata('UserID');
+			
+			$log = [
+				'LogMessage' => 'แก้ไข ตัวชี้วัด รหัส  "' .  $this->input->post('CriteriaID')  . '" ชื่อ  "' . $this->input->post('CriteriaName') . '"',
+				'LogUserID' => $UserID,
+				'LogUsername' => $this->input->post('UserName'),
+				'LogIpAddress' => $ip_address,
+				'LogCreation' => date('Y-m-d H:i:s')
+			];
+			$logresult = $this->db->insert('SYS_LOG', $log);
+		}
 		if ($query) {
 			session_start(); // เริ่มต้น session
 			$_SESSION['success'] = "แก้ไขสำเร็จ!"; // กำหนดค่า success ใน session เป็น true
@@ -65,7 +104,14 @@ class Evaluation_model extends CI_Model
 	}
 	public function del_ass_ria() //sh1
 	{
-
+		$ip_address = '';
+		if (!empty($_SERVER['HTTP_CLIENT_IP'])) {
+			$ip_address = $_SERVER['HTTP_CLIENT_IP'];
+		} elseif (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
+			$ip_address = $_SERVER['HTTP_X_FORWARDED_FOR'];
+		} else {
+			$ip_address = $_SERVER['REMOTE_ADDR'];
+		}
 		// echo '<pre>';
 		// print_r($_POST);
 		// echo'</pre>';
@@ -77,6 +123,19 @@ class Evaluation_model extends CI_Model
 		);
 		$this->db->where('Id', $this->input->post('Id'));
 		$query = $this->db->update('ASSESSMENT_CRITERIA', $data);
+		if ($query == TRUE) {
+			$UserID = $this->session->userdata('UserID');
+			
+			$log = [
+				'LogMessage' => 'ลบ ตัวชี้วัด รหัส "' .  $this->input->post('CriteriaID')  . '" ชื่อ "' . $this->input->post('CriteriaName') . '"',
+				'LogUserID' => $UserID,
+				'LogUsername' => $this->input->post('UserName'),
+				'LogIpAddress' => $ip_address,
+				'LogCreation' => date('Y-m-d H:i:s')
+			];
+
+			$logresult = $this->db->insert('SYS_LOG', $log);
+		}
 		if ($query) {
 			session_start(); // เริ่มต้น session
 			$_SESSION['success'] = "ลบสำเร็จ!"; // กำหนดค่า success ใน session เป็น true
@@ -89,7 +148,14 @@ class Evaluation_model extends CI_Model
 	}
 	public function insert_ass_ria_lvl() //sh2
 	{
-
+		$ip_address = '';
+		if (!empty($_SERVER['HTTP_CLIENT_IP'])) {
+			$ip_address = $_SERVER['HTTP_CLIENT_IP'];
+		} elseif (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
+			$ip_address = $_SERVER['HTTP_X_FORWARDED_FOR'];
+		} else {
+			$ip_address = $_SERVER['REMOTE_ADDR'];
+		}
 		// echo '<pre>';
 		// print_r($_POST);
 		// echo'</pre>';
@@ -103,6 +169,18 @@ class Evaluation_model extends CI_Model
 
 		);
 		$query = $this->db->insert('ASSESSMENT_CRITERIA_LEVEL', $data);
+		if ($query == TRUE) {
+			$UserID = $this->session->userdata('UserID');
+			
+			$log = [
+				'LogMessage' => 'เพิ่ม ระดับเกณฑ์การประเมิน รหัส "' .  $this->input->post('index')  . '" ระดับที่ "' . $this->input->post('LevelIndex') . '"',
+				'LogUserID' => $UserID,
+				'LogUsername' => $this->input->post('UserName'),
+				'LogIpAddress' => $ip_address,
+				'LogCreation' => date('Y-m-d H:i:s')
+			];
+			$logresult = $this->db->insert('SYS_LOG', $log);
+		}
 		if ($query) {
 			session_start(); // เริ่มต้น session
 			$_SESSION['success'] = "เพิ่มข้อมูลสำเร็จ!"; // กำหนดค่า success ใน session เป็น true
@@ -115,7 +193,14 @@ class Evaluation_model extends CI_Model
 	}
 	public function edit_ass_ria_lvl() //sh2
 	{
-
+		$ip_address = '';
+		if (!empty($_SERVER['HTTP_CLIENT_IP'])) {
+			$ip_address = $_SERVER['HTTP_CLIENT_IP'];
+		} elseif (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
+			$ip_address = $_SERVER['HTTP_X_FORWARDED_FOR'];
+		} else {
+			$ip_address = $_SERVER['REMOTE_ADDR'];
+		}
 		// echo '<pre>';
 		// print_r($_POST);
 		// echo'</pre>';
@@ -124,12 +209,14 @@ class Evaluation_model extends CI_Model
 		$CriteriaID = $this->input->post('CriteriaID');
 		$LevelIndex = $this->input->post('LevelIndex');
 		$LevelName = $this->input->post('LevelName');
+		$Id_acl = $this->input->post('Id_acl');
 
 		// นำค่า $id_name มาใช้ในการค้นหาข้อมูลในฐานข้อมูล
 		$this->db->where('CriteriaID', $CriteriaID);
 		$this->db->where('LevelName', $LevelName);
 		$this->db->where('LevelIndex', $LevelIndex);
 		$this->db->where('DeleteStatus=0');
+		$this->db->where('Id_acl !=', $Id_acl);
 		$query = $this->db->get('ASSESSMENT_CRITERIA_LEVEL');
 
 		// นับจำนวนแถวที่ค้นพบ
@@ -148,6 +235,18 @@ class Evaluation_model extends CI_Model
 			);
 			$this->db->where('Id_acl', $this->input->post('Id_acl'));
 			$query = $this->db->update('ASSESSMENT_CRITERIA_LEVEL', $data);
+			if ($query == TRUE) {
+				$UserID = $this->session->userdata('UserID');
+				
+				$log = [
+					'LogMessage' => 'แก้ไข ระดับเกณฑ์การประเมิน รหัส  "' .  $this->input->post('index')  . '"  ระดับที่ "' . $this->input->post('LevelIndex') . '"',
+					'LogUserID' => $UserID,
+					'LogUsername' => $this->input->post('UserName'),
+					'LogIpAddress' => $ip_address,
+					'LogCreation' => date('Y-m-d H:i:s')
+				];
+				$logresult = $this->db->insert('SYS_LOG', $log);
+			}
 			if ($query) {
 				session_start(); // เริ่มต้น session
 				$_SESSION['success'] = "แก้ไขสำเร็จ!"; // กำหนดค่า success ใน session เป็น true
@@ -168,7 +267,14 @@ class Evaluation_model extends CI_Model
 	}
 	public function del_ass_ria_lvl() //sh2
 	{
-
+		$ip_address = '';
+		if (!empty($_SERVER['HTTP_CLIENT_IP'])) {
+			$ip_address = $_SERVER['HTTP_CLIENT_IP'];
+		} elseif (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
+			$ip_address = $_SERVER['HTTP_X_FORWARDED_FOR'];
+		} else {
+			$ip_address = $_SERVER['REMOTE_ADDR'];
+		}
 		// echo '<pre>';
 		// print_r($_POST);
 		// echo'</pre>';
@@ -178,8 +284,21 @@ class Evaluation_model extends CI_Model
 
 			'DeleteStatus' => $status
 		);
-		$this->db->where('Id', $this->input->post('Id'));
+		$this->db->where('Id_acl', $this->input->post('Id_acl'));
 		$query = $this->db->update('ASSESSMENT_CRITERIA_LEVEL', $data);
+		if ($query == TRUE) {
+			$UserID = $this->session->userdata('UserID');
+			
+			$log = [
+				'LogMessage' => 'ลบ ระดับเกณฑ์การประเมิน รหัส "' .  $this->input->post('index')  . '"  ระดับที่ "' . $this->input->post('LevelIndex') . '"',
+				'LogUserID' => $UserID,
+				'LogUsername' => $this->input->post('UserName'),
+				'LogIpAddress' => $ip_address,
+				'LogCreation' => date('Y-m-d H:i:s')
+			];
+
+			$logresult = $this->db->insert('SYS_LOG', $log);
+		}
 		if ($query) {
 			session_start(); // เริ่มต้น session
 			$_SESSION['success'] = "ลบสำเร็จ!"; // กำหนดค่า success ใน session เป็น true
@@ -192,7 +311,14 @@ class Evaluation_model extends CI_Model
 	}
 	public function insert_ass_ria_com() //sh3
 	{
-
+		$ip_address = '';
+		if (!empty($_SERVER['HTTP_CLIENT_IP'])) {
+			$ip_address = $_SERVER['HTTP_CLIENT_IP'];
+		} elseif (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
+			$ip_address = $_SERVER['HTTP_X_FORWARDED_FOR'];
+		} else {
+			$ip_address = $_SERVER['REMOTE_ADDR'];
+		}
 		// echo '<pre>';
 		// print_r($_POST);
 		// echo'</pre>';
@@ -208,6 +334,18 @@ class Evaluation_model extends CI_Model
 
 		);
 		$query = $this->db->insert('ASSESSMENT_CRITERIA_COMPOSITION', $data);
+		if ($query == TRUE) {
+			$UserID = $this->session->userdata('UserID');
+			
+			$log = [
+				'LogMessage' => 'เพิ่ม องค์ประกอบเกณฑ์การประเมิน รหัส "' .  $this->input->post('index')  . '" องค์ประกอบที่"' . $this->input->post('CompositionIndex') . '"',
+				'LogUserID' => $UserID,
+				'LogUsername' => $this->input->post('UserName'),
+				'LogIpAddress' => $ip_address,
+				'LogCreation' => date('Y-m-d H:i:s')
+			];
+			$logresult = $this->db->insert('SYS_LOG', $log);
+		}
 		if ($query) {
 			session_start(); // เริ่มต้น session
 			$_SESSION['success'] = "เพิ่มข้อมูลเรียบร้อย!"; // กำหนดค่า success ใน session เป็น true
@@ -220,7 +358,14 @@ class Evaluation_model extends CI_Model
 	}
 	public function edit_ass_ria_com() //sh3
 	{
-
+		$ip_address = '';
+		if (!empty($_SERVER['HTTP_CLIENT_IP'])) {
+			$ip_address = $_SERVER['HTTP_CLIENT_IP'];
+		} elseif (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
+			$ip_address = $_SERVER['HTTP_X_FORWARDED_FOR'];
+		} else {
+			$ip_address = $_SERVER['REMOTE_ADDR'];
+		}
 		// echo '<pre>';
 		// print_r($_POST);
 		// echo'</pre>';
@@ -229,12 +374,14 @@ class Evaluation_model extends CI_Model
 		$CriteriaID = $this->input->post('CriteriaID');
 		$CompositionIndex = $this->input->post('CompositionIndex');
 		$CompositionName = $this->input->post('CompositionName');
+		$Id_acc = $this->input->post('Id_acc');
 
 		// นำค่า $id_name มาใช้ในการค้นหาข้อมูลในฐานข้อมูล
-		$this->db->where('CriteriaID', $CriteriaID);
+		$this->db->where('CriteriaID ', $CriteriaID);
 		$this->db->where('CompositionName', $CompositionName);
 		$this->db->where('CompositionIndex', $CompositionIndex);
 		$this->db->where('DeleteStatus=0');
+		$this->db->where('Id_acc!=',$Id_acc);
 		$query = $this->db->get('ASSESSMENT_CRITERIA_COMPOSITION');
 
 		// นับจำนวนแถวที่ค้นพบ
@@ -254,6 +401,18 @@ class Evaluation_model extends CI_Model
 			);
 			$this->db->where('Id_acc', $this->input->post('Id_acc'));
 			$query = $this->db->update('ASSESSMENT_CRITERIA_COMPOSITION', $data);
+			if ($query == TRUE) {
+				$UserID = $this->session->userdata('UserID');
+				
+				$log = [
+					'LogMessage' => 'แก้ไข องค์ประกอบเกณฑ์การประเมิน รหัส  "' .  $this->input->post('index')  . '" องค์ประกอบที่ "' . $this->input->post('CompositionIndex') . '"',
+					'LogUserID' => $UserID,
+					'LogUsername' => $this->input->post('UserName'),
+					'LogIpAddress' => $ip_address,
+					'LogCreation' => date('Y-m-d H:i:s')
+				];
+				$logresult = $this->db->insert('SYS_LOG', $log);
+			}
 			if ($query) {
 				session_start(); // เริ่มต้น session
 				$_SESSION['success'] = "แก้ไขสำเร็จ!"; // กำหนดค่า success ใน session เป็น true
@@ -273,7 +432,14 @@ class Evaluation_model extends CI_Model
 	}
 	public function del_ass_ria_com() //sh3
 	{
-
+		$ip_address = '';
+		if (!empty($_SERVER['HTTP_CLIENT_IP'])) {
+			$ip_address = $_SERVER['HTTP_CLIENT_IP'];
+		} elseif (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
+			$ip_address = $_SERVER['HTTP_X_FORWARDED_FOR'];
+		} else {
+			$ip_address = $_SERVER['REMOTE_ADDR'];
+		}
 		// echo '<pre>';
 		// print_r($_POST);
 		// echo'</pre>';
@@ -283,8 +449,21 @@ class Evaluation_model extends CI_Model
 
 			'DeleteStatus' => $status
 		);
-		$this->db->where('Id', $this->input->post('Id'));
+		$this->db->where('Id_acc', $this->input->post('Id'));
 		$query = $this->db->update('ASSESSMENT_CRITERIA_COMPOSITION', $data);
+		if ($query == TRUE) {
+			$UserID = $this->session->userdata('UserID');
+			
+			$log = [
+				'LogMessage' => 'ลบ องค์ประกอบเกณฑ์การประเมิน รหัส "' .  $this->input->post('index')  . '" องค์ประกอบที่ "' . $this->input->post('CompositionIndex') . '"',
+				'LogUserID' => $UserID,
+				'LogUsername' => $this->input->post('UserName'),
+				'LogIpAddress' => $ip_address,
+				'LogCreation' => date('Y-m-d H:i:s')
+			];
+
+			$logresult = $this->db->insert('SYS_LOG', $log);
+		}
 		if ($query) {
 			session_start(); // เริ่มต้น session
 			$_SESSION['success'] = "ลบสำเร็จ!"; // กำหนดค่า success ใน session เป็น true
@@ -297,7 +476,14 @@ class Evaluation_model extends CI_Model
 	}
 	public function insert_ass_ria_com_lvl() //sh4
 	{
-
+		$ip_address = '';
+		if (!empty($_SERVER['HTTP_CLIENT_IP'])) {
+			$ip_address = $_SERVER['HTTP_CLIENT_IP'];
+		} elseif (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
+			$ip_address = $_SERVER['HTTP_X_FORWARDED_FOR'];
+		} else {
+			$ip_address = $_SERVER['REMOTE_ADDR'];
+		}
 		// echo '<pre>';
 		// print_r($_POST);
 		// echo'</pre>';
@@ -312,6 +498,18 @@ class Evaluation_model extends CI_Model
 
 		);
 		$query = $this->db->insert('ASSESSMENT_CRITERIA_COMPOSITION_LEVEL', $data);
+		if ($query == TRUE) {
+			$UserID = $this->session->userdata('UserID');
+			
+			$log = [
+				'LogMessage' => 'เพิ่ม คำอธิบายแต่ละองค์ประกอบและลำดับตัวชี้วัด รหัส "' . $this->input->post('CriteriaID_index') . '"  ระดับที่ "' . $this->input->post('LevelIndex') . '", องค์ประกอบที่ "' . $this->input->post('CompositionIndex') . '"',
+				'LogUserID' => $UserID,
+				'LogUsername' => $this->input->post('UserName'),
+				'LogIpAddress' => $ip_address,
+				'LogCreation' => date('Y-m-d H:i:s')
+			];
+			$logresult = $this->db->insert('SYS_LOG', $log);
+		}
 		if ($query) {
 			session_start(); // เริ่มต้น session
 			$_SESSION['success'] = "เพิ่มข้อมูสำเร็จ!"; // กำหนดค่า success ใน session เป็น true
@@ -324,7 +522,14 @@ class Evaluation_model extends CI_Model
 	}
 	public function edit_ass_ria_com_lvl() //sh4
 	{
-
+		$ip_address = '';
+		if (!empty($_SERVER['HTTP_CLIENT_IP'])) {
+			$ip_address = $_SERVER['HTTP_CLIENT_IP'];
+		} elseif (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
+			$ip_address = $_SERVER['HTTP_X_FORWARDED_FOR'];
+		} else {
+			$ip_address = $_SERVER['REMOTE_ADDR'];
+		}
 		// echo '<pre>';
 		// print_r($_POST);
 		// echo'</pre>';
@@ -340,6 +545,18 @@ class Evaluation_model extends CI_Model
 		);
 		$this->db->where('Id_accl', $this->input->post('Id_accl'));
 		$query = $this->db->update('ASSESSMENT_CRITERIA_COMPOSITION_LEVEL', $data);
+		if ($query == TRUE) {
+			$UserID = $this->session->userdata('UserID');
+			
+			$log = [
+				'LogMessage' => 'แก้ไข คำอธิบายแต่ละองค์ประกอบและลำดับตัวชี้วัด รหัส "' . $this->input->post('CriteriaID_index') . '"  ระดับที่ "' . $this->input->post('LevelIndex') . '", องค์ประกอบที่' . $this->input->post('CompositionIndex') . '"',
+				'LogUserID' => $UserID,
+				'LogUsername' => $this->input->post('UserName'),
+				'LogIpAddress' => $ip_address,
+				'LogCreation' => date('Y-m-d H:i:s')
+			];
+			$logresult = $this->db->insert('SYS_LOG', $log);
+		}
 		if ($query) {
 			session_start(); // เริ่มต้น session
 			$_SESSION['success'] = "แก้ไขสำเร็จ!"; // กำหนดค่า success ใน session เป็น true
@@ -352,7 +569,14 @@ class Evaluation_model extends CI_Model
 	}
 	public function del_ass_ria_com_lvl() //sh4
 	{
-
+		$ip_address = '';
+		if (!empty($_SERVER['HTTP_CLIENT_IP'])) {
+			$ip_address = $_SERVER['HTTP_CLIENT_IP'];
+		} elseif (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
+			$ip_address = $_SERVER['HTTP_X_FORWARDED_FOR'];
+		} else {
+			$ip_address = $_SERVER['REMOTE_ADDR'];
+		}
 		// echo '<pre>';
 		// print_r($_POST);
 		// echo'</pre>';
@@ -364,6 +588,19 @@ class Evaluation_model extends CI_Model
 		);
 		$this->db->where('Id_accl', $this->input->post('Id_accl'));
 		$query = $this->db->update('ASSESSMENT_CRITERIA_COMPOSITION_LEVEL', $data);
+		if ($query == TRUE) {
+			$UserID = $this->session->userdata('UserID');
+			
+			$log = [
+				'LogMessage' => 'ลบ คำอธิบายแต่ละองค์ประกอบและลำดับตัวชี้วัด รหัส "' . $this->input->post('CriteriaID') . '"  ระดับที่ "' . $this->input->post('LevelIndex') . '",องค์ประกอบที่ "' . $this->input->post('CompositionIndex') . '"',
+				'LogUserID' => $UserID,
+				'LogUsername' => $this->input->post('UserName'),
+				'LogIpAddress' => $ip_address,
+				'LogCreation' => date('Y-m-d H:i:s')
+			];
+
+			$logresult = $this->db->insert('SYS_LOG', $log);
+		}
 		if ($query) {
 			session_start(); // เริ่มต้น session
 			$_SESSION['success'] = "ลบข้อมูลสำเร็จ!"; // กำหนดค่า success ใน session เป็น true
@@ -376,7 +613,14 @@ class Evaluation_model extends CI_Model
 	}
 	public function insert_sc_ass() //sh5
 	{
-
+		$ip_address = '';
+		if (!empty($_SERVER['HTTP_CLIENT_IP'])) {
+			$ip_address = $_SERVER['HTTP_CLIENT_IP'];
+		} elseif (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
+			$ip_address = $_SERVER['HTTP_X_FORWARDED_FOR'];
+		} else {
+			$ip_address = $_SERVER['REMOTE_ADDR'];
+		}
 		// echo '<pre>';
 		// print_r($_POST);
 		// echo'</pre>';
@@ -409,6 +653,19 @@ class Evaluation_model extends CI_Model
 
 			);
 			$query = $this->db->insert('SCHOOL_ASSESSMENT', $data);
+
+			if ($query == TRUE) {
+				$UserID = $this->session->userdata('UserID');
+				
+				$log = [
+					'LogMessage' => 'เพิ่ม การประเมินโรงเรียน ปีการศึกษา = "' . $this->input->post('SchoolAssessmentEducationYear') . '"  "' . $this->input->post('sum_index') . '", ชื่อสถานศึกษา "' . $this->input->post('SchoolID_index') . '"',
+					'LogUserID' => $UserID,
+					'LogUsername' => $this->input->post('UserName'),
+					'LogIpAddress' => $ip_address,
+					'LogCreation' => date('Y-m-d H:i:s')
+				];
+				$logresult = $this->db->insert('SYS_LOG', $log);
+			}
 			if ($query) {
 				session_start(); // เริ่มต้น session
 				$_SESSION['success'] = "เพิ่มข้อมูลเรียบร้อย!"; // กำหนดค่า success ใน session เป็น true
@@ -428,7 +685,14 @@ class Evaluation_model extends CI_Model
 	}
 	public function edit_sc_ass() //sh5
 	{
-
+		$ip_address = '';
+		if (!empty($_SERVER['HTTP_CLIENT_IP'])) {
+			$ip_address = $_SERVER['HTTP_CLIENT_IP'];
+		} elseif (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
+			$ip_address = $_SERVER['HTTP_X_FORWARDED_FOR'];
+		} else {
+			$ip_address = $_SERVER['REMOTE_ADDR'];
+		}
 		// echo '<pre>';
 		// print_r($_POST);
 		// echo'</pre>';
@@ -444,6 +708,18 @@ class Evaluation_model extends CI_Model
 		);
 		$this->db->where('Id_sa', $this->input->post('Id_sa'));
 		$query = $this->db->update('SCHOOL_ASSESSMENT', $data);
+		if ($query == TRUE) {
+			$UserID = $this->session->userdata('UserID');
+			
+			$log = [
+				'LogMessage' => 'แก้ไข  การประเมินโรงเรียน ปีการศึกษา = "' . $this->input->post('SchoolAssessmentEducationYear') . '" ภาคเรียนที่ "' . $this->input->post('sum_index') . '", ชื่อสถานศึกษา "' . $this->input->post('SchoolID_index') . '"',
+				'LogUserID' => $UserID,
+				'LogUsername' => $this->input->post('UserName'),
+				'LogIpAddress' => $ip_address,
+				'LogCreation' => date('Y-m-d H:i:s')
+			];
+			$logresult = $this->db->insert('SYS_LOG', $log);
+		}
 		if ($query) {
 			session_start(); // เริ่มต้น session
 			$_SESSION['success'] = "แก้ไขสำเร็จ!"; // กำหนดค่า success ใน session เป็น true
@@ -456,7 +732,14 @@ class Evaluation_model extends CI_Model
 	}
 	public function del_sc_ass() //sh5
 	{
-
+		$ip_address = '';
+		if (!empty($_SERVER['HTTP_CLIENT_IP'])) {
+			$ip_address = $_SERVER['HTTP_CLIENT_IP'];
+		} elseif (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
+			$ip_address = $_SERVER['HTTP_X_FORWARDED_FOR'];
+		} else {
+			$ip_address = $_SERVER['REMOTE_ADDR'];
+		}
 		// echo '<pre>';
 		// print_r($_POST);
 		// echo'</pre>';
@@ -468,6 +751,19 @@ class Evaluation_model extends CI_Model
 		);
 		$this->db->where('Id_sa', $this->input->post('Id_sa'));
 		$query = $this->db->update('SCHOOL_ASSESSMENT', $data);
+		if ($query == TRUE) {
+			$UserID = $this->session->userdata('UserID');
+			
+			$log = [
+				'LogMessage' => 'ลบ  การประเมินโรงเรียน ปีการศึกษา = "' . $this->input->post('SchoolAssessmentEducationYear') . '"  "' . $this->input->post('sum_index') . '", ชื่อสถานศึกษา "' . $this->input->post('SchoolID_index') . '"',
+				'LogUserID' => $UserID,
+				'LogUsername' => $this->input->post('UserName'),
+				'LogIpAddress' => $ip_address,
+				'LogCreation' => date('Y-m-d H:i:s')
+			];
+
+			$logresult = $this->db->insert('SYS_LOG', $log);
+		}
 		if ($query) {
 			session_start(); // เริ่มต้น session
 			$_SESSION['success'] = "ลบสำเร็จ!"; // กำหนดค่า success ใน session เป็น true
@@ -480,7 +776,14 @@ class Evaluation_model extends CI_Model
 	}
 	public function insert_sc_ass_ria() //sh6
 	{
-
+		$ip_address = '';
+		if (!empty($_SERVER['HTTP_CLIENT_IP'])) {
+			$ip_address = $_SERVER['HTTP_CLIENT_IP'];
+		} elseif (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
+			$ip_address = $_SERVER['HTTP_X_FORWARDED_FOR'];
+		} else {
+			$ip_address = $_SERVER['REMOTE_ADDR'];
+		}
 		// echo '<pre>';
 		// print_r($_POST);
 		// echo'</pre>';
@@ -547,6 +850,18 @@ class Evaluation_model extends CI_Model
 				}
 			}
 			$query = $this->db->insert('SCHOOL_ASSESSMENT_CRITERIA', $data);
+			if ($query == TRUE) {
+				$UserID = $this->session->userdata('UserID');
+				
+				$log = [
+					'LogMessage' => 'เพิ่ม เกณฑ์การประเมินโรงเรียน ปีการศึกษาที่ "' . $this->input->post('SchoolAssessmentEducationYear') . '"  "' . $this->input->post('sum_index') . '",ชื่อสถานศึกษา "' . $this->input->post('SchoolID_index') . '"',
+					'LogUserID' => $UserID,
+					'LogUsername' => $this->input->post('UserName'),
+					'LogIpAddress' => $ip_address,
+					'LogCreation' => date('Y-m-d H:i:s')
+				];
+				$logresult = $this->db->insert('SYS_LOG', $log);
+			}
 			if ($query) {
 				session_start(); // เริ่มต้น session
 				$_SESSION['success'] = "เพิ่มข้อมูลเรียบร้อย!"; // กำหนดค่า success ใน session เป็น true
@@ -567,7 +882,14 @@ class Evaluation_model extends CI_Model
 
 	public function edit_sc_ass_ria() //sh6
 	{
-
+		$ip_address = '';
+		if (!empty($_SERVER['HTTP_CLIENT_IP'])) {
+			$ip_address = $_SERVER['HTTP_CLIENT_IP'];
+		} elseif (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
+			$ip_address = $_SERVER['HTTP_X_FORWARDED_FOR'];
+		} else {
+			$ip_address = $_SERVER['REMOTE_ADDR'];
+		}
 		// echo '<pre>';
 		// print_r($_POST);
 		// echo'</pre>';
@@ -616,6 +938,18 @@ class Evaluation_model extends CI_Model
 
 		$this->db->where('Id_sac', $this->input->post('Id_sac'));
 		$query = $this->db->update('SCHOOL_ASSESSMENT_CRITERIA', $data);
+		if ($query == TRUE) {
+			$UserID = $this->session->userdata('UserID');
+			
+			$log = [
+				'LogMessage' => 'แก้ไข  เกณฑ์การประเมินโรงเรียน ปีการศึกษาที่ "' . $this->input->post('SchoolAssessmentEducationYear') . '"  "' . $this->input->post('sum_index') . '",ชื่อสถานศึกษา "' . $this->input->post('SchoolID_index') . '"',
+				'LogUserID' => $UserID,
+				'LogUsername' => $this->input->post('UserName'),
+				'LogIpAddress' => $ip_address,
+				'LogCreation' => date('Y-m-d H:i:s')
+			];
+			$logresult = $this->db->insert('SYS_LOG', $log);
+		}
 		if ($query) {
 			session_start(); // เริ่มต้น session
 			$_SESSION['success'] = "แก้ไขข้อมูลสำเร็จ!"; // กำหนดค่า success ใน session เป็น true
@@ -628,6 +962,14 @@ class Evaluation_model extends CI_Model
 	}
 	public function del_sc_ass_ria()
 	{
+		$ip_address = '';
+		if (!empty($_SERVER['HTTP_CLIENT_IP'])) {
+			$ip_address = $_SERVER['HTTP_CLIENT_IP'];
+		} elseif (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
+			$ip_address = $_SERVER['HTTP_X_FORWARDED_FOR'];
+		} else {
+			$ip_address = $_SERVER['REMOTE_ADDR'];
+		}
 		// echo '<pre>';
 		// 	print_r($_POST);
 		// 	echo'</pre>';
@@ -645,6 +987,19 @@ class Evaluation_model extends CI_Model
 			$this->db->where('SchoolAssessmentSemester', $this->input->post('SchoolAssessmentSemester'));
 			$this->db->where('SchoolID', $this->input->post('SchoolID'));
 			$querys = $this->db->update('SCHOOL_ASSESSMENT_RESULT', $data);
+			if ($query == TRUE) {
+				$UserID = $this->session->userdata('UserID');
+				
+				$log = [
+					'LogMessage' => 'ลบ  เกณฑ์การประเมินโรงเรียน ปีการศึกษาที่ "' . $this->input->post('SchoolAssessmentEducationYear') . '"  "' . $this->input->post('sum_index') . '",ชื่อสถานศึกษา "' . $this->input->post('SchoolID_index') . '"',
+					'LogUserID' => $UserID,
+					'LogUsername' => $this->input->post('UserName'),
+					'LogIpAddress' => $ip_address,
+					'LogCreation' => date('Y-m-d H:i:s')
+				];
+
+				$logresult = $this->db->insert('SYS_LOG', $log);
+			}
 			if ($querys) {
 
 				session_start(); // เริ่มต้น session
@@ -658,7 +1013,14 @@ class Evaluation_model extends CI_Model
 	}
 	public function insert_sc_ass_res() //sh7
 	{
-
+		$ip_address = '';
+		if (!empty($_SERVER['HTTP_CLIENT_IP'])) {
+			$ip_address = $_SERVER['HTTP_CLIENT_IP'];
+		} elseif (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
+			$ip_address = $_SERVER['HTTP_X_FORWARDED_FOR'];
+		} else {
+			$ip_address = $_SERVER['REMOTE_ADDR'];
+		}
 		// echo '<pre>';
 		// print_r($_POST);
 		// echo'</pre>';
@@ -711,6 +1073,18 @@ class Evaluation_model extends CI_Model
 
 				);
 				$query = $this->db->insert('SCHOOL_ASSESSMENT_RESULT', $data);
+				if ($query == TRUE) {
+					$UserID = $this->session->userdata('UserID');
+					
+					$log = [
+						'LogMessage' => 'เพิ่ม ผลการประเมินโรงเรียน ปีการศึกษาที่ "' . $this->input->post('SchoolAssessmentEducationYear') . '"  "' . $this->input->post('sum_index') . '",ชื่อสถานศึกษา "' . $this->input->post('SchoolID_index') . '"',
+						'LogUserID' => $UserID,
+						'LogUsername' => $this->input->post('UserName'),
+						'LogIpAddress' => $ip_address,
+						'LogCreation' => date('Y-m-d H:i:s')
+					];
+					$logresult = $this->db->insert('SYS_LOG', $log);
+				}
 				if ($query) {
 					session_start(); // เริ่มต้น session
 					$_SESSION['success'] = "เพิ่มข้อมูลเรียบร้อย!"; // กำหนดค่า success ใน session เป็น true
@@ -737,7 +1111,14 @@ class Evaluation_model extends CI_Model
 	}
 	public function edit_sc_ass_res() //sh7
 	{
-
+		$ip_address = '';
+		if (!empty($_SERVER['HTTP_CLIENT_IP'])) {
+			$ip_address = $_SERVER['HTTP_CLIENT_IP'];
+		} elseif (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
+			$ip_address = $_SERVER['HTTP_X_FORWARDED_FOR'];
+		} else {
+			$ip_address = $_SERVER['REMOTE_ADDR'];
+		}
 		// echo '<pre>';
 		// print_r($_POST);
 		// echo'</pre>';
@@ -756,6 +1137,18 @@ class Evaluation_model extends CI_Model
 		);
 		$this->db->where('Id_sar', $this->input->post('Id_sar'));
 		$query = $this->db->update('SCHOOL_ASSESSMENT_RESULT', $data);
+		if ($query == TRUE) {
+			$UserID = $this->session->userdata('UserID');
+			
+			$log = [
+				'LogMessage' => 'แก้ไข  ผลการประเมินโรงเรียน ปีการศึกษาที่ "' . $this->input->post('SchoolAssessmentEducationYear') . '"  "' . $this->input->post('sum_index') . '",ชื่อสถานศึกษา "' . $this->input->post('SchoolID_index') . '"',
+				'LogUserID' => $UserID,
+				'LogUsername' => $this->input->post('UserName'),
+				'LogIpAddress' => $ip_address,
+				'LogCreation' => date('Y-m-d H:i:s')
+			];
+			$logresult = $this->db->insert('SYS_LOG', $log);
+		}
 		if ($query) {
 			// สอบถามข้อมูลจากตาราง
 			$this->db->where('CompositionIndex', 0);
@@ -783,7 +1176,14 @@ class Evaluation_model extends CI_Model
 
 	public function del_sc_ass_res() //sh7
 	{
-
+		$ip_address = '';
+		if (!empty($_SERVER['HTTP_CLIENT_IP'])) {
+			$ip_address = $_SERVER['HTTP_CLIENT_IP'];
+		} elseif (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
+			$ip_address = $_SERVER['HTTP_X_FORWARDED_FOR'];
+		} else {
+			$ip_address = $_SERVER['REMOTE_ADDR'];
+		}
 		// echo '<pre>';
 		// print_r($_POST);
 		// echo'</pre>';
@@ -795,6 +1195,19 @@ class Evaluation_model extends CI_Model
 		);
 		$this->db->where('Id_sar', $this->input->post('Id_sar'));
 		$query = $this->db->update('SCHOOL_ASSESSMENT_RESULT', $data);
+		if ($query == TRUE) {
+			$UserID = $this->session->userdata('UserID');
+			
+			$log = [
+				'LogMessage' => 'ลบ  ผลการประเมินโรงเรียน ปีการศึกษาที่ "' . $this->input->post('SchoolAssessmentEducationYear') . '"  "' . $this->input->post('sum_index') . '",ชื่อสถานศึกษา "' . $this->input->post('SchoolID_index') . '"',
+				'LogUserID' => $UserID,
+				'LogUsername' => $this->input->post('UserName'),
+				'LogIpAddress' => $ip_address,
+				'LogCreation' => date('Y-m-d H:i:s')
+			];
+
+			$logresult = $this->db->insert('SYS_LOG', $log);
+		}
 		if ($query) {
 			session_start(); // เริ่มต้น session
 			$_SESSION['success'] = "ลบข้อมูลสำเร็จ!"; // กำหนดค่า success ใน session เป็น true
@@ -807,7 +1220,14 @@ class Evaluation_model extends CI_Model
 	}
 	public function insert_achie_ass() //sh8
 	{
-
+		$ip_address = '';
+		if (!empty($_SERVER['HTTP_CLIENT_IP'])) {
+			$ip_address = $_SERVER['HTTP_CLIENT_IP'];
+		} elseif (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
+			$ip_address = $_SERVER['HTTP_X_FORWARDED_FOR'];
+		} else {
+			$ip_address = $_SERVER['REMOTE_ADDR'];
+		}
 		//   echo '<pre>';
 		// print_r($_POST);
 		// echo'</pre>';
@@ -830,6 +1250,7 @@ class Evaluation_model extends CI_Model
 					$filename = $data['file_name'];
 					$data = array(
 						'AchievementAssessmentYear' => $this->input->post('AchievementAssessmentYear'),
+						'SchoolAssessmentSemester' => $this->input->post('SchoolAssessmentSemester'),
 						'SchoolID' => $this->input->post('SchoolID'),
 						'SchoolAssessmentName' => $this->input->post('SchoolAssessmentName'),
 						'SchoolAssessmentDescription' => $this->input->post('SchoolAssessmentDescription'),
@@ -842,6 +1263,7 @@ class Evaluation_model extends CI_Model
 			} else {
 				$data = array(
 					'AchievementAssessmentYear' => $this->input->post('AchievementAssessmentYear'),
+					'SchoolAssessmentSemester' => $this->input->post('SchoolAssessmentSemester'),
 					'SchoolID' => $this->input->post('SchoolID'),
 					'SchoolAssessmentName' => $this->input->post('SchoolAssessmentName'),
 					'SchoolAssessmentDescription' => $this->input->post('SchoolAssessmentDescription'),
@@ -851,6 +1273,19 @@ class Evaluation_model extends CI_Model
 			}
 		}
 		$query = $this->db->insert('ACHIEVEMENT_ASSESSMENT', $data);
+		if ($query == TRUE) {
+			$UserID = $this->session->userdata('UserID');
+			
+			$log = [
+				'LogMessage' => 'เพิ่ม ผลการประเมินสถานศึกษา ปีการศึกษา "' . $this->input->post('AchievementAssessmentYear') . '"  "' . $this->input->post('sum_index') . '",ชื่อสถานศึกษา "' . $this->input->post('SchoolID_index') . '"',
+				'LogUserID' => $UserID,
+				'LogUsername' => $this->input->post('UserName'),
+				'LogIpAddress' => $ip_address,
+				'LogCreation' => date('Y-m-d H:i:s')
+			];
+
+			$logresult = $this->db->insert('SYS_LOG', $log);
+		}
 		if ($query) {
 			session_start(); // เริ่มต้น session
 			$_SESSION['success'] = "เพิ่มข้อมูลเรียบร้อย !"; // กำหนดค่า success ใน session เป็น true
@@ -863,6 +1298,14 @@ class Evaluation_model extends CI_Model
 
 	public function edit_achie_ass() //sh8
 	{
+		$ip_address = '';
+		if (!empty($_SERVER['HTTP_CLIENT_IP'])) {
+			$ip_address = $_SERVER['HTTP_CLIENT_IP'];
+		} elseif (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
+			$ip_address = $_SERVER['HTTP_X_FORWARDED_FOR'];
+		} else {
+			$ip_address = $_SERVER['REMOTE_ADDR'];
+		}
 		if (isset($_FILES['AchievementAssessmentAttachmentURL'])) {
 			$file = $_FILES['AchievementAssessmentAttachmentURL']['tmp_name'];
 			if (file_exists($file)) {
@@ -906,6 +1349,18 @@ class Evaluation_model extends CI_Model
 		}
 		$this->db->where('Id', $this->input->post('Id'));
 		$query = $this->db->update('ACHIEVEMENT_ASSESSMENT', $data);
+		if ($query == TRUE) {
+			$UserID = $this->session->userdata('UserID');
+			
+			$log = [
+				'LogMessage' => 'แก้ไข ผลการประเมินสถานศึกษา ปีการศึกษา "' . $this->input->post('AchievementAssessmentYear') . '"  "' . $this->input->post('sum_index') . '",ชื่อสถานศึกษา "' . $this->input->post('SchoolID_index') . '"',
+				'LogUserID' => $UserID,
+				'LogUsername' => $this->input->post('UserName'),
+				'LogIpAddress' => $ip_address,
+				'LogCreation' => date('Y-m-d H:i:s')
+			];
+			$logresult = $this->db->insert('SYS_LOG', $log);
+		}
 		if ($query) {
 			session_start(); // เริ่มต้น session
 			$_SESSION['success'] = "แก้ไขสำเร็จ!"; // กำหนดค่า success ใน session เป็น true
@@ -915,9 +1370,22 @@ class Evaluation_model extends CI_Model
 		} else {
 			echo 'false';
 		}
-	}
+	} 
 	public function del_achie_ass() //sh8
 	{
+		$ip_address = '';
+		if (!empty($_SERVER['HTTP_CLIENT_IP'])) {
+			$ip_address = $_SERVER['HTTP_CLIENT_IP'];
+		} elseif (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
+			$ip_address = $_SERVER['HTTP_X_FORWARDED_FOR'];
+		} else {
+			$ip_address = $_SERVER['REMOTE_ADDR'];
+		}
+
+		// 	  echo '<pre>';
+		// print_r($_POST);
+		// echo'</pre>';
+		// exit;
 		$status = '1';
 		$data = array(
 
@@ -925,6 +1393,19 @@ class Evaluation_model extends CI_Model
 		);
 		$this->db->where('Id', $this->input->post('Id'));
 		$query = $this->db->update('ACHIEVEMENT_ASSESSMENT', $data);
+		if ($query == TRUE) {
+			$UserID = $this->session->userdata('UserID');
+			
+			$log = [
+				'LogMessage' => 'ลบ  ผลการประเมินสถานศึกษา ปีการศึกษา "' . $this->input->post('AchievementAssessmentYear') . '"  "' . $this->input->post('sum_index') . '",ชื่อสถานศึกษา "' . $this->input->post('SchoolID_index') . '"',
+				'LogUserID' => $UserID,
+				'LogUsername' => $this->input->post('UserName'),
+				'LogIpAddress' => $ip_address,
+				'LogCreation' => date('Y-m-d H:i:s')
+			];
+
+			$logresult = $this->db->insert('SYS_LOG', $log);
+		}
 		if ($query) {
 			session_start(); // เริ่มต้น session
 			$_SESSION['success'] = "ลบข้อมูลสำเร็จ!"; // กำหนดค่า success ใน session เป็น true
@@ -1121,6 +1602,26 @@ class Evaluation_model extends CI_Model
 
 					if ($Check != TRUE) {
 						$insert = $this->db->insert('ASSESSMENT_CRITERIA', $all_data);
+						$ip_address = '';
+						if (!empty($_SERVER['HTTP_CLIENT_IP'])) {
+							$ip_address = $_SERVER['HTTP_CLIENT_IP'];
+						} elseif (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
+							$ip_address = $_SERVER['HTTP_X_FORWARDED_FOR'];
+						} else {
+							$ip_address = $_SERVER['REMOTE_ADDR'];
+						}
+						if ($insert == TRUE) {
+							$UserID = $this->session->userdata('UserID');
+							
+							$log = [
+								'LogMessage' => 'เพิ่ม ตัวชี้วัด รหัส  "' .  $data[0]  . '" ชื่อ "' . $data[1]. '"',
+								'LogUserID' => $UserID,
+								'LogUsername' => $this->input->post('UserName'),
+								'LogIpAddress' => $ip_address,
+								'LogCreation' => date('Y-m-d H:i:s')
+							];
+							$logresult = $this->db->insert('SYS_LOG', $log);
+						}
 						$last_id = $this->db->insert_id();
 						$note = 'สำเร็จ';
 						$status = '1';
@@ -1130,172 +1631,170 @@ class Evaluation_model extends CI_Model
 						switch ($data[3]) {
 
 							case ($data[3] == '1'):
-							if($data[6] == ''||$data[7]==''){
-								$path2 = "ระดับของตัวชี้วัด".$data[3].'แต่ข้อมูลในลำดับระดับของตัวชี้วัด 1 ข้อมูลไม่ครบ';
-								$status2 = '0';
-							}else{
-								$path_two = [
-									'CriteriaID' => $last_id,
-									'LevelIndex' => 1,
-									'LevelName' => $data[6],
-									'LevelScore' => $data[7]
+								if ($data[6] == '' || $data[7] == '') {
+									$path2 = "ระดับของตัวชี้วัด" . $data[3] . 'แต่ข้อมูลในลำดับระดับของตัวชี้วัด 1 ข้อมูลไม่ครบ';
+									$status2 = '0';
+								} else {
+									$path_two = [
+										'CriteriaID' => $last_id,
+										'LevelIndex' => 1,
+										'LevelName' => $data[6],
+										'LevelScore' => $data[7]
 
-								];
+									];
 
-								$insert = $this->db->insert('ASSESSMENT_CRITERIA_LEVEL', $path_two);
-								$status2 = '1';
-								$path2 = '';
-							}
+									$insert = $this->db->insert('ASSESSMENT_CRITERIA_LEVEL', $path_two);
+									$status2 = '1';
+									$path2 = '';
+								}
 								break;
 							case ($data[3] == '2'):
-							if($data[6] == ''||$data[7]==''||$data[8] == ''||$data[9]==''){
-								$path2 = "ระดับของตัวชี้วัด".$data[3].'แต่ข้อมูลในลำดับระดับของตัวชี้วัด 1-2 ข้อมูลไม่ครบ';
-								$status2 = '0';
-							}else{
-								$path_two = [
-									'CriteriaID' => $last_id,
-									'LevelIndex' => 1,
-									'LevelName' => $data[6],
-									'LevelScore' => $data[7]
+								if ($data[6] == '' || $data[7] == '' || $data[8] == '' || $data[9] == '') {
+									$path2 = "ระดับของตัวชี้วัด" . $data[3] . 'แต่ข้อมูลในลำดับระดับของตัวชี้วัด 1-2 ข้อมูลไม่ครบ';
+									$status2 = '0';
+								} else {
+									$path_two = [
+										'CriteriaID' => $last_id,
+										'LevelIndex' => 1,
+										'LevelName' => $data[6],
+										'LevelScore' => $data[7]
 
-								];
-								$insert = $this->db->insert('ASSESSMENT_CRITERIA_LEVEL', $path_two);
-								$path_two = [
-									'CriteriaID' => $last_id,
-									'LevelIndex' => 2,
-									'LevelName' => $data[8],
-									'LevelScore' => $data[9]
+									];
+									$insert = $this->db->insert('ASSESSMENT_CRITERIA_LEVEL', $path_two);
+									$path_two = [
+										'CriteriaID' => $last_id,
+										'LevelIndex' => 2,
+										'LevelName' => $data[8],
+										'LevelScore' => $data[9]
 
-								];
-								$insert = $this->db->insert('ASSESSMENT_CRITERIA_LEVEL', $path_two);
-								$status2 = '1';
-								$path2 = '';
-							}
+									];
+									$insert = $this->db->insert('ASSESSMENT_CRITERIA_LEVEL', $path_two);
+									$status2 = '1';
+									$path2 = '';
+								}
 								break;
 							case ($data[3] >= '3'):
-							if($data[6] == ''||$data[7]==''||$data[8] == ''||$data[9]==''||$data[10] == ''||$data[11]==''){
-								$path2 = "ระดับของตัวชี้วัด".$data[3].'แต่ข้อมูลในลำดับระดับของตัวชี้วัด 1-3 ข้อมูลไม่ครบ';
-								$status2 = '0';
-							}else{
-								$path_two = [
-									'CriteriaID' => $last_id,
-									'LevelIndex' => 1,
-									'LevelName' => $data[6],
-									'LevelScore' => $data[7]
+								if ($data[6] == '' || $data[7] == '' || $data[8] == '' || $data[9] == '' || $data[10] == '' || $data[11] == '') {
+									$path2 = "ระดับของตัวชี้วัด" . $data[3] . 'แต่ข้อมูลในลำดับระดับของตัวชี้วัด 1-3 ข้อมูลไม่ครบ';
+									$status2 = '0';
+								} else {
+									$path_two = [
+										'CriteriaID' => $last_id,
+										'LevelIndex' => 1,
+										'LevelName' => $data[6],
+										'LevelScore' => $data[7]
 
-								];
-								$insert = $this->db->insert('ASSESSMENT_CRITERIA_LEVEL', $path_two);
-								$path_two = [
-									'CriteriaID' => $last_id,
-									'LevelIndex' => 2,
-									'LevelName' => $data[8],
-									'LevelScore' => $data[9]
+									];
+									$insert = $this->db->insert('ASSESSMENT_CRITERIA_LEVEL', $path_two);
+									$path_two = [
+										'CriteriaID' => $last_id,
+										'LevelIndex' => 2,
+										'LevelName' => $data[8],
+										'LevelScore' => $data[9]
 
-								];
-								$insert = $this->db->insert('ASSESSMENT_CRITERIA_LEVEL', $path_two);
-								$path_two = [
-									'CriteriaID' => $last_id,
-									'LevelIndex' => 3,
-									'LevelName' => $data[10],
-									'LevelScore' => $data[11]
+									];
+									$insert = $this->db->insert('ASSESSMENT_CRITERIA_LEVEL', $path_two);
+									$path_two = [
+										'CriteriaID' => $last_id,
+										'LevelIndex' => 3,
+										'LevelName' => $data[10],
+										'LevelScore' => $data[11]
 
-								];
-								$insert = $this->db->insert('ASSESSMENT_CRITERIA_LEVEL', $path_two);
-								$status2 = '1';
-								$path2 = '';
-							}
+									];
+									$insert = $this->db->insert('ASSESSMENT_CRITERIA_LEVEL', $path_two);
+									$status2 = '1';
+									$path2 = '';
+								}
 								break;
 						}
 
 						switch ($data[4]) {
 
 							case ($data[4] == '1'):
-							if($data[12] == ''||$data[13]==''||$data[14] == ''){
-								$path3 = "องค์ประกอบของตัวชี้วัดมี".$data[4].'แต่ข้อมูลในลำดับองค์ประกอบของตัวชี้วัดมี 1 ข้อมูลไม่ครบ';
-								$status3 = '0';
-							}else{
-								$path_three = [
-									'CriteriaID' => $last_id,
-									'CompositionIndex' => 1,
-									'CompositionName' => $data[12],
-									'CompositionWeightScore' => $data[13],
-									'CompositionGuideline' => $data[14]
+								if ($data[12] == '' || $data[13] == '' || $data[14] == '') {
+									$path3 = "องค์ประกอบของตัวชี้วัดมี" . $data[4] . 'แต่ข้อมูลในลำดับองค์ประกอบของตัวชี้วัดมี 1 ข้อมูลไม่ครบ';
+									$status3 = '0';
+								} else {
+									$path_three = [
+										'CriteriaID' => $last_id,
+										'CompositionIndex' => 1,
+										'CompositionName' => $data[12],
+										'CompositionWeightScore' => $data[13],
+										'CompositionGuideline' => $data[14]
 
-								];
-								$insert = $this->db->insert('ASSESSMENT_CRITERIA_COMPOSITION', $path_three);
-								$status3 = '1';
-								$path3 = '';
-							}
+									];
+									$insert = $this->db->insert('ASSESSMENT_CRITERIA_COMPOSITION', $path_three);
+									$status3 = '1';
+									$path3 = '';
+								}
 								break;
 							case ($data[4] == '2'):
-							if($data[12] == ''||$data[13]==''||$data[14] == ''||$data[15]==''||$data[16] == ''||$data[17]==''){
-								$path3 = "องค์ประกอบของตัวชี้วัดมี".$data[4].'แต่ข้อมูลในลำดับองค์ประกอบของตัวชี้วัดมี 1-2 ข้อมูลไม่ครบ';
-								$status3 = '0';
-								
-							}else{
-								$path_three = [
-									'CriteriaID' => $last_id,
-									'CompositionIndex' => 1,
-									'CompositionName' => $data[12],
-									'CompositionWeightScore' => $data[13],
-									'CompositionGuideline' => $data[14]
+								if ($data[12] == '' || $data[13] == '' || $data[14] == '' || $data[15] == '' || $data[16] == '' || $data[17] == '') {
+									$path3 = "องค์ประกอบของตัวชี้วัดมี" . $data[4] . 'แต่ข้อมูลในลำดับองค์ประกอบของตัวชี้วัดมี 1-2 ข้อมูลไม่ครบ';
+									$status3 = '0';
+								} else {
+									$path_three = [
+										'CriteriaID' => $last_id,
+										'CompositionIndex' => 1,
+										'CompositionName' => $data[12],
+										'CompositionWeightScore' => $data[13],
+										'CompositionGuideline' => $data[14]
 
 
-								];
-								$insert = $this->db->insert('ASSESSMENT_CRITERIA_COMPOSITION', $path_three);
-								$path_three = [
-									'CriteriaID' => $last_id,
-									'CompositionIndex' => 2,
-									'CompositionName' => $data[15],
-									'CompositionWeightScore' => $data[16],
-									'CompositionGuideline' => $data[17]
+									];
+									$insert = $this->db->insert('ASSESSMENT_CRITERIA_COMPOSITION', $path_three);
+									$path_three = [
+										'CriteriaID' => $last_id,
+										'CompositionIndex' => 2,
+										'CompositionName' => $data[15],
+										'CompositionWeightScore' => $data[16],
+										'CompositionGuideline' => $data[17]
 
 
-								];
-								$insert = $this->db->insert('ASSESSMENT_CRITERIA_COMPOSITION', $path_three);
-								$status3 = '1';
-								$path3 = '';
-							}
+									];
+									$insert = $this->db->insert('ASSESSMENT_CRITERIA_COMPOSITION', $path_three);
+									$status3 = '1';
+									$path3 = '';
+								}
 								break;
 							case ($data[4] >= '3'):
-							if($data[12] == ''||$data[13]==''||$data[14] == ''||$data[15]==''||$data[16] == ''||$data[17]==''||$data[18]==''||$data[19] == ''||$data[20]==''){
-								$path3 = "องค์ประกอบของตัวชี้วัดมี".$data[4].'แต่ข้อมูลในลำดับองค์ประกอบของตัวชี้วัดมี 1-3 ข้อมูลไม่ครบ';
-								$status3 = '0';
-								
-							}else{
-								$path_three = [
-									'CriteriaID' => $last_id,
-									'CompositionIndex' => 1,
-									'CompositionName' => $data[12],
-									'CompositionWeightScore' => $data[13],
-									'CompositionGuideline' => $data[14]
+								if ($data[12] == '' || $data[13] == '' || $data[14] == '' || $data[15] == '' || $data[16] == '' || $data[17] == '' || $data[18] == '' || $data[19] == '' || $data[20] == '') {
+									$path3 = "องค์ประกอบของตัวชี้วัดมี" . $data[4] . 'แต่ข้อมูลในลำดับองค์ประกอบของตัวชี้วัดมี 1-3 ข้อมูลไม่ครบ';
+									$status3 = '0';
+								} else {
+									$path_three = [
+										'CriteriaID' => $last_id,
+										'CompositionIndex' => 1,
+										'CompositionName' => $data[12],
+										'CompositionWeightScore' => $data[13],
+										'CompositionGuideline' => $data[14]
 
 
-								];
-								$insert = $this->db->insert('ASSESSMENT_CRITERIA_COMPOSITION', $path_three);
-								$path_three = [
-									'CriteriaID' => $last_id,
-									'CompositionIndex' => 2,
-									'CompositionName' => $data[15],
-									'CompositionWeightScore' => $data[16],
-									'CompositionGuideline' => $data[17]
+									];
+									$insert = $this->db->insert('ASSESSMENT_CRITERIA_COMPOSITION', $path_three);
+									$path_three = [
+										'CriteriaID' => $last_id,
+										'CompositionIndex' => 2,
+										'CompositionName' => $data[15],
+										'CompositionWeightScore' => $data[16],
+										'CompositionGuideline' => $data[17]
 
 
-								];
-								$insert = $this->db->insert('ASSESSMENT_CRITERIA_COMPOSITION', $path_three);
-								$path_three = [
-									'CriteriaID' => $last_id,
-									'CompositionIndex' => 3,
-									'CompositionName' => $data[18],
-									'CompositionWeightScore' => $data[19],
-									'CompositionGuideline' => $data[20]
+									];
+									$insert = $this->db->insert('ASSESSMENT_CRITERIA_COMPOSITION', $path_three);
+									$path_three = [
+										'CriteriaID' => $last_id,
+										'CompositionIndex' => 3,
+										'CompositionName' => $data[18],
+										'CompositionWeightScore' => $data[19],
+										'CompositionGuideline' => $data[20]
 
 
-								];
-								$insert = $this->db->insert('ASSESSMENT_CRITERIA_COMPOSITION', $path_three);
-								$status3 = '1';
-								$path3 = '';
-							}
+									];
+									$insert = $this->db->insert('ASSESSMENT_CRITERIA_COMPOSITION', $path_three);
+									$status3 = '1';
+									$path3 = '';
+								}
 								break;
 						}
 					} else {
@@ -1303,9 +1802,9 @@ class Evaluation_model extends CI_Model
 						$status = '0';
 						$loop++;
 						$status2 = '0';
-					$status3 = '0';
-					$path2 = 'ข้อมูลซ้ำ';
-					$path3 = 'ข้อมูลซ้ำ';
+						$status3 = '0';
+						$path2 = 'ข้อมูลซ้ำ';
+						$path3 = 'ข้อมูลซ้ำ';
 					}
 				} elseif ($i >= 1 && ($data[0] == '' || $data[1] == '' || $data[2] == '' || $data[3] == '' || $data[4] == '')) { //ถ้าข้อมูลอันไหนว่าง
 					$note = 'ข้อมูลไม่ครบ';
@@ -1315,7 +1814,6 @@ class Evaluation_model extends CI_Model
 					$status3 = '0';
 					$path2 = '';
 					$path3 = '';
-					
 				}
 
 				$count++;

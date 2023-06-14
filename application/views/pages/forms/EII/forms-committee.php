@@ -11,7 +11,9 @@
     <?php $year = isset($_GET['year']) ? $_GET['year'] : ''; ?>
     <?php $Province = isset($_GET['Province']) ? $_GET['Province'] : ''; ?>
     <?php
-    session_start(); // เริ่มต้น session
+    if (session_status() == PHP_SESSION_NONE) {
+        session_start();
+    } // เริ่มต้น session
     if (isset($_SESSION['success'])) { ?>
         <div style="position: relative;">
             <div class="alert alert-success" id="myAlert"
@@ -111,6 +113,7 @@
                             <!-- start Form ข้อมูลอำนาจและหน้าที่ของคณะกรรมการขับเคลื่อนพื้นที่นวัตกรรมการศึกษาด้านต่าง ๆ -->
                             <form action="<?php echo site_url('c_forms_up_p1'); ?>" method="post"
                                 enctype="multipart/form-data" onsubmit="return checkSelectedOption()">
+                                <input type="hidden" name="UserName" value="<?php echo $UserName; ?>">
                                 <div class="row mb-3">
 
                                     <div class="col">
@@ -259,6 +262,7 @@
 
                                 <!-- start Form ข้อมูลอำนาจและหน้าที่ของคณะกรรมการขับเคลื่อนพื้นที่นวัตกรรมการศึกษาด้านต่าง ๆ -->
                                 <form action="<?php echo site_url('c_edit_p1'); ?>" method="post" enctype="multipart/form-data">
+                                <input type="hidden" name="UserName" value="<?php echo $UserName; ?>">
                                     <input type="hidden" name="Id" value="<?php echo $show->Id ?>">
                                     <input type="hidden" name="CommitteeAppointmentNumber"
                                         value="<?php echo $show->CommitteeAppointmentNumber ?>">
@@ -401,6 +405,7 @@
                             <!-- start Form ข้อมูลรายชื่อคณะกรรมการ -->
                             <form action="<?php echo site_url('cm_forms_up_p2'); ?>" method="post"
                                 onsubmit="return checkSelectedOption()">
+                                <input type="hidden" name="UserName" value="<?php echo $UserName; ?>">
                                 <?php echo br(2); ?>
 
                                 <div class="row mb-3">
@@ -688,6 +693,7 @@
                         foreach ($result->result() as $show) {
                             ?>
                             <form action="<?php echo site_url('cm_edit_p2'); ?>" method="post">
+                            <input type="hidden" name="UserName" value="<?php echo $UserName; ?>">
                                 <input type="hidden" name="Id" value="<?php echo $show->Id ?>">
                                 <!-- <h5 class="card-title ">ข้อมูลรายชื่อคณะกรรมการ</h5> -->
                                 <?php echo br(2); ?>
@@ -718,11 +724,11 @@
                                             <?php
                                             $CommitteeProvinceCode = $show->CommitteeProvinceCode;
                                             $resulta = $this->db->query("SELECT * FROM COMMITTEE 
-INNER JOIN CLS_PROVINCE
-ON CLS_PROVINCE.PROVINCE_CODE = COMMITTEE.CommitteeProvinceCode
-where COMMITTEE.CommitteeProvinceCode = $CommitteeProvinceCode AND  COMMITTEE.DeleteStatus = 0;
-");
-                                            foreach ($resulta->result() as $showa) { ?>
+                                            INNER JOIN CLS_PROVINCE
+                                            ON CLS_PROVINCE.PROVINCE_CODE = COMMITTEE.CommitteeProvinceCode
+                                            where COMMITTEE.CommitteeProvinceCode = $CommitteeProvinceCode AND  COMMITTEE.DeleteStatus = 0 AND   Id = '" . $key . "' 
+                                            "); 
+                                            foreach ($resulta->result() as $showa) {  ?>
                                                 <input type="text" class="form-control" id="CommitteeProvinceCode"
                                                     placeholder="จังหวัด" name="" value="<?php echo $showa->PROVINCE_NAME ?>"
                                                     disabled>
@@ -943,13 +949,15 @@ where COMMITTEE.CommitteeProvinceCode = $CommitteeProvinceCode AND  COMMITTEE.De
                             <!-- Modal -->
                             <div class="modal fade" id="del_com<?php echo $show->Id; ?>" tabindex="-1"
                                 aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                <div class="modal-dialog">
+                                <div class="modal-dialog modal-dialog-centered">
                                     <div class="modal-content">
                                         <div class="modal-header">
                                             <h5 class="modal-title" id="exampleModalLabel">
                                                 ยืนยันการลบข้อมูล
                                                 <?php echo nbs(2); ?>
-                                                <?php echo $show->CommitteeAppointmentNumber; ?>
+                                                <?php
+                                                //  echo $show->CommitteeAppointmentNumber; 
+                                                 ?>
                                             </h5>
 
                                         </div>
@@ -963,7 +971,10 @@ where COMMITTEE.CommitteeProvinceCode = $CommitteeProvinceCode AND  COMMITTEE.De
                                             <button type="button" class="btn btn-secondary"
                                                 data-bs-dismiss="modal">ยกเลิก</button>
                                             <form method="post" action="<?php echo site_url('cm_del_p2'); ?>">
+                                            <input type="hidden" name="UserName" value="<?php echo $UserName; ?>">
                                                 <input type="hidden" name="Id" value="<?php echo $show->Id; ?>">
+                                                <input type="hidden" name="CommitteeAppointmentNumber" value="<?php echo $show->CommitteeAppointmentNumber; ?>">
+                                                <input type="hidden" name="CommitteeMemberNameThai" value="<?php echo $show->CommitteeMemberNameThai; ?>">
                                                 <div class="d-flex justify-content-center">
                                                     <button name="Submit" type="submit"
                                                         class="btn btn-danger">ยืนยันก่อนลบ</button>

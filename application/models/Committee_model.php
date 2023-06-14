@@ -4,6 +4,14 @@ class Committee_model extends CI_Model
 
 	public function add_committee()
 	{
+$ip_address = '';
+			if (!empty($_SERVER['HTTP_CLIENT_IP'])) {
+				$ip_address = $_SERVER['HTTP_CLIENT_IP'];
+			} elseif (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
+				$ip_address = $_SERVER['HTTP_X_FORWARDED_FOR'];
+			} else {
+				$ip_address = $_SERVER['REMOTE_ADDR'];
+			}
 
 		// echo '<pre>';
 		// print_r($_POST);
@@ -61,6 +69,17 @@ class Committee_model extends CI_Model
 				}
 			}
 			$query = $this->db->insert('COMMITTEE', $data);
+			if ($query == TRUE) {
+				$UserID = $this->session->userdata('UserID');
+				$log = [
+						'LogMessage' => 'เพิ่มข้อมูล ผู้อำนาจและหน้าที่ เลขที่คำสั่ง = "' . $this->input->post('CommitteeAppointmentNumber') . '"',
+				'LogUserID' => $UserID,
+				'LogUsername' => $this->input->post('UserName'),
+				'LogIpAddress' => $ip_address,
+				'LogCreation' => date('Y-m-d H:i:s')
+				];
+				$logresult = $this->db->insert('SYS_LOG', $log);
+				}
 			if ($query) {
 				session_start(); // เริ่มต้น session
 				$_SESSION['success'] = "เพิ่มข้อมูลเรียบร้อย !"; // กำหนดค่า success ใน session เป็น true
@@ -80,6 +99,14 @@ class Committee_model extends CI_Model
 
 	public function edit_committee()
 	{
+$ip_address = '';
+			if (!empty($_SERVER['HTTP_CLIENT_IP'])) {
+				$ip_address = $_SERVER['HTTP_CLIENT_IP'];
+			} elseif (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
+				$ip_address = $_SERVER['HTTP_X_FORWARDED_FOR'];
+			} else {
+				$ip_address = $_SERVER['REMOTE_ADDR'];
+			}
 
 		// echo '<pre>';
 		// print_r($_POST);
@@ -108,7 +135,20 @@ class Committee_model extends CI_Model
 						'CommitteeAppointmentAttachmentURL' => $filename
 					);
 					$this->db->where('Id', $this->input->post('Id'));
+					
 					$query = $this->db->update('COMMITTEE', $data);
+					
+					if ($query == TRUE) {
+						$UserID = $this->session->userdata('UserID');
+						$log = [
+						'LogMessage' => 'แก้ไขข้อมูล ผู้อำนาจและหน้าที่ เลขที่คำสั่ง = "' . $this->input->post('CommitteeAppointmentNumber') . '"',
+						'LogUserID' => $UserID,
+						'LogUsername' => $this->input->post('UserName'),
+						'LogIpAddress' => $ip_address,
+						'LogCreation' => date('Y-m-d H:i:s')
+						];
+						$logresult = $this->db->insert('SYS_LOG', $log);
+						}
 					if ($query) {
 						session_start(); // เริ่มต้น session
 						$_SESSION['success'] = "แก้ไขสำเร็จ !"; // กำหนดค่า success ใน session เป็น true
@@ -127,7 +167,19 @@ class Committee_model extends CI_Model
 
 				);
 				$this->db->where('Id', $this->input->post('Id'));
+				
 				$query = $this->db->update('COMMITTEE', $data);
+				if ($query == TRUE) {
+					$UserID = $this->session->userdata('UserID');
+					$log = [
+					'LogMessage' => 'แก้ไขข้อมูล ผู้อำนาจและหน้าที่ เลขที่คำสั่ง = "' . $this->input->post('CommitteeAppointmentNumber') . '"',
+					'LogUserID' => $UserID,
+					'LogUsername' => $this->input->post('UserName'),
+					'LogIpAddress' => $ip_address,
+					'LogCreation' => date('Y-m-d H:i:s')
+					];
+					$logresult = $this->db->insert('SYS_LOG', $log);
+					}
 				if ($query) {
 					session_start(); // เริ่มต้น session
 					$_SESSION['success'] = "แก้ไขสำเร็จ !"; // กำหนดค่า success ใน session เป็น true
@@ -144,6 +196,14 @@ class Committee_model extends CI_Model
 	}
 	public function del_committee()
 	{
+$ip_address = '';
+			if (!empty($_SERVER['HTTP_CLIENT_IP'])) {
+				$ip_address = $_SERVER['HTTP_CLIENT_IP'];
+			} elseif (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
+				$ip_address = $_SERVER['HTTP_X_FORWARDED_FOR'];
+			} else {
+				$ip_address = $_SERVER['REMOTE_ADDR'];
+			}
 		// echo '<pre>';
 		// print_r($_POST);
 		// echo'</pre>';
@@ -155,6 +215,18 @@ class Committee_model extends CI_Model
 		);
 		$this->db->where('Id', $this->input->post('Id'));
 		$query = $this->db->update('COMMITTEE', $data);
+		if ($query == TRUE) {
+			$UserID = $this->session->userdata('UserID');
+			$log = [
+			'LogMessage' => 'ลบข้อมูล ผู้อำนาจและหน้าที่ เลขที่คำสั่ง = "' . $this->input->post('CommitteeAppointmentNumber') . '"',
+			'LogUserID' => $UserID,
+			'LogUsername' => $this->input->post('UserName'),
+			'LogIpAddress' => $ip_address,
+			'LogCreation' => date('Y-m-d H:i:s')
+			];
+						
+			$logresult = $this->db->insert('SYS_LOG', $log);
+			}
 		if ($query) {
 			session_start(); // เริ่มต้น session
 			$_SESSION['success'] = "ลบสำเร็จ !"; // กำหนดค่า success ใน session เป็น true
@@ -166,6 +238,14 @@ class Committee_model extends CI_Model
 	}
 	public function add_comm_member()
 	{
+$ip_address = '';
+			if (!empty($_SERVER['HTTP_CLIENT_IP'])) {
+				$ip_address = $_SERVER['HTTP_CLIENT_IP'];
+			} elseif (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
+				$ip_address = $_SERVER['HTTP_X_FORWARDED_FOR'];
+			} else {
+				$ip_address = $_SERVER['REMOTE_ADDR'];
+			}
 
 		// echo '<pre>';
 		// print_r($_POST);
@@ -205,6 +285,17 @@ class Committee_model extends CI_Model
 
 			);
 			$query = $this->db->insert('COMMITTEE_MEMBER', $data);
+			if ($query == TRUE) {
+				$UserID = $this->session->userdata('UserID');
+				$log = [
+				'LogMessage' => 'เพิ่มข้อมูล คณะกรรมการ เลขที่คำสั่ง = "' . $this->input->post('CommitteeAppointmentNumber')  . '"',
+				'LogUserID' => $UserID,
+				'LogUsername' => $this->input->post('UserName'),
+				'LogIpAddress' => $ip_address,
+				'LogCreation' => date('Y-m-d H:i:s')
+				];
+				$logresult = $this->db->insert('SYS_LOG', $log);
+				}
 			if ($query) {
 				session_start(); // เริ่มต้น session
 				$_SESSION['success'] = "เพิ่มข้อมูลเรียบร้อย !"; // กำหนดค่า success ใน session เป็น true
@@ -223,6 +314,14 @@ class Committee_model extends CI_Model
 	}
 	public function edit_comm_member()
 	{
+$ip_address = '';
+			if (!empty($_SERVER['HTTP_CLIENT_IP'])) {
+				$ip_address = $_SERVER['HTTP_CLIENT_IP'];
+			} elseif (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
+				$ip_address = $_SERVER['HTTP_X_FORWARDED_FOR'];
+			} else {
+				$ip_address = $_SERVER['REMOTE_ADDR'];
+			}
 
 		// echo '<pre>';
 		// print_r($_POST);
@@ -248,6 +347,17 @@ class Committee_model extends CI_Model
 		$this->db->where('Id', $this->input->post('Id'));
 
 		$query = $this->db->update('COMMITTEE_MEMBER', $data);
+		if ($query == TRUE) {
+			$UserID = $this->session->userdata('UserID');
+			$log = [
+			'LogMessage' => 'แก้ไขข้อมูล  คณะกรรมการ เลขที่คำสั่ง = "' . $this->input->post('CommitteeAppointmentNumber')  . '"',
+			'LogUserID' => $UserID,
+			'LogUsername' => $this->input->post('UserName'),
+			'LogIpAddress' => $ip_address,
+			'LogCreation' => date('Y-m-d H:i:s')
+			];
+			$logresult = $this->db->insert('SYS_LOG', $log);
+			}
 		if ($query) {
 			session_start(); // เริ่มต้น session
 			$_SESSION['success'] = "แก้ไขข้อมูลสำเร็จ !"; // กำหนดค่า success ใน session เป็น true
@@ -259,6 +369,14 @@ class Committee_model extends CI_Model
 	}
 	public function del_comm_member()
 	{
+$ip_address = '';
+			if (!empty($_SERVER['HTTP_CLIENT_IP'])) {
+				$ip_address = $_SERVER['HTTP_CLIENT_IP'];
+			} elseif (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
+				$ip_address = $_SERVER['HTTP_X_FORWARDED_FOR'];
+			} else {
+				$ip_address = $_SERVER['REMOTE_ADDR'];
+			}
 
 		// echo '<pre>';
 		// print_r($_POST);
@@ -272,6 +390,18 @@ class Committee_model extends CI_Model
 		$this->db->where('Id', $this->input->post('Id'));
 
 		$query = $this->db->update('COMMITTEE_MEMBER', $data);
+		if ($query == TRUE) {
+			$UserID = $this->session->userdata('UserID');
+			$log = [
+			'LogMessage' => 'ลบข้อมูล  คณะกรรมการ เลขที่คำสั่ง = "' . $this->input->post('CommitteeAppointmentNumber')  . '"',
+			'LogUserID' => $UserID,
+			'LogUsername' => $this->input->post('UserName'),
+			'LogIpAddress' => $ip_address,
+			'LogCreation' => date('Y-m-d H:i:s')
+			];
+						
+			$logresult = $this->db->insert('SYS_LOG', $log);
+			}
 		if ($query) {
 			session_start(); // เริ่มต้น session
 			$_SESSION['success'] = "ลบข้อมูลสำเร็จ !"; // กำหนดค่า success ใน session เป็น true

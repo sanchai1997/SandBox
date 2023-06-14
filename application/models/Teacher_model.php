@@ -11,7 +11,7 @@ class Teacher_model extends CI_Model
     }
 
     //Add Data Teacher
-    public function add_teacher($SchoolID)
+    public function add_teacher($SchoolID, $TeacherPersonalID, $TeacherPassportNumber, $TeacherBirthDate)
     {
 
         $config['upload_path']          = 'assets/teacher/img/';
@@ -37,8 +37,6 @@ class Teacher_model extends CI_Model
 
             'TeacherID' => $_POST['TeacherPersonalIDTypeCode'] . $_POST['TeacherPersonalID'],
             'SchoolID ' => $SchoolID,
-            'EducationYear' => $this->input->post('EducationYear'),
-            'Semester' => $this->input->post('Semester'),
             'PersonnelStatusCode' => $this->input->post('PersonnelStatusCode'),
             'EntryEducationLevelCode' => $this->input->post('EntryEducationLevelCode'),
             'EntryDegreeCode' => $this->input->post('EntryDegreeCode'),
@@ -52,8 +50,8 @@ class Teacher_model extends CI_Model
             'PositionLevelCode' => $this->input->post('PositionLevelCode'),
             'ImageTeacher' => $new_name,
             'TeacherPersonalIDTypeCode' => $this->input->post('TeacherPersonalIDTypeCode'),
-            'TeacherPersonalID' => base64_encode($this->input->post('TeacherPersonalID')),
-            'TeacherPassportNumber' => $this->input->post('TeacherPassportNumber'),
+            'TeacherPersonalID' => $TeacherPersonalID,
+            'TeacherPassportNumber' => $TeacherPassportNumber,
             'TeacherPrefixCode' => $this->input->post('TeacherPrefixCode'),
             'TeacherNameThai' => $this->input->post('TeacherNameThai'),
             'TeacherLastNameThai' => $this->input->post('TeacherLastNameThai'),
@@ -61,7 +59,7 @@ class Teacher_model extends CI_Model
             'TeacherNationalityCode' => $this->input->post('TeacherNationalityCode'),
             'TeacherRaceCode' => $this->input->post('TeacherRaceCode'),
             'TeacherReligionCode' => $this->input->post('TeacherReligionCode'),
-            'TeacherBirthDate' => $this->input->post('TeacherBirthDate'),
+            'TeacherBirthDate' => $TeacherBirthDate,
             'TeacherBloodCode' => $this->input->post('TeacherBloodCode')
 
         ];
@@ -72,7 +70,7 @@ class Teacher_model extends CI_Model
 
 
     //Add Data Teacher-Select SchoolID, EducationYear, Semester, PersonnelTypeCode, PositionCode
-    public function add_teacher_select($SchoolID, $EducationYear, $Semester, $PersonnelTypeCode, $PositionCode)
+    public function add_teacher_select($SchoolID, $PersonnelTypeCode, $PositionCode, $TeacherPersonalID, $TeacherPassportNumber, $TeacherBirthDate)
     {
 
         $config['upload_path']          = 'assets/teacher/img/';
@@ -98,8 +96,6 @@ class Teacher_model extends CI_Model
 
             'TeacherID' => $_POST['TeacherPersonalIDTypeCode'] . $_POST['TeacherPersonalID'],
             'SchoolID ' => $SchoolID,
-            'EducationYear' => $EducationYear,
-            'Semester' => $Semester,
             'PersonnelStatusCode' => $this->input->post('PersonnelStatusCode'),
             'EntryEducationLevelCode' => $this->input->post('EntryEducationLevelCode'),
             'EntryDegreeCode' => $this->input->post('EntryDegreeCode'),
@@ -113,8 +109,8 @@ class Teacher_model extends CI_Model
             'PositionLevelCode' => $this->input->post('PositionLevelCode'),
             'ImageTeacher' => $new_name,
             'TeacherPersonalIDTypeCode' => $this->input->post('TeacherPersonalIDTypeCode'),
-            'TeacherPersonalID' => base64_encode($this->input->post('TeacherPersonalID')),
-            'TeacherPassportNumber' => $this->input->post('TeacherPassportNumber'),
+            'TeacherPersonalID' => $TeacherPersonalID,
+            'TeacherPassportNumber' => $TeacherPassportNumber,
             'TeacherPrefixCode' => $this->input->post('TeacherPrefixCode'),
             'TeacherNameThai' => $this->input->post('TeacherNameThai'),
             'TeacherLastNameThai' => $this->input->post('TeacherLastNameThai'),
@@ -122,7 +118,7 @@ class Teacher_model extends CI_Model
             'TeacherNationalityCode' => $this->input->post('TeacherNationalityCode'),
             'TeacherRaceCode' => $this->input->post('TeacherRaceCode'),
             'TeacherReligionCode' => $this->input->post('TeacherReligionCode'),
-            'TeacherBirthDate' => $this->input->post('TeacherBirthDate'),
+            'TeacherBirthDate' => $TeacherBirthDate,
             'TeacherBloodCode' => $this->input->post('TeacherBloodCode')
 
         ];
@@ -133,60 +129,105 @@ class Teacher_model extends CI_Model
 
 
     //Update Data Teacher MAIN
-    public function update_teacher_main($TeacherID, $SchoolID, $EducationYear, $Semester, $ImageTeacher)
+    public function update_teacher_main($TeacherID, $SchoolID, $ImageTeacher)
     {
+        if ($ImageTeacher == 1) {
+            $config['upload_path']          = 'assets/teacher/img/';
+            $config['allowed_types']        = 'gif|jpg|png';
+            $config['max_size']             = 50000;
+            $config['max_width']            = 3402;
+            $config['max_height']           = 1417;
+            $config['file_name']            = $_POST['ImageTeacher'];
 
-        $config['upload_path']          = 'assets/teacher/img/';
-        $config['allowed_types']        = 'gif|jpg|png';
-        $config['max_size']             = 50000;
-        $config['max_width']            = 3402;
-        $config['max_height']           = 1417;
-        $config['file_name']            = $ImageTeacher;
+            copy($config['upload_path'] . $config['file_name'], $config['upload_path'] . 'logoold.jpg');
+            unlink($config['upload_path'] . $config['file_name']);
 
-        copy($config['upload_path'] . $config['file_name'], $config['upload_path'] . 'logoold.jpg');
-        unlink($config['upload_path'] . $config['file_name']);
+            $this->load->library('upload', $config);
 
-        $this->load->library('upload', $config);
+            if (!$this->upload->do_upload('ImageTeacher')) {
+                copy($config['upload_path'] . 'logoold.jpg', $config['upload_path'] . $config['file_name']);
+                echo str_replace("</p>", "", str_replace("<p>", "", $this->upload->display_errors()));
+            } else {
+                unlink($config['upload_path'] . 'logoold.jpg');
+                echo 'อัพโหลดไฟล์เรียบร้อยแล้ว';
+            }
 
-        if (!$this->upload->do_upload('ImageTeacher')) {
-            copy($config['upload_path'] . 'logoold.jpg', $config['upload_path'] . $config['file_name']);
-            echo str_replace("</p>", "", str_replace("<p>", "", $this->upload->display_errors()));
-        } else {
-            unlink($config['upload_path'] . 'logoold.jpg');
-            echo 'อัพโหลดไฟล์เรียบร้อยแล้ว';
+            $data = [
+
+                'PersonnelStatusCode' => $this->input->post('PersonnelStatusCode'),
+                'EntryEducationLevelCode' => $this->input->post('EntryEducationLevelCode'),
+                'EntryDegreeCode' => $this->input->post('EntryDegreeCode'),
+                'EntryMajorCode' => $this->input->post('EntryMajorCode'),
+                'EntryProgramCode' => $this->input->post('EntryProgramCode'),
+                'PersonnelStartDate' => $this->input->post('PersonnelStartDate'),
+                'PersonnelRetireDate' => $this->input->post('PersonnelRetireDate'),
+                'PersonnelTypeCode' => $this->input->post('PersonnelTypeCode'),
+                'PositionStartDate' => $this->input->post('PositionStartDate'),
+                'PositionCode' => $this->input->post('PositionCode'),
+                'PositionLevelCode' => $this->input->post('PositionLevelCode'),
+                'TeacherPrefixCode' => $this->input->post('TeacherPrefixCode'),
+                'TeacherNameThai' => $this->input->post('TeacherNameThai'),
+                'TeacherLastNameThai' => $this->input->post('TeacherLastNameThai'),
+                'TeacherNameEnglish' => $this->input->post('TeacherNameEnglish'),
+                'TeacherLastNameEnglish' => $this->input->post('TeacherLastNameEnglish')
+
+            ];
+
+            $result = $this->db->where('TeacherID', $TeacherID)->where('SchoolID', $SchoolID)->update('TEACHER', $data);
+            return $result;
+        } elseif ($ImageTeacher == 0) {
+
+            $config['upload_path']          = 'assets/teacher/img/';
+            $config['allowed_types']        = 'gif|jpg|png';
+            $config['max_size']             = 50000;
+            $config['max_width']            = 3402;
+            $config['max_height']           = 1417;
+            $config['file_name']            = 'ImageTeacher_' . $TeacherID;
+
+            $this->load->library('upload', $config);
+
+            if (!$this->upload->do_upload('ImageTeacher')) {
+                copy($config['upload_path'] . 'logoold.jpg', $config['upload_path'] . $config['file_name']);
+                echo str_replace("</p>", "", str_replace("<p>", "", $this->upload->display_errors()));
+            } else {
+                echo 'อัพโหลดไฟล์เรียบร้อยแล้ว';
+            }
+
+            $type = substr($_FILES['ImageTeacher']['name'], -4);
+            $new_name = 'ImageTeacher_' . $TeacherID . $type;
+
+            $data = [
+
+                'PersonnelStatusCode' => $this->input->post('PersonnelStatusCode'),
+                'EntryEducationLevelCode' => $this->input->post('EntryEducationLevelCode'),
+                'EntryDegreeCode' => $this->input->post('EntryDegreeCode'),
+                'EntryMajorCode' => $this->input->post('EntryMajorCode'),
+                'EntryProgramCode' => $this->input->post('EntryProgramCode'),
+                'PersonnelStartDate' => $this->input->post('PersonnelStartDate'),
+                'PersonnelRetireDate' => $this->input->post('PersonnelRetireDate'),
+                'PersonnelTypeCode' => $this->input->post('PersonnelTypeCode'),
+                'PositionStartDate' => $this->input->post('PositionStartDate'),
+                'PositionCode' => $this->input->post('PositionCode'),
+                'PositionLevelCode' => $this->input->post('PositionLevelCode'),
+                'ImageTeacher' => $new_name,
+                'TeacherPrefixCode' => $this->input->post('TeacherPrefixCode'),
+                'TeacherNameThai' => $this->input->post('TeacherNameThai'),
+                'TeacherLastNameThai' => $this->input->post('TeacherLastNameThai'),
+                'TeacherNameEnglish' => $this->input->post('TeacherNameEnglish'),
+                'TeacherLastNameEnglish' => $this->input->post('TeacherLastNameEnglish')
+
+            ];
+
+            $result = $this->db->where('TeacherID', $TeacherID)->where('SchoolID', $SchoolID)->update('TEACHER', $data);
+            return $result;
         }
-
-        $data = [
-
-            'EducationYear' => $this->input->post('EducationYear'),
-            'Semester' => $this->input->post('Semester'),
-            'PersonnelStatusCode' => $this->input->post('PersonnelStatusCode'),
-            'EntryEducationLevelCode' => $this->input->post('EntryEducationLevelCode'),
-            'EntryDegreeCode' => $this->input->post('EntryDegreeCode'),
-            'EntryMajorCode' => $this->input->post('EntryMajorCode'),
-            'EntryProgramCode' => $this->input->post('EntryProgramCode'),
-            'PersonnelStartDate' => $this->input->post('PersonnelStartDate'),
-            'PersonnelRetireDate' => $this->input->post('PersonnelRetireDate'),
-            'PersonnelTypeCode' => $this->input->post('PersonnelTypeCode'),
-            'PositionStartDate' => $this->input->post('PositionStartDate'),
-            'PositionCode' => $this->input->post('PositionCode'),
-            'PositionLevelCode' => $this->input->post('PositionLevelCode'),
-            'TeacherPrefixCode' => $this->input->post('TeacherPrefixCode'),
-            'TeacherNameThai' => $this->input->post('TeacherNameThai'),
-            'TeacherLastNameThai' => $this->input->post('TeacherLastNameThai'),
-            'TeacherNameEnglish' => $this->input->post('TeacherNameEnglish'),
-            'TeacherLastNameEnglish' => $this->input->post('TeacherLastNameEnglish')
-
-        ];
-
-        $result = $this->db->where('TeacherID', $TeacherID)->where('SchoolID', $SchoolID)->where('EducationYear', $EducationYear)->where('Semester', $Semester)->update('TEACHER', $data);
-        return $result;
     }
 
     //Update Data Teacher Signature
-    public function update_teacher_signature($TeacherID, $SchoolID, $EducationYear, $Semester, $Signature)
+    public function update_teacher_signature($TeacherID, $SchoolID, $Signature)
     {
         if ($Signature == NULL) {
+
             $config['upload_path']          = 'assets/teacher/signature/';
             $config['allowed_types']        = 'png';
             $config['max_size']             = 50000;
@@ -212,7 +253,7 @@ class Teacher_model extends CI_Model
 
             ];
 
-            $result = $this->db->where('TeacherID', $TeacherID)->where('SchoolID', $SchoolID)->where('EducationYear', $EducationYear)->where('Semester', $Semester)->update('TEACHER', $data);
+            $result = $this->db->where('TeacherID', $TeacherID)->where('SchoolID', $SchoolID)->update('TEACHER', $data);
             return $result;
         } else {
 
@@ -243,27 +284,27 @@ class Teacher_model extends CI_Model
 
 
     //Update Data Teacher Person
-    public function update_teacher_person($TeacherID, $SchoolID, $EducationYear, $Semester)
+    public function update_teacher_person($TeacherID, $SchoolID, $TeacherPersonalID, $TeacherPassportNumber, $TeacherBirthDate)
     {
         $data = [
 
             'TeacherPersonalIDTypeCode' => $this->input->post('TeacherPersonalIDTypeCode'),
-            'TeacherPersonalID' => base64_encode($this->input->post('TeacherPersonalID')),
-            'TeacherPassportNumber' => $this->input->post('TeacherPassportNumber'),
+            'TeacherPersonalID' => $TeacherPersonalID,
+            'TeacherPassportNumber' => $TeacherPassportNumber,
             'TeacherGenderCode' => $this->input->post('TeacherGenderCode'),
             'TeacherNationalityCode' => $this->input->post('TeacherNationalityCode'),
             'TeacherRaceCode' => $this->input->post('TeacherRaceCode'),
             'TeacherReligionCode' => $this->input->post('TeacherReligionCode'),
-            'TeacherBirthDate' => $this->input->post('TeacherBirthDate'),
+            'TeacherBirthDate' => $TeacherBirthDate,
             'TeacherBloodCode' => $this->input->post('TeacherBloodCode')
         ];
 
-        $result = $this->db->where('TeacherID', $TeacherID)->where('SchoolID', $SchoolID)->where('EducationYear', $EducationYear)->where('Semester', $Semester)->update('TEACHER', $data);
+        $result = $this->db->where('TeacherID', $TeacherID)->where('SchoolID', $SchoolID)->update('TEACHER', $data);
         return $result;
     }
 
     //Update Data Teacher marriage
-    public function update_teacher_marriage($TeacherID, $SchoolID, $EducationYear, $Semester)
+    public function update_teacher_marriage($TeacherID, $SchoolID)
     {
         $data = [
 
@@ -277,13 +318,13 @@ class Teacher_model extends CI_Model
 
         ];
 
-        $result = $this->db->where('TeacherID', $TeacherID)->where('SchoolID', $SchoolID)->where('EducationYear', $EducationYear)->where('Semester', $Semester)->update('TEACHER', $data);
+        $result = $this->db->where('TeacherID', $TeacherID)->where('SchoolID', $SchoolID)->update('TEACHER', $data);
         return $result;
     }
 
 
     //Update Data Teacher Address
-    public function update_teacher_address($TeacherID, $SchoolID, $EducationYear, $Semester)
+    public function update_teacher_address($TeacherID, $SchoolID)
     {
         $data = [
 
@@ -316,12 +357,12 @@ class Teacher_model extends CI_Model
 
         ];
 
-        $result = $this->db->where('TeacherID', $TeacherID)->where('SchoolID', $SchoolID)->where('EducationYear', $EducationYear)->where('Semester', $Semester)->update('TEACHER', $data);
+        $result = $this->db->where('TeacherID', $TeacherID)->where('SchoolID', $SchoolID)->update('TEACHER', $data);
         return $result;
     }
 
     //Update Data Teacher Contract
-    public function update_teacher_contract($TeacherID, $SchoolID, $EducationYear, $Semester)
+    public function update_teacher_contract($TeacherID, $SchoolID)
     {
         $data = [
 
@@ -342,13 +383,13 @@ class Teacher_model extends CI_Model
 
         ];
 
-        $result = $this->db->where('TeacherID', $TeacherID)->where('SchoolID', $SchoolID)->where('EducationYear', $EducationYear)->where('Semester', $Semester)->update('TEACHER', $data);
+        $result = $this->db->where('TeacherID', $TeacherID)->where('SchoolID', $SchoolID)->update('TEACHER', $data);
         return $result;
     }
 
 
     //Update Data Teacher Talent
-    public function update_teacher_talent($TeacherID, $SchoolID, $EducationYear, $Semester)
+    public function update_teacher_talent($TeacherID, $SchoolID)
     {
         $data = [
 
@@ -357,21 +398,21 @@ class Teacher_model extends CI_Model
 
         ];
 
-        $result = $this->db->where('TeacherID', $TeacherID)->where('SchoolID', $SchoolID)->where('EducationYear', $EducationYear)->where('Semester', $Semester)->update('TEACHER', $data);
+        $result = $this->db->where('TeacherID', $TeacherID)->where('SchoolID', $SchoolID)->update('TEACHER', $data);
         return $result;
     }
 
     //Delete Data Form Teacher
-    public function delete_teacher($TeacherID, $SchoolID, $EducationYear, $Semester)
+    public function delete_teacher($TeacherID, $SchoolID)
     {
         $data = [
 
-            'TeacherID' => Date('Ymd') . rand(1, 9999),
+            'TeacherID' => Date('YmdHis'),
             'DeleteStatus' => '1'
 
         ];
 
-        $result = $this->db->where('TeacherID ', $TeacherID)->where('SchoolID', $SchoolID)->where('EducationYear', $EducationYear)->where('Semester', $Semester)->update('TEACHER', $data);
+        $result = $this->db->where('TeacherID ', $TeacherID)->where('SchoolID', $SchoolID)->update('TEACHER', $data);
         return $result;
     }
 

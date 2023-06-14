@@ -4,6 +4,9 @@
 <?php $txt = isset($_GET['txt']) ? $_GET['txt'] : ''; ?>
 
 <style>
+    .no-border td {
+    border: none;
+}
     .my-link {
         color: black;
     }
@@ -14,7 +17,9 @@
 </style>
 <main id="main" class="main">
     <?php
-    session_start(); // เริ่มต้น session
+    if (session_status() == PHP_SESSION_NONE) {
+        session_start();
+    }// เริ่มต้น session
     if (isset($_SESSION['success'])) { ?>
         <div style="position: relative;">
             <div class="alert alert-success" id="myAlert" style="position: absolute; top: 0; left: 0; right: 0; z-index: 1;">
@@ -188,13 +193,13 @@
     </div>
 
     </div><!-- End Page Title -->
-
+    <?php $hasItems = false; ?>
     <?php if ($page == 'sh1') { ?>
 
         <div class="col-12">
             <div class="card recent-sales overflow-auto">
 
-                <div class="card-body">
+                <div class="card-body" >
                     <div class="row">
                         <div class="col-8">
                             <h5 class="card-title">
@@ -205,13 +210,10 @@
                                         } ?>
                                     </button>
                                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                                        <li>
-                                            <a class="dropdown-item" href="<?php echo site_url('Fm_evaluation_das_p1?page=sh1'); ?>">ตัวชี้วัด</a>
-                                            <a class="dropdown-item" href="<?php echo site_url('Fm_evaluation_das_p4?page=sh4'); ?>">การประเมินสถานศึกษา</a>
-                                            <a class="dropdown-item" href="<?php echo site_url('Fm_evaluation_das_p5?page=sh5'); ?>">การประเมินตามตัวชี้วัด</a>
-                                            <a class="dropdown-item" href="<?php echo site_url('Fm_evaluation_das_p8?page=sh8'); ?>">ผลการประเมินสถานศึกษา</a>
-                                        </li>
-
+                                        <li><a class="dropdown-item" href="<?php echo site_url('Fm_evaluation_das_p1?page=sh1'); ?>">ตัวชี้วัด</a></li>
+                                        <li> <a class="dropdown-item" href="<?php echo site_url('Fm_evaluation_das_p4?page=sh4'); ?>">การประเมินสถานศึกษา</a></li>
+                                        <li> <a class="dropdown-item" href="<?php echo site_url('Fm_evaluation_das_p5?page=sh5'); ?>">การประเมินตามตัวชี้วัด</a></li>
+                                        <li> <a class="dropdown-item" href="<?php echo site_url('Fm_evaluation_das_p8?page=sh8'); ?>">ผลการประเมินสถานศึกษา</a> </li>
                                     </ul>
                                 </div>
                             </h5>
@@ -219,9 +221,10 @@
                         <div class="col">
                             <div class="row">
                                 <div class="col">
+                                <?php if ($R_701000 <> NULL && $R_701000['UR_Add'] == "1") { ?>
                                     <h5 style="float: right; padding: 15px;" class="card-title"> <a href="" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="bi bi-file-earmark-plus"></i>
                                             อัปโหลดตัวชี้วัด</a></h5>
-
+                                            <?php } ?>
 
                                     <!-- Modal -->
                                     <div class="modal fade" id="exampleModal" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
@@ -232,7 +235,7 @@
                                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                 </div>
                                                 <div class="modal-body">
-                                                    <form action="<?php echo site_url('uplod_criteria'); ?>" method="POST" id="UploadSchool" enctype="multipart/form-data">
+                                                    <form action="<?php echo site_url('uplod_criteria/'.$Username); ?>" method="POST" id="UploadSchool" enctype="multipart/form-data">
                                                         <div class="col-md-12" style="padding-bottom: 15px;">
                                                             <div class="row">
                                                                 <div class="col-6">
@@ -292,225 +295,255 @@
                                         </div>
                                     </div>
                                     <div class="col">
+                                    <?php if ($R_701000 <> NULL && $R_701000['UR_Add'] == "1") { ?>
                                         <h5 style="float: right; padding: 15px;" class="card-title"><a href="<?php echo site_url(
                                                                                                                     'ass_ria_forms_p1?page=sh1'
                                                                                                                 ); ?>" class="btn btn-success"><i class="bi bi-file-earmark-plus"></i>
                                                 เพิ่มข้อมูล</a></h5>
+                                                <?php } ?>
                                     </div>
                                 </div>
                             </div>
                         </div>
 
-                        <table class="table table-borderless datatable">
+                        
+                    <div class="">
+                        <table class="table  <?php if ($R_701000 <> NULL && $R_701000['UR_Add'] == "1") {
+                                                                    echo 'table-borderless datatable';
+                                                                }else {
+                                                                    echo 'table-bordered';
+                                                                } ?>  col-12 ">
                             <thead>
-
-                                <tr>
-                                    <th style="" scope="col">รหัสตัวชี้วัด</th>
-                                    <th style="" scope="col">ชื่อเกณฑ์</th>
-                                    <th style="" scope="col">ระดับตัวชี้วัด</th>
-                                    <th style="" scope="col">องค์ประกอบ</th>
-                                    <!-- <th style="" scope="col">คำอธิบาย</th> -->
-                                    <th style="text-align: center;" scope="col">ดูรายละเอียด</th>
-                                    <th style="text-align: center;" scope="col">ปฎิบัติ</th>
-
-
-                                </tr>
-
-                            </thead>
-                            <tbody>
-
-                                <?php foreach ($query as $show) {
-                                    # code...
-
-                                ?>
+    
                                     <tr>
-                                        <td scope="row " class="">
-                                            <p class="mt-2"> <?php echo $CriteriaID = $show->CriteriaID; ?></p>
-                                        </td>
-                                        <td scope="row" class="">
-                                            <p class="mt-2"> <?php echo $CriteriaName = $show->CriteriaName; ?></p>
-                                        </td>
-                                        <td style=";">
-                                            <?php
-                                            $Id = $show->Id;
-                                            $this->db->where('DeleteStatus', 0);
-                                            $this->db->where('CriteriaID', $Id); // เพิ่มเงื่อนไข WHERE ในคำสั่ง SQL
-                                            $result = $this->db->get('ASSESSMENT_CRITERIA_LEVEL ');
-                                            foreach ($result->result() as $cls) {
-                                            ?>
-
-                                                <!-- Button trigger modal -->
-                                                <button type="button" class="btn " data-bs-toggle="modal" data-bs-target="#LevelName<?php echo $cls->Id_acl; ?>">
-                                                    <?php echo $cls->LevelName; ?>
-                                                </button>
-                                                <br>
-                                                <!-- Modal -->
-                                                <div class="modal fade" id="LevelName<?php echo $cls->Id_acl; ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                                    <div class="modal-dialog modal-dialog-centered modal-lg">
-                                                        <div class="modal-content">
-                                                            <div class="modal-header">
-                                                                <h5 class="modal-title" id="exampleModalLabel">ระดับตัวชี้วัด
-                                                                    <?php echo $cls->LevelName; ?></h5>
-                                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                                            </div>
-                                                            <div class="modal-body">
-                                                                <div class="row">
-                                                                    <div class="col">
-                                                                        <h6 class="fw-bold">รหัสตัวชี้วัด</h6>
-                                                                        <p> <?php echo $show->CriteriaID; ?></p>
+                                        <th style="" scope="col">รหัสตัวชี้วัด</th>
+                                        <th style="" scope="col">ชื่อเกณฑ์</th>
+                                        <th style="" scope="col">ระดับตัวชี้วัด</th>
+                                        <th style="" scope="col">องค์ประกอบ</th>
+                                        <!-- <th style="" scope="col">คำอธิบาย</th> -->
+                                        <th style="text-align: center;" scope="col">ดูรายละเอียด</th>
+                                        <?php if ($R_701000 <> NULL && $R_701000['UR_Add'] == "1") { ?>
+                                        <th style="text-align: center;" scope="col">ปฎิบัติ</th>
+                                        <?php } ?>
+    
+                                    </tr>
+    
+                                </thead>
+                                <tbody>
+    
+                                    <?php foreach ($query as $show) {
+                                        # code...
+    
+                                    ?>
+                                        <tr>
+                                            <td scope="row " class="">
+                                                <p class="mt-2"> <?php echo $CriteriaID = $show->CriteriaID; ?></p>
+                                            </td>
+                                            <td scope="row" class="">
+                                                <p class="mt-2"> <?php echo $CriteriaName = $show->CriteriaName; ?></p>
+                                            </td>
+                                            <td style=";">
+                                                <?php
+                                                $Id = $show->Id;
+                                                $this->db->where('DeleteStatus', 0);
+                                                $this->db->where('CriteriaID', $Id); // เพิ่มเงื่อนไข WHERE ในคำสั่ง SQL
+                                                $result = $this->db->get('ASSESSMENT_CRITERIA_LEVEL ');
+                                                foreach ($result->result() as $cls) {
+                                                ?>
+    
+                                                    <!-- Button trigger modal -->
+                                                    <button type="button" class="btn " data-bs-toggle="modal" data-bs-target="#LevelName<?php echo $cls->Id_acl; ?>">
+                                                        <?php echo $cls->LevelName; ?>
+                                                    </button>
+                                                    <br>
+                                                    <!-- Modal -->
+                                                    <div class="modal fade" id="LevelName<?php echo $cls->Id_acl; ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                        <div class="modal-dialog modal-dialog-centered modal-lg">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                    <h5 class="modal-title" id="exampleModalLabel">ระดับตัวชี้วัด
+                                                                        <?php echo $cls->LevelName; ?></h5>
+                                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                                </div>
+                                                                <div class="modal-body">
+                                                                    <div class="row">
+                                                                        <div class="col">
+                                                                            <h6 class="fw-bold">รหัสตัวชี้วัด</h6>
+                                                                            <p> <?php echo $show->CriteriaID; ?></p>
+                                                                        </div>
+                                                                        <div class="col">
+                                                                            <h6 class="fw-bold"> ลำดับของระดับตัวชี้วัด</h6>
+                                                                            <p> <?php echo $cls->LevelIndex; ?></p>
+                                                                        </div>
                                                                     </div>
-                                                                    <div class="col">
-                                                                        <h6 class="fw-bold"> ลำดับของระดับตัวชี้วัด</h6>
-                                                                        <p> <?php echo $cls->LevelIndex; ?></p>
+                                                                    <div class="row">
+                                                                        <div class="col">
+                                                                            <h6 class="fw-bold"> หัวข้อระดับตัวชี้วัด</h6>
+                                                                            <p> <?php echo $cls->LevelName; ?></p>
+                                                                        </div>
+                                                                        <div class="col">
+                                                                            <h6 class="fw-bold"> คะแนนระดับตัวชี้วัด</h6>
+                                                                            <p> <?php echo $cls->LevelScore; ?></p>
+                                                                        </div>
                                                                     </div>
                                                                 </div>
-                                                                <div class="row">
-                                                                    <div class="col">
-                                                                        <h6 class="fw-bold"> หัวข้อระดับตัวชี้วัด</h6>
-                                                                        <p> <?php echo $cls->LevelName; ?></p>
-                                                                    </div>
-                                                                    <div class="col">
-                                                                        <h6 class="fw-bold"> คะแนนระดับตัวชี้วัด</h6>
-                                                                        <p> <?php echo $cls->LevelScore; ?></p>
-                                                                    </div>
+                                                                <div class="modal-footer">
+                                                                <?php if ($R_701000 <> NULL && $R_701000['UR_Add'] == "1") { ?>
+                                                                    <a href="<?php echo site_url('ass_ria_lvl_forms_p2?page=sh22') ?>&&lvl=<?php echo $show->CriteriaLevelAmount ?>&&CriteriaID=<?php echo $show->Id ?>&&CriteriaLevelAmount=<?php echo $show->CriteriaLevelAmount ?>&&key=<?php echo $cls->Id_acl; ?>&&name=<?php echo $show->CriteriaName; ?>" class="my-link btn btn-warning"><i class="bi bi-pencil-square"></i>
+                                                                    </a>
+                                                                    <?php } ?>
+                                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ปิด</button>
                                                                 </div>
-                                                            </div>
-                                                            <div class="modal-footer">
-                                                                <a href="<?php echo site_url('ass_ria_lvl_forms_p2?page=sh22') ?>&&lvl=<?php echo $show->CriteriaLevelAmount ?>&&CriteriaID=<?php echo $show->Id ?>&&CriteriaLevelAmount=<?php echo $show->CriteriaLevelAmount ?>&&key=<?php echo $cls->Id_acl; ?>&&name=<?php echo $show->CriteriaName; ?>" class="my-link btn btn-warning"><i class="bi bi-pencil-square"></i>
-                                                                </a>
-                                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ปิด</button>
                                                             </div>
                                                         </div>
                                                     </div>
-                                                </div>
-
-                                            <?php } ?>
-                                            <a href="<?php echo site_url('ass_ria_lvl_forms_p2?page=sh2') ?>&&name=<?php echo $show->CriteriaName; ?>&&Id=<?php echo $show->Id; ?>&&key=<?php echo $show->CriteriaID; ?>&&lvl=<?php echo $show->CriteriaLevelAmount ?>" class="my-link fw-bold">>>เพิ่มระดับตัวชี้วัด>>
-                                            </a>
-
-                                        </td>
-
-                                        <td style="">
-                                            <?php
-                                            $this->db->where('DeleteStatus', 0);
-                                            $this->db->where('CriteriaID', $Id); // เพิ่มเงื่อนไข WHERE ในคำสั่ง SQL
-                                            $resultA3 = $this->db->get('ASSESSMENT_CRITERIA_COMPOSITION ');
-
-                                            foreach ($resultA3->result() as $showA3) { ?>
-
-                                                <!-- Button trigger modal -->
-                                                <button type="button" class="btn " data-bs-toggle="modal" data-bs-target="#CompositionName<?php echo $showA3->Id_acc; ?>">
-                                                    <?php echo $showA3->CompositionName; ?>
+    
+                                                <?php } ?>
+                                                <?php if ($R_701000 <> NULL && $R_701000['UR_Add'] == "1") { ?>
+                                                <a href="<?php echo site_url('ass_ria_lvl_forms_p2?page=sh2') ?>&&name=<?php echo $show->CriteriaName; ?>&&Id=<?php echo $show->Id; ?>&&key=<?php echo $show->CriteriaID; ?>&&lvl=<?php echo $show->CriteriaLevelAmount ?>" class="my-link fw-bold">>>เพิ่มระดับตัวชี้วัด>>
+                                                </a>
+                                                <?php } ?>
+    
+                                            </td>
+    
+                                            <td style="">
+                                                <?php
+                                                $this->db->where('DeleteStatus', 0);
+                                                $this->db->where('CriteriaID', $Id); // เพิ่มเงื่อนไข WHERE ในคำสั่ง SQL
+                                                $resultA3 = $this->db->get('ASSESSMENT_CRITERIA_COMPOSITION ');
+    
+                                                foreach ($resultA3->result() as $showA3) { ?>
+    
+                                                    <!-- Button trigger modal -->
+                                                    <button type="button" class="btn " data-bs-toggle="modal" data-bs-target="#CompositionName<?php echo $showA3->Id_acc; ?>">
+                                                        <?php echo $showA3->CompositionName; ?>
+                                                    </button>
+                                                    <br>
+                                                    <!-- Modal -->
+                                                    <div class="modal fade" id="CompositionName<?php echo $showA3->Id_acc; ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                        <div class="modal-dialog modal-dialog-centered modal-lg">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                    <h5 class="modal-title" id="exampleModalLabel">
+                                                                        องค์ประกอบเกณฑ์การประเมิน
+                                                                        <?php echo $showA3->CompositionName; ?></h5>
+                                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                                </div>
+                                                                <div class="modal-body">
+                                                                    <div class="row">
+                                                                        <div class="col">
+                                                                            <h6 class="fw-bold">รหัสตัวชี้วัด</h6>
+                                                                            <p> <?php echo $show->CriteriaID; ?></p>
+                                                                        </div>
+                                                                        <div class="col">
+                                                                            <h6 class="fw-bold"> ลำดับองค์ประกอบตัวชี้วัด</h6>
+                                                                            <p> <?php echo $showA3->CompositionIndex; ?></p>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="row">
+                                                                        <div class="col">
+                                                                            <h6 class="fw-bold"> หัวข้อองค์ประกอบตัวชี้วัด</h6>
+                                                                            <p> <?php echo $showA3->CompositionName; ?></p>
+                                                                        </div>
+                                                                        <div class="col">
+                                                                            <h6 class="fw-bold"> ค่าน้ำหนักการประเมิน</h6>
+                                                                            <p> <?php echo $showA3->CompositionWeightScore; ?></p>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="row">
+                                                                        <div class="col">
+                                                                            <h6 class="fw-bold"> หลักฐานประกอบการประเมิน</h6>
+                                                                            <p> <?php echo $showA3->CompositionGuideline; ?></p>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="modal-footer">
+                                                                <?php if ($R_701000 <> NULL && $R_701000['UR_Add'] == "1") { ?>
+                                                                    <a href="<?php echo site_url('ass_ria_com_forms_p3?page=sh33') ?>&&lvl=<?php echo $show->CriteriaCompositionAmount ?>&&Id_acc=<?php echo $showA3->Id_acc; ?>&&Id=<?php echo $show->Id; ?>&&name=<?php echo $show->CriteriaName; ?>&&CriteriaID=<?php echo $show->CriteriaID; ?>" class="my-link btn btn-warning"><i class="bi bi-pencil-square">
+                                                                        </i></a>
+                                                                        <?php } ?>
+                                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ปิด</button>
+    
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                <?php } ?>
+                                                <?php if ($R_701000 <> NULL && $R_701000['UR_Add'] == "1") { ?>
+                                                <a href="<?php echo site_url('ass_ria_com_forms_p3?page=sh3') ?>&&Id=<?php echo $show->Id; ?>&&name=<?php echo $show->CriteriaName; ?>&&key=<?php echo $show->CriteriaID; ?>&&lvl=<?php echo $show->CriteriaCompositionAmount ?>" class="my-link fw-bold">>>เพิ่มองค์ประกอบ>>
+                                                </a>
+                                                <?php } ?>
+                                            </td>
+                                            <!-- </td>
+                                        <td style="text-align: center;">
+                                     <a
+                                        href="<?php echo site_url('Fm_evaluation_das_p4?page=sh4') ?>&&key=<?php echo $show->CriteriaID ?>&&name=<?php echo $show->CriteriaName ?>"
+                                        class="btn btn-info"><i class="bi bi-eye"></i></a></td> -->
+                                            <td style="text-align: center;">
+    
+                                                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#look1<?php echo $show->Id; ?>"><i class="bi bi-card-list"></i></button>
+    
+    
+                                            </td>
+                                            <!-- แก้ไขลบ -->
+                                            <?php if ($R_701000 <> NULL && $R_701000['UR_Add'] == "1") { ?>
+                                            <td style="text-align: center;">
+                                                <a href="<?php echo site_url('ass_ria_forms_p1?page=sh11') ?>&&key=<?php echo $show->CriteriaID; ?>" class="btn btn-warning"> <i class="bi bi-pencil-square"></i></a>
+    
+                                                <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#del_ass_ria<?php echo $show->Id; ?>">
+                                                    <i class="bi bi-trash"></i>
                                                 </button>
-                                                <br>
                                                 <!-- Modal -->
-                                                <div class="modal fade" id="CompositionName<?php echo $showA3->Id_acc; ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                                    <div class="modal-dialog modal-dialog-centered modal-lg">
+                                                <div class="modal fade" id="del_ass_ria<?php echo $show->Id; ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                    <div class="modal-dialog modal-dialog-centered">
                                                         <div class="modal-content">
                                                             <div class="modal-header">
                                                                 <h5 class="modal-title" id="exampleModalLabel">
-                                                                    องค์ประกอบเกณฑ์การประเมิน
-                                                                    <?php echo $showA3->CompositionName; ?></h5>
-                                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                                    ยืนยันการลบข้อมูลรหัส
+                                                                    <?php echo nbs(2); ?>
+                                                                    <?php echo $show->CriteriaID; ?>
+                                                                </h5>
+    
                                                             </div>
                                                             <div class="modal-body">
-                                                                <div class="row">
-                                                                    <div class="col">
-                                                                        <h6 class="fw-bold">รหัสตัวชี้วัด</h6>
-                                                                        <p> <?php echo $show->CriteriaID; ?></p>
-                                                                    </div>
-                                                                    <div class="col">
-                                                                        <h6 class="fw-bold"> ลำดับองค์ประกอบตัวชี้วัด</h6>
-                                                                        <p> <?php echo $showA3->CompositionIndex; ?></p>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="row">
-                                                                    <div class="col">
-                                                                        <h6 class="fw-bold"> หัวข้อองค์ประกอบตัวชี้วัด</h6>
-                                                                        <p> <?php echo $showA3->CompositionName; ?></p>
-                                                                    </div>
-                                                                    <div class="col">
-                                                                        <h6 class="fw-bold"> ค่าน้ำหนักการประเมิน</h6>
-                                                                        <p> <?php echo $showA3->CompositionWeightScore; ?></p>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="row">
-                                                                    <div class="col">
-                                                                        <h6 class="fw-bold"> หลักฐานประกอบการประเมิน</h6>
-                                                                        <p> <?php echo $showA3->CompositionGuideline; ?></p>
-                                                                    </div>
-                                                                </div>
+                                                                คุณต้องการลบข้อมูลใช่หรือไหม
+    
                                                             </div>
+    
+    
                                                             <div class="modal-footer">
-                                                                <a href="<?php echo site_url('ass_ria_com_forms_p3?page=sh33') ?>&&lvl=<?php echo $show->CriteriaCompositionAmount ?>&&Id_acc=<?php echo $showA3->Id_acc; ?>&&Id=<?php echo $show->Id; ?>&&name=<?php echo $show->CriteriaName; ?>&&CriteriaID=<?php echo $show->CriteriaID; ?>" class="my-link btn btn-warning"><i class="bi bi-pencil-square">
-                                                                    </i></a>
-                                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ปิด</button>
-
+                                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ยกเลิก</button>
+                                                                <form method="post" action="<?php echo site_url('ass_ria_del_p1/'); ?>">
+                                                                    <input type="hidden" name="Id" value="<?php echo $show->Id; ?>">
+                                                                    <input type="hidden" name="UserName" value="<?php echo $UserName; ?>">
+                                                                    <input type="hidden" name="CriteriaID" value="<?php echo $show->CriteriaID; ?>">
+                                                                    <input type="hidden" name="CriteriaName" value="<?php echo $show->CriteriaName; ?>">
+                                                                    <div class="d-flex justify-content-center">
+                                                                        <button name="Submit" type="submit" class="btn btn-danger">ยืนยันก่อนลบ</button>
+                                                                    </div>
+                                                                </form>
                                                             </div>
                                                         </div>
                                                     </div>
-                                                </div>
+                                                </div> <!-- Modal -->
+                                            </td>
                                             <?php } ?>
-                                            <a href="<?php echo site_url('ass_ria_com_forms_p3?page=sh3') ?>&&Id=<?php echo $show->Id; ?>&&name=<?php echo $show->CriteriaName; ?>&&key=<?php echo $show->CriteriaID; ?>&&lvl=<?php echo $show->CriteriaCompositionAmount ?>" class="my-link fw-bold">>>เพิ่มองค์ประกอบ>>
-                                            </a>
-
-                                        </td>
-                                        <!-- </td>
-                                    <td style="text-align: center;">
-                                 <a
-                                    href="<?php echo site_url('Fm_evaluation_das_p4?page=sh4') ?>&&key=<?php echo $show->CriteriaID ?>&&name=<?php echo $show->CriteriaName ?>"
-                                    class="btn btn-info"><i class="bi bi-eye"></i></a></td> -->
-                                        <td style="text-align: center;">
-
-                                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#look1<?php echo $show->Id; ?>"><i class="bi bi-card-list"></i></button>
-
-
-                                        </td>
-                                        <!-- แก้ไขลบ -->
-                                        <td style="text-align: center;">
-                                            <a href="<?php echo site_url('ass_ria_forms_p1?page=sh11') ?>&&key=<?php echo $show->CriteriaID; ?>" class="btn btn-warning"> <i class="bi bi-pencil-square"></i></a>
-
-                                            <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#del_ass_ria<?php echo $show->Id; ?>">
-                                                <i class="bi bi-trash"></i>
-                                            </button>
-                                            <!-- Modal -->
-                                            <div class="modal fade" id="del_ass_ria<?php echo $show->Id; ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                                <div class="modal-dialog modal-dialog-centered">
-                                                    <div class="modal-content">
-                                                        <div class="modal-header">
-                                                            <h5 class="modal-title" id="exampleModalLabel">
-                                                                ยืนยันการลบข้อมูลรหัส
-                                                                <?php echo nbs(2); ?>
-                                                                <?php echo $show->CriteriaID; ?>
-                                                            </h5>
-
-                                                        </div>
-                                                        <div class="modal-body">
-                                                            คุณต้องการลบข้อมูลใช่หรือไหม
-
-                                                        </div>
-
-
-                                                        <div class="modal-footer">
-                                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ยกเลิก</button>
-                                                            <form method="post" action="<?php echo site_url('ass_ria_del_p1'); ?>">
-                                                                <input type="hidden" name="Id" value="<?php echo $show->Id; ?>">
-                                                                <div class="d-flex justify-content-center">
-                                                                    <button name="Submit" type="submit" class="btn btn-danger">ยืนยันก่อนลบ</button>
-                                                                </div>
-                                                            </form>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div> <!-- Modal -->
-                                        </td>
-
-                                    </tr>
-                                <?php } ?>
-
-
-                            </tbody>
-                        </table>
+    
+                                        </tr>
+                                        <?php
+                                  $hasItems = true;
+                            }
+                            if (!$hasItems) { ?>
+                                <tr> <td>ไม่มีข้อมูล</td><td>ไม่มีข้อมูล</td><td>ไม่มีข้อมูล</td><td>ไม่มีข้อมูล</td><td>ไม่มีข้อมูล</td></tr>
+                                <tr class="no-border"><td> <?php  echo br(2); ?></td></tr>
+                                <?php    }else { ?>
+                                 <tr class="no-border"><td> <?php  echo br(2); ?></td></tr>
+                          <?php  }?>
+    
+    
+                                </tbody>
+                            </table>
+                    </div>
 
                     </div>
 
@@ -550,14 +583,20 @@
                                 </h5>
                             </div>
                             <div class="col">
+                            <?php if ($R_701000 <> NULL && $R_701000['UR_Add'] == "1") { ?>
                                 <h5 style="float: right; padding: 15px;" class="card-title"><a href="<?php echo site_url(
                                                                                                             'sc_ass_forms_p5?page=sh5'
                                                                                                         ); ?>" class="btn btn-success"><i class="bi bi-file-earmark-plus"></i> เพิ่มข้อมูล</a></h5>
+                                                                                                         <?php } ?>
                             </div>
                         </div>
 
-                        <table class="table table-borderless datatable">
-                            <thead>
+                        <table class="table  <?php if ($R_701000 <> NULL && $R_701000['UR_Add'] == "1") {
+                                                                echo 'table-borderless datatable';
+                                                            }else {
+                                                                echo 'table-bordered';
+                                                            } ?>  col-12">
+                        <thead>
 
                                 <tr>
 
@@ -567,8 +606,9 @@
                                     <th style="" scope="col" class="col-2">ชื่อการประเมิน</th>
                                     <th style="" scope="col" class="col-">คำอธิบายการประเมิน</th>
                                     <th style="text-align: center;" scope="col">ดูรายละเอียด</th>
+                                    <?php if ($R_701000 <> NULL && $R_701000['UR_Add'] == "1") { ?>
                                     <th style="text-align: center;" scope="col">ปฎิบัติ</th>
-
+                                    <?php } ?>
                                 </tr>
 
                             </thead>
@@ -582,6 +622,7 @@
                                 $result = $this->db->query("SELECT * FROM SCHOOL_ASSESSMENT 
                 INNER JOIN SCHOOL
                 ON SCHOOL_ASSESSMENT.SchoolID = SCHOOL.SchoolID where SCHOOL_ASSESSMENT.DeleteStatus = 0 AND SCHOOL.DeleteStatus = 0");
+                $hasItems = false;
                                 foreach ($result->result() as $show) { ?>
                                     <tr>
                                         <td scope="row " style="">
@@ -591,18 +632,18 @@
                                             <?php $sum = $show->SchoolAssessmentSemester; ?>
                                             <?php
                                             if ($sum == 1) {
-                                                echo "ภาคเรียนที่ 1";
+                                                 echo  $sum = "ภาคเรียนที่ 1";
                                             } elseif ($sum == 2) {
-                                                echo "ภาคเรียนที่ 2";
+                                                echo  $sum = "ภาคเรียนที่ 2";
                                             } elseif ($sum == 0) {
-                                                echo "ตลอดปีการศึกษา";
+                                                echo  $sum = "ตลอดปีการศึกษา";
                                             } elseif ($sum == 3) {
-                                                echo "ภาคเรียนฤดูร้อน";
+                                                echo  $sum = "ภาคเรียนฤดูร้อน";
                                             }
                                             ?>
                                         </td>
                                         <td style="">
-                                            <?php echo $show->SchoolNameThai; ?>
+                                            <?php echo $SchoolID_index = $show->SchoolNameThai; ?>
                                         </td>
                                         <td style="">
                                             <?php echo $show->SchoolAssessmentName; ?>
@@ -617,6 +658,7 @@
                                             </button>
                                         </td>
                                         <!-- แก้ไข -->
+                                        <?php if ($R_701000 <> NULL && $R_701000['UR_Add'] == "1") { ?>
                                         <td style="text-align: center;">
                                             <a href="<?php echo site_url('sc_ass_forms_p5?page=sh55') ?>&&key=<?php echo $show->Id_sa; ?>" class="btn btn-warning"> <i class="bi bi-pencil-square"></i></a>
                                             <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#del_ass_ria_com_lvl<?php echo $show->Id_sa; ?>">
@@ -645,6 +687,10 @@
                                                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ยกเลิก</button>
                                                             <form method="post" action="<?php echo site_url('sc_ass_del_p5'); ?>">
                                                                 <input type="hidden" name="Id_sa" value="<?php echo $show->Id_sa; ?>">
+                                                                <input type="hidden" name="SchoolAssessmentEducationYear" value="<?php echo $show->SchoolAssessmentEducationYear ; ?>">
+                                                                <input type="hidden" name="SchoolID_index" value="<?php echo $SchoolID_index; ?>">
+                                                                <input type="hidden" name="sum_index" value="<?php echo $sum; ?>">
+                                                                <input type="hidden" name="UserName" value="<?php echo $UserName; ?>">
                                                                 <div class="d-flex justify-content-center">
                                                                     <button name="Submit" type="submit" class="btn btn-danger">ยืนยันก่อนลบ</button>
                                                                 </div>
@@ -654,6 +700,7 @@
                                                 </div>
                                             </div> <!-- Modal -->
                                         </td>
+                                        <?php } ?>
                                         <div class="modal fade" id="SchoolAssessmentDescription<?php echo $show->Id_sa; ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                             <div class="modal-dialog modal-dialog-centered modal-lg">
                                                 <div class="modal-content">
@@ -710,11 +757,20 @@
                                         </div>
 
                                     </tr>
-                                <?php } ?>
+                                    
+                                <?php
+                                  $hasItems = true;
+                            }
+                            if (!$hasItems) { ?>
+                                <tr> <td>ไม่มีข้อมูล</td><td>ไม่มีข้อมูล</td><td>ไม่มีข้อมูล</td><td>ไม่มีข้อมูล</td><td>ไม่มีข้อมูล</td><td>ไม่มีข้อมูล</td></tr>
+                                <tr class="no-border"><td> <?php  echo br(2); ?></td></tr>
+                                <?php    }else { ?>
+                                 <tr class="no-border"><td> <?php  echo br(2); ?></td></tr>
+                          <?php  }?>
 
                             </tbody>
                         </table>
-
+                       
                     </div>
 
                 </div>
@@ -750,14 +806,20 @@
                                 </h5>
                             </div>
                             <div class="col">
+                            <?php if ($R_701000 <> NULL && $R_701000['UR_Add'] == "1") { ?>
                                 <h5 style="float: right; padding: 15px;" class="card-title"><a href="<?php echo site_url(
                                                                                                             'sc_ass_ria_forms_p6?page=sh6'
                                                                                                         ); ?>" class="btn btn-success"><i class="bi bi-file-earmark-plus"></i> เพิ่มข้อมูล</a></h5>
-                            </div>
+                            <?php } ?> 
+                        </div>
                         </div>
 
-                        <table class="table table-borderless datatable">
-                            <thead>
+                        <table class="table  <?php if ($R_701000 <> NULL && $R_701000['UR_Add'] == "1") {
+                                                                echo 'table-borderless datatable';
+                                                            }else {
+                                                                echo 'table-bordered';
+                                                            } ?>  col-12">
+                        <thead>
 
                                 <tr>
 
@@ -769,7 +831,9 @@
                                     <th style="" scope="col">ลำดับองค์ประกอบ</th>
                                     <th style="" scope="col">ลำดับของระดับที่ได้</th>
                                     <th style="text-align: center;" scope="col">ดูรายละเอียด</th>
+                                    <?php if ($R_701000 <> NULL && $R_701000['UR_Add'] == "1") { ?>
                                     <th style="text-align: center;" scope="col">ปฎิบัติ</th>
+                                    <?php } ?>
 
                                 </tr>
 
@@ -807,13 +871,13 @@
                                             <p class="mt-2">
                                                 <?php
                                                 if ($sum == 1) {
-                                                    echo "ภาคเรียนที่ 1";
+                                                    echo $sum = "ภาคเรียนที่ 1";
                                                 } elseif ($sum == 2) {
-                                                    echo "ภาคเรียนที่ 2";
+                                                    echo $sum = "ภาคเรียนที่ 2";
                                                 } elseif ($sum == 0) {
-                                                    echo "ตลอดปีการศึกษา";
+                                                    echo $sum = "ตลอดปีการศึกษา";
                                                 } elseif ($sum == 3) {
-                                                    echo "ภาคเรียนฤดูร้อน";
+                                                    echo $sum = "ภาคเรียนฤดูร้อน";
                                                 }
                                                 ?>
                                             </p>
@@ -917,6 +981,7 @@
                                             <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#look5<?php echo $show_top->Id; ?>"><i class="bi bi-card-list"></i></button>
                                         </td>
                                         <!-- แก้ไข -->
+                                        <?php if ($R_701000 <> NULL && $R_701000['UR_Add'] == "1") { ?>
                                         <td style="text-align: center;">
                                             <a href="<?php echo site_url('sc_ass_ria_forms_p6?page=sh66') ?>&&key=<?php echo $show_top->Id_sac; ?>" class="btn btn-warning"> <i class="bi bi-pencil-square"></i></a>
                                             <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#del_sc_ass<?php echo $show_top->Id_sac; ?>">
@@ -940,8 +1005,8 @@
                                                             <p> ปีการศึกษา:
                                                                 <?php echo $show_top->SchoolAssessmentEducationYear; ?>
                                                             </p>
-                                                            <p> ภาคเรียน:<?php echo $show_top->SEMESTER_NAME; ?></p>
-                                                            <p> สถานศึกษา: <?php echo $show_top->SchoolNameThai; ?></p>
+                                                            <p> ภาคเรียน:<?php echo $sum_index = $show_top->SEMESTER_NAME; ?></p>
+                                                            <p> สถานศึกษา: <?php echo $SchoolID_index = $show_top->SchoolNameThai; ?></p>
 
                                                         </div>
 
@@ -951,8 +1016,9 @@
                                                             <form method="post" action="<?php echo site_url('sc_ass_ria_del_p6'); ?>">
                                                                 <input type="hidden" name="Id_sac" value="<?php echo $show_top->Id_sac; ?>">
                                                                 <input type="hidden" name="SchoolAssessmentEducationYear" value="<?php echo $show_top->SchoolAssessmentEducationYear; ?>">
-                                                                <input type="hidden" name="SchoolAssessmentSemester" value="<?php echo $show_top->SchoolAssessmentSemester; ?>">
-                                                                <input type="hidden" name="SchoolID" value="<?php echo $show_top->SchoolID; ?>">
+                                                                <input type="hidden" name="sum_index" value="<?php echo $sum_index; ?>">
+                                                                <input type="hidden" name="SchoolID_index" value="<?php echo $SchoolID_index; ?>">
+                                                                <input type="hidden" name="UserName" value="<?php echo $UserName; ?>">
                                                                 <div class="d-flex justify-content-center">
                                                                     <button name="Submit" type="submit" class="btn btn-danger">ยืนยันก่อนลบ</button>
                                                                 </div>
@@ -962,8 +1028,17 @@
                                                 </div>
                                             </div> <!-- Modal -->
                                         </td>
+                                        <?php } ?>
                                     </tr>
-                                <?php } ?>
+                                    <?php
+                                  $hasItems = true;
+                            }
+                                if (!$hasItems) { ?>
+                                  <tr> <td>ไม่มีข้อมูล</td><td>ไม่มีข้อมูล</td><td>ไม่มีข้อมูล</td><td>ไม่มีข้อมูล</td><td>ไม่มีข้อมูล</td><td>ไม่มีข้อมูล</td><td>ไม่มีข้อมูล</td><td>ไม่มีข้อมูล</td></tr>
+                                  <tr class="no-border"><td> <?php  echo br(2); ?></td></tr>
+                            <?php    }else { ?>
+                                 <tr class="no-border"><td> <?php  echo br(2); ?></td></tr>
+                          <?php  }?>
 
 
 
@@ -1006,14 +1081,20 @@
                                 </h5>
                             </div>
                             <div class="col">
+                            <?php if ($R_701000 <> NULL && $R_701000['UR_Add'] == "1") { ?>
                                 <h5 style="float: right; padding: 15px;" class="card-title"><a href="<?php echo site_url(
                                                                                                             'achie_ass_forms_p8?page=sh8'
                                                                                                         ); ?>" class="btn btn-success"><i class="bi bi-file-earmark-plus"></i> เพิ่มข้อมูล</a></h5>
-                            </div>
+                             <?php } ?>
+                        </div>
                         </div>
 
-                        <table class="table table-borderless datatable">
-                            <thead>
+                        <table class="table  <?php if ($R_701000 <> NULL && $R_701000['UR_Add'] == "1") {
+                                                                echo 'table-borderless datatable';
+                                                            }else {
+                                                                echo 'table-bordered';
+                                                            } ?>  col-12">
+                        <thead>
 
                                 <tr>
 
@@ -1023,7 +1104,9 @@
                                     <th style="" scope="col">ชื่อการประเมิน</th>
                                     <th style="" scope="col">ผลการประเมิน</th>
                                     <th style="text-align: center;" scope="col">ดูรายละเอียด</th>
+                                    <?php if ($R_701000 <> NULL && $R_701000['UR_Add'] == "1") { ?>
                                     <th style="text-align: center;" scope="col">ปฎิบัติ</th>
+                                    <?php } ?>
 
 
                                 </tr>
@@ -1049,7 +1132,7 @@
                                             <?php echo $show->AchievementAssessmentYear; ?>
                                         </td>
                                         <td scope="row " style="">
-                                            <?php echo $show->SEMESTER_NAME; ?>
+                                            <?php echo $sum_index = $show->SEMESTER_NAME; ?>
                                         </td>
 
                                         <td scope="row">
@@ -1083,6 +1166,7 @@
 
                                         </td>
                                         <!-- แก้ไข -->
+                                        <?php if ($R_701000 <> NULL && $R_701000['UR_Add'] == "1") { ?>
                                         <td style="text-align: center;">
                                             <a href="<?php echo site_url('achie_ass_forms_p8?page=sh88') ?>&&key=<?php echo $show->Id; ?>" class="btn btn-warning"> <i class="bi bi-pencil-square"></i></a>
 
@@ -1111,6 +1195,10 @@
                                                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ยกเลิก</button>
                                                             <form method="post" action="<?php echo site_url('achie_ass_del_p8'); ?>">
                                                                 <input type="hidden" name="Id" value="<?php echo $show->Id; ?>">
+                                                                <input type="hidden" name="AchievementAssessmentYear" value="<?php echo $show->AchievementAssessmentYear; ?>">
+                                                                <input type="hidden" name="sum_index" value="<?php echo  $sum_index; ?>">
+                                                                <input type="hidden" name="SchoolID_index" value="<?php echo $show->SchoolNameThai; ?>">
+                                                                <input type="hidden" name="UserName" value="<?php echo $UserName; ?>">
                                                                 <div class="d-flex justify-content-center">
                                                                     <button name="Submit" type="submit" class="btn btn-danger">ยืนยันก่อนลบ</button>
                                                                 </div>
@@ -1120,9 +1208,17 @@
                                                 </div>
                                             </div> <!-- Modal -->
                                         </td>
+                                        <?php } ?>
 
                                     </tr>
-                                <?php } ?>
+                                    <?php
+                                  $hasItems = true;
+                            } if (!$hasItems) { ?>
+                                <tr> <td>ไม่มีข้อมูล</td><td>ไม่มีข้อมูล</td><td>ไม่มีข้อมูล</td><td>ไม่มีข้อมูล</td><td>ไม่มีข้อมูล</td><td>ไม่มีข้อมูล</td></tr>
+                                <tr class="no-border"><td> <?php  echo br(2); ?></td></tr>
+                                <?php    }else { ?>
+                                 <tr class="no-border"><td> <?php  echo br(2); ?></td></tr>
+                          <?php  }?>
 
 
 
@@ -1291,8 +1387,12 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td><a href="<?php echo site_url('ass_ria_com_lvl_forms_p4?page=sh4') ?>" class="my-link fw-bold">>>เพิ่มคำอธิบาย>>
-                                    </a></td>
+                                <td>
+                                <?php if ($R_701000 <> NULL && $R_701000['UR_Add'] == "1") { ?>
+                                    <a href="<?php echo site_url('ass_ria_com_lvl_forms_p4?page=sh4') ?>" class="my-link fw-bold">>>เพิ่มคำอธิบาย>>
+                                    </a>
+                                    <?php } ?>
+                                </td>
                             </tr>
                             <tr>
                                 <table class="table table-bordered">
@@ -1329,7 +1429,13 @@
                                             </td>
                                             <td>
                                                 <p>
+                                                <?php if ($R_701000 <> NULL && $R_701000['UR_Add'] == "1") { ?>
                                                     <a href="<?php echo site_url('ass_ria_com_lvl_forms_p4?page=sh44'); ?>&&Id_accl=<?php echo $showT->Id_accl; ?>" class="my-link"><?php echo $showT->CompositionLevelDescription; ?></a>
+
+                                                    <?php }else{?>
+                                                        <?php echo $showT->CompositionLevelDescription; ?>
+
+                                                        <?php } ?>
                                                 </p>
                                             </td>
                                         </tr>
@@ -1549,8 +1655,9 @@
                             </tr>
                             <tr>
                                 <td>
+                                <?php if ($R_701000 <> NULL && $R_701000['UR_Add'] == "1") { ?>
                                     <a class="my-link" href="<?php echo site_url('sc_ass_res_forms_p7?page=sh7') ?>&&summer=<?php echo $SchoolAssessmentSemester; ?>&&SchoolID=<?php echo $SchoolID; ?>&&CriteriaID=<?php echo $CriteriaID; ?>&&year=<?php echo $SchoolAssessmentEducationYear; ?>">>>เพิ่มลำดับองค์ประกอบและลำดับตัวชี้วัด>></a>
-
+                                    <?php } ?>
                                     <table class="table table-bordered">
                                         <tr>
                                             <td class="col-1">ตัวชี้วัด</td>
@@ -1586,10 +1693,18 @@
                                         ");
                                                     foreach ($resultR->result() as $showR) {
                                                     ?>
-                                                        <a href="<?php echo site_url('sc_ass_res_forms_p7?page=sh77') ?>&&key=<?php echo $showR->Id_sar; ?>&&year=<?php echo $showR->SchoolAssessmentEducationYear; ?>&&summer=<?php echo $showR->SchoolAssessmentSemester; ?>&&SchoolID=<?php echo $showR->SchoolID; ?>&&CriteriaID=<?php echo $show_top->Id; ?>" class="my-link">
+                                                        
+
+                                                        <?php if ($R_701000 <> NULL && $R_701000['UR_Add'] == "1") { ?>
+                                                        
+                                                            <a href="<?php echo site_url('sc_ass_res_forms_p7?page=sh77') ?>&&key=<?php echo $showR->Id_sar; ?>&&year=<?php echo $showR->SchoolAssessmentEducationYear; ?>&&summer=<?php echo $showR->SchoolAssessmentSemester; ?>&&SchoolID=<?php echo $showR->SchoolID; ?>&&CriteriaID=<?php echo $show_top->Id; ?>" class="my-link">
                                                             <?php echo $showR->CompositionIndex; ?>.
                                                             <?php echo $showR->CompositionName; ?><br>
                                                         </a>
+                                                        <?php }else{ ?> 
+                                                            <?php echo $showR->CompositionIndex; ?>.
+                                                            <?php echo $showR->CompositionName; ?><br>
+                                                            <?php } ?>
                                                     <?php } ?>
                                                 </p>
                                             </td>
@@ -1609,9 +1724,14 @@
                                         ");
                                                     foreach ($resultR->result() as $showR) {
                                                     ?>
+                                                      <?php if ($R_701000 <> NULL && $R_701000['UR_Add'] == "1") { ?>
+                                                        
                                                         <a href="<?php echo site_url('sc_ass_res_forms_p7?page=sh77') ?>&&key=<?php echo $showR->Id_sar; ?>&&year=<?php echo $showR->SchoolAssessmentEducationYear; ?>&&summer=<?php echo $showR->SchoolAssessmentSemester; ?>&&SchoolID=<?php echo $showR->SchoolID; ?>&&CriteriaID=<?php echo $show_top->Id; ?>" class="my-link">
                                                             <?php echo $showR->LevelIndex; ?>.<?php echo $showR->LevelName; ?><br>
                                                         </a>
+                                                        <?php }else{ ?> 
+                                                            <?php echo $showR->LevelIndex; ?>.<?php echo $showR->LevelName; ?><br>
+                                                            <?php } ?>
                                                     <?php } ?>
                                                 </p>
                                             </td>

@@ -10,7 +10,9 @@
     <?php $key = isset($_GET['key']) ? $_GET['key'] : ''; ?>
     <?php $MediaID = isset($_GET['MediaID']) ? $_GET['MediaID'] : ''; ?>
     <?php 
-session_start(); // เริ่มต้น session
+ if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+} // เริ่มต้น session
 if (isset( $_SESSION['success'])) { ?>
     <div style="position: relative;">
         <div class="alert alert-success" id="myAlert"
@@ -103,6 +105,7 @@ if (isset( $_SESSION['success'])) { ?>
                         <!-- start Form ข้อมูลเทคโนโลยี และสื่อการเรียนรู้ -->
                         <form action="<?php echo site_url('LTM_forms_up_p1'); ?>" method="post"
                             enctype="multipart/form-data" onsubmit="return checkSelectedOption()">
+                            <input type="hidden" name="UserName" value="<?php echo $UserName; ?>">
                             <div class="row mb-3">
                                 <div class="form-floating">
                                     <input type="text" class="form-control" id="floatingName"
@@ -301,7 +304,8 @@ if (isset( $_SESSION['success'])) { ?>
                         <?php
                             
                             $result = $this->db->query("SELECT * FROM LEARNING_TECHNOLOGY_MEDIA 
-                            WHERE MediaID = '".$key."' 
+                            WHERE Id_ltm = '".$key."' 
+                            AND DeleteStatus = 0 
                             ");
  
                      foreach ($result->result() as $show) {
@@ -309,6 +313,7 @@ if (isset( $_SESSION['success'])) { ?>
                         <!-- start Form ข้อมูลเทคโนโลยี และสื่อการเรียนรู้ -->
                         <form action="<?php echo site_url('LTM_edit_p1'); ?>" method="post"
                             enctype="multipart/form-data">
+                            <input type="hidden" name="UserName" value="<?php echo $UserName; ?>">
                             <input type="hidden" name="Id_ltm" value="<?php echo $show->Id_ltm ?>">
                             <div class="row mb-3">
                                 <div class="form-floating">
@@ -519,6 +524,8 @@ if (isset( $_SESSION['success'])) { ?>
                                         value="<?php echo $MediaID; ?>">
                                 </div>
                             </div>
+                            <input type="hidden" name="UserName" value="<?php echo $UserName; ?>">
+                            <input type="hidden" name="name" value="<?php echo $name; ?>">
                             <div class="row mb-3">
                                 <div class="col">
                                     <div class="form-floating">
@@ -739,6 +746,8 @@ if (isset( $_SESSION['success'])) { ?>
                             INNER JOIN LEARNING_TECHNOLOGY_MEDIA
                             ON LEARNING_TECHNOLOGY_MEDIA.Id_ltm = LEARNING_TECHNOLOGY_MEDIA_CREATOR.MediaID
                             WHERE Id_ltmc = '".$key."' 
+                            AND LEARNING_TECHNOLOGY_MEDIA_CREATOR.DeleteStatus = 0 
+                            AND LEARNING_TECHNOLOGY_MEDIA.DeleteStatus = 0 
                             ");
  
                      foreach ($result->result() as $show) {
@@ -746,7 +755,9 @@ if (isset( $_SESSION['success'])) { ?>
                      ?>
                         <form action="<?php echo site_url('LTMC_edit_p2'); ?>" method="post"
                             enctype="multipart/form-data" onsubmit="return checkSelectedOption()">
+                            <input type="hidden" name="UserName" value="<?php echo $UserName; ?>">
                             <input type="hidden" name="Id_ltmc" value="<?php echo $show->Id_ltmc; ?>">
+                            <input type="hidden" name="name" value="<?php echo $name; ?>">
                             <div class="row mb-3">
                                 <div class="col">
                                     <div class="form-floating">
@@ -768,7 +779,8 @@ if (isset( $_SESSION['success'])) { ?>
                                     <div class="form-floating">
                                         <select class="form-select" id="CreatorPersonalIDTypeCode"
                                             aria-label="Floating label select example" name="CreatorPersonalIDTypeCode"
-                                            value="<?php echo $show->CreatorPersonalIDTypeCode ?>">
+                                            value="<?php echo $show->CreatorPersonalIDTypeCode ?>" 
+                                            onchange="chkx()">
 
                                             <?php
                                         $result = $this->db->query('SELECT * FROM CLS_PERSONAL_ID_TYPE');
@@ -789,13 +801,38 @@ if (isset( $_SESSION['success'])) { ?>
                                     <div class="form-floating" id="CreatorPersonalID">
                                         <input type="number" class="form-control" id="my-auto"
                                             placeholder="หมายเลขบัตรประจำตัวผู้จัดทำ" name=""
-                                            value="<?php echo $CreatorPersonalID; ?>" required>
+                                            value="<?php echo $CreatorPersonalID; ?>" required disabled>
                                         <input type="hidden" class="form-control" id="my-autoo" placeholder=""
                                             name="CreatorPersonalID">
                                         <label for=""><?php echo nbs(2); ?> หมายเลขบัตรประจำตัวผู้จัดทำ </label>
                                     </div>
                                 </div>
+<script>
+   function chkx() {
+    const select = document.getElementById("CreatorPersonalIDTypeCode");
+    const input = document.getElementById("my-auto");
+    const input1 = document.getElementById("my-autoo");
 
+    select.addEventListener("change", function() {
+        if (select.value === "N" || select.value === "-1") {
+            input.disabled = true;
+            input.required = true;
+            input.value = '';
+            input1.value = '';
+        } else {
+            input.disabled = false;
+            input.value = '<?php echo $CreatorPersonalID; ?>';
+            input1.value = '<?php echo $CreatorPersonalID; ?>';
+        }
+    });
+
+    input.addEventListener("input", function() {
+        input1.value = input.value;
+    });
+}
+
+
+</script>
                                 <div class="col">
                                     <div class="form-floating">
                                         <select class="form-select" id="CreatorPrefixCode"
@@ -919,7 +956,8 @@ if (isset( $_SESSION['success'])) { ?>
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-secondary"
                                                 data-bs-dismiss="modal">ยกเลิก</button>
-                                            <form method="post" action="<?php echo site_url('LTMC_edit_p2'); ?>">
+                                            <form method="post" action="<?php echo site_url('LTMC_edit_p2');?>">
+                                            <input type="hidden" name="UserName" value="<?php echo $UserName; ?>">
                                                 <input type="hidden" name="Id_ltmc"
                                                     value="<?php echo $show->Id_ltmc; ?>">
                                                 <div class="d-flex justify-content-center">
@@ -953,7 +991,11 @@ if (isset( $_SESSION['success'])) { ?>
                                         <button type="button" class="btn btn-secondary"
                                             data-bs-dismiss="modal">ยกเลิก</button>
                                         <form method="post" action="<?php echo site_url('LTMC_del_p2'); ?>">
+                                        <input type="hidden" name="UserName" value="<?php echo $UserName; ?>">
+                                        <input type="hidden" name="name" value="<?php echo $name; ?>">
                                             <input type="hidden" name="Id_ltmc" value="<?php echo $show->Id_ltmc; ?>">
+                                            <input type="hidden" name="MediaID" value="<?php echo $show->MediaID; ?>">
+                                            <input type="hidden" name="CreatorNameThai" value="<?php echo $show->CreatorNameThai; ?>">
                                             <div class="d-flex justify-content-center">
                                                 <button name="Submit" type="submit"
                                                     class="btn btn-danger">ยืนยันก่อนลบ</button>
@@ -964,30 +1006,7 @@ if (isset( $_SESSION['success'])) { ?>
                             </div>
                         </div> <!-- Modal -->
                         <script>
-                        const select = document.getElementById("CreatorPersonalIDTypeCode");
-                        const input = document.getElementById("my-auto");
-                        const input1 = document.getElementById("my-autoo");
-
-                        select.addEventListener("change", function() {
-                            if (select.value === "N" || select.value === "-1") {
-                                input.disabled = true;
-                                input.required = true;
-
-                                input.value = '';
-
-                                input1.value = '';
-
-                            } else {
-                                input.disabled = false;
-                                input.required = false;
-
-                                input.value = '<?php echo $CreatorPersonalID; ?>';
-                                input1.value = '<?php echo $CreatorPersonalID; ?>';
-                            }
-                        });
-                        input.addEventListener("input", function() {
-                            input1.value = input.value;
-                        });
+                       
                         ///CLS_PERSONAL_ID_TYPE
                         var my_CLS_PERSONAL_ID_TYPE = '<?php echo $show->CreatorPersonalIDTypeCode; ?>';
                         var selectoption_CLS_PERSONAL_ID_TYPE = document.querySelector('#CreatorPersonalIDTypeCode');

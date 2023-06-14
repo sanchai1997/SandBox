@@ -9,7 +9,9 @@
     <?php $name = isset($_GET['name']) ? $_GET['name'] : ''; ?>
     <?php $key = isset($_GET['key']) ? $_GET['key'] : ''; ?>
     <?php 
-session_start(); // เริ่มต้น session
+ if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+} // เริ่มต้น session
 if (isset( $_SESSION['success'])) { ?>
         <div style="position: relative;">
             <div class="alert alert-success" id="myAlert"
@@ -88,7 +90,7 @@ if (isset( $_SESSION['success'])) { ?>
                         <form action="<?php echo site_url(
                             'par_forms_up_p1'
                         ); ?>" method="post" enctype="multipart/form-data" onsubmit="return checkSelectedOption()">
-
+ <input type="hidden" name="UserName" value="<?php echo $UserName; ?>">
 
                             <div class="row mb-3">
                                 <!-- <div class="col">
@@ -191,7 +193,7 @@ if (isset( $_SESSION['success'])) { ?>
                         <form action="<?php echo site_url(
                             'par_edit_p1'
                         ); ?>" method="post" enctype="multipart/form-data">
-
+ <input type="hidden" name="UserName" value="<?php echo $UserName; ?>">
                             <input type="hidden" name="ParticipantID" value="<?php echo $show->ParticipantID ?>">
                             <div class="row mb-3">
                                
@@ -280,7 +282,7 @@ if (isset( $_SESSION['success'])) { ?>
                         <form action="<?php echo site_url(
                             'pc_forms_up_p2'
                         ); ?>" method="post" enctype="multipart/form-data">
-
+ <input type="hidden" name="UserName" value="<?php echo $UserName; ?>">
                             <!-- 
                             <div class="row mb-3">
                                 <div class="form-floating">
@@ -307,7 +309,7 @@ if (isset( $_SESSION['success'])) { ?>
                                 </div>
                             </div>
 
-
+                                    <input type="hidden" name="name" value="<?php echo $name; ?>">
                             <div class="row mb-3">
                                 <div class="col">
                                     <div class="form-floating">
@@ -397,7 +399,8 @@ if (isset( $_SESSION['success'])) { ?>
                         <form action="<?php echo site_url(
                             'pc_edit_p2'
                         ); ?>" method="post" enctype="multipart/form-data">
-
+<input type="hidden" name="name" value="<?php echo $name; ?>">
+<input type="hidden" name="UserName" value="<?php echo $UserName; ?>">
                             <input type="hidden" name="Id" value="<?php echo $show->Id ?>">
                             <div class="row mb-3">
 
@@ -535,7 +538,11 @@ if (isset( $_SESSION['success'])) { ?>
                                                 <button type="button" class="btn btn-secondary"
                                                     data-bs-dismiss="modal">ยกเลิก</button>
                                                 <form method="post" action="<?php echo site_url('pc_del_p2'); ?>">
+                                                <input type="hidden" name="UserName" value="<?php echo $UserName; ?>">
                                                     <input type="hidden" name="Id" value="<?php echo $show->Id; ?>">
+                                                    <input type="hidden" name="name" value="<?php echo $name; ?>">
+                                                    <input type="hidden" name="ParticipantID" value="<?php echo $show->ParticipantID; ?>">
+                                                    <input type="hidden" name="ContactName" value="<?php echo $show->ContactName; ?>">
                                                     <div class="d-flex justify-content-center">
                                                         <button name="Submit" type="submit"
                                                             class="btn btn-danger">ยืนยันก่อนลบ</button>
@@ -562,6 +569,7 @@ if (isset( $_SESSION['success'])) { ?>
                         <form action="<?php echo site_url(
                             'pcp_forms_up_p3'
                         ); ?>" method="post" enctype="multipart/form-data" onsubmit="return checkSelectedOption()">
+                         <input type="hidden" name="UserName" value="<?php echo $UserName; ?>">
 
                             <!-- <div class="row mb-3">
                                 <div class="form-floating">
@@ -574,6 +582,7 @@ if (isset( $_SESSION['success'])) { ?>
                                         ภาครัฐหรือภาคเอกชนที่เข้ามาขับเคลื่อนพื้นที่นวัตกรรมการศึกษา </label>
                                 </div>
                             </div> -->
+                            <input type="hidden" name="name" value="<?php echo $name; ?>">
                             <input type="hidden" name="ParticipantID" value="<?php echo $key; ?>">
 
                             <div class="row mb-3">
@@ -745,6 +754,8 @@ if (isset( $_SESSION['success'])) { ?>
                             'pcp_edit_p3'
                         ); ?>" method="post" enctype="multipart/form-data">
                             <input type="hidden" name="Id" value="<?php echo $show->Id ?>">
+                            <input type="hidden" name="UserName" value="<?php echo $UserName; ?>">
+                            <input type="hidden" name="name" value="<?php echo $name; ?>">
                             <div class="row mb-3">
                                 <div class="form-floating">
                                     <select class="form-select" id="ParticipantID"
@@ -919,6 +930,10 @@ if (isset( $_SESSION['success'])) { ?>
                                                     data-bs-dismiss="modal">ยกเลิก</button>
                                                 <form method="post" action="<?php echo site_url('pcp_del_p3'); ?>">
                                                     <input type="hidden" name="Id" value="<?php echo $show->Id; ?>">
+                                                    <input type="hidden" name="UserName" value="<?php echo $UserName; ?>">
+                                                    <input type="hidden" name="name" value="<?php echo $name; ?>">
+                                                    <input type="hidden" name="ParticipantID" value="<?php echo $show->ParticipantID; ?>">
+                                                    <input type="hidden" name="CooperationStartDate" value="<?php echo DateThai($show->CooperationStartDate); ?>">
                                                     <div class="d-flex justify-content-center">
                                                         <button name="Submit" type="submit"
                                                             class="btn btn-danger">ยืนยันก่อนลบ</button>
@@ -975,6 +990,7 @@ if (isset( $_SESSION['success'])) { ?>
                             'pn_forms_up_p4'
                         ); ?>" method="post" enctype="multipart/form-data">
                             <input type="hidden" name="ParticipantID" value="<?php echo $key ?>">
+                            <input type="hidden" name="UserName" value="<?php echo $UserName; ?>">
                             <!-- <div class="row mb-3">
                                 <div class="form-floating">
                                     <input type="text" class="form-control" id="floatingName"
@@ -998,7 +1014,7 @@ if (isset( $_SESSION['success'])) { ?>
                                     ); ?>บันทึกเพิ่มเติม</label>
                                 </div>
                             </div>
-
+                            <input type="hidden" name="name" value="<?php echo $name; ?>">
                             <div class="row mb-3">
                                 <div class="form-floating">
                                     <input type="text" class="form-control" id="floatingName"
@@ -1089,6 +1105,7 @@ if (isset( $_SESSION['success'])) { ?>
                             'pn_edit_p4'
                         ); ?>" method="post" enctype="multipart/form-data">
                             <input type="hidden" name="Id" value="<?php echo $show->Id ?>">
+                            <input type="hidden" name="UserName" value="<?php echo $UserName; ?>">
                             <div class="row mb-3">
                                 <div class="form-floating">
                                     <select class="form-select" id="ParticipantID"
@@ -1108,6 +1125,7 @@ if (isset( $_SESSION['success'])) { ?>
                                     ); ?>ภาครัฐหรือภาคเอกชนที่เข้ามาขับเคลื่อนพื้นที่นวัตกรรมการศึกษา</label>
                                 </div>
                             </div>
+                            <input type="hidden" name="name" value="<?php echo $name; ?>">
                             <div class="row mb-3">
                                 <div class="form-floating">
                                     <textarea class="form-control" placeholder="Leave a comment here"
@@ -1221,7 +1239,11 @@ if (isset( $_SESSION['success'])) { ?>
                                                 <button type="button" class="btn btn-secondary"
                                                     data-bs-dismiss="modal">ยกเลิก</button>
                                                 <form method="post" action="<?php echo site_url('pn_del_p4'); ?>">
+                                                <input type="hidden" name="name" value="<?php echo $name; ?>">
+                                                <input type="hidden" name="UserName" value="<?php echo $UserName; ?>">
                                                     <input type="hidden" name="Id" value="<?php echo $show->Id; ?>">
+                                                    <input type="hidden" name="ParticipantID" value="<?php echo $show->ParticipantID; ?>">
+                                                    <input type="hidden" name="NoteReporterName" value="<?php echo $show->NoteReporterName; ?>">
                                                     <div class="d-flex justify-content-center">
                                                         <button name="Submit" type="submit"
                                                             class="btn btn-danger">ยืนยันก่อนลบ</button>

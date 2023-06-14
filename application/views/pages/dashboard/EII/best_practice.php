@@ -12,7 +12,10 @@
     }
     </style>
     <?php
-    session_start(); // เริ่มต้น session
+    if (session_status() == PHP_SESSION_NONE) {
+        session_start();
+    }
+     // เริ่มต้น session
     if (isset($_SESSION['success'])) { ?>
     <div style="position: relative;">
         <div class="alert alert-success" id="myAlert"
@@ -85,15 +88,29 @@
 
             <div class="card-body">
                 <div class="row">
-                    
+                <div class="col">
+                            <h5 class="card-title">
+                            
+                            </h5>
+                        </div>
                     <div class="col">
+                        <?php 
+                     
+                        if($R_504000 <> NULL && $R_504000['UR_Add']== "1"){ ?>
+
+                       
                         <h5 style="float: right; padding: 15px;" class="card-title"><a
                                 href="<?php echo site_url('BP_forms_p1?page=sh1') ?>"
-                                class="btn btn-success"><i class="bi bi-file-earmark-plus"></i> เพิ่มข้อมูล</a></h5>
+                                class="btn btn-success">เพิ่มข้อมูล</a></h5>
+                                <?php  } ?>
                     </div>
                 </div>
 
-                <table class="table table-borderless datatable">
+                <table class="table  <?php if ($R_504000 <> NULL && $R_504000['UR_Add'] == "1") {
+                                                                echo 'table-borderless datatable';
+                                                            }else {
+                                                                echo 'table-bordered';
+                                                            } ?>  col-12">
                     <thead>
 
                         <tr>
@@ -107,7 +124,12 @@
                             <th style="" scope="col" class="col-2">วันที่เผยแพร่</th>
                             <th style="" scope="col" class="col-2">ผู้จัดทำ</th>
                             <th style="text-align: center;" scope="col" class="col-1">ดูรายละเอียด</th>
+                            <?php 
+                          
+                            if($R_504000 <> NULL && $R_504000['UR_Add']== "1"){ ?>
                             <th style="text-align: center;" scope="col" class="col-1">ปฎิบัติ</th>
+                            <?php  } ?>
+
                         </tr>
 
                     </thead>
@@ -234,9 +256,13 @@
                                                         </div>
                                                     </div>
                                                     <div class="modal-footer">
+                                                    <?php 
+                     
+                     if($R_504000 <> NULL && $R_504000['UR_Add']== "1"){ ?>
                                                         <a href="<?php echo site_url('BPC_forms_p2?page=sh22') ?>&&key=<?php echo $showc->Id_bestc; ?>&&name=<?php echo $show->BestPracticeName; ?>"
                                                             class="my-link btn btn-warning">
                                                             <i class="bi bi-pencil-square"></i> </a>
+                                                            <?php  } ?>
                                                         <button type="button" class="btn btn-secondary"
                                                             data-bs-dismiss="modal">ปิด</button>
 
@@ -249,17 +275,22 @@
 
                                 </div>
                                 <?php } ?>
+                                <?php 
+                     
+                     if($R_504000 <> NULL && $R_504000['UR_Add']== "1"){ ?>
                                 <a href="<?php echo site_url('BPC_forms_p2?page=sh2') ?>&&name=<?php echo $show->BestPracticeID; ?>&&key=<?php echo $show->Id_best; ?>"
                                     class="my-link fw-bold">>>เพิ่มผู้จัดทำ>>
                                 </a>
+                                <?php  } ?>
                             </td>
-
                             <td style="text-align: center;">
 
                                 <button type="button" class="btn btn-primary" data-bs-toggle="modal"
                                     data-bs-target="#look<?php echo $show->Id_best; ?>"><i
                                         class="bi bi-card-list"></i></button>
                             </td>
+                            <?php  if($R_504000 <> NULL && $R_504000['UR_Add']== "1"){ ?>
+                           
                             <td style="text-align: center;">
                                 <a href="<?php echo site_url('BP_forms_p1?page=sh11') ?>&&key=<?php echo $show->Id_best; ?>&&name=<?php echo $show->BestPracticeName; ?>"
                                     class="btn btn-warning"> <i class="bi bi-pencil-square"></i></a>
@@ -288,8 +319,14 @@
                                                 <button type="button" class="btn btn-secondary"
                                                     data-bs-dismiss="modal">ยกเลิก</button>
                                                 <form method="post" action="<?php echo site_url('BP_del_p1'); ?>">
+                                                <input type="hidden" name="name" value="<?php echo $name; ?>">
+                                                <input type="hidden" name="UserName" value="<?php echo $UserName; ?>">
                                                     <input type="hidden" name="Id_best"
                                                         value="<?php echo $show->Id_best; ?>">
+                                                        <input type="hidden" name="BestPracticeID"
+                                                        value="<?php echo $show->BestPracticeID; ?>">
+                                                        <input type="hidden" name="BestPracticeName"
+                                                        value="<?php echo $show->BestPracticeName; ?>">
                                                     <div class="d-flex justify-content-center">
                                                         <button name="Submit" type="submit"
                                                             class="btn btn-danger">ยืนยันก่อนลบ</button>
@@ -300,7 +337,7 @@
                                     </div>
                                 </div> <!-- Modal -->
                             </td>
-
+                            <?php  } ?>
 
 
                         </tr>
@@ -470,7 +507,7 @@
                     JOIN CLS_PREFIX ON BEST_PRACTICE_CREATOR.CreatorPrefixCode = CLS_PREFIX.PREFIX_CODE  
                     WHERE BestPracticeID='" . $Id_best . "'"); ?>
 
-                    <table class="m-3 col-11">
+                    <table class="m-3 col-11 table table-bordered">
                         <tr>
                             <th style="" class="col-2">ประเภทบัตร</th>
                             <th style="" class="col-2">เลขบัตร ปชช.</th>
