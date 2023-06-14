@@ -35,7 +35,7 @@ class Fm_best_practice extends _sandboxcontroller {
 		}else{
 			$data['R_504000'] = NULL;
 		}
-
+		var_dump($data['UserIPAddress']);
 		$data['query']=$this->Best_practice_model->show_BP();
 		
         $this->load->view('templates/header', $data);

@@ -416,5 +416,32 @@ class Admin extends _authen {
 
 		var_dump($user);
 	}
+
+    public function SystemLogs(){
+        
+        if ( ! file_exists(APPPATH.'views/pages/admin/systemlogs_view.php'))
+        {
+                // Whoops, we don't have a page for that!
+                show_404();
+        }
+		
+        $this->load->model('Config_model');	
+        $this->load->model('Syslog_model');	
+		
+        $data = array();
+		$data = $this->session->userdata();				
+        $data['title'] = 'SystemLogs'; // Capitalize the first letter
+
+
+
+		$select = 'LogID, LogMessage, LogUserID, LogUserName, LogIpAddress, LogCreation ';
+		$SystemLogs = $this->Syslog_model->getitems(array(), $select);
+		$data['SystemLogs'] = $SystemLogs;
+		
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/sidebar_admin', $data);
+        $this->load->view('pages/admin/systemlogs_view', $data);
+        $this->load->view('templates/footer', $data);
+    }
  
 }

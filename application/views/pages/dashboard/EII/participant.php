@@ -310,8 +310,10 @@ foreach ($result2->result() as $show2) { ?>
                                                         <div class="row">
                                                             <div class="col">
                                                                 <h6>ลิงก์เอกสารแนบ</h6>
+                                                                <?php if($show->CooperationAttachmentURL != '') { ?>
                                                                 <p><a href="<?php echo base_url('assets/EII/PARTICIPANT_COOPERATION') ?>/<?php echo $show2->CooperationAttachmentURL; ?>"
                                                                         target="_blank"><i class="bi bi-file-earmark-text-fill"></i>ลิงก์เอกสารแนบ</i></a></p>
+                                                                        <?php } ?>
                                                             </div>
 
                                                         </div>
@@ -640,8 +642,10 @@ foreach ($results->result() as $showx) {
                             <p><?php echo $showx->COOPERATION_STATUS_NAME; ?></p>
                         </td>
                         <td>
+                        <?php if($show->CooperationAttachmentURL != '') { ?>
                             <p><a href="<?php echo base_url('assets/EII/PARTICIPANT_COOPERATION') ?>/<?php echo $showx->CooperationAttachmentURL; ?>"
                                     target="_blank"><i class="bi bi-file-earmark-text-fill"></i>ลิงก์เอกสารแนบ</i></a></p>
+                                    <?php } ?>
                         </td>
                     </tr>
                     <?php } ?>

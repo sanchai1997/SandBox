@@ -376,8 +376,10 @@
                         <h6 class="fw-bold">ลิงก์เอกสารคำสั่ง</h6>
                         <p>
                             <td scope="row " style="text-align: center;">
+                            <?php if($show->CommitteeAppointmentAttachmentURL != '') { ?>
                                 <a href="<?php echo base_url('assets/EII/COMMITTEE') ?>/<?php echo $show->CommitteeAppointmentAttachmentURL; ?>"
                                     target="_blank"><i class="bi bi-file-earmark-text-fill"></i>รายละเอียดเอกสาร</a>
+                                    <?php } ?>
 
                             </td>
                         </p>

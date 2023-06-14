@@ -4,16 +4,9 @@ class Innovation_model extends CI_Model
 
 	public function add_in_model()
 	{
+
 		
-			$ip_address = '';
-			if (!empty($_SERVER['HTTP_CLIENT_IP'])) {
-				$ip_address = $_SERVER['HTTP_CLIENT_IP'];
-			} elseif (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
-				$ip_address = $_SERVER['HTTP_X_FORWARDED_FOR'];
-			} else {
-				$ip_address = $_SERVER['REMOTE_ADDR'];
-			}
-			
+
 
 		// echo '<pre>';
 		// print_r($_POST);
@@ -63,12 +56,15 @@ class Innovation_model extends CI_Model
 						$query = $this->db->insert('INNOVATION', $data);
 						if ($query == TRUE) {
 							$UserID = $this->session->userdata('UserID');
-							
+							$UserIPAddress = $this->session->userdata('UserIPAddress');
+$UserName = $this->session->userdata('UserName');
+
+
 							$log = [
 								'LogMessage' => 'เพิ่มข้อมูล นวัตกรรมการศึกษา = "' . $this->input->post('InnovationName') . '"',
 								'LogUserID' => $UserID,
-								'LogUsername' => $this->input->post('UserName'),
-								'LogIpAddress' => $ip_address,
+								'LogUsername' => $UserName ,
+								'LogIpAddress' => $UserIPAddress,
 								'LogCreation' => date('Y-m-d H:i:s')
 							];
 							$logresult = $this->db->insert('SYS_LOG', $log);
@@ -101,19 +97,23 @@ class Innovation_model extends CI_Model
 					);
 					// ใช้งานฟังก์ชัน get_client_ip() ในโค้ด
 					$query = $this->db->insert('INNOVATION', $data);
-					
+
 
 					if ($query == TRUE) {
-						
+
 						$UserID = $this->session->userdata('UserID');
+						$UserIPAddress = $this->session->userdata('UserIPAddress');
+$UserName = $this->session->userdata('UserName');
+
+
 						$log = [
 							'LogMessage' => 'เพิ่มข้อมูล นวัตกรรมการศึกษา = "' . $this->input->post('InnovationName') . '"',
 							'LogUserID' => $UserID,
-							'LogUsername' => $this->input->post('UserName'),
-							'LogIpAddress' => $ip_address,
+							'LogUsername' => $UserName ,
+							'LogIpAddress' => $UserIPAddress,
 							'LogCreation' => date('Y-m-d H:i:s')
 						];
-						
+
 						$logresult = $this->db->insert('SYS_LOG', $log);
 					}
 					if ($query) {
@@ -135,17 +135,10 @@ class Innovation_model extends CI_Model
 	}
 	public function edit_in_model()
 	{
+
 		
-			$ip_address = '';
-			if (!empty($_SERVER['HTTP_CLIENT_IP'])) {
-				$ip_address = $_SERVER['HTTP_CLIENT_IP'];
-			} elseif (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
-				$ip_address = $_SERVER['HTTP_X_FORWARDED_FOR'];
-			} else {
-				$ip_address = $_SERVER['REMOTE_ADDR'];
-			}
-			
-	
+
+
 		//    echo '<pre>';
 		// 	print_r($_POST);
 		// 	echo'</pre>';
@@ -185,16 +178,20 @@ class Innovation_model extends CI_Model
 					$this->db->where('Id_in', $this->input->post('Id_in'));
 					$query = $this->db->update('INNOVATION', $data);
 					if ($query == TRUE) {
-						
+
 						$UserID = $this->session->userdata('UserID');
+						$UserIPAddress = $this->session->userdata('UserIPAddress');
+$UserName = $this->session->userdata('UserName');
+
+
 						$log = [
 							'LogMessage' => 'แก้ไขข้อมูล นวัตกรรมการศึกษา = "' . $this->input->post('InnovationName') . '"',
 							'LogUserID' => $UserID,
-							'LogUsername' => $this->input->post('UserName'),
-							'LogIpAddress' => $ip_address,
+							'LogUsername' => $UserName ,
+							'LogIpAddress' => $UserIPAddress,
 							'LogCreation' => date('Y-m-d H:i:s')
 						];
-						
+
 						$logresult = $this->db->insert('SYS_LOG', $log);
 					}
 					if ($query) {
@@ -224,16 +221,22 @@ class Innovation_model extends CI_Model
 				$this->db->where('Id_in', $this->input->post('Id_in'));
 				$query = $this->db->update('INNOVATION', $data);
 				if ($query == TRUE) {
-						
+
 					$UserID = $this->session->userdata('UserID');
+					$UserIPAddress = $this->session->userdata('UserIPAddress');
+$UserName = $this->session->userdata('UserName');
+
+
+					
+
 					$log = [
 						'LogMessage' => 'แก้ไขข้อมูล นวัตกรรมการศึกษา = "' . $this->input->post('InnovationName') . '"',
 						'LogUserID' => $UserID,
-						'LogUsername' => $this->input->post('UserName'),
-						'LogIpAddress' => $ip_address,
+						'LogUsername' => $UserName ,
+						'LogIpAddress' => $UserIPAddress,
 						'LogCreation' => date('Y-m-d H:i:s')
 					];
-					
+
 					$logresult = $this->db->insert('SYS_LOG', $log);
 				}
 				if ($query) {
@@ -249,15 +252,8 @@ class Innovation_model extends CI_Model
 	}
 	public function del_in_model()
 	{
+
 		
-		$ip_address = '';
-		if (!empty($_SERVER['HTTP_CLIENT_IP'])) {
-			$ip_address = $_SERVER['HTTP_CLIENT_IP'];
-		} elseif (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
-			$ip_address = $_SERVER['HTTP_X_FORWARDED_FOR'];
-		} else {
-			$ip_address = $_SERVER['REMOTE_ADDR'];
-		}
 		// echo '<pre>';
 		// 		print_r($_POST);
 		// 		echo '</pre>';
@@ -272,16 +268,20 @@ class Innovation_model extends CI_Model
 		$this->db->where('Id_in', $this->input->post('Id_in'));
 		$query = $this->db->update('INNOVATION', $data);
 		if ($query == TRUE) {
-						
+
 			$UserID = $this->session->userdata('UserID');
+			$UserIPAddress = $this->session->userdata('UserIPAddress');
+$UserName = $this->session->userdata('UserName');
+
+
 			$log = [
 				'LogMessage' => 'ลบข้อมูล นวัตกรรมการศึกษา = "' . $this->input->post('name') . '"',
 				'LogUserID' => $UserID,
-				'LogUsername' => $this->input->post('UserName'),
-				'LogIpAddress' => $ip_address,
+				'LogUsername' => $UserName ,
+				'LogIpAddress' => $UserIPAddress,
 				'LogCreation' => date('Y-m-d H:i:s')
 			];
-			
+
 			$logresult = $this->db->insert('SYS_LOG', $log);
 		}
 		if ($query) {
@@ -295,15 +295,8 @@ class Innovation_model extends CI_Model
 	}
 	public function add_in_tor_model()
 	{
+
 		
-		$ip_address = '';
-		if (!empty($_SERVER['HTTP_CLIENT_IP'])) {
-			$ip_address = $_SERVER['HTTP_CLIENT_IP'];
-		} elseif (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
-			$ip_address = $_SERVER['HTTP_X_FORWARDED_FOR'];
-		} else {
-			$ip_address = $_SERVER['REMOTE_ADDR'];
-		}
 		// echo '<pre>';
 		// 	print_r($_POST);
 		// 	echo '</pre>';
@@ -335,19 +328,23 @@ class Innovation_model extends CI_Model
 
 			);
 			$query = $this->db->insert('INNOVATION_CREATOR', $data);
-				if ($query == TRUE) {
-						
-			$UserID = $this->session->userdata('UserID');
-			$log = [
-				'LogMessage' => 'เพิ่มข้อมูล ผู้จัดทำนวัตกรรมการศึกษา = "' . $this->input->post('name') . '"',
-				'LogUserID' => $UserID,
-				'LogUsername' => $this->input->post('UserName'),
-				'LogIpAddress' => $ip_address,
-				'LogCreation' => date('Y-m-d H:i:s')
-			];
-			
-			$logresult = $this->db->insert('SYS_LOG', $log);
-		}
+			if ($query == TRUE) {
+
+				$UserID = $this->session->userdata('UserID');
+				$UserIPAddress = $this->session->userdata('UserIPAddress');
+$UserName = $this->session->userdata('UserName');
+
+
+				$log = [
+					'LogMessage' => 'เพิ่มข้อมูล ผู้จัดทำนวัตกรรมการศึกษา = "' . $this->input->post('name') . '"',
+					'LogUserID' => $UserID,
+					'LogUsername' => $UserName ,
+					'LogIpAddress' => $UserIPAddress,
+					'LogCreation' => date('Y-m-d H:i:s')
+				];
+
+				$logresult = $this->db->insert('SYS_LOG', $log);
+			}
 			if ($query) {
 				session_start(); // เริ่มต้น session
 				$_SESSION['success'] = "เพิ่มข้อมูลนวัตกรรมการศึกษาสำเร็จ !"; // กำหนดค่า success ใน session เป็น true
@@ -366,15 +363,8 @@ class Innovation_model extends CI_Model
 	}
 	public function edit_in_tor_model()
 	{
+
 		
-		$ip_address = '';
-		if (!empty($_SERVER['HTTP_CLIENT_IP'])) {
-			$ip_address = $_SERVER['HTTP_CLIENT_IP'];
-		} elseif (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
-			$ip_address = $_SERVER['HTTP_X_FORWARDED_FOR'];
-		} else {
-			$ip_address = $_SERVER['REMOTE_ADDR'];
-		}
 
 		// echo '<pre>';
 		// print_r($_POST);
@@ -409,16 +399,20 @@ class Innovation_model extends CI_Model
 			$this->db->where('Id_inc', $this->input->post('Id_inc'));
 			$query = $this->db->update('INNOVATION_CREATOR', $data);
 			if ($query == TRUE) {
-						
+
 				$UserID = $this->session->userdata('UserID');
+				$UserIPAddress = $this->session->userdata('UserIPAddress');
+$UserName = $this->session->userdata('UserName');
+
+
 				$log = [
 					'LogMessage' => 'แก้ไขข้อมูล ผู้จัดทำนวัตกรรมการศึกษา = "' . $this->input->post('name') . '"',
 					'LogUserID' => $UserID,
-					'LogUsername' => $this->input->post('UserName'),
-					'LogIpAddress' => $ip_address,
+					'LogUsername' => $UserName ,
+					'LogIpAddress' => $UserIPAddress,
 					'LogCreation' => date('Y-m-d H:i:s')
 				];
-				
+
 				$logresult = $this->db->insert('SYS_LOG', $log);
 			}
 			if ($query) {
@@ -439,15 +433,8 @@ class Innovation_model extends CI_Model
 	}
 	public function del_in_tor_model()
 	{
+
 		
-		$ip_address = '';
-		if (!empty($_SERVER['HTTP_CLIENT_IP'])) {
-			$ip_address = $_SERVER['HTTP_CLIENT_IP'];
-		} elseif (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
-			$ip_address = $_SERVER['HTTP_X_FORWARDED_FOR'];
-		} else {
-			$ip_address = $_SERVER['REMOTE_ADDR'];
-		}
 
 		// echo '<pre>';
 		// print_r($_POST);
@@ -463,16 +450,20 @@ class Innovation_model extends CI_Model
 		$this->db->where('Id_inc', $this->input->post('Id_inc'));
 		$query = $this->db->update('INNOVATION_CREATOR', $data);
 		if ($query == TRUE) {
-						
+
 			$UserID = $this->session->userdata('UserID');
+			$UserIPAddress = $this->session->userdata('UserIPAddress');
+$UserName = $this->session->userdata('UserName');
+
+
 			$log = [
 				'LogMessage' => 'ลบข้อมูล ผู้จัดทำนวัตกรรมการศึกษา = "' . $this->input->post('name') . '"',
 				'LogUserID' => $UserID,
-				'LogUsername' => $this->input->post('UserName'),
-				'LogIpAddress' => $ip_address,
+				'LogUsername' => $UserName ,
+				'LogIpAddress' => $UserIPAddress,
 				'LogCreation' => date('Y-m-d H:i:s')
 			];
-			
+
 			$logresult = $this->db->insert('SYS_LOG', $log);
 		}
 		if ($query) {

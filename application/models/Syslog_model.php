@@ -13,6 +13,19 @@ class Syslog_model extends _sandboxmodel {
         $query = $this->db
                 ->select($select)
                 ->where($key)
+				->order_by('LogCreation desc')
+                ->get('SYS_LOG');
+				
+		return $query->result_array();				
+    }
+
+    function getitems_limit10($key, $select = "*") {
+
+        $query = $this->db
+                ->select($select)
+                ->where($key)
+				->limit(10,1)
+				->order_by('LogCreation desc')
                 ->get('SYS_LOG');
 				
 		return $query->result_array();				

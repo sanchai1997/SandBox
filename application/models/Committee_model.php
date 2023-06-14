@@ -4,14 +4,7 @@ class Committee_model extends CI_Model
 
 	public function add_committee()
 	{
-$ip_address = '';
-			if (!empty($_SERVER['HTTP_CLIENT_IP'])) {
-				$ip_address = $_SERVER['HTTP_CLIENT_IP'];
-			} elseif (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
-				$ip_address = $_SERVER['HTTP_X_FORWARDED_FOR'];
-			} else {
-				$ip_address = $_SERVER['REMOTE_ADDR'];
-			}
+
 
 		// echo '<pre>';
 		// print_r($_POST);
@@ -71,11 +64,13 @@ $ip_address = '';
 			$query = $this->db->insert('COMMITTEE', $data);
 			if ($query == TRUE) {
 				$UserID = $this->session->userdata('UserID');
+$UserIPAddress = $this->session->userdata('UserIPAddress');
+$UserName = $this->session->userdata('UserName');
 				$log = [
 						'LogMessage' => 'เพิ่มข้อมูล ผู้อำนาจและหน้าที่ เลขที่คำสั่ง = "' . $this->input->post('CommitteeAppointmentNumber') . '"',
 				'LogUserID' => $UserID,
-				'LogUsername' => $this->input->post('UserName'),
-				'LogIpAddress' => $ip_address,
+				'LogUsername' => $UserName ,
+				'LogIpAddress' => $UserIPAddress,
 				'LogCreation' => date('Y-m-d H:i:s')
 				];
 				$logresult = $this->db->insert('SYS_LOG', $log);
@@ -99,14 +94,7 @@ $ip_address = '';
 
 	public function edit_committee()
 	{
-$ip_address = '';
-			if (!empty($_SERVER['HTTP_CLIENT_IP'])) {
-				$ip_address = $_SERVER['HTTP_CLIENT_IP'];
-			} elseif (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
-				$ip_address = $_SERVER['HTTP_X_FORWARDED_FOR'];
-			} else {
-				$ip_address = $_SERVER['REMOTE_ADDR'];
-			}
+
 
 		// echo '<pre>';
 		// print_r($_POST);
@@ -140,11 +128,13 @@ $ip_address = '';
 					
 					if ($query == TRUE) {
 						$UserID = $this->session->userdata('UserID');
+$UserIPAddress = $this->session->userdata('UserIPAddress');
+$UserName = $this->session->userdata('UserName');
 						$log = [
 						'LogMessage' => 'แก้ไขข้อมูล ผู้อำนาจและหน้าที่ เลขที่คำสั่ง = "' . $this->input->post('CommitteeAppointmentNumber') . '"',
 						'LogUserID' => $UserID,
-						'LogUsername' => $this->input->post('UserName'),
-						'LogIpAddress' => $ip_address,
+						'LogUsername' => $UserName ,
+						'LogIpAddress' => $UserIPAddress,
 						'LogCreation' => date('Y-m-d H:i:s')
 						];
 						$logresult = $this->db->insert('SYS_LOG', $log);
@@ -171,11 +161,13 @@ $ip_address = '';
 				$query = $this->db->update('COMMITTEE', $data);
 				if ($query == TRUE) {
 					$UserID = $this->session->userdata('UserID');
+$UserIPAddress = $this->session->userdata('UserIPAddress');
+$UserName = $this->session->userdata('UserName');
 					$log = [
 					'LogMessage' => 'แก้ไขข้อมูล ผู้อำนาจและหน้าที่ เลขที่คำสั่ง = "' . $this->input->post('CommitteeAppointmentNumber') . '"',
 					'LogUserID' => $UserID,
-					'LogUsername' => $this->input->post('UserName'),
-					'LogIpAddress' => $ip_address,
+					'LogUsername' => $UserName ,
+					'LogIpAddress' => $UserIPAddress,
 					'LogCreation' => date('Y-m-d H:i:s')
 					];
 					$logresult = $this->db->insert('SYS_LOG', $log);
@@ -196,14 +188,7 @@ $ip_address = '';
 	}
 	public function del_committee()
 	{
-$ip_address = '';
-			if (!empty($_SERVER['HTTP_CLIENT_IP'])) {
-				$ip_address = $_SERVER['HTTP_CLIENT_IP'];
-			} elseif (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
-				$ip_address = $_SERVER['HTTP_X_FORWARDED_FOR'];
-			} else {
-				$ip_address = $_SERVER['REMOTE_ADDR'];
-			}
+
 		// echo '<pre>';
 		// print_r($_POST);
 		// echo'</pre>';
@@ -217,11 +202,13 @@ $ip_address = '';
 		$query = $this->db->update('COMMITTEE', $data);
 		if ($query == TRUE) {
 			$UserID = $this->session->userdata('UserID');
+$UserIPAddress = $this->session->userdata('UserIPAddress');
+$UserName = $this->session->userdata('UserName');
 			$log = [
 			'LogMessage' => 'ลบข้อมูล ผู้อำนาจและหน้าที่ เลขที่คำสั่ง = "' . $this->input->post('CommitteeAppointmentNumber') . '"',
 			'LogUserID' => $UserID,
-			'LogUsername' => $this->input->post('UserName'),
-			'LogIpAddress' => $ip_address,
+			'LogUsername' => $UserName ,
+			'LogIpAddress' => $UserIPAddress,
 			'LogCreation' => date('Y-m-d H:i:s')
 			];
 						
@@ -238,14 +225,7 @@ $ip_address = '';
 	}
 	public function add_comm_member()
 	{
-$ip_address = '';
-			if (!empty($_SERVER['HTTP_CLIENT_IP'])) {
-				$ip_address = $_SERVER['HTTP_CLIENT_IP'];
-			} elseif (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
-				$ip_address = $_SERVER['HTTP_X_FORWARDED_FOR'];
-			} else {
-				$ip_address = $_SERVER['REMOTE_ADDR'];
-			}
+
 
 		// echo '<pre>';
 		// print_r($_POST);
@@ -287,11 +267,13 @@ $ip_address = '';
 			$query = $this->db->insert('COMMITTEE_MEMBER', $data);
 			if ($query == TRUE) {
 				$UserID = $this->session->userdata('UserID');
+$UserIPAddress = $this->session->userdata('UserIPAddress');
+$UserName = $this->session->userdata('UserName');
 				$log = [
 				'LogMessage' => 'เพิ่มข้อมูล คณะกรรมการ เลขที่คำสั่ง = "' . $this->input->post('CommitteeAppointmentNumber')  . '"',
 				'LogUserID' => $UserID,
-				'LogUsername' => $this->input->post('UserName'),
-				'LogIpAddress' => $ip_address,
+				'LogUsername' => $UserName ,
+				'LogIpAddress' => $UserIPAddress,
 				'LogCreation' => date('Y-m-d H:i:s')
 				];
 				$logresult = $this->db->insert('SYS_LOG', $log);
@@ -314,14 +296,7 @@ $ip_address = '';
 	}
 	public function edit_comm_member()
 	{
-$ip_address = '';
-			if (!empty($_SERVER['HTTP_CLIENT_IP'])) {
-				$ip_address = $_SERVER['HTTP_CLIENT_IP'];
-			} elseif (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
-				$ip_address = $_SERVER['HTTP_X_FORWARDED_FOR'];
-			} else {
-				$ip_address = $_SERVER['REMOTE_ADDR'];
-			}
+
 
 		// echo '<pre>';
 		// print_r($_POST);
@@ -349,11 +324,13 @@ $ip_address = '';
 		$query = $this->db->update('COMMITTEE_MEMBER', $data);
 		if ($query == TRUE) {
 			$UserID = $this->session->userdata('UserID');
+$UserIPAddress = $this->session->userdata('UserIPAddress');
+$UserName = $this->session->userdata('UserName');
 			$log = [
 			'LogMessage' => 'แก้ไขข้อมูล  คณะกรรมการ เลขที่คำสั่ง = "' . $this->input->post('CommitteeAppointmentNumber')  . '"',
 			'LogUserID' => $UserID,
-			'LogUsername' => $this->input->post('UserName'),
-			'LogIpAddress' => $ip_address,
+			'LogUsername' => $UserName ,
+			'LogIpAddress' => $UserIPAddress,
 			'LogCreation' => date('Y-m-d H:i:s')
 			];
 			$logresult = $this->db->insert('SYS_LOG', $log);
@@ -369,14 +346,7 @@ $ip_address = '';
 	}
 	public function del_comm_member()
 	{
-$ip_address = '';
-			if (!empty($_SERVER['HTTP_CLIENT_IP'])) {
-				$ip_address = $_SERVER['HTTP_CLIENT_IP'];
-			} elseif (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
-				$ip_address = $_SERVER['HTTP_X_FORWARDED_FOR'];
-			} else {
-				$ip_address = $_SERVER['REMOTE_ADDR'];
-			}
+
 
 		// echo '<pre>';
 		// print_r($_POST);
@@ -392,11 +362,13 @@ $ip_address = '';
 		$query = $this->db->update('COMMITTEE_MEMBER', $data);
 		if ($query == TRUE) {
 			$UserID = $this->session->userdata('UserID');
+$UserIPAddress = $this->session->userdata('UserIPAddress');
+$UserName = $this->session->userdata('UserName');
 			$log = [
 			'LogMessage' => 'ลบข้อมูล  คณะกรรมการ เลขที่คำสั่ง = "' . $this->input->post('CommitteeAppointmentNumber')  . '"',
 			'LogUserID' => $UserID,
-			'LogUsername' => $this->input->post('UserName'),
-			'LogIpAddress' => $ip_address,
+			'LogUsername' => $UserName ,
+			'LogIpAddress' => $UserIPAddress,
 			'LogCreation' => date('Y-m-d H:i:s')
 			];
 						

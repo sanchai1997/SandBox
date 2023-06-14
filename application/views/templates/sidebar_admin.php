@@ -59,7 +59,12 @@
          </li>
        </ul>
      </li><!-- End กำหนดค่าระบบ Nav -->
-	 
+     <li class="nav-item">
+       <a class="nav-link collapsed" href="<?php echo base_url(); ?>Admin/SystemLogs">
+         <i class="bi bi-person "></i>
+         <span>ข้อมูล System Logs</span>
+       </a>
+     </li><!-- End ข้อมูลพื้นฐาน Nav -->	 
     </ul>
   </li><!-- End Components Nav -->
 
