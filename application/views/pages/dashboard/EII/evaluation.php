@@ -1293,8 +1293,8 @@
                         </div>
                         <table class="table table-borderless">
                             <tr>
-                                <th>ระดับของตัวชี้วัด</th>
-                                <th>องค์ประกอบของตัวชี้วัด</th>
+                                <th class="col-3">ระดับของตัวชี้วัด</th>
+                                <th class="col-9">องค์ประกอบของตัวชี้วัด</th>
                             </tr>
                             <tr>
                                 <td>
@@ -1303,7 +1303,7 @@
                                             <tr>
                                                 <td class="col-1">ลำดับ</td>
                                                 <td>หัวข้อ</td>
-                                                <td>คะแนน</td>
+                                                <td class="col-1">คะแนน</td>
                                             </tr>
                                         </thead>
                                         <?php
@@ -1337,9 +1337,9 @@
                                     <table class="table table-bordered">
                                         <tr>
                                             <td class="col-1">ลำดับ</td>
-                                            <td>หัวข้อ</td>
-                                            <td>ค่าน้ำหนัก</td>
-                                            <td>หลักฐาน</td>
+                                            <td class="col-3">หัวข้อ</td>
+                                            <td class="col-2">ค่าน้ำหนัก</td>
+                                            <td class="col-6">หลักฐาน</td>
                                             <!-- <td>คำอธิบายองค์ประกอบของตัวชี้วัด</td> -->
 
                                         </tr>
