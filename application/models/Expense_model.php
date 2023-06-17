@@ -52,6 +52,7 @@ class Expense_model extends CI_Model
 
     public function delete_expense($ExpenseID){   
         $data = [
+            'ExpenseID' => Date('YmdHis'),
             'DeleteStatus' => 1
         ];
 

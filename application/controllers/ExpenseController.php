@@ -1,7 +1,8 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
+require_once '_sandboxcontroller.php';
 
-class ExpenseController extends CI_Controller{
+class ExpenseController extends _sandboxcontroller{
     public function __construct() {
         parent::__construct();
         $this->load->helper('url');
@@ -12,6 +13,16 @@ class ExpenseController extends CI_Controller{
         $this->load->model('Expense_model');
     }
     public function forms_Expense() {
+        $data = array();
+        $data = $this->session->userdata();
+        
+        if (!empty($data['UserRights'])) {
+			//'400000', 'ข้อมูลงบประมาณ'
+			$R_400000 = $data['UserRights'][array_search('400000', array_column($data['UserRights'], 'UR_Code'))];
+			$data['R_400000'] = $R_400000;
+		} else {
+			$data['R_400000'] = NULL;
+		}
         
         if ( ! file_exists(APPPATH.'views/pages/forms/Expense/forms-Expense.php'))
         {
@@ -41,6 +52,16 @@ class ExpenseController extends CI_Controller{
     }
 
     public function edit_forms_Expense() {
+        $data = array();
+        $data = $this->session->userdata();
+        
+        if (!empty($data['UserRights'])) {
+			//'400000', 'ข้อมูลงบประมาณ'
+			$R_400000 = $data['UserRights'][array_search('400000', array_column($data['UserRights'], 'UR_Code'))];
+			$data['R_400000'] = $R_400000;
+		} else {
+			$data['R_400000'] = NULL;
+		}
         
         if ( ! file_exists(APPPATH.'views/pages/forms/Expense/edit_forms-Expense.php'))
         {
@@ -91,9 +112,24 @@ class ExpenseController extends CI_Controller{
 
             $result_expense =  $this->Expense_model->insert_expense($expense);
            
-            
-            
             if($result_expense == 1){
+                $school = $this->School_model->get_school($SchoolID);  
+                $SchoolNameThai = $school[0]->SchoolNameThai ; 
+
+                $UserID = $this->session->userdata('UserID');
+                $UserIPAddress = $this->session->userdata('UserIPAddress');
+                $UserName = $this->session->userdata('UserName');
+    
+                $log = [
+                    'LogMessage' => 'เพิ่มข้อมูลเบิกจ่าย รหัส = "' . $this->input->post('ExpenseID') . '" ของงบประมาณรหัส = "' . $this->input->post('BudgetID') . '" โรงเรียน = "' . $SchoolNameThai . '"',
+                    'LogUserID' => $UserID,
+                    'LogUsername' => $UserName ,
+                    'LogIpAddress' => $UserIPAddress,
+                    'LogCreation' => date('Y-m-d H:i:s')
+                ];
+    
+                $logresult = $this->db->insert('SYS_LOG', $log);
+
                 $this->session->set_flashdata('success',"บันทึกข้อมูลสำเร็จ");
                 redirect(base_url('list_budget_by_school?sid='.$SchoolID));
             }else{
@@ -121,9 +157,24 @@ class ExpenseController extends CI_Controller{
 
         $result_expense =  $this->Expense_model->update_expense($expense,$ExpenseID);
        
-        
-        
         if($result_expense == 1){
+            $school = $this->School_model->get_school($SchoolID);  
+            $SchoolNameThai = $school[0]->SchoolNameThai ; 
+
+            $UserID = $this->session->userdata('UserID');
+            $UserIPAddress = $this->session->userdata('UserIPAddress');
+            $UserName = $this->session->userdata('UserName');
+
+            $log = [
+                'LogMessage' => 'แก้ไขข้อมูลเบิกจ่าย รหัส = "' . $ExpenseID . '" ของโรงเรียน = "' . $SchoolNameThai . '"',
+                'LogUserID' => $UserID,
+                'LogUsername' => $UserName ,
+                'LogIpAddress' => $UserIPAddress,
+                'LogCreation' => date('Y-m-d H:i:s')
+            ];
+
+            $logresult = $this->db->insert('SYS_LOG', $log);
+
             $this->session->set_flashdata('success',"บันทึกข้อมูลสำเร็จ");
             redirect(base_url('list_budget_by_school?sid='.$SchoolID));
         }else{
@@ -138,6 +189,23 @@ public function delete_Expense(){
 
     $result =$this->Expense_model->delete_expense($ExpenseID);
     if($result == 1 ){
+        $school = $this->School_model->get_school($SchoolID);  
+        $SchoolNameThai = $school[0]->SchoolNameThai ; 
+
+        $UserID = $this->session->userdata('UserID');
+        $UserIPAddress = $this->session->userdata('UserIPAddress');
+        $UserName = $this->session->userdata('UserName');
+
+        $log = [
+            'LogMessage' => 'ลบข้อมูลเบิกจ่าย รหัส = "' . $ExpenseID . '" ของโรงเรียน = "' . $SchoolNameThai . '"',
+            'LogUserID' => $UserID,
+            'LogUsername' => $UserName ,
+            'LogIpAddress' => $UserIPAddress,
+            'LogCreation' => date('Y-m-d H:i:s')
+        ];
+
+        $logresult = $this->db->insert('SYS_LOG', $log);
+
         $this->session->set_flashdata('success',"ลบข้อมูลสำเร็จ");
         redirect(base_url('list_budget_by_school?sid='.$SchoolID));
     }else{

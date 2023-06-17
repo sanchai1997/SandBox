@@ -1,7 +1,8 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
+require_once '_sandboxcontroller.php';
 
-class CurriculumController extends CI_Controller{
+class CurriculumController extends _sandboxcontroller{
     public function __construct() {
         parent::__construct();
         $this->load->helper('url');
@@ -34,12 +35,17 @@ class CurriculumController extends CI_Controller{
     }
 #### curriculum
     public function forms_curriculum() {
+        $data = array();
+        $data = $this->session->userdata();
         
-        if ( ! file_exists(APPPATH.'views/pages/forms/Curriculum/forms-curriculum.php'))
-        {
-            // Whoops, we don't have a page for that!
-            show_404();
-        }
+        if (!empty($data['UserRights'])) {
+			//'200000', 'ข้อมูลหลักสูตร/หลักสูตรพื้นที่นวัตกรรม'
+			$R_200000 = $data['UserRights'][array_search('200000', array_column($data['UserRights'], 'UR_Code'))];
+			$data['R_200000'] = $R_200000;
+		} else {
+			$data['R_200000'] = NULL;
+		}
+
         $data['SchoolID'] = $_GET['sid']; 
         $data['title'] = 'Curriculum'; // Capitalize the first letter
         $data['listSchool'] = $this->School_model->get_school_All();
@@ -57,11 +63,16 @@ class CurriculumController extends CI_Controller{
 
     
     public function list_curriculum_by_school() {
+        $data = array();
+        $data = $this->session->userdata();
         
-        if ( ! file_exists(APPPATH.'views/pages/dashboard/Curriculum/list-curriculum.php'))
-        {
-            show_404();
-        }
+        if (!empty($data['UserRights'])) {
+			//'200000', 'ข้อมูลหลักสูตร/หลักสูตรพื้นที่นวัตกรรม'
+			$R_200000 = $data['UserRights'][array_search('200000', array_column($data['UserRights'], 'UR_Code'))];
+			$data['R_200000'] = $R_200000;
+		} else {
+			$data['R_200000'] = NULL;
+		}
 
         $data['SchoolID'] = $_GET['sid']; 
         $school = $this->School_model->get_school($data['SchoolID']);  
@@ -77,11 +88,16 @@ class CurriculumController extends CI_Controller{
 
     }
     public function list_curriculum() {
-        
-        if ( ! file_exists(APPPATH.'views/pages/dashboard/Curriculum/list-curriculum.php'))
-        {
-            show_404();
-        }
+        $data = array();
+        $data = $this->session->userdata();
+
+		if (!empty($data['UserRights'])) {
+			//'200000', 'ข้อมูลหลักสูตร/หลักสูตรพื้นที่นวัตกรรม'
+			$R_200000 = $data['UserRights'][array_search('200000', array_column($data['UserRights'], 'UR_Code'))];
+			$data['R_200000'] = $R_200000;
+		} else {
+			$data['R_200000'] = NULL;
+		}
 
         $data['School'] = $this->School_model->get_school_All();
 
@@ -135,6 +151,21 @@ class CurriculumController extends CI_Controller{
         $result_curriculum =  $this->Curriculum_model->insert_curriculum($curriculum);
 
         if($result_curriculum == 1 ){
+
+                $UserID = $this->session->userdata('UserID');
+                $UserIPAddress = $this->session->userdata('UserIPAddress');
+                $UserName = $this->session->userdata('UserName');
+
+                $log = [
+                    'LogMessage' => 'เพิ่มหลักสูตรชื่อ = "' . $this->input->post('CurriculumName') . '"',
+                    'LogUserID' => $UserID,
+                    'LogUsername' => $UserName ,
+                    'LogIpAddress' => $UserIPAddress,
+                    'LogCreation' => date('Y-m-d H:i:s')
+                ];
+
+                $logresult = $this->db->insert('SYS_LOG', $log);
+
             $this->session->set_flashdata('success',"บันทึกข้อมูลสำเร็จ");
             redirect(base_url('list_curriculum_by_school?sid='.$SchoolID));
         }else{
@@ -145,12 +176,17 @@ class CurriculumController extends CI_Controller{
     }
 
     public function forms_edit_curriculum() {
-        
-        if ( ! file_exists(APPPATH.'views/pages/forms/Curriculum/edit_forms-curriculum.php'))
-        {
-            show_404();
-        }
+        $data = array();
+        $data = $this->session->userdata();
 
+        if (!empty($data['UserRights'])) {
+			//'200000', 'ข้อมูลหลักสูตร/หลักสูตรพื้นที่นวัตกรรม'
+			$R_200000 = $data['UserRights'][array_search('200000', array_column($data['UserRights'], 'UR_Code'))];
+			$data['R_200000'] = $R_200000;
+		} else {
+			$data['R_200000'] = NULL;
+		}
+        
         $data['title'] = 'Curriculum'; // Capitalize the first letter
         $data['SchoolID'] = $_GET['sid']; 
         $data['listSchool'] = $this->School_model->get_school_All();
@@ -249,6 +285,20 @@ class CurriculumController extends CI_Controller{
         $result =  $this->Curriculum_model->update_curriculum($Old_CurriculumID, $curriculum);
 
         if($result == 1 ){
+            $UserID = $this->session->userdata('UserID');
+            $UserIPAddress = $this->session->userdata('UserIPAddress');
+            $UserName = $this->session->userdata('UserName');
+
+            $log = [
+                'LogMessage' => 'แก้ไขหลักสูตร รหัส = "' . $CurriculumID . '" ชื่อ = "' . $this->input->post('CurriculumName') . '"',
+                'LogUserID' => $UserID,
+                'LogUsername' => $UserName ,
+                'LogIpAddress' => $UserIPAddress,
+                'LogCreation' => date('Y-m-d H:i:s')
+            ];
+
+            $logresult = $this->db->insert('SYS_LOG', $log);
+
             $this->session->set_flashdata('success',"แก้ไขข้อมูลสำเร็จ");
             redirect(base_url('list_curriculum_by_school?sid='.$SchoolID));
         }else{
@@ -258,10 +308,26 @@ class CurriculumController extends CI_Controller{
 
     }
     public function delete_curriculum($CurriculumID,$SchoolID ){
-
+        $Curriculum = $this->Curriculum_model->get_Curriculum($CurriculumID );
+        $CurriculumName =  $Curriculum[0] -> CurriculumName ;
 
         $result =$this->Curriculum_model->delete_curriculum($CurriculumID);
         if($result == 1 ){
+
+            $UserID = $this->session->userdata('UserID');
+            $UserIPAddress = $this->session->userdata('UserIPAddress');
+            $UserName = $this->session->userdata('UserName');
+
+            $log = [
+                'LogMessage' => 'ลบหลักสูตร รหัส = "' . $CurriculumID . '" ชื่อ = "' . $CurriculumName . '"',
+                'LogUserID' => $UserID,
+                'LogUsername' => $UserName ,
+                'LogIpAddress' => $UserIPAddress,
+                'LogCreation' => date('Y-m-d H:i:s')
+            ];
+
+            $logresult = $this->db->insert('SYS_LOG', $log);
+            
             $this->session->set_flashdata('success',"ลบข้อมูลสำเร็จ");
             redirect(base_url('list_curriculum_by_school?sid='.$SchoolID));
         }else{
@@ -274,12 +340,16 @@ class CurriculumController extends CI_Controller{
     
 #### curriculum_subject
     public function list_curriculum_subject() {
+        $data = array();
+        $data = $this->session->userdata();
         
-        if ( ! file_exists(APPPATH.'views/pages/dashboard/Curriculum/list-curriculum_subject.php'))
-        {
-            // Whoops, we don't have a page for that!
-            show_404();
-        }
+        if (!empty($data['UserRights'])) {
+			//'200000', 'ข้อมูลหลักสูตร/หลักสูตรพื้นที่นวัตกรรม'
+			$R_200000 = $data['UserRights'][array_search('200000', array_column($data['UserRights'], 'UR_Code'))];
+			$data['R_200000'] = $R_200000;
+		} else {
+			$data['R_200000'] = NULL;
+		}
         
         $data['title'] = 'Curriculum Subject'; // Capitalize the first letter
         $data['CurriculumID'] = $_GET['cid']; 
@@ -294,12 +364,16 @@ class CurriculumController extends CI_Controller{
     }
 
     public function forms_curriculum_subject() {
+        $data = array();
+        $data = $this->session->userdata();
         
-        if ( ! file_exists(APPPATH.'views/pages/forms/Curriculum/forms-curriculum_subject.php'))
-        {
-            // Whoops, we don't have a page for that!
-            show_404();
-        }
+        if (!empty($data['UserRights'])) {
+			//'200000', 'ข้อมูลหลักสูตร/หลักสูตรพื้นที่นวัตกรรม'
+			$R_200000 = $data['UserRights'][array_search('200000', array_column($data['UserRights'], 'UR_Code'))];
+			$data['R_200000'] = $R_200000;
+		} else {
+			$data['R_200000'] = NULL;
+		}
 
         $data['title'] = 'Curriculum Subject'; // Capitalize the first letter
         $data['listSubjectGroup'] = $this->Code_model->get_SubjectGroup_All();
@@ -337,6 +411,23 @@ class CurriculumController extends CI_Controller{
 
       
         if($result_CURRICULUM_SUBJECT == 1 ){
+            $Curriculum = $this->Curriculum_model->get_Curriculum($CurriculumID );
+            $CurriculumName =  $Curriculum[0] -> CurriculumName ;
+
+            $UserID = $this->session->userdata('UserID');
+            $UserIPAddress = $this->session->userdata('UserIPAddress');
+            $UserName = $this->session->userdata('UserName');
+
+            $log = [
+                'LogMessage' => 'เพิ่มหลักสูตรรายวิชา รหัส = "' . $this->input->post('SubjectCode') . '" ชื่อ = "' . $this->input->post('SubjectName') . '" ของหลักสูตร = "' . $CurriculumName . '"',
+                'LogUserID' => $UserID,
+                'LogUsername' => $UserName ,
+                'LogIpAddress' => $UserIPAddress,
+                'LogCreation' => date('Y-m-d H:i:s')
+            ];
+
+            $logresult = $this->db->insert('SYS_LOG', $log);
+
             $this->session->set_flashdata('success',"บันทึกข้อมูลสำเร็จ");
             redirect(base_url('list-curriculum_subject?cid='. $CurriculumID));
         }else{
@@ -347,12 +438,16 @@ class CurriculumController extends CI_Controller{
     }
 
     public function forms_edit_curriculum_subject() {
+        $data = array();
+        $data = $this->session->userdata();
         
-        if ( ! file_exists(APPPATH.'views/pages/forms/Curriculum/edit_forms-curriculum_subject.php'))
-        {
-            // Whoops, we don't have a page for that!
-            show_404();
-        }
+        if (!empty($data['UserRights'])) {
+			//'200000', 'ข้อมูลหลักสูตร/หลักสูตรพื้นที่นวัตกรรม'
+			$R_200000 = $data['UserRights'][array_search('200000', array_column($data['UserRights'], 'UR_Code'))];
+			$data['R_200000'] = $R_200000;
+		} else {
+			$data['R_200000'] = NULL;
+		}
 
         $data['title'] = 'Curriculum Subject'; // Capitalize the first letter
         $data['listSubjectGroup'] = $this->Code_model->get_SubjectGroup_All();
@@ -391,6 +486,24 @@ class CurriculumController extends CI_Controller{
 
       
         if($result_CURRICULUM_SUBJECT == 1 ){
+
+            $Curriculum = $this->Curriculum_model->get_Curriculum($CurriculumID );
+            $CurriculumName =  $Curriculum[0] -> CurriculumName ;
+
+            $UserID = $this->session->userdata('UserID');
+            $UserIPAddress = $this->session->userdata('UserIPAddress');
+            $UserName = $this->session->userdata('UserName');
+
+            $log = [
+                'LogMessage' => 'แก้ไขหลักสูตรรายวิชา รหัส = "' . $this->input->post('Old_SubjectCode') . '" ชื่อ = "' . $this->input->post('SubjectName') . '" ของหลักสูตร = "' . $CurriculumName . '"',
+                'LogUserID' => $UserID,
+                'LogUsername' => $UserName ,
+                'LogIpAddress' => $UserIPAddress,
+                'LogCreation' => date('Y-m-d H:i:s')
+            ];
+
+            $logresult = $this->db->insert('SYS_LOG', $log);
+
             $this->session->set_flashdata('success',"แก้ไขข้อมูลสำเร็จ");
             redirect(base_url('list-curriculum_subject?cid='. $CurriculumID));
         }else{
@@ -400,9 +513,28 @@ class CurriculumController extends CI_Controller{
     }
 
     public function delete_curriculum_subject($CurriculumID, $SubjectCode ){
-
         $result =$this->Curriculum_model->delete_curriculum_subject($CurriculumID, $SubjectCode);
         if($result == 1 ){
+            $Curriculum = $this->Curriculum_model->get_Curriculum($CurriculumID );
+            $CurriculumName =  $Curriculum[0] -> CurriculumName ;
+            
+            $CurriculumSubject = $this->Curriculum_model->get_CurriculumSubject( $CurriculumID, $SubjectCode);
+            $SubjectName =  $CurriculumSubject[0] -> SubjectName ;
+
+            $UserID = $this->session->userdata('UserID');
+            $UserIPAddress = $this->session->userdata('UserIPAddress');
+            $UserName = $this->session->userdata('UserName');
+
+            $log = [
+                'LogMessage' => 'ลบหลักสูตรรายวิชา รหัส = "' . $SubjectCode . '" ชื่อ = "' . $SubjectName . '" ของหลักสูตร = "' . $CurriculumName . '"',
+                'LogUserID' => $UserID,
+                'LogUsername' => $UserName ,
+                'LogIpAddress' => $UserIPAddress,
+                'LogCreation' => date('Y-m-d H:i:s')
+            ];
+
+            $logresult = $this->db->insert('SYS_LOG', $log);
+
             $this->session->set_flashdata('success',"ลบข้อมูลสำเร็จ");
             redirect(base_url('list-curriculum_subject?cid='. $CurriculumID));
         }else{
@@ -415,12 +547,16 @@ class CurriculumController extends CI_Controller{
 
 ###### subject_std
     public function forms_subject_std() {
+        $data = array();
+        $data = $this->session->userdata();
         
-        if ( ! file_exists(APPPATH.'views/pages/forms/Curriculum/forms-subject_std.php'))
-        {
-            // Whoops, we don't have a page for that!
-            show_404();
-        }
+        if (!empty($data['UserRights'])) {
+			//'200000', 'ข้อมูลหลักสูตร/หลักสูตรพื้นที่นวัตกรรม'
+			$R_200000 = $data['UserRights'][array_search('200000', array_column($data['UserRights'], 'UR_Code'))];
+			$data['R_200000'] = $R_200000;
+		} else {
+			$data['R_200000'] = NULL;
+		}
 
         $data['CurriculumID'] = $_GET['cid']; 
         $data['SubjectCode'] = $_GET['sid']; 
@@ -448,6 +584,27 @@ class CurriculumController extends CI_Controller{
         ];
         $result = $this->Curriculum_model->insert_subject_std($subject_std);
 
+        if($result == 1){
+            $SUBJECT_GROUP_CODE = $this->Curriculum_model->get_SUBJECT_GROUP_CODE($this->input->post('SubjectGroupCode'));
+            $SUBJECT_GROUP_NAME =  $SUBJECT_GROUP_CODE[0] -> SUBJECT_GROUP_NAME ;
+            
+            $UserID = $this->session->userdata('UserID');
+            $UserIPAddress = $this->session->userdata('UserIPAddress');
+            $UserName = $this->session->userdata('UserName');
+
+            $log = [
+                'LogMessage' => 'เพิ่มมาตรฐานการเรียนรู้ รหัส = "' . $this->input->post('SUBJECT_STD_ID') . '" ชื่อ = "' . $this->input->post('SUBJECT_STD_DETAILS') . '" กลุ่มสาระการเรียนรู้ = "' . $SUBJECT_GROUP_NAME . '"',
+                'LogUserID' => $UserID,
+                'LogUsername' => $UserName ,
+                'LogIpAddress' => $UserIPAddress,
+                'LogCreation' => date('Y-m-d H:i:s')
+            ];
+
+            $logresult = $this->db->insert('SYS_LOG', $log);
+        }
+
+        
+
         if( $SubjectCode ==null){
             if($result == 1 ){
                 $this->session->set_flashdata('success',"บันทึกข้อมูลสำเร็จ");
@@ -473,12 +630,16 @@ class CurriculumController extends CI_Controller{
 
 ### curriculum_school_competency
     public function list_curriculum_school_competency() {
-            
-        if ( ! file_exists(APPPATH.'views/pages/dashboard/Curriculum/list-curriculum_school_competency.php'))
-        {
-            // Whoops, we don't have a page for that!
-            show_404();
-        }
+        $data = array();
+        $data = $this->session->userdata();
+        
+        if (!empty($data['UserRights'])) {
+			//'200000', 'ข้อมูลหลักสูตร/หลักสูตรพื้นที่นวัตกรรม'
+			$R_200000 = $data['UserRights'][array_search('200000', array_column($data['UserRights'], 'UR_Code'))];
+			$data['R_200000'] = $R_200000;
+		} else {
+			$data['R_200000'] = NULL;
+		}
         
         $data['title'] = 'Curriculum School Competency'; // Capitalize the first letter
         $data['CurriculumID'] = $_GET['cid']; 
@@ -494,12 +655,16 @@ class CurriculumController extends CI_Controller{
     }
 
     public function forms_curriculum_school_competency() {
+        $data = array();
+        $data = $this->session->userdata();
         
-        if ( ! file_exists(APPPATH.'views/pages/forms/Curriculum/forms-curriculum_school_competency.php'))
-        {
-            // Whoops, we don't have a page for that!
-            show_404();
-        }
+        if (!empty($data['UserRights'])) {
+			//'200000', 'ข้อมูลหลักสูตร/หลักสูตรพื้นที่นวัตกรรม'
+			$R_200000 = $data['UserRights'][array_search('200000', array_column($data['UserRights'], 'UR_Code'))];
+			$data['R_200000'] = $R_200000;
+		} else {
+			$data['R_200000'] = NULL;
+		}
 
         $data['title'] = 'Curriculum School Competency'; // Capitalize the first letter
         $data['listCompetency'] = $this->Code_model->get_Competency_Type_All();
@@ -529,6 +694,30 @@ class CurriculumController extends CI_Controller{
         $result_SCHOOl_COMPETENCY = $this->Curriculum_model->insert_curriculum_school_competency($CURRICULUM_SCHOOl_COMPETENCY);
 
         if($result_SCHOOl_COMPETENCY == 1){
+            $Curriculum = $this->Curriculum_model->get_Curriculum($CurriculumID );
+            $CurriculumName =  $Curriculum[0] -> CurriculumName ;
+
+            $CurriculumSubject = $this->Curriculum_model->get_CurriculumSubject( $CurriculumID, $SubjectCode);
+            $SubjectName =  $CurriculumSubject[0] -> SubjectName ;
+
+            $Competency = $this->Curriculum_model->get_CurriculumCompetency( $CurriculumID, $SubjectCode, $this->input->post('CompetencyCode'));
+            $COMPETENCY_NAME =  $Competency[0] -> COMPETENCY_NAME ;
+            
+
+            $UserID = $this->session->userdata('UserID');
+            $UserIPAddress = $this->session->userdata('UserIPAddress');
+            $UserName = $this->session->userdata('UserName');
+
+            $log = [
+                'LogMessage' => 'เพิ่มสมรรถนะรายวิชา ชื่อ = "' . $COMPETENCY_NAME . '" ของหลักสูตร = "' . $CurriculumName  . '" วิชา = "' . $SubjectName . '"',
+                'LogUserID' => $UserID,
+                'LogUsername' => $UserName ,
+                'LogIpAddress' => $UserIPAddress,
+                'LogCreation' => date('Y-m-d H:i:s')
+            ];
+
+            $logresult = $this->db->insert('SYS_LOG', $log);
+
             $this->session->set_flashdata('success',"บันทึกข้อมูลมาตรฐานสำเร็จ");
             redirect(base_url('list-curriculum_school_competency?cid='. $CurriculumID.'&&sid='.$SubjectCode));
         }else{
@@ -539,12 +728,16 @@ class CurriculumController extends CI_Controller{
 
     }
     public function forms_edit_curriculum_school_competency() {
+        $data = array();
+        $data = $this->session->userdata();
         
-        if ( ! file_exists(APPPATH.'views/pages/forms/Curriculum/edit_forms-curriculum_school_competency.php'))
-        {
-            // Whoops, we don't have a page for that!
-            show_404();
-        }
+        if (!empty($data['UserRights'])) {
+			//'200000', 'ข้อมูลหลักสูตร/หลักสูตรพื้นที่นวัตกรรม'
+			$R_200000 = $data['UserRights'][array_search('200000', array_column($data['UserRights'], 'UR_Code'))];
+			$data['R_200000'] = $R_200000;
+		} else {
+			$data['R_200000'] = NULL;
+		}
 
         $data['title'] = 'Curriculum School Competency'; // Capitalize the first letter
         $data['listCompetency'] = $this->Code_model->get_Competency_Type_All();
@@ -579,6 +772,29 @@ class CurriculumController extends CI_Controller{
 
       
         if($result_SCHOOl_COMPETENCY == 1 ){
+            $Curriculum = $this->Curriculum_model->get_Curriculum($CurriculumID );
+            $CurriculumName =  $Curriculum[0] -> CurriculumName ;
+
+            $CurriculumSubject = $this->Curriculum_model->get_CurriculumSubject( $CurriculumID, $SubjectCode);
+            $SubjectName =  $CurriculumSubject[0] -> SubjectName ;
+
+            $Competency = $this->Curriculum_model->get_CurriculumCompetency( $CurriculumID, $SubjectCode, $this->input->post('CompetencyCode'));
+            $COMPETENCY_NAME =  $Competency[0] -> COMPETENCY_NAME ;
+
+            $UserID = $this->session->userdata('UserID');
+            $UserIPAddress = $this->session->userdata('UserIPAddress');
+            $UserName = $this->session->userdata('UserName');
+
+            $log = [
+                'LogMessage' => 'แก้ไขสมรรถนะรายวิชา ชื่อ = "' . $COMPETENCY_NAME . '" ของหลักสูตร = "' . $CurriculumName  . '" วิชา = "' . $SubjectName . '"',
+                'LogUserID' => $UserID,
+                'LogUsername' => $UserName ,
+                'LogIpAddress' => $UserIPAddress,
+                'LogCreation' => date('Y-m-d H:i:s')
+            ];
+
+            $logresult = $this->db->insert('SYS_LOG', $log);
+
             $this->session->set_flashdata('success',"แก้ไขข้อมูลสำเร็จ");
             redirect(base_url('list-curriculum_school_competency?cid='. $CurriculumID.'&&sid='.$SubjectCode));
         }else{
@@ -589,9 +805,32 @@ class CurriculumController extends CI_Controller{
 
     
     public function delete_curriculum_school_competency($CurriculumID, $SubjectCode, $CompetencyCode ){
+        $Competency = $this->Curriculum_model->get_CurriculumCompetency( $CurriculumID, $SubjectCode,  $CompetencyCode);
+        $COMPETENCY_NAME =  $Competency[0] -> COMPETENCY_NAME ;
 
         $result =$this->Curriculum_model->delete_curriculum_school_competency($CurriculumID, $SubjectCode, $CompetencyCode);
         if($result == 1 ){
+
+            $Curriculum = $this->Curriculum_model->get_Curriculum($CurriculumID );
+            $CurriculumName =  $Curriculum[0] -> CurriculumName ;
+
+            $CurriculumSubject = $this->Curriculum_model->get_CurriculumSubject( $CurriculumID, $SubjectCode);
+            $SubjectName =  $CurriculumSubject[0] -> SubjectName ;
+
+            $UserID = $this->session->userdata('UserID');
+            $UserIPAddress = $this->session->userdata('UserIPAddress');
+            $UserName = $this->session->userdata('UserName');
+
+            $log = [
+                'LogMessage' => 'ลบสมรรถนะรายวิชา ชื่อ = "' . $COMPETENCY_NAME . '" ของหลักสูตร = "' . $CurriculumName  . '" วิชา = "' . $SubjectName . '"',
+                'LogUserID' => $UserID,
+                'LogUsername' => $UserName ,
+                'LogIpAddress' => $UserIPAddress,
+                'LogCreation' => date('Y-m-d H:i:s')
+            ];
+
+            $logresult = $this->db->insert('SYS_LOG', $log);
+
             $this->session->set_flashdata('success',"ลบข้อมูลสำเร็จ");
             redirect(base_url('list-curriculum_school_competency?cid='. $CurriculumID.'&&sid='.$SubjectCode));
         }else{
@@ -602,11 +841,16 @@ class CurriculumController extends CI_Controller{
     }
     ##curriculum_plan
     public function list_curriculum_plan() {
-            
-        if ( ! file_exists(APPPATH.'views/pages/dashboard/Curriculum/list-curriculum_plan.php'))
-        {
-            show_404();
-        }
+        $data = array();
+        $data = $this->session->userdata();
+        
+        if (!empty($data['UserRights'])) {
+			//'200000', 'ข้อมูลหลักสูตร/หลักสูตรพื้นที่นวัตกรรม'
+			$R_200000 = $data['UserRights'][array_search('200000', array_column($data['UserRights'], 'UR_Code'))];
+			$data['R_200000'] = $R_200000;
+		} else {
+			$data['R_200000'] = NULL;
+		}
 
         $data['CurriculumID'] = $_GET['cid']; 
         $data['SubjectCode'] = $_GET['sid']; 
@@ -622,11 +866,17 @@ class CurriculumController extends CI_Controller{
     }
 
     public function forms_curriculum_plan() {
-            
-        if ( ! file_exists(APPPATH.'views/pages/forms/Curriculum/forms-curriculum_plan.php'))
-        {
-            show_404();
-        }
+        $data = array();
+        $data = $this->session->userdata();
+        
+        if (!empty($data['UserRights'])) {
+			//'200000', 'ข้อมูลหลักสูตร/หลักสูตรพื้นที่นวัตกรรม'
+			$R_200000 = $data['UserRights'][array_search('200000', array_column($data['UserRights'], 'UR_Code'))];
+			$data['R_200000'] = $R_200000;
+		} else {
+			$data['R_200000'] = NULL;
+		}
+
         $data['CurriculumID'] = $_GET['cid']; 
         $data['SubjectCode'] = $_GET['sid']; 
         $data['Curriculum'] = $this->Curriculum_model->get_Curriculum($data['CurriculumID']);
@@ -664,6 +914,27 @@ class CurriculumController extends CI_Controller{
 
       
         if($result_curriculum_plan == 1 ){
+
+            $Curriculum = $this->Curriculum_model->get_Curriculum($CurriculumID );
+            $CurriculumName =  $Curriculum[0] -> CurriculumName ;
+
+            $CurriculumSubject = $this->Curriculum_model->get_CurriculumSubject( $CurriculumID, $SubjectCode);
+            $SubjectName =  $CurriculumSubject[0] -> SubjectName ;
+
+            $UserID = $this->session->userdata('UserID');
+            $UserIPAddress = $this->session->userdata('UserIPAddress');
+            $UserName = $this->session->userdata('UserName');
+
+            $log = [
+                'LogMessage' => 'เพิ่มแผนการเรียนรู้ ชื่อ = "' . $this->input->post('PLAN_NAME'). '" ของหลักสูตร = "' . $CurriculumName  . '" วิชา = "' . $SubjectName . '"',
+                'LogUserID' => $UserID,
+                'LogUsername' => $UserName ,
+                'LogIpAddress' => $UserIPAddress,
+                'LogCreation' => date('Y-m-d H:i:s')
+            ];
+
+            $logresult = $this->db->insert('SYS_LOG', $log);
+
             $this->session->set_flashdata('success',"บันทึกข้อมูลสำเร็จ");
             redirect(base_url('list-curriculum_plan?sid='. $SubjectCode.'&&cid='.$CurriculumID));
         }else{
@@ -673,12 +944,17 @@ class CurriculumController extends CI_Controller{
 
     }
     public function forms_edit_curriculum_plan() {
+        $data = array();
+        $data = $this->session->userdata();
         
-             
-        if ( ! file_exists(APPPATH.'views/pages/forms/Curriculum/edit_forms-curriculum_plan.php'))
-        {
-            show_404();
-        }
+        if (!empty($data['UserRights'])) {
+			//'200000', 'ข้อมูลหลักสูตร/หลักสูตรพื้นที่นวัตกรรม'
+			$R_200000 = $data['UserRights'][array_search('200000', array_column($data['UserRights'], 'UR_Code'))];
+			$data['R_200000'] = $R_200000;
+		} else {
+			$data['R_200000'] = NULL;
+		}
+
         $data['PLAN_ID'] = $_GET['pid'];
         $data['CurriculumID'] = $_GET['cid']; 
         $data['SubjectCode'] = $_GET['sid']; 
@@ -717,19 +993,62 @@ class CurriculumController extends CI_Controller{
 
       
         if($result_curriculum_plan == 1 ){
-            $this->session->set_flashdata('success',"บันทึกข้อมูลสำเร็จ");
+            
+            $Curriculum = $this->Curriculum_model->get_Curriculum($CurriculumID );
+            $CurriculumName =  $Curriculum[0] -> CurriculumName ;
+
+            $CurriculumSubject = $this->Curriculum_model->get_CurriculumSubject( $CurriculumID, $SubjectCode);
+            $SubjectName =  $CurriculumSubject[0] -> SubjectName ;
+
+            $UserID = $this->session->userdata('UserID');
+            $UserIPAddress = $this->session->userdata('UserIPAddress');
+            $UserName = $this->session->userdata('UserName');
+
+            $log = [
+                'LogMessage' => 'แก้ไขแผนการเรียนรู้ ชื่อ = "' . $this->input->post('PLAN_NAME'). '" ของหลักสูตร = "' . $CurriculumName  . '" วิชา = "' . $SubjectName . '"',
+                'LogUserID' => $UserID,
+                'LogUsername' => $UserName ,
+                'LogIpAddress' => $UserIPAddress,
+                'LogCreation' => date('Y-m-d H:i:s')
+            ];
+
+            $logresult = $this->db->insert('SYS_LOG', $log);
+
+            $this->session->set_flashdata('success',"แก้ไขข้อมูลสำเร็จ");
             redirect(base_url('list-curriculum_plan?sid='. $SubjectCode.'&&cid='.$CurriculumID));
         }else{
-            $this->session->set_flashdata('errors',"เกิดข้อผิดพลาดในการบันทึกข้อมูล");
+            $this->session->set_flashdata('errors',"เกิดข้อผิดพลาดในการแก้ไขข้อมูล");
             redirect(base_url('forms-forms_curriculum_plan?sid='. $SubjectCode.'&&cid='.$CurriculumID));
         }
 
     }
     public function delete_curriculum_plan($PLAN_ID,$SubjectCode, $CurriculumID){
-
+        $plan = $this->Curriculum_model->get_Curriculum_plan($PLAN_ID);
+        $PLAN_NAME =  $plan[0] -> PLAN_NAME ;
+        
         $result =$this->Curriculum_model->delete_Curriculum_plan($PLAN_ID);
 
-        if($result == 1 ){
+        if($result == 1 ){                    
+            $Curriculum = $this->Curriculum_model->get_Curriculum($CurriculumID );
+            $CurriculumName =  $Curriculum[0] -> CurriculumName ;
+
+            $CurriculumSubject = $this->Curriculum_model->get_CurriculumSubject( $CurriculumID, $SubjectCode);
+            $SubjectName =  $CurriculumSubject[0] -> SubjectName ;
+
+            $UserID = $this->session->userdata('UserID');
+            $UserIPAddress = $this->session->userdata('UserIPAddress');
+            $UserName = $this->session->userdata('UserName');
+
+            $log = [
+                'LogMessage' => 'ลบแผนการเรียนรู้ ชื่อ = "' . $PLAN_NAME. '" ของหลักสูตร = "' . $CurriculumName  . '" วิชา = "' . $SubjectName . '"',
+                'LogUserID' => $UserID,
+                'LogUsername' => $UserName ,
+                'LogIpAddress' => $UserIPAddress,
+                'LogCreation' => date('Y-m-d H:i:s')
+            ];
+
+            $logresult = $this->db->insert('SYS_LOG', $log);
+
             $this->session->set_flashdata('success',"ลบข้อมูลสำเร็จ");
             redirect(base_url('list-curriculum_plan?sid='. $SubjectCode.'&&cid='. $CurriculumID));
         }else{
@@ -737,9 +1056,20 @@ class CurriculumController extends CI_Controller{
             redirect(base_url('list-curriculum_plan?sid='. $SubjectCode.'&&cid='. $CurriculumID));
         }
     }
+
     ##curriculum_activity
     public function list_curriculum_activity() {
-            
+        $data = array();
+        $data = $this->session->userdata();
+        
+        if (!empty($data['UserRights'])) {
+			//'200000', 'ข้อมูลหลักสูตร/หลักสูตรพื้นที่นวัตกรรม'
+			$R_200000 = $data['UserRights'][array_search('200000', array_column($data['UserRights'], 'UR_Code'))];
+			$data['R_200000'] = $R_200000;
+		} else {
+			$data['R_200000'] = NULL;
+		}
+
         if ( ! file_exists(APPPATH.'views/pages/dashboard/Curriculum/list-curriculum_activity.php'))
         {
             show_404();
@@ -796,7 +1126,30 @@ class CurriculumController extends CI_Controller{
         $result_curriculum_activity = $this->Curriculum_model->insert_curriculum_activity($curriculum_activity);
       
 
-        if($result_curriculum_activity == 1 ){    
+        if($result_curriculum_activity == 1 ){  
+            $Curriculum = $this->Curriculum_model->get_Curriculum($CurriculumID );
+            $CurriculumName =  $Curriculum[0] -> CurriculumName ;
+
+            $CurriculumSubject = $this->Curriculum_model->get_CurriculumSubject( $CurriculumID, $SubjectCode);
+            $SubjectName =  $CurriculumSubject[0] -> SubjectName ;
+            
+            $plan = $this->Curriculum_model->get_Curriculum_plan($PLAN_ID);
+            $PLAN_NAME =  $plan[0] -> PLAN_NAME ;
+
+            $UserID = $this->session->userdata('UserID');
+            $UserIPAddress = $this->session->userdata('UserIPAddress');
+            $UserName = $this->session->userdata('UserName');
+
+            $log = [
+                'LogMessage' => 'เพิ่มกิจกรรม ชื่อ = "' . $this->input->post('ACTIVITY_NAME'). '" ของหลักสูตร = "' . $CurriculumName  . '" วิชา = "' . $SubjectName . '" แผนการเรียนรู้ = "' . $PLAN_NAME . '"',
+                'LogUserID' => $UserID,
+                'LogUsername' => $UserName ,
+                'LogIpAddress' => $UserIPAddress,
+                'LogCreation' => date('Y-m-d H:i:s')
+            ];
+
+            $logresult = $this->db->insert('SYS_LOG', $log);
+  
             $this->session->set_flashdata('success',"บันทึกข้อมูลสำเร็จ");
             redirect(base_url('list-curriculum_plan?sid='. $SubjectCode.'&&cid='.$CurriculumID));
         }else{
@@ -807,7 +1160,16 @@ class CurriculumController extends CI_Controller{
     }
 
     public function forms_curriculum_activity() {
+        $data = array();
+        $data = $this->session->userdata();
         
+        if (!empty($data['UserRights'])) {
+			//'200000', 'ข้อมูลหลักสูตร/หลักสูตรพื้นที่นวัตกรรม'
+			$R_200000 = $data['UserRights'][array_search('200000', array_column($data['UserRights'], 'UR_Code'))];
+			$data['R_200000'] = $R_200000;
+		} else {
+			$data['R_200000'] = NULL;
+		}
         if ( ! file_exists(APPPATH.'views/pages/forms/Curriculum/forms-curriculum_activity.php'))
         {
             show_404();
@@ -823,11 +1185,17 @@ class CurriculumController extends CI_Controller{
 
     }
     public function edit_forms_curriculum_activity() {
+        $data = array();
+        $data = $this->session->userdata();
         
-        if ( ! file_exists(APPPATH.'views/pages/forms/Curriculum/edit_forms-curriculum_activity.php'))
-        {
-            show_404();
-        }
+        if (!empty($data['UserRights'])) {
+			//'200000', 'ข้อมูลหลักสูตร/หลักสูตรพื้นที่นวัตกรรม'
+			$R_200000 = $data['UserRights'][array_search('200000', array_column($data['UserRights'], 'UR_Code'))];
+			$data['R_200000'] = $R_200000;
+		} else {
+			$data['R_200000'] = NULL;
+		}
+
         $data['PLAN_ID'] = $_GET['pid']; 
         $data['ACTIVITY_ID'] = $_GET['ACTIVITY_ID'];
         $data['CurriculumID'] = $_GET['cid']; 
@@ -887,6 +1255,29 @@ class CurriculumController extends CI_Controller{
             $result_curriculum_activity = $this->Curriculum_model->update_curriculum_activity($curriculum_activity,$ACTIVITY_ID );
     
             if($result_curriculum_activity==1){    
+                $Curriculum = $this->Curriculum_model->get_Curriculum($CurriculumID );
+                $CurriculumName =  $Curriculum[0] -> CurriculumName ;
+    
+                $CurriculumSubject = $this->Curriculum_model->get_CurriculumSubject( $CurriculumID, $SubjectCode);
+                $SubjectName =  $CurriculumSubject[0] -> SubjectName ;
+                
+                $plan = $this->Curriculum_model->get_Curriculum_plan($PLAN_ID);
+                $PLAN_NAME =  $plan[0] -> PLAN_NAME ;
+    
+                $UserID = $this->session->userdata('UserID');
+                $UserIPAddress = $this->session->userdata('UserIPAddress');
+                $UserName = $this->session->userdata('UserName');
+    
+                $log = [
+                    'LogMessage' => 'แก้ไขกิจกรรม ชื่อ = "' . $this->input->post('ACTIVITY_NAME'). '" ของหลักสูตร = "' . $CurriculumName  . '" วิชา = "' . $SubjectName . '" แผนการเรียนรู้ = "' . $PLAN_NAME . '"',
+                    'LogUserID' => $UserID,
+                    'LogUsername' => $UserName ,
+                    'LogIpAddress' => $UserIPAddress,
+                    'LogCreation' => date('Y-m-d H:i:s')
+                ];
+
+                $logresult = $this->db->insert('SYS_LOG', $log);
+
                 $this->session->set_flashdata('success',"แก้ไขข้อมูลสำเร็จ");
                 redirect(base_url('list-curriculum_plan?sid='. $SubjectCode.'&&cid='.$CurriculumID)); 
             }else{
@@ -896,11 +1287,35 @@ class CurriculumController extends CI_Controller{
            
     }
     public function delete_curriculum_activity ($PLAN_ID,$ACTIVITY_ID,$SubjectCode,$CurriculumID){
-
+        $activity = $this->Curriculum_model->get_curriculum_activity($ACTIVITY_ID);
+        $ACTIVITY_NAME =  $activity[0] -> ACTIVITY_NAME ;
 
         $result =$this->Curriculum_model->delete_curriculum_activity($ACTIVITY_ID);
 
         if($result == 1 ){
+            $Curriculum = $this->Curriculum_model->get_Curriculum($CurriculumID );
+            $CurriculumName =  $Curriculum[0] -> CurriculumName ;
+
+            $CurriculumSubject = $this->Curriculum_model->get_CurriculumSubject( $CurriculumID, $SubjectCode);
+            $SubjectName =  $CurriculumSubject[0] -> SubjectName ;
+            
+            $plan = $this->Curriculum_model->get_Curriculum_plan($PLAN_ID);
+            $PLAN_NAME =  $plan[0] -> PLAN_NAME ;
+
+            $UserID = $this->session->userdata('UserID');
+            $UserIPAddress = $this->session->userdata('UserIPAddress');
+            $UserName = $this->session->userdata('UserName');
+
+            $log = [
+                'LogMessage' => 'ลบกิจกรรม ชื่อ = "' . $ACTIVITY_NAME. '" ของหลักสูตร = "' . $CurriculumName  . '" วิชา = "' . $SubjectName . '" แผนการเรียนรู้ = "' . $PLAN_NAME . '"',
+                'LogUserID' => $UserID,
+                'LogUsername' => $UserName ,
+                'LogIpAddress' => $UserIPAddress,
+                'LogCreation' => date('Y-m-d H:i:s')
+            ];
+
+            $logresult = $this->db->insert('SYS_LOG', $log);
+
             $this->session->set_flashdata('success',"ลบข้อมูลสำเร็จ");
             redirect(base_url('list-curriculum_plan?sid='. $SubjectCode.'&&cid='.$CurriculumID)); 
         }else{
@@ -910,13 +1325,19 @@ class CurriculumController extends CI_Controller{
     }
 
 ###curriculum_assessment
-
+/*
     public function list_curriculum_assignment() {
+        $data = array();
+        $data = $this->session->userdata();
         
-        if ( ! file_exists(APPPATH.'views/pages/dashboard/Curriculum/list-curriculum_assignment.php'))
-        {
-            show_404();
-        }
+        if (!empty($data['UserRights'])) {
+			//'200000', 'ข้อมูลหลักสูตร/หลักสูตรพื้นที่นวัตกรรม'
+			$R_200000 = $data['UserRights'][array_search('200000', array_column($data['UserRights'], 'UR_Code'))];
+			$data['R_200000'] = $R_200000;
+		} else {
+			$data['R_200000'] = NULL;
+		}
+
         $data['ACTIVITY_ID'] = $_GET['aid']; 
         $data['PLAN_ID'] = $_GET['pid']; 
         $data['SubjectCode'] = $_GET['sid']; 
@@ -942,11 +1363,17 @@ class CurriculumController extends CI_Controller{
 
     }
     public function forms_curriculum_assessment() {
+        $data = array();
+        $data = $this->session->userdata();
         
-        if ( ! file_exists(APPPATH.'views/pages/forms/Curriculum/forms-curriculum_assessment.php'))
-        {
-            show_404();
-        }
+        if (!empty($data['UserRights'])) {
+			//'200000', 'ข้อมูลหลักสูตร/หลักสูตรพื้นที่นวัตกรรม'
+			$R_200000 = $data['UserRights'][array_search('200000', array_column($data['UserRights'], 'UR_Code'))];
+			$data['R_200000'] = $R_200000;
+		} else {
+			$data['R_200000'] = NULL;
+		}
+
         $data['ACTIVITY_ID'] = $_GET['aid']; 
 
         $data['PLAN_ID'] = $_GET['pid']; 
@@ -962,11 +1389,17 @@ class CurriculumController extends CI_Controller{
 
     }
     public function edit_forms_curriculum_assessment() {
+        $data = array();
+        $data = $this->session->userdata();
         
-        if ( ! file_exists(APPPATH.'views/pages/forms/Curriculum/edit_forms-curriculum_assessment.php'))
-        {
-            show_404();
-        }
+        if (!empty($data['UserRights'])) {
+			//'200000', 'ข้อมูลหลักสูตร/หลักสูตรพื้นที่นวัตกรรม'
+			$R_200000 = $data['UserRights'][array_search('200000', array_column($data['UserRights'], 'UR_Code'))];
+			$data['R_200000'] = $R_200000;
+		} else {
+			$data['R_200000'] = NULL;
+		}
+
         $data['ACTIVITY_ID'] = $_GET['aid']; 
 
         $data['ASSESSMENT_ID'] = $_GET['asid']; 
@@ -986,7 +1419,6 @@ class CurriculumController extends CI_Controller{
 
    
     public function add_curriculum_assessment() {
-
         $ACTIVITY_ID =  $this->input->post('ACTIVITY_ID');
         
         $SCORE_TEACHER = $this->input->post('SCORE_TEACHER');
@@ -1022,7 +1454,7 @@ class CurriculumController extends CI_Controller{
         }
 
     }
-
+*/
 
 
 }

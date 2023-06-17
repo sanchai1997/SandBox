@@ -61,6 +61,7 @@ class TeacherDevelopmentActivity_model extends CI_Model {
 
     public function delete_teacher_development_activity($TeacherID, $DevelopmentActivityName, $DevelopmentActivityStartDate){        
         $data = [
+            'DevelopmentActivityName' => Date('YmdHis'),
             'DeleteStatus' => 1
         ];
         $this->db->where('TeacherID', $TeacherID)

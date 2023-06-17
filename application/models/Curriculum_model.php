@@ -73,6 +73,7 @@ class Curriculum_model  extends CI_Model {
 
     public function delete_curriculum($CurriculumID){        
         $data = [
+            'CurriculumID' => Date('YmdHis'),
             'DeleteStatus' => 1
         ];
         $this->db->where('CurriculumID', $CurriculumID);
@@ -128,6 +129,7 @@ class Curriculum_model  extends CI_Model {
 
     public function delete_curriculum_subject($CurriculumID, $SubjectCode){        
         $data = [
+            'SubjectCode' => Date('YmdHis'),
             'DeleteStatus' => 1
         ];
         $this->db->where('CurriculumID', $CurriculumID)
@@ -159,10 +161,12 @@ class Curriculum_model  extends CI_Model {
     }
     
     public function get_CurriculumCompetency( $CurriculumID, $SubjectCode, $CompetencyCode) {
-        $this->db->from('CURRICULUM_SCHOOL_COMPETENCY')
+        $this->db->select('cs.*, c.*')
+        ->from('CURRICULUM_SCHOOL_COMPETENCY cs')
+        ->join('CLS_COMPETENCY c', 'c.COMPETENCY_CODE  = cs.CompetencyCode ', 'LEFT') 
         ->where('CurriculumID', $CurriculumID )
         ->where('SubjectCode ', $SubjectCode  ) 
-        ->where('CompetencyCode', $CompetencyCode )
+        ->where('c.COMPETENCY_CODE', $CompetencyCode )
         ->where('DeleteStatus', 0);
         $query = $this->db->get();
     
@@ -219,6 +223,7 @@ class Curriculum_model  extends CI_Model {
     }
     public function delete_Curriculum_plan($PLAN_ID){   
         $data = [
+            'PLAN_ID' => Date('YmdHis'),
             'DeleteStatus' => 1
         ];
         $this->db->where('PLAN_ID', $PLAN_ID);
@@ -271,6 +276,7 @@ class Curriculum_model  extends CI_Model {
     }
     public function delete_curriculum_activity($ACTIVITY_ID){   
         $data = [
+            'ACTIVITY_ID' => Date('YmdHis'),
             'DeleteStatus' => 1
         ];
         $this->db->where('ACTIVITY_ID', $ACTIVITY_ID);
@@ -361,7 +367,6 @@ public function get_score($SCORE_ID) {
         $this->db->where('SUBJECT_GROUP_CODE ', $SUBJECT_GROUP_CODE  );
 		$query = $this->db->get();
 		return $query->result();
-
 	}
 
     public function insert_subject_std($SUBJECT_STD) {
@@ -370,7 +375,14 @@ public function get_score($SCORE_ID) {
     
     }
 
-    
+    public function get_SUBJECT_GROUP_CODE($SUBJECT_GROUP_CODE){
+		$this->db->select('*');
+		$this->db->from('CLS_SUBJECT_GROUP');
+        $this->db->where('SUBJECT_GROUP_CODE ', $SUBJECT_GROUP_CODE  );
+		$query = $this->db->get();
+
+		return $query->result();
+	}
     
 }
 

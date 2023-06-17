@@ -1,7 +1,8 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
+require_once '_sandboxcontroller.php';
 
-class EportfolioController extends CI_Controller{
+class EportfolioController extends _sandboxcontroller{
     public function __construct() {
         parent::__construct();
         $this->load->helper('url');
@@ -34,6 +35,16 @@ class EportfolioController extends CI_Controller{
 
  #eportfolio   
     public function forms_eportfolio() {
+        $data = array();
+        $data = $this->session->userdata();
+
+        if (!empty($data['UserRights'])) {
+            //'101000', 'ข้อมูลนักเรียน'
+            $R_101000 = $data['UserRights'][array_search('101000', array_column($data['UserRights'], 'UR_Code'))];
+            $data['R_101000'] = $R_101000;
+        } else {
+            $data['R_101000'] = NULL;
+        }
         
         if ( ! file_exists(APPPATH.'views/pages/forms/Eportfolio/forms-eportfolio.php'))
         {
@@ -84,6 +95,24 @@ class EportfolioController extends CI_Controller{
             ];
             $result_STUDENT_GOODNESS = $this->Eportfolio_model->insert_STUDENT_GOODNESS($STUDENT_GOODNESS) ;
             
+            #####
+            $school = $this->School_model->get_school($SchoolID);  
+            $SchoolNameThai = $school[0]->SchoolNameThai ; 
+
+            $UserID = $this->session->userdata('UserID');
+            $UserIPAddress = $this->session->userdata('UserIPAddress');
+            $UserName = $this->session->userdata('UserName');
+
+            $log = [
+                'LogMessage' => 'เพิ่มแฟ้มสะสมผลงานของนักเรียน รหัส = "' . $StudentReferenceID .'" โรงเรียน = "' . $SchoolNameThai . '"',
+                'LogUserID' => $UserID,
+                'LogUsername' => $UserName ,
+                'LogIpAddress' => $UserIPAddress,
+                'LogCreation' => date('Y-m-d H:i:s')
+            ];
+
+            $logresult = $this->db->insert('SYS_LOG', $log);
+            ####
 
             $this->session->set_flashdata('success',"บันทึกข้อมูลสำเร็จ");
             redirect(base_url('student?StudentReferenceID=' . $StudentReferenceID . '&&SchoolID=' . $SchoolID . '&&EducationYear=' . $EducationYear . '&&Semester=' . $Semester . '&&GradeLevelCode=' . $GradeLevelCode . '&&ShowDetail='));
@@ -93,6 +122,16 @@ class EportfolioController extends CI_Controller{
 
     }
     public function show_eportfolio() {
+        $data = array();
+        $data = $this->session->userdata();
+
+        if (!empty($data['UserRights'])) {
+            //'101000', 'ข้อมูลนักเรียน'
+            $R_101000 = $data['UserRights'][array_search('101000', array_column($data['UserRights'], 'UR_Code'))];
+            $data['R_101000'] = $R_101000;
+        } else {
+            $data['R_101000'] = NULL;
+        }
             
         if ( ! file_exists(APPPATH.'views/pages/dashboard/Eportfolio/eportfolio.php'))
         {
@@ -110,6 +149,16 @@ class EportfolioController extends CI_Controller{
 
     public function eportfolio_download()
     {
+        $data = array();
+        $data = $this->session->userdata();
+
+        if (!empty($data['UserRights'])) {
+            //'101000', 'ข้อมูลนักเรียน'
+            $R_101000 = $data['UserRights'][array_search('101000', array_column($data['UserRights'], 'UR_Code'))];
+            $data['R_101000'] = $R_101000;
+        } else {
+            $data['R_101000'] = NULL;
+        }
 
         if (!file_exists(APPPATH . 'views/pages/dashboard/Eportfolio/eportfolio-download.php')) {
             // Whoops, we don't have a page for that!
@@ -124,6 +173,16 @@ class EportfolioController extends CI_Controller{
     }
 
     public function edit_forms_eportfolio() {
+        $data = array();
+        $data = $this->session->userdata();
+
+        if (!empty($data['UserRights'])) {
+            //'101000', 'ข้อมูลนักเรียน'
+            $R_101000 = $data['UserRights'][array_search('101000', array_column($data['UserRights'], 'UR_Code'))];
+            $data['R_101000'] = $R_101000;
+        } else {
+            $data['R_101000'] = NULL;
+        }
         
         if ( ! file_exists(APPPATH.'views/pages/forms/Eportfolio/edit_forms-eportfolio.php'))
         {
@@ -163,6 +222,25 @@ class EportfolioController extends CI_Controller{
         $result_eportfolio = $this->Eportfolio_model->update_EPORTFOLIO($EPORTFOLIO_ID ,$eportfolio);
 
         if($result_eportfolio == 1 ){    
+            #####
+            $school = $this->School_model->get_school($SchoolID);  
+            $SchoolNameThai = $school[0]->SchoolNameThai ; 
+
+            $UserID = $this->session->userdata('UserID');
+            $UserIPAddress = $this->session->userdata('UserIPAddress');
+            $UserName = $this->session->userdata('UserName');
+
+            $log = [
+                'LogMessage' => 'แก้ไขแฟ้มสะสมผลงานของนักเรียน รหัส = "' . $StudentReferenceID .'" โรงเรียน = "' . $SchoolNameThai . '"',
+                'LogUserID' => $UserID,
+                'LogUsername' => $UserName ,
+                'LogIpAddress' => $UserIPAddress,
+                'LogCreation' => date('Y-m-d H:i:s')
+            ];
+
+            $logresult = $this->db->insert('SYS_LOG', $log);
+            ####
+
             $this->session->set_flashdata('success',"แก้ไขข้อมูลสำเร็จ");
             redirect(base_url('student?StudentReferenceID=' . $StudentReferenceID . '&&SchoolID=' . $SchoolID . '&&EducationYear=' . $EducationYear . '&&Semester=' . $Semester . '&&GradeLevelCode=' . $GradeLevelCode . '&&ShowDetail='));
         }else{
@@ -171,11 +249,31 @@ class EportfolioController extends CI_Controller{
 
     }
     public function delete_eportfolio($EPORTFOLIO_ID){
-
+        $eport = $this->School_model->get_EPORTFOLIO($EPORTFOLIO_ID);  
+        $StudentReferenceID = $eport[0]->STUDENT_NO ; 
 
         $result =$this->Eportfolio_model->delete_eportfolio($EPORTFOLIO_ID);
 
         if($result == 1 ){
+            #####
+            $school = $this->School_model->get_school($SchoolID);  
+            $SchoolNameThai = $school[0]->SchoolNameThai ; 
+
+            $UserID = $this->session->userdata('UserID');
+            $UserIPAddress = $this->session->userdata('UserIPAddress');
+            $UserName = $this->session->userdata('UserName');
+
+            $log = [
+                'LogMessage' => 'แก้ไขแฟ้มสะสมผลงานของนักเรียน รหัส = "' . $StudentReferenceID .'" โรงเรียน = "' . $SchoolNameThai . '"',
+                'LogUserID' => $UserID,
+                'LogUsername' => $UserName ,
+                'LogIpAddress' => $UserIPAddress,
+                'LogCreation' => date('Y-m-d H:i:s')
+            ];
+
+            $logresult = $this->db->insert('SYS_LOG', $log);
+            ####
+
             $this->session->set_flashdata('success',"ลบข้อมูลสำเร็จ");
             redirect(base_url('list-curriculum_activity?pid='. $PLAN_ID.'&&sid='. $SubjectCode.'&&cid='. $CurriculumID ));
         }else{

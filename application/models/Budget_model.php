@@ -53,6 +53,7 @@ class Budget_model extends CI_Model
     }
     public function delete_budget($BudgetID){   
         $data = [
+            'BudgetID' => Date('YmdHis'),
             'DeleteStatus' => 1
         ];
          $this->db->where('BudgetID', $BudgetID );

@@ -1,7 +1,8 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
+require_once '_sandboxcontroller.php';
 
-class Area_identittyController extends CI_Controller{
+class Area_identittyController extends _sandboxcontroller{
     public function __construct() {
         parent::__construct();
         $this->load->helper('url');
@@ -13,6 +14,17 @@ class Area_identittyController extends CI_Controller{
         
     }
     public function forms_Area_identitty() {
+        $data = array();
+        $data = $this->session->userdata();
+        
+        if (!empty($data['UserRights'])) {
+			//'501000', 'ข้อมูลอัตลักษณ์ของแต่ละพื้นที่'
+			$R_501000 = $data['UserRights'][array_search('501000', array_column($data['UserRights'], 'UR_Code'))];
+			$data['R_501000'] = $R_501000;
+		} else {
+			$data['R_501000'] = NULL;
+		}
+        
         if ( ! file_exists(APPPATH.'views/pages/forms/Area_Identity/forms-area_identitty.php'))
         {
             show_404();
@@ -32,7 +44,18 @@ class Area_identittyController extends CI_Controller{
 
     }
 
-    public function list_area_identity() {        
+    public function list_area_identity() {    
+        $data = array();
+        $data = $this->session->userdata();
+        
+        if (!empty($data['UserRights'])) {
+			//'501000', 'ข้อมูลอัตลักษณ์ของแต่ละพื้นที่'
+			$R_501000 = $data['UserRights'][array_search('501000', array_column($data['UserRights'], 'UR_Code'))];
+			$data['R_501000'] = $R_501000;
+		} else {
+			$data['R_501000'] = NULL;
+		}
+            
         $data['School'] = $this->School_model->get_school_All();
         
         if($data['School']==null){
@@ -52,7 +75,16 @@ class Area_identittyController extends CI_Controller{
     }
 
     public function list_area_identity_by_school() {
+        $data = array();
+        $data = $this->session->userdata();
         
+        if (!empty($data['UserRights'])) {
+			//'501000', 'ข้อมูลอัตลักษณ์ของแต่ละพื้นที่'
+			$R_501000 = $data['UserRights'][array_search('501000', array_column($data['UserRights'], 'UR_Code'))];
+			$data['R_501000'] = $R_501000;
+		} else {
+			$data['R_501000'] = NULL;
+		}
 
         $data['SchoolID'] = $_GET['sid']; 
         $school = $this->School_model->get_school($data['SchoolID']);  
@@ -86,6 +118,23 @@ class Area_identittyController extends CI_Controller{
             $result_area_identity =  $this->Area_identitty_model->insert_area_identitty($area_identity);
 
             if($result_area_identity == 1){
+                $school = $this->School_model->get_school($SchoolID);  
+                $SchoolNameThai = $school[0]->SchoolNameThai ; 
+
+                $UserID = $this->session->userdata('UserID');
+                $UserIPAddress = $this->session->userdata('UserIPAddress');
+                $UserName = $this->session->userdata('UserName');
+    
+                $log = [
+                    'LogMessage' => 'เพิ่มอัตลักษณ์ของแต่ละพื้นที่ ปีการศึกษา = "' . $this->input->post('EducationYear') . '" ภาคเรียน = "' . $this->input->post('Semester') . '" โรงเรียน = "' . $SchoolNameThai . '"',
+                    'LogUserID' => $UserID,
+                    'LogUsername' => $UserName ,
+                    'LogIpAddress' => $UserIPAddress,
+                    'LogCreation' => date('Y-m-d H:i:s')
+                ];
+    
+                $logresult = $this->db->insert('SYS_LOG', $log);
+
                 $this->session->set_flashdata('success',"บันทึกข้อมูลสำเร็จ");
                // show_error("111");
                 redirect(base_url('list-area_identity_by_school?sid='.$SchoolID));
@@ -104,6 +153,23 @@ class Area_identittyController extends CI_Controller{
 
         $result =$this->Area_identitty_model-> delete_area_identitty($EducationYear, $Semester, $SchoolID);
         if($result == 1 ){
+            $school = $this->School_model->get_school($SchoolID);  
+            $SchoolNameThai = $school[0]->SchoolNameThai ; 
+            
+            $UserID = $this->session->userdata('UserID');
+            $UserIPAddress = $this->session->userdata('UserIPAddress');
+            $UserName = $this->session->userdata('UserName');
+
+            $log = [
+                'LogMessage' => 'แก้ไขอัตลักษณ์ของแต่ละพื้นที่ ปีการศึกษา = "' . $EducationYear . '" ภาคเรียน = "' . $Semester . '" โรงเรียน = "' . $SchoolNameThai . '"',
+                'LogUserID' => $UserID,
+                'LogUsername' => $UserName ,
+                'LogIpAddress' => $UserIPAddress,
+                'LogCreation' => date('Y-m-d H:i:s')
+            ];
+
+            $logresult = $this->db->insert('SYS_LOG', $log);
+
             $this->session->set_flashdata('success',"ลบข้อมูลสำเร็จ");
             redirect(base_url('list-area_identity_by_school?sid='.$SchoolID));
         }else{
@@ -114,6 +180,16 @@ class Area_identittyController extends CI_Controller{
     }
 
     public function edit_forms_area_identity() {
+        $data = array();
+        $data = $this->session->userdata();
+        
+        if (!empty($data['UserRights'])) {
+			//'501000', 'ข้อมูลอัตลักษณ์ของแต่ละพื้นที่'
+			$R_501000 = $data['UserRights'][array_search('501000', array_column($data['UserRights'], 'UR_Code'))];
+			$data['R_501000'] = $R_501000;
+		} else {
+			$data['R_501000'] = NULL;
+		}
         
         if ( ! file_exists(APPPATH.'views/pages/forms/Area_Identity/edit_forms-area_identity.php'))
         {
@@ -156,6 +232,23 @@ class Area_identittyController extends CI_Controller{
         $result =  $this->Area_identitty_model->update_area_identity($SchoolID, $EducationYear, $Semester, $area_identity);
    
         if($result == 1){
+            $school = $this->School_model->get_school($SchoolID);  
+            $SchoolNameThai = $school[0]->SchoolNameThai ; 
+            
+            $UserID = $this->session->userdata('UserID');
+            $UserIPAddress = $this->session->userdata('UserIPAddress');
+            $UserName = $this->session->userdata('UserName');
+
+            $log = [
+                'LogMessage' => 'แก้ไขอัตลักษณ์ของแต่ละพื้นที่ ปีการศึกษา = "' . $EducationYear . '" ภาคเรียน = "' . $Semester . '" โรงเรียน = "' . $SchoolNameThai . '"',
+                'LogUserID' => $UserID,
+                'LogUsername' => $UserName ,
+                'LogIpAddress' => $UserIPAddress,
+                'LogCreation' => date('Y-m-d H:i:s')
+            ];
+
+            $logresult = $this->db->insert('SYS_LOG', $log);
+
             $this->session->set_flashdata('success',"แก้ไขข้อมูลสำเร็จ");
             redirect(base_url('list-area_identity_by_school?sid='.$SchoolID));
         }else{
@@ -167,6 +260,16 @@ class Area_identittyController extends CI_Controller{
 
     ///Region
     public function forms_Region() {
+        $data = array();
+        $data = $this->session->userdata();
+        
+        if (!empty($data['UserRights'])) {
+			//'501000', 'ข้อมูลอัตลักษณ์ของแต่ละพื้นที่'
+			$R_501000 = $data['UserRights'][array_search('501000', array_column($data['UserRights'], 'UR_Code'))];
+			$data['R_501000'] = $R_501000;
+		} else {
+			$data['R_501000'] = NULL;
+		}
         
         if ( ! file_exists(APPPATH.'views/pages/forms/Area_Identity/forms-region.php'))
         {
@@ -210,6 +313,26 @@ class Area_identittyController extends CI_Controller{
             $result =  $this->Area_identitty_model->insert_area_Region($Region);
 
             if($result == 1){
+                $school = $this->School_model->get_school($SchoolID);  
+                $SchoolNameThai = $school[0]->SchoolNameThai ; 
+
+                $rg = $this->Area_identitty_model->get_Region_byCode($SchoolID, $EducationYear, $Semester, $this->input->post('AreaReligionCode'));  
+                $RELIGION_NAME = $rg[0]->RELIGION_NAME ; 
+
+                $UserID = $this->session->userdata('UserID');
+                $UserIPAddress = $this->session->userdata('UserIPAddress');
+                $UserName = $this->session->userdata('UserName');
+    
+                $log = [
+                    'LogMessage' => 'เพิ่มศาสนา ชื่อ = "' .  $RELIGION_NAME . '" ปีการศึกษา = "' . $EducationYear . '" ภาคเรียน = "' .  $Semester . '" โรงเรียน = "' . $SchoolNameThai . '"',
+                    'LogUserID' => $UserID,
+                    'LogUsername' => $UserName ,
+                    'LogIpAddress' => $UserIPAddress,
+                    'LogCreation' => date('Y-m-d H:i:s')
+                ];
+    
+                $logresult = $this->db->insert('SYS_LOG', $log);
+
                 $this->session->set_flashdata('success',"บันทึกข้อมูลสำเร็จ");
                // show_error("111");
                 redirect(base_url('list-area_identity_by_school?sid='.$SchoolID));
@@ -222,6 +345,16 @@ class Area_identittyController extends CI_Controller{
     }
     
     public function edit_forms_Region() {
+        $data = array();
+        $data = $this->session->userdata();
+        
+        if (!empty($data['UserRights'])) {
+			//'501000', 'ข้อมูลอัตลักษณ์ของแต่ละพื้นที่'
+			$R_501000 = $data['UserRights'][array_search('501000', array_column($data['UserRights'], 'UR_Code'))];
+			$data['R_501000'] = $R_501000;
+		} else {
+			$data['R_501000'] = NULL;
+		}
         
         if ( ! file_exists(APPPATH.'views/pages/forms/Area_Identity/edit_forms-region.php'))
         {
@@ -267,6 +400,26 @@ class Area_identittyController extends CI_Controller{
         $result =  $this->Area_identitty_model->update_Region($SchoolID, $EducationYear, $Semester,$AreaReligionCode, $Region);
    
         if($result == 1){
+            $school = $this->School_model->get_school($SchoolID);  
+            $SchoolNameThai = $school[0]->SchoolNameThai ; 
+
+            $rg = $this->Area_identitty_model->get_Region_byCode($SchoolID, $EducationYear, $Semester, $AreaReligionCode);  
+            $RELIGION_NAME = $rg[0]->RELIGION_NAME ; 
+
+            $UserID = $this->session->userdata('UserID');
+            $UserIPAddress = $this->session->userdata('UserIPAddress');
+            $UserName = $this->session->userdata('UserName');
+
+            $log = [
+                'LogMessage' => 'แก้ไขศาสนา ชื่อ = "' .  $RELIGION_NAME . '" ปีการศึกษา = "' . $EducationYear . '" ภาคเรียน = "' .  $Semester . '" โรงเรียน = "' . $SchoolNameThai . '"',
+                'LogUserID' => $UserID,
+                'LogUsername' => $UserName ,
+                'LogIpAddress' => $UserIPAddress,
+                'LogCreation' => date('Y-m-d H:i:s')
+            ];
+
+            $logresult = $this->db->insert('SYS_LOG', $log);
+
             $this->session->set_flashdata('success',"แก้ไขข้อมูลสำเร็จ");
             redirect(base_url('list-area_identity_by_school?sid='.$SchoolID));
         }else{
@@ -282,8 +435,28 @@ class Area_identittyController extends CI_Controller{
         $SchoolID = $_GET['sid']; 
         $AreaReligionCode = $_GET['rid'];
 
+        $rg = $this->Area_identitty_model->get_Region_byCode($SchoolID, $EducationYear, $Semester, $AreaReligionCode);  
+        $RELIGION_NAME = $rg[0]->RELIGION_NAME ; 
+
         $result =$this->Area_identitty_model-> delete_Region($EducationYear, $Semester, $SchoolID, $AreaReligionCode);
         if($result == 1 ){
+            $school = $this->School_model->get_school($SchoolID);  
+            $SchoolNameThai = $school[0]->SchoolNameThai ; 
+
+            $UserID = $this->session->userdata('UserID');
+            $UserIPAddress = $this->session->userdata('UserIPAddress');
+            $UserName = $this->session->userdata('UserName');
+
+            $log = [
+                'LogMessage' => 'ลบศาสนา ชื่อ = "' .  $RELIGION_NAME . '" ปีการศึกษา = "' . $EducationYear . '" ภาคเรียน = "' .  $Semester . '" โรงเรียน = "' . $SchoolNameThai . '"',
+                'LogUserID' => $UserID,
+                'LogUsername' => $UserName ,
+                'LogIpAddress' => $UserIPAddress,
+                'LogCreation' => date('Y-m-d H:i:s')
+            ];
+
+            $logresult = $this->db->insert('SYS_LOG', $log);
+
             $this->session->set_flashdata('success',"ลบข้อมูลสำเร็จ");
             redirect(base_url('list-area_identity_by_school?sid='.$SchoolID));
         }else{
@@ -294,6 +467,16 @@ class Area_identittyController extends CI_Controller{
     }
 //////////////////// OCCUPATION ///////////////////
     public function forms_OCCUPATION() {
+        $data = array();
+        $data = $this->session->userdata();
+        
+        if (!empty($data['UserRights'])) {
+			//'501000', 'ข้อมูลอัตลักษณ์ของแต่ละพื้นที่'
+			$R_501000 = $data['UserRights'][array_search('501000', array_column($data['UserRights'], 'UR_Code'))];
+			$data['R_501000'] = $R_501000;
+		} else {
+			$data['R_501000'] = NULL;
+		}
         
         if ( ! file_exists(APPPATH.'views/pages/forms/Area_Identity/forms-OCCUPATION.php'))
         {
@@ -337,6 +520,26 @@ class Area_identittyController extends CI_Controller{
             $result =  $this->Area_identitty_model->insert_area_OCCUPATION($OCCUPATION);
 
             if($result == 1){
+                $school = $this->School_model->get_school($SchoolID);  
+                $SchoolNameThai = $school[0]->SchoolNameThai ; 
+
+                $oc = $this->Area_identitty_model->get_OCCUPATION_byCode($SchoolID, $EducationYear, $Semester,  $this->input->post('AreaOccupationCode'));  
+                $OCCUPATION_NAME = $oc[0]->OCCUPATION_NAME ; 
+
+                $UserID = $this->session->userdata('UserID');
+                $UserIPAddress = $this->session->userdata('UserIPAddress');
+                $UserName = $this->session->userdata('UserName');
+    
+                $log = [
+                    'LogMessage' => 'เพิ่มอาชีพ ชื่อ = "' .  $OCCUPATION_NAME . '" ปีการศึกษา = "' . $EducationYear . '" ภาคเรียน = "' .  $Semester . '" โรงเรียน = "' . $SchoolNameThai . '"',
+                    'LogUserID' => $UserID,
+                    'LogUsername' => $UserName ,
+                    'LogIpAddress' => $UserIPAddress,
+                    'LogCreation' => date('Y-m-d H:i:s')
+                ];
+    
+                $logresult = $this->db->insert('SYS_LOG', $log);
+
                 $this->session->set_flashdata('success',"บันทึกข้อมูลสำเร็จ");
                 redirect(base_url('list-area_identity_by_school?sid='.$SchoolID));
             }else{
@@ -347,6 +550,16 @@ class Area_identittyController extends CI_Controller{
     }
     
     public function edit_forms_OCCUPATION() {
+        $data = array();
+        $data = $this->session->userdata();
+        
+        if (!empty($data['UserRights'])) {
+			//'501000', 'ข้อมูลอัตลักษณ์ของแต่ละพื้นที่'
+			$R_501000 = $data['UserRights'][array_search('501000', array_column($data['UserRights'], 'UR_Code'))];
+			$data['R_501000'] = $R_501000;
+		} else {
+			$data['R_501000'] = NULL;
+		}
         
         if ( ! file_exists(APPPATH.'views/pages/forms/Area_Identity/edit_forms-OCCUPATION.php'))
         {
@@ -383,6 +596,9 @@ class Area_identittyController extends CI_Controller{
         $EducationYear = $this->input->post('EducationYear');
         $Semester = $this->input->post('Semester');
         $AreaOccupationCode = $this->input->post('OLDAreaOccupationCode');
+
+        $oc = $this->Area_identitty_model->get_OCCUPATION_byCode($SchoolID, $EducationYear, $Semester, $AreaOccupationCode);  
+        $OCCUPATION_NAME = $oc[0]->OCCUPATION_NAME ; 
         
         $OCCUPATION = [
             'AreaOccupationCode' => $this->input->post('AreaOccupationCode'),
@@ -392,6 +608,25 @@ class Area_identittyController extends CI_Controller{
         $result =  $this->Area_identitty_model->update_OCCUPATION($SchoolID, $EducationYear, $Semester,$AreaOccupationCode, $OCCUPATION);
    
         if($result == 1){
+            $school = $this->School_model->get_school($SchoolID);  
+            $SchoolNameThai = $school[0]->SchoolNameThai ; 
+
+
+
+            $UserID = $this->session->userdata('UserID');
+            $UserIPAddress = $this->session->userdata('UserIPAddress');
+            $UserName = $this->session->userdata('UserName');
+
+            $log = [
+                'LogMessage' => 'แก้ไขอาชีพ ชื่อ = "' .  $OCCUPATION_NAME . '" ปีการศึกษา = "' . $EducationYear . '" ภาคเรียน = "' .  $Semester . '" โรงเรียน = "' . $SchoolNameThai . '"',
+                'LogUserID' => $UserID,
+                'LogUsername' => $UserName ,
+                'LogIpAddress' => $UserIPAddress,
+                'LogCreation' => date('Y-m-d H:i:s')
+            ];
+
+            $logresult = $this->db->insert('SYS_LOG', $log);
+
             $this->session->set_flashdata('success',"แก้ไขข้อมูลสำเร็จ");
             redirect(base_url('list-area_identity_by_school?sid='.$SchoolID));
         }else{
@@ -407,8 +642,28 @@ class Area_identittyController extends CI_Controller{
         $SchoolID = $_GET['sid']; 
         $AreaOccupationCode = $_GET['rid'];
 
+        $oc = $this->Area_identitty_model->get_OCCUPATION_byCode($SchoolID, $EducationYear, $Semester, $AreaOccupationCode);  
+        $OCCUPATION_NAME = $oc[0]->OCCUPATION_NAME ; 
+
         $result =$this->Area_identitty_model-> delete_OCCUPATION($EducationYear, $Semester, $SchoolID, $AreaOccupationCode);
         if($result == 1 ){
+            $school = $this->School_model->get_school($SchoolID);  
+            $SchoolNameThai = $school[0]->SchoolNameThai ; 
+
+            $UserID = $this->session->userdata('UserID');
+            $UserIPAddress = $this->session->userdata('UserIPAddress');
+            $UserName = $this->session->userdata('UserName');
+
+            $log = [
+                'LogMessage' => 'ลบอาชีพ ชื่อ = "' .  $OCCUPATION_NAME . '" ปีการศึกษา = "' . $EducationYear . '" ภาคเรียน = "' .  $Semester . '" โรงเรียน = "' . $SchoolNameThai . '"',
+                'LogUserID' => $UserID,
+                'LogUsername' => $UserName ,
+                'LogIpAddress' => $UserIPAddress,
+                'LogCreation' => date('Y-m-d H:i:s')
+            ];
+
+            $logresult = $this->db->insert('SYS_LOG', $log);
+
             $this->session->set_flashdata('success',"ลบข้อมูลสำเร็จ");
             redirect(base_url('list-area_identity_by_school?sid='.$SchoolID));
         }else{

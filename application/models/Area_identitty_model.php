@@ -44,7 +44,7 @@ class Area_identitty_model extends CI_Model
         $data = [
             'DeleteStatus' => 1,
             'EducationYear' => random_string('numeric', 4) ,
-            'Semester' => random_string('numeric', 1) ,
+            'Semester' => 9 ,
         ];
          $this->db->where('EducationYear', $EducationYear )
                   ->where('Semester', $Semester )
@@ -103,12 +103,14 @@ class Area_identitty_model extends CI_Model
     }
 
     public function get_Region_byCode($SchoolID, $EducationYear, $Semester,  $AreaReligionCode){
-        $this->db->from('AREA_IDENTITY_RELIGION')
+        $this->db->select('ai.*, cr.RELIGION_NAME  ')
+        ->from('AREA_IDENTITY_RELIGION ai')
+        ->join('CLS_RELIGION cr', 'cr.RELIGION_CODE    = ai.AreaReligionCode    ', 'LEFT') 
         ->where('SchoolID ', $SchoolID )
         ->where('EducationYear ', $EducationYear )
         ->where('Semester ', $Semester )
-        ->where('AreaReligionCode ', $AreaReligionCode )
-        ->where('DeleteStatus', 0 );
+        ->where('ai.AreaReligionCode ', $AreaReligionCode )
+        ->where('ai.DeleteStatus', 0 );
 
         ;
         
@@ -129,6 +131,8 @@ class Area_identitty_model extends CI_Model
 
     public function delete_Region($EducationYear, $Semester, $SchoolID, $AreaReligionCode){   
         $data = [
+            'EducationYear' => random_string('numeric', 4) ,
+            'Semester' => 9 ,
             'DeleteStatus' => 1
         ];
          $this->db->where('EducationYear', $EducationYear )
@@ -192,17 +196,18 @@ class Area_identitty_model extends CI_Model
     }
 
     public function get_OCCUPATION_byCode($SchoolID, $EducationYear, $Semester,  $AreaOccupationCode){
-        $this->db->from('AREA_IDENTITY_OCCUPATION')
+        $this->db->select('ai.*, cr.OCCUPATION_NAME  ')
+        ->from('AREA_IDENTITY_OCCUPATION ai')
+        ->join('CLS_OCCUPATION cr', 'cr.OCCUPATION_CODE     = ai.AreaOccupationCode     ', 'LEFT') 
         ->where('SchoolID ', $SchoolID )
         ->where('EducationYear ', $EducationYear )
         ->where('Semester ', $Semester )
-        ->where('AreaOccupationCode ', $AreaOccupationCode )
-        ->where('DeleteStatus', 0 );
+        ->where('ai.AreaOccupationCode ', $AreaOccupationCode )
+        ->where('ai.DeleteStatus', 0 );
 
         ;
         
         $query = $this->db->get();
-    
         return $query->result();
     }
 
@@ -218,6 +223,8 @@ class Area_identitty_model extends CI_Model
 
     public function delete_OCCUPATION($EducationYear, $Semester, $SchoolID, $AreaOccupationCode){   
         $data = [
+            'EducationYear' => random_string('numeric', 4) ,
+            'Semester' => 9 ,
             'DeleteStatus' => 1
         ];
          $this->db->where('EducationYear', $EducationYear )

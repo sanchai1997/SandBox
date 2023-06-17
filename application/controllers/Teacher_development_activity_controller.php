@@ -1,7 +1,8 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
+require_once '_sandboxcontroller.php';
 
-class Teacher_development_activity_controller extends CI_Controller{
+class Teacher_development_activity_controller extends _sandboxcontroller{
     public function __construct() {
         parent::__construct();
         // Your own constructor code
@@ -13,6 +14,16 @@ class Teacher_development_activity_controller extends CI_Controller{
     }
 
     public function forms() {
+        $data = array();
+        $data = $this->session->userdata();
+        
+        if (!empty($data['UserRights'])) {
+			//'300000', 'ข้อมูลการพัฒนาบุคลากร'
+			$R_300000 = $data['UserRights'][array_search('300000', array_column($data['UserRights'], 'UR_Code'))];
+			$data['R_300000'] = $R_300000;
+		} else {
+			$data['R_300000'] = NULL;
+		}
         
         if ( ! file_exists(APPPATH.'views/pages/forms/TeacherDevelopmentActivity/forms-teacher_development_activity.php'))
         {
@@ -49,6 +60,20 @@ class Teacher_development_activity_controller extends CI_Controller{
             ];
             $result =  $this->TeacherDevelopmentActivity_model->insert_TeacherDevelopmentActivity($teacher_development_activity);
             if($result == 1 ){
+                $UserID = $this->session->userdata('UserID');
+                $UserIPAddress = $this->session->userdata('UserIPAddress');
+                $UserName = $this->session->userdata('UserName');
+    
+                $log = [
+                    'LogMessage' => 'เพิ่มข้อมูลการพัฒนาบุคลากร  ชื่อ = "' . $this->input->post('DevelopmentActivityName') . '"',
+                    'LogUserID' => $UserID,
+                    'LogUsername' => $UserName ,
+                    'LogIpAddress' => $UserIPAddress,
+                    'LogCreation' => date('Y-m-d H:i:s')
+                ];
+    
+                $logresult = $this->db->insert('SYS_LOG', $log);
+
                 $this->session->set_flashdata('success',"บันทึกข้อมูลสำเร็จ");
                 redirect(base_url('list-teacher_development_activity')); //รอเพิ่มหน้า 
             }else{
@@ -64,7 +89,17 @@ class Teacher_development_activity_controller extends CI_Controller{
     }
 
      public function list_teacher_development_activity() {
+        $data = array();
+        $data = $this->session->userdata();
         
+        if (!empty($data['UserRights'])) {
+			//'300000', 'ข้อมูลการพัฒนาบุคลากร'
+			$R_300000 = $data['UserRights'][array_search('300000', array_column($data['UserRights'], 'UR_Code'))];
+			$data['R_300000'] = $R_300000;
+		} else {
+			$data['R_300000'] = NULL;
+		}
+
         if ( ! file_exists(APPPATH.'views/pages/dashboard/TeacherDevelopmentActivity/list-teacher_development_activity.php'))
         {
             // Whoops, we don't have a page for that!
@@ -103,6 +138,16 @@ class Teacher_development_activity_controller extends CI_Controller{
 
     }
     public function forms_edit_teacher_development_activity(){
+        $data = array();
+        $data = $this->session->userdata();
+        
+        if (!empty($data['UserRights'])) {
+			//'300000', 'ข้อมูลการพัฒนาบุคลากร'
+			$R_300000 = $data['UserRights'][array_search('300000', array_column($data['UserRights'], 'UR_Code'))];
+			$data['R_300000'] = $R_300000;
+		} else {
+			$data['R_300000'] = NULL;
+		}
 
         $TeacherID = $_GET['tid'];
         $DevelopmentActivityName = $_GET['name'];
@@ -160,6 +205,20 @@ class Teacher_development_activity_controller extends CI_Controller{
 
          $result =  $this->TeacherDevelopmentActivity_model->update_TeacherDevelopmentActivity( $Old_TeacherID, $Old_DevelopmentActivityName, $Old_DevelopmentActivityStartDate, $teacher_development_activity);
          if($result == 1 ){
+            $UserID = $this->session->userdata('UserID');
+            $UserIPAddress = $this->session->userdata('UserIPAddress');
+            $UserName = $this->session->userdata('UserName');
+
+            $log = [
+                'LogMessage' => 'แก้ไขข้อมูลการพัฒนาบุคลากร  ชื่อ = "' . $this->input->post('Old_DevelopmentActivityName') . '"',
+                'LogUserID' => $UserID,
+                'LogUsername' => $UserName ,
+                'LogIpAddress' => $UserIPAddress,
+                'LogCreation' => date('Y-m-d H:i:s')
+            ];
+
+            $logresult = $this->db->insert('SYS_LOG', $log);
+
              $this->session->set_flashdata('success',"แก้ไขข้อมูลสำเร็จ");
              redirect(base_url('list-teacher_development_activity'));
          }else{
@@ -174,9 +233,22 @@ class Teacher_development_activity_controller extends CI_Controller{
         $DevelopmentActivityName = $_GET['name'];
         $DevelopmentActivityStartDate  = $_GET['sdate'];
 
-
         $result =$this->TeacherDevelopmentActivity_model->delete_teacher_development_activity($TeacherID, $DevelopmentActivityName, $DevelopmentActivityStartDate);
         if($result == 1 ){
+            $UserID = $this->session->userdata('UserID');
+            $UserIPAddress = $this->session->userdata('UserIPAddress');
+            $UserName = $this->session->userdata('UserName');
+
+            $log = [
+                'LogMessage' => 'ลบข้อมูลการพัฒนาบุคลากร  ชื่อ = "' . $DevelopmentActivityName . '"',
+                'LogUserID' => $UserID,
+                'LogUsername' => $UserName ,
+                'LogIpAddress' => $UserIPAddress,
+                'LogCreation' => date('Y-m-d H:i:s')
+            ];
+
+            $logresult = $this->db->insert('SYS_LOG', $log);
+
             $this->session->set_flashdata('success',"ลบข้อมูลสำเร็จ");
             redirect(base_url('list-teacher_development_activity'));
         }else{

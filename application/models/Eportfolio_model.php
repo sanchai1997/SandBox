@@ -43,6 +43,7 @@ class Eportfolio_model  extends CI_Model {
     }
     public function delete_eportfolio($EPORTFOLIO_ID){   
         $data = [
+            'EPORTFOLIO_ID' => Date('YmdHis'),
             'DeleteStatus' => 1
         ];
         $this->db->where('EPORTFOLIO_ID', $EPORTFOLIO_ID);
