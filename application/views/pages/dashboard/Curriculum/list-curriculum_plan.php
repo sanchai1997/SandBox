@@ -63,10 +63,14 @@
                 <div class="row">
                     <div class="col">
                         <h5 class="card-title"><a href="list-curriculum_subject?cid=<?php echo $CurriculumID; ?>" class="btn btn-secondary" data-mdb-ripple-color="dark">ย้อนกลับ</a></h5>
-                    </div>            
+                    </div>    
+
+                    <?php if($R_200000 <> NULL && $R_200000['UR_Add']== "1"){ ?>        
                     <div class="col">
                         <h5 style="float: right; padding: 15px;" class="card-title"><a href="forms-curriculum_plan?sid=<?php echo $SubjectCode; ?>&&cid=<?php echo $CurriculumID; ?>" class="btn btn-success">เพิ่มข้อมูล</a></h5>
                     </div>
+                    <?php } ?> 
+
                 </div>
                 <table class="table table-borderless datatable">
                     <thead>
@@ -74,9 +78,14 @@
                             <th style="text-align: center;" scope="col">ปีการศึกษา</th>
                             <th style="text-align: center;" scope="col">ภาคเรียน</th>
                             <th style="text-align: center;" scope="col">เรื่อง</th>
+                            <?php if($R_200000 <> NULL && $R_200000['UR_Read']== "1"){ ?>
                             <th style="text-align: center;" scope="col">กิจกรรม</th>
                             <th style="text-align: center;" scope="col">รายละเอียด</th>
+                            <?php } ?> 
+
+                            <?php if($R_200000 <> NULL && ( $R_200000['UR_Edit']== "1" || $R_200000['UR_Delete']== "1") ){ ?>
                             <th style="text-align: center;" scope="col">ปฎิบัติ</th>
+                            <?php } ?> 
                         </tr>
                     </thead>
                     <tbody>
@@ -92,6 +101,8 @@
                                     ?>
                                 </th>
                                 <th style="text-align: center;" scope="col"><?php echo $lcp->PLAN_NAME?></th>
+
+                                <?php if($R_200000 <> NULL && $R_200000['UR_Read']== "1"){ ?>
                                 <td style="text-align: center;">
                                     <?php $list_curriculum_activity = $this->Curriculum_model->get_curriculum_activity_All($lcp->PLAN_ID); ?>
                                     <?php foreach($list_curriculum_activity as $lca) { ?>
@@ -164,9 +175,12 @@
                                             </div>
                                     </div>
                                         <div class="modal-footer">
+                                            <?php if( $R_200000 <> NULL &&  $R_200000['UR_Edit']== "1"  ){ ?>
                                             <a href='edit_forms-curriculum_activity?pid=<?php echo$lca->PLAN_ID ?>&&ACTIVITY_ID=<?php echo$lca->ACTIVITY_ID ?>&&sid=<?php echo $SubjectCode; ?>&&cid=<?php echo $CurriculumID; ?>' class="btn btn-warning">
                                                 <i class="bi bi-pencil-square"></i>
                                             </a>
+                                            <?php } ?>
+                                            
                                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ปิด</button>                                            </div>
                                         </div>
                                 </div>
@@ -174,9 +188,12 @@
                             <!----------------------------  END Modal view Activity --------------------------------->
 
                                     <?php } ?>
+
+                                    <?php if($R_200000 <> NULL && $R_200000['UR_Add']== "1"){ ?>
                                     <a href="forms-curriculum_activity?pid=<?php echo $lcp->PLAN_ID; ?>&&sid=<?php echo $SubjectCode; ?>&&cid=<?php echo $CurriculumID; ?>" class="fw-bold my-link">
                                             >>เพิ่มกิจกรรม>>
                                      </a>
+                                     <?php } ?>
                                     
                                 </td>
 
@@ -184,16 +201,24 @@
                                     <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#view<?php echo $lcp->PLAN_ID; ?>"><i class="bi bi-card-list"></i></button>
 
                                 </td>
-
-
+                                <?php } ?>
+                                            
+                                <?php if($R_200000 <> NULL && ( $R_200000['UR_Edit']== "1" || $R_200000['UR_Delete']== "1") ){ ?>
                                 <td style="text-align: center;">
-                                        <a href='edit_forms_curriculum_plan?pid=<?php echo $lcp->PLAN_ID; ?>&&sid=<?php echo $SubjectCode; ?>&&cid=<?php echo $CurriculumID; ?>' class="btn btn-warning">
-                                            <i class="bi bi-pencil-square"></i>
-                                        </a>
+                                    <?php if( $R_200000 <> NULL &&  $R_200000['UR_Edit']== "1"  ){ ?>
+                                    <a href='edit_forms_curriculum_plan?pid=<?php echo $lcp->PLAN_ID; ?>&&sid=<?php echo $SubjectCode; ?>&&cid=<?php echo $CurriculumID; ?>' class="btn btn-warning">
+                                        <i class="bi bi-pencil-square"></i>
+                                    </a>
+                                    <?php } ?>
+
+                                    <?php if( $R_200000 <> NULL &&  $R_200000['UR_Delete']== "1"  ){ ?>
                                     <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#delete<?php echo $lcp->PLAN_ID; ?>">
                                             <i class=" bi bi-trash"></i>
                                     </button>
+                                    <?php } ?>
                                 </td>
+                                <?php } ?>
+
                             </tr>
                             <!-- Modal view -->
                             <div class="modal fade" id="view<?php echo $lcp->PLAN_ID; ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">

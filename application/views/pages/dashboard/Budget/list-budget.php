@@ -78,10 +78,14 @@
 
                             <?php } ?>
                     </div>
+
+                    <?php if($R_400000 <> NULL && $R_400000['UR_Add']== "1"){ ?> 
                     <div class="col">
-                        <h5 style="float: right; padding: 15px;" class="card-title"><a href="" class="btn btn-success"><i class="bi bi-file-earmark-arrow-up"></i> อัพโหลดไฟล์</a>
+                        <h5 style="float: right; padding: 15px;" class="card-title">
                         &nbsp;&nbsp;<a href="forms-budget?sid=<?php echo $SchoolID; ?>" class="btn btn-success"><i class="bi bi-file-earmark-plus"></i> เพิ่มข้อมูล</a></h5>
                     </div>
+                    <?php } ?>
+
                 </div>
                 <table class="table table-borderless datatable">
                     <thead>
@@ -90,10 +94,14 @@
                             <th style="text-align: center;" scope="col">ปีการศึกษา</th>
                             <th style="text-align: center;" scope="col">ภาคเรียน</th>
                             <th style="text-align: center;" scope="col">ชื่อโครงการ</th>
+                            <?php if($R_400000 <> NULL && $R_400000['UR_Read']== "1"){ ?>
                             <th style="text-align: center;" scope="col">ข้อมูลเบิกจ่าย</th>
                             <th style="text-align: center;" scope="col">รายละเอียด</th>
+                            <?php } ?>
+
+                            <?php if($R_400000 <> NULL && ( $R_400000['UR_Edit']== "1" || $R_400000['UR_Delete']== "1") ){ ?>
                             <th style="text-align: center;" scope="col">ปฏิบัติ</th>
-                            
+                            <?php } ?>
                         </tr>
                     </thead>
                     <tbody>
@@ -114,6 +122,7 @@
                                 </td>
                                 <td style="text-align: center;"><?php echo $lb->BudgetProgram; ?></td>
                                 
+                                <?php if($R_400000 <> NULL && $R_400000['UR_Read']== "1"){ ?>
                                 <td style="text-align: center;"> 
                                 <?php $list_Expense = $this->Expense_model->get_expense_all($lb->BudgetID ); ?>
                                     <?php foreach($list_Expense as $le) { ?>
@@ -188,21 +197,34 @@
     
                                         if((count($list_Expense)==0 ) || ($limit_amount[0]->limit_amount>0 && count($list_Expense)>0 )) {
                                     ?>
+                                        <?php if($R_400000 <> NULL && $R_400000['UR_Add']== "1"){ ?>
                                         <a href='forms_Expense?bid=<?php echo $lb->BudgetID ;?>&&sid=<?php echo $SchoolID; ?>' class="fw-bold my-link">>>เพิ่มข้อมูลเบิกจ่าย<<</a>                                                            
+                                        <?php  }  ?>
+                                           
                                     <?php  }  ?>
-                            </td>
+                                </td>
+
                                 <td style="text-align: center;">
                                     <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#view<?php echo $i ;?>"><i class="bi bi-card-list"></i></button>
                                 </td>
+                                <?php  }  ?>
+
                             
+                                <?php if($R_400000 <> NULL && ( $R_400000['UR_Edit']== "1" || $R_400000['UR_Delete']== "1") ){ ?>
                                 <td style="text-align: center;">
+                                    <?php if( $R_400000 <> NULL &&  $R_400000['UR_Edit']== "1"  ){ ?>
                                     <a href='edit_forms_budget?bid=<?php echo $lb->BudgetID ;?>&&sid=<?php echo $SchoolID; ?>' class="btn btn-warning">
                                         <i class="bi bi-pencil-square"></i> 
                                     </a> 
+                                    <?php  }  ?>
+
+                                    <?php if( $R_400000 <> NULL &&  $R_400000['UR_Delete']== "1"  ){ ?>
                                     <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#delete<?php echo $i ;?>">
                                         <i class=" bi bi-trash"></i>
-                                    </button>                           
+                                    </button>   
+                                    <?php  }  ?>                        
                                 </td>
+                                <?php  }  ?>
                                 
                             </tr>
 

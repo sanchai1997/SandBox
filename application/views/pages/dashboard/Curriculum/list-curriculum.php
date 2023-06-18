@@ -69,34 +69,14 @@
                                                 <a class="dropdown-item" href="list_curriculum_by_school?sid=<?php echo $ls->SchoolID; ?>"><?php echo $ls->SchoolNameThai; ?></a>
                                             </li>
                                         <?php } ?>
-                                        <li><a class="dropdown-item" href="">ddddassssssssssssssssssssss</a></li>
-                                        <li><a class="dropdown-item" href="">ddddassssssssssssssssssssss</a></li>
-                                        <li><a class="dropdown-item" href="">ddddassssssssssssssssssssss</a></li>
-                                        <li><a class="dropdown-item" href="">ddddassssssssssssssssssssss</a></li>
-                                        <li><a class="dropdown-item" href="">ddddassssssssssssssssssssss</a></li>
-                                        <li><a class="dropdown-item" href="">ddddassssssssssssssssssssss</a></li>
-                                        <li><a class="dropdown-item" href="">ddddassssssssssssssssssssss</a></li>
-                                        <li><a class="dropdown-item" href="">ddddassssssssssssssssssssss</a></li>
-                                        <li><a class="dropdown-item" href="">ddddassssssssssssssssssssss</a></li>
-
-                                        <li><a class="dropdown-item" href="">ddddassssssssssssssssssssss</a></li>
-                                        <li><a class="dropdown-item" href="">ddddassssssssssssssssssssss</a></li>
-                                        <li><a class="dropdown-item" href="">ddddassssssssssssssssssssss</a></li>
-                                        <li><a class="dropdown-item" href="">ddddassssssssssssssssssssss</a></li>
-                                        <li><a class="dropdown-item" href="">ddddassssssssssssssssssssss</a></li>
-                                        <li><a class="dropdown-item" href="">ddddassssssssssssssssssssss</a></li>
-                                        <li><a class="dropdown-item" href="">ddddassssssssssssssssssssss</a></li>
-                                        <li><a class="dropdown-item" href="">ddddassssssssssssssssssssss</a></li>
-                                        <li><a class="dropdown-item" href="">ddddassssssssssssssssssssss</a></li>
-                                        <li><a class="dropdown-item" href="">ddddassssssssssssssssssssss</a></li>
-
                                     </ul>
                                 </div>
 
                             <?php } ?>
                         </h1>
                     </div>
-                    <?php if (!empty($School)) { ?>
+
+                    <?php if( (!empty($School)) && ($R_200000 <> NULL && $R_200000['UR_Add']== "1") ){ ?>
                         <div class="col">
                             <h5 style="float: right; padding: 15px;" class="card-title">&nbsp;&nbsp;<a href="forms-curriculum?sid=<?php echo $SchoolID; ?>" class="btn btn-success"><i class="bi bi-file-earmark-plus"></i> เพิ่มข้อมูล</a></h5>
                         </div>
@@ -108,9 +88,13 @@
                             <th style="text-align: center;" scope="col">ปีการศึกษา</th>
                             <th style="text-align: center;" scope="col">ภาคเรียน</th>
                             <th style="text-align: center;" scope="col">ชื่อหลักสูตร</th>
-                            <th style="text-align: center;" scope="col">หลักสูตรรายวิชา</th>
-                            <th style="text-align: center;" scope="col">รายละเอียด</th>
-                            <th style="text-align: center;" scope="col">ปฎิบัติ</th>
+                            <?php if($R_200000 <> NULL && $R_200000['UR_Read']== "1"){ ?>
+                                <th style="text-align: center;" scope="col">หลักสูตรรายวิชา</th>
+                                <th style="text-align: center;" scope="col">รายละเอียด</th>
+                            <?php } ?>
+                            <?php if($R_200000 <> NULL && ( $R_200000['UR_Edit']== "1" || $R_200000['UR_Delete']== "1") ){ ?>
+                                <th style="text-align: center;" scope="col">ปฎิบัติ</th>
+                            <?php } ?>
 
 
                         </tr>
@@ -131,22 +115,35 @@
                                         ?>
                                     </td>
                                     <td style="text-align: center;"><?php echo $ls->CurriculumName; ?></td>
+
+                                    <?php if($R_200000 <> NULL && $R_200000['UR_Read']== "1"){ ?>                                       
                                     <td style="text-align: center;">
                                         <a href='list-curriculum_subject?cid=<?php echo $ls->CurriculumID; ?>' class="btn btn-info">
                                             <i class="bi bi-eye-fill"></i>
                                         </a>
                                     </td>
+
                                     <td style="text-align: center;">
                                         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#view<?php echo $ls->CurriculumID; ?>"><i class="bi bi-card-list"></i></button>
                                     </td>
+                                    <?php } ?>
+
+                                    <?php if($R_200000 <> NULL && ( $R_200000['UR_Edit']== "1" || $R_200000['UR_Delete']== "1") ){ ?>
                                     <td style="text-align: center;">
+                                        <?php if( $R_200000 <> NULL &&  $R_200000['UR_Edit']== "1"  ){ ?>
                                         <a href='edit_forms-curriculum?cid=<?php echo $ls->CurriculumID; ?>&&sid=<?php echo $SchoolID; ?>' class="btn btn-warning">
                                             <i class="bi bi-pencil-square"></i>
                                         </a>
+                                        <?php } ?>
+
+                                        <?php if( $R_200000 <> NULL &&  $R_200000['UR_Delete']== "1"  ){ ?>
                                         <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#delete<?php echo $ls->CurriculumID; ?>">
                                             <i class=" bi bi-trash"></i>
                                         </button>
+                                        <?php } ?>
+
                                     </td>
+                                    <?php } ?>
 
                                 </tr>
                                 <!-- Modal -->

@@ -61,12 +61,12 @@ $pdf->Cell(0, 0, iconv('UTF-8', 'cp874', '- ประวัติส่วนต
 
 
 $pdf->SetFont('THSarabunPSK-Bold', '', 25);
-$pdf->Cell(0, 20, iconv('UTF-8', 'cp874', ''), 0, 1, );
+$pdf->Cell(0, 20, iconv('UTF-8', 'cp874', ''), 0, 1 );
 $pdf->Cell(0, 15, iconv('UTF-8', 'cp874', 'ข้อมูลส่วนตัว'), 0, 1 );
 $pdf->Line(9, 83, 200, 83);
 $pdf->SetFont('THSarabunPSK', '', 25);
 $pdf->SetLeftMargin(20); 
-$pdf->Cell(0,5, iconv('UTF-8', 'cp874', ''), 0, 1, );
+$pdf->Cell(0,5, iconv('UTF-8', 'cp874', ''), 0, 1 );
 $pdf->Cell(0, 15, iconv('UTF-8', 'cp874', 'ชื่อ-สกุล : ' .  $STUDENT->PREFIX_NAME . $STUDENT->StudentNameThai . '  ' . $STUDENT->StudentLastNameThai), 0, 1);
 $pdf->Cell(0, 5, iconv('UTF-8', 'cp874', 'วันเกิด : ' .  $STUDENT->StudentBirthDate ), 0, 1);
 
@@ -95,12 +95,12 @@ $result = $this->db->query('SELECT * FROM CLS_BLOOD');
 /* --- Profile --- */
 $pdf->SetLeftMargin(10);
 $pdf->SetFont('THSarabunPSK-Bold', '', 25);
-$pdf->Cell(0, 20, iconv('UTF-8', 'cp874', ''), 0, 1, );
+$pdf->Cell(0, 20, iconv('UTF-8', 'cp874', ''), 0, 1 );
 $pdf->Cell(0, 15, iconv('UTF-8', 'cp874', 'ประวัติทางการศึกษา'), 0, 1 );
 $pdf->Line(9, 178, 200, 178);
 $pdf->SetFont('THSarabunPSK', '', 25);
 $pdf->SetLeftMargin(20); 
-$pdf->Cell(0,5, iconv('UTF-8', 'cp874', ''), 0, 1, );
+$pdf->Cell(0,5, iconv('UTF-8', 'cp874', ''), 0, 1 );
 $pdf->Cell(0, 15, iconv('UTF-8', 'cp874', 'มัธยม 1-3 => เกรดเฉลี่ย : ' ), 0, 1);
 $pdf->SetLeftMargin(46);
     $result = $this->db->query('SELECT * FROM SCHOOL WHERE SchoolID = ' . $STUDENT->SchoolID . '');
@@ -136,7 +136,7 @@ $STUDENT_PROJECT =   $result->result();
 $pdf->SetFont('THSarabunPSK', '', 25);
 foreach ($STUDENT_PROJECT as $pj) { 
     $pdf->Image('assets/Eportfolio/document/' . $pj->STUDENT_PROJECT_DOCUMENT, 60, 90, 90, 0);
-    $pdf->Cell(60, 20,   $pj->STUDENT_PROJECT_DESCRIPTION , 0, 1, 'C');
+    $pdf->Cell(60, 20,  iconv('UTF-8', 'cp874', $pj->STUDENT_PROJECT_DESCRIPTION ), 0, 1);
 }
 
 
@@ -164,7 +164,7 @@ $STUDENT_GOODNESS =   $result->result();
 $pdf->SetFont('THSarabunPSK', '', 25);
 foreach ($STUDENT_GOODNESS as $gn) { 
     $pdf->Image('assets/Eportfolio/document/' . $gn->STUDENT_GOODNESS_DOCUMENT, 60, 90, 90, 0);
-    $pdf->Cell(60, 20,   $gn->STUDENT_GOODNESS_DESCRIPTION , 0, 1, 'C');
+    $pdf->Cell(60, 20,  iconv('UTF-8', 'cp874', $gn->STUDENT_GOODNESS_DESCRIPTION ), 0, 1);
 }
 
  

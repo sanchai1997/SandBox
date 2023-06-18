@@ -64,9 +64,13 @@
                     <div class="col">
                         <h5 class="card-title"><a href="list_curriculum_by_school?sid=<?php echo  $Curriculum[0]->SchoolID; ?>" class="btn btn-secondary" data-mdb-ripple-color="dark">ย้อนกลับ</a></h5>
                     </div>
+
+                    <?php if($R_200000 <> NULL && $R_200000['UR_Add']== "1"){ ?>
                     <div class="col">
                         <h5 style="float: right; padding: 15px;" class="card-title"><a href="forms-curriculum_subject?cid=<?php echo $CurriculumID; ?>" class="btn btn-success">เพิ่มข้อมูล</a></h5>
                     </div>
+                    <?php } ?> 
+                   
                 </div>
                 <table class="table table-borderless datatable">
                     <thead>
@@ -76,10 +80,14 @@
                             <th style="text-align: center;" scope="col">กลุ่มสาระการเรียนรู้</th>
                             <th style="text-align: center;" scope="col">ประเภทรายวิชา</th>
                             <th style="text-align: center;" scope="col">หน่วยกิต/น้ำหนัก</th>
+                            <?php if($R_200000 <> NULL && $R_200000['UR_Read']== "1"){ ?>
                             <th style="text-align: center;" scope="col">รายละเอียด</th>
                             <th style="text-align: center;" scope="col">สมรรถนะ</th>
                             <th style="text-align: center;" scope="col">แผนการเรียนรู้</th>
+                            <?php } ?> 
+                            <?php if($R_200000 <> NULL && ( $R_200000['UR_Edit']== "1" || $R_200000['UR_Delete']== "1") ){ ?>
                             <th style="text-align: center;" scope="col">ปฎิบัติ</th>
+                            <?php } ?>
                         </tr>
                     </thead>
                 
@@ -91,6 +99,8 @@
                                 <td style="text-align: center;"><?php echo $ls->SUBJECT_GROUP_NAME ; ?></td>
                                 <td style="text-align: center;"><?php echo $ls->SUBJECT_TYPE_NAME ; ?></td>
                                 <td style="text-align: center;"><?php echo $ls->Credit ; ?></td>
+
+                                <?php if($R_200000 <> NULL && $R_200000['UR_Read']== "1"){ ?>
                                 <td style="text-align: center;">
                                         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#view<?php echo $ls->SubjectCode; ?>"><i class="bi bi-card-list"></i></button>
                                 </td>
@@ -104,14 +114,23 @@
                                         <button type="button" class="btn btn-info"><i class="bi bi-eye-fill"></i></button> 
                                     </a>
                                 </td>
+                                <?php } ?>
+
+                                <?php if($R_200000 <> NULL && ( $R_200000['UR_Edit']== "1" || $R_200000['UR_Delete']== "1") ){ ?>
                                 <td style="text-align: center;">
+                                    <?php if( $R_200000 <> NULL &&  $R_200000['UR_Edit']== "1"  ){ ?>
                                     <a href='edit_forms-curriculum_subject?sid=<?php echo $ls->SubjectCode; ?>&&cid=<?php echo $ls->CurriculumID; ?>'>
                                         <button type="button" class="btn btn-warning"><i class="bi bi-pencil-square"></i></button> 
                                     </a>
+                                    <?php } ?>
+
+                                    <?php if( $R_200000 <> NULL &&  $R_200000['UR_Delete']== "1"  ){ ?>
                                     <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#delete<?php echo $ls->SubjectCode; ?>">
                                         <i class=" bi bi-trash"></i>
                                     </button>  
+                                    <?php } ?>
                                 </td>
+                                <?php } ?>
 
                             </tr>
                             <!-- Modal -->

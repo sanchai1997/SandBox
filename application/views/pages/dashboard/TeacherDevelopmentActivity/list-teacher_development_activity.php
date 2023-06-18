@@ -56,11 +56,12 @@
 
 
                 <div class="row">
-
+                    <?php if($R_300000 <> NULL && $R_300000['UR_Add']== "1"){ ?>
                     <div class="col">
                         <h5 style="float: right; padding: 15px;" class="card-title">
                         <a href="forms-teacher_development_activity" class="btn btn-success"><i class="bi bi-file-earmark-plus"></i> เพิ่มข้อมูล</a></h5>
                     </div>
+                    <?php } ?>  
                 </div>
                 <table class="table table-borderless datatable">
                     <thead>
@@ -72,8 +73,12 @@
                             <th style="text-align: center;" scope="col">จำนวนชั่วโมง</th>
                             <th style="text-align: center;" scope="col">วันที่เริ่มกิจกรรม</th>
                             <th style="text-align: center;" scope="col">เอกสารแนบ</th>
+                            <?php if($R_300000 <> NULL && $R_300000['UR_Read']== "1"){ ?>
                             <th style="text-align: center;" scope="col">รายละเอียด</th>
+                            <?php } ?>  
+                            <?php if($R_300000 <> NULL && ( $R_300000['UR_Edit']== "1" || $R_300000['UR_Delete']== "1") ){ ?>
                             <th style="text-align: center;" scope="col">ปฎิบัติ</th>
+                            <?php } ?>  
 
                         </tr>
                     </thead>
@@ -94,17 +99,29 @@
                                 <td style="text-align: center;"><?php echo $ls->DevelopmentActivityHour; ?></td>
                                 <td style="text-align: center;"><?php echo $ls->DevelopmentActivityStartDate; ?></td>
                                 <td style="text-align: center;"><a href="<?php echo base_url('assets/teacher_development/document/') ?><?php echo $ls->DevelopmentDocument; ?>" ><i class="bi bi-file-earmark-text-fill"></i></a> </td>
+                                
+                                <?php if($R_300000 <> NULL && $R_300000['UR_Read']== "1"){ ?>
                                 <td style="text-align: center;">
                                     <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#view<?php echo $ls->TeacherID; echo $ls->DevelopmentActivityName; echo $ls->DevelopmentActivityStartDate; ?>"><i class="bi bi-card-list"></i></button>
                                 </td>
+                                <?php } ?>  
+
+                                <?php if($R_300000 <> NULL && ( $R_300000['UR_Edit']== "1" || $R_300000['UR_Delete']== "1") ){ ?>
                                 <td style="text-align: center;">
+                                    <?php if( $R_300000 <> NULL &&  $R_300000['UR_Edit']== "1"  ){ ?>
                                     <a href='edit_forms-teacher_development_activity?tid=<?php echo $ls->TeacherID;?>&&name=<?php echo $ls->DevelopmentActivityName;?>&&sdate=<?php echo $ls->DevelopmentActivityStartDate;?>' class="btn btn-warning">
                                         <i class="bi bi-pencil-square"></i> 
                                     </a> 
+                                    <?php } ?>  
+
+                                    <?php if( $R_300000 <> NULL &&  $R_300000['UR_Delete']== "1"  ){ ?>
                                     <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#delete<?php echo $ls->TeacherID . $ls->DevelopmentActivityName . $ls->DevelopmentActivityStartDate ; ?>">
                                         <i class=" bi bi-trash"></i>
-                                    </button>                           
+                                    </button>    
+                                    <?php } ?>                         
                                 </td>
+                                <?php } ?>
+
                             </tr>
                             <!-- Modal -->
                             <div class="modal fade" id="view<?php echo $ls->TeacherID; echo $ls->DevelopmentActivityName; echo $ls->DevelopmentActivityStartDate; ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">

@@ -61,16 +61,21 @@
                     <div class="col">
                         <h5 class="card-title"><a href="list-curriculum_subject?cid=<?php echo $CurriculumID; ?>" class="btn btn-secondary" data-mdb-ripple-color="dark">ย้อนกลับ</a></h5>
                     </div>
+
+                    <?php if($R_200000 <> NULL && $R_200000['UR_Add']== "1"){ ?>
                     <div class="col">
                         <h5 style="float: right; padding: 15px;" class="card-title"><a href="forms-curriculum_school_competency?sid=<?php echo $SubjectCode; ?>&&cid=<?php echo $CurriculumID; ?>" class="btn btn-success">เพิ่มข้อมูล</a></h5>
                     </div>
+                    <?php } ?>  
                 </div>
                 <table class="table table-borderless datatable">
                     <thead>
                         <tr>
                             <th style="text-align: center;" scope="col">รหัสสมรรถนะ</th>
                             <th style="text-align: center;" scope="col">ชื่อสมรรถนะ</th></th>
+                            <?php if($R_200000 <> NULL && ( $R_200000['UR_Edit']== "1" || $R_200000['UR_Delete']== "1") ){ ?>
                             <th style="text-align: center;" scope="col">ปฎิบัติ</th>
+                            <?php } ?> 
                         </tr>
                     </thead>
                 
@@ -80,14 +85,22 @@
                                 <td style="text-align: center;"><?php echo $ls-> COMPETENCY_CODE; ?></td>
                                 <td style="text-align: center;"><?php echo $ls->COMPETENCY_NAME ; ?></td>
 
+                                <?php if($R_200000 <> NULL && ( $R_200000['UR_Edit']== "1" || $R_200000['UR_Delete']== "1") ){ ?>
                                 <td style="text-align: center;">
+                                    <?php if( $R_200000 <> NULL &&  $R_200000['UR_Edit']== "1"  ){ ?>
                                     <a href='edit_forms-curriculum_school_competency?sid=<?php echo $ls->SubjectCode; ?>&&cid=<?php echo $ls->CurriculumID; ?>&&cpid=<?php echo $ls->CompetencyCode ; ?>'>
                                         <button type="button" class="btn btn-warning"><i class="bi bi-pencil-square"></i></button> 
                                     </a>
+                                    <?php } ?> 
+
+                                    <?php if( $R_200000 <> NULL &&  $R_200000['UR_Delete']== "1"  ){ ?>
                                     <button type="button" class="btn btn-danger"  data-bs-toggle="modal" data-bs-target="#delete<?= $ls->CompetencyCode; ?>">
                                         <i class=" bi bi-trash"></i>
                                     </button>  
+                                    <?php } ?> 
                                 </td>
+                                <?php } ?> 
+
                             </tr>
                             <!-- Modal -->
                             <div class="modal fade" id="delete<?= $ls->CompetencyCode; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
