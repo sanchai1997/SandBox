@@ -562,6 +562,7 @@ $route['call_select_1'] = 'Fm_evaluation/get_ACHIEVEMENT_ASSESSMENT';
 
 $route['down_csv_criteria'] = 'Fm_evaluation/down_csv_criteria';
 $route['uplod_criteria'] = 'Fm_evaluation/uplod_criteria';
+$route['download-criteria'] = 'Fm_evaluation/print_excel';
 
 
 //////////////////SatunEdu@2023#!/// evaluation - END  26107403/////////////////////////

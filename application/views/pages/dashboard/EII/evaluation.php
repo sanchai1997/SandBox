@@ -302,6 +302,12 @@
                                                                                                                     'ass_ria_forms_p1?page=sh1'
                                                                                                                 ); ?>" class="btn btn-success"><i class="bi bi-file-earmark-plus"></i>
                                                 เพิ่มข้อมูล</a></h5>
+
+
+                                                <div class="col">
+                                                <h5 style="float: right; padding: 15px;" class="card-title">
+                                                    <a class="btn btn-info text-white" href="<?php echo site_url('download-criteria'); ?>" target="_blank" >ดาวน์โหลดตัวชี้วัด </a></h5>
+                                                </div>
                                                 <?php } ?>
                                     </div>
                                 </div>
@@ -1301,9 +1307,9 @@
                                     <table class="table table-bordered">
                                         <thead class="table-Ligth">
                                             <tr>
-                                                <td class="col-1">ลำดับ</td>
-                                                <td>หัวข้อ</td>
-                                                <td class="col-1">คะแนน</td>
+                                                <td class="col-2">ลำดับ</td>
+                                                <td class="col-8">หัวข้อ</td>
+                                                <td class="col-2">คะแนน</td>
                                             </tr>
                                         </thead>
                                         <?php

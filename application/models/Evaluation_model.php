@@ -1733,4 +1733,7 @@ $UserName = $this->session->userdata('UserName');
 		}
 		$this->db->trans_complete();
 	}
+	public function download_excel(){
+		
+	}
 }
