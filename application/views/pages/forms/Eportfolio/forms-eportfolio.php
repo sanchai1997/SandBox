@@ -75,13 +75,14 @@
                 <div class="col-md-16">
                     <div class="input-group">
                         <label class="input-group-text" for="inputGroupFile01">ผลงาน <font color="red"> *</font></label>
-                        <input type="file" class="form-control" accept="image/*" name="STUDENT_PROJECT_DOCUMENT" id="STUDENT_PROJECT_DOCUMENT" placeholder="ผลงาน" >
+                        <input type="file" class="form-control" accept="image/*" name="STUDENT_PROJECT_DOCUMENT1" id="STUDENT_PROJECT_DOCUMENT1" placeholder="ผลงาน" >
+                        
                     </div>
                 </div>
 
                 <div class="col-md-16">
                   <div class="form-floating">
-                    <textarea type="text" class="form-control" name="STUDENT_PROJECT_DESCRIPTION" id="STUDENT_PROJECT_DESCRIPTION" placeholder="คำอธิบายผลงาน"></textarea>
+                    <textarea type="text" class="form-control" name="STUDENT_PROJECT_DESCRIPTION1" id="STUDENT_PROJECT_DESCRIPTION1" placeholder="คำอธิบายผลงาน"></textarea>
                     <label >คำอธิบายผลงาน<font color="red"> *</font></label>
                   </div>
                 </div>
@@ -91,20 +92,20 @@
                 <input type="hidden" value="1" id="total_PROJECT" name="total_PROJECT">
 
                 <div style="text-align: right; padding: 0px; ">
-                  <input type="button" onclick="add_PROJECT()" value="เพิ่มผลงาน" class="btn btn-success" >
-                  <input type="button" onclick="remove_PROJECT(eportfolio)" value="ลบผลงาน" class="btn btn-danger" >
+                  <input type="button" onclick="add_PROJECT()" value="เพิ่มผลงาน" class="btn btn-success" id="btn_add_PROJECT">
+                  <input type="button" onclick="remove_PROJECT(eportfolio)" value="ลบผลงาน" class="btn btn-danger"  id="btn_remove_PROJECT">
                 </div> 
 
                 <div class="col-md-16">
                     <div class="input-group">
                         <label class="input-group-text" for="inputGroupFile01">ความดี <font color="red"> *</font></label>
-                        <input type="file" class="form-control" accept="image/*" name="STUDENT_GOODNESS_DOCUMENT" id="STUDENT_GOODNESS_DOCUMENT" placeholder="ความดี">
+                        <input type="file" class="form-control" accept="image/*" name="STUDENT_GOODNESS_DOCUMENT1" id="STUDENT_GOODNESS_DOCUMENT1" placeholder="ความดี">
                     </div>
                 </div>
 
                 <div class="col-md-16">
                   <div class="form-floating">
-                    <textarea type="text" class="form-control" name="STUDENT_GOODNESS_DESCRIPTION" id="STUDENT_GOODNESS_DESCRIPTION" placeholder="คำอธิบายความดี"></textarea>
+                    <textarea type="text" class="form-control" name="STUDENT_GOODNESS_DESCRIPTION1" id="STUDENT_GOODNESS_DESCRIPTION1" placeholder="คำอธิบายความดี"></textarea>
                     <label >คำอธิบายความดี<font color="red"> *</font></label>
                   </div>
                 </div>
@@ -114,8 +115,8 @@
                 <input type="hidden" value="1" id="total_GOODNESS" name="total_GOODNESS">
 
                 <div style="text-align: right; padding: 0px; ">
-                  <input type="button" onclick="add_GOODNESS()" value="เพิ่มความดี " class="btn btn-success" >
-                  <input type="button" onclick="remove_GOODNESS(eportfolio)" value="ลบความดี" class="btn btn-danger" >
+                  <input type="button" onclick="add_GOODNESS()" value="เพิ่มความดี " class="btn btn-success" id="btn_add_GOODNESS">
+                  <input type="button" onclick="remove_GOODNESS(eportfolio)" value="ลบความดี" class="btn btn-danger"  id="btn_remove_GOODNESS">
                 </div> 
 
 
@@ -179,22 +180,29 @@
 ////PROJECT
   function add_PROJECT(){
     var new_PROJECT_no = parseInt($('#total_PROJECT').val())+1;
-    var new_input= //"<input type='file' id='new_PROJECT"+new_PROJECT_no+"'>";
-    "<div  class='col-md-16 div_PROJECT"+new_PROJECT_no+"'"+" style='padding-bottom: 1rem;'>" +
-      "<div class='input-group' style='padding-bottom: 1rem;'>"+
-                      "  <label class='input-group-text' >ผลงาน </label> " +
-                      "  <input type='file' class='form-control' accept='image/*' id='STUDENT_PROJECT_DOCUMENT"+new_PROJECT_no+"'"+" name='STUDENT_PROJECT_DOCUMENT"+new_PROJECT_no+"'"+  "placeholder='ผลงาน' > " +
-      "  </div> " +
-      "<div class='col-md-16'>"+
-                  "<div class='form-floating'>"+
-                   " <textarea type='text' class='form-control' name='STUDENT_PROJECT_DESCRIPTION"+new_PROJECT_no+"' id='STUDENT_PROJECT_DESCRIPTION"+new_PROJECT_no+"' placeholder='คำอธิบายผลงาน'></textarea> " +
-                   " <label >คำอธิบายผลงาน<font color='red'> </font></label> " +
-                    "  </div> " +
-      "  </div> " +
-  "</div> " ;
-                
-    $('.div_PROJECT').append(new_input);
-    $('#total_PROJECT').val(new_PROJECT_no)
+    if(new_PROJECT_no<5){
+      $('#btn_add_PROJECT').prop('disabled', false);
+
+      var new_input= //"<input type='file' id='new_PROJECT"+new_PROJECT_no+"'>";
+      "<div  class='col-md-16 div_PROJECT"+new_PROJECT_no+"'"+" style='padding-bottom: 1rem;'>" +
+        "<div class='input-group' style='padding-bottom: 1rem;'>"+
+                        "  <label class='input-group-text' >ผลงาน </label> " +
+                        "  <input type='file' class='form-control' accept='image/*' id='STUDENT_PROJECT_DOCUMENT"+new_PROJECT_no+"'"+" name='STUDENT_PROJECT_DOCUMENT"+new_PROJECT_no+"'"+  "placeholder='ผลงาน' > " +
+        "  </div> " +
+        "<div class='col-md-16'>"+
+                    "<div class='form-floating'>"+
+                    " <textarea type='text' class='form-control' name='STUDENT_PROJECT_DESCRIPTION"+new_PROJECT_no+"' id='STUDENT_PROJECT_DESCRIPTION"+new_PROJECT_no+"' placeholder='คำอธิบายผลงาน'></textarea> " +
+                    " <label >คำอธิบายผลงาน<font color='red'> </font></label> " +
+                      "  </div> " +
+        "  </div> " +
+    "</div> " ;
+                  
+      $('.div_PROJECT').append(new_input);
+      $('#total_PROJECT').val(new_PROJECT_no)
+    }
+    if(new_PROJECT_no==4){
+      $('#btn_add_PROJECT').prop('disabled', true);
+    }
     return false;
   }
 
@@ -204,28 +212,39 @@
       $('.div_PROJECT'+last_PROJECT_no).remove();
       $('#total_PROJECT').val(last_PROJECT_no-1);
     }
+
+    if(last_PROJECT_no==4){
+      $('#btn_add_PROJECT').prop('disabled', false);
+    }
     return false;
   }
 
 //////GOODNESS
   function add_GOODNESS(){
     var new_GOODNESS_no = parseInt($('#total_GOODNESS').val())+1;
-    var new_input= 
-    "<div  class='col-md-16 div_GOODNESS"+new_GOODNESS_no+"'"+" style='padding-bottom: 1rem;'>" +
-      "<div class='input-group' style='padding-bottom: 1rem;'>"+
-                      "  <label class='input-group-text' >ความดี </label> " +
-                      "  <input type='file' class='form-control' accept='image/*' id='STUDENT_GOODNESS_DOCUMENT"+new_GOODNESS_no+"'"+" name='STUDENT_GOODNESS_DOCUMENT"+new_GOODNESS_no+"'"+  "placeholder='ความดี' > " +
-      "  </div> " +
-      "<div class='col-md-16'>"+
-                  "<div class='form-floating'>"+
-                   " <textarea type='text' class='form-control' name='STUDENT_GOODNESS_DESCRIPTION"+new_GOODNESS_no+"' id='STUDENT_GOODNESS_DESCRIPTION"+new_GOODNESS_no+"' placeholder='คำอธิบายความดี'></textarea> " +
-                   " <label >คำอธิบายความดี<font color='red'> </font></label> " +
-                    "  </div> " +
-      "  </div> " +
-    "  </div> " ;
-                
-    $('.div_GOODNESS').append(new_input);
-    $('#total_GOODNESS').val(new_GOODNESS_no)
+    if(new_GOODNESS_no<5){
+      $('#btn_add_GOODNESS').prop('disabled', false);
+      var new_input= 
+      "<div  class='col-md-16 div_GOODNESS"+new_GOODNESS_no+"'"+" style='padding-bottom: 1rem;'>" +
+        "<div class='input-group' style='padding-bottom: 1rem;'>"+
+                        "  <label class='input-group-text' >ความดี </label> " +
+                        "  <input type='file' class='form-control' accept='image/*' id='STUDENT_GOODNESS_DOCUMENT"+new_GOODNESS_no+"'"+" name='STUDENT_GOODNESS_DOCUMENT"+new_GOODNESS_no+"'"+  "placeholder='ความดี' > " +
+        "  </div> " +
+        "<div class='col-md-16'>"+
+                    "<div class='form-floating'>"+
+                    " <textarea type='text' class='form-control' name='STUDENT_GOODNESS_DESCRIPTION"+new_GOODNESS_no+"' id='STUDENT_GOODNESS_DESCRIPTION"+new_GOODNESS_no+"' placeholder='คำอธิบายความดี'></textarea> " +
+                    " <label >คำอธิบายความดี<font color='red'> </font></label> " +
+                      "  </div> " +
+        "  </div> " +
+      "  </div> " ;
+                  
+      $('.div_GOODNESS').append(new_input);
+      $('#total_GOODNESS').val(new_GOODNESS_no)
+    } 
+    if(new_GOODNESS_no==4){
+      $('#btn_add_GOODNESS').prop('disabled', true);
+    }
+
     return false;
   }
 
@@ -235,6 +254,11 @@
       $('.div_GOODNESS'+last_GOODNESS_no).remove();
       $('#total_GOODNESS').val(last_GOODNESS_no-1);
     }
+
+    if(last_GOODNESS_no==4){
+      $('#btn_add_GOODNESS').prop('disabled', false);
+    }
+
     return false;
   }
 
@@ -262,23 +286,90 @@
       return false;
    }
    ///////////////
-   if(frm.STUDENT_PROJECT_DOCUMENT.value==""){
-      alert("กรุณาแนบผลงาน")
-      return false;
-   }
-   if(frm.STUDENT_PROJECT_DESCRIPTION.value==""){
-      alert("กรุณากรอกคำอธิบายผลงาน")
-      return false;
-   }
-   
-   if(frm.STUDENT_GOODNESS_DOCUMENT.value==""){
-      alert("กรุณาแนบความดี ")
-      return false;
-   }
-   if(frm.STUDENT_GOODNESS_DESCRIPTION.value==""){
-      alert("กรุณากรอกคำอธิบายความดี")
-      return false;
-   }
+   var count_PROJECT = $('#total_PROJECT').val();
+    for(var i=1; i<=count_PROJECT; i++){
+      if(i==1){
+        if(frm.STUDENT_PROJECT_DOCUMENT1.value==""){
+          alert("กรุณาแนบผลงาน")
+          return false;
+        }
+        if(frm.STUDENT_PROJECT_DESCRIPTION1.value==""){
+            alert("กรุณากรอกคำอธิบายผลงาน")
+            return false;
+        }
+      }else if(i==2){
+        if(frm.STUDENT_PROJECT_DOCUMENT2.value==""){
+          alert("กรุณาแนบผลงาน")
+          return false;
+        }
+        if(frm.STUDENT_PROJECT_DESCRIPTION2.value==""){
+            alert("กรุณากรอกคำอธิบายผลงาน")
+            return false;
+        }
+      }else if(i==3){
+        if(frm.STUDENT_PROJECT_DOCUMENT3.value==""){
+          alert("กรุณาแนบผลงาน")
+          return false;
+        }
+        if(frm.STUDENT_PROJECT_DESCRIPTION3.value==""){
+            alert("กรุณากรอกคำอธิบายผลงาน")
+            return false;
+        }
+      }else if(i==4){
+        if(frm.STUDENT_PROJECT_DOCUMENT4.value==""){
+          alert("กรุณาแนบผลงาน")
+          return false;
+        }
+        if(frm.STUDENT_PROJECT_DESCRIPTION4.value==""){
+            alert("กรุณากรอกคำอธิบายผลงาน")
+            return false;
+        }
+      }
+    
+    }
+
+    var count_GOODNESS = $('#total_GOODNESS').val();
+    for(var i=1; i<=count_GOODNESS; i++){
+      if(i==1){
+        if(frm.STUDENT_GOODNESS_DOCUMENT1.value==""){
+          alert("กรุณาแนบความดี")
+          return false;
+        }
+        if(frm.STUDENT_GOODNESS_DESCRIPTION1.value==""){
+            alert("กรุณากรอกคำอธิบายความดี")
+            return false;
+        }
+      }else if(i==2){
+        if(frm.STUDENT_GOODNESS_DOCUMENT2.value==""){
+          alert("กรุณาแนบความดี")
+          return false;
+        }
+        if(frm.STUDENT_GOODNESS_DESCRIPTION2.value==""){
+            alert("กรุณากรอกคำอธิบายความดี")
+            return false;
+        }
+      }else if(i==3){
+        if(frm.STUDENT_GOODNESS_DOCUMENT3.value==""){
+          alert("กรุณาแนบความดี")
+          return false;
+        }
+        if(frm.STUDENT_GOODNESS_DESCRIPTION3.value==""){
+            alert("กรุณากรอกคำอธิบายความดี")
+            return false;
+        }
+      }else if(i==4){
+        if(frm.STUDENT_GOODNESS_DOCUMENT4.value==""){
+          alert("กรุณาแนบความดี")
+          return false;
+        }
+        if(frm.STUDENT_GOODNESS_DESCRIPTION4.value==""){
+            alert("กรุณากรอกคำอธิบายความดี")
+            return false;
+        }
+      }
+    
+    }
+
    /////
    if(frm.STUDENT_USEFULNESS.value==""){
       alert("กรุณากรอกคุณประโยชน์")

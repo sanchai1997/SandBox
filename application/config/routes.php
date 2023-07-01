@@ -8,8 +8,6 @@ $route['translate_uri_dashes'] = FALSE;
 
 //////////////////////// ROUTE LOIN ////////////////////////
 $route['login'] = 'login';
-$route['Admin/ConfigSystem'] = 'Admin/ConfigSystem';
-
 /////////////////////// LOIN - END /////////////////////////
 
 
@@ -134,7 +132,7 @@ $route['edit-OCCUPATION']['post'] = 'Area_identittyController/edit_OCCUPATION';
 //school
 $route['school'] = 'school/index';
 $route['forms-school'] = 'forms_school/index';
-$route['add-school']['post'] = 'forms_school/add_school';
+$route['add-school/(:any)/(:any)/(:any)']['post'] = 'forms_school/add_school/$1/$2/$3';
 $route['edit-school-main'] = 'forms_school/edit_school_main';
 $route['edit-forms-school-address'] = 'forms_school/edit_forms_school_address';
 $route['edit-forms-school-contact'] = 'forms_school/edit_forms_school_contact';
@@ -144,58 +142,67 @@ $route['edit-forms-school-teaching'] = 'forms_school/edit_forms_school_teaching'
 $route['edit-forms-school-statistical'] = 'forms_school/edit_forms_school_statistical';
 
 
-$route['update-school-main/(:num)/(:any)'] = 'forms_school/update_school_main/$1/$2';
-$route['update-school-address/(:num)'] = 'forms_school/update_school_address/$1';
-$route['update-school-contact/(:num)'] = 'forms_school/update_school_contact/$1';
-$route['update-school-administrator/(:num)'] = 'forms_school/update_school_administrator/$1';
-$route['update-school-utilities/(:num)'] = 'forms_school/update_school_utilities/$1';
-$route['update-school-teaching/(:num)'] = 'forms_school/update_school_teaching/$1';
-$route['update-school-statistical/(:num)'] = 'forms_school/update_school_statistical/$1';
+$route['update-school-main/(:num)/(:any)/(:any)/(:any)/(:any)'] = 'forms_school/update_school_main/$1/$2/$3/$4/$5';
+$route['update-school-address/(:num)/(:any)/(:any)/(:any)'] = 'forms_school/update_school_address/$1/$2/$3/$4';
+$route['update-school-contact/(:num)/(:any)/(:any)/(:any)'] = 'forms_school/update_school_contact/$1/$2/$3/$4';
+$route['update-school-administrator/(:num)/(:any)/(:any)/(:any)'] = 'forms_school/update_school_administrator/$1/$2/$3/$4';
+$route['update-school-utilities/(:num)/(:any)/(:any)/(:any)'] = 'forms_school/update_school_utilities/$1/$2/$3/$4';
+$route['update-school-teaching/(:num)/(:any)/(:any)/(:any)'] = 'forms_school/update_school_teaching/$1/$2/$3/$4';
+$route['update-school-statistical/(:num)/(:any)/(:any)/(:any)'] = 'forms_school/update_school_statistical/$1/$2/$3/$4';
 
 
-$route['delete-school/(:num)'] = 'forms_school/delete_school/$1';
+$route['delete-school/(:num)/(:any)/(:any)/(:any)'] = 'forms_school/delete_school/$1/$2/$3/$4';
 
 //classrom
 $route['school-classroom'] = 'school/classroom';
 $route['forms-school-classroom'] = 'forms_school/classroom';
-$route['add-classroom/(:num)']['post'] = 'forms_school/add_classroom/$1';
+$route['add-classroom/(:num)/(:any)/(:any)/(:any)']['post'] = 'forms_school/add_classroom/$1/$2/$3/$4';
 $route['edit-forms-classroom'] = 'forms_school/edit_classroom';
-$route['update-classroom/(:num)/(:num)'] = 'forms_school/update_classroom/$1/$2';
-$route['delete-classroom/(:num)/(:num)'] = 'forms_school/delete_classroom/$1/$2';
+$route['update-classroom/(:num)/(:num)/(:any)/(:any)/(:any)'] = 'forms_school/update_classroom/$1/$2/$3/$4/$5';
+$route['delete-classroom/(:num)/(:num)/(:any)/(:any)/(:any)'] = 'forms_school/delete_classroom/$1/$2/$3/$4/$5';
 
 //AWARD
 $route['school-award'] = 'school/award';
 $route['forms-school-award'] = 'forms_school/award';
-$route['add-award/(:num)']['post'] = 'forms_school/add_award/$1';
+$route['add-award/(:num)/(:any)/(:any)/(:any)']['post'] = 'forms_school/add_award/$1/$2/$3/$4';
 $route['edit-forms-award'] = 'forms_school/edit_award';
-$route['update-award/(:num)/(:num)/(:any)'] = 'forms_school/update_award/$1/$2/$3';
-$route['delete-award/(:num)/(:num)/(:any)'] = 'forms_school/delete_award/$1/$2/$3';
+$route['update-award/(:num)/(:num)/(:any)/(:any)/(:any)'] = 'forms_school/update_award/$1/$2/$3/$4/$5';
+$route['delete-award/(:num)/(:num)/(:any)/(:any)/(:any)'] = 'forms_school/delete_award/$1/$2/$3/$4/$5';
 
 //building
 $route['school-building'] = 'school/building';
 $route['forms-school-building'] = 'forms_school/building';
-$route['add-building/(:num)']['post'] = 'forms_school/add_building/$1';
+$route['add-building/(:num)/(:any)/(:any)/(:any)']['post'] = 'forms_school/add_building/$1/$2/$3/$4';
 $route['edit-forms-building'] = 'forms_school/edit_building';
-$route['update-building/(:num)/(:any)'] = 'forms_school/update_building/$1/$2';
-$route['delete-building/(:num)/(:any)'] = 'forms_school/delete_building/$1/$2';
+$route['update-building/(:num)/(:any)/(:any)/(:any)'] = 'forms_school/update_building/$1/$2/$3/$4';
+$route['delete-building/(:num)/(:any)/(:any)/(:any)'] = 'forms_school/delete_building/$1/$2/$3/$4';
 
 ////////////////////// SCHOOL - END /////////////////////////
 
 //////////////////////UploadFile /////////////////////////
-$route['uploadfile-school'] = 'forms_school/uploadfile_school';
+$route['uploadfile-school/(:any)/(:any)/(:any)'] = 'forms_school/uploadfile_school/$1/$2/$3';
 $route['school-uploaddetail'] = 'school/school_uploaddetail';
 
-$route['uploadfile-student'] = 'forms_student/uploadfile_student';
-//////////////////////UploadFile - END //////////////////
+$route['uploadfile-student/(:any)/(:any)/(:any)'] = 'forms_student/uploadfile_student/$1/$2/$3';
+$route['student-uploaddetail'] = 'student/student_uploaddetail';
 
+$route['uploadfile-teacher/(:any)/(:any)/(:any)'] = 'forms_teacher/uploadfile_teacher/$1/$2/$3';
+$route['teacher-uploaddetail'] = 'teacher/teacher_uploaddetail';
+
+$route['uploadfile-personnel/(:any)/(:any)/(:any)'] = 'forms_personnel/uploadfile_personnel/$1/$2/$3';
+$route['personnel-uploaddetail'] = 'personnel/personnel_uploaddetail';
+
+$route['uploadfile-transcript/(:any)/(:any)/(:any)'] = 'forms_transcript/uploadfile_transcript/$1/$2/$3';
+$route['transcript-uploaddetail'] = 'transcript/transcript_uploaddetail';
+//////////////////////UploadFile - END //////////////////
 
 ////////////////////// ROUTE STUDENT ////////////////////////
 //student
 $route['student'] = 'student/index';
 $route['forms-student'] = 'forms_student';
 $route['forms-student-select'] = 'forms_student/forms_student_select';
-$route['add-student/(:num)']['post'] = 'forms_student/add_student/$1';
-$route['add-student-select/(:num)/(:num)/(:num)/(:num)']['post'] = 'forms_student/add_student_select/$1/$2/$3/$4';
+$route['add-student/(:num)/(:any)/(:any)/(:any)']['post'] = 'forms_student/add_student/$1/$2/$3/$4';
+$route['add-student-select/(:num)/(:num)/(:num)/(:num)/(:any)/(:any)/(:any)']['post'] = 'forms_student/add_student_select/$1/$2/$3/$4/$5/$6/$7';
 $route['edit-forms-student-main'] = 'forms_student/edit_forms_student_main';
 $route['edit-forms-student-person'] = 'forms_student/edit_forms_student_person';
 $route['edit-forms-student-address'] = 'forms_student/edit_forms_student_address';
@@ -205,18 +212,16 @@ $route['edit-forms-student-journey'] = 'forms_student/edit_forms_student_journey
 $route['edit-forms-student-disadvantaged'] = 'forms_student/edit_forms_student_disadvantaged';
 $route['edit-forms-student-talent'] = 'forms_student/edit_forms_student_talent';
 
-$route['update-student-main/(:any)/(:num)/(:num)/(:num)/(:num)/(:any)']['post'] = 'forms_student/update_student_main/$1/$2/$3/$4/$5/$6';
-$route['update-student-person/(:any)/(:num)/(:num)/(:num)/(:num)']['post'] = 'forms_student/update_student_person/$1/$2/$3/$4/$5';
-$route['update-student-address/(:any)/(:num)/(:num)/(:num)/(:num)']['post'] = 'forms_student/update_student_address/$1/$2/$3/$4/$5';
-$route['update-student-parents/(:any)/(:num)/(:num)/(:num)/(:num)']['post'] = 'forms_student/update_student_parents/$1/$2/$3/$4/$5';
-$route['update-student-family/(:any)/(:num)/(:num)/(:num)/(:num)']['post'] = 'forms_student/update_student_family/$1/$2/$3/$4/$5';
-$route['update-student-journey/(:any)/(:num)/(:num)/(:num)/(:num)']['post'] = 'forms_student/update_student_journey/$1/$2/$3/$4/$5';
-$route['update-student-disadvantaged/(:any)/(:num)/(:num)/(:num)/(:num)']['post'] = 'forms_student/update_student_disadvantaged/$1/$2/$3/$4/$5';
-$route['update-student-talent/(:any)/(:num)/(:num)/(:num)/(:num)']['post'] = 'forms_student/update_student_talent/$1/$2/$3/$4/$5';
+$route['update-student-main/(:any)/(:num)/(:num)/(:num)/(:num)/(:any)/(:any)/(:any)/(:any)']['post'] = 'forms_student/update_student_main/$1/$2/$3/$4/$5/$6/$7/$8/$9';
+$route['update-student-person/(:any)/(:num)/(:num)/(:num)/(:num)/(:any)/(:any)/(:any)']['post'] = 'forms_student/update_student_person/$1/$2/$3/$4/$5/$6/$7/$8';
+$route['update-student-address/(:any)/(:num)/(:num)/(:num)/(:num)/(:any)/(:any)/(:any)']['post'] = 'forms_student/update_student_address/$1/$2/$3/$4/$5/$6/$7/$8';
+$route['update-student-parents/(:any)/(:num)/(:num)/(:num)/(:num)/(:any)/(:any)/(:any)']['post'] = 'forms_student/update_student_parents/$1/$2/$3/$4/$5/$6/$7/$8';
+$route['update-student-family/(:any)/(:num)/(:num)/(:num)/(:num)/(:any)/(:any)/(:any)']['post'] = 'forms_student/update_student_family/$1/$2/$3/$4/$5/$6/$7/$8';
+$route['update-student-journey/(:any)/(:num)/(:num)/(:num)/(:num)/(:any)/(:any)/(:any)']['post'] = 'forms_student/update_student_journey/$1/$2/$3/$4/$5/$6/$7/$8';
+$route['update-student-disadvantaged/(:any)/(:num)/(:num)/(:num)/(:num)/(:any)/(:any)/(:any)']['post'] = 'forms_student/update_student_disadvantaged/$1/$2/$3/$4/$5/$6/$7/$8';
+$route['update-student-talent/(:any)/(:num)/(:num)/(:num)/(:num)/(:any)/(:any)/(:any)']['post'] = 'forms_student/update_student_talent/$1/$2/$3/$4/$5/$6/$7/$8';
 
-
-$route['delete-student/(:any)/(:num)/(:num)/(:num)/(:num)'] = 'forms_student/delete_student/$1/$2/$3/$4/$5';
-
+$route['delete-student/(:any)/(:num)/(:num)/(:num)/(:num)/(:any)/(:any)'] = 'forms_student/delete_student/$1/$2/$3/$4/$5/$6/$7';
 ///////////////////// STUDENT - END /////////////////////////
 
 
@@ -226,8 +231,8 @@ $route['delete-student/(:any)/(:num)/(:num)/(:num)/(:num)'] = 'forms_student/del
 $route['teacher'] = 'teacher/index';
 $route['forms-teacher'] = 'forms_teacher';
 $route['forms-teacher-select'] = 'forms_teacher/forms_teacher_select';
-$route['add-teacher/(:num)']['post'] = 'forms_teacher/add_teacher/$1';
-$route['add-teacher-select/(:num)/(:num)/(:num)/(:num)/(:num)']['post'] = 'forms_teacher/add_teacher_select/$1/$2/$3/$4/$5';
+$route['add-teacher/(:num)/(:any)/(:any)/(:any)']['post'] = 'forms_teacher/add_teacher/$1/$2/$3/$4';
+$route['add-teacher-select/(:num)/(:num)/(:num)/(:any)/(:any)/(:any)']['post'] = 'forms_teacher/add_teacher_select/$1/$2/$3/$4/$5/$6';
 $route['edit-forms-teacher-main'] = 'forms_teacher/edit_forms_teacher_main';
 $route['edit-forms-teacher-person'] = 'forms_teacher/edit_forms_teacher_person';
 $route['edit-forms-teacher-marriage'] = 'forms_teacher/edit_forms_teacher_marriage';
@@ -235,151 +240,184 @@ $route['edit-forms-teacher-address'] = 'forms_teacher/edit_forms_teacher_address
 $route['edit-forms-teacher-contract'] = 'forms_teacher/edit_forms_teacher_contract';
 $route['edit-forms-teacher-talent'] = 'forms_teacher/edit_forms_teacher_talent';
 $route['edit-forms-teacher-signature'] = 'forms_teacher/edit_forms_teacher_signature';
-$route['update-teacher-signature/(:any)/(:num)/(:num)/(:num)/(:any)']['post'] = 'forms_teacher/update_teacher_signature/$1/$2/$3/$4/$5';
-$route['update-teacher-main/(:any)/(:num)/(:num)/(:num)/(:any)']['post'] = 'forms_teacher/update_teacher_main/$1/$2/$3/$4/$5';
-$route['update-teacher-person/(:any)/(:num)/(:num)/(:num)']['post'] = 'forms_teacher/update_teacher_person/$1/$2/$3/$4';
-$route['update-teacher-marriage/(:any)/(:num)/(:num)/(:num)']['post'] = 'forms_teacher/update_teacher_marriage/$1/$2/$3/$4';
-$route['update-teacher-address/(:any)/(:num)/(:num)/(:num)']['post'] = 'forms_teacher/update_teacher_address/$1/$2/$3/$4';
-$route['update-teacher-contract/(:any)/(:num)/(:num)/(:num)']['post'] = 'forms_teacher/update_teacher_contract/$1/$2/$3/$4';
-$route['update-teacher-talent/(:any)/(:num)/(:num)/(:num)']['post'] = 'forms_teacher/update_teacher_talent/$1/$2/$3/$4';
-$route['delete-teacher/(:any)/(:num)/(:num)/(:num)'] = 'forms_teacher/delete_teacher/$1/$2/$3/$4';
+$route['update-teacher-signature/(:any)/(:num)/(:num)/(:num)/(:any)/(:any)/(:any)/(:any)']['post'] = 'forms_teacher/update_teacher_signature/$1/$2/$3/$4/$5/$6/$7/$8';
+$route['update-teacher-main/(:any)/(:num)/(:num)/(:num)/(:any)/(:any)/(:any)/(:any)']['post'] = 'forms_teacher/update_teacher_main/$1/$2/$3/$4/$5/$6/$7/$8';
+$route['update-teacher-person/(:any)/(:num)/(:num)/(:num)/(:any)/(:any)/(:any)']['post'] = 'forms_teacher/update_teacher_person/$1/$2/$3/$4/$5/$6/$7';
+$route['update-teacher-marriage/(:any)/(:num)/(:num)/(:num)/(:any)/(:any)/(:any)']['post'] = 'forms_teacher/update_teacher_marriage/$1/$2/$3/$4/$5/$6/$7';
+$route['update-teacher-address/(:any)/(:num)/(:num)/(:num)/(:any)/(:any)/(:any)']['post'] = 'forms_teacher/update_teacher_address/$1/$2/$3/$4/$5/$6/$7';
+$route['update-teacher-contract/(:any)/(:num)/(:num)/(:num)/(:any)/(:any)/(:any)']['post'] = 'forms_teacher/update_teacher_contract/$1/$2/$3/$4/$5/$6/$7';
+$route['update-teacher-talent/(:any)/(:num)/(:num)/(:num)/(:any)/(:any)/(:any)']['post'] = 'forms_teacher/update_teacher_talent/$1/$2/$3/$4/$5/$6/$7';
+$route['delete-teacher/(:any)/(:num)/(:num)/(:num)/(:any)/(:any)/(:any)'] = 'forms_teacher/delete_teacher/$1/$2/$3/$4/$5/$6/$7';
 
 
 //Certificate
 $route['teacher-certificate'] = 'teacher/teacher_certificate';
 $route['forms-teacher-certificate'] = 'forms_teacher/forms_teacher_certificate';
 $route['edit-forms-teacher-certificate'] = 'forms_teacher/edit_teacher_certificate';
-$route['add-teacher-certificate/(:any)/(:num)/(:num)/(:num)/(:num)/(:num)']['post'] = 'forms_teacher/add_teacher_certificate/$1/$2/$3/$4/$5/$6';
-$route['update-teacher-certificate/(:any)/(:num)/(:num)/(:num)/(:num)/(:num)/(:num)/(:num)'] = 'forms_teacher/update_teacher_certificate/$1/$2/$3/$4/$5/$6/$7/$8';
-$route['delete-teacher-certificate/(:any)/(:num)/(:num)/(:num)/(:num)/(:num)/(:num)/(:num)'] = 'forms_teacher/delete_teacher_certificate/$1/$2/$3/$4/$5/$6/$7/$8';
+$route['add-teacher-certificate/(:any)/(:num)/(:num)/(:num)/(:any)/(:any)/(:any)']['post'] = 'forms_teacher/add_teacher_certificate/$1/$2/$3/$4/$5/$6/$7';
+$route['update-teacher-certificate/(:any)/(:num)/(:num)/(:num)/(:num)/(:num)/(:any)/(:any)/(:any)'] = 'forms_teacher/update_teacher_certificate/$1/$2/$3/$4/$5/$6/$7/$8/$9';
+$route['delete-teacher-certificate/(:any)/(:num)/(:num)/(:num)/(:num)/(:num)/(:any)/(:any)/(:any)'] = 'forms_teacher/delete_teacher_certificate/$1/$2/$3/$4/$5/$6/$7/$8/$9';
 
 //Position
 $route['teacher-position'] = 'teacher/teacher_position';
 $route['forms-teacher-position'] = 'forms_teacher/forms_teacher_position';
 $route['edit-forms-teacher-position'] = 'forms_teacher/edit_teacher_position';
-$route['add-teacher-position/(:any)/(:num)/(:num)/(:num)/(:num)/(:num)']['post'] = 'forms_teacher/add_teacher_position/$1/$2/$3/$4/$5/$6';
-$route['update-teacher-position/(:any)/(:num)/(:num)/(:num)/(:num)/(:num)/(:num)/(:any)/(:any)'] = 'forms_teacher/update_teacher_position/$1/$2/$3/$4/$5/$6/$7/$8/$9';
-$route['delete-teacher-position/(:any)/(:num)/(:num)/(:num)/(:num)/(:num)/(:num)/(:any)'] = 'forms_teacher/delete_teacher_position/$1/$2/$3/$4/$5/$6/$7/$8';
+$route['add-teacher-position/(:any)/(:num)/(:num)/(:num)/(:any)/(:any)/(:any)']['post'] = 'forms_teacher/add_teacher_position/$1/$2/$3/$4/$5/$6/$7';
+$route['update-teacher-position/(:any)/(:num)/(:num)/(:num)/(:num)/(:any)/(:any)/(:any)/(:any)/(:any)'] = 'forms_teacher/update_teacher_position/$1/$2/$3/$4/$5/$6/$7/$8/$9/$10';
+$route['delete-teacher-position/(:any)/(:num)/(:num)/(:num)/(:num)/(:any)/(:any)/(:any)/(:any)'] = 'forms_teacher/delete_teacher_position/$1/$2/$3/$4/$5/$6/$7/$8/$9';
 
 //Assistance
 $route['teacher-assistance'] = 'teacher/teacher_assistance';
 $route['forms-teacher-assistance'] = 'forms_teacher/forms_teacher_assistance';
 $route['edit-forms-teacher-assistance'] = 'forms_teacher/edit_teacher_assistance';
-$route['add-teacher-assistance/(:any)/(:num)/(:num)/(:num)/(:num)/(:num)']['post'] = 'forms_teacher/add_teacher_assistance/$1/$2/$3/$4/$5/$6';
-$route['update-teacher-assistance/(:any)/(:num)/(:num)/(:num)/(:num)/(:num)/(:num)/(:any)/(:any)'] = 'forms_teacher/update_teacher_assistance/$1/$2/$3/$4/$5/$6/$7/$8/$9';
-$route['delete-teacher-assistance/(:any)/(:num)/(:num)/(:num)/(:num)/(:num)/(:num)/(:any)'] = 'forms_teacher/delete_teacher_assistance/$1/$2/$3/$4/$5/$6/$7/$8';
+$route['add-teacher-assistance/(:any)/(:num)/(:num)/(:num)/(:any)/(:any)/(:any)']['post'] = 'forms_teacher/add_teacher_assistance/$1/$2/$3/$4/$5/$6/$7';
+$route['update-teacher-assistance/(:any)/(:num)/(:num)/(:num)/(:num)/(:any)/(:any)/(:any)/(:any)/(:any)'] = 'forms_teacher/update_teacher_assistance/$1/$2/$3/$4/$5/$6/$7/$8/$9/$10';
+$route['delete-teacher-assistance/(:any)/(:num)/(:num)/(:num)/(:num)/(:any)/(:any)/(:any)/(:any)'] = 'forms_teacher/delete_teacher_assistance/$1/$2/$3/$4/$5/$6/$7/$8/$9';
 
 //Academic
-$route['graduated'] = 'teacher/teacher_academic';
+$route['teacher-academic'] = 'teacher/teacher_academic';
 $route['forms-teacher-academic'] = 'forms_teacher/forms_teacher_academic';
 $route['edit-forms-teacher-academic'] = 'forms_teacher/edit_teacher_academic';
-$route['add-teacher-academic/(:any)/(:num)/(:num)/(:num)/(:num)/(:num)']['post'] = 'forms_teacher/add_teacher_academic/$1/$2/$3/$4/$5/$6';
-$route['update-teacher-academic/(:any)/(:num)/(:num)/(:num)/(:num)/(:num)/(:num)'] = 'forms_teacher/update_teacher_academic/$1/$2/$3/$4/$5/$6/$7';
-$route['delete-teacher-academic/(:any)/(:num)/(:num)/(:num)/(:num)/(:num)/(:num)'] = 'forms_teacher/delete_teacher_academic/$1/$2/$3/$4/$5/$6/$7';
+$route['add-teacher-academic/(:any)/(:num)/(:num)/(:num)/(:any)/(:any)/(:any)']['post'] = 'forms_teacher/add_teacher_academic/$1/$2/$3/$4/$5/$6/$7';
+$route['update-teacher-academic/(:any)/(:num)/(:num)/(:num)/(:num)/(:any)/(:any)/(:any)'] = 'forms_teacher/update_teacher_academic/$1/$2/$3/$4/$5/$6/$7/$8';
+$route['delete-teacher-academic/(:any)/(:num)/(:num)/(:num)/(:num)/(:any)/(:any)/(:any)'] = 'forms_teacher/delete_teacher_academic/$1/$2/$3/$4/$5/$6/$7/$8';
 
 //Education
 $route['teacher-education'] = 'teacher/teacher_education';
 $route['forms-teacher-education'] = 'forms_teacher/forms_teacher_education';
 $route['edit-forms-teacher-education'] = 'forms_teacher/edit_teacher_education';
-$route['add-teacher-education/(:any)/(:num)/(:num)/(:num)/(:num)/(:num)']['post'] = 'forms_teacher/add_teacher_education/$1/$2/$3/$4/$5/$6';
-$route['update-teacher-education/(:any)/(:num)/(:num)/(:num)/(:num)/(:num)/(:num)/(:num)/(:num)'] = 'forms_teacher/update_teacher_education/$1/$2/$3/$4/$5/$6/$7/$8/$9';
-$route['delete-teacher-education/(:any)/(:num)/(:num)/(:num)/(:num)/(:num)/(:num)/(:num)/(:num)'] = 'forms_teacher/delete_teacher_education/$1/$2/$3/$4/$5/$6/$7/$8/$9';
+$route['add-teacher-education/(:any)/(:num)/(:num)/(:num)/(:any)/(:any)/(:any)']['post'] = 'forms_teacher/add_teacher_education/$1/$2/$3/$4/$5/$6/$7';
+$route['update-teacher-education/(:any)/(:num)/(:num)/(:num)/(:num)/(:num)/(:num)/(:any)/(:any)/(:any)'] = 'forms_teacher/update_teacher_education/$1/$2/$3/$4/$5/$6/$7/$8/$9/$10';
+$route['delete-teacher-education/(:any)/(:num)/(:num)/(:num)/(:num)/(:num)/(:num)/(:any)/(:any)/(:any)'] = 'forms_teacher/delete_teacher_education/$1/$2/$3/$4/$5/$6/$7/$8/$9/$10';
 
 //Teaching
 $route['teacher-teaching'] = 'teacher/teacher_teaching';
 $route['forms-teacher-teaching'] = 'forms_teacher/forms_teacher_teaching';
 $route['edit-forms-teacher-teaching'] = 'forms_teacher/edit_teacher_teaching';
-$route['add-teacher-teaching/(:any)/(:num)/(:num)/(:num)/(:num)/(:num)']['post'] = 'forms_teacher/add_teacher_teaching/$1/$2/$3/$4/$5/$6';
-$route['update-teacher-teaching/(:any)/(:num)/(:num)/(:num)/(:num)/(:num)/(:num)/(:num)/(:num)'] = 'forms_teacher/update_teacher_teaching/$1/$2/$3/$4/$5/$6/$7/$8/$9';
-$route['delete-teacher-teaching/(:any)/(:num)/(:num)/(:num)/(:num)/(:num)/(:num)/(:num)/(:num)'] = 'forms_teacher/delete_teacher_teaching/$1/$2/$3/$4/$5/$6/$7/$8/$9';
+$route['add-teacher-teaching/(:any)/(:num)/(:num)/(:num)/(:any)/(:any)/(:any)']['post'] = 'forms_teacher/add_teacher_teaching/$1/$2/$3/$4/$5/$6/$7';
+$route['update-teacher-teaching/(:any)/(:num)/(:num)/(:num)/(:num)/(:num)/(:num)/(:any)/(:any)/(:any)'] = 'forms_teacher/update_teacher_teaching/$1/$2/$3/$4/$5/$6/$7/$8/$9/$10';
+$route['delete-teacher-teaching/(:any)/(:num)/(:num)/(:num)/(:num)/(:num)/(:num)/(:any)/(:any)/(:any)'] = 'forms_teacher/delete_teacher_teaching/$1/$2/$3/$4/$5/$6/$7/$8/$9/$10';
 
 //ClassRoom
 $route['teacher-classroom'] = 'teacher/teacher_classroom';
 $route['forms-teacher-classroom'] = 'forms_teacher/forms_teacher_classroom';
 $route['edit-forms-teacher-classroom'] = 'forms_teacher/edit_teacher_classroom';
-$route['add-teacher-classroom/(:any)/(:num)/(:num)/(:num)/(:num)/(:num)']['post'] = 'forms_teacher/add_teacher_classroom/$1/$2/$3/$4/$5/$6';
-$route['update-teacher-classroom/(:any)/(:num)/(:num)/(:num)/(:num)/(:num)/(:num)/(:any)']['post'] = 'forms_teacher/update_teacher_classroom/$1/$2/$3/$4/$5/$6/$7/$8';
-$route['delete-teacher-classroom/(:any)/(:num)/(:num)/(:num)/(:num)/(:num)/(:num)/(:num)'] = 'forms_teacher/delete_teacher_classroom/$1/$2/$3/$4/$5/$6/$7/$8';
+$route['add-teacher-classroom/(:any)/(:num)/(:num)/(:num)/(:any)/(:any)/(:any)']['post'] = 'forms_teacher/add_teacher_classroom/$1/$2/$3/$4/$5/$6/$7';
+$route['update-teacher-classroom/(:any)/(:num)/(:num)/(:num)/(:num)/(:any)/(:any)/(:any)/(:any)']['post'] = 'forms_teacher/update_teacher_classroom/$1/$2/$3/$4/$5/$6/$7/$8/$9';
+$route['delete-teacher-classroom/(:any)/(:num)/(:num)/(:num)/(:num)/(:any)/(:any)/(:any)/(:any)'] = 'forms_teacher/delete_teacher_classroom/$1/$2/$3/$4/$5/$6/$7/$8/$9';
 
 ///////////////////// TEACHER - END /////////////////////////
-
 
 
 ////////////////////// ROUTE GRADUATED ////////////////////////
 //GRADUATED 
 $route['graduated'] = 'graduated';
 $route['graduated-download'] = 'graduated/graduated_download';
-$route['delete-graduated/(:any)/(:num)/(:num)/(:num)/(:num)'] = 'forms_graduated/delete_graduated/$1/$2/$3/$4/$5';
+$route['delete-graduated/(:any)/(:num)/(:num)/(:num)/(:num)/(:any)/(:any)/(:any)'] = 'forms_graduated/delete_graduated/$1/$2/$3/$4/$5/$6/$7/$8';
 $route['forms-graduated'] = 'forms_graduated/forms_main';
-$route['update-graduated/(:any)/(:any)/(:num)/(:num)/(:num)'] = 'forms_graduated/update_graduated/$1/$2/$3/$4/$5';
+$route['update-graduated/(:any)/(:any)/(:num)/(:num)/(:num)/(:any)/(:any)/(:any)'] = 'forms_graduated/update_graduated/$1/$2/$3/$4/$5/$6/$7/$8';
 
 ///////////////////// GRADUATED - END /////////////////////////
 
 ////////////////////// ROUTE Transcript ////////////////////////
+
 //Transcript
 $route['transcript'] = 'transcript';
-$route['forms-transcript'] = 'forms_transcript';
-$route['add-transcript/(:num)/(:any)/(:num)/(:num)/(:num)/(:num)']['post'] = 'forms_transcript/add_transcript/$1/$2/$3/$4/$5/$6';
-$route['edit-forms-transcript-main'] = 'forms_transcript/edit_transcript_main';
-$route['edit-forms-transcript-evaluation'] = 'forms_transcript/edit_transcript_evaluation';
-$route['update-transcript-main/(:num)/(:any)/(:num)/(:num)/(:num)/(:num)/(:num)/(:num)']['post'] = 'forms_transcript/update_transcript_main/$1/$2/$3/$4/$5/$6/$7/$8';
-$route['update-transcript-evaluation/(:num)/(:any)/(:num)/(:num)/(:num)/(:num)/(:num)/(:num)']['post'] = 'forms_transcript/update_transcript_evaluation/$1/$2/$3/$4/$5/$6/$7/$8';
-$route['delete-transcript/(:num)/(:any)/(:num)/(:num)/(:num)/(:num)/(:num)/(:num)'] = 'forms_transcript/delete_transcript/$1/$2/$3/$4/$5/$6/$7/$8';
+//$route['forms-transcript'] = 'forms_transcript';
+//$route['add-transcript/(:num)/(:any)/(:num)/(:num)/(:num)/(:num)/(:any)/(:any)/(:any)']['post'] = 'forms_transcript/add_transcript/$1/$2/$3/$4/$5/$6/$7/$8/$9';
+//$route['edit-forms-transcript-main'] = 'forms_transcript/edit_transcript_main';
+//$route['delete-transcript/(:num)/(:any)/(:num)/(:num)/(:num)/(:num)/(:num)/(:num)/(:any)/(:any)/(:any)'] = 'forms_transcript/delete_transcript/$1/$2/$3/$4/$5/$6/$7/$8/$9/$10/$11';
 
-//transcript_student
-$route['transcript-download'] = 'transcript/transcript_download';
-$route['transcript-booking-print'] = 'transcript/transcript_booking_print';
+$route['update-transcript-main/(:num)/(:any)/(:num)/(:num)/(:num)/(:num)/(:num)/(:num)/(:any)/(:any)/(:any)']['post'] = 'forms_transcript/update_transcript_main/$1/$2/$3/$4/$5/$6/$7/$8/$9/$10/$11';
+$route['edit-forms-transcript-evaluation'] = 'forms_transcript/edit_transcript_evaluation';
+$route['update-transcript-evaluation/(:num)/(:any)/(:num)/(:num)/(:num)/(:num)/(:num)/(:num)/(:any)/(:any)/(:any)']['post'] = 'forms_transcript/update_transcript_evaluation/$1/$2/$3/$4/$5/$6/$7/$8/$9/$10/$11';
+$route['edit-forms-transcript-series'] = 'forms_transcript/edit_transcript_series'; ///New 3/6/2023///
+$route['update-transcript-series/(:num)/(:any)/(:num)/(:num)/(:num)/(:num)/(:num)/(:num)/(:any)/(:any)/(:any)']['post'] = 'forms_transcript/update_transcript_series/$1/$2/$3/$4/$5/$6/$7/$8/$9/$10/$11'; ///New 3/6/2023///
+$route['edit-forms-transcript-oldSchool'] = 'forms_transcript/edit_transcript_oldSchool'; ///New 3/6/2023///
+$route['update-transcript-oldSchool/(:num)/(:any)/(:num)/(:num)/(:num)/(:num)/(:num)/(:num)/(:any)/(:any)/(:any)']['post'] = 'forms_transcript/update_transcript_oldSchool/$1/$2/$3/$4/$5/$6/$7/$8/$9/$10/$11'; ///New 3/6/2023///
+
+//transcript_Document
+$route['transcript-subject-download'] = 'transcript/transcript_subject_download';
+$route['transcript-booking'] = 'transcript/transcript_booking';
 
 
 //Subject
 $route['transcript-subject'] = 'transcript/transcript_subject';
 $route['forms-transcript-subject'] = 'forms_transcript/forms_transcript_subject';
 $route['edit-forms-transcript-subject'] = 'forms_transcript/edit_forms_transcript_subject';
-$route['add-transcript-subject/(:num)/(:any)/(:num)/(:num)/(:num)/(:num)/(:num)/(:num)/(:num)/(:num)/(:num)']['post'] = 'forms_transcript/add_transcript_subject/$1/$2/$3/$4/$5/$6/$7/$8/$9/$10/$11';
-$route['delete-transcript-subject/(:num)/(:any)/(:num)/(:num)/(:num)/(:num)/(:num)/(:num)/(:num)/(:num)/(:num)'] = 'forms_transcript/delete_transcript_subject/$1/$2/$3/$4/$5/$6/$7/$8/$9/$10/$11';
-$route['update-transcript-subject/(:num)/(:any)/(:num)/(:num)/(:num)/(:num)/(:num)/(:num)/(:num)/(:num)/(:num)']['post'] = 'forms_transcript/update_transcript_subject/$1/$2/$3/$4/$5/$6/$7/$8/$9/$10/$11';
+$route['add-transcript-subject/(:num)/(:any)/(:num)/(:num)/(:num)/(:num)/(:num)/(:num)/(:any)/(:any)/(:any)']['post'] = 'forms_transcript/add_transcript_subject/$1/$2/$3/$4/$5/$6/$7/$8/$9/$10/$11'; ///Edit 2/6/2023///
+$route['add-transcript-subject-select/(:num)/(:any)/(:num)/(:num)/(:num)/(:num)/(:num)/(:num)/(:any)/(:any)/(:any)']['post'] = 'forms_transcript/add_transcript_subject_select/$1/$2/$3/$4/$5/$6/$7/$8/$9/$10/$11'; ///NEW 3/6/2023///
+$route['delete-transcript-subject/(:num)/(:any)/(:num)/(:num)/(:num)/(:num)/(:num)/(:num)/(:num)/(:num)(:any)/(:any)/(:any)'] = 'forms_transcript/delete_transcript_subject/$1/$2/$3/$4/$5/$6/$7/$8/$9/$10/$11/$12/$13'; ///Edit 2/6/2023///
+$route['update-transcript-subject/(:num)/(:any)/(:num)/(:num)/(:num)/(:num)/(:num)/(:num)/(:num)/(:num)/(:any)/(:any)/(:any)']['post'] = 'forms_transcript/update_transcript_subject/$1/$2/$3/$4/$5/$6/$7/$8/$9/$10/$11/$12/$13'; //Edit 2/6/2023///
 
 //Activity
 $route['transcript-activity'] = 'transcript/transcript_activity';
 $route['forms-transcript-activity'] = 'forms_transcript/forms_transcript_activity';
 $route['edit-forms-transcript-activity'] = 'forms_transcript/edit_forms_transcript_activity';
-$route['add-transcript-activity/(:num)/(:any)/(:num)/(:num)/(:num)/(:num)/(:num)/(:num)/(:num)/(:num)']['post'] = 'forms_transcript/add_transcript_activity/$1/$2/$3/$4/$5/$6/$7/$8/$9/$10';
-$route['delete-transcript-activity/(:num)/(:any)/(:num)/(:num)/(:num)/(:num)/(:num)/(:num)/(:num)/(:num)'] = 'forms_transcript/delete_transcript_activity/$1/$2/$3/$4/$5/$6/$7/$8/$9/$10';
-$route['update-transcript-activity/(:num)/(:any)/(:num)/(:num)/(:num)/(:num)/(:num)/(:num)/(:num)/(:num)'] = 'forms_transcript/update_transcript_activity/$1/$2/$3/$4/$5/$6/$7/$8/$9/$10';
+$route['add-transcript-activity/(:num)/(:any)/(:num)/(:num)/(:num)/(:num)/(:num)/(:num)/(:any)/(:any)/(:any)']['post'] = 'forms_transcript/add_transcript_activity/$1/$2/$3/$4/$5/$6/$7/$8/$9/$10/$11'; //Edit 3/6/2023///
+$route['add-transcript-activity-select/(:num)/(:any)/(:num)/(:num)/(:num)/(:num)/(:num)/(:num)/(:any)/(:any)/(:any)']['post'] = 'forms_transcript/add_transcript_activity_select/$1/$2/$3/$4/$5/$6/$7/$8/$9/$10/$11'; ///NEW 4/6/2023///
+$route['delete-transcript-activity/(:num)/(:any)/(:num)/(:num)/(:num)/(:num)/(:num)/(:num)/(:any)/(:num)/(:any)/(:any)/(:any)'] = 'forms_transcript/delete_transcript_activity/$1/$2/$3/$4/$5/$6/$7/$8/$9/$10/$11/$12/$13'; ///NEW 4/6/2023///
+$route['update-transcript-activity/(:num)/(:any)/(:num)/(:num)/(:num)/(:num)/(:num)/(:num)/(:num)/(:num)/(:any)/(:any)/(:any)'] = 'forms_transcript/update_transcript_activity/$1/$2/$3/$4/$5/$6/$7/$8/$9/$10/$11/$12/$13'; ///NEW 4/6/2023///
 
 //ONET
 $route['transcript-onet'] = 'transcript/transcript_onet';
-$route['forms-transcript-onet'] = 'forms_transcript/forms_transcript_onet';
+$route['forms-transcript-onet'] = 'forms_transcript/forms_transcript_onet'; ///EDIT 5/6/2023///
 $route['edit-forms-transcript-onet'] = 'forms_transcript/edit_forms_transcript_onet';
-$route['add-transcript-onet/(:num)/(:any)/(:num)/(:num)/(:num)/(:num)/(:num)/(:num)/(:num)']['post'] = 'forms_transcript/add_transcript_onet/$1/$2/$3/$4/$5/$6/$7/$8/$9';
-$route['update-transcript-onet/(:num)/(:any)/(:num)/(:num)/(:num)/(:num)/(:num)/(:num)/(:num)/(:num)/(:num)'] = 'forms_transcript/update_transcript_onet/$1/$2/$3/$4/$5/$6/$7/$8/$9/$10/$11';
-$route['delete-transcript-onet/(:num)/(:any)/(:num)/(:num)/(:num)/(:num)/(:num)/(:num)/(:num)/(:num)/(:num)'] = 'forms_transcript/delete_transcript_onet/$1/$2/$3/$4/$5/$6/$7/$8/$9/$10/$11';
+$route['add-transcript-onet/(:num)/(:any)/(:num)/(:num)/(:num)/(:num)/(:num)/(:num)/(:any)/(:any)/(:any)']['post'] = 'forms_transcript/add_transcript_onet/$1/$2/$3/$4/$5/$6/$7/$8/$9/$10/$11'; ///EDIT 5/6/2023///
+$route['add-transcript-onet-select/(:num)/(:any)/(:num)/(:num)/(:num)/(:num)/(:num)/(:num)/(:any)/(:any)/(:any)']['post'] = 'forms_transcript/add_transcript_onet_select/$1/$2/$3/$4/$5/$6/$7/$8/$9/$10/$11'; ///NEW 5/6/2023///
+$route['update-transcript-onet/(:num)/(:any)/(:num)/(:num)/(:num)/(:num)/(:num)/(:num)/(:num)/(:num)/(:num)/(:any)/(:any)/(:any)'] = 'forms_transcript/update_transcript_onet/$1/$2/$3/$4/$5/$6/$7/$8/$9/$10/$11/$12/$13/$14'; ///EDIT 5/6/2023///
+$route['delete-transcript-onet/(:num)/(:any)/(:num)/(:num)/(:num)/(:num)/(:num)/(:num)/(:num)/(:num)/(:num)/(:any)/(:any)/(:any)'] = 'forms_transcript/delete_transcript_onet/$1/$2/$3/$4/$5/$6/$7/$8/$9/$10/$11/$12/$13/$14'; ///EDIT 5/6/2023///
 
 //NT
 $route['transcript-nt'] = 'transcript/transcript_nt';
 $route['forms-transcript-nt'] = 'forms_transcript/forms_transcript_nt';
 $route['edit-forms-transcript-nt'] = 'forms_transcript/edit_forms_transcript_nt';
-$route['add-transcript-nt/(:num)/(:any)/(:num)/(:num)/(:num)/(:num)/(:num)/(:num)/(:num)/(:num)']['post'] = 'forms_transcript/add_transcript_nt/$1/$2/$3/$4/$5/$6/$7/$8/$9/$10';
-$route['update-transcript-nt/(:num)/(:any)/(:num)/(:num)/(:num)/(:num)/(:num)/(:num)/(:num)/(:num)/(:num)'] = 'forms_transcript/update_transcript_nt/$1/$2/$3/$4/$5/$6/$7/$8/$9/$10/$11';
-$route['delete-transcript-nt/(:num)/(:any)/(:num)/(:num)/(:num)/(:num)/(:num)/(:num)/(:num)/(:num)/(:num)'] = 'forms_transcript/delete_transcript_nt/$1/$2/$3/$4/$5/$6/$7/$8/$9/$10/$11';
+$route['add-transcript-nt/(:num)/(:any)/(:num)/(:num)/(:num)/(:num)/(:num)/(:num)/(:any)/(:any)/(:any)']['post'] = 'forms_transcript/add_transcript_nt/$1/$2/$3/$4/$5/$6/$7/$8/$9/$10/$11'; ///EDIT 5/6/2023///
+$route['add-transcript-nt-select/(:num)/(:any)/(:num)/(:num)/(:num)/(:num)/(:num)/(:num)/(:any)/(:any)/(:any)']['post'] = 'forms_transcript/add_transcript_nt_select/$1/$2/$3/$4/$5/$6/$7/$8/$9/$10/$11'; ///EDIT 5/6/2023///
+$route['update-transcript-nt/(:num)/(:any)/(:num)/(:num)/(:num)/(:num)/(:num)/(:num)/(:num)/(:num)/(:num)/(:any)/(:any)/(:any)'] = 'forms_transcript/update_transcript_nt/$1/$2/$3/$4/$5/$6/$7/$8/$9/$10/$11/$12/$13/$14';
+$route['delete-transcript-nt/(:num)/(:any)/(:num)/(:num)/(:num)/(:num)/(:num)/(:num)/(:num)/(:num)/(:num)/(:any)/(:any)/(:any)'] = 'forms_transcript/delete_transcript_nt/$1/$2/$3/$4/$5/$6/$7/$8/$9/$10/$11/$12/$13/$14';
 
 //RT
 $route['transcript-rt'] = 'transcript/transcript_rt';
 $route['forms-transcript-rt'] = 'forms_transcript/forms_transcript_rt';
 $route['edit-forms-transcript-rt'] = 'forms_transcript/edit_forms_transcript_rt';
-$route['add-transcript-rt/(:num)/(:any)/(:num)/(:num)/(:num)/(:num)/(:num)/(:num)/(:num)/(:num)']['post'] = 'forms_transcript/add_transcript_rt/$1/$2/$3/$4/$5/$6/$7/$8/$9/$10';
-$route['update-transcript-rt/(:num)/(:any)/(:num)/(:num)/(:num)/(:num)/(:num)/(:num)/(:num)/(:num)/(:num)/(:num)'] = 'forms_transcript/update_transcript_rt/$1/$2/$3/$4/$5/$6/$7/$8/$9/$10/$11/$12';
-$route['delete-transcript-rt/(:num)/(:any)/(:num)/(:num)/(:num)/(:num)/(:num)/(:num)/(:num)/(:num)/(:num)/(:num)'] = 'forms_transcript/delete_transcript_rt/$1/$2/$3/$4/$5/$6/$7/$8/$9/$10/$11/$12';
+$route['add-transcript-rt/(:num)/(:any)/(:num)/(:num)/(:num)/(:num)/(:num)/(:num)/(:any)/(:any)/(:any)']['post'] = 'forms_transcript/add_transcript_rt/$1/$2/$3/$4/$5/$6/$7/$8/$9/$10/$11'; ///EDIT 6/6/2023///
+$route['add-transcript-rt-select/(:num)/(:any)/(:num)/(:num)/(:num)/(:num)/(:num)/(:num)/(:any)/(:any)/(:any)']['post'] = 'forms_transcript/add_transcript_rt_select/$1/$2/$3/$4/$5/$6/$7/$8/$9/$10/$11'; ///NEW 6/6/2023///
+$route['update-transcript-rt/(:num)/(:any)/(:num)/(:num)/(:num)/(:num)/(:num)/(:num)/(:num)/(:num)/(:any)/(:any)/(:any)/(:any)/(:any)'] = 'forms_transcript/update_transcript_rt/$1/$2/$3/$4/$5/$6/$7/$8/$9/$10/$11/$12/$13/$14/$15';
+$route['delete-transcript-rt/(:num)/(:any)/(:num)/(:num)/(:num)/(:num)/(:num)/(:num)/(:num)/(:num)/(:num)/(:num)/(:any)/(:any)/(:any)'] = 'forms_transcript/delete_transcript_rt/$1/$2/$3/$4/$5/$6/$7/$8/$9/$10/$11/$12/$13/$14/$15';
 
-//RT
+//competency
 $route['transcript-competency'] = 'transcript/transcript_competency';
 $route['forms-transcript-competency'] = 'forms_transcript/forms_transcript_competency';
 $route['edit-forms-transcript-competency'] = 'forms_transcript/edit_forms_transcript_competency';
-$route['add-transcript-competency/(:num)/(:any)/(:num)/(:num)/(:num)/(:num)/(:num)/(:num)/(:num)/(:num)']['post'] = 'forms_transcript/add_transcript_competency/$1/$2/$3/$4/$5/$6/$7/$8/$9/$10';
-$route['update-transcript-competency/(:num)/(:any)/(:num)/(:num)/(:num)/(:num)/(:num)/(:num)/(:num)/(:num)/(:num)'] = 'forms_transcript/update_transcript_competency/$1/$2/$3/$4/$5/$6/$7/$8/$9/$10/$11';
-$route['delete-transcript-competency/(:num)/(:any)/(:num)/(:num)/(:num)/(:num)/(:num)/(:num)/(:num)/(:num)/(:num)'] = 'forms_transcript/delete_transcript_competency/$1/$2/$3/$4/$5/$6/$7/$8/$9/$10/$11';
+$route['add-transcript-competency/(:num)/(:any)/(:num)/(:num)/(:num)/(:num)/(:num)/(:num)/(:any)/(:any)/(:any)']['post'] = 'forms_transcript/add_transcript_competency/$1/$2/$3/$4/$5/$6/$7/$8/$9/$10/$11'; ///EDIT 7/6/2023///
+$route['add-transcript-competency-select/(:num)/(:any)/(:num)/(:num)/(:num)/(:num)/(:num)/(:num)/(:any)/(:any)/(:any)']['post'] = 'forms_transcript/add_transcript_competency_select/$1/$2/$3/$4/$5/$6/$7/$8/$9/$10/$11'; ///NEW 7/6/2023///
+$route['update-transcript-competency/(:num)/(:any)/(:num)/(:num)/(:num)/(:num)/(:num)/(:num)/(:num)/(:num)/(:num)/(:any)/(:any)/(:any)'] = 'forms_transcript/update_transcript_competency/$1/$2/$3/$4/$5/$6/$7/$8/$9/$10/$11/$12/$13/$14';
+$route['delete-transcript-competency/(:num)/(:any)/(:num)/(:num)/(:num)/(:num)/(:num)/(:num)/(:num)/(:num)/(:num)/(:any)/(:any)/(:any)'] = 'forms_transcript/delete_transcript_competency/$1/$2/$3/$4/$5/$6/$7/$8/$9/$10/$11/$12/$13/$14';
+
+//upload
+$route['forms-transcript-upload'] = 'forms_transcript/forms_transcript_upload';
+
+$route['upload-subject/(:any)/(:any)/(:any)/(:any)/(:any)/(:any)/(:any)'] = 'forms_transcript/upload_subject/$1/$2/$3/$4/$5/$6/$7';
+$route['transcript-upload-subject'] = 'transcript/transcript_upload_subject';
+
+$route['upload-activity/(:any)/(:any)/(:any)/(:any)/(:any)/(:any)/(:any)'] = 'forms_transcript/upload_activity/$1/$2/$3/$4/$5/$6/$7';
+$route['transcript-upload-activity'] = 'transcript/transcript_upload_activity';
+
+$route['upload-onet/(:any)/(:any)/(:any)/(:any)/(:any)/(:any)/(:any)'] = 'forms_transcript/upload_onet/$1/$2/$3/$4/$5/$6/$7';
+$route['transcript-upload-onet'] = 'transcript/transcript_upload_onet';
+
+$route['upload-nt/(:any)/(:any)/(:any)/(:any)/(:any)/(:any)/(:any)'] = 'forms_transcript/upload_nt/$1/$2/$3/$4/$5/$6/$7';
+$route['transcript-upload-nt'] = 'transcript/transcript_upload_nt';
+
+$route['upload-rt/(:any)/(:any)/(:any)/(:any)/(:any)/(:any)/(:any)'] = 'forms_transcript/upload_rt/$1/$2/$3/$4/$5/$6/$7';
+$route['transcript-upload-rt'] = 'transcript/transcript_upload_rt';
+
+$route['upload-competency/(:any)/(:any)/(:any)/(:any)/(:any)/(:any)/(:any)'] = 'forms_transcript/upload_competency/$1/$2/$3/$4/$5/$6/$7';
+$route['transcript-upload-competency'] = 'transcript/transcript_upload_competency';
 
 ///////////////////// Transcript - END /////////////////////////
+
 
 ////////////////////// ROUTE PERSONNEL ////////////////////////
 //PERSONNEL
@@ -394,35 +432,35 @@ $route['forms-personnel-position'] = 'forms_personnel/forms_personnel_position';
 $route['forms-personnel-assistance'] = 'forms_personnel/forms_personnel_assistance';
 $route['forms-personnel-academic'] = 'forms_personnel/forms_personnel_academic';
 $route['forms-personnel-select'] = 'forms_personnel/forms_personnel_select';
-$route['add-personnel']['post'] = 'forms_personnel/add_personnel';
-$route['add-personnel-education/(:any)/(:num)/(:num)/(:num)']['post'] = 'forms_personnel/add_personnel_education/$1/$2/$3/$4';
-$route['add-personnel-position/(:any)/(:num)/(:num)/(:num)']['post'] = 'forms_personnel/add_personnel_position/$1/$2/$3/$4';
-$route['add-personnel-assistance/(:any)/(:num)/(:num)/(:num)']['post'] = 'forms_personnel/add_personnel_assistance/$1/$2/$3/$4';
-$route['add-personnel-academic/(:any)/(:num)/(:num)/(:num)']['post'] = 'forms_personnel/add_personnel_academic/$1/$2/$3/$4';
+$route['add-personnel/(:any)/(:any)/(:any)']['post'] = 'forms_personnel/add_personnel/$1/$2/$3';
+$route['add-personnel-education/(:any)/(:num)/(:num)/(:num)/(:any)/(:any)/(:any)']['post'] = 'forms_personnel/add_personnel_education/$1/$2/$3/$4/$5/$6/$7';
+$route['add-personnel-position/(:any)/(:num)/(:num)/(:num)/(:any)/(:any)/(:any)']['post'] = 'forms_personnel/add_personnel_position/$1/$2/$3/$4/$5/$6/$7';
+$route['add-personnel-assistance/(:any)/(:num)/(:num)/(:num)/(:any)/(:any)/(:any)']['post'] = 'forms_personnel/add_personnel_assistance/$1/$2/$3/$4/$5/$6/$7';
+$route['add-personnel-academic/(:any)/(:num)/(:num)/(:num)/(:any)/(:any)/(:any)']['post'] = 'forms_personnel/add_personnel_academic/$1/$2/$3/$4/$5/$6/$7';
 $route['edit-forms-personnel-main'] = 'forms_personnel/edit_forms_personnel_main';
-$route['update-personnel-main/(:any)/(:num)/(:num)/(:num)/(:any)'] = 'forms_personnel/update_personnel_main/$1/$2/$3/$4/$5';
+$route['update-personnel-main/(:any)/(:num)/(:num)/(:num)/(:any)/(:any)/(:any)/(:any)'] = 'forms_personnel/update_personnel_main/$1/$2/$3/$4/$5/$6/$7/$8';
 $route['edit-forms-personnel-person'] = 'forms_personnel/edit_forms_personnel_person';
-$route['update-personnel-person/(:any)/(:num)/(:num)/(:num)'] = 'forms_personnel/update_personnel_person/$1/$2/$3/$4';
+$route['update-personnel-person/(:any)/(:num)/(:num)/(:num)/(:any)/(:any)/(:any)'] = 'forms_personnel/update_personnel_person/$1/$2/$3/$4/$5/$6/$7';
 $route['edit-forms-personnel-address'] = 'forms_personnel/edit_forms_personnel_address';
-$route['update-personnel-address/(:any)/(:num)/(:num)/(:num)'] = 'forms_personnel/update_personnel_address/$1/$2/$3/$4';
+$route['update-personnel-address/(:any)/(:num)/(:num)/(:num)/(:any)/(:any)/(:any)'] = 'forms_personnel/update_personnel_address/$1/$2/$3/$4/$5/$6/$7';
 $route['edit-forms-personnel-contract'] = 'forms_personnel/edit_forms_personnel_contract';
-$route['update-personnel-contract/(:any)/(:num)/(:num)/(:num)'] = 'forms_personnel/update_personnel_contract/$1/$2/$3/$4';
+$route['update-personnel-contract/(:any)/(:num)/(:num)/(:num)/(:any)/(:any)/(:any)'] = 'forms_personnel/update_personnel_contract/$1/$2/$3/$4/$5/$6/$7';
 $route['edit-forms-personnel-talent'] = 'forms_personnel/edit_forms_personnel_talent';
-$route['update-personnel-talent/(:any)/(:num)/(:num)/(:num)'] = 'forms_personnel/update_personnel_talent/$1/$2/$3/$4';
+$route['update-personnel-talent/(:any)/(:num)/(:num)/(:num)/(:any)/(:any)/(:any)'] = 'forms_personnel/update_personnel_talent/$1/$2/$3/$4/$5/$6/$7';
 $route['edit-forms-personnel-education'] = 'forms_personnel/edit_forms_personnel_education';
-$route['update-personnel-education/(:any)/(:num)/(:num)/(:num)/(:num)/(:num)/(:num)'] = 'forms_personnel/update_personnel_education/$1/$2/$3/$4/$5/$6/$7';
+$route['update-personnel-education/(:any)/(:num)/(:num)/(:num)/(:num)/(:num)/(:num)/(:any)/(:any)/(:any)'] = 'forms_personnel/update_personnel_education/$1/$2/$3/$4/$5/$6/$7/$8/$9/$10';
 $route['edit-forms-personnel-position'] = 'forms_personnel/edit_forms_personnel_position';
-$route['update-personnel-position/(:any)/(:num)/(:num)/(:num)/(:num)/(:any)/(:any)'] = 'forms_personnel/update_personnel_position/$1/$2/$3/$4/$5/$6/$7';
+$route['update-personnel-position/(:any)/(:num)/(:num)/(:num)/(:num)/(:any)/(:any)/(:any)/(:any)/(:any)'] = 'forms_personnel/update_personnel_position/$1/$2/$3/$4/$5/$6/$7/$8/$9/$10';
 $route['edit-forms-personnel-assistance'] = 'forms_personnel/edit_forms_personnel_assistance';
-$route['update-personnel-assistance/(:any)/(:num)/(:num)/(:num)/(:num)/(:any)/(:any)'] = 'forms_personnel/update_personnel_assistance/$1/$2/$3/$4/$5/$6/$7';
+$route['update-personnel-assistance/(:any)/(:num)/(:num)/(:num)/(:num)/(:any)/(:any)/(:any)/(:any)/(:any)'] = 'forms_personnel/update_personnel_assistance/$1/$2/$3/$4/$5/$6/$7/$8/$9/$10';
 $route['edit-forms-personnel-academic'] = 'forms_personnel/edit_forms_personnel_academic';
-$route['update-personnel-academic/(:any)/(:num)/(:num)/(:num)/(:num)'] = 'forms_personnel/update_personnel_academic/$1/$2/$3/$4/$5';
+$route['update-personnel-academic/(:any)/(:num)/(:num)/(:num)/(:num)/(:any)/(:any)/(:any)'] = 'forms_personnel/update_personnel_academic/$1/$2/$3/$4/$5/$6/$7/$8';
 
-$route['delete-personnel-academic/(:any)/(:num)/(:num)/(:num)/(:num)'] = 'forms_personnel/delete_personnel_academic/$1/$2/$3/$4/$5';
-$route['delete-personnel-position/(:any)/(:num)/(:num)/(:num)/(:num)/(:any)'] = 'forms_personnel/delete_personnel_position/$1/$2/$3/$4/$5/$6';
-$route['delete-personnel-assistance/(:any)/(:num)/(:num)/(:num)/(:num)/(:any)'] = 'forms_personnel/delete_personnel_assistance/$1/$2/$3/$4/$5/$6';
-$route['delete-personnel-education/(:any)/(:num)/(:num)/(:num)/(:num)/(:num)/(:num)'] = 'forms_personnel/delete_personnel_education/$1/$2/$3/$4/$5/$6/$7';
-$route['delete-personnel/(:any)/(:num)/(:num)/(:num)'] = 'forms_personnel/delete_personnel/$1/$2/$3/$4';
+$route['delete-personnel-academic/(:any)/(:num)/(:num)/(:num)/(:num)/(:any)/(:any)/(:any)'] = 'forms_personnel/delete_personnel_academic/$1/$2/$3/$4/$5/$6/$7/$8';
+$route['delete-personnel-position/(:any)/(:num)/(:num)/(:num)/(:num)/(:any)/(:any)/(:any)/(:any)'] = 'forms_personnel/delete_personnel_position/$1/$2/$3/$4/$5/$6/$7/$8/$9';
+$route['delete-personnel-assistance/(:any)/(:num)/(:num)/(:num)/(:num)/(:any)/(:any)/(:any)/(:any)'] = 'forms_personnel/delete_personnel_assistance/$1/$2/$3/$4/$5/$6/$7/$8/$9';
+$route['delete-personnel-education/(:any)/(:num)/(:num)/(:num)/(:num)/(:num)/(:num)/(:any)/(:any)/(:any)'] = 'forms_personnel/delete_personnel_education/$1/$2/$3/$4/$5/$6/$7/$8/$9/$10';
+$route['delete-personnel/(:any)/(:num)/(:num)/(:num)/(:any)/(:any)'] = 'forms_personnel/delete_personnel/$1/$2/$3/$4/$5/$6/$7';
 
 ///////////////////// PERSONNEL - END /////////////////////////
 
@@ -564,6 +602,11 @@ $route['call_select_1'] = 'Fm_evaluation/get_ACHIEVEMENT_ASSESSMENT';
 
 $route['down_csv_criteria'] = 'Fm_evaluation/down_csv_criteria';
 $route['uplod_criteria'] = 'Fm_evaluation/uplod_criteria';
+$route['download-criteria'] = 'Fm_evaluation/templates';
 
 
-//////////////////SatunEdu@2023#!/// evaluation - END  26107403/////////////////////////
+///////////////////// evaluation - END /////////////////////////
+
+
+///////////////////// subject KPI - START /////////////////////////
+$route['list-subject_kpi'] = 'SubjectKPIController/list_subject_kpi';

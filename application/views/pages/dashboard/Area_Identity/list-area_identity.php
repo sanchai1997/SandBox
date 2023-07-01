@@ -78,7 +78,7 @@
                             <?php } ?>
                     </div>
 
-                    <?php if($R_501000 <> NULL && $R_501000['UR_Add']== "1"){ ?>        
+                    <?php if($R_502000 <> NULL && $R_502000['UR_Add']== "1"){ ?>        
                     <div class="col">
                         <h5 style="float: right; padding: 15px;" class="card-title"><a href="forms-area_identity?sid=<?php echo $SchoolID; ?>" class="btn btn-success"><i class="bi bi-file-earmark-plus"></i> เพิ่มข้อมูล</a></h5>
                     </div>
@@ -90,13 +90,13 @@
                         <tr>
                             <th style="text-align: center;" scope="col">ปีการศึกษา</th>
                             <th style="text-align: center;" scope="col">ภาคเรียน</th>
-                            <?php if($R_501000 <> NULL && $R_501000['UR_Read']== "1"){ ?>
+                            <?php if($R_502000 <> NULL && $R_502000['UR_Read']== "1"){ ?>
                             <th style="text-align: center;" scope="col">ศาสนา</th>
                             <th style="text-align: center;" scope="col">กลุ่มอาชีพ</th>
                             <th style="text-align: center;" scope="col">รายละเอียด</th>
                             <?php } ?> 
 
-                            <?php if($R_501000 <> NULL && ( $R_501000['UR_Edit']== "1" || $R_501000['UR_Delete']== "1") ){ ?>
+                            <?php if($R_502000 <> NULL && ( $R_502000['UR_Edit']== "1" || $R_502000['UR_Delete']== "1") ){ ?>
                             <th style="text-align: center;" scope="col">ปฏิบัติ</th>
                             <?php } ?> 
                         </tr>
@@ -118,7 +118,7 @@
                                         ?>
                                 </td>
 
-                                <?php if($R_501000 <> NULL && $R_501000['UR_Read']== "1"){ ?>
+                                <?php if($R_502000 <> NULL && $R_502000['UR_Read']== "1"){ ?>
                                  <td style="text-align: center;"> 
                                 <?php $list_RELIGION = $this->Area_identitty_model->get_RELIGION($ls->SchoolID, $ls->EducationYear, $ls->Semester ); ?>
                                     <?php foreach($list_RELIGION as $lr) { ?>
@@ -178,7 +178,7 @@
                                     <?php $limit_AreaReligionPercentage = $this->Area_identitty_model-> limit_AreaReligionPercentage($ls->EducationYear, $ls->Semester, $ls->SchoolID);    
                                         if((count($list_RELIGION)==0 ) || ($limit_AreaReligionPercentage[0]->limit_Percentage>0 && count($list_RELIGION)>0 )) {
                                     ?>
-                                        <?php if($R_501000 <> NULL && $R_501000['UR_Add']== "1"){ ?> 
+                                        <?php if($R_502000 <> NULL && $R_502000['UR_Add']== "1"){ ?> 
                                         <a href='forms-Region?y=<?php echo $ls->EducationYear; ?>&&s=<?php echo $ls->Semester; ?>&&sid=<?php echo $SchoolID; ?>' class="fw-bold my-link">>>เพิ่มข้อมูลศาสนา<<</a>                                                            
                                         <?php  } ?>
                                     <?php  }  ?>
@@ -245,7 +245,7 @@
                                     <?php $limit_AreaOccupationPercentage = $this->Area_identitty_model-> limit_AreaOccupationPercentage($ls->EducationYear, $ls->Semester, $ls->SchoolID);    
                                         if((count($list_OCCUPATION)==0 ) || ($limit_AreaOccupationPercentage[0]->limit_Percentage>0 && count($list_OCCUPATION)>0 )) {
                                     ?>
-                                         <?php if($R_501000 <> NULL && $R_501000['UR_Add']== "1"){ ?> 
+                                         <?php if($R_502000 <> NULL && $R_502000['UR_Add']== "1"){ ?> 
                                         <a href='forms-OCCUPATION?y=<?php echo $ls->EducationYear; ?>&&s=<?php echo $ls->Semester; ?>&&sid=<?php echo $SchoolID; ?>' class="fw-bold my-link">>>เพิ่มข้อมูลกลุ่มอาชีพ<<</a>                                                            
                                         <?php  } ?>    
                                     <?php  }else  ?>
@@ -257,15 +257,15 @@
                                 </td>
                                 <?php  } ?>
                                 
-                                <?php if($R_501000 <> NULL && ( $R_501000['UR_Edit']== "1" || $R_501000['UR_Delete']== "1") ){ ?>
+                                <?php if($R_502000 <> NULL && ( $R_502000['UR_Edit']== "1" || $R_502000['UR_Delete']== "1") ){ ?>
                                 <td style="text-align: center;">
-                                    <?php if( $R_501000 <> NULL &&  $R_501000['UR_Edit']== "1"  ){ ?>
+                                    <?php if( $R_502000 <> NULL &&  $R_502000['UR_Edit']== "1"  ){ ?>
                                     <a href='edit_forms_area_identity?y=<?php echo $ls->EducationYear; ?>&&s=<?php echo $ls->Semester; ?>&&sid=<?php echo $SchoolID; ?>' class="btn btn-warning">
                                         <i class="bi bi-pencil-square"></i> 
                                     </a> 
                                     <?php  } ?>
 
-                                    <?php if( $R_501000 <> NULL &&  $R_501000['UR_Delete']== "1"  ){ ?>
+                                    <?php if( $R_502000 <> NULL &&  $R_502000['UR_Delete']== "1"  ){ ?>
                                     <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#delete<?php echo $i ;?>">
                                         <i class=" bi bi-trash"></i>
                                     </button> 

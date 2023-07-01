@@ -18,11 +18,11 @@ class Area_identittyController extends _sandboxcontroller{
         $data = $this->session->userdata();
         
         if (!empty($data['UserRights'])) {
-			//'501000', 'ข้อมูลอัตลักษณ์ของแต่ละพื้นที่'
-			$R_501000 = $data['UserRights'][array_search('501000', array_column($data['UserRights'], 'UR_Code'))];
-			$data['R_501000'] = $R_501000;
+			//'R_502000', 'ข้อมูลอัตลักษณ์ของแต่ละพื้นที่'
+			$R_502000 = $data['UserRights'][array_search('502000', array_column($data['UserRights'], 'UR_Code'))];
+			$data['R_502000'] = $R_502000;
 		} else {
-			$data['R_501000'] = NULL;
+			$data['R_502000'] = NULL;
 		}
         
         if ( ! file_exists(APPPATH.'views/pages/forms/Area_Identity/forms-area_identitty.php'))
@@ -37,10 +37,10 @@ class Area_identittyController extends _sandboxcontroller{
         $data['SchoolID'] = $_GET['sid'];
         
 
-        $this->load->view('templates/header');
-        $this->load->view('templates/sidebar');
+        $this->load->view('templates/header',$data);
+        $this->load->view('templates/sidebar',$data);
         $this->load->view('pages/forms/Area_Identity/forms-area_identitty',$data);
-        $this->load->view('templates/footer');
+        $this->load->view('templates/footer',$data);
 
     }
 
@@ -49,11 +49,11 @@ class Area_identittyController extends _sandboxcontroller{
         $data = $this->session->userdata();
         
         if (!empty($data['UserRights'])) {
-			//'501000', 'ข้อมูลอัตลักษณ์ของแต่ละพื้นที่'
-			$R_501000 = $data['UserRights'][array_search('501000', array_column($data['UserRights'], 'UR_Code'))];
-			$data['R_501000'] = $R_501000;
+			//'R_502000', 'ข้อมูลอัตลักษณ์ของแต่ละพื้นที่'
+			$R_502000 = $data['UserRights'][array_search('502000', array_column($data['UserRights'], 'UR_Code'))];
+			$data['R_502000'] = $R_502000;
 		} else {
-			$data['R_501000'] = NULL;
+			$data['R_502000'] = NULL;
 		}
             
         $data['School'] = $this->School_model->get_school_All();
@@ -67,10 +67,10 @@ class Area_identittyController extends _sandboxcontroller{
             $data['listAreaIdentity'] = $this->Area_identitty_model->get_AreaIdentity_by_school($data['SchoolID']);  
             
         }
-        $this->load->view('templates/header');
-        $this->load->view('templates/sidebar');
+        $this->load->view('templates/header',$data);
+        $this->load->view('templates/sidebar',$data);
         $this->load->view('pages/dashboard/Area_Identity/list-area_identity',$data);
-        $this->load->view('templates/footer');
+        $this->load->view('templates/footer',$data);
 
     }
 
@@ -79,11 +79,11 @@ class Area_identittyController extends _sandboxcontroller{
         $data = $this->session->userdata();
         
         if (!empty($data['UserRights'])) {
-			//'501000', 'ข้อมูลอัตลักษณ์ของแต่ละพื้นที่'
-			$R_501000 = $data['UserRights'][array_search('501000', array_column($data['UserRights'], 'UR_Code'))];
-			$data['R_501000'] = $R_501000;
+			//'R_502000', 'ข้อมูลอัตลักษณ์ของแต่ละพื้นที่'
+			$R_502000 = $data['UserRights'][array_search('502000', array_column($data['UserRights'], 'UR_Code'))];
+			$data['R_502000'] = $R_502000;
 		} else {
-			$data['R_501000'] = NULL;
+			$data['R_502000'] = NULL;
 		}
 
         $data['SchoolID'] = $_GET['sid']; 
@@ -93,10 +93,10 @@ class Area_identittyController extends _sandboxcontroller{
         $data['listAreaIdentity'] = $this->Area_identitty_model->get_AreaIdentity_by_school($data['SchoolID']); 
         $data['School'] = $this->School_model->get_school_All();
 
-        $this->load->view('templates/header');
-        $this->load->view('templates/sidebar');
+        $this->load->view('templates/header',$data);
+        $this->load->view('templates/sidebar',$data);
         $this->load->view('pages/dashboard/Area_Identity/list-area_identity',$data);
-        $this->load->view('templates/footer');
+        $this->load->view('templates/footer',$data);
 
     }
 
@@ -184,11 +184,11 @@ class Area_identittyController extends _sandboxcontroller{
         $data = $this->session->userdata();
         
         if (!empty($data['UserRights'])) {
-			//'501000', 'ข้อมูลอัตลักษณ์ของแต่ละพื้นที่'
-			$R_501000 = $data['UserRights'][array_search('501000', array_column($data['UserRights'], 'UR_Code'))];
-			$data['R_501000'] = $R_501000;
+			//'R_502000', 'ข้อมูลอัตลักษณ์ของแต่ละพื้นที่'
+			$R_502000 = $data['UserRights'][array_search('502000', array_column($data['UserRights'], 'UR_Code'))];
+			$data['R_502000'] = $R_502000;
 		} else {
-			$data['R_501000'] = NULL;
+			$data['R_502000'] = NULL;
 		}
         
         if ( ! file_exists(APPPATH.'views/pages/forms/Area_Identity/edit_forms-area_identity.php'))
@@ -206,10 +206,10 @@ class Area_identittyController extends _sandboxcontroller{
 
         $data['Area_identity'] = $this->Area_identitty_model->get_Area_identity($data['SchoolID'], $EducationYear, $Semester);
 
-        $this->load->view('templates/header');
-        $this->load->view('templates/sidebar');
+        $this->load->view('templates/header',$data);
+        $this->load->view('templates/sidebar',$data);
         $this->load->view('pages/forms/Area_Identity/edit_forms-area_identity',$data);
-        $this->load->view('templates/footer');
+        $this->load->view('templates/footer',$data);
 
     }
 
@@ -264,11 +264,11 @@ class Area_identittyController extends _sandboxcontroller{
         $data = $this->session->userdata();
         
         if (!empty($data['UserRights'])) {
-			//'501000', 'ข้อมูลอัตลักษณ์ของแต่ละพื้นที่'
-			$R_501000 = $data['UserRights'][array_search('501000', array_column($data['UserRights'], 'UR_Code'))];
-			$data['R_501000'] = $R_501000;
+			//'R_502000', 'ข้อมูลอัตลักษณ์ของแต่ละพื้นที่'
+			$R_502000 = $data['UserRights'][array_search('502000', array_column($data['UserRights'], 'UR_Code'))];
+			$data['R_502000'] = $R_502000;
 		} else {
-			$data['R_501000'] = NULL;
+			$data['R_502000'] = NULL;
 		}
         
         if ( ! file_exists(APPPATH.'views/pages/forms/Area_Identity/forms-region.php'))
@@ -289,10 +289,10 @@ class Area_identittyController extends _sandboxcontroller{
            $data['limit_AreaReligionPercentage'] = 0;
        }
 
-        $this->load->view('templates/header');
-        $this->load->view('templates/sidebar');
+        $this->load->view('templates/header',$data);
+        $this->load->view('templates/sidebar',$data);
         $this->load->view('pages/forms/Area_Identity/forms-region',$data);
-        $this->load->view('templates/footer');
+        $this->load->view('templates/footer',$data);
 
     }
 
@@ -349,11 +349,11 @@ class Area_identittyController extends _sandboxcontroller{
         $data = $this->session->userdata();
         
         if (!empty($data['UserRights'])) {
-			//'501000', 'ข้อมูลอัตลักษณ์ของแต่ละพื้นที่'
-			$R_501000 = $data['UserRights'][array_search('501000', array_column($data['UserRights'], 'UR_Code'))];
-			$data['R_501000'] = $R_501000;
+			//'R_502000', 'ข้อมูลอัตลักษณ์ของแต่ละพื้นที่'
+			$R_502000 = $data['UserRights'][array_search('502000', array_column($data['UserRights'], 'UR_Code'))];
+			$data['R_502000'] = $R_502000;
 		} else {
-			$data['R_501000'] = NULL;
+			$data['R_502000'] = NULL;
 		}
         
         if ( ! file_exists(APPPATH.'views/pages/forms/Area_Identity/edit_forms-region.php'))
@@ -378,10 +378,10 @@ class Area_identittyController extends _sandboxcontroller{
            $data['limit_AreaReligionPercentage'] = 0;
        }
 
-        $this->load->view('templates/header');
-        $this->load->view('templates/sidebar');
+        $this->load->view('templates/header',$data);
+        $this->load->view('templates/sidebar',$data);
         $this->load->view('pages/forms/Area_Identity/edit_forms-region',$data);
-        $this->load->view('templates/footer');
+        $this->load->view('templates/footer',$data);
 
     }
 
@@ -471,11 +471,11 @@ class Area_identittyController extends _sandboxcontroller{
         $data = $this->session->userdata();
         
         if (!empty($data['UserRights'])) {
-			//'501000', 'ข้อมูลอัตลักษณ์ของแต่ละพื้นที่'
-			$R_501000 = $data['UserRights'][array_search('501000', array_column($data['UserRights'], 'UR_Code'))];
-			$data['R_501000'] = $R_501000;
+			//'R_502000', 'ข้อมูลอัตลักษณ์ของแต่ละพื้นที่'
+			$R_502000 = $data['UserRights'][array_search('502000', array_column($data['UserRights'], 'UR_Code'))];
+			$data['R_502000'] = $R_502000;
 		} else {
-			$data['R_501000'] = NULL;
+			$data['R_502000'] = NULL;
 		}
         
         if ( ! file_exists(APPPATH.'views/pages/forms/Area_Identity/forms-OCCUPATION.php'))
@@ -496,10 +496,10 @@ class Area_identittyController extends _sandboxcontroller{
            $data['limit_AreaOccupationPercentage'] = 0;
        }
 
-        $this->load->view('templates/header');
-        $this->load->view('templates/sidebar');
+        $this->load->view('templates/header',$data);
+        $this->load->view('templates/sidebar',$data);
         $this->load->view('pages/forms/Area_Identity/forms-OCCUPATION',$data);
-        $this->load->view('templates/footer');
+        $this->load->view('templates/footer',$data);
 
     }
 
@@ -554,11 +554,11 @@ class Area_identittyController extends _sandboxcontroller{
         $data = $this->session->userdata();
         
         if (!empty($data['UserRights'])) {
-			//'501000', 'ข้อมูลอัตลักษณ์ของแต่ละพื้นที่'
-			$R_501000 = $data['UserRights'][array_search('501000', array_column($data['UserRights'], 'UR_Code'))];
-			$data['R_501000'] = $R_501000;
+			//'R_502000', 'ข้อมูลอัตลักษณ์ของแต่ละพื้นที่'
+			$R_502000 = $data['UserRights'][array_search('502000', array_column($data['UserRights'], 'UR_Code'))];
+			$data['R_502000'] = $R_502000;
 		} else {
-			$data['R_501000'] = NULL;
+			$data['R_502000'] = NULL;
 		}
         
         if ( ! file_exists(APPPATH.'views/pages/forms/Area_Identity/edit_forms-OCCUPATION.php'))
@@ -583,10 +583,10 @@ class Area_identittyController extends _sandboxcontroller{
            $data['limit_AreaOccupationPercentage'] = 0;
        }
 
-        $this->load->view('templates/header');
-        $this->load->view('templates/sidebar');
+        $this->load->view('templates/header',$data);
+        $this->load->view('templates/sidebar',$data);
         $this->load->view('pages/forms/Area_Identity/edit_forms-OCCUPATION',$data);
-        $this->load->view('templates/footer');
+        $this->load->view('templates/footer',$data);
 
     }
 

@@ -44,10 +44,10 @@ class ExpenseController extends _sandboxcontroller{
         }
        
         
-        $this->load->view('templates/header');
-        $this->load->view('templates/sidebar');
+        $this->load->view('templates/header',$data);
+        $this->load->view('templates/sidebar',$data);
         $this->load->view('pages/forms/Expense/forms-Expense',$data);
-        $this->load->view('templates/footer');
+        $this->load->view('templates/footer',$data);
 
     }
 
@@ -86,10 +86,10 @@ class ExpenseController extends _sandboxcontroller{
            $data['BudgetReceivedDate'] = $Budget[0]->BudgetReceivedDate;
        }
 
-        $this->load->view('templates/header');
-        $this->load->view('templates/sidebar');
+        $this->load->view('templates/header',$data);
+        $this->load->view('templates/sidebar',$data);
         $this->load->view('pages/forms/Expense/edit_forms-Expense',$data);
-        $this->load->view('templates/footer');
+        $this->load->view('templates/footer',$data);
 
     }
 

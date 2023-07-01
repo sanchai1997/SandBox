@@ -37,10 +37,10 @@ class BudgetController extends _sandboxcontroller{
         
         
 
-        $this->load->view('templates/header');
-        $this->load->view('templates/sidebar');
+        $this->load->view('templates/header',$data);
+        $this->load->view('templates/sidebar',$data);
         $this->load->view('pages/forms/Budget/forms-budget',$data);
-        $this->load->view('templates/footer');
+        $this->load->view('templates/footer',$data);
 
     }
 
@@ -72,10 +72,10 @@ class BudgetController extends _sandboxcontroller{
         $data['Budget'] = $this->Budget_model->get_Budget($data['BudgetID'] );
 
 
-        $this->load->view('templates/header');
-        $this->load->view('templates/sidebar');
+        $this->load->view('templates/header',$data);
+        $this->load->view('templates/sidebar',$data);
         $this->load->view('pages/forms/Budget/edit_forms-budget',$data);
-        $this->load->view('templates/footer');
+        $this->load->view('templates/footer',$data);
 
     }
 
@@ -109,10 +109,10 @@ class BudgetController extends _sandboxcontroller{
             
         }
         
-        $this->load->view('templates/header');
-        $this->load->view('templates/sidebar');
+        $this->load->view('templates/header',$data);
+        $this->load->view('templates/sidebar',$data);
         $this->load->view('pages/dashboard/Budget/list-budget',$data);
-        $this->load->view('templates/footer');
+        $this->load->view('templates/footer',$data);
 
     }
     public function list_budget_by_school() {
@@ -139,10 +139,10 @@ class BudgetController extends _sandboxcontroller{
         $data['listBudget'] = $this->Budget_model->get_Budget_by_school($data['SchoolID']);  
         $data['School'] = $this->School_model->get_school_All();
 
-        $this->load->view('templates/header');
-        $this->load->view('templates/sidebar');
+        $this->load->view('templates/header',$data);
+        $this->load->view('templates/sidebar',$data);
         $this->load->view('pages/dashboard/Budget/list-budget',$data);
-        $this->load->view('templates/footer');
+        $this->load->view('templates/footer',$data);
 
     }
 

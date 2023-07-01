@@ -858,10 +858,10 @@ class CurriculumController extends _sandboxcontroller{
         $data['Curriculum'] = $this->Curriculum_model->get_Curriculum($data['CurriculumID']);
         $data['Subject'] = $this->Curriculum_model->get_CurriculumSubject($data['CurriculumID'], $data['SubjectCode']);
 
-        $this->load->view('templates/header');
-        $this->load->view('templates/sidebar');
+        $this->load->view('templates/header',$data);
+        $this->load->view('templates/sidebar',$data);
         $this->load->view('pages/dashboard/Curriculum/list-curriculum_plan',$data);
-        $this->load->view('templates/footer');
+        $this->load->view('templates/footer',$data);
 
     }
 
@@ -882,10 +882,10 @@ class CurriculumController extends _sandboxcontroller{
         $data['Curriculum'] = $this->Curriculum_model->get_Curriculum($data['CurriculumID']);
         $data['Subject'] = $this->Curriculum_model->get_CurriculumSubject($data['CurriculumID'], $data['SubjectCode']);
 
-        $this->load->view('templates/header');
-        $this->load->view('templates/sidebar');
+        $this->load->view('templates/header',$data);
+        $this->load->view('templates/sidebar',$data);
         $this->load->view('pages/forms/Curriculum/forms-curriculum_plan',$data);
-        $this->load->view('templates/footer');
+        $this->load->view('templates/footer',$data);
 
     }
     public function add_curriculum_plan() {
@@ -963,10 +963,10 @@ class CurriculumController extends _sandboxcontroller{
         $data['Curriculum'] = $this->Curriculum_model->get_Curriculum($data['CurriculumID']);
         $data['Subject'] = $this->Curriculum_model->get_CurriculumSubject($data['CurriculumID'], $data['SubjectCode']);
 
-        $this->load->view('templates/header');
-        $this->load->view('templates/sidebar');
+        $this->load->view('templates/header',$data);
+        $this->load->view('templates/sidebar',$data);
         $this->load->view('pages/forms/Curriculum/edit_forms-curriculum_plan',$data);
-        $this->load->view('templates/footer');
+        $this->load->view('templates/footer',$data);
 
     }
     public function edit_curriculum_plan() {
@@ -1080,10 +1080,10 @@ class CurriculumController extends _sandboxcontroller{
         $data['list_curriculum_activity'] = $this->Curriculum_model->get_curriculum_activity_All($data['PLAN_ID']);
 
         
-        $this->load->view('templates/header');
-        $this->load->view('templates/sidebar');
+        $this->load->view('templates/header',$data);
+        $this->load->view('templates/sidebar',$data);
         $this->load->view('pages/dashboard/Curriculum/list-curriculum_activity',$data);
-        $this->load->view('templates/footer');
+        $this->load->view('templates/footer',$data);
 
     }
     public function add_curriculum_activity() {
@@ -1178,10 +1178,10 @@ class CurriculumController extends _sandboxcontroller{
         $data['CurriculumID'] = $_GET['cid']; 
         $data['SubjectCode'] = $_GET['sid']; 
 
-        $this->load->view('templates/header');
-        $this->load->view('templates/sidebar');
+        $this->load->view('templates/header',$data);
+        $this->load->view('templates/sidebar',$data);
         $this->load->view('pages/forms/Curriculum/forms-curriculum_activity',$data);
-        $this->load->view('templates/footer');
+        $this->load->view('templates/footer',$data);
 
     }
     public function edit_forms_curriculum_activity() {
@@ -1205,10 +1205,10 @@ class CurriculumController extends _sandboxcontroller{
         
         $data['CLS_FUNDAMENTAL_SUBJECT_PASSING'] = $this->Curriculum_model->get_CLS_FUNDAMENTAL_SUBJECT_PASSING();
 
-            $this->load->view('templates/header');
-            $this->load->view('templates/sidebar');
+            $this->load->view('templates/header',$data);
+            $this->load->view('templates/sidebar',$data);
             $this->load->view('pages/forms/Curriculum/edit_forms-curriculum_activity',$data);
-            $this->load->view('templates/footer');
+            $this->load->view('templates/footer',$data);
 
     }
 

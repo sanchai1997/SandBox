@@ -4,12 +4,15 @@
         <div class="row">
             <div >
                 <h1>ข้อมูลหลักสูตรรายวิชา - <?php echo $Curriculum[0]->SchoolNameThai; ?> 
+                  
                                         ปีการศึกษา <?= $Curriculum[0]->EducationYear; ?> 
                                         <?php $Semester_code = $Curriculum[0]->Semester;
                                                     if ($Semester_code == 0) echo "ตลอดปีการศึกษา";
                                                     else if ($Semester_code == 1) echo "ภาคเรียนที่ 1";
                                                     else if ($Semester_code == 2) echo "ภาคเรียนที่ 2"; ?>
                 </h1>
+                <br>
+                <h5>  ชั้นปี - <?php echo $Curriculum[0]->GRADE_LEVEL_NAME; ?> </h5>
             </div>
 
         </div>

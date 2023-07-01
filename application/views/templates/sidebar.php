@@ -56,6 +56,13 @@
      </li><!-- End ข้อมูลหลักสูตร Page Nav -->
 
      <li class="nav-item">
+       <a class="nav-link collapsed" href="list-subject_kpi">
+         <i class="bi bi-journal-text"></i>
+         <span>ตัวชี้วัดรายวิชา</span>
+       </a>
+     </li><!-- End ข้อมูลหลักสูตร Page Nav -->
+
+     <li class="nav-item">
        <a class="nav-link collapsed" href="list-teacher_development_activity">
          <i class="bi bi-person "></i>
          <span>ข้อมูลการพัฒนาบุคลากร</span>
@@ -113,6 +120,29 @@
          </li>
        </ul>
      </li><!-- End Components Nav -->
+
+     <li class="nav-item">
+       <a class="nav-link collapsed" data-bs-target="#report-nav" data-bs-toggle="collapse" href="#">
+         <i class="bi bi-menu-button-wide"></i><span>รายงาน</span><i class="bi bi-chevron-down ms-auto"></i>
+       </a>
+       <ul id="report-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+         <li>
+           <a href="<?php echo site_url('') ?>">
+             <i class="bi bi-circle"></i><span>รายงานบันทึกผลลัพธ์การเรียนรู้</span>
+           </a>
+         </li>
+         <li>
+           <a href="<?php echo site_url('') ?>">
+             <i class="bi bi-circle"></i><span>รายงานสรุปการวัดผลทั้งสองภาคทุกตัวชี้วัด (LO1-LOxx)</span>
+           </a>
+         </li>
+         <li>
+           <a href="<?php echo site_url('') ?>">
+             <i class="bi bi-circle"></i><span>รายงานผลการพัฒนาคุณภาพผู้เรียน</span>
+           </a>
+         </li>
+       </ul>	   
+     </li><!-- End ข้อมูลอัตลักษณ์ของแต่ละพื้นที่ Page Nav -->
 
      <!-- <li class="nav-item">
     <a class="nav-link collapsed" href="pages-login.html">

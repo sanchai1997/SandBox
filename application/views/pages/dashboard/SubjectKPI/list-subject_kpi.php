@@ -3,7 +3,7 @@
     <div class="pagetitle">
         <div class="row">
             <div class="col-6">
-                <h1>ข้อมูลหลักสูตร / หลักสูตรของพื้นที่นวัตกรรม</h1>
+                <h1>ตัวชี้วัดรายวิชา</h1>
             </div>
 
         </div>
@@ -88,7 +88,6 @@
                             <th style="text-align: center;" scope="col">ปีการศึกษา</th>
                             <th style="text-align: center;" scope="col">ภาคเรียน</th>
                             <th style="text-align: center;" scope="col">ชื่อหลักสูตร</th>
-                            <th style="text-align: center;" scope="col">ชั้นปี</th>
                             <?php if($R_200000 <> NULL && $R_200000['UR_Read']== "1"){ ?>
                                 <th style="text-align: center;" scope="col">หลักสูตรรายวิชา</th>
                                 <th style="text-align: center;" scope="col">รายละเอียด</th>
@@ -116,7 +115,6 @@
                                         ?>
                                     </td>
                                     <td style="text-align: center;"><?php echo $ls->CurriculumName; ?></td>
-                                    <td style="text-align: center;"><?php echo $ls->GRADE_LEVEL_NAME; ?></td>
 
                                     <?php if($R_200000 <> NULL && $R_200000['UR_Read']== "1"){ ?>                                       
                                     <td style="text-align: center;">

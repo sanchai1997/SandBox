@@ -27,8 +27,12 @@ $result = $this->db->query('SELECT * FROM STUDENT
 $pdf->Cell(60, 150, "", 0, 1, 'C');
 
 foreach ($result->result() as $STUDENT) {
-    $pdf->Image('assets/student/img/' . $STUDENT->ImageStudent, 60, 90, 90, 0);
-
+    if($STUDENT->ImageStudent==null){
+        $pdf->Image('assets/student/img/ImageStudentBoy.png' , 60, 90, 90, 0);
+    }else{
+        $pdf->Image('/assets/student/img/' . $STUDENT->ImageStudent, 60, 90, 90, 0);
+    }
+   
     $pdf->Cell(60, 20, "", 0, 1, 'C');
 
     $pdf->SetFont('THSarabunPSK-Bold', '', 30);
@@ -68,7 +72,24 @@ $pdf->SetFont('THSarabunPSK', '', 25);
 $pdf->SetLeftMargin(20); 
 $pdf->Cell(0,5, iconv('UTF-8', 'cp874', ''), 0, 1 );
 $pdf->Cell(0, 15, iconv('UTF-8', 'cp874', 'ชื่อ-สกุล : ' .  $STUDENT->PREFIX_NAME . $STUDENT->StudentNameThai . '  ' . $STUDENT->StudentLastNameThai), 0, 1);
-$pdf->Cell(0, 5, iconv('UTF-8', 'cp874', 'วันเกิด : ' .  $STUDENT->StudentBirthDate ), 0, 1);
+////////
+$config_encrypt_key = $this->Config_model->getitem(array('service' => 'encrypt_key', 'x' => 'encrypt_key'));
+$encrypt_key = $config_encrypt_key['y'];
+
+$key = sha1($encrypt_key);		
+$strLen = strlen($STUDENT->StudentBirthDate);
+$keyLen = strlen($key);
+$j = 0;		
+$StudentBirthDate = '';
+for ($i = 0; $i < $strLen; $i+=2) {
+    $ordStr = hexdec(base_convert(strrev(substr($STUDENT->StudentBirthDate,$i,2)),36,16));
+    if ($j == $keyLen) { $j = 0; }
+    $ordKey = ord(substr($key,$j,1));
+    $j++;
+    $StudentBirthDate .= chr($ordStr - $ordKey);
+}
+///////
+$pdf->Cell(0, 5, iconv('UTF-8', 'cp874', 'วันเกิด : ' . $StudentBirthDate   ), 0, 1);
 
 $result = $this->db->query('SELECT * FROM CLS_NATIONALITY ORDER BY NATIONALITY_NAME ASC');
     foreach ($result->result() as $NATIONALITY) {
@@ -97,7 +118,7 @@ $pdf->SetLeftMargin(10);
 $pdf->SetFont('THSarabunPSK-Bold', '', 25);
 $pdf->Cell(0, 20, iconv('UTF-8', 'cp874', ''), 0, 1 );
 $pdf->Cell(0, 15, iconv('UTF-8', 'cp874', 'ประวัติทางการศึกษา'), 0, 1 );
-$pdf->Line(9, 178, 200, 178);
+$pdf->Line(9, 157, 200, 157);
 $pdf->SetFont('THSarabunPSK', '', 25);
 $pdf->SetLeftMargin(20); 
 $pdf->Cell(0,5, iconv('UTF-8', 'cp874', ''), 0, 1 );
@@ -133,11 +154,35 @@ $result =   $this->db->select('*')
         ->get();
 $STUDENT_PROJECT =   $result->result();     
 
-$pdf->SetFont('THSarabunPSK', '', 25);
+$pdf->SetFont('THSarabunPSK', '', 20);
+
+$sp=45; 
+$num_sp=1;
 foreach ($STUDENT_PROJECT as $pj) { 
-    $pdf->Image('assets/Eportfolio/document/' . $pj->STUDENT_PROJECT_DOCUMENT, 60, 90, 90, 0);
-    $pdf->Cell(60, 20,  iconv('UTF-8', 'cp874', $pj->STUDENT_PROJECT_DESCRIPTION ), 0, 1);
+    if($num_sp%2 !=0){
+        $pdf->Image('assets/Eportfolio/document/' . $pj->STUDENT_PROJECT_DOCUMENT, 10, $sp, 80, 50);
+        if($sp==45){
+            $pdf->Cell(0, 53, iconv('UTF-8', 'cp874', ''), 0, 1 );
+        }else{
+            $pdf->Cell(0, 62, iconv('UTF-8', 'cp874', ''), 0, 1 );
+        }
+        $pdf->Cell(80, 0,  iconv('UTF-8', 'cp874', $pj->STUDENT_PROJECT_DESCRIPTION ), 0, 1, 'C');
+    }else{
+        $pdf->Image('assets/Eportfolio/document/' . $pj->STUDENT_PROJECT_DOCUMENT, 110, $sp, 80, 50);
+        if($sp==45){
+            $pdf->Cell(0, 53, iconv('UTF-8', 'cp874', ''), 0, 1 );
+        }else{
+            $pdf->Cell(0, 62, iconv('UTF-8', 'cp874', ''), 0, 1 );
+        }
+        $pdf->Cell(280, 0,  iconv('UTF-8', 'cp874', $pj->STUDENT_PROJECT_DESCRIPTION ), 0, 1, 'C');
+    }
+    
+
+    
+    $sp= $sp+62 ;
+    $num_sp++;
 }
+
 
 
 ////////////////////////////////////////////////
@@ -161,10 +206,20 @@ $result =   $this->db->select('*')
         ->get();
 $STUDENT_GOODNESS =   $result->result();      
 
-$pdf->SetFont('THSarabunPSK', '', 25);
+$pdf->SetFont('THSarabunPSK', '', 20);
+
+$sg=45; 
 foreach ($STUDENT_GOODNESS as $gn) { 
-    $pdf->Image('assets/Eportfolio/document/' . $gn->STUDENT_GOODNESS_DOCUMENT, 60, 90, 90, 0);
-    $pdf->Cell(60, 20,  iconv('UTF-8', 'cp874', $gn->STUDENT_GOODNESS_DESCRIPTION ), 0, 1);
+    $pdf->Image('assets/Eportfolio/document/' . $gn->STUDENT_GOODNESS_DOCUMENT, 65, $sg, 80, 50);
+
+    if($sg==45){
+        $pdf->Cell(0, 53, iconv('UTF-8', 'cp874', ''), 0, 1 );
+    }else{
+        $pdf->Cell(0, 62, iconv('UTF-8', 'cp874', ''), 0, 1 );
+    }
+    $pdf->Cell(0, 0,  iconv('UTF-8', 'cp874', $gn->STUDENT_GOODNESS_DESCRIPTION ), 0, 1, 'C');
+    
+    $sg= $sg+62 ;
 }
 
  
