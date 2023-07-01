@@ -302,6 +302,12 @@
                                                                                                                     'ass_ria_forms_p1?page=sh1'
                                                                                                                 ); ?>" class="btn btn-success"><i class="bi bi-file-earmark-plus"></i>
                                                 เพิ่มข้อมูล</a></h5>
+
+
+                                                <div class="col">
+                                                <h5 style="float: right; padding: 15px;" class="card-title">
+                                                    <a class="btn btn-info text-white" href="<?php echo site_url('download-criteria'); ?>" target="_blank" >ดาวน์โหลดตัวชี้วัด </a></h5>
+                                                </div>
                                                 <?php } ?>
                                     </div>
                                 </div>
@@ -1293,17 +1299,17 @@
                         </div>
                         <table class="table table-borderless">
                             <tr>
-                                <th>ระดับของตัวชี้วัด</th>
-                                <th>องค์ประกอบของตัวชี้วัด</th>
+                                <th class="col-3">ระดับของตัวชี้วัด</th>
+                                <th class="col-9">องค์ประกอบของตัวชี้วัด</th>
                             </tr>
                             <tr>
                                 <td>
                                     <table class="table table-bordered">
                                         <thead class="table-Ligth">
                                             <tr>
-                                                <td class="col-1">ลำดับ</td>
-                                                <td>หัวข้อ</td>
-                                                <td>คะแนน</td>
+                                                <td class="col-2">ลำดับ</td>
+                                                <td class="col-8">หัวข้อ</td>
+                                                <td class="col-2">คะแนน</td>
                                             </tr>
                                         </thead>
                                         <?php
@@ -1337,9 +1343,9 @@
                                     <table class="table table-bordered">
                                         <tr>
                                             <td class="col-1">ลำดับ</td>
-                                            <td>หัวข้อ</td>
-                                            <td>ค่าน้ำหนัก</td>
-                                            <td>หลักฐาน</td>
+                                            <td class="col-3">หัวข้อ</td>
+                                            <td class="col-2">ค่าน้ำหนัก</td>
+                                            <td class="col-6">หลักฐาน</td>
                                             <!-- <td>คำอธิบายองค์ประกอบของตัวชี้วัด</td> -->
 
                                         </tr>
