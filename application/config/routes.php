@@ -608,5 +608,42 @@ $route['download-criteria'] = 'Fm_evaluation/print_excel';
 ///////////////////// evaluation - END /////////////////////////
 
 
+///////////////////// subject group - START /////////////////////////
+$route['list-subject_group'] = 'SubjectKPIController/list_subject_group';
+$route['forms-subject_group'] = 'SubjectKPIController/forms_subject_group';
+$route['add_subject_group']['post'] = 'SubjectKPIController/add_subject_group';
+
+$route['edit_forms-subject_group'] = 'SubjectKPIController/edit_forms_subject_group';
+$route['edit_subject_group']['post'] = 'SubjectKPIController/edit_subject_group';
+$route['delete-subject_group/(:any)'] = 'SubjectKPIController/delete_subject_group/$1';
+
+
+///////////////////// lc - START /////////////////////////
+
+$route['list-lc'] = 'SubjectKPIController/list_lc';
+$route['forms-lc'] = 'SubjectKPIController/forms_lc';
+$route['add_lc']['post'] = 'SubjectKPIController/add_lc';
+
+$route['edit_forms-lc'] = 'SubjectKPIController/edit_forms_lc';
+$route['edit_lc']['post'] = 'SubjectKPIController/edit_lc';
+$route['delete-lc/(:any)/(:any)'] = 'SubjectKPIController/delete_lc/$1/$2';
+
+///////////////////// std - START /////////////////////////
+
+$route['forms-std'] = 'SubjectKPIController/forms_std';
+$route['add_std']['post'] = 'SubjectKPIController/add_std';
+
+$route['edit_forms-std']['post']= 'SubjectKPIController/edit_forms_std';
+$route['edit_std']['post'] = 'SubjectKPIController/edit_std';
+$route['delete-std']['post'] = 'SubjectKPIController/delete_std';
+
+
 ///////////////////// subject KPI - START /////////////////////////
-$route['list-subject_kpi'] = 'SubjectKPIController/list_subject_kpi';
+$route['list-kpi'] = 'SubjectKPIController/list_kpi';
+$route['forms-kpi'] = 'SubjectKPIController/forms_kpi';
+$route['add_kpi']['post'] = 'SubjectKPIController/add_kpi';
+
+$route['edit_forms-kpi'] = 'SubjectKPIController/edit_forms_kpi';
+$route['edit_kpi']['post'] = 'SubjectKPIController/edit_kpi';
+$route['delete-kpi']['post'] = 'SubjectKPIController/delete_kpi';
+$route['uploadfile-kpi'] = 'SubjectKPIController/uploadfile_kpi';

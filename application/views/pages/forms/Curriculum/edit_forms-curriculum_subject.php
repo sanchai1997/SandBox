@@ -110,7 +110,7 @@
                     <label>จำนวนชั่วโมงเรียน<font color="red"> *</font></label>
                   </div>
                 </div>
-
+<!--
                 <div class="col-md-16" >
                   <div class="form-floating">
                     <select class="form-select" aria-label="Default select example" name="SUBJECT_STD_ID" id="SUBJECT_STD_ID">
@@ -144,6 +144,7 @@
                     <label>ตัวชี้วัด<font color="red"> *</font></label>
                   </div>
                 </div>
+-->
 
               <!-- End Form ข้อมูลหลักสูตรรายวิชา -->
                 <div class="d-flex justify-content-between">
@@ -183,6 +184,7 @@
     </section>
 
 <script>
+/*
     $(document).ready(function() {
       $("#SubjectGroupCode").change(function() {
         
@@ -214,7 +216,7 @@
 
    
     });
-
+*/
   function onloadpage(){
    
    ///SubjectGroupCode
@@ -236,7 +238,7 @@
       selectoption_SubjectTypeCode[i].selected = true;
      }
    }
-
+/*
   ///SUBJECT_KPI_ID
    var my_SUBJECT_KPI_ID = "<?php echo $cs->SUBJECT_KPI_ID; ?>";
    var selectoption_SUBJECT_KPI_ID = document.querySelector('#SUBJECT_KPI_ID');
@@ -273,7 +275,7 @@
     }else{
       document.getElementById("add-SUBJECT_STD").style.display = 'none';
     }
-
+*/
 
   }
 
@@ -329,7 +331,7 @@
       return false;
     }
 
-
+/*
     //Check_SUBJECT_STD_ID
     if(frm2.SUBJECT_STD_ID.value==-1){
       alert("กรุณาเลือกรหัสมาตรฐานการเรียนรู้");
@@ -341,7 +343,7 @@
       alert("กรุณาเลือกตัวชี้วัด");
       return false;
     }
-
+*/
     $('#Modal').modal('show');
     
   }

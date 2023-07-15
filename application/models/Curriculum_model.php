@@ -93,12 +93,12 @@ class Curriculum_model  extends CI_Model {
     }
 
     public function get_CurriculumSubject_All($CurriculumID) {
-        $this->db->select('cs.*,st.SUBJECT_TYPE_NAME, sg.SUBJECT_GROUP_NAME, ac.*, std.*')
+        $this->db->select('cs.*,st.SUBJECT_TYPE_NAME, sg.SUBJECT_GROUP_NAME ')
         ->from('CURRICULUM_SUBJECT cs')
         ->join('CLS_SUBJECT_TYPE st', 'st.SUBJECT_TYPE_CODE   = cs.SubjectTypeCode  ', 'LEFT') 
         ->join('CLS_SUBJECT_GROUP sg', 'sg.SUBJECT_GROUP_CODE   = cs.SubjectGroupCode  ', 'LEFT') 
-        ->join('ASSESSMENT_CRITERIA ac', 'ac.Id   = cs.SUBJECT_KPI_ID  ', 'LEFT') 
-        ->join('SUBJECT_STD std', 'std.SUBJECT_STD_ID   = cs.SUBJECT_STD_ID  ', 'LEFT') 
+       // ->join('ASSESSMENT_CRITERIA ac', 'ac.Id   = cs.SUBJECT_KPI_ID  ', 'LEFT') 
+       // ->join('SUBJECT_STD std', 'std.SUBJECT_STD_ID   = cs.SUBJECT_STD_ID  ', 'LEFT') 
         ->where('CurriculumID ', $CurriculumID  ) 
         ->where('cs.DeleteStatus', 0)
         ;

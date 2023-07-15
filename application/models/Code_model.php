@@ -14,12 +14,41 @@ class Code_model  extends CI_Model {
     }
 
     public function get_EducationLevel_All() {
-        $query = $this->db->get('CLS_EDUCATION_LEVEL');
+
+        $this->db->from('CLS_EDUCATION_LEVEL')
+        ->where('ACTION', 1 );
+        
+        $query = $this->db->get();
+    
         return $query->result();
     }
 
     public function get_GradeLevel_All() {
-        $query = $this->db->get('CLS_GRADE_LEVEL');
+        $this->db->from('CLS_GRADE_LEVEL')
+        ->where('ACTION=1 OR ACTION=2' );
+        
+        $query = $this->db->get();
+    
+        return $query->result();
+    }
+
+    public function get_GradeLevel_All_LC() {
+        $year = array('211', '212', '213','214', '215', '216','311', '312', '313','411', '412', '413');
+
+        $this->db->from('CLS_GRADE_LEVEL')
+        ->where_in('GRADE_LEVEL_CODE', $year);
+        
+        $query = $this->db->get();
+    
+        return $query->result();
+    }
+
+    public function get_GradeLevel($GRADE_LEVEL_CODE) {
+        $this->db->from('CLS_GRADE_LEVEL')
+        ->where('GRADE_LEVEL_CODE',$GRADE_LEVEL_CODE );
+        
+        $query = $this->db->get();
+    
         return $query->result();
     }
 

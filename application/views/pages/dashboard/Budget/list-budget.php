@@ -127,13 +127,12 @@
                                 <?php $list_Expense = $this->Expense_model->get_expense_all($lb->BudgetID ); ?>
                                     <?php foreach($list_Expense as $le) { ?>
                                         <div class="row">
-                                                <div class="col">
-                                                    <p>
-                                                    <button type="button" class="my-link btn btn-link " data-bs-toggle="modal" data-bs-target="#viewExpense<?php echo $i ?>"><?php echo $le->ExpenseID ; ?></button>
-                                                    </p>
-                                                </div>
-
+                                            <div class="col">
+                                                <p>
+                                                <button type="button" class="my-link btn btn-link " data-bs-toggle="modal" data-bs-target="#viewExpense<?php echo $i ?>"><?php echo $le->ExpenseID ; ?></button>
+                                                </p>
                                             </div>
+                                        </div>
                                                                     <!-- Modal view Expense -->
                             <div class="modal fade" id="viewExpense<?php echo $i ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" style="text-align: left;">
                                 <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-xl">
@@ -198,7 +197,7 @@
                                         if((count($list_Expense)==0 ) || ($limit_amount[0]->limit_amount>0 && count($list_Expense)>0 )) {
                                     ?>
                                         <?php if($R_400000 <> NULL && $R_400000['UR_Add']== "1"){ ?>
-                                        <a href='forms_Expense?bid=<?php echo $lb->BudgetID ;?>&&sid=<?php echo $SchoolID; ?>' class="fw-bold my-link">>>เพิ่มข้อมูลเบิกจ่าย<<</a>                                                            
+                                        <a href='forms_Expense?bid=<?php echo $lb->BudgetID ;?>&&sid=<?php echo $SchoolID; ?>' class="fw-bold my-link">>>เพิ่มข้อมูลเบิกจ่าย<< </a>                                                            
                                         <?php  }  ?>
                                            
                                     <?php  }  ?>

@@ -402,9 +402,11 @@ class CurriculumController extends _sandboxcontroller{
             'SubjectTypeCode' => $this->input->post('SubjectTypeCode'),
             'Credit' => $this->input->post('Credit'),
             'LearningHour' => $this->input->post('LearningHour'),
+        /*  
             'SUBJECT_STD_ID' => $this->input->post('SUBJECT_STD_ID'),
             #'SUBJECT_STD_DETAILS' => $this->input->post('SUBJECT_STD_DETAILS'),
             'SUBJECT_KPI_ID' => $this->input->post('SUBJECT_KPI_ID'),
+        */
             'DeleteStatus' => 0 
         ];
         $result_CURRICULUM_SUBJECT = $this->Curriculum_model->insert_curriculum_subject($CURRICULUM_SUBJECT);
@@ -477,9 +479,11 @@ class CurriculumController extends _sandboxcontroller{
             'SubjectTypeCode' => $this->input->post('SubjectTypeCode'),
             'Credit' => $this->input->post('Credit'),
             'LearningHour' => $this->input->post('LearningHour'),
+        /*
             'SUBJECT_STD_ID' => $this->input->post('SUBJECT_STD_ID'),
             #'SUBJECT_STD_DETAILS' => $this->input->post('SUBJECT_STD_DETAILS'),
             'SUBJECT_KPI_ID' => $this->input->post('SUBJECT_KPI_ID'),
+        */
             'DeleteStatus' => 0 
         ];
         $result_CURRICULUM_SUBJECT = $this->Curriculum_model->update_curriculum_subject($CurriculumID, $Old_SubjectCode, $CURRICULUM_SUBJECT);
@@ -545,7 +549,7 @@ class CurriculumController extends _sandboxcontroller{
     }
 
 
-###### subject_std
+###### subject_std มาตรฐานการเรียนรู้ 
     public function forms_subject_std() {
         $data = array();
         $data = $this->session->userdata();

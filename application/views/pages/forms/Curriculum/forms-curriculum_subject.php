@@ -116,6 +116,7 @@
                   </div>
                 </div>
 
+<!--
                 <div class="col-md-16" >
                   <div class="form-floating">
                     <select class="form-select" aria-label="Default select example" name="SUBJECT_STD_ID" id="SUBJECT_STD_ID">
@@ -136,6 +137,7 @@
                     </a>
                   </h5>
                 </div>
+              
 
 
                 <div class="col-md-16">
@@ -149,6 +151,7 @@
                     <label>ตัวชี้วัด<font color="red"> *</font></label>
                   </div>
                 </div>
+-->
 
               <!-- End Form ข้อมูลหลักสูตรรายวิชา -->
                 <div class="d-flex justify-content-between">
@@ -188,7 +191,7 @@
     </section>
 
 <script>
-
+/*
   $(document).ready(function() {
       $("#SubjectGroupCode").change(function() {
         
@@ -220,7 +223,7 @@
 
    
     });
-      
+  */    
 
     function check(frm2){
     
@@ -273,6 +276,8 @@
       return false;
     }
 
+
+/*
     //Check_SUBJECT_STD_ID
     if(frm2.SUBJECT_STD_ID.value==-1){
       alert("กรุณาเลือกรหัสมาตรฐานการเรียนรู้");
@@ -285,7 +290,7 @@
       alert("กรุณาเลือกตัวชี้วัด");
       return false;
     }
-
+*/
     $('#Modal').modal('show');
     
   }
